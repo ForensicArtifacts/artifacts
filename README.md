@@ -15,12 +15,14 @@ presentation, https://www.blackhat.com/us-14/archives.html#grr-find-all-the-badn
 and YouTube video, http://www.youtube.com/watch?v=DudGrSv26NY, from the GRR team.
 
 Info:
+
 GRR Project - https://github.com/google/grr
+
 ForensicArtifacts - http://forensicartifacts.com
 
 Contact:
 forensicartifacts@googlegroups.com
-https://groups.google.com/forum/#!forum/forensicartifacts
 
+https://groups.google.com/forum/#!forum/forensicartifacts
 
 =========
