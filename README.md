@@ -1,4 +1,4 @@
-Forensicartifacts.com Artifact Repository
+ForensicArtifacts.com Artifact Repository
 ===============================
 
 A free, community-sourced, machine-readable knowledge base of forensic artifacts
