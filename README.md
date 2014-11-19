@@ -1,4 +1,4 @@
-== ForensicArtifacts.com Artifact Repository ==
+## ForensicArtifacts.com Artifact Repository
 
 A free, community-sourced, machine-readable knowledge base of forensic artifacts
 that the world can use both as an information source and within other tools.
@@ -20,6 +20,6 @@ For some background on the artifacts system and how we expect it to be used see
 and [youtube video](http://www.youtube.com/watch?v=DudGrSv26NY) from the GRR
 team.
 
-== Contact ==
+## Contact
 
 [forensicartifacts@googlegroups.com](https://groups.google.com/forum/#!forum/forensicartifacts)
