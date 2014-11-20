@@ -25,3 +25,23 @@ TYPE_INDICATOR_PATH = 'PATH'
 TYPE_INDICATOR_REGISTRY_KEY = 'REGISTRY_KEY'
 TYPE_INDICATOR_REGISTRY_VALUE = 'REGISTRY_VALUE'
 TYPE_INDICATOR_WMI = 'WMI'
+
+LABELS = {
+    'Antivirus': 'Antivirus related artifacts, e.g. quarantine files.',
+    'Authentication': 'Authentication artifacts.',
+    'Browser': 'Web Browser artifacts.',
+    'Configuration Files': 'Configuration files artifacts.',
+    'Execution': 'Contain execution events.',
+    'External Media': 'Contain external media data or events e.g. USB drives.',
+    'KnowledgeBase': 'Artifacts used in knowledgebase generation.',
+    'Logs': 'Contain log files.',
+    'Memory': 'Artifacts retrieved from Memory.',
+    'Network': 'Describe networking state.',
+    'Processes': 'Describe running processes.',
+    'Software': 'Installed software.',
+    'System': 'Core system artifacts.',
+    'Users': 'Information about users.',
+    'Rekall': 'Artifacts using the Rekall memory forensics framework.',
+    }
+
+SUPPORTED_OS = frozenset(['Darwin', 'Linux', 'Windows'])

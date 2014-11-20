@@ -18,6 +18,7 @@
 """The artifact reader objects."""
 
 import abc
+import yaml
 
 from artifacts import artifact
 from artifacts import definitions
@@ -67,15 +68,18 @@ class YamlArtifactsReader(ArtifactsReader):
         name, description=description)
 
     for collector in yaml_definition.get('collectors', []):
-      type_indicator = collector.get('type', None)
+      type_indicator = collector.get('collector_type', None)
       if not type_indicator:
-        errors.FormatError(
+        raise errors.FormatError(
             u'Invalid artifact definition collector missing type.')
 
-    artifact_definition.conditions = yaml_definition.get('conditions', None)
-    artifact_definition.labels = yaml_definition.get('labels', None)
-    artifact_definition.supported_os = yaml_definition.get('supported_os', None)
-    artifact_definition.urls = yaml_definition.get('urls', None)
+      arguments = collector.get('args', None)
+      artifact_definition.AppendCollector(type_indicator, arguments)
+
+    artifact_definition.conditions = yaml_definition.get('conditions', [])
+    artifact_definition.labels = yaml_definition.get('labels', [])
+    artifact_definition.supported_os = yaml_definition.get('supported_os', [])
+    artifact_definition.urls = yaml_definition.get('urls', [])
 
     return artifact_definition
 
