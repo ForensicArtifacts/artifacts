@@ -64,7 +64,7 @@ class FileCollectorDefinition(CollectorDefinition):
     Raises:
       ValueError: when path_list is not set.
     """
-    if not locations:
+    if not path_list:
       raise ValueError(u'Missing path_list value.')
 
     super(FileCollectorDefinition, self).__init__(**kwargs)

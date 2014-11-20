@@ -17,12 +17,11 @@
 # limitations under the License.
 """The reader objects."""
 
-from artifacts import artifact
 from artifacts import collector
 from artifacts import definitions
 
 
-class ArtifactReader(object):
+class ArtifactDefinition(object):
   """Class that implements the artifact reader interface."""
 
   def __init__(self, name, description=None):
@@ -35,8 +34,12 @@ class ArtifactReader(object):
     """
     super(ArtifactDefinition, self).__init__()
     self.collectors = []
+    self.conditions = []
     self.description = description
     self.name = name
+    self.labels = []
+    self.supported_os = []
+    self.urls = []
 
   # Property for name compatibility with current variant of GRR artifacts.
   @property
@@ -54,9 +57,9 @@ class ArtifactReader(object):
     Raises:
       ValueError: if required attributes are missing.
     """
-    collector = None
-    if collector == definitions.TYPE_INDICATOR_FILE:
-      collector = collector.FileCollectorDefinition(**attributes)
+    collector_definition = None
+    if type_indicator == definitions.TYPE_INDICATOR_FILE:
+      collector_definition = collector.FileCollectorDefinition(**attributes)
 
-    if collector:
-      self.collector.append(collector)
+    if collector_definition:
+      self.collectors.append(collector_definition)
