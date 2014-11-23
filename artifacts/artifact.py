@@ -56,6 +56,10 @@ class ArtifactDefinition(object):
       type_indicator: the collector type indicator.
       attributes: a dictionary containing the collector attributes.
 
+    Returns:
+      The collector definition object (instance of CollectorDefinition) or
+      None if the type indicator is not supported.
+
     Raises:
       ValueError: if the type indicator is invalid or if required attributes
                   are missing.
@@ -63,9 +67,26 @@ class ArtifactDefinition(object):
     if not type_indicator:
       raise ValueError(u'Invalid type indicator.')
 
-    collector_definition = None
-    if type_indicator == definitions.TYPE_INDICATOR_FILE:
-      collector_definition = collector.FileCollectorDefinition(**attributes)
+    collector_class = None
+    if type_indicator == definitions.TYPE_INDICATOR_ARTIFACT:
+      collector_class = collector.ArtifactCollectorDefinition
 
-    if collector_definition:
+    elif type_indicator == definitions.TYPE_INDICATOR_FILE:
+      collector_class = collector.FileCollectorDefinition
+
+    elif type_indicator == definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_KEY:
+      collector_class = collector.WindowsRegistryKeyCollectorDefinition
+
+    elif type_indicator == definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_VALUE:
+      collector_class = collector.WindowsRegistryValueCollectorDefinition
+
+    elif type_indicator == definitions.TYPE_INDICATOR_WMI_QUERY:
+      collector_class = collector.WMIQueryCollectorDefinition
+
+    if collector_class:
+      collector_definition = collector_class(**attributes)
       self.collectors.append(collector_definition)
+    else:
+      collector_definition = None
+
+    return collector_definition

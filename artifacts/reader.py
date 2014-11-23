@@ -74,7 +74,16 @@ class YamlArtifactsReader(ArtifactsReader):
             u'Invalid artifact definition collector missing type.')
 
       arguments = collector.get('args', None)
-      artifact_definition.AppendCollector(type_indicator, arguments)
+      collector_definition = artifact_definition.AppendCollector(
+          type_indicator, arguments)
+
+      if collector_definition:
+        collector_definition.conditions = collector.get(
+            'conditions', [])
+        collector_definition.returned_types = collector.get(
+            'returned_types', [])
+        collector_definition.supported_os = collector.get(
+            'supported_os', [])
 
     artifact_definition.conditions = yaml_definition.get('conditions', [])
     artifact_definition.labels = yaml_definition.get('labels', [])

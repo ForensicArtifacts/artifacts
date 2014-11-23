@@ -2,4 +2,6 @@ include ACKNOWLEDGEMENTS AUTHORS LICENSE README
 exclude .gitignore
 exclude *.pyc
 recursive-exclude artifacts *.pyc
-recursive-include data *
+recursive-include data *.yaml
+recursive-include tools *.py
+recursive-exclude tools *.pyc
