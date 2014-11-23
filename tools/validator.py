@@ -149,20 +149,21 @@ class Validator(object):
     Args:
       filename: the filename of the artifacts definition file.
     """
-    file_object = open(filename, 'rb')
-    try:
-      artifact_reader = reader.YamlArtifactsReader()
-    except errors.FormatError as exception:
-      logging.warning(
-          u'Unable to read artifacts definitions with error: {0:s}'.format(
-             exception))
-      return False
+    with open(filename, 'rb') as file_object:
+      try:
+        artifact_reader = reader.YamlArtifactsReader()
+      except errors.FormatError as exception:
+        logging.warning(
+            u'Unable to read artifacts definitions with error: {0:s}'.format(
+               exception))
+        return False
 
-    result = True
-    for artifact_definition in artifact_reader.Read(file_object):
-      result = self._CheckArtifactDefinition(artifact_definition)
-      if not result:
-        break
+      result = True
+      for artifact_definition in artifact_reader.Read(file_object):
+        result = self._CheckArtifactDefinition(artifact_definition)
+        if not result:
+          break
+
     return result
 
 

@@ -86,6 +86,7 @@ class YamlArtifactsReader(ArtifactsReader):
             'supported_os', [])
 
     artifact_definition.conditions = yaml_definition.get('conditions', [])
+    artifact_definition.provides = yaml_definition.get('provides', [])
     artifact_definition.labels = yaml_definition.get('labels', [])
     artifact_definition.supported_os = yaml_definition.get('supported_os', [])
     artifact_definition.urls = yaml_definition.get('urls', [])
