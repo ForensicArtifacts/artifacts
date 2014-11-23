@@ -50,13 +50,19 @@ class ArtifactDefinition(object):
   def AppendCollector(self, type_indicator, attributes):
     """Appends a collector definition.
 
+    This function ignores unsupported collector type indicators.
+
     Args:
       type_indicator: the collector type indicator.
       attributes: a dictionary containing the collector attributes.
 
     Raises:
-      ValueError: if required attributes are missing.
+      ValueError: if the type indicator is invalid or if required attributes
+                  are missing.
     """
+    if not type_indicator:
+      raise ValueError(u'Invalid type indicator.')
+
     collector_definition = None
     if type_indicator == definitions.TYPE_INDICATOR_FILE:
       collector_definition = collector.FileCollectorDefinition(**attributes)
