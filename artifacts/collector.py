@@ -99,7 +99,7 @@ class FileCollectorDefinition(CollectorDefinition):
 class WindowsRegistryKeyCollectorDefinition(CollectorDefinition):
   """Class that implements the Windows Registry key collector definition."""
 
-  TYPE_INDICATOR = definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_VALUE
+  TYPE_INDICATOR = definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_KEY
 
   def __init__(self, path_list=None, **kwargs):
     """Initializes the collector definition object.

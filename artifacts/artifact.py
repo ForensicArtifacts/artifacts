@@ -38,6 +38,7 @@ class ArtifactDefinition(object):
     self.description = description
     self.name = name
     self.labels = []
+    self.provides = []
     self.supported_os = []
     self.urls = []
 
