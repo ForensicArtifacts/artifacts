@@ -1,0 +1,5 @@
+include ACKNOWLEDGEMENTS AUTHORS LICENSE README
+exclude .gitignore
+exclude *.pyc
+recursive-exclude artifacts *.pyc
+recursive-include data *

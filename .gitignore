@@ -1,0 +1,11 @@
+# Files to ignore by git
+
+# Generic auto-generated build files
+*.pyc
+*.pyo
+
+# Specific auto-generated build files
+/build
+/dist
+/artifacts.egg-info
+
