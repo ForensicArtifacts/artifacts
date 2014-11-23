@@ -35,6 +35,9 @@ class Validator(object):
     Args:
       artifact_definition: the artifact definition object (instance of
                            ArtifactDefinition).
+
+    Returns:
+      A boolean value indicating the artifact definition is valid or not.
     """
     result = True
 
@@ -52,8 +55,9 @@ class Validator(object):
 
     else:
       for collector in artifact_definition.collectors:
-        # TODO: validate a collector.
-        pass
+        if not self._CheckCollectorDefinition(
+            artifact_definition.name, collector):
+          result = False
 
     for operating_system in artifact_definition.supported_os:
       if operating_system not in definitions.SUPPORTED_OS:
@@ -61,11 +65,81 @@ class Validator(object):
             u'Artifact definition: {0:s} supported operating system: {1:s} '
             u'not defined.').format(artifact_definition.name, operating_system))
 
+    # TODO: check conditions.
+
     for label in artifact_definition.labels:
       if label not in definitions.LABELS:
         logging.warning(
             u'Artifact definition: {0:s} label: {1:s} not defined.'.format(
                 artifact_definition.name, label))
+
+    return result
+
+  def _CheckCollectorDefinition(
+      self, artifact_definition_name, collector_definition):
+    """Checks a collector definition.
+
+    Args:
+      artifact_definition_name: string containing the name of the artifact
+                                defintion.
+      collector_definition: the collector definition object (instance of
+                            CollectorDefinition).
+
+    Returns:
+      A boolean value indicating the collector definition is valid or not.
+    """
+    type_indicator = collector_definition.type_indicator
+
+    result = True
+    if type_indicator in definitions.TYPE_INDICATOR_ARTIFACT:
+      if not collector_definition.artifact_list:
+        logging.warning((
+            u'Artifact definition: {0:s} artifact collector definition missing '
+            u'artifiact list.').format(artifact_definition_name))
+        result = False
+
+    elif type_indicator == definitions.TYPE_INDICATOR_FILE:
+      if not collector_definition.path_list:
+        logging.warning((
+            u'Artifact definition: {0:s} file collector definition missing '
+            u'path list.').format(artifact_definition_name))
+        result = False
+
+    elif type_indicator == definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_KEY:
+      if not collector_definition.path_list:
+        logging.warning((
+            u'Artifact definition: {0:s} Windows Registry key collector '
+            u'definition missing path list.').format(artifact_definition_name))
+        result = False
+
+    elif type_indicator == definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_VALUE:
+      if not collector_definition.path_list:
+        logging.warning((
+            u'Artifact definition: {0:s} Windows Registry value collector '
+            u'definition missing path list.').format(artifact_definition_name))
+        result = False
+
+    elif type_indicator == definitions.TYPE_INDICATOR_WMI_QUERY:
+      if not collector_definition.query:
+        logging.warning((
+            u'Artifact definition: {0:s} WMI query collector definition '
+            u'missing query.').format(artifact_definition_name))
+        result = False
+
+    else: 
+      logging.warning((
+          u'Artifact definition: {0:s} unsupported collector definition type: '
+          u'{1:s}.').format(artifact_definition_name, type_indicator))
+      result = False
+
+    for operating_system in collector_definition.supported_os:
+      if operating_system not in definitions.SUPPORTED_OS:
+        logging.warning((
+            u'Artifact definition: {0:s} collector definition: {1:s} supported '
+            u'operating system: {2:s} not defined.').format(
+                artifact_definition_name, type_indicator, operating_system))
+
+    # TODO: check conditions.
 
     return result
 
