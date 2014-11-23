@@ -29,7 +29,7 @@ collectors:
   args: {path_list: ['HKEY_LOCAL_MACHINE\SYSTEM\Select\Current']}
 provides: [current_control_set]
 supported_os: [Windows]
-urls: ['https://code.google.com/p/winreg-kb/wiki/SystemKeys']
+urls: ['https://github.com/libyal/winreg-kb/wiki/System-keys']
 ---
 name: ProgramFiles
 doc: The %ProgramFiles% environment variable.
@@ -143,7 +143,7 @@ collectors:
   args: {path_list: ['%%current_control_set%%\Control\TimeZoneInformation\StandardName']}
 provides: [time_zone]
 supported_os: [Windows]
-urls: ['https://code.google.com/p/winreg-kb/wiki/TimeZoneKeys']
+urls: ['https://github.com/libyal/winreg-kb/wiki/Time-zone-keys']
 ---
 name: WindowsRegistryProfiles
 doc: |

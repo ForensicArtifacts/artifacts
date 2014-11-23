@@ -27,7 +27,7 @@ collectors:
   args:
     path_list: ['HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Time Zones\*\*']
 supported_os: [Windows]
-urls: ['https://code.google.com/p/winreg-kb/wiki/TimeZoneKeys']
+urls: ['https://github.com/libyal/winreg-kb/wiki/Time-zone-keys']
 ---
 name: EventLogs
 doc: Windows Event logs.
@@ -240,7 +240,7 @@ labels: [Software]
 supported_os: [Windows]
 urls:
   - 'http://support.microsoft.com/kb/103000'
-  - 'https://code.google.com/p/winreg-kb/wiki/SystemKeys'
+  - 'https://github.com/libyal/winreg-kb/wiki/System-keys'
 ---
 name: WindowsSystemRegistryFiles
 doc: Windows system Registry files.
@@ -255,7 +255,7 @@ collectors:
       - '\System Volume Information\Syscache.hve'
 labels: [System]
 supported_os: [Windows]
-urls: ['https://code.google.com/p/winreg-kb/wiki/RegistryFiles']
+urls: ['https://github.com/libyal/winreg-kb/wiki/Registry-files']
 ---
 name: WindowsUserRecentFiles
 doc: Windows user specific recent files.
@@ -279,7 +279,7 @@ collectors:
       - '%%users.localappdata%%\Microsoft\Windows\UsrClass.dat'
 labels: [Users]
 supported_os: [Windows]
-urls: ['https://code.google.com/p/winreg-kb/wiki/RegistryFiles']
+urls: ['https://github.com/libyal/winreg-kb/wiki/Registry-files']
 ---
 name: WMIDrivers
 doc: Installed drivers via Windows Management Instrumentation (WMI).
