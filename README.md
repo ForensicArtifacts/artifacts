@@ -8,8 +8,7 @@ was forked from the [GRR project](https://github.com/google/grr) artifact
 collection into a stand-alone repository that is not tool-specific. The GRR
 developers will migrate to using this repository and make contributions here. In
 addition the ForensicArtifact team will begin backfilling artifacts in the new 
-format
-from the [ForensicArtifacts.com](http://forensicartifacts.com/) website.
+format from the [ForensicArtifacts.com](http://forensicartifacts.com/) website.
 
 We're still in the process of setting this up for community contributions, but
 the existing artifacts are usable right now. Bear with us while we add
