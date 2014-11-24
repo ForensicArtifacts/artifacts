@@ -45,27 +45,27 @@ def Main():
       'Validates an artifact definitions file.'))
 
   args_parser.add_argument(
-      'source', nargs='?', action='store', metavar='artifacts.yaml',
+      'filename', nargs='?', action='store', metavar='artifacts.yaml',
       default=None, help=('path of the file that contains the artifact '
                           'definitions.'))
 
   options = args_parser.parse_args()
 
-  if not options.source:
+  if not options.filename:
     print u'Source value is missing.'
     print u''
     args_parser.print_help()
     print u''
     return False
 
-  if not os.path.isfile(options.source):
-    print u'Invalid source.'
+  if not os.path.isfile(options.filename):
+    print u'No such file: {0:s}'.format(options.filename)
     print u''
     return False
 
-  print u'Validating: {0:s}'.format(options.source)
+  print u'Validating: {0:s}'.format(options.filename)
   validator = Validator()
-  if not validator.Run(options.source):
+  if not validator.Run(options.filename):
     print u'FAILURE'
     return False
 
