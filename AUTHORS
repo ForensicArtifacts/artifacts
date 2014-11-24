@@ -1,13 +1,16 @@
+Copyright 2014 The ForensicArtifacts.com Artifact Repository project.
+
 # Names should be added to this file with this pattern:
 #
 # For individuals:
 #   Name (email address)
+#   Name (email address), organization
 #
 # For organizations:
 #   Organization (fnmatch pattern)
 #
 # See python fnmatch module documentation for more information.
 
-Greg Castle (TODO)
+Greg Castle (github@mailgreg.com), Google Inc.
 Matt Churchill (TODO)
-Joachim Metz (joachim.metz@gmail.com)
+Joachim Metz (joachim.metz@gmail.com), Google Inc.

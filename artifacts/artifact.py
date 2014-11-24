@@ -1,24 +1,10 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-#
-# Copyright 2014 The ForensicArtifacts.com Artifact Repository project.
-# Please see the AUTHORS file for details on individual authors.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#    http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
 """The reader objects."""
 
 from artifacts import collector
 from artifacts import definitions
+from artifacts import errors
 
 
 class ArtifactDefinition(object):
@@ -51,7 +37,10 @@ class ArtifactDefinition(object):
   def AppendCollector(self, type_indicator, attributes):
     """Appends a collector definition.
 
-    This function ignores unsupported collector type indicators.
+    If you want to implement your own collector definition you should create
+    a subclass in collector.py and change the AppendCollector method to
+    handle the new subclass. This function raises FormatError if an unsupported
+    collector type indicator is encountered.
 
     Args:
       type_indicator: the collector type indicator.
@@ -62,11 +51,11 @@ class ArtifactDefinition(object):
       None if the type indicator is not supported.
 
     Raises:
-      ValueError: if the type indicator is invalid or if required attributes
-                  are missing.
+      FormatError: if the type indicator is not set or unsupported,
+                   or if required attributes are missing.
     """
     if not type_indicator:
-      raise ValueError(u'Invalid type indicator.')
+      raise errors.FormatError(u'Missing type indicator.')
 
     collector_class = None
     if type_indicator == definitions.TYPE_INDICATOR_ARTIFACT:
@@ -84,10 +73,10 @@ class ArtifactDefinition(object):
     elif type_indicator == definitions.TYPE_INDICATOR_WMI_QUERY:
       collector_class = collector.WMIQueryCollectorDefinition
 
-    if collector_class:
-      collector_definition = collector_class(**attributes)
-      self.collectors.append(collector_definition)
     else:
-      collector_definition = None
+      raise errors.FormatError(
+          u'Unsupported type indicator: {0:s}.'.format(type_indicator))
 
+    collector_definition = collector_class(**attributes)
+    self.collectors.append(collector_definition)
     return collector_definition

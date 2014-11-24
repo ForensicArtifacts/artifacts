@@ -1,23 +1,14 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-#
-# Copyright 2014 The ForensicArtifacts.com Artifact Repository project.
-# Please see the AUTHORS file for details on individual authors.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#    http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-"""The collector definition objects."""
+"""The collector definition objects.
+
+These classes allow us to validate artifact definitions by instantiating them
+as objects. For your implementation you want to likely implement collector
+objects that actual collect files, Windows Registry values, etc.
+"""
 
 from artifacts import definitions
+from artifacts import errors
 
 
 class CollectorDefinition(object):
@@ -33,10 +24,10 @@ class CollectorDefinition(object):
               the collector type.
 
     Raises:
-      ValueError: when there are unused keyword arguments.
+      FormatError: when there are unused keyword arguments.
     """
     if kwargs:
-      raise ValueError(u'Unused keyword arguments.')
+      raise errors.FormatError(u'Unused keyword arguments.')
 
     super(CollectorDefinition, self).__init__()
     self.conditions = []
@@ -66,10 +57,10 @@ class ArtifactCollectorDefinition(CollectorDefinition):
                      The default is None.
 
     Raises:
-      ValueError: when artifact_list is not set.
+      FormatError: when artifact_list is not set.
     """
     if not artifact_list:
-      raise ValueError(u'Missing artifact_list value.')
+      raise errors.FormatError(u'Missing artifact_list value.')
 
     super(ArtifactCollectorDefinition, self).__init__(**kwargs)
     self.artifact_list = artifact_list
@@ -87,10 +78,10 @@ class FileCollectorDefinition(CollectorDefinition):
       path_list: optional list of path strings. The default is None.
 
     Raises:
-      ValueError: when path_list is not set.
+      FormatError: when path_list is not set.
     """
     if not path_list:
-      raise ValueError(u'Missing path_list value.')
+      raise errors.FormatError(u'Missing path_list value.')
 
     super(FileCollectorDefinition, self).__init__(**kwargs)
     self.path_list = path_list
@@ -108,10 +99,10 @@ class WindowsRegistryKeyCollectorDefinition(CollectorDefinition):
       path_list: optional list of path strings. The default is None.
 
     Raises:
-      ValueError: when path_list is not set.
+      FormatError: when path_list is not set.
     """
     if not path_list:
-      raise ValueError(u'Missing path_list value.')
+      raise errors.FormatError(u'Missing path_list value.')
 
     super(WindowsRegistryKeyCollectorDefinition, self).__init__(**kwargs)
     self.path_list = path_list
@@ -129,10 +120,10 @@ class WindowsRegistryValueCollectorDefinition(CollectorDefinition):
       path_list: optional list of path strings. The default is None.
 
     Raises:
-      ValueError: when path_list is not set.
+      FormatError: when path_list is not set.
     """
     if not path_list:
-      raise ValueError(u'Missing path_list value.')
+      raise errors.FormatError(u'Missing path_list value.')
 
     super(WindowsRegistryValueCollectorDefinition, self).__init__(**kwargs)
     self.path_list = path_list
@@ -150,10 +141,10 @@ class WMIQueryCollectorDefinition(CollectorDefinition):
       query: optional string containing the WMI query. The default is None.
 
     Raises:
-      ValueError: when query is not set.
+      FormatError: when query is not set.
     """
     if not query:
-      raise ValueError(u'Missing query value.')
+      raise errors.FormatError(u'Missing query value.')
 
     super(WMIQueryCollectorDefinition, self).__init__(**kwargs)
     self.query = query
