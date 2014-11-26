@@ -9,14 +9,14 @@ import os
 from tools import validator
 
 
-class ValidatorTest(unittest.TestCase):
+class ArtifactDefinitionsValidatorTest(unittest.TestCase):
   """Class to test the validator."""
 
-  def testRun(self):
+  def testArtifactDefinitionsValidator(self):
     """Runs the validator over all the YAML artifact definitions files."""
-    validator_object = validator.Validator()
+    validator_object = validator.ArtifactDefinitionsValidator()
     for definitions_file in glob.glob(os.path.join('definitions', '*.yaml')):
-      result = validator_object.Run(definitions_file)
+      result = validator_object.CheckFile(definitions_file)
       self.assertTrue(result)
 
   # TODO: add tests that deliberately provide invalid definitions to see

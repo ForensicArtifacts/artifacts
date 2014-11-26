@@ -9,13 +9,19 @@ import sys
 
 from artifacts import errors
 from artifacts import reader
+from artifacts import registry
 
 
-class Validator(object):
+class ArtifactDefinitionsValidator(object):
   """Class to define an artifact definitions validator."""
 
-  def Run(self, filename):
-    """Runs the validator on an artifacts definition file.
+  def __init__(self):
+    """Initializes the artifact definitions validator object."""
+    super(ArtifactDefinitionsValidator, self).__init__()
+    self._artifact_registry = registry.ArtifactDefinitionsRegistry()
+
+  def CheckFile(self, filename):
+    """Validates the artifacts definition in a specific file.
 
     Args:
       filename: the filename of the artifacts definition file.
@@ -25,8 +31,14 @@ class Validator(object):
       artifact_reader = reader.YamlArtifactsReader()
 
       try:
-        for _ in artifact_reader.Read(file_object):
-          pass
+        for artifact_definition in artifact_reader.Read(file_object):
+          try:
+            self._artifact_registry.RegisterDefinition(artifact_definition)
+          except KeyError:
+            logging.warning(
+                u'Duplicate artifact definition: {0:s} in file: {1:s}'.format(
+                    artifact_definition.name, filename))
+            result = False
 
       except errors.FormatError as exception:
         logging.warning(exception.message)
@@ -64,8 +76,8 @@ def Main():
     return False
 
   print u'Validating: {0:s}'.format(options.filename)
-  validator = Validator()
-  if not validator.Run(options.filename):
+  validator = ArtifactDefinitionsValidator()
+  if not validator.CheckFile(options.filename):
     print u'FAILURE'
     return False
 
