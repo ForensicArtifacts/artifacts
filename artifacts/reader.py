@@ -52,27 +52,32 @@ class YamlArtifactsReader(ArtifactsReader):
     description = yaml_definition.get('doc', None)
     if not description:
       raise errors.FormatError(
-          u'Invalid artifact definition missing description.')
+          u'Invalid artifact definition: {0:s} missing description.'.format(
+              name))
 
     artifact_definition = artifact.ArtifactDefinition(
         name, description=description)
 
-    for collector in yaml_definition.get('collectors', []):
-      type_indicator = collector.get('collector_type', None)
+    if yaml_definition.get('collectors', []):
+      raise errors.FormatError(
+          u'Invalid artifact definition: {0:s} still uses collectors.'.format(
+              name))
+
+    for source in yaml_definition.get('sources', []):
+      type_indicator = source.get('type', None)
       if not type_indicator:
         raise errors.FormatError(
-            u'Invalid artifact definition collector missing type.')
+            u'Invalid artifact definition: {0:s} source type.'.format(name))
 
-      arguments = collector.get('args', None)
-      collector_definition = artifact_definition.AppendCollector(
-          type_indicator, arguments)
+      attributes = source.get('attributes', None)
+      source_type = artifact_definition.AppendSource(
+          type_indicator, attributes)
 
-      if collector_definition:
-        collector_definition.conditions = collector.get(
-            'conditions', [])
-        collector_definition.returned_types = collector.get(
-            'returned_types', [])
-        self._ReadSupportedOS(yaml_definition, collector_definition, name)
+      # TODO: deprecate these left overs from the collector definition.
+      if source_type:
+        source_type.conditions = source.get('conditions', [])
+        source_type.returned_types = source.get('returned_types', [])
+        self._ReadSupportedOS(yaml_definition, source_type, name)
 
     # TODO: check conditions.
     artifact_definition.conditions = yaml_definition.get('conditions', [])
@@ -106,12 +111,12 @@ class YamlArtifactsReader(ArtifactsReader):
     artifact_definition.labels = yaml_definition.get('labels', [])
 
   def _ReadSupportedOS(self, yaml_definition, definition_object, name):
-    """Reads the optional artifact or collector definition supported OS.
+    """Reads the optional artifact or source type supported OS.
 
     Args:
       yaml_definition: the YAML artifact definition.
       defintion_object: the definition object (instance of ArtifactDefinition
-                        or CollectorDefinition).
+                        or SourceType).
       name: string containing the name of the arifact defintion.
  
     Raises:
