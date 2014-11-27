@@ -24,6 +24,9 @@ class ArtifactDefinitionsRegistryTest(unittest.TestCase):
       for artifact_definition in artifact_reader.Read(file_object):
         artifact_registry.RegisterDefinition(artifact_definition)
 
+    # Make sure the test file is not empty.
+    self.assertNotEquals(artifact_definition, None)
+
     with self.assertRaises(KeyError):
       artifact_registry.RegisterDefinition(artifact_definition)
 
