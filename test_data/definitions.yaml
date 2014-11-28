@@ -1,0 +1,62 @@
+# Test artifact definitions.
+
+name: SecurityEventLogEvtx
+doc: Windows Security Event log for Vista or later systems.
+collectors:
+- collector_type: FILE
+  args: {path_list: ['%%environ_systemroot%%\System32\winevt\Logs\Security.evtx']}
+conditions: [os_major_version >= 6]
+labels: [Logs]
+supported_os: [Windows]
+urls: ['http://www.forensicswiki.org/wiki/Windows_XML_Event_Log_(EVTX)']
+---
+name: AllUsersProfileEnvironmentVariable
+doc: The %AllUsersProfile% environment variable.
+collectors:
+- collector_type: REGISTRY_KEY
+  args:
+    path_list:
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\ProfileList\ProfilesDirectory'
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\ProfileList\AllUsersProfile'
+provides: [environ_allusersprofile]
+supported_os: [Windows]
+urls: ['http://support.microsoft.com/kb//214653']
+---
+name: CurrentControlSet
+doc: The control set the system is currently using.
+collectors:
+- collector_type: REGISTRY_VALUE
+  args: {path_list: ['HKEY_LOCAL_MACHINE\SYSTEM\Select\Current']}
+provides: [current_control_set]
+supported_os: [Windows]
+urls: ['https://code.google.com/p/winreg-kb/wiki/SystemKeys']
+---
+name: WMIProfileUsersHomeDir
+doc: |
+  Get user homedir from Win32_UserProfile based on a known user's SID.
+
+  This artifact relies on having the SID field users.sid populated in the knowledge
+  base. We expect it to be collected with WindowsRegistryProfiles to
+  supply the rest of the user information.
+collectors:
+- collector_type: WMI
+  args: {query: SELECT * FROM Win32_UserProfile WHERE SID='%%users.sid%%'}
+labels: [Users]
+provides: [users.homedir]
+supported_os: [Windows]
+urls: ['http://msdn.microsoft.com/en-us/library/windows/desktop/ee886409(v=vs.85).aspx']
+---
+name: EventLogs
+doc: Windows Event logs.
+collectors:
+- collector_type: ARTIFACT
+  args:
+    artifact_list:
+      - 'ApplicationEventLog'
+      - 'ApplicationEventLogEvtx'
+      - 'SecurityEventLog'
+      - 'SecurityEventLogEvtx'
+      - 'SystemEventLog'
+      - 'SystemEventLogEvtx'
+labels: [Logs]
+supported_os: [Windows]
