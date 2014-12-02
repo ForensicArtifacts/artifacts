@@ -19,6 +19,10 @@ For some background on the artifacts system and how we expect it to be used see
 and [youtube video](http://www.youtube.com/watch?v=DudGrSv26NY) from the GRR
 team.
 
+## Artifact Deinition Format
+
+The artifact definition format is described in detail in the [Style Guide](https://github.com/ForensicArtifacts/artifacts/blob/master/docs/style_guide.adoc).
+
 ## Contact
 
 [forensicartifacts@googlegroups.com](https://groups.google.com/forum/#!forum/forensicartifacts)
