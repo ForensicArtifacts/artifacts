@@ -1,20 +1,21 @@
-Artifact YAML Style Guide
-=========================
+= Artifact YAML Style Guide
+
 :toc:
 :toc-placement: preamble
 :icons:
 
+[NOTE]
 This style guide aims to ensure consistency and readbility for forensics
 artifacts defined in link:http://www.yaml.org/spec/1.2/spec.html[YAML].
 The format is currently under development and might undergo some
 change. Eventually this style should be enforced in code.
 
-The Basics
-----------
+== The Basics
 
 Here's a typical artifact definition:
 
---------------------------------------------------------------------------------
+[source,yaml]
+----
 name: ApplicationEventLogEvtx
 doc: Windows Application Event Log for Vista or newer systems.
 collectors:
@@ -26,7 +27,7 @@ conditions: [os_major_version >= 6]
 labels: [Logs]
 supported_os: [Windows]
 urls: ['http://www.forensicswiki.org/wiki/Windows_XML_Event_Log_(EVTX)']
---------------------------------------------------------------------------------
+----
 
 - *name*: CamelCase name without spaces.
 - *doc*: First line is a short description of the artifact, mentioning
@@ -47,23 +48,22 @@ urls: ['http://www.forensicswiki.org/wiki/Windows_XML_Event_Log_(EVTX)']
   Ideally forensicswiki.org links.
 
 
-Long docs
----------
+== Long docs
 
 Multi-line docs should use the Literal Style indicated by the |
 character with a double newline between the short description and the longer
 portion.  Explicit newlines (\n) should not be used:
 
---------------------------------------------------------------------------------
+[source,yaml]
+----
 doc: |
   Collect windows run keys.
 
   Note users.sid will currently only expand to SIDs with profiles on the system,
   not all SIDs.
---------------------------------------------------------------------------------
+----
 
-Collectors
-----------
+== Collectors
 
 The available collector types are defined in
 link:https://github.com/ForensicArtifacts/artifacts/blob/master/artifacts/definitions.py[definitions.py]
@@ -72,23 +72,26 @@ as TYPE_INDICATOR constants.
 Where collectors take a single argument with a single value, the {} form should
 be used to save on line breaks:
 
---------------------------------------------------------------------------------
+[source,yaml]
+----
 collectors:
 - collector_type: FILE
   args: {path_list: [/var/log/wtmp]}
---------------------------------------------------------------------------------
+----
 
 Where there are multiple arguments, or the arguments have multiple values, the
 longer form should be used:
 
---------------------------------------------------------------------------------
+[source,yaml]
+----
 collectors:
 - collector_type: COMMAND
   args:
     args: [-qa]
     cmd: /bin/rpm
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
+----
+[source,yaml]
+----
 collectors:
 - collector_type: FILE
   args:
@@ -103,53 +106,54 @@ collectors:
       - /root/.zlogout
       - /root/.zprofile
       - /root/.zprofile
---------------------------------------------------------------------------------
+----
 
-Lists
------
+== Lists
 
 Generally use the short [] format for single-item lists that fit inside 80
 characters to save on unnecessary line breaks:
 
---------------------------------------------------------------------------------
+[source,yaml]
+----
 labels: [Logs]
 supported_os: [Windows]
 urls: ['http://www.forensicswiki.org/wiki/Windows_XML_Event_Log_(EVTX)']
---------------------------------------------------------------------------------
+----
 
 and the bulleted list form for multi-item lists or long lines:
 
---------------------------------------------------------------------------------
+[source,yaml]
+----
 path_list:
   - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Run\*'
   - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\RunOnce\*'
   - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run\*'
   - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunOnce\*'
   - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunOnceEx\*'
---------------------------------------------------------------------------------
+----
 
-Quotes
-------
+== Quotes
 
 Quotes should not be used for doc strings, artifact names, and simple lists
 like labels and supported_os.
 
 Paths and URLs should use single quotes to avoid the need for manual escaping.
 
---------------------------------------------------------------------------------
+[source,yaml]
+----
 path_list: ['%%environ_temp%%\*.exe']
 urls: ['http://www.forensicswiki.org/wiki/Windows_XML_Event_Log_(EVTX)']
---------------------------------------------------------------------------------
+----
 
 Double quotes should be used where escaping causes problems, such as
 regular expressions:
 
---------------------------------------------------------------------------------
+[source,yaml]
+----
 content_regex_list: ["^%%users.username%%:[^:]*\n"]
---------------------------------------------------------------------------------
+----
 
-Conditions
-----------
+== Conditions
 
 Artifact conditions are implemented using the
 link:https://code.google.com/p/objectfilter/[objectfilter] system that allows
@@ -161,31 +165,34 @@ TODO: move this out of GRR into something local.
 Since OS conditions are a very common constraint, this has been provided as a
 separate option "supported_os" to simplify syntax.  Under the hood, this:
 
---------------------------------------------------------------------------------
+[source,yaml]
+----
 supported_os: [Windows, Linux, Darwin]
---------------------------------------------------------------------------------
+----
 
 is translated to objectfilter as:
 
---------------------------------------------------------------------------------
+[source,yaml]
+----
 ["os =='Windows'" OR "os=='Linux'" OR "os == 'Darwin'"]
---------------------------------------------------------------------------------
+----
 
 supported_os should be used when specifying os conditions, no quotes are
 required.  Single quotes should be used for strings when writing conditions.
 
---------------------------------------------------------------------------------
+[source,yaml]
+----
 conditions: [os_major_version >= 6 and time_zone == 'America/Los_Angeles']
---------------------------------------------------------------------------------
+----
 
-Minimize the Number of Definitions by Using Multiple Collectors
----------------------------------------------------------------
+== Minimize the Number of Definitions by Using Multiple Collectors
 
 To minimize the number of artifacts in the list, combine them using the
 supported_os and conditions attributes where it makes sense. e.g. rather than
 having FirefoxHistoryWindows, FirefoxHistoryLinux, FirefoxHistoryDarwin, do:
 
---------------------------------------------------------------------------------
+[source,yaml]
+----
 name: FirefoxHistory
 doc: Firefox places.sqlite files.
 collectors:
@@ -205,17 +212,17 @@ collectors:
   supported_os: [Linux]
 labels: [Browser]
 supported_os: [Windows, Linux, Darwin]
---------------------------------------------------------------------------------
+----
 
-Files
------
+== Files
 
 Artifact filenames should be of the form file_name.yaml
 
 Each file should have a comment at the top of the file with a one-line summary
 of the artifacts contained in the file:
 
---------------------------------------------------------------------------------
+[source,yaml]
+----
 # Windows specific artifacts.
---------------------------------------------------------------------------------
+----
 
