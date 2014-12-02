@@ -1,0 +1,11 @@
+# Configuration file artifacts.
+
+name: SshdConfigFile
+doc: Sshd configuration
+collectors:
+- collector_type: FILE
+  args:
+    path_list:
+      - '/etc/ssh/sshd_config'
+labels: [Configuration Files]
+supported_os: [Linux]
