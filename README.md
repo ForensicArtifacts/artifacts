@@ -59,6 +59,10 @@ The artifact definition format is described in detail in the [Style Guide](https
 
 Please send us your contribution! See [the developers guide](https://github.com/ForensicArtifacts/artifacts/wiki/Developers-guide) for instructions.
 
+## External links
+* [ForensicsArtifacts.com ... the definitive database](http://forensicartifacts.com/)
+* [GRR Artifacts](https://www.blackhat.com/docs/us-14/materials/us-14-Castle-GRR-Find-All-The-Badness-Collect-All-The-Things-WP.pdf), by Greg Castle, Blackhat 2014 
+
 ## Contact
 
 [forensicartifacts@googlegroups.com](https://groups.google.com/forum/#!forum/forensicartifacts)
