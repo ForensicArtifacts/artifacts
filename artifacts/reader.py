@@ -19,7 +19,7 @@ class ArtifactsReader(object):
 
     Args:
       file_object: the file-like object to read from.
- 
+
     Yields:
       Artifact definitions (instances of ArtifactDefinition).
     """
@@ -33,7 +33,7 @@ class YamlArtifactsReader(ArtifactsReader):
 
     Args:
       yaml_definition: the YAML artifact definition.
- 
+
     Returns:
       An artifact definition (instance of ArtifactDefinition).
 
@@ -90,7 +90,7 @@ class YamlArtifactsReader(ArtifactsReader):
       yaml_definition: the YAML artifact definition.
       artifact_definition: the artifact definition object (instance of
                            ArtifactDefinition).
- 
+
     Raises:
       FormatError: if there are undefined labels.
     """
@@ -113,11 +113,17 @@ class YamlArtifactsReader(ArtifactsReader):
       defintion_object: the definition object (instance of ArtifactDefinition
                         or CollectorDefinition).
       name: string containing the name of the arifact defintion.
- 
+
     Raises:
       FormatError: if there are undefined supported operating systems.
     """
     supported_os = yaml_definition.get('supported_os', [])
+
+    if not isinstance(supported_os, list):
+      raise errors.FormatError(
+          u'supported_os must be a list of strings, got: {0:s}'.format(
+              supported_os))
+
     undefined_supported_os = [
         item for item in supported_os if item not in definitions.SUPPORTED_OS]
 
@@ -133,7 +139,7 @@ class YamlArtifactsReader(ArtifactsReader):
 
     Args:
       file_object: the file-like object to read from.
- 
+
     Yields:
       Artifact definitions (instances of ArtifactDefinition).
     """
