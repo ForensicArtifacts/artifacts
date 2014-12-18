@@ -55,6 +55,10 @@ and merge the change.
 
 The artifact definition format is described in detail in the [Style Guide](https://github.com/ForensicArtifacts/artifacts/blob/master/docs/style_guide.adoc).
 
+## Contributing
+
+Please send us your contribution! See [the developers guide](https://github.com/ForensicArtifacts/artifacts/wiki/Developers-guide) for instructions.
+
 ## Contact
 
 [forensicartifacts@googlegroups.com](https://groups.google.com/forum/#!forum/forensicartifacts)
