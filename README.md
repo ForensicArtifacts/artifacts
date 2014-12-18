@@ -15,45 +15,17 @@ For some background on the artifacts system and how we expect it to be used see
 and [youtube video](http://www.youtube.com/watch?v=DudGrSv26NY) from the GRR
 team.
 
-## Contributing
-
-We love contributions! If you're contributing artifacts, please follow the
-[Style Guide](https://github.com/ForensicArtifacts/artifacts/blob/master/docs/style_guide.adoc)
-and make sure the tests pass:
-
-```
-$ python run_tests.py
-```
-
-If you're contributing python code, check with us on the mailing list first,
-especially if it's something big.
-
-We use the github [fork and pull review
-process](link:https://help.github.com/articles/using-pull-requests) to review
-all contributions. First, fork the [Artifact
-repository](https://github.com/ForensicArtifacts/artifacts) by following [the
-github instructions](https://help.github.com/articles/fork-a-repo).
-
-Now that you have a github.com/your-username/artifacts repository, make your
-changes. When you're ready for review, [sync your branch with
-upstream](https://help.github.com/articles/syncing-a-fork):
-
-```
-$ git fetch upstream
-$ git merge upstream/master
-
-# Fix any conflicts and commit your changes with a description
-$ git commit -a
-$ git push
-```
-
-and use the GitHub Web UI to [create and send the pull
-request](https://help.github.com/articles/using-pull-requests).  We'll review
-and merge the change.
-
 ## Artifact Definition Format
 
 The artifact definition format is described in detail in the [Style Guide](https://github.com/ForensicArtifacts/artifacts/blob/master/docs/style_guide.adoc).
+
+## Contributing
+
+Please send us your contribution! See [the developers guide](https://github.com/ForensicArtifacts/artifacts/wiki/Developers-guide) for instructions.
+
+## External links
+* [ForensicsArtifacts.com ... the definitive database](http://forensicartifacts.com/)
+* [GRR Artifacts](https://www.blackhat.com/docs/us-14/materials/us-14-Castle-GRR-Find-All-The-Badness-Collect-All-The-Things-WP.pdf), by Greg Castle, Blackhat 2014 
 
 ## Contact
 
