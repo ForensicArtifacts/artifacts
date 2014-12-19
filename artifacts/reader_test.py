@@ -4,8 +4,10 @@
 
 import unittest
 import os
+import StringIO
 
 from artifacts import definitions
+from artifacts import errors
 from artifacts import reader
 
 
@@ -118,6 +120,54 @@ class YamlArtifactsReadertest(unittest.TestCase):
     self.assertEqual(
         collector_definition.type_indicator,
         definitions.TYPE_INDICATOR_ARTIFACT)
+
+  def testBadSupportedOS(self):
+    """Tests supported_os is checked correctly."""
+    artifact_reader = reader.YamlArtifactsReader()
+    file_object = StringIO.StringIO("""name: BadSupportedOS
+doc: supported_os should be an array of strings.
+collectors:
+- collector_type: ARTIFACT
+  args:
+    artifact_list:
+      - 'SystemEventLogEvtx'
+labels: [Logs]
+supported_os: Windows
+""")
+
+    with self.assertRaises(errors.FormatError):
+      artifact_definitions = list(artifact_reader.Read(file_object))
+
+  def testBadLabels(self):
+    """Tests labels is checked correctly."""
+    artifact_reader = reader.YamlArtifactsReader()
+    file_object = StringIO.StringIO("""name: BadLabel
+doc: badlabel.
+collectors:
+- collector_type: ARTIFACT
+  args:
+    artifact_list:
+      - 'SystemEventLogEvtx'
+labels: Logs
+supported_os: [Windows]
+""")
+
+    with self.assertRaises(errors.FormatError):
+      artifact_definitions = list(artifact_reader.Read(file_object))
+
+  def testMissingDoc(self):
+    """Tests doc is required."""
+    artifact_reader = reader.YamlArtifactsReader()
+    file_object = StringIO.StringIO("""name: NoDoc
+collectors:
+- collector_type: ARTIFACT
+  args:
+    artifact_list:
+      - 'SystemEventLogEvtx'
+""")
+
+    with self.assertRaises(errors.FormatError):
+      artifact_definitions = list(artifact_reader.Read(file_object))
 
 
 if __name__ == '__main__':
