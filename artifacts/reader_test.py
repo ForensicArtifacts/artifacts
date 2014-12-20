@@ -2,9 +2,9 @@
 # -*- coding: utf-8 -*-
 """Tests for the artifact definitions readers."""
 
+import io
 import unittest
 import os
-import StringIO
 
 from artifacts import definitions
 from artifacts import errors
@@ -124,7 +124,7 @@ class YamlArtifactsReadertest(unittest.TestCase):
   def testBadSupportedOS(self):
     """Tests supported_os is checked correctly."""
     artifact_reader = reader.YamlArtifactsReader()
-    file_object = StringIO.StringIO("""name: BadSupportedOS
+    file_object = io.StringIO(initial_value=u"""name: BadSupportedOS
 doc: supported_os should be an array of strings.
 collectors:
 - collector_type: ARTIFACT
@@ -141,7 +141,7 @@ supported_os: Windows
   def testBadLabels(self):
     """Tests labels is checked correctly."""
     artifact_reader = reader.YamlArtifactsReader()
-    file_object = StringIO.StringIO("""name: BadLabel
+    file_object = io.StringIO(initial_value=u"""name: BadLabel
 doc: badlabel.
 collectors:
 - collector_type: ARTIFACT
@@ -158,7 +158,7 @@ supported_os: [Windows]
   def testMissingDoc(self):
     """Tests doc is required."""
     artifact_reader = reader.YamlArtifactsReader()
-    file_object = StringIO.StringIO("""name: NoDoc
+    file_object = io.StringIO(initial_value=u"""name: NoDoc
 collectors:
 - collector_type: ARTIFACT
   args:
