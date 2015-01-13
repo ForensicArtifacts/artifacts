@@ -281,6 +281,15 @@ labels: [Users]
 supported_os: [Windows]
 urls: ['https://github.com/libyal/winreg-kb/wiki/Registry-files']
 ---
+name: WMIComputerSystemProduct
+doc: Computer System Product including Identifiying number queried from WMI.
+collectors:
+- collector_type: WMI
+  args: {query: SELECT * FROM Win32_ComputerSystemProduct}
+labels: [System]
+supported_os: [Windows]
+urls: ['http://msdn.microsoft.com/en-us/library/aa394105(v=vs.85).aspx']
+---
 name: WMIDrivers
 doc: Installed drivers via Windows Management Instrumentation (WMI).
 collectors:
@@ -310,6 +319,15 @@ conditions: [os_major_version >= 6]
 labels: [Software]
 supported_os: [Windows]
 ---
+name: WMILogicalDisks
+doc: Disk information via Windows Management Instrumentation (WMI).
+collectors:
+- collector_type: WMI
+  args: {query: SELECT * FROM Win32_LogicalDisk}
+labels: [System]
+supported_os: [Windows]
+urls: ['http://msdn.microsoft.com/en-us/library/aa394173(v=vs.85).aspx']
+---
 name: WMILoginUsers
 doc: |
   Login Users via Windows Management Instrumentation (WMI).
@@ -322,6 +340,16 @@ collectors:
 conditions: [os_major_version >= 6]
 labels: [Software]
 supported_os: [Windows]
+---
+name: WMIPhysicalMemory
+doc: Physical memory information via Windows Management Instrumentation (WMI).
+collectors:
+- collector_type: WMI
+  args: {query: SELECT * from Win32_PhysicalMemory}
+conditions: [os_major_version >= 6]
+labels: [System]
+supported_os: [Windows]
+urls: ["http://msdn.microsoft.com/en-us/library/aa394347%28v=vs.85%29.aspx"]
 ---
 name: WMIProcessList
 doc: Process listing via Windows Management Instrumentation (WMI).
@@ -345,21 +373,4 @@ collectors:
 labels: [Users]
 supported_os: [Windows]
 urls: ['http://msdn.microsoft.com/en-us/library/windows/desktop/aa394507(v=vs.85).aspx']
----
-name: WMILogicalDisks
-doc: Disk information via Windows Management Instrumentation (WMI).
-collectors:
-- collector_type: WMI
-  args: {query: SELECT * FROM Win32_LogicalDisk}
-labels: [System]
-supported_os: [Windows]
-urls: ['http://msdn.microsoft.com/en-us/library/aa394173(v=vs.85).aspx']
----
-name: WMIComputerSystemProduct
-doc: Computer System Product including Identifiying number queried from WMI.
-collectors:
-- collector_type: WMI
-  args: {query: SELECT * FROM Win32_ComputerSystemProduct}
-labels: [System]
-supported_os: [Windows]
-urls: ['http://msdn.microsoft.com/en-us/library/aa394105(v=vs.85).aspx']
+
