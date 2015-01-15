@@ -39,9 +39,9 @@ class YamlArtifactsReaderTest(unittest.TestCase):
     self.assertEqual(
         source_type.type_indicator, definitions.TYPE_INDICATOR_FILE)
 
-    expected_locations = sorted([
+    expected_paths = sorted([
         '%%environ_systemroot%%\\System32\\winevt\\Logs\\Security.evtx'])
-    self.assertEqual(sorted(source_type.locations), expected_locations)
+    self.assertEqual(sorted(source_type.paths), expected_paths)
 
     self.assertEqual(len(artifact_definition.conditions), 1)
     expected_condition = 'os_major_version >= 6'
@@ -88,9 +88,12 @@ class YamlArtifactsReaderTest(unittest.TestCase):
         source_type.type_indicator,
         definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_VALUE)
 
+    self.assertEqual(len(source_type.key_value_pairs), 1)
+    key_value_pair = source_type.key_value_pairs[0]
+
     expected_key = 'HKEY_LOCAL_MACHINE\\SYSTEM\\Select'
-    self.assertEqual(source_type.key, expected_key)
-    self.assertEqual(source_type.value, 'Current')
+    self.assertEqual(key_value_pair['key'], expected_key)
+    self.assertEqual(key_value_pair['value'], 'Current')
 
     # Artifact with WMI query source type.
     artifact_definition = artifact_definitions[3]
@@ -124,48 +127,48 @@ class YamlArtifactsReaderTest(unittest.TestCase):
     artifact_reader = reader.YamlArtifactsReader()
     file_object = io.StringIO(initial_value=u"""name: BadSupportedOS
 doc: supported_os should be an array of strings.
-collectors:
-- collector_type: ARTIFACT
-  args:
-    artifact_list:
+sources:
+- type: ARTIFACT
+  attributes:
+    names:
       - 'SystemEventLogEvtx'
 labels: [Logs]
 supported_os: Windows
 """)
 
     with self.assertRaises(errors.FormatError):
-      artifact_definitions = list(artifact_reader.Read(file_object))
+      _ = list(artifact_reader.Read(file_object))
 
   def testBadLabels(self):
     """Tests labels is checked correctly."""
     artifact_reader = reader.YamlArtifactsReader()
     file_object = io.StringIO(initial_value=u"""name: BadLabel
 doc: badlabel.
-collectors:
-- collector_type: ARTIFACT
-  args:
-    artifact_list:
+sources:
+- type: ARTIFACT
+  attributes:
+    names:
       - 'SystemEventLogEvtx'
 labels: Logs
 supported_os: [Windows]
 """)
 
     with self.assertRaises(errors.FormatError):
-      artifact_definitions = list(artifact_reader.Read(file_object))
+      _ = list(artifact_reader.Read(file_object))
 
   def testMissingDoc(self):
     """Tests doc is required."""
     artifact_reader = reader.YamlArtifactsReader()
     file_object = io.StringIO(initial_value=u"""name: NoDoc
-collectors:
-- collector_type: ARTIFACT
-  args:
-    artifact_list:
+sources:
+- type: ARTIFACT
+  attributes:
+    names:
       - 'SystemEventLogEvtx'
 """)
 
     with self.assertRaises(errors.FormatError):
-      artifact_definitions = list(artifact_reader.Read(file_object))
+      _ = list(artifact_reader.Read(file_object))
 
 
 if __name__ == '__main__':

@@ -9,7 +9,7 @@ purpose as the source type. Currently the following source types are defined:
 * file; the source is one or more files;
 * path; the source is one or more paths;
 * Windows Registry key; the source is one or more Windows Registry keys;
-* Windows Registry value; the source a Windows Registry value;
+* Windows Registry value; the source is one or more Windows Registry values;
 * WMI query; the source is a Windows Management Instrumentation query.
 
 The difference between the file and path source types are that file should
@@ -62,23 +62,22 @@ class ArtifactSourceType(SourceType):
 
   TYPE_INDICATOR = definitions.TYPE_INDICATOR_ARTIFACT
 
-  def __init__(self, artifact_names=None, **kwargs):
+  def __init__(self, names=None, **kwargs):
     """Initializes the source type object.
 
     Args:
-      artifact_names: optional list of artifact definition names.
-                      The default is None.
+      names: optional list of artifact definition names.  The default is None.
       kwargs: a dictionary of keyword arguments dependending on
               the source type.
 
     Raises:
       FormatError: when artifact names is not set.
     """
-    if not artifact_names:
-      raise errors.FormatError(u'Missing artifact names value.')
+    if not names:
+      raise errors.FormatError(u'Missing names value.')
 
     super(ArtifactSourceType, self).__init__(**kwargs)
-    self.artifact_names = artifact_names
+    self.names = names
 
 
 class FileSourceType(SourceType):
@@ -86,26 +85,25 @@ class FileSourceType(SourceType):
 
   TYPE_INDICATOR = definitions.TYPE_INDICATOR_FILE
 
-  def __init__(self, locations=None, separator=u'/', **kwargs):
+  def __init__(self, paths=None, separator=u'/', **kwargs):
     """Initializes the source type object.
 
     Args:
-      locations: optional list of location strings. The locations are
-                 considered relative to the root of the file system.
-                 The default is None.
+      paths: optional list of paths. The paths are considered relative
+             to the root of the file system. The default is None.
       separator: optional string containing the path segment separator.
                  The default is /.
       kwargs: a dictionary of keyword arguments dependending on
               the source type.
 
     Raises:
-      FormatError: when locations is not set.
+      FormatError: when paths is not set.
     """
-    if not locations:
-      raise errors.FormatError(u'Missing locations value.')
+    if not paths:
+      raise errors.FormatError(u'Missing paths value.')
 
     super(FileSourceType, self).__init__(**kwargs)
-    self.locations = locations
+    self.paths = paths
     self.separator = separator
 
 
@@ -114,26 +112,25 @@ class PathSourceType(SourceType):
 
   TYPE_INDICATOR = definitions.TYPE_INDICATOR_PATH
 
-  def __init__(self, locations=None, separator=u'/', **kwargs):
+  def __init__(self, paths=None, separator=u'/', **kwargs):
     """Initializes the source type object.
 
     Args:
-      locations: optional list of location strings. The locations are
-                 considered relative to the root of the file system.
-                 The default is None.
+      paths: optional list of paths. The paths are considered relative
+             to the root of the file system. The default is None.
       separator: optional string containing the path segment separator.
                  The default is /.
       kwargs: a dictionary of keyword arguments dependending on
               the source type.
 
     Raises:
-      FormatError: when locations is not set.
+      FormatError: when paths is not set.
     """
-    if not locations:
-      raise errors.FormatError(u'Missing locations value.')
+    if not paths:
+      raise errors.FormatError(u'Missing paths value.')
 
     super(PathSourceType, self).__init__(**kwargs)
-    self.locations = locations
+    self.paths = paths
     self.separator = separator
 
 
@@ -146,7 +143,8 @@ class WindowsRegistryKeySourceType(SourceType):
     """Initializes the source type object.
 
     Args:
-      keys: optional list of key paths. The default is None.
+      keys: optional list of key paths. The key paths are considered relative
+            to the root of the Windows Registry. The default is None.
       kwargs: a dictionary of keyword arguments dependending on
               the source type.
 
@@ -165,24 +163,24 @@ class WindowsRegistryValueSourceType(SourceType):
 
   TYPE_INDICATOR = definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_VALUE
 
-  def __init__(self, key=None, value=None, **kwargs):
+  def __init__(self, key_value_pairs=None, **kwargs):
     """Initializes the source type object.
 
     Args:
-      key: optional path of the key. The default is None.
-      value: optional name of the value. The default is None.
+      key_value_pairs: optional list of key path and value name pairs.
+                       The key paths are considered relative to the root
+                       of the Windows Registry. The default is None.
       kwargs: a dictionary of keyword arguments dependending on
               the source type.
 
     Raises:
-      FormatError: when key or value are not set.
+      FormatError: when key value pairs is not set.
     """
-    if not key or not value:
-      raise errors.FormatError(u'Missing key or value value.')
+    if not key_value_pairs:
+      raise errors.FormatError(u'Missing key value pairs value.')
 
     super(WindowsRegistryValueSourceType, self).__init__(**kwargs)
-    self.key = key
-    self.value = value
+    self.key_value_pairs = key_value_pairs
 
 
 class WMIQuerySourceType(SourceType):

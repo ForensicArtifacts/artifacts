@@ -2,10 +2,10 @@
 
 name: SystemCronFiles
 doc: System-wide cron files.
-collectors:
-- collector_type: FILE
-  args:
-    path_list:
+sources:
+- type: FILE
+  attributes:
+    paths:
       - '/etc/crontab'
       - '/etc/cron.daily'
       - '/etc/cron.hourly'
@@ -17,10 +17,10 @@ supported_os: [Linux]
 ---
 name: HostAccessPolicyConfiguration
 doc: Linux files related to host access policy configuration.
-collectors:
-- collector_type: FILE
-  args:
-    path_list:
+sources:
+- type: FILE
+  attributes:
+    paths:
       - '/etc/hosts.allow'
       - '/etc/hosts.deny'
 labels: [Configuration Files]
@@ -28,18 +28,18 @@ supported_os: [Linux]
 ---
 name: LinuxPasswd
 doc: Linux passwd file.
-collectors:
-- collector_type: FILE
-  args: {path_list: ['/etc/passwd']}
+sources:
+- type: FILE
+  attributes: {paths: ['/etc/passwd']}
 labels: [Authentication]
 supported_os: [Linux]
 ---
 name: RootUserShellConfigs
 doc: Linux root shell configuration files.
-collectors:
-- collector_type: FILE
-  args:
-    path_list:
+sources:
+- type: FILE
+  attributes:
+    paths:
       - '/root/.bashrc'
       - '/root/.cshrc'
       - '/root/.ksh'
@@ -55,42 +55,42 @@ supported_os: [Linux]
 ---
 name: DebianPackagesStatus
 doc: Linux dpkg status file.
-collectors:
-- collector_type: FILE
-  args: {path_list: ['/var/lib/dpkg/status']}
+sources:
+- type: FILE
+  attributes: {paths: ['/var/lib/dpkg/status']}
 labels: [Software]
 supported_os: [Linux]
 ---
 name: LinuxAuditLogs
 doc: Linux audit log files.
-collectors:
-- collector_type: FILE
-  args: {path_list: ['/var/log/audit/*']}
+sources:
+- type: FILE
+  attributes: {paths: ['/var/log/audit/*']}
 labels: [Logs]
 supported_os: [Linux]
 ---
 name: LinuxAuthLogs
 doc: Linux auth log files.
-collectors:
-- collector_type: FILE
-  args: {path_list: ['/var/log/auth.log*']}
+sources:
+- type: FILE
+  attributes: {paths: ['/var/log/auth.log*']}
 labels: [Logs, Authentication]
 supported_os: [Linux]
 ---
 name: LinuxCronLogs
 doc: Linux cron log files.
-collectors:
-- collector_type: FILE
-  args: {path_list: ['/var/log/cron.log*']}
+sources:
+- type: FILE
+  attributes: {paths: ['/var/log/cron.log*']}
 labels: [Logs]
 supported_os: [Linux]
 ---
 name: LoginPolicyConfiguration
 doc: Linux files related to login policy configuration.
-collectors:
-- collector_type: FILE
-  args:
-    path_list:
+sources:
+- type: FILE
+  attributes:
+    paths:
       - '/etc/netgroup'
       - '/etc/nsswitch.conf'
       - '/etc/passwd'
@@ -102,10 +102,10 @@ supported_os: [Linux]
 ---
 name: GlobalShellConfigs
 doc: Linux global shell configuration files.
-collectors:
-- collector_type: FILE
-  args:
-    path_list:
+sources:
+- type: FILE
+  attributes:
+    paths:
       - '/etc/bash.bashrc'
       - '/etc/csh.cshrc'
       - '/etc/csh.login'
@@ -121,44 +121,44 @@ supported_os: [Linux]
 ---
 name: LinuxWtmp
 doc: Linux wtmp file.
-collectors:
-- collector_type: FILE
-  args: {path_list: ['/var/log/wtmp']}
+sources:
+- type: FILE
+  attributes: {paths: ['/var/log/wtmp']}
 labels: [Logs, Authentication]
 provides: [users.username, users.last_logon]
 supported_os: [Linux]
 ---
 name: NetgroupConfiguration
 doc: Linux netgroup configuration.
-collectors:
-- collector_type: FILE
-  args: {path_list: ['/etc/netgroup']}
+sources:
+- type: FILE
+  attributes: {paths: ['/etc/netgroup']}
 labels: [Authentication, Configuration Files]
 provides: [users.username]
 supported_os: [Linux]
 ---
 name: SudoersConfiguration
 doc: Linux sudoers configuration.
-collectors:
-- collector_type: FILE
-  args:
-    path_list: ['/etc/sudoers']
+sources:
+- type: FILE
+  attributes:
+    paths: ['/etc/sudoers']
 labels: [Authentication, Configuration Files]
 supported_os: [Linux]
 ---
 name: ThumbnailCacheFolder
 doc: Thumbnail cache folder.
-collectors:
-- collector_type: FILE
-  args: {path_list: ['%%users.homedir%%/.thumbnails/**3']}
+sources:
+- type: FILE
+  attributes: {paths: ['%%users.homedir%%/.thumbnails/**3']}
 labels: [Users]
 supported_os: [Linux]
 ---
 name: ZeitgeistDatabase
 doc: Zeitgeist user activity database.
-collectors:
-- collector_type: FILE
-  args: {path_list: ['%%users.homedir%%/.local/share/zeitgeist/activity.sqlite']}
+sources:
+- type: FILE
+  attributes: {paths: ['%%users.homedir%%/.local/share/zeitgeist/activity.sqlite']}
 labels: [Users, Logs]
 urls: ['http://forensicswiki.org/wiki/Zeitgeist']
 supported_os: [Linux]
