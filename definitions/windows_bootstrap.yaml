@@ -3,19 +3,19 @@
 
 name: AllUsersAppDataEnvironmentVariable
 doc: The %ProgramData% environment variable.
-collectors:
-- collector_type: REGISTRY_VALUE
-  args: {path_list: ['HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\ProfileList\ProgramData']}
+sources:
+- type: REGISTRY_VALUE
+  attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\ProfileList', value: 'ProgramData'}]}
 provides: [environ_allusersappdata]
 supported_os: [Windows]
 urls: ['http://environmentvariables.org/ProgramData']
 ---
 name: AllUsersProfileEnvironmentVariable
 doc: The %AllUsersProfile% environment variable.
-collectors:
-- collector_type: REGISTRY_KEY
-  args:
-    path_list:
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
       - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\ProfileList\ProfilesDirectory'
       - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\ProfileList\AllUsersProfile'
 provides: [environ_allusersprofile]
@@ -24,64 +24,64 @@ urls: ['http://support.microsoft.com/kb//214653']
 ---
 name: CurrentControlSet
 doc: The control set the system is currently using.
-collectors:
-- collector_type: REGISTRY_VALUE
-  args: {path_list: ['HKEY_LOCAL_MACHINE\SYSTEM\Select\Current']}
+sources:
+- type: REGISTRY_VALUE
+  attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\SYSTEM\Select', value: 'Current'}]}
 provides: [current_control_set]
 supported_os: [Windows]
 urls: ['https://github.com/libyal/winreg-kb/wiki/System-keys']
 ---
 name: ProgramFiles
 doc: The %ProgramFiles% environment variable.
-collectors:
-- collector_type: REGISTRY_VALUE
-  args: {path_list: ['HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\ProgramFilesDir']}
+sources:
+- type: REGISTRY_VALUE
+  attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion', value: 'ProgramFilesDir'}]}
 provides: [environ_programfiles]
 supported_os: [Windows]
 urls: ['http://environmentvariables.org/ProgramFiles']
 ---
 name: ProgramFilesx86
 doc: The %ProgramFiles (x86)% environment variable.
-collectors:
-- collector_type: REGISTRY_VALUE
-  args: {path_list: ['HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\ProgramFilesDir (x86)']}
+sources:
+- type: REGISTRY_VALUE
+  attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion', value: 'ProgramFilesDir (x86)'}]}
 provides: [environ_programfilesx86]
 supported_os: [Windows]
 urls: ['http://environmentvariables.org/ProgramFiles']
 ---
 name: SystemDriveEnvironmentVariable
 doc: The %SystemDrive% environment variable, usually "C:".
-collectors:
-- collector_type: REGISTRY_VALUE
-  args: {path_list: ['HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SystemRoot']}
+sources:
+- type: REGISTRY_VALUE
+  attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion', value: 'SystemDrive'}]}
 provides: [environ_systemdrive]
 supported_os: [Windows]
 urls: ['http://environmentvariables.org/SystemDrive']
 ---
 name: SystemRoot
 doc: The base system directory, usually "C:\Windows".
-collectors:
-- collector_type: REGISTRY_VALUE
-  args: {path_list: ['HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SystemRoot']}
+sources:
+- type: REGISTRY_VALUE
+  attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion', value: 'SystemRoot'}]}
 provides: [environ_systemroot]
 supported_os: [Windows]
 urls: ['http://environmentvariables.org/SystemRoot']
 ---
 name: TempEnvironmentVariable
 doc: The %TEMP% environment variable.
-collectors:
-- collector_type: REGISTRY_VALUE
-  args: {path_list: ['%%current_control_set%%\Control\Session Manager\Environment\TEMP']}
+sources:
+- type: REGISTRY_VALUE
+  attributes: {key_value_pairs: [{key: '%%current_control_set%%\Control\Session Manager\Environment', value: 'TEMP'}]}
 provides: [environ_temp]
 supported_os: [Windows]
 urls: ['http://environmentvariables.org/WinDir']
 ---
 name: UserShellFolders
 doc: The Shell Folders information for Windows users.
-collectors:
-- collector_type: REGISTRY_KEY
-  args:
-    path_list:
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
       - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\*'
       - 'HKEY_USERS\%%users.sid%%\Environment\*'
       - 'HKEY_USERS\%%users.sid%%\Volatile Environment\*'
@@ -103,44 +103,44 @@ supported_os: [Windows]
 ---
 name: WinCodePage
 doc: The codepage of the system.
-collectors:
-- collector_type: REGISTRY_VALUE
-  args: {path_list: ['%%current_control_set%%\Control\Nls\CodePage\ACP']}
+sources:
+- type: REGISTRY_VALUE
+  attributes: {key_value_pairs: [{key: '%%current_control_set%%\Control\Nls\CodePage', value: 'ACP'}]}
 provides: [code_page]
 supported_os: [Windows]
 urls: ['http://en.wikipedia.org/wiki/Windows_code_page']
 ---
 name: WinDirEnvironmentVariable
 doc: The %WinDir% environment variable.
-collectors:
-- collector_type: REGISTRY_VALUE
-  args: {path_list: ['%%current_control_set%%\Control\Session Manager\Environment\windir']}
+sources:
+- type: REGISTRY_VALUE
+  attributes: {key_value_pairs: [{key: '%%current_control_set%%\Control\Session Manager\Environment', value: 'windir'}]}
 provides: [environ_windir]
 supported_os: [Windows]
 urls: ['http://environmentvariables.org/WinDir']
 ---
 name: WinDomainName
 doc: The Windows domain the system is connected to.
-collectors:
-- collector_type: REGISTRY_VALUE
-  args: {path_list: ['%%current_control_set%%\Services\Tcpip\Parameters\Domain']}
+sources:
+- type: REGISTRY_VALUE
+  attributes: {key_value_pairs: [{key: '%%current_control_set%%\Services\Tcpip\Parameters', value: 'Domain'}]}
 provides: [domain]
 supported_os: [Windows]
 ---
 name: WinPathEnvironmentVariable
 doc: The %PATH% environment variable.
-collectors:
-- collector_type: REGISTRY_VALUE
-  args: {path_list: ['%%current_control_set%%\Control\Session Manager\Environment\Path']}
+sources:
+- type: REGISTRY_VALUE
+  attributes: {key_value_pairs: [{key: '%%current_control_set%%\Control\Session Manager\Environment', value: 'Path'}]}
 provides: [environ_path]
 supported_os: [Windows]
 urls: ['http://environmentvariables.org/WinDir']
 ---
 name: WinTimeZone
 doc: The timezone of the system in Olson format.
-collectors:
-- collector_type: REGISTRY_VALUE
-  args: {path_list: ['%%current_control_set%%\Control\TimeZoneInformation\StandardName']}
+sources:
+- type: REGISTRY_VALUE
+  attributes: {key_value_pairs: [{key: '%%current_control_set%%\Control\TimeZoneInformation', value: 'StandardName'}]}
 provides: [time_zone]
 supported_os: [Windows]
 urls: ['https://github.com/libyal/winreg-kb/wiki/Time-zone-keys']
@@ -151,10 +151,9 @@ doc: |
 
   This looks in the Windows registry where the profiles are stored and retrieves
   the paths for each profile.
-collectors:
-- collector_type: REGISTRY_KEY
-  args:
-    path_list: ['HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList\*\ProfileImagePath']
+sources:
+- type: REGISTRY_KEY
+  attributes: {keys: ['HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList\*\ProfileImagePath']}
 labels: [Users]
 provides: [users.sid, users.userprofile, users.homedir, users.username]
 supported_os: [Windows]
@@ -173,9 +172,9 @@ doc: |
   This artifact relies on having the users.username field populated in the knowledge
   base. Unfortunately even limiting by username this query can be slow, and
   this artifact runs it for each user present on the system.
-collectors:
-- collector_type: WMI
-  args: {query: SELECT * FROM Win32_UserAccount WHERE name='%%users.username%%'}
+sources:
+- type: WMI
+  attributes: {query: SELECT * FROM Win32_UserAccount WHERE name='%%users.username%%'}
 labels: [Users]
 provides: [users.userdomain]
 supported_os: [Windows]
@@ -188,9 +187,9 @@ doc: |
   This artifact relies on having the SID field users.sid populated in the knowledge
   base. We expect it to be collected with WindowsRegistryProfiles to
   supply the rest of the user information.
-collectors:
-- collector_type: WMI
-  args: {query: SELECT * FROM Win32_UserProfile WHERE SID='%%users.sid%%'}
+sources:
+- type: WMI
+  attributes: {query: SELECT * FROM Win32_UserProfile WHERE SID='%%users.sid%%'}
 labels: [Users]
 provides: [users.homedir]
 supported_os: [Windows]

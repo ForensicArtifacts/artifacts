@@ -4,7 +4,7 @@ name: SecurityEventLogEvtx
 doc: Windows Security Event log for Vista or later systems.
 sources:
 - type: FILE
-  attributes: {locations: ['%%environ_systemroot%%\System32\winevt\Logs\Security.evtx']}
+  attributes: {paths: ['%%environ_systemroot%%\System32\winevt\Logs\Security.evtx']}
 conditions: [os_major_version >= 6]
 labels: [Logs]
 supported_os: [Windows]
@@ -27,8 +27,8 @@ doc: The control set the system is currently using.
 sources:
 - type: REGISTRY_VALUE
   attributes:
-    key: 'HKEY_LOCAL_MACHINE\SYSTEM\Select'
-    value: 'Current'
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\SYSTEM\Select', value: 'Current'}
 provides: [current_control_set]
 supported_os: [Windows]
 urls: ['https://code.google.com/p/winreg-kb/wiki/SystemKeys']
@@ -53,7 +53,7 @@ doc: Windows Event logs.
 sources:
 - type: ARTIFACT
   attributes:
-    artifact_names:
+    names:
       - 'ApplicationEventLog'
       - 'ApplicationEventLogEvtx'
       - 'SecurityEventLog'
