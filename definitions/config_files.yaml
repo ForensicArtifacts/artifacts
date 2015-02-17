@@ -9,3 +9,13 @@ collectors:
       - '/etc/ssh/sshd_config'
 labels: [Configuration Files]
 supported_os: [Linux]
+
+name: NfsExportsFile
+doc: NFS Exports configuration
+collectors:
+- collector_type: FILE
+  args:
+    path_list:
+      - '/etc/exports'
+labels: [Configuration Files]
+supported_os: [Linux, Darwin]
