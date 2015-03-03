@@ -373,4 +373,197 @@ collectors:
 labels: [Users]
 supported_os: [Windows]
 urls: ['http://msdn.microsoft.com/en-us/library/windows/desktop/aa394507(v=vs.85).aspx']
-
+---
+name: WindowsHotkeyReplacement
+doc: Hotkey executable replacement
+collectors:
+- collector_type: FILE
+  args:
+    path_list:
+      - '%%environ_systemroot%%\System32\sethc.exe'
+      - '%%environ_systemroot%%\System32\utilman.exe'
+      - '%%environ_systemroot%%\System32\magnifier.exe'
+supported_os: [Windows]
+---
+name: WindowsAutorun
+doc: Filebased Tests
+collectors:
+- collector_type: FILE
+  args:
+    path_list:
+      - '%%environ_systemdrive%%\autorun.inf'
+supported_os: [Windows]
+---
+name: WindowsCommonFilePlacementAttacks
+doc: Common files associated with search order hijacking and other file placement attacks
+collectors:
+- collector_type: FILE
+  args:
+    path_list:
+      - '%%environ_systemdrive%%\program.exe'
+      - '%%environ_systemdrive%%\explorer.exe'
+      - '%%environ_systemroot%%\System32\oci.dll'
+      - '%%environ_systemroot%%\SysWOW64\oci.dll'
+      - '%%environ_systemroot%%\linkinfo.dll'
+      - '%%environ_systemroot%%\ntshrui.dll'
+      - '%%environ_systemroot%%\System32\sysprep\cryptbase.dll'
+      - '%%environ_systemroot%%\SysWOW64\sysprep\cryptbase.dll'
+      - '%%environ_programfiles%%\Internet Explorer\sxs.dll'
+      - '%%environ_programfilesx86%%\Internet Explorer\sxs.dll'
+supported_os: [Windows]
+---
+name: WindowsStartupFolders
+doc: Windows startup folder persistence
+collectors:
+- collector_type: FILE
+  args:
+    path_list:
+      - '%%users.homedir%%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\*'
+      - '%%environ_allusersprofile%%\Microsoft\Windows\Start Menu\Programs\Startup\*'
+supported_os: [Windows]
+---
+name: WindowsStubPaths
+doc: Windows StubPath persistence
+collectors:
+- collector_type: REGISTRY_KEY
+  args:
+    path_list:
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Active Setup\Installed Components\*\StubPath'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Active Setup\Installed Components\*\StubPath'
+supported_os: [Windows]
+---
+name: WindowsBootExecute
+doc: Windows BootExecute persistence
+collectors:
+- collector_type: REGISTRY_KEY
+  args:
+    path_list:
+      - 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\BootExecute'
+supported_os: [Windows]
+---
+name: WindowsExcludeFromKnownDlls
+doc: ExcludeFromKnownDlls can be used to bypass search order hijacking protection
+collectors:
+- collector_type: REGISTRY_KEY
+  args:
+    path_list:
+      - 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\ExcludeFromKnownDlls'
+supported_os: [Windows]
+---
+name: WindowsAppCertDlls
+doc: Windows AppCertDlls persistence
+collectors:
+- collector_type: REGISTRY_KEY
+  args:
+    path_list:
+      - 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\AppCertDlls'
+supported_os: [Windows]
+---
+name: WindowsStartupFolderModification
+doc: Windows startup folder registry values
+collectors:
+- collector_type: REGISTRY_KEY
+  args:
+    path_list:
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\Common Startup'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\Common Startup'
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\Startup'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\Startup'
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders\Common Startup'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders\Common Startup'
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders\Startup'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders\Startup'
+supported_os: [Windows]
+---
+name: WindowsDebugger
+doc: Windows Debugger peristence or AV disable
+collectors:
+- collector_type: REGISTRY_KEY
+  args:
+    path_list:
+      - 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\*\Debugger'
+      - 'HKEY_USERS\%%users.sid%%\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\*\Debugger'
+supported_os: [Windows]
+---
+name: WindowsRunServices
+doc: Windows Run Services
+collectors:
+- collector_type: REGISTRY_KEY
+  args:
+    path_list:
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunServicesOnce\*'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\RunServicesOnce\*'
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunServices\*'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\RunServices\*'
+supported_os: [Windows]
+---
+name: WindowsWinlogonNotify
+doc: Windows Winlogon Notify
+collectors:
+- collector_type: REGISTRY_KEY
+  args:
+    path_list:
+      - 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\Notify'
+      - 'HKEY_USERS\%%users.sid%%\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\Notify'
+supported_os: [Windows]
+---
+name: WindowsWinlogonUserinit
+doc: Windows Winlogon Userinit
+collectors:
+- collector_type: REGISTRY_KEY
+  args:
+    path_list:
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\Userinit'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\Userinit'
+supported_os: [Windows]
+---
+name: WindowsWinlogonShell
+doc: Windows shell replacement
+collectors:
+- collector_type: REGISTRY_KEY
+  args:
+    path_list:
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\Shell'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\Shell'
+supported_os: [Windows]
+---
+name: WindowsLoadKey
+doc: Windows load key
+collectors:
+- collector_type: REGISTRY_KEY
+  args:
+    path_list:
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Windows\load'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Windows\load'
+supported_os: [Windows]
+---
+name: WindowsAppInit
+doc: Windows AppInit persistence
+collectors:
+- collector_type: REGISTRY_KEY
+  args:
+    path_list:
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Windows\AppInit_DLLs'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Windows\AppInit_DLLs'
+supported_os: [Windows]
+---
+name: WMILoggedOnSessions
+doc: Logged on users queried from WMI.
+collectors:
+- collector_type: WMI
+  args: {query: SELECT * FROM Win32_LogonSession}
+supported_os: [Windows]
+---
+name: WMILoggedOnUsers
+doc: Logged on users queried from WMI.
+collectors:
+- collector_type: WMI
+  args: {query: SELECT * FROM Win32_LoggedonUser}
+supported_os: [Windows]
+---
+name: WMIServices
+doc: Services queried from WMI.
+collectors:
+- collector_type: WMI
+  args: {query: SELECT * FROM Win32_Service}
+supported_os: [Windows]
