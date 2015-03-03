@@ -4,7 +4,11 @@ name: OSXLaunchAgents
 doc: Mac OS X Launch Agent files.
 collectors:
 - collector_type: FILE
-  args: {path_list: ['/System/Library/LaunchAgents/*']}
+  args: 
+    path_list: 
+      - '/Library/LaunchAgents/*'
+      - '/System/Library/LaunchAgents/*'
+      - '%%users.homedir%%/Library/LaunchAgents/*'
 labels: [System]
 supported_os: [Darwin]
 urls: ['http://www.forensicswiki.org/wiki/Mac_OS_X']
@@ -17,6 +21,7 @@ collectors:
     path_list:
       - '/Library/LaunchDaemons/*'
       - '/System/Library/LaunchDaemons/*'
+      - '%%users.homedir%%/Library/LaunchDaemons/*'
 labels: [System]
 supported_os: [Darwin]
 urls: ['http://www.forensicswiki.org/wiki/Mac_OS_X']
