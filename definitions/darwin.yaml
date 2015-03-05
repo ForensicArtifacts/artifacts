@@ -80,4 +80,25 @@ collectors:
 - collector_type: FILE
   args: {path_list: ['%%users.homedir%%/Library/Preferences/*']}
 labels: [Users]
+---
+supported_os: [Darwin]
+name: OSXKexts
+doc: Mac OS X Kernel Extentions.
+collectors:
+- collector_type: FILE
+  args:
+    path_list:
+      - '/Library/Extensions/*'
+      - '/System/Library/Extensions/*'
+labels: [System]
+supported_os: [Darwin]
+---
+name: OSXLoadedKexts
+doc: Mac OS X Loaded Kernel Extensions.
+collectors:
+- collector_type: COMMAND
+  args:
+    args: []
+    cmd: /usr/sbin/kextstat
+labels: [System]
 supported_os: [Darwin]
