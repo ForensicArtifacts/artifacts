@@ -81,3 +81,41 @@ collectors:
   args: {path_list: ['%%users.homedir%%/Library/Preferences/*']}
 labels: [Users]
 supported_os: [Darwin]
+---
+name: OSXPeriodicSystemFunctions
+doc: Mac OS X periodic system functions scripts and configuration.
+collectors:
+- collector_type: FILE
+  args:
+    path_list:
+      - '/etc/defaults/periodic.conf'
+      - '/etc/periodic.conf'
+      - '/etc/periodic.conf.local'
+      - '/etc/periodic/**2'
+      - '/usr/local/etc/periodic/**2'
+      - '/etc/daily.local/*'
+      - '/etc/weekly.local/*'
+      - '/etc/monthly.local/*'
+labels: [System]
+supported_os: [Darwin]
+---
+name: OSXAtJobs
+doc: Mac OS X at jobs.
+collectors:
+- collector_type: FILE
+  args:
+    path_list:
+      - '/usr/lib/cron/jobs/*'
+labels: [System]
+supported_os: [Darwin]
+---
+name: OSXCronTabs
+doc: Mac OS X cron tabs.
+collectors:
+- collector_type: FILE
+  args:
+    path_list:
+      - '/etc/crontab'
+      - '/usr/lib/cron/tabs/*'
+labels: [System]
+supported_os: [Darwin]
