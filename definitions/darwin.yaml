@@ -81,3 +81,11 @@ collectors:
   args: {path_list: ['%%users.homedir%%/Library/Preferences/*']}
 labels: [Users]
 supported_os: [Darwin]
+---
+name: OSXUserLoginItems
+doc: Mac OS X user login items.
+collectors:
+- collector_type: FILE
+  args: {path_list: ['%%users.homedir%%/Library/Preferences/com.apple.loginitems.plist']}
+labels: [Users]
+supported_os: [Darwin]
