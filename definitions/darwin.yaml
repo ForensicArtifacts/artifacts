@@ -89,3 +89,44 @@ collectors:
   args: {path_list: ['%%users.homedir%%/Library/Preferences/com.apple.loginitems.plist']}
 labels: [Users]
 supported_os: [Darwin]
+---
+name: OSXPeriodicSystemFunctions
+doc: Mac OS X periodic system functions scripts and configuration.
+collectors:
+- collector_type: FILE
+  args:
+    path_list:
+      - '/etc/defaults/periodic.conf'
+      - '/etc/periodic.conf'
+      - '/etc/periodic.conf.local'
+      - '/etc/periodic/**2'
+      - '/usr/local/etc/periodic/**2'
+      - '/etc/daily.local/*'
+      - '/etc/weekly.local/*'
+      - '/etc/monthly.local/*'
+labels: [System]
+supported_os: [Darwin]
+urls: ['https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man8/periodic.8.html#//apple_ref/doc/man/8/periodic']
+---
+name: OSXAtJobs
+doc: Mac OS X at jobs.
+collectors:
+- collector_type: FILE
+  args:
+    path_list:
+      - '/usr/lib/cron/jobs/*'
+labels: [System]
+supported_os: [Darwin]
+urls: ['https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/at.1.html#//apple_ref/doc/man/1/at']
+---
+name: OSXCronTabs
+doc: Mac OS X cron tabs.
+collectors:
+- collector_type: FILE
+  args:
+    path_list:
+      - '/etc/crontab'
+      - '/usr/lib/cron/tabs/*'
+labels: [System]
+supported_os: [Darwin]
+urls: ['https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man5/crontab.5.html#//apple_ref/doc/man/5/crontab']
