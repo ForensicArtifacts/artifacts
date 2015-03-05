@@ -98,6 +98,7 @@ collectors:
       - '/etc/monthly.local/*'
 labels: [System]
 supported_os: [Darwin]
+urls: ['https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man8/periodic.8.html#//apple_ref/doc/man/8/periodic']
 ---
 name: OSXAtJobs
 doc: Mac OS X at jobs.
@@ -108,6 +109,7 @@ collectors:
       - '/usr/lib/cron/jobs/*'
 labels: [System]
 supported_os: [Darwin]
+urls: ['https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/at.1.html#//apple_ref/doc/man/1/at']
 ---
 name: OSXCronTabs
 doc: Mac OS X cron tabs.
@@ -119,3 +121,4 @@ collectors:
       - '/usr/lib/cron/tabs/*'
 labels: [System]
 supported_os: [Darwin]
+urls: ['https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man5/crontab.5.html#//apple_ref/doc/man/5/crontab']
