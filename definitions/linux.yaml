@@ -40,6 +40,26 @@ sources:
 labels: [Configuration Files]
 supported_os: [Linux]
 ---
+name: UserCronFiles
+doc: User cron files.
+collectors:
+- collector_type: FILE
+  args:
+    path_list:
+      - '/var/spool/cron/*'
+labels: [Configuration Files]
+supported_os: [Linux]
+---
+name: LinuxAtJobs
+doc: Linux at jobs.
+collectors:
+- collector_type: FILE
+  args:
+    path_list:
+      - '/var/spool/at/*'
+labels: [Configuration Files]
+supported_os: [Linux]
+---
 name: HostAccessPolicyConfiguration
 doc: Linux files related to host access policy configuration.
 sources:
