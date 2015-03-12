@@ -138,7 +138,7 @@ provides: [users.username]
 supported_os: [Linux]
 ---
 name: ProcSysNetIp
-doc: /proc/sys/net/ip entries
+doc: Security-related /proc/sys/net/ip entries
 collectors:
 - collector_type: FILE
   args:
@@ -152,7 +152,7 @@ labels: [System]
 supported_os: [Linux]
 ---
 name: ProcSysKernel
-doc: /proc/sys/kernel entries
+doc: Security-related /proc/sys/kernel entries
 collectors:
 - collector_type: FILE
   args:
@@ -165,7 +165,7 @@ labels: [System]
 supported_os: [Linux]
 ---
 name: ProcSysNetFs
-doc: /proc/sys/net/fs entries
+doc: Security-related /proc/sys/net/fs entries
 collectors:
 - collector_type: FILE
   args:
@@ -177,7 +177,7 @@ labels: [System]
 supported_os: [Linux]
 ---
 name: ProcSys
-doc: /proc/sys entries
+doc: Security-related /proc/sys entries
 collectors:
 - collector_type: ARTIFACT
   args:
