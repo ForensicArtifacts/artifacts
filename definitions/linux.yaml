@@ -184,6 +184,106 @@ labels: [Authentication, Configuration Files]
 provides: [users.username]
 supported_os: [Linux]
 ---
+name: ProcSysFsSecurity
+doc: Filesystem hardining settings.
+collectors:
+- collector_type: FILE
+  args:
+    path_list:
+      - '/proc/sys/fs/protected_hardlinks'
+      - '/proc/sys/fs/protected_symlinks'
+      - '/proc/sys/fs/suid_dumpable'
+labels: [System]
+supported_os: [Linux]
+---
+name: ProcSysKernelBootloader
+doc: Bootloader state acquired from the kernel.
+collectors:
+- collector_type: FILE
+  args:
+    path_list:
+      - '/proc/sys/kernel/bootloader_type'
+      - '/proc/sys/kernel/bootloader_version'
+labels: [System]
+supported_os: [Linux]
+---
+name: ProcSysKernelMemoryPrediction
+doc: Memory address obfuscation settings.
+collectors:
+- collector_type: FILE
+  args:
+    path_list:
+      - '/proc/sys/kernel/dmesg_restrict'
+      - '/proc/sys/kernel/kptr_restrict'
+      - '/proc/sys/kernel/randomize_va_space'
+labels: [System]
+supported_os: [Linux]
+---
+name: ProcSysKernelModules
+doc: Module loading options and taint state.
+collectors:
+- collector_type: FILE
+  args:
+    path_list:
+      - '/proc/sys/kernel/kexec_load_disabled'
+      - '/proc/sys/kernel/modules_disabled'
+      - '/proc/sys/kernel/tainted'
+labels: [System]
+supported_os: [Linux]
+---
+name: ProcSysNetIpForwarding
+doc: IP forwarding states.
+collectors:
+- collector_type: FILE
+  args:
+    path_list:
+      - '/proc/sys/net/ipv*/conf/*/forwarding'
+      - '/proc/sys/net/ipv4/conf/*/mc_forwarding'
+      - '/proc/sys/net/ipv4/ip_forward'
+labels: [Network, System]
+supported_os: [Linux]
+---
+name: ProcSysNetPathManipulation
+doc: Redirect and source routing states.
+collectors:
+- collector_type: FILE
+  args:
+    path_list:
+      - '/proc/sys/net/ipv*/conf/*/accept_redirects'
+      - '/proc/sys/net/ipv*/conf/*/accept_source_route'
+      - '/proc/sys/net/ipv4/conf/*/rp_filter'
+      - '/proc/sys/net/ipv4/conf/*/secure_redirects'
+      - '/proc/sys/net/ipv4/conf/*/send_redirects'
+      - '/proc/sys/net/ipv4/conf/*/log_martians'
+labels: [Network, System]
+supported_os: [Linux]
+---
+name: ProcSysNetProtocolSettings
+doc: Protocol specific settings.
+collectors:
+- collector_type: FILE
+  args:
+    path_list:
+      - '/proc/sys/net/ipv4/tcp_syncookies'
+      - '/proc/sys/net/ipv4/icmp_echo_ignore_broadcasts'
+labels: [Network, System]
+supported_os: [Linux]
+---
+name: ProcSys
+doc: Linux sysctl settings obtained from /proc/sys.
+collectors:
+- collector_type: ARTIFACT
+  args:
+    artifact_list:
+      - 'ProcSysFsSecurity'
+      - 'ProcSysKernelBootloader'
+      - 'ProcSysKernelModules'
+      - 'ProcSysNetIpForwarding'
+      - 'ProcSysNetPathManipulation'
+      - 'ProcSysNetProtocolSettings'
+labels: [System]
+supported_os: [Linux]
+---
 name: SudoersConfiguration
 doc: Linux sudoers configuration.
 sources:
