@@ -184,8 +184,18 @@ labels: [Authentication, Configuration Files]
 provides: [users.username]
 supported_os: [Linux]
 ---
+name: ProcMounts
+doc: Current mounted filesystems.
+collectors:
+- collector_type: FILE
+  args:
+    path_list:
+      - '/proc/mounts'
+labels: [System]
+supported_os: [Linux]
+---
 name: ProcSysFsSecurity
-doc: Filesystem hardining settings.
+doc: Filesystem hardening settings.
 collectors:
 - collector_type: FILE
   args:
