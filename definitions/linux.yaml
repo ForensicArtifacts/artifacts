@@ -40,12 +40,14 @@ sources:
 labels: [Configuration Files]
 supported_os: [Linux]
 ---
-name: UserCronFiles
-doc: User cron files.
+name: LinuxCronTabs
+doc: Crontab files.
 collectors:
 - collector_type: FILE
   args:
     path_list:
+      - '/etc/crontab'
+      - '/etc/cron.d/*'
       - '/var/spool/cron/*'
 labels: [Configuration Files]
 supported_os: [Linux]
