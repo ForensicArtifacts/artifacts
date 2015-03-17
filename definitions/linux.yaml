@@ -11,6 +11,10 @@ collectors:
       - '/etc/cron.hourly'
       - '/etc/cron.monthly'
       - '/etc/cron.weekly'
+      - '/var/spool/anacron/cron.daily'
+      - '/var/spool/anacron/cron.hourly'
+      - '/var/spool/anacron/cron.monthly'
+      - '/var/spool/anacron/cron.weekly'
 labels: [Configuration Files]
 supported_os: [Linux]
 ---
