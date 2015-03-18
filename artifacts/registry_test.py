@@ -43,7 +43,7 @@ class ArtifactDefinitionsRegistryTest(unittest.TestCase):
     for artifact_definition in artifact_registry.GetDefinitions():
       artifact_definitions.append(artifact_definition)
 
-    self.assertEqual(len(artifact_definitions), 4)
+    self.assertEqual(len(artifact_definitions), 6)
 
     test_artifact_definition = artifact_registry.GetDefinitionByName(
         'SecurityEventLogEvtx')

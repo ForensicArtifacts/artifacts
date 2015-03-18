@@ -22,7 +22,7 @@ class YamlArtifactsReadertest(unittest.TestCase):
     with open(test_file, 'rb') as file_object:
       artifact_definitions = list(artifact_reader.Read(file_object))
 
-    self.assertEqual(len(artifact_definitions), 5)
+    self.assertEqual(len(artifact_definitions), 7)
 
     # Artifact with file collector definition.
     artifact_definition = artifact_definitions[0]
@@ -120,6 +120,17 @@ class YamlArtifactsReadertest(unittest.TestCase):
     self.assertEqual(
         collector_definition.type_indicator,
         definitions.TYPE_INDICATOR_ARTIFACT)
+
+    # Artifact with COMMAND definition collector definition.
+    artifact_definition = artifact_definitions[5]
+    self.assertEqual(artifact_definition.name, 'RedhatPackagesList')
+
+    self.assertEqual(len(artifact_definition.collectors), 1)
+    collector_definition = artifact_definition.collectors[0]
+    self.assertNotEqual(collector_definition, None)
+    self.assertEqual(
+        collector_definition.type_indicator,
+        definitions.TYPE_INDICATOR_COMMAND)
 
   def testBadSupportedOS(self):
     """Tests supported_os is checked correctly."""

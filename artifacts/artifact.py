@@ -61,6 +61,9 @@ class ArtifactDefinition(object):
     if type_indicator == definitions.TYPE_INDICATOR_ARTIFACT:
       collector_class = collector.ArtifactCollectorDefinition
 
+    elif type_indicator == definitions.TYPE_INDICATOR_COMMAND:
+      collector_class = collector.CommandCollectorDefinition
+
     elif type_indicator == definitions.TYPE_INDICATOR_FILE:
       collector_class = collector.FileCollectorDefinition
 
