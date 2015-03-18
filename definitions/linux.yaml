@@ -162,57 +162,6 @@ labels: [Authentication, Configuration Files]
 provides: [users.username]
 supported_os: [Linux]
 ---
-name: ProcSysNetIp
-doc: Security-related /proc/sys/net/ip entries
-collectors:
-- collector_type: FILE
-  args:
-    path_list:
-      - '/proc/sys/net/ipv*/conf/all/*'
-      - '/proc/sys/net/ipv*/conf/default/*'
-      - '/proc/sys/net/ipv*/icmp_echo*'
-      - '/proc/sys/net/ipv*/ip_forwarding'
-      - '/proc/sys/net/ipv*/tcp_syncookies'
-labels: [System]
-supported_os: [Linux]
----
-name: ProcSysKernel
-doc: Security-related /proc/sys/kernel entries
-collectors:
-- collector_type: FILE
-  args:
-    path_list:
-      - '/proc/sys/kernel/bootloader_*'
-      - '/proc/sys/kernel/dmsg_restrict'
-      - '/proc/sys/kernel/kptr_restrict'
-      - '/proc/sys/kernel/tainted'
-labels: [System]
-supported_os: [Linux]
----
-name: ProcSysNetFs
-doc: Security-related /proc/sys/net/fs entries
-collectors:
-- collector_type: FILE
-  args:
-    path_list:
-      - '/proc/sys/fs/protected_hardlinks'
-      - '/proc/sys/fs/protected_symlinks'
-      - '/proc/sys/fs/suid_dumpable'
-labels: [System]
-supported_os: [Linux]
----
-name: ProcSys
-doc: Security-related /proc/sys entries
-collectors:
-- collector_type: ARTIFACT
-  args:
-    artifact_list:
-      - 'ProcSysKernel'
-      - 'ProcSysNetFs'
-      - 'ProcSysNetIp'
-labels: [System]
-supported_os: [Linux]
----
 name: SudoersConfiguration
 doc: Linux sudoers configuration.
 collectors:
