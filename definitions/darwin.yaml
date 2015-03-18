@@ -130,3 +130,24 @@ collectors:
 labels: [System]
 supported_os: [Darwin]
 urls: ['https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man5/crontab.5.html#//apple_ref/doc/man/5/crontab']
+---
+name: OSXKexts
+doc: Mac OS X Kernel Extentions.
+collectors:
+- collector_type: FILE
+  args:
+    path_list:
+      - '/System/Library/Extensions/*'
+      - '/Library/Extensions/*'
+labels: [System]
+supported_os: [Darwin]
+---
+name: OSXLoadedKexts
+doc: Mac OS X Loaded Kernel Extensions.
+collectors:
+- collector_type: COMMAND
+  args:
+    args: []
+    cmd: /usr/sbin/kextstat
+labels: [System]
+supported_os: [Darwin]

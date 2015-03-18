@@ -187,3 +187,22 @@ collectors:
 labels: [Users, Logs]
 urls: ['http://forensicswiki.org/wiki/Zeitgeist']
 supported_os: [Linux]
+---
+name: KernelModules
+doc: Kernel modules to be loaded on boot.
+collectors:
+- collector_type: FILE
+  args: 
+    path_list: 
+      - '/etc/modules.conf'
+      - '/etc/modprobe.d/*'
+supported_os: [Linux]
+---
+name: LoadedKernelModules
+doc: Linux output of lsmod.
+collectors:
+- collector_type: COMMAND
+  args:
+    args: []
+    cmd: /sbin/lsmod
+supported_os: [Linux]
