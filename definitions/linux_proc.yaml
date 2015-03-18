@@ -33,7 +33,7 @@ labels: [System]
 supported_os: [Linux]
 urls: ['https://www.kernel.org/doc/Documentation/sysctl/kernel.txt']
 ---
-name: LinuxKernelModuleProvenance
+name: LinuxKernelModuleTaintStatus
 doc: Taint state of loaded modules (binary blobs, unsigned modules etc).
 collectors:
 - collector_type: FILE
