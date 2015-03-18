@@ -185,4 +185,3 @@ sources:
       - 'LinuxSyncookieState'
 labels: [System]
 supported_os: [Linux]
-
