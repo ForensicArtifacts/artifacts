@@ -66,6 +66,29 @@ class ArtifactCollectorDefinition(CollectorDefinition):
     self.artifact_list = artifact_list
 
 
+class CommandCollectorDefinition(CollectorDefinition):
+  """Class that implements the command collector definition."""
+
+  TYPE_INDICATOR = definitions.TYPE_INDICATOR_COMMAND
+
+  def __init__(self, args=None, cmd=None, **kwargs):
+    """Initializes the collector definition object.
+
+    Args:
+      args: list of strings that will be passed as arguments to cmd.
+      cmd: string representing the command to run.
+
+    Raises:
+      FormatError: when args or cmd is not set.
+    """
+    if args is None or cmd is None:
+      raise errors.FormatError(u'Missing args or cmd value.')
+
+    super(CommandCollectorDefinition, self).__init__(**kwargs)
+    self.args = args
+    self.cmd = cmd
+
+
 class FileCollectorDefinition(CollectorDefinition):
   """Class that implements the file collector definition."""
 
