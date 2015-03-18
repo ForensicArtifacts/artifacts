@@ -1,7 +1,6 @@
 # Linux specific /proc artifacts.
-name: ASLREnabled 
+name: LinuxASLREnabled 
 doc: Kernel ASLR state.
-urls: ['https://www.kernel.org/doc/Documentation/sysctl/kernel.txt']
 collectors:
 - collector_type: FILE
   args:
@@ -9,10 +8,10 @@ collectors:
       - '/proc/sys/kernel/randomize_va_space'
 labels: [System]
 supported_os: [Linux]
+urls: ['https://www.kernel.org/doc/Documentation/sysctl/kernel.txt']
 ---
-name: IgnoreICMPBroadcasts
+name: LinuxIgnoreICMPBroadcasts
 doc: Whether the system ignores ICMP pings.
-urls: ['https://www.kernel.org/doc/Documentation/networking/ip-sysctl.txt']
 collectors:
 - collector_type: FILE
   args:
@@ -20,10 +19,10 @@ collectors:
       - '/proc/sys/net/ipv4/icmp_echo_ignore_broadcasts'
 labels: [Network, System]
 supported_os: [Linux]
+urls: ['https://www.kernel.org/doc/Documentation/networking/ip-sysctl.txt']
 ---
-name: KernelBootloader
+name: LinuxKernelBootloader
 doc: Bootloader state acquired from the kernel.
-urls: ['https://www.kernel.org/doc/Documentation/sysctl/kernel.txt']
 collectors:
 - collector_type: FILE
   args:
@@ -32,10 +31,10 @@ collectors:
       - '/proc/sys/kernel/bootloader_version'
 labels: [System]
 supported_os: [Linux]
----
-name: KernelModuleProvenance
-doc: Taint state of loaded modules (binary blobs, unsigned modules etc).
 urls: ['https://www.kernel.org/doc/Documentation/sysctl/kernel.txt']
+---
+name: LinuxKernelModuleProvenance
+doc: Taint state of loaded modules (binary blobs, unsigned modules etc).
 collectors:
 - collector_type: FILE
   args:
@@ -43,10 +42,10 @@ collectors:
       - '/proc/sys/kernel/tainted'
 labels: [System]
 supported_os: [Linux]
----
-name: KernelModuleRestrictions
-doc: Module loading controls.
 urls: ['https://www.kernel.org/doc/Documentation/sysctl/kernel.txt']
+---
+name: LinuxKernelModuleRestrictions
+doc: Module loading controls.
 collectors:
 - collector_type: FILE
   args:
@@ -55,8 +54,9 @@ collectors:
       - '/proc/sys/kernel/modules_disabled'
 labels: [System]
 supported_os: [Linux]
+urls: ['https://www.kernel.org/doc/Documentation/sysctl/kernel.txt']
 ---
-name: NetworkIpForwardingState
+name: LinuxNetworkIpForwardingState
 doc: IP forwarding states.
 collectors:
 - collector_type: FILE
@@ -67,10 +67,10 @@ collectors:
       - '/proc/sys/net/ipv4/ip_forward'
 labels: [Network, System]
 supported_os: [Linux]
----
-name: NetworkPathFilteringSettings
-doc: States that determine how the system responds to route manipulation.
 urls: ['https://www.kernel.org/doc/Documentation/networking/ip-sysctl.txt']
+---
+name: LinuxNetworkPathFilteringSettings
+doc: States that determine how the system responds to route manipulation.
 collectors:
 - collector_type: FILE
   args:
@@ -80,10 +80,10 @@ collectors:
       - '/proc/sys/net/ipv4/conf/*/log_martians'
 labels: [Network, System]
 supported_os: [Linux]
----
-name: NetworkRedirectState
-doc: Redirect send/receive states.
 urls: ['https://www.kernel.org/doc/Documentation/networking/ip-sysctl.txt']
+---
+name: LinuxNetworkRedirectState
+doc: Redirect send/receive states.
 collectors:
 - collector_type: FILE
   args:
@@ -93,10 +93,10 @@ collectors:
       - '/proc/sys/net/ipv4/conf/*/send_redirects'
 labels: [Network, System]
 supported_os: [Linux]
+urls: ['https://www.kernel.org/doc/Documentation/networking/ip-sysctl.txt']
 ---
-name: ProcMounts
+name: LinuxProcMounts
 doc: Current mounted filesystems.
-urls: ['https://www.kernel.org/doc/Documentation/filesystems/proc.txt']
 collectors:
 - collector_type: FILE
   args:
@@ -104,10 +104,10 @@ collectors:
       - '/proc/mounts'
 labels: [System]
 supported_os: [Linux]
+urls: ['https://www.kernel.org/doc/Documentation/filesystems/proc.txt']
 ---
-name: RestrictedDmesgReadPrivileges
+name: LinuxRestrictedDmesgReadPrivileges
 doc: Restrict whether non-privileged users can read dmesg.
-urls: ['https://www.kernel.org/doc/Documentation/sysctl/kernel.txt']
 collectors:
 - collector_type: FILE
   args:
@@ -115,10 +115,10 @@ collectors:
       - '/proc/sys/kernel/dmesg_restrict'
 labels: [System]
 supported_os: [Linux]
----
-name: RestrictedKernelPointerReadPrivileges
-doc: Memory address obfuscation settings.
 urls: ['https://www.kernel.org/doc/Documentation/sysctl/kernel.txt']
+---
+name: LinuxRestrictedKernelPointerReadPrivileges
+doc: Memory address obfuscation settings.
 collectors:
 - collector_type: FILE
   args:
@@ -126,10 +126,10 @@ collectors:
       - '/proc/sys/kernel/kptr_restrict'
 labels: [System]
 supported_os: [Linux]
+urls: ['https://www.kernel.org/doc/Documentation/sysctl/kernel.txt']
 ---
-name: SecureSuidCoreDumps
+name: LinuxSecureSuidCoreDumps
 doc: Security controls for suid core dumps.
-urls: ['https://www.kernel.org/doc/Documentation/sysctl/fs.txt']
 collectors:
 - collector_type: FILE
   args:
@@ -137,10 +137,10 @@ collectors:
       - '/proc/sys/fs/suid_dumpable'
 labels: [System]
 supported_os: [Linux]
----
-name: SecureFsLinks
-doc: Security controls to restrict operations on links in world writable directories.
 urls: ['https://www.kernel.org/doc/Documentation/sysctl/fs.txt']
+---
+name: LinuxSecureFsLinks
+doc: Security controls to restrict operations on links in world writable directories.
 collectors:
 - collector_type: FILE
   args:
@@ -149,10 +149,10 @@ collectors:
       - '/proc/sys/fs/protected_symlinks'
 labels: [System]
 supported_os: [Linux]
+urls: ['https://www.kernel.org/doc/Documentation/sysctl/fs.txt']
 ---
-name: SyncookieState
+name: LinuxSyncookieState
 doc: Whether the system uses syncookies.
-urls: ['https://www.kernel.org/doc/Documentation/networking/ip-sysctl.txt']
 collectors:
 - collector_type: FILE
   args:
@@ -160,27 +160,28 @@ collectors:
       - '/proc/sys/net/ipv4/tcp_syncookies'
 labels: [Network, System]
 supported_os: [Linux]
+urls: ['https://www.kernel.org/doc/Documentation/networking/ip-sysctl.txt']
 ---
-name: ProcSys
+name: LinuxProcSysHardeningSettings
 doc: Linux sysctl settings obtained from /proc/sys.
 collectors:
 - collector_type: ARTIFACT
   args:
     artifact_list:
-      - 'ASLREnabled' 
-      - 'IgnoreICMPBroadcasts'
-      - 'KernelBootloader'
-      - 'KernelModuleProvenance'
-      - 'KernelModuleRestrictions'
-      - 'NetworkIpForwardingState'
-      - 'NetworkPathFilteringSettings'
-      - 'NetworkRedirectState'
-      - 'ProcMounts'
-      - 'RestrictedDmesgReadPrivileges'
-      - 'RestrictedKernelPointerReadPrivileges'
-      - 'SecureSuidCoreDumps'
-      - 'SecureFsLinks'
-      - 'SyncookieState'
+      - 'LinuxASLREnabled' 
+      - 'LinuxIgnoreICMPBroadcasts'
+      - 'LinuxKernelBootloader'
+      - 'LinuxKernelModuleProvenance'
+      - 'LinuxKernelModuleRestrictions'
+      - 'LinuxNetworkIpForwardingState'
+      - 'LinuxNetworkPathFilteringSettings'
+      - 'LinuxNetworkRedirectState'
+      - 'LinuxProcMounts'
+      - 'LinuxRestrictedDmesgReadPrivileges'
+      - 'LinuxRestrictedKernelPointerReadPrivileges'
+      - 'LinuxSecureSuidCoreDumps'
+      - 'LinuxSecureFsLinks'
+      - 'LinuxSyncookieState'
 labels: [System]
 supported_os: [Linux]
 
