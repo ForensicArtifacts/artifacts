@@ -1,17 +1,42 @@
 # Linux specific artifacts.
 
-name: SystemCronFiles
-doc: System-wide cron files.
+name: AnacronFiles
+doc: Anacron files.
+collectors:
+- collector_type: FILE
+  args:
+    path_list:
+      - '/etc/anacrontab'
+      - '/etc/cron.daily'
+      - '/etc/cron.hourly'
+      - '/etc/cron.monthly'
+      - '/etc/cron.weekly'
+      - '/var/spool/anacron/cron.daily'
+      - '/var/spool/anacron/cron.hourly'
+      - '/var/spool/anacron/cron.monthly'
+      - '/var/spool/anacron/cron.weekly'
+labels: [Configuration Files]
+supported_os: [Linux]
+---
+name: LinuxCronTabs
+doc: Crontab files.
 collectors:
 - collector_type: FILE
   args:
     path_list:
       - '/etc/crontab'
-      - '/etc/cron.daily'
-      - '/etc/cron.hourly'
-      - '/etc/cron.monthly'
-      - '/etc/cron.weekly'
       - '/etc/cron.d/*'
+      - '/var/spool/cron/*'
+labels: [Configuration Files]
+supported_os: [Linux]
+---
+name: LinuxAtJobs
+doc: Linux at jobs.
+collectors:
+- collector_type: FILE
+  args:
+    path_list:
+      - '/var/spool/at/*'
 labels: [Configuration Files]
 supported_os: [Linux]
 ---
