@@ -1,5 +1,5 @@
 # Linux specific /proc artifacts.
-name: LinuxASLREnabled 
+name: LinuxASLREnabled
 doc: Kernel ASLR state.
 collectors:
 - collector_type: FILE
@@ -168,7 +168,7 @@ collectors:
 - collector_type: ARTIFACT
   args:
     artifact_list:
-      - 'LinuxASLREnabled' 
+      - 'LinuxASLREnabled'
       - 'LinuxIgnoreICMPBroadcasts'
       - 'LinuxKernelBootloader'
       - 'LinuxKernelModuleTaintStatus'

@@ -1,13 +1,13 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 """The artifact reader objects."""
 
 import abc
-import yaml
 
 from artifacts import artifact
 from artifacts import definitions
 from artifacts import errors
+
+import yaml
 
 
 class ArtifactsReader(object):
@@ -90,6 +90,7 @@ class YamlArtifactsReader(ArtifactsReader):
       yaml_definition: the YAML artifact definition.
       artifact_definition: the artifact definition object (instance of
                            ArtifactDefinition).
+      name: string containing the name of the arifact defintion.
 
     Raises:
       FormatError: if there are undefined labels.
@@ -112,7 +113,7 @@ class YamlArtifactsReader(ArtifactsReader):
       yaml_definition: the YAML artifact definition.
       defintion_object: the definition object (instance of ArtifactDefinition
                         or CollectorDefinition).
-      name: string containing the name of the arifact defintion.
+      name: string containing the name of the arifact definition.
 
     Raises:
       FormatError: if there are undefined supported operating systems.
