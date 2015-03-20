@@ -1,4 +1,4 @@
-## ForensicArtifacts.com Artifact Repository
+## ForensicArtifacts.com Artifact Repository [![Build Status](https://travis-ci.org/ForensicArtifacts/artifacts.svg?branch=master)](https://travis-ci.org/ForensicArtifacts/artifacts)
 
 A free, community-sourced, machine-readable knowledge base of forensic artifacts
 that the world can use both as an information source and within other tools.
