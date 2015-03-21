@@ -2,7 +2,8 @@ language: python
 python:
   - "2.7"
 install: pip install -r requirements.txt
-script: nosetests -v
-    - coverage run --source=artifacts --omit="*_test*,*__init__*" nosetests
+script:
+  - nosetests -v
+  - coverage run --source=artifacts --omit="*_test*,*__init__*" nosetests
 after_success:
-    - coveralls --verbose
+  - coveralls --verbose
