@@ -385,13 +385,63 @@ collectors:
       - '%%environ_systemroot%%\System32\magnifier.exe'
 supported_os: [Windows]
 ---
-name: WindowsAutorun
-doc: Filebased Tests
+name: WindowsAutorunInf
+doc: Windows autorun.inf file
 collectors:
 - collector_type: FILE
   args:
     path_list:
       - '%%environ_systemdrive%%\autorun.inf'
+supported_os: [Windows]
+---
+name: WindowsAutoexec
+doc: Windows autoexec.bat file
+collectors:
+- collector_type: FILE
+  args:
+    path_list:
+      - '%%environ_systemdrive%%\autoexec.bat'
+      - '%%environ_windir%%\autoexec.nt'
+supported_os: [Windows]
+---
+name: WindowsConfigSys
+doc: Windows config.sys file
+collectors:
+- collector_type: FILE
+  args:
+    path_list:
+      - '%%environ_systemdrive%%\config.sys'
+      - '%%environ_windir%%\config.nt'
+supported_os: [Windows]
+---
+name: WindowsGroupPolicyScripts
+doc: Windows group policy scripts
+collectors:
+- collector_type: FILE
+  args:
+    path_list:
+      - '%%environ_systemdroot%%\GroupPolicy\User\Scripts\scripts.ini'
+supported_os: [Windows]
+---
+name: WindowsWinstart
+doc: Windows winstart.bat file
+collectors:
+- collector_type: FILE
+  args:
+    path_list:
+      - '%%environ_windir%%\winstart.bat'
+      - '%%environ_windir%%\dosstart.bat'
+supported_os: [Windows]
+---
+name: WindowsIniFiles
+doc: Windows ini file 
+collectors:
+- collector_type: FILE
+  args:
+    path_list:
+      - '%%environ_systemdrive%%\system.ini'
+      - '%%environ_windir%%\win.ini'
+      - '%%environ_windir%%\wininit.ini'
 supported_os: [Windows]
 ---
 name: WindowsCommonFilePlacementAttacks
@@ -418,6 +468,8 @@ collectors:
 - collector_type: FILE
   args:
     path_list:
+      - '%%users.homedir%%\Start Menu\Programs\Startup\*'
+      - '%%environ_allusersprofile%%\Start Menu\Programs\Startup\*'
       - '%%users.homedir%%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\*'
       - '%%environ_allusersprofile%%\Microsoft\Windows\Start Menu\Programs\Startup\*'
 supported_os: [Windows]
@@ -439,6 +491,24 @@ collectors:
   args:
     path_list:
       - 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\BootExecute'
+supported_os: [Windows]
+---
+name: WindowsNetshHelpers
+doc: Windows Netsh helpers are loaded on boot 
+collectors:
+- collector_type: REGISTRY_KEY
+  args:
+    path_list:
+      - 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Netsh\*'
+supported_os: [Windows]
+---
+name: WindowsPendingFileRenames
+doc: Windows Pending file renames on reboot
+collectors:
+- collector_type: REGISTRY_KEY
+  args:
+    path_list:
+      - 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\PendingFileRenameOperations'
 supported_os: [Windows]
 ---
 name: WindowsExcludeFromKnownDlls
@@ -507,6 +577,26 @@ collectors:
       - 'HKEY_USERS\%%users.sid%%\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\Notify'
 supported_os: [Windows]
 ---
+name: WindowsWinlogonMSGina
+doc: Windows Winlogon MSGina
+collectors:
+- collector_type: REGISTRY_KEY
+  args:
+    path_list:
+      - 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\GinaDll'
+      - 'HKEY_USERS\%%users.sid%%\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\GinaDll'
+supported_os: [Windows]
+---
+name: WindowsWinlogonTaskman
+doc: Windows Winlogon Taskman
+collectors:
+- collector_type: REGISTRY_KEY
+  args:
+    path_list:
+      - 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\Taskman'
+      - 'HKEY_USERS\%%users.sid%%\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\Taskman'
+supported_os: [Windows]
+---
 name: WindowsWinlogonUserinit
 doc: Windows Winlogon Userinit
 collectors:
@@ -527,6 +617,26 @@ collectors:
       - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\Shell'
 supported_os: [Windows]
 ---
+name: WindowsMSDTCDlls
+doc: Windows MSDTC attempts to load these dlls on start
+collectors:
+- collector_type: REGISTRY_KEY
+  args:
+    path_list:
+      - 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\MSDTC\MTxOCI\*'
+      - 'HKEY_USERS\%%users.sid%%\SOFTWARE\Microsoft\MSDTC\MTxOCI\*'
+supported_os: [Windows]
+---
+name: WindowsPolicyShell
+doc: Windows shell replacement
+collectors:
+- collector_type: REGISTRY_KEY
+  args:
+    path_list:
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Policies\System\Shell'
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\Shell'
+supported_os: [Windows]
+---
 name: WindowsLoadKey
 doc: Windows load key
 collectors:
@@ -545,6 +655,44 @@ collectors:
     path_list:
       - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Windows\AppInit_DLLs'
       - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Windows\AppInit_DLLs'
+supported_os: [Windows]
+---
+name: WindowsInProcServer
+doc: Windows InProcServer entries
+collectors:
+- collector_type: REGISTRY_KEY
+  args:
+    path_list:
+      - 'HKEY_CURRENT_ROOT\CLSID\*\InProcServer32'
+      - 'HKEY_CURRENT_ROOT\Wow6432Node\CLSID\*\InProcServer32'
+supported_os: [Windows]
+---
+name: WindowsLSAAuthenticationPackages
+doc: Windows LSA Authentication Packages
+collectors:
+- collector_type: REGISTRY_KEY
+  args:
+    path_list:
+      - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Lsa\Authentication Packages'
+supported_os: [Windows]
+---
+name: WindowsLSASecurityPackages
+doc: Windows LSA Security Packages
+collectors:
+- collector_type: REGISTRY_KEY
+  args:
+    path_list:
+      - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Lsa\Security Packages'
+supported_os: [Windows]
+---
+name: WindowsLSANotificationPackages
+doc: Windows LSA Notification Packages will be called any time a password change occurs
+collectors:
+- collector_type: REGISTRY_KEY
+  args:
+    path_list:
+      - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Lsa\Notification Packages'
+urls: http://carnal0wnage.attackresearch.com/2013/09/stealing-passwords-every-time-they.html
 supported_os: [Windows]
 ---
 name: WMILoggedOnSessions
