@@ -59,25 +59,6 @@ collectors:
 labels: [Authentication]
 supported_os: [Linux]
 ---
-name: RootUserShellConfigs
-doc: Linux root shell configuration files.
-collectors:
-- collector_type: FILE
-  args:
-    path_list:
-      - '/root/.bashrc'
-      - '/root/.cshrc'
-      - '/root/.ksh'
-      - '/root/.logout'
-      - '/root/.profile'
-      - '/root/.tcsh'
-      - '/root/.zlogin'
-      - '/root/.zlogout'
-      - '/root/.zprofile'
-      - '/root/.zprofile'
-labels: [Configuration Files]
-supported_os: [Linux]
----
 name: DebianPackagesStatus
 doc: Linux dpkg status file.
 collectors:
