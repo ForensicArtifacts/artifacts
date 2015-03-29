@@ -4,7 +4,9 @@ name: ApplicationEventLog
 doc: Windows Application Event log.
 sources:
 - type: FILE
-  attributes: {paths: ['%%environ_systemroot%%\System32\winevt\Logs\AppEvent.evt']}
+  attributes:
+    paths: ['%%environ_systemroot%%\System32\winevt\Logs\AppEvent.evt']
+    separator: '\'
 conditions: [os_major_version < 6]
 labels: [Logs]
 supported_os: [Windows]
@@ -14,7 +16,9 @@ name: ApplicationEventLogEvtx
 doc: Windows Application Event log for Vista or later systems.
 sources:
 - type: FILE
-  attributes: {paths: ['%%environ_systemroot%%\System32\winevt\Logs\Application.evtx']}
+  attributes: 
+    paths: ['%%environ_systemroot%%\System32\winevt\Logs\Application.evtx']
+    separator: '\'
 conditions: [os_major_version >= 6]
 labels: [Logs]
 supported_os: [Windows]
@@ -56,6 +60,7 @@ sources:
     paths:
       - '%%environ_systemdrive%%\$MFT'
       - '%%environ_systemdrive%%\$MFTMirr'
+    separator: '\'
 labels: [System]
 supported_os: [Windows]
 ---
@@ -63,7 +68,9 @@ name: PrefetchFiles
 doc: Windows Prefetch files.
 sources:
 - type: FILE
-  attributes: {paths: ['%%environ_systemroot%%\Prefetch\*.pf']}
+  attributes: 
+    paths: ['%%environ_systemroot%%\Prefetch\*.pf']
+    separator: '\'
 labels: [System]
 supported_os: [Windows]
 urls: ['http://www.forensicswiki.org/wiki/Prefetch']
@@ -77,6 +84,7 @@ sources:
       - '%%environ_systemroot%%\Tasks\**10'
       - '%%environ_systemroot%%\System32\Tasks\**10'
       - '%%environ_systemroot%%\SysWow64\Tasks\**10'
+    separator: '\'
 supported_os: [Windows]
 urls: ['http://forensicswiki.org/wiki/Windows#Scheduled_Tasks']
 ---
@@ -84,7 +92,9 @@ name: SecurityEventLog
 doc: Windows Security Event log.
 sources:
 - type: FILE
-  attributes: {paths: ['%%environ_systemroot%%\System32\winevt\Logs\SecEvent.evt']}
+  attributes: 
+    paths: ['%%environ_systemroot%%\System32\winevt\Logs\SecEvent.evt']
+    separator: '\'
 conditions: [os_major_version < 6]
 labels: [Logs]
 supported_os: [Windows]
@@ -94,7 +104,9 @@ name: SecurityEventLogEvtx
 doc: Windows Security Event log for Vista or later systems.
 sources:
 - type: FILE
-  attributes: {paths: ['%%environ_systemroot%%\System32\winevt\Logs\Security.evtx']}
+  attributes: 
+    paths: ['%%environ_systemroot%%\System32\winevt\Logs\Security.evtx']
+    separator: '\'
 conditions: [os_major_version >= 6]
 labels: [Logs]
 supported_os: [Windows]
@@ -112,6 +124,7 @@ sources:
       - '%%environ_systemroot%%\inf\setupapi.app.log'
       - '%%environ_systemroot%%\inf\setupapi.dev.log'
       - '%%environ_systemroot%%\inf\setupapi.offline.log'
+    separator: '\'
   conditions: [os_major_version >= 6]
 labels: [Logs]
 supported_os: [Windows]
@@ -125,6 +138,7 @@ sources:
     paths:
       - '%%environ_systemroot%%\Prefetch\Ag*.db'
       - '%%environ_systemroot%%\Prefetch\Ag*.db.trx'
+    separator: '\'
 labels: [System]
 supported_os: [Windows]
 urls: ['http://www.forensicswiki.org/wiki/SuperFetch']
@@ -133,7 +147,9 @@ name: SystemEventLog
 doc: Windows System Event log.
 sources:
 - type: FILE
-  attributes: {paths: ['%%environ_systemroot%%\System32\winevt\Logs\SysEvent.evt']}
+  attributes: 
+    paths: ['%%environ_systemroot%%\System32\winevt\Logs\SysEvent.evt']
+    separator: '\'
 conditions: [os_major_version < 6]
 labels: [Logs]
 supported_os: [Windows]
@@ -143,7 +159,9 @@ name: SystemEventLogEvtx
 doc: Windows System Event log for Vista or later systems.
 sources:
 - type: FILE
-  attributes: {paths: ['%%environ_systemroot%%\System32\winevt\Logs\System.evtx']}
+  attributes: 
+    paths: ['%%environ_systemroot%%\System32\winevt\Logs\System.evtx']
+    separator: '\'
 conditions: [os_major_version >= 6]
 labels: [Logs]
 supported_os: [Windows]
@@ -153,7 +171,9 @@ name: TerminalServicesEventLogEvtx
 doc: Windows TerminalServices Event log.
 sources:
 - type: FILE
-  attributes: {paths: ['%%environ_systemroot%%\System32\winevt\Logs\Microsoft-Windows-TerminalServices-LocalSessionManager%4Operational.evtx']}
+  attributes: 
+    paths: ['%%environ_systemroot%%\System32\winevt\Logs\Microsoft-Windows-TerminalServices-LocalSessionManager%4Operational.evtx']
+    separator: '\'
 conditions: [os_major_version >= 6]
 labels: [Logs]
 supported_os: [Windows]
@@ -167,6 +187,7 @@ sources:
     paths:
       - '%%environ_systemroot%%\System32\Drivers\etc\Lmhosts'
       - '%%environ_systemroot%%\System32\Drivers\etc\hosts'
+    separator: '\'
 supported_os: [Windows]
 ---
 name: WindowsPersistenceMechanisms
@@ -189,6 +210,7 @@ sources:
     paths:
       - '\$Recycle.Bin\**'
       - '\Recycler\**'
+    separator: '\'
 labels: [Users]
 supported_os: [Windows]
 urls: ['http://www.forensicswiki.org/wiki/Windows#Recycle_Bin']
@@ -224,7 +246,9 @@ name: WindowsSearchDatabase
 doc: Windows Search database (Windows.edb).
 sources:
 - type: FILE
-  attributes: {paths: ['%%environ_allusersappdata%%\Microsoft\Search\Data\Applications\Windows\Windows.edb']}
+  attributes: 
+    paths: ['%%environ_allusersappdata%%\Microsoft\Search\Data\Applications\Windows\Windows.edb']
+    separator: '\'
 labels: [Software]
 supported_os: [Windows]
 urls: ['http://www.forensicswiki.org/wiki/Windows_Desktop_Search']
@@ -254,6 +278,7 @@ sources:
       - '%%environ_systemroot%%\System32\config\SOFTWARE'
       - '%%environ_systemroot%%\System32\config\SYSTEM'
       - '\System Volume Information\Syscache.hve'
+    separator: '\'
 labels: [System]
 supported_os: [Windows]
 urls: ['https://github.com/libyal/winreg-kb/wiki/Registry-files']
@@ -266,6 +291,7 @@ sources:
     paths:
       - '%%users.appdata%%\Roaming\Microsoft\Office\Recent\*'
       - '%%users.appdata%%\Roaming\Microsoft\Windows\Recent\*'
+    separator: '\'
 labels: [Users]
 supported_os: [Windows]
 ---
@@ -278,6 +304,7 @@ sources:
       - '%%users.homedir%%\NTUSER.DAT'
       - '%%users.homedir%%\NTUSER.MAN'
       - '%%users.localappdata%%\Microsoft\Windows\UsrClass.dat'
+    separator: '\'
 labels: [Users]
 supported_os: [Windows]
 urls: ['https://github.com/libyal/winreg-kb/wiki/Registry-files']
@@ -384,6 +411,7 @@ sources:
       - '%%environ_systemroot%%\System32\sethc.exe'
       - '%%environ_systemroot%%\System32\utilman.exe'
       - '%%environ_systemroot%%\System32\magnifier.exe'
+    separator: '\'
 supported_os: [Windows]
 ---
 name: WindowsAutorun
@@ -391,8 +419,8 @@ doc: Filebased Tests
 sources:
 - type: FILE
   attributes:
-    paths:
-      - '%%environ_systemdrive%%\autorun.inf'
+    paths: ['%%environ_systemdrive%%\autorun.inf']
+    separator: '\'
 supported_os: [Windows]
 ---
 name: WindowsCommonFilePlacementAttacks
@@ -411,6 +439,7 @@ sources:
       - '%%environ_systemroot%%\SysWOW64\sysprep\cryptbase.dll'
       - '%%environ_programfiles%%\Internet Explorer\sxs.dll'
       - '%%environ_programfilesx86%%\Internet Explorer\sxs.dll'
+    separator: '\'
 supported_os: [Windows]
 ---
 name: WindowsStartupFolders
@@ -421,6 +450,7 @@ sources:
     paths:
       - '%%users.homedir%%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\*'
       - '%%environ_allusersprofile%%\Microsoft\Windows\Start Menu\Programs\Startup\*'
+    separator: '\'
 supported_os: [Windows]
 ---
 name: WindowsStubPaths
