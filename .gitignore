@@ -1,11 +1,15 @@
 # Files to ignore by git
 
+# Back-up files
+*~
+*.swp
+
 # Generic auto-generated build files
 *.pyc
 *.pyo
 
 # Specific auto-generated build files
+/__pycache__
+/artifacts.egg-info
 /build
 /dist
-/artifacts.egg-info
-
