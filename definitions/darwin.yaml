@@ -4,7 +4,11 @@ name: OSXLaunchAgents
 doc: Mac OS X Launch Agent files.
 sources:
 - type: FILE
-  attributes: {paths: ['/System/Library/LaunchAgents/*']}
+  attributes:
+    paths:
+      - '/Library/LaunchAgents/*'
+      - '/System/Library/LaunchAgents/*'
+      - '%%users.homedir%%/Library/LaunchAgents/*'
 labels: [System]
 supported_os: [Darwin]
 urls: ['http://www.forensicswiki.org/wiki/Mac_OS_X']
@@ -17,6 +21,7 @@ sources:
     paths:
       - '/Library/LaunchDaemons/*'
       - '/System/Library/LaunchDaemons/*'
+      - '%%users.homedir%%/Library/LaunchDaemons/*'
 labels: [System]
 supported_os: [Darwin]
 urls: ['http://www.forensicswiki.org/wiki/Mac_OS_X']
@@ -75,4 +80,74 @@ sources:
 - type: FILE
   attributes: {paths: ['%%users.homedir%%/Library/Preferences/*']}
 labels: [Users]
+supported_os: [Darwin]
+---
+name: OSXUserLoginItems
+doc: Mac OS X user login items.
+sources:
+- type: FILE
+  attributes: {paths: ['%%users.homedir%%/Library/Preferences/com.apple.loginitems.plist']}
+labels: [Users]
+supported_os: [Darwin]
+---
+name: OSXPeriodicSystemFunctions
+doc: Mac OS X periodic system functions scripts and configuration.
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '/etc/defaults/periodic.conf'
+      - '/etc/periodic.conf'
+      - '/etc/periodic.conf.local'
+      - '/etc/periodic/**2'
+      - '/usr/local/etc/periodic/**2'
+      - '/etc/daily.local/*'
+      - '/etc/weekly.local/*'
+      - '/etc/monthly.local/*'
+labels: [System]
+supported_os: [Darwin]
+urls: ['https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man8/periodic.8.html#//apple_ref/doc/man/8/periodic']
+---
+name: OSXAtJobs
+doc: Mac OS X at jobs.
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '/usr/lib/cron/jobs/*'
+labels: [System]
+supported_os: [Darwin]
+urls: ['https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/at.1.html#//apple_ref/doc/man/1/at']
+---
+name: OSXCronTabs
+doc: Mac OS X cron tabs.
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '/etc/crontab'
+      - '/usr/lib/cron/tabs/*'
+labels: [System]
+supported_os: [Darwin]
+urls: ['https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man5/crontab.5.html#//apple_ref/doc/man/5/crontab']
+---
+name: OSXKexts
+doc: Mac OS X Kernel Extentions.
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '/System/Library/Extensions/*'
+      - '/Library/Extensions/*'
+labels: [System]
+supported_os: [Darwin]
+---
+name: OSXLoadedKexts
+doc: Mac OS X Loaded Kernel Extensions.
+sources:
+- type: COMMAND
+  attributes:
+    args: []
+    cmd: /usr/sbin/kextstat
+labels: [System]
 supported_os: [Darwin]

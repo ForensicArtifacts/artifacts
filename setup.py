@@ -44,12 +44,21 @@ setup(
     maintainer='The ForensicArtifacts.com Artifact Repository project',
     maintainer_email='forensicartifacts@googlegroups.com',
     cmdclass={'test': TestCommand},
+    scripts=[
+        os.path.join('tools', 'validator.py'),
+    ],
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Environment :: Console',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
     ],
+    packages=find_packages('.', exclude=[u'tools']),
     package_dir={'artifacts': 'artifacts'},
-    packages=find_packages('.'),
+    data_files=[
+        ('share/artifacts', glob.glob(os.path.join('definitions', '*'))),
+    ],
+    install_requires=[
+        'PyYAML >= 3.11',
+    ],
 )

@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 """The source type objects.
 
@@ -105,6 +104,29 @@ class FileSourceType(SourceType):
     super(FileSourceType, self).__init__(**kwargs)
     self.paths = paths
     self.separator = separator
+
+
+class CommandSourceType(SourceType):
+  """Class that implements the command source type."""
+
+  TYPE_INDICATOR = definitions.TYPE_INDICATOR_COMMAND
+
+  def __init__(self, args=None, cmd=None, **kwargs):
+    """Initializes the source type object.
+
+    Args:
+      args: list of strings that will be passed as arguments to the command.
+      cmd: string representing the command to run.
+
+    Raises:
+      FormatError: when args or cmd is not set.
+    """
+    if args is None or cmd is None:
+      raise errors.FormatError(u'Missing args or cmd value.')
+
+    super(CommandSourceType, self).__init__(**kwargs)
+    self.args = args
+    self.cmd = cmd
 
 
 class PathSourceType(SourceType):

@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 """The artifact reader objects."""
 
@@ -70,8 +69,13 @@ class YamlArtifactsReader(ArtifactsReader):
             u'Invalid artifact definition: {0:s} source type.'.format(name))
 
       attributes = source.get('attributes', None)
-      source_type = artifact_definition.AppendSource(
-          type_indicator, attributes)
+      try:
+        source_type = artifact_definition.AppendSource(
+            type_indicator, attributes)
+      except errors.FormatError as exception:
+        raise errors.FormatError(
+            u'Invalid artifact definition: {0:s}. {1:s}'.format(
+                name, exception))
 
       # TODO: deprecate these left overs from the collector definition.
       if source_type:
