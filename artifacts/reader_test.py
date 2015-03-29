@@ -14,13 +14,13 @@ from artifacts import reader
 class YamlArtifactsReaderTest(unittest.TestCase):
   """Class to test the YAML artifacts reader."""
 
-  def testRead(self):
-    """Tests the Read function."""
+  def testReadFileObject(self):
+    """Tests the ReadFileObject function."""
     artifact_reader = reader.YamlArtifactsReader()
     test_file = os.path.join('test_data', 'definitions.yaml')
 
     with open(test_file, 'rb') as file_object:
-      artifact_definitions = list(artifact_reader.Read(file_object))
+      artifact_definitions = list(artifact_reader.ReadFileObject(file_object))
 
     self.assertEqual(len(artifact_definitions), 7)
 
@@ -147,7 +147,7 @@ supported_os: Windows
 """)
 
     with self.assertRaises(errors.FormatError):
-      _ = list(artifact_reader.Read(file_object))
+      _ = list(artifact_reader.ReadFileObject(file_object))
 
   def testBadLabels(self):
     """Tests labels is checked correctly."""
@@ -164,7 +164,7 @@ supported_os: [Windows]
 """)
 
     with self.assertRaises(errors.FormatError):
-      _ = list(artifact_reader.Read(file_object))
+      _ = list(artifact_reader.ReadFileObject(file_object))
 
   def testMissingDoc(self):
     """Tests doc is required."""
@@ -178,7 +178,24 @@ sources:
 """)
 
     with self.assertRaises(errors.FormatError):
-      _ = list(artifact_reader.Read(file_object))
+      _ = list(artifact_reader.ReadFileObject(file_object))
+
+  def testReadFile(self):
+    """Tests the ReadFile function."""
+    artifact_reader = reader.YamlArtifactsReader()
+    test_file = os.path.join('test_data', 'definitions.yaml')
+
+    artifact_definitions = list(artifact_reader.ReadFile(test_file))
+
+    self.assertEqual(len(artifact_definitions), 7)
+
+  def testReadDirectory(self):
+    """Tests the ReadDirectory function."""
+    artifact_reader = reader.YamlArtifactsReader()
+
+    artifact_definitions = list(artifact_reader.ReadDirectory('test_data'))
+
+    self.assertEqual(len(artifact_definitions), 7)
 
 
 if __name__ == '__main__':
