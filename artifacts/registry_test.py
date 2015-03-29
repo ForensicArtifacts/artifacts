@@ -20,9 +20,8 @@ class ArtifactDefinitionsRegistryTest(unittest.TestCase):
     test_file = os.path.join('test_data', 'definitions.yaml')
 
     artifact_definition = None
-    with open(test_file, 'rb') as file_object:
-      for artifact_definition in artifact_reader.Read(file_object):
-        artifact_registry.RegisterDefinition(artifact_definition)
+    for artifact_definition in artifact_reader.ReadFile(test_file):
+      artifact_registry.RegisterDefinition(artifact_definition)
 
     # Make sure the test file is not empty.
     self.assertNotEquals(artifact_definition, None)
