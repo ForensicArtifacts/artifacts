@@ -6,8 +6,6 @@ import glob
 import os
 import sys
 
-import run_tests
-
 try:
   from setuptools import find_packages, setup, Command
 except ImportError:
