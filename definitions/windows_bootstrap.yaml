@@ -34,6 +34,10 @@ urls: ['https://github.com/libyal/winreg-kb/wiki/System-keys']
 name: ProgramFiles
 doc: The %ProgramFiles% environment variable.
 sources:
+- type: PATH
+  attributes:
+    paths: ['\Program Files']
+    separator: '\'
 - type: REGISTRY_VALUE
   attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion', value: 'ProgramFilesDir'}]}
 provides: [environ_programfiles]
@@ -43,6 +47,10 @@ urls: ['http://environmentvariables.org/ProgramFiles']
 name: ProgramFilesx86
 doc: The %ProgramFiles (x86)% environment variable.
 sources:
+- type: PATH
+  attributes:
+    paths: ['\Program Files (x86)']
+    separator: '\'
 - type: REGISTRY_VALUE
   attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion', value: 'ProgramFilesDir (x86)'}]}
 provides: [environ_programfilesx86]
@@ -59,8 +67,16 @@ supported_os: [Windows]
 urls: ['http://environmentvariables.org/SystemDrive']
 ---
 name: SystemRoot
-doc: The base system directory, usually "C:\Windows".
+doc: The system root directory path, defined by %SystemRoot%, typically "C:\Windows".
 sources:
+- type: PATH
+  attributes:
+    paths:
+      - '\Windows'
+      - '\WinNT'
+      - '\WINNT35'
+      - '\WTSRV'
+    separator: '\'
 - type: REGISTRY_VALUE
   attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion', value: 'SystemRoot'}]}
 provides: [environ_systemroot]
@@ -113,6 +129,14 @@ urls: ['http://en.wikipedia.org/wiki/Windows_code_page']
 name: WinDirEnvironmentVariable
 doc: The %WinDir% environment variable.
 sources:
+- type: PATH
+  attributes:
+    paths:
+      - '\Windows'
+      - '\WinNT'
+      - '\WINNT35'
+      - '\WTSRV'
+    separator: '\'
 - type: REGISTRY_VALUE
   attributes: {key_value_pairs: [{key: '%%current_control_set%%\Control\Session Manager\Environment', value: 'windir'}]}
 provides: [environ_windir]
