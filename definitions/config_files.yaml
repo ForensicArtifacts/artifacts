@@ -7,3 +7,13 @@ sources:
   attributes: {paths: ['/etc/ssh/sshd_config']}
 labels: [Configuration Files]
 supported_os: [Linux]
+---
+name: NfsExportsFile
+doc: NFS Exports configuration
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '/etc/exports'
+labels: [Configuration Files]
+supported_os: [Linux, Darwin]

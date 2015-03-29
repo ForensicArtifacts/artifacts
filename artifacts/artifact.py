@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 """The reader objects."""
 
@@ -66,6 +65,9 @@ class ArtifactDefinition(object):
     source_type_class = None
     if type_indicator == definitions.TYPE_INDICATOR_ARTIFACT:
       source_type_class = source_type.ArtifactSourceType
+
+    elif type_indicator == definitions.TYPE_INDICATOR_COMMAND:
+      source_type_class = source_type.CommandSourceType
 
     elif type_indicator == definitions.TYPE_INDICATOR_FILE:
       source_type_class = source_type.FileSourceType

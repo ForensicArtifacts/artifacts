@@ -62,3 +62,23 @@ sources:
       - 'SystemEventLogEvtx'
 labels: [Logs]
 supported_os: [Windows]
+---
+name: RedhatPackagesList
+doc: Linux output of rpm -qa.
+sources:
+- type: COMMAND
+  attributes:
+    args: [-qa]
+    cmd: /bin/rpm
+labels: [Software]
+supported_os: [Linux]
+---
+name: OSXLoadedKexts
+doc: Mac OS X Loaded Kernel Extensions.
+sources:
+- type: COMMAND
+  attributes:
+    args: []
+    cmd: /usr/sbin/kextstat
+labels: [System]
+supported_os: [Darwin]

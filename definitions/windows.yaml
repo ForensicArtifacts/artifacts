@@ -374,3 +374,207 @@ sources:
 labels: [Users]
 supported_os: [Windows]
 urls: ['http://msdn.microsoft.com/en-us/library/windows/desktop/aa394507(v=vs.85).aspx']
+---
+name: WindowsHotkeyReplacement
+doc: Hotkey executable replacement
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '%%environ_systemroot%%\System32\sethc.exe'
+      - '%%environ_systemroot%%\System32\utilman.exe'
+      - '%%environ_systemroot%%\System32\magnifier.exe'
+supported_os: [Windows]
+---
+name: WindowsAutorun
+doc: Filebased Tests
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '%%environ_systemdrive%%\autorun.inf'
+supported_os: [Windows]
+---
+name: WindowsCommonFilePlacementAttacks
+doc: Common files associated with search order hijacking and other file placement attacks
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '%%environ_systemdrive%%\program.exe'
+      - '%%environ_systemdrive%%\explorer.exe'
+      - '%%environ_systemroot%%\System32\oci.dll'
+      - '%%environ_systemroot%%\SysWOW64\oci.dll'
+      - '%%environ_systemroot%%\linkinfo.dll'
+      - '%%environ_systemroot%%\ntshrui.dll'
+      - '%%environ_systemroot%%\System32\sysprep\cryptbase.dll'
+      - '%%environ_systemroot%%\SysWOW64\sysprep\cryptbase.dll'
+      - '%%environ_programfiles%%\Internet Explorer\sxs.dll'
+      - '%%environ_programfilesx86%%\Internet Explorer\sxs.dll'
+supported_os: [Windows]
+---
+name: WindowsStartupFolders
+doc: Windows startup folder persistence
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '%%users.homedir%%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\*'
+      - '%%environ_allusersprofile%%\Microsoft\Windows\Start Menu\Programs\Startup\*'
+supported_os: [Windows]
+---
+name: WindowsStubPaths
+doc: Windows StubPath persistence
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Active Setup\Installed Components\*', value: 'StubPath'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Active Setup\Installed Components\*', value: 'StubPath'}
+supported_os: [Windows]
+urls: ['http://blogs.msdn.com/b/aruns_blog/archive/2011/06/20/active-setup-registry-key-what-it-is-and-how-to-create-in-the-package-using-admin-studio-install-shield.aspx']
+---
+name: WindowsBootExecute
+doc: Windows BootExecute persistence
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager', value: 'BootExecute'}]
+supported_os: [Windows]
+urls: ['https://technet.microsoft.com/en-us/library/cc963230.aspx']
+---
+name: WindowsExcludeFromKnownDlls
+doc: ExcludeFromKnownDlls can be used to bypass search order hijacking protection
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager', value: 'ExcludeFromKnownDlls'}]
+supported_os: [Windows]
+urls: ['https://msdn.microsoft.com/en-us/library/windows/desktop/ms682586%28v=vs.85%29.aspx']
+---
+name: WindowsAppCertDlls
+doc: Windows AppCertDlls persistence
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys: ['HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\AppCertDlls']
+supported_os: [Windows]
+urls: ['http://blogs.technet.com/b/mmpc/archive/2011/03/19/how-to-defang-the-fake-defragmenter.aspx']
+---
+name: WindowsStartupFolderModification
+doc: Windows startup folder registry values
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders', value: 'Common Startup'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders', value: 'Common Startup'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders', value: 'Startup'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders', value: 'Startup'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders', value: 'Common Startup'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders', value: 'Common Startup'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders', value: 'Startup'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders', value: 'Startup'}
+supported_os: [Windows]
+---
+name: WindowsDebugger
+doc: Windows Debugger peristence or AV disable
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\*', value: 'Debugger'}
+      - {key: 'HKEY_USERS\%%users.sid%%\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\*', value: 'Debugger'}
+supported_os: [Windows]
+urls: ['https://msdn.microsoft.com/en-us/library/a329t4ed%28VS.71%29.aspx']
+---
+name: WindowsRunServices
+doc: Windows Run Services
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunServicesOnce\*'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\RunServicesOnce\*'
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunServices\*'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\RunServices\*'
+supported_os: [Windows]
+urls: ['https://msdn.microsoft.com/en-us/library/windows/desktop/aa376977%28v=vs.85%29.aspx']
+---
+name: WindowsWinlogonNotify
+doc: Windows Winlogon Notify
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
+      - 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\Notify'
+      - 'HKEY_USERS\%%users.sid%%\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\Notify'
+supported_os: [Windows]
+urls: ['https://msdn.microsoft.com/en-us/library/windows/desktop/aa379402%28v=vs.85%29.aspx']
+---
+name: WindowsWinlogonUserinit
+doc: Windows Winlogon Userinit
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'Userinit'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'Userinit'}
+supported_os: [Windows]
+urls: ['https://technet.microsoft.com/en-us/library/cc939862.aspx']
+---
+name: WindowsWinlogonShell
+doc: Windows shell replacement
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\Shell'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\Shell'
+supported_os: [Windows]
+urls: ['https://msdn.microsoft.com/en-us/library/ms838576%28v=winembedded.5%29.aspx']
+---
+name: WindowsLoadAndRunValues
+doc: Windows Load and Run values
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Windows', value: 'load'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Windows', value: 'run'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Windows', value: 'load'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Windows', value: 'run'}
+supported_os: [Windows]
+urls: ['http://support.microsoft.com/en-us/kb/103865']
+---
+name: WindowsAppInit
+doc: Windows AppInit persistence
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Windows', value: 'AppInit_DLLs'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Windows', value: 'AppInit_DLLs'}
+supported_os: [Windows]
+urls: ['http://support.microsoft.com/en-us/kb/197571']
+---
+name: WMILoggedOnSessions
+doc: Logged on users queried from WMI.
+sources:
+- type: WMI
+  attributes: {query: SELECT * FROM Win32_LogonSession}
+supported_os: [Windows]
+---
+name: WMILoggedOnUsers
+doc: Logged on users queried from WMI.
+sources:
+- type: WMI
+  attributes: {query: SELECT * FROM Win32_LoggedonUser}
+supported_os: [Windows]
+---
+name: WMIServices
+doc: Services queried from WMI.
+sources:
+- type: WMI
+  attributes: {query: SELECT * FROM Win32_Service}
+supported_os: [Windows]

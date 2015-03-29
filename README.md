@@ -1,4 +1,4 @@
-## ForensicArtifacts.com Artifact Repository
+## ForensicArtifacts.com Artifact Repository [![Build Status](https://travis-ci.org/ForensicArtifacts/artifacts.svg?branch=master)](https://travis-ci.org/ForensicArtifacts/artifacts)
 
 A free, community-sourced, machine-readable knowledge base of forensic artifacts
 that the world can use both as an information source and within other tools.
@@ -61,7 +61,7 @@ Please send us your contribution! See [the developers guide](https://github.com/
 
 ## External links
 * [ForensicsArtifacts.com ... the definitive database](http://forensicartifacts.com/)
-* [GRR Artifacts](https://www.blackhat.com/docs/us-14/materials/us-14-Castle-GRR-Find-All-The-Badness-Collect-All-The-Things-WP.pdf), by Greg Castle, Blackhat 2014 
+* [GRR Artifacts](https://www.blackhat.com/docs/us-14/materials/us-14-Castle-GRR-Find-All-The-Badness-Collect-All-The-Things-WP.pdf), by Greg Castle, Blackhat 2014
 
 ## Contact
 
