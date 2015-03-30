@@ -51,14 +51,6 @@ collectors:
 labels: [Configuration Files]
 supported_os: [Linux]
 ---
-name: LinuxPasswd
-doc: Linux passwd file.
-collectors:
-- collector_type: FILE
-  args: {path_list: ['/etc/passwd']}
-labels: [Authentication]
-supported_os: [Linux]
----
 name: DebianPackagesStatus
 doc: Linux dpkg status file.
 collectors:
@@ -106,25 +98,6 @@ collectors:
 labels: [Authentication, Configuration Files]
 supported_os: [Linux]
 ---
-name: GlobalShellConfigs
-doc: Linux global shell configuration files.
-collectors:
-- collector_type: FILE
-  args:
-    path_list:
-      - '/etc/bash.bashrc'
-      - '/etc/csh.cshrc'
-      - '/etc/csh.login'
-      - '/etc/csh.logout'
-      - '/etc/profile'
-      - '/etc/zsh/zlogin'
-      - '/etc/zsh/zlogout'
-      - '/etc/zsh/zprofile'
-      - '/etc/zsh/zshenv'
-      - '/etc/zsh/zshrc'
-labels: [Configuration Files]
-supported_os: [Linux]
----
 name: LinuxWtmp
 doc: Linux wtmp file.
 collectors:
@@ -141,15 +114,6 @@ collectors:
   args: {path_list: ['/etc/netgroup']}
 labels: [Authentication, Configuration Files]
 provides: [users.username]
-supported_os: [Linux]
----
-name: SudoersConfiguration
-doc: Linux sudoers configuration.
-collectors:
-- collector_type: FILE
-  args:
-    path_list: ['/etc/sudoers']
-labels: [Authentication, Configuration Files]
 supported_os: [Linux]
 ---
 name: ThumbnailCacheFolder

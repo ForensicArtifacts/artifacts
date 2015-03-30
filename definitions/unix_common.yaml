@@ -1,5 +1,7 @@
+# Common Unix based artifacts
+
 name: RootUserShellConfigs
-doc: Linux root shell configuration files.
+doc: Common unix root shell configuration files.
 collectors:
 - collector_type: FILE
   args:
@@ -19,7 +21,7 @@ labels: [Configuration Files]
 supported_os: [Linux]
 ---
 name: UsersShellConfigs
-doc: Linux root shell configuration files.
+doc: Common unix user shell configuration files.
 collectors:
 - collector_type: FILE
   args:
@@ -39,7 +41,7 @@ labels: [Configuration Files]
 supported_os: [Linux, Darwin]
 ---
 name: RootUserShellHistory
-doc: Linux root shell configuration files.
+doc: Common unix root shell configuration files.
 collectors:
 - collector_type: FILE
   args:
@@ -52,7 +54,7 @@ labels: [Configuration Files]
 supported_os: [Linux]
 ---
 name: UsersShellHistory
-doc: Linux root shell configuration files.
+doc: Common unix user shell configuration files.
 collectors:
 - collector_type: FILE
   args:
@@ -65,7 +67,7 @@ labels: [Configuration Files]
 supported_os: [Linux, Darwin]
 ---
 name: GlobalShellConfigs
-doc: Linux global shell configuration files.
+doc: Common unix global shell configuration files.
 collectors:
 - collector_type: FILE
   args:
@@ -88,7 +90,7 @@ labels: [Configuration Files]
 supported_os: [Linux, Darwin]
 ---
 name: SudoersConfiguration
-doc: Linux sudoers configuration.
+doc: Common unix sudoers configuration.
 collectors:
 - collector_type: FILE
   args:
@@ -96,11 +98,14 @@ collectors:
 labels: [Authentication, Configuration Files]
 supported_os: [Linux, Darwin]
 ---
-name: UnixPasswd
-doc: Linux or OSX passwd file.
+name: UnixUsersGroups
+doc: Common unix users and groups files.
 collectors:
 - collector_type: FILE
-  args: {path_list: ['/etc/passwd']}
+  args: 
+    path_list: 
+      - '/etc/passwd'
+      - '/etc/shadow'
+      - '/etc/group'
 labels: [Authentication]
 supported_os: [Linux, Darwin]
----
