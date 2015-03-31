@@ -199,7 +199,7 @@ doc: |
   Note users.sid will currently only expand to SIDs with profiles
   on the system, not all SIDs.
 collectors:
-- collector_type: REGISTRY_KEY
+- collector_type: REGISTRY_KEY #REGISTRY_KEY
   args:
     path_list:
       - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Run\*'
@@ -208,6 +208,7 @@ collectors:
       - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunOnce\*'
       - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\Run\*'
       - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer\Run\*'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\RunOnce\Setup\*'
       - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run\*'
       - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Run\*'
       - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunOnce\*'
@@ -216,6 +217,7 @@ collectors:
       - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunOnceEx\*'
       - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\Run\*'
       - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer\Run\*'
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunOnce\Setup\*'
 labels: [Software]
 supported_os: [Windows]
 ---
@@ -231,7 +233,7 @@ urls: ['http://www.forensicswiki.org/wiki/Windows_Desktop_Search']
 name: WindowsServices
 doc: Windows services from the registry.
 collectors:
-- collector_type: REGISTRY_KEY
+- collector_type: REGISTRY_KEY #REGISTRY_KEY
   args:
     path_list:
       - '%%current_control_set%%\services\*\*'
@@ -477,7 +479,7 @@ supported_os: [Windows]
 name: WindowsStubPaths
 doc: Windows StubPath persistence
 collectors:
-- collector_type: REGISTRY_KEY
+- collector_type: REGISTRY_KEY #REGISTRY_VALUE
   args:
     path_list:
       - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Active Setup\Installed Components\*\StubPath'
@@ -487,7 +489,7 @@ supported_os: [Windows]
 name: WindowsBootExecute
 doc: Windows BootExecute persistence
 collectors:
-- collector_type: REGISTRY_KEY
+- collector_type: REGISTRY_KEY #REGISTRY_VALUE
   args:
     path_list:
       - 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\BootExecute'
@@ -496,7 +498,7 @@ supported_os: [Windows]
 name: WindowsNetshHelpers
 doc: Windows Netsh helpers are loaded on boot 
 collectors:
-- collector_type: REGISTRY_KEY
+- collector_type: REGISTRY_KEY #REGISTRY_KEY
   args:
     path_list:
       - 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Netsh\*'
@@ -505,7 +507,7 @@ supported_os: [Windows]
 name: WindowsPendingFileRenames
 doc: Windows Pending file renames on reboot
 collectors:
-- collector_type: REGISTRY_KEY
+- collector_type: REGISTRY_KEY #REGISTRY_VALUE
   args:
     path_list:
       - 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\PendingFileRenameOperations'
@@ -514,7 +516,7 @@ supported_os: [Windows]
 name: WindowsExcludeFromKnownDlls
 doc: ExcludeFromKnownDlls can be used to bypass search order hijacking protection
 collectors:
-- collector_type: REGISTRY_KEY
+- collector_type: REGISTRY_KEY #REGISTRY_VALUE
   args:
     path_list:
       - 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\ExcludeFromKnownDlls'
@@ -523,7 +525,7 @@ supported_os: [Windows]
 name: WindowsAppCertDlls
 doc: Windows AppCertDlls persistence
 collectors:
-- collector_type: REGISTRY_KEY
+- collector_type: REGISTRY_KEY #REGISTRY_VALUE
   args:
     path_list:
       - 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\AppCertDlls'
@@ -532,7 +534,7 @@ supported_os: [Windows]
 name: WindowsStartupFolderModification
 doc: Windows startup folder registry values
 collectors:
-- collector_type: REGISTRY_KEY
+- collector_type: REGISTRY_KEY #REGISTRY_VALUE
   args:
     path_list:
       - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\Common Startup'
@@ -548,7 +550,7 @@ supported_os: [Windows]
 name: WindowsDebugger
 doc: Windows Debugger peristence or AV disable
 collectors:
-- collector_type: REGISTRY_KEY
+- collector_type: REGISTRY_KEY #REGISTRY_VALUE
   args:
     path_list:
       - 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\*\Debugger'
@@ -558,7 +560,7 @@ supported_os: [Windows]
 name: WindowsRunServices
 doc: Windows Run Services
 collectors:
-- collector_type: REGISTRY_KEY
+- collector_type: REGISTRY_KEY #REGISTRY_KEYS
   args:
     path_list:
       - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunServicesOnce\*'
@@ -570,7 +572,7 @@ supported_os: [Windows]
 name: WindowsWinlogonNotify
 doc: Windows Winlogon Notify
 collectors:
-- collector_type: REGISTRY_KEY
+- collector_type: REGISTRY_KEY #REGISTRY_VALUE
   args:
     path_list:
       - 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\Notify'
@@ -580,7 +582,7 @@ supported_os: [Windows]
 name: WindowsWinlogonMSGina
 doc: Windows Winlogon MSGina
 collectors:
-- collector_type: REGISTRY_KEY
+- collector_type: REGISTRY_KEY #REGISTRY_VALUE
   args:
     path_list:
       - 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\GinaDll'
@@ -590,7 +592,7 @@ supported_os: [Windows]
 name: WindowsWinlogonTaskman
 doc: Windows Winlogon Taskman
 collectors:
-- collector_type: REGISTRY_KEY
+- collector_type: REGISTRY_KEY #REGISTRY_VALUE
   args:
     path_list:
       - 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\Taskman'
@@ -600,7 +602,7 @@ supported_os: [Windows]
 name: WindowsWinlogonUserinit
 doc: Windows Winlogon Userinit
 collectors:
-- collector_type: REGISTRY_KEY
+- collector_type: REGISTRY_KEY #REGISTRY_VALUE
   args:
     path_list:
       - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\Userinit'
@@ -610,7 +612,7 @@ supported_os: [Windows]
 name: WindowsWinlogonShell
 doc: Windows shell replacement
 collectors:
-- collector_type: REGISTRY_KEY
+- collector_type: REGISTRY_KEY #REGISTRY_VALUE
   args:
     path_list:
       - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\Shell'
@@ -620,7 +622,7 @@ supported_os: [Windows]
 name: WindowsMSDTCDlls
 doc: Windows MSDTC attempts to load these dlls on start
 collectors:
-- collector_type: REGISTRY_KEY
+- collector_type: REGISTRY_KEY #REGISTRY_KEY
   args:
     path_list:
       - 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\MSDTC\MTxOCI\*'
@@ -630,27 +632,30 @@ supported_os: [Windows]
 name: WindowsPolicyShell
 doc: Windows shell replacement
 collectors:
-- collector_type: REGISTRY_KEY
+- collector_type: REGISTRY_KEY #REGISTRY_VALUE
   args:
     path_list:
       - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Policies\System\Shell'
       - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\Shell'
 supported_os: [Windows]
 ---
-name: WindowsLoadKey
-doc: Windows load key
+name: WindowsProgManRunKeys
+doc: Windows Legacy shell run keys
 collectors:
-- collector_type: REGISTRY_KEY
+- collector_type: REGISTRY_KEY #REGISTRY_VALUE
   args:
     path_list:
       - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Windows\load'
       - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Windows\load'
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Windows\run'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Windows\run'
 supported_os: [Windows]
+urls: http://support.microsoft.com/en-us/kb/103865
 ---
 name: WindowsAppInit
 doc: Windows AppInit persistence
 collectors:
-- collector_type: REGISTRY_KEY
+- collector_type: REGISTRY_KEY #REGISTRY_VALUE
   args:
     path_list:
       - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Windows\AppInit_DLLs'
@@ -660,7 +665,7 @@ supported_os: [Windows]
 name: WindowsInProcServer
 doc: Windows InProcServer entries
 collectors:
-- collector_type: REGISTRY_KEY
+- collector_type: REGISTRY_KEY #REGISTRY_VALUE
   args:
     path_list:
       - 'HKEY_CURRENT_ROOT\CLSID\*\InProcServer32'
@@ -670,7 +675,7 @@ supported_os: [Windows]
 name: WindowsLSAAuthenticationPackages
 doc: Windows LSA Authentication Packages
 collectors:
-- collector_type: REGISTRY_KEY
+- collector_type: REGISTRY_KEY #REGISTRY_VALUE
   args:
     path_list:
       - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Lsa\Authentication Packages'
@@ -679,7 +684,7 @@ supported_os: [Windows]
 name: WindowsLSASecurityPackages
 doc: Windows LSA Security Packages
 collectors:
-- collector_type: REGISTRY_KEY
+- collector_type: REGISTRY_KEY #REGISTRY_VALUE
   args:
     path_list:
       - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Lsa\Security Packages'
@@ -688,7 +693,7 @@ supported_os: [Windows]
 name: WindowsLSANotificationPackages
 doc: Windows LSA Notification Packages will be called any time a password change occurs
 collectors:
-- collector_type: REGISTRY_KEY
+- collector_type: REGISTRY_KEY #REGISTRY_VALUE
   args:
     path_list:
       - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Lsa\Notification Packages'
@@ -714,4 +719,64 @@ doc: Services queried from WMI.
 collectors:
 - collector_type: WMI
   args: {query: SELECT * FROM Win32_Service}
+supported_os: [Windows]
+---
+name: WindowsTerminalServerRunKeys
+doc: Windows Terminal Server Run Keys
+collectors:
+- collector_type: REGISTRY_KEY #REGISTRY_KEYS
+  args:
+    path_list:
+      - 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Terminal Server\Install\Software\Microsoft\Windows\CurrentVersion\Runonce\*'
+      - 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Terminal Server\Install\Software\Microsoft\Windows\CurrentVersion\RunonceEx\*'
+      - 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Terminal Server\Install\Software\Microsoft\Windows\CurrentVersion\Run\*'
+      - 'HKEY_USERS\%%users.sid%%\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Terminal Server\Install\Software\Microsoft\Windows\CurrentVersion\Runonce\*'
+      - 'HKEY_USERS\%%users.sid%%\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Terminal Server\Install\Software\Microsoft\Windows\CurrentVersion\RunonceEx\*'
+      - 'HKEY_USERS\%%users.sid%%\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Terminal Server\Install\Software\Microsoft\Windows\CurrentVersion\Run\*'
+supported_os: [Windows]
+---
+name: WindowsTerminalServerStartupPrograms
+doc: Windows Terminal Server Startup Programs
+collectors:
+- collector_type: REGISTRY_KEY #REGISTRY_VALUE
+  args:
+    path_list:
+      - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Terminal Server\Wds\rdpwd\StartupPrograms'
+supported_os: [Windows]
+---
+name: WindowsWinlogonAppSetup
+doc: Windows Winlogon Appsetup 
+collectors:
+- collector_type: REGISTRY_KEY #REGISTRY_VALUE
+  args:
+    path_list:
+      - 'HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\AppSetup'
+supported_os: [Windows]
+---
+name: WindowsWinlogonVmApplet
+doc: Windows Winlogon VmApplet 
+collectors:
+- collector_type: REGISTRY_KEY #REGISTRY_VALUE
+  args:
+    path_list:
+      - 'HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\VmApplet'
+supported_os: [Windows]
+---
+name: WindowsStartupScript
+doc: Windows shell replacement
+collectors:
+- collector_type: REGISTRY_KEY #REGISTRY_VALUE
+  args:
+    path_list:    
+      - 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\System\Scripts\Startup'
+supported_os: [Windows]
+---
+name: WindowsLogonScript
+doc: Windows shell replacement
+collectors:
+- collector_type: REGISTRY_KEY #REGISTRY_VALUE
+  args:
+    path_list:    
+      - 'HKEY_USERS\%%users.sid%%\Software\Policies\Microsoft\Windows\System\Scripts\Logon'
+      - 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\System\Scripts\Logon'
 supported_os: [Windows]
