@@ -1,27 +1,7 @@
-# Common Unix based artifacts
+# Artifacts common to Unix based OSs
 
-name: RootUserShellConfigs
-doc: Common unix root shell configuration files.
-collectors:
-- collector_type: FILE
-  args:
-    path_list:
-      - '/root/.bashrc'
-      - '/root/.bash_profile'
-      - '/root/.bash_logout'
-      - '/root/.cshrc'
-      - '/root/.ksh'
-      - '/root/.logout'
-      - '/root/.profile'
-      - '/root/.tcsh'
-      - '/root/.zlogin'
-      - '/root/.zlogout'
-      - '/root/.zprofile'
-labels: [Configuration Files]
-supported_os: [Linux]
----
 name: UsersShellConfigs
-doc: Common unix user shell configuration files.
+doc: Unix user shell configuration files.
 collectors:
 - collector_type: FILE
   args:
@@ -40,21 +20,8 @@ collectors:
 labels: [Configuration Files]
 supported_os: [Linux, Darwin]
 ---
-name: RootUserShellHistory
-doc: Common unix root shell configuration files.
-collectors:
-- collector_type: FILE
-  args:
-    path_list:
-      - '/root/.bash_history'
-      - '/root/.sh_history'
-      - '/root/.zhistory'
-      - '/root/.zsh_history'
-labels: [Configuration Files]
-supported_os: [Linux]
----
 name: UsersShellHistory
-doc: Common unix user shell configuration files.
+doc: Unix user shell configuration files.
 collectors:
 - collector_type: FILE
   args:
@@ -67,7 +34,7 @@ labels: [Configuration Files]
 supported_os: [Linux, Darwin]
 ---
 name: GlobalShellConfigs
-doc: Common unix global shell configuration files.
+doc: Unix global shell configuration files.
 collectors:
 - collector_type: FILE
   args:
@@ -89,8 +56,8 @@ collectors:
 labels: [Configuration Files]
 supported_os: [Linux, Darwin]
 ---
-name: SudoersConfiguration
-doc: Common unix sudoers configuration.
+name: UnixSudoersConfiguration
+doc: Unix sudoers configuration.
 collectors:
 - collector_type: FILE
   args:
@@ -99,7 +66,7 @@ labels: [Authentication, Configuration Files]
 supported_os: [Linux, Darwin]
 ---
 name: UnixUsersGroups
-doc: Common unix users and groups files.
+doc: Unix users and groups files.
 collectors:
 - collector_type: FILE
   args: 
@@ -108,4 +75,14 @@ collectors:
       - '/etc/shadow'
       - '/etc/group'
 labels: [Authentication]
+supported_os: [Linux, Darwin]
+---
+name: UnixHostsFile
+doc: Unix hosts file
+collectors:
+- collector_type: FILE
+  args:
+    path_list:
+      - '/etc/hosts'
+labels: [Configuration Files]
 supported_os: [Linux, Darwin]

@@ -51,6 +51,39 @@ collectors:
 labels: [Configuration Files]
 supported_os: [Linux]
 ---
+name: RootUserShellConfigs
+doc: Common unix root shell configuration files.
+collectors:
+- collector_type: FILE
+  args:
+    path_list:
+      - '/root/.bashrc'
+      - '/root/.bash_profile'
+      - '/root/.bash_logout'
+      - '/root/.cshrc'
+      - '/root/.ksh'
+      - '/root/.logout'
+      - '/root/.profile'
+      - '/root/.tcsh'
+      - '/root/.zlogin'
+      - '/root/.zlogout'
+      - '/root/.zprofile'
+labels: [Configuration Files]
+supported_os: [Linux]
+---
+name: RootUserShellHistory
+doc: Common unix root shell configuration files.
+collectors:
+- collector_type: FILE
+  args:
+    path_list:
+      - '/root/.bash_history'
+      - '/root/.sh_history'
+      - '/root/.zhistory'
+      - '/root/.zsh_history'
+labels: [Configuration Files]
+supported_os: [Linux]
+---
 name: DebianPackagesStatus
 doc: Linux dpkg status file.
 collectors:
