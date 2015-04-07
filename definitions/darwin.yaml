@@ -4,8 +4,8 @@ name: OSXLaunchAgents
 doc: Mac OS X Launch Agent files.
 collectors:
 - collector_type: FILE
-  args: 
-    path_list: 
+  args:
+    path_list:
       - '/Library/LaunchAgents/*'
       - '/System/Library/LaunchAgents/*'
       - '%%users.homedir%%/Library/LaunchAgents/*'

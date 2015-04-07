@@ -206,3 +206,16 @@ collectors:
     args: []
     cmd: /sbin/lsmod
 supported_os: [Linux]
+---
+name: LinuxLSBInit
+doc: Linux LSB-style init scripts.
+collectors:
+- collector_type: FILE
+  args:
+    path_list:
+      - '/etc/init.d/*'
+      - '/etc/insserv.conf'
+      - '/etc/insserv.conf.d/**'
+labels: [Configuration Files, System]
+supported_os: [Linux]
+urls: ['https://wiki.debian.org/LSBInitScripts']
