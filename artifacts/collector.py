@@ -15,19 +15,8 @@ class CollectorDefinition(object):
 
   TYPE_INDICATOR = None
 
-  def __init__(self, **kwargs):
-    """Initializes the collector definition object.
-
-    Args:
-      **kwargs: a dictionary of keyword arguments dependending on
-              the collector type.
-
-    Raises:
-      FormatError: when there are unused keyword arguments.
-    """
-    if kwargs:
-      raise errors.FormatError(u'Unused keyword arguments.')
-
+  def __init__(self):
+    """Initializes the collector definition object."""
     super(CollectorDefinition, self).__init__()
     self.conditions = []
     self.returned_types = []
