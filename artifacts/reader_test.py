@@ -132,6 +132,17 @@ class YamlArtifactsReaderTest(unittest.TestCase):
     self.assertEqual(
         source_type.type_indicator, definitions.TYPE_INDICATOR_COMMAND)
 
+    # Artifact with COMMAND definition collector definition.
+    artifact_definition = artifact_definitions[5]
+    self.assertEqual(artifact_definition.name, 'RedhatPackagesList')
+
+    self.assertEqual(len(artifact_definition.collectors), 1)
+    collector_definition = artifact_definition.collectors[0]
+    self.assertNotEqual(collector_definition, None)
+    self.assertEqual(
+        collector_definition.type_indicator,
+        definitions.TYPE_INDICATOR_COMMAND)
+
   def testBadSupportedOS(self):
     """Tests supported_os is checked correctly."""
     artifact_reader = reader.YamlArtifactsReader()

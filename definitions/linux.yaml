@@ -34,9 +34,7 @@ name: LinuxAtJobs
 doc: Linux at jobs.
 sources:
 - type: FILE
-  attributes:
-    paths:
-      - '/var/spool/at/*'
+  attributes: {paths: ['/var/spool/at/*']}
 labels: [Configuration Files]
 supported_os: [Linux]
 ---

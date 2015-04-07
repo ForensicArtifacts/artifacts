@@ -112,9 +112,7 @@ name: OSXAtJobs
 doc: Mac OS X at jobs.
 sources:
 - type: FILE
-  attributes:
-    paths:
-      - '/usr/lib/cron/jobs/*'
+  attributes: {paths: ['/usr/lib/cron/jobs/*']}
 labels: [System]
 supported_os: [Darwin]
 urls: ['https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/at.1.html#//apple_ref/doc/man/1/at']

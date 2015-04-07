@@ -69,6 +69,9 @@ class ArtifactDefinition(object):
     elif type_indicator == definitions.TYPE_INDICATOR_COMMAND:
       source_type_class = source_type.CommandSourceType
 
+    elif type_indicator == definitions.TYPE_INDICATOR_COMMAND:
+      source_type_class = source_type.CommandCollectorDefinition
+
     elif type_indicator == definitions.TYPE_INDICATOR_FILE:
       source_type_class = source_type.FileSourceType
 
