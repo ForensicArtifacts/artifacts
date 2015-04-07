@@ -31,7 +31,6 @@ class YamlArtifactsReaderTest(unittest.TestCase):
     expected_description = (
         'Windows Security Event log for Vista or later systems.')
     self.assertEqual(artifact_definition.description, expected_description)
-    self.assertEqual(artifact_definition.doc, expected_description)
 
     self.assertEqual(len(artifact_definition.sources), 1)
     source_type = artifact_definition.sources[0]
@@ -136,8 +135,8 @@ class YamlArtifactsReaderTest(unittest.TestCase):
     artifact_definition = artifact_definitions[5]
     self.assertEqual(artifact_definition.name, 'RedhatPackagesList')
 
-    self.assertEqual(len(artifact_definition.collectors), 1)
-    collector_definition = artifact_definition.collectors[0]
+    self.assertEqual(len(artifact_definition.sources), 1)
+    collector_definition = artifact_definition.sources[0]
     self.assertNotEqual(collector_definition, None)
     self.assertEqual(
         collector_definition.type_indicator,

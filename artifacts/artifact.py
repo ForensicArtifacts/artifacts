@@ -27,18 +27,6 @@ class ArtifactDefinition(object):
     self.supported_os = []
     self.urls = []
 
-  # Property for name compatibility with current variant of GRR artifacts.
-  @property
-  def collectors(self):
-    """The collector definitions."""
-    return self.sources
-
-  # Property for name compatibility with current variant of GRR artifacts.
-  @property
-  def doc(self):
-    """The documentation string."""
-    return self.description
-
   def AppendSource(self, type_indicator, attributes):
     """Appends a source.
 

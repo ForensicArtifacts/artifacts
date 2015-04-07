@@ -195,12 +195,9 @@ class YamlArtifactsReader(ArtifactsReader):
     Yields:
       Artifact definitions (instances of ArtifactDefinition).
     """
-    file_object = open(filename, 'rb')
-    try:
+    with open(filename, 'rb') as file_object:
       for artifact_definition in self.ReadFileObject(file_object):
         yield artifact_definition
-    finally:
-      file_object.close()
 
   def ReadDirectory(self, path, extension='yaml'):
     """Reads artifact definitions from YAML files in a directory.
