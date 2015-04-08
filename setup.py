@@ -6,8 +6,6 @@ import glob
 import os
 import sys
 
-import run_tests
-
 try:
   from setuptools import find_packages, setup, Command
 except ImportError:
@@ -24,7 +22,7 @@ artifacts_version = artifacts.__version__
 # Command bdist_msi does not support the library version, neither a date
 # as a version but if we suffix it with .1 everything is fine.
 if 'bdist_msi' in sys.argv:
-  artifacts_version += '.1'
+  artifacts_version = '{0:s}.1'.format(artifacts_version)
 
 artifacts_description = (
     'ForensicArtifacts.com Artifact Repository.')
@@ -43,13 +41,21 @@ setup(
     url='https://github.com/ForensicArtifacts/artifacts',
     maintainer='The ForensicArtifacts.com Artifact Repository project',
     maintainer_email='forensicartifacts@googlegroups.com',
-    cmdclass={'test': TestCommand},
+    scripts=[
+        os.path.join('tools', 'validator.py'),
+    ],
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Environment :: Console',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
     ],
+    packages=find_packages('.', exclude=[u'tools']),
     package_dir={'artifacts': 'artifacts'},
-    packages=find_packages('.'),
+    data_files=[
+        ('share/artifacts', glob.glob(os.path.join('definitions', '*'))),
+    ],
+    install_requires=[
+        'PyYAML >= 3.11',
+    ],
 )

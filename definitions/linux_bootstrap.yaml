@@ -5,10 +5,10 @@
 # Behaviour' section.
 name: LinuxRelease
 doc: Linux distribution name.
-collectors:
-- collector_type: FILE
-  args:
-    path_list:
+sources:
+- type: FILE
+  attributes:
+    paths:
       - '/etc/oracle-release'
       - '/etc/redhat-release'
       - '/etc/enterprise-release'

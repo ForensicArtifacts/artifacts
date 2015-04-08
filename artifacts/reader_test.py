@@ -10,37 +10,36 @@ from artifacts import errors
 from artifacts import reader
 
 
-class YamlArtifactsReadertest(unittest.TestCase):
+class YamlArtifactsReaderTest(unittest.TestCase):
   """Class to test the YAML artifacts reader."""
 
-  def testRead(self):
-    """Tests the Read function."""
+  def testReadFileObject(self):
+    """Tests the ReadFileObject function."""
     artifact_reader = reader.YamlArtifactsReader()
     test_file = os.path.join('test_data', 'definitions.yaml')
 
     with open(test_file, 'rb') as file_object:
-      artifact_definitions = list(artifact_reader.Read(file_object))
+      artifact_definitions = list(artifact_reader.ReadFileObject(file_object))
 
     self.assertEqual(len(artifact_definitions), 7)
 
-    # Artifact with file collector definition.
+    # Artifact with file source type.
     artifact_definition = artifact_definitions[0]
     self.assertEqual(artifact_definition.name, 'SecurityEventLogEvtx')
 
     expected_description = (
         'Windows Security Event log for Vista or later systems.')
     self.assertEqual(artifact_definition.description, expected_description)
-    self.assertEqual(artifact_definition.doc, expected_description)
 
-    self.assertEqual(len(artifact_definition.collectors), 1)
-    collector_definition = artifact_definition.collectors[0]
-    self.assertNotEqual(collector_definition, None)
+    self.assertEqual(len(artifact_definition.sources), 1)
+    source_type = artifact_definition.sources[0]
+    self.assertNotEqual(source_type, None)
     self.assertEqual(
-        collector_definition.type_indicator, definitions.TYPE_INDICATOR_FILE)
+        source_type.type_indicator, definitions.TYPE_INDICATOR_FILE)
 
-    expected_path_list = sorted([
+    expected_paths = sorted([
         '%%environ_systemroot%%\\System32\\winevt\\Logs\\Security.evtx'])
-    self.assertEqual(sorted(collector_definition.path_list), expected_path_list)
+    self.assertEqual(sorted(source_type.paths), expected_paths)
 
     self.assertEqual(len(artifact_definition.conditions), 1)
     expected_condition = 'os_major_version >= 6'
@@ -57,75 +56,86 @@ class YamlArtifactsReadertest(unittest.TestCase):
         'http://www.forensicswiki.org/wiki/Windows_XML_Event_Log_(EVTX)')
     self.assertEqual(artifact_definition.urls[0], expected_url)
 
-    # Artifact with Windows Registry key collector definition.
+    # Artifact with Windows Registry key source type.
     artifact_definition = artifact_definitions[1]
     self.assertEqual(
         artifact_definition.name, 'AllUsersProfileEnvironmentVariable')
 
-    self.assertEqual(len(artifact_definition.collectors), 1)
-    collector_definition = artifact_definition.collectors[0]
-    self.assertNotEqual(collector_definition, None)
+    self.assertEqual(len(artifact_definition.sources), 1)
+    source_type = artifact_definition.sources[0]
+    self.assertNotEqual(source_type, None)
     self.assertEqual(
-        collector_definition.type_indicator,
+        source_type.type_indicator,
         definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_KEY)
 
-    expected_path_list = sorted([
+    expected_keys = sorted([
         ('HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion\\'
          'ProfileList\\ProfilesDirectory'),
         ('HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion\\'
          'ProfileList\\AllUsersProfile')])
-    self.assertEqual(sorted(collector_definition.path_list), expected_path_list)
+    self.assertEqual(sorted(source_type.keys), expected_keys)
 
-    # Artifact with Windows Registry value collector definition.
+    # Artifact with Windows Registry value source type.
     artifact_definition = artifact_definitions[2]
     self.assertEqual(artifact_definition.name, 'CurrentControlSet')
 
-    self.assertEqual(len(artifact_definition.collectors), 1)
-    collector_definition = artifact_definition.collectors[0]
-    self.assertNotEqual(collector_definition, None)
+    self.assertEqual(len(artifact_definition.sources), 1)
+    source_type = artifact_definition.sources[0]
+    self.assertNotEqual(source_type, None)
     self.assertEqual(
-        collector_definition.type_indicator,
+        source_type.type_indicator,
         definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_VALUE)
 
-    expected_path_list = sorted([
-        'HKEY_LOCAL_MACHINE\\SYSTEM\\Select\\Current'])
-    self.assertEqual(sorted(collector_definition.path_list), expected_path_list)
+    self.assertEqual(len(source_type.key_value_pairs), 1)
+    key_value_pair = source_type.key_value_pairs[0]
 
-    # Artifact with WMI query collector definition.
+    expected_key = 'HKEY_LOCAL_MACHINE\\SYSTEM\\Select'
+    self.assertEqual(key_value_pair['key'], expected_key)
+    self.assertEqual(key_value_pair['value'], 'Current')
+
+    # Artifact with WMI query source type.
     artifact_definition = artifact_definitions[3]
     self.assertEqual(artifact_definition.name, 'WMIProfileUsersHomeDir')
 
     expected_provides = sorted(['users.homedir'])
     self.assertEqual(sorted(artifact_definition.provides), expected_provides)
 
-    self.assertEqual(len(artifact_definition.collectors), 1)
-    collector_definition = artifact_definition.collectors[0]
-    self.assertNotEqual(collector_definition, None)
+    self.assertEqual(len(artifact_definition.sources), 1)
+    source_type = artifact_definition.sources[0]
+    self.assertNotEqual(source_type, None)
     self.assertEqual(
-        collector_definition.type_indicator,
-        definitions.TYPE_INDICATOR_WMI_QUERY)
+        source_type.type_indicator, definitions.TYPE_INDICATOR_WMI_QUERY)
 
     expected_query = (
         'SELECT * FROM Win32_UserProfile WHERE SID=\'%%users.sid%%\'')
-    self.assertEqual(collector_definition.query, expected_query)
+    self.assertEqual(source_type.query, expected_query)
 
-    # Artifact with artifact definition collector definition.
+    # Artifact with artifact definition source type.
     artifact_definition = artifact_definitions[4]
     self.assertEqual(artifact_definition.name, 'EventLogs')
 
-    self.assertEqual(len(artifact_definition.collectors), 1)
-    collector_definition = artifact_definition.collectors[0]
-    self.assertNotEqual(collector_definition, None)
+    self.assertEqual(len(artifact_definition.sources), 1)
+    source_type = artifact_definition.sources[0]
+    self.assertNotEqual(source_type, None)
     self.assertEqual(
-        collector_definition.type_indicator,
-        definitions.TYPE_INDICATOR_ARTIFACT)
+        source_type.type_indicator, definitions.TYPE_INDICATOR_ARTIFACT)
+
+    # Artifact with command definition source type.
+    artifact_definition = artifact_definitions[5]
+    self.assertEqual(artifact_definition.name, 'RedhatPackagesList')
+
+    self.assertEqual(len(artifact_definition.sources), 1)
+    source_type = artifact_definition.sources[0]
+    self.assertNotEqual(source_type, None)
+    self.assertEqual(
+        source_type.type_indicator, definitions.TYPE_INDICATOR_COMMAND)
 
     # Artifact with COMMAND definition collector definition.
     artifact_definition = artifact_definitions[5]
     self.assertEqual(artifact_definition.name, 'RedhatPackagesList')
 
-    self.assertEqual(len(artifact_definition.collectors), 1)
-    collector_definition = artifact_definition.collectors[0]
+    self.assertEqual(len(artifact_definition.sources), 1)
+    collector_definition = artifact_definition.sources[0]
     self.assertNotEqual(collector_definition, None)
     self.assertEqual(
         collector_definition.type_indicator,
@@ -136,48 +146,65 @@ class YamlArtifactsReadertest(unittest.TestCase):
     artifact_reader = reader.YamlArtifactsReader()
     file_object = io.StringIO(initial_value=u"""name: BadSupportedOS
 doc: supported_os should be an array of strings.
-collectors:
-- collector_type: ARTIFACT
-  args:
-    artifact_list:
+sources:
+- type: ARTIFACT
+  attributes:
+    names:
       - 'SystemEventLogEvtx'
 labels: [Logs]
 supported_os: Windows
 """)
 
     with self.assertRaises(errors.FormatError):
-      artifact_definitions = list(artifact_reader.Read(file_object))
+      _ = list(artifact_reader.ReadFileObject(file_object))
 
   def testBadLabels(self):
     """Tests labels is checked correctly."""
     artifact_reader = reader.YamlArtifactsReader()
     file_object = io.StringIO(initial_value=u"""name: BadLabel
 doc: badlabel.
-collectors:
-- collector_type: ARTIFACT
-  args:
-    artifact_list:
+sources:
+- type: ARTIFACT
+  attributes:
+    names:
       - 'SystemEventLogEvtx'
 labels: Logs
 supported_os: [Windows]
 """)
 
     with self.assertRaises(errors.FormatError):
-      artifact_definitions = list(artifact_reader.Read(file_object))
+      _ = list(artifact_reader.ReadFileObject(file_object))
 
   def testMissingDoc(self):
     """Tests doc is required."""
     artifact_reader = reader.YamlArtifactsReader()
     file_object = io.StringIO(initial_value=u"""name: NoDoc
-collectors:
-- collector_type: ARTIFACT
-  args:
-    artifact_list:
+sources:
+- type: ARTIFACT
+  attributes:
+    names:
       - 'SystemEventLogEvtx'
 """)
 
     with self.assertRaises(errors.FormatError):
-      artifact_definitions = list(artifact_reader.Read(file_object))
+      _ = list(artifact_reader.ReadFileObject(file_object))
+
+  def testReadFile(self):
+    """Tests the ReadFile function."""
+    artifact_reader = reader.YamlArtifactsReader()
+    test_file = os.path.join('test_data', 'definitions.yaml')
+
+    artifact_definitions = list(artifact_reader.ReadFile(test_file))
+
+    self.assertEqual(len(artifact_definitions), 7)
+
+  def testReadDirectory(self):
+    """Tests the ReadDirectory function."""
+    artifact_reader = reader.YamlArtifactsReader()
+
+    artifact_definitions = list(artifact_reader.ReadDirectory('test_data'))
+
+    self.assertEqual(len(artifact_definitions), 7)
 
 
 if __name__ == '__main__':

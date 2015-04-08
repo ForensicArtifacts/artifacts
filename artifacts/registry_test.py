@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """Tests for the artifact definitions registry."""
 
+import io
 import os
 import unittest
 
@@ -19,9 +20,8 @@ class ArtifactDefinitionsRegistryTest(unittest.TestCase):
     test_file = os.path.join('test_data', 'definitions.yaml')
 
     artifact_definition = None
-    with open(test_file, 'rb') as file_object:
-      for artifact_definition in artifact_reader.Read(file_object):
-        artifact_registry.RegisterDefinition(artifact_definition)
+    for artifact_definition in artifact_reader.ReadFile(test_file):
+      artifact_registry.RegisterDefinition(artifact_definition)
 
     # Make sure the test file is not empty.
     self.assertNotEquals(artifact_definition, None)
@@ -55,19 +55,22 @@ class ArtifactDefinitionsRegistryTest(unittest.TestCase):
     self.assertEquals(
         test_artifact_definition.description, expected_description)
 
-    bad_args = """
-name: SecurityEventLogEvtx
-doc: Windows Security Event log for Vista or later systems.
-collectors:
-- collector_type: FILE
-  args: {broken: ['%%environ_systemroot%%\System32\winevt\Logs\Security.evtx']}
-conditions: [os_major_version >= 6]
-labels: [Logs]
-supported_os: [Windows]
-urls: ['http://www.forensicswiki.org/wiki/Windows_XML_Event_Log_(EVTX)']
-"""
+    bad_args = io.BytesIO(b'\n'.join([
+        b'name: SecurityEventLogEvtx',
+        b'doc: Windows Security Event log for Vista or later systems.',
+        b'sources:',
+        b'- type: FILE',
+        (b'  attributes: {broken: [\'%%environ_systemroot%%\\System32\\'
+         b'winevt\\Logs\\Security.evtx\']}'),
+        b'conditions: [os_major_version >= 6]',
+        b'labels: [Logs]',
+        b'supported_os: [Windows]',
+        (b'urls: [\'http://www.forensicswiki.org/wiki/'
+         b'Windows_XML_Event_Log_(EVTX)\']')]))
+
+    generator = artifact_reader.ReadFileObject(bad_args)
     with self.assertRaises(TypeError):
-      bad_artifact = artifact_reader.Read(bad_args).next()
+      _ = generator.next()
 
 
 if __name__ == '__main__':

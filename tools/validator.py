@@ -27,22 +27,21 @@ class ArtifactDefinitionsValidator(object):
       filename: the filename of the artifacts definition file.
     """
     result = True
-    with open(filename, 'rb') as file_object:
-      artifact_reader = reader.YamlArtifactsReader()
+    artifact_reader = reader.YamlArtifactsReader()
 
-      try:
-        for artifact_definition in artifact_reader.Read(file_object):
-          try:
-            self._artifact_registry.RegisterDefinition(artifact_definition)
-          except KeyError:
-            logging.warning(
-                u'Duplicate artifact definition: {0:s} in file: {1:s}'.format(
-                    artifact_definition.name, filename))
-            result = False
+    try:
+      for artifact_definition in artifact_reader.ReadFile(filename):
+        try:
+          self._artifact_registry.RegisterDefinition(artifact_definition)
+        except KeyError:
+          logging.warning(
+              u'Duplicate artifact definition: {0:s} in file: {1:s}'.format(
+                  artifact_definition.name, filename))
+          result = False
 
-      except errors.FormatError as exception:
-        logging.warning(exception.message)
-        result = False
+    except errors.FormatError as exception:
+      logging.warning(exception.message)
+      result = False
 
     return result
 

@@ -2,10 +2,10 @@
 
 name: KasperskyCaretoIndicators
 doc: Kaspersky Careto Indicators.
-collectors:
-- collector_type: ARTIFACT
-  args:
-    artifact_list:
+sources:
+- type: ARTIFACT
+  attributes:
+    names:
       - KasperskyCaretoWindowsFiles
       - KasperskyCaretoWindowsRegKeys
       - KasperskyCaretoDarwinFiles
@@ -14,10 +14,10 @@ urls: ['http://www.securelist.com/en/downloads/vlpdfs/unveilingthemask_v1.0.pdf'
 ---
 name: KasperskyCaretoWindowsFiles
 doc: Windows Careto IOCs.
-collectors:
-- collector_type: FILE
-  args:
-    path_list:
+sources:
+- type: FILE
+  attributes:
+    paths:
       - '%%environ_systemroot%%\System32\objframe.dll'
       - '%%environ_systemroot%%\System32\shlink32.dll'
       - '%%environ_systemroot%%\System32\shlink64.dll'
@@ -76,25 +76,25 @@ urls: ['http://www.securelist.com/en/downloads/vlpdfs/unveilingthemask_v1.0.pdf'
 ---
 name: KasperskyCaretoWindowsRegKeys
 doc: Windows Careto IOCs.
-collectors:
-- collector_type: REGISTRY_VALUE
-  args:
-    path_list:
-    - HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\WindowsUpdate\CISCNF4654
-    - HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\WindowsUpdate\CISCNF0654
-    - HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\WindowsUpdate\CISCNF4654
-    - HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\WindowsUpdate\CISCNF0654
-    - HKEY_CURRENT_USER\Software\Classes\\CLSID\{ECD4FC4D-521C-11D0-B792-00A0C90312E1}\InprocServer32
-    - HKEY_LOCAL_MACHINE\Software\Classes\CLSID\{E6BB64BE-0618-4353-9193-0AFE606D6F0C}\InprocServer32
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\WindowsUpdate', value: 'CISCNF4654'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\WindowsUpdate', value: 'CISCNF0654'}
+    - {key: 'HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\WindowsUpdate', value: 'CISCNF4654'}
+    - {key: 'HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\WindowsUpdate', value: 'CISCNF0654'}
+    - {key: 'HKEY_CURRENT_USER\Software\Classes\\CLSID\{ECD4FC4D-521C-11D0-B792-00A0C90312E1}', value: 'InprocServer32'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\CLSID\{E6BB64BE-0618-4353-9193-0AFE606D6F0C}', value: 'InprocServer32'}
 supported_os: [Windows]
 urls: ['http://www.securelist.com/en/downloads/vlpdfs/unveilingthemask_v1.0.pdf']
 ---
 name: KasperskyCaretoDarwinFiles
 doc: Darwin Careto IOCs.
-collectors:
-- collector_type: FILE
-  args:
-    path_list:
+sources:
+- type: FILE
+  attributes:
+    paths:
       - /Applications/.DS_Store.app/**10
       - /Library/LaunchAgents/com.apple.launchport.plist
 supported_os: [Darwin]

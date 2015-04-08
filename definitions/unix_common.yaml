@@ -2,10 +2,10 @@
 
 name: UsersShellConfigs
 doc: Unix user shell configuration files.
-collectors:
-- collector_type: FILE
-  args:
-    path_list:
+sources:
+- type: FILE
+  attributes:
+    paths:
       - '%%users.homedir%%/.bashrc'
       - '%%users.homedir%%/.bash_profile'
       - '%%users.homedir%%/.bash_logout'
@@ -22,10 +22,10 @@ supported_os: [Linux, Darwin]
 ---
 name: UsersShellHistory
 doc: Unix user shell configuration files.
-collectors:
-- collector_type: FILE
-  args:
-    path_list:
+sources:
+- type: FILE
+  attributes:
+    paths:
       - '/%%users.homedir%%/.bash_history'
       - '/%%users.homedir%%/.sh_history'
       - '/%%users.homedir%%/.zhistory'
@@ -35,10 +35,10 @@ supported_os: [Linux, Darwin]
 ---
 name: GlobalShellConfigs
 doc: Unix global shell configuration files.
-collectors:
-- collector_type: FILE
-  args:
-    path_list:
+sources:
+- type: FILE
+  attributes:
+    paths:
       - '/etc/bashrc'
       - '/etc/bash.bashrc'
       - '/etc/kshrc'
@@ -58,19 +58,18 @@ supported_os: [Linux, Darwin]
 ---
 name: UnixSudoersConfiguration
 doc: Unix sudoers configuration.
-collectors:
-- collector_type: FILE
-  args:
-    path_list: ['/etc/sudoers']
+sources:
+- type: FILE
+  attributes: {paths: ['/etc/sudoers']}
 labels: [Authentication, Configuration Files]
 supported_os: [Linux, Darwin]
 ---
 name: UnixUsersGroups
 doc: Unix users and groups files.
-collectors:
-- collector_type: FILE
-  args: 
-    path_list: 
+sources:
+- type: FILE
+  attributes: 
+    paths: 
       - '/etc/passwd'
       - '/etc/shadow'
       - '/etc/group'
@@ -79,10 +78,8 @@ supported_os: [Linux, Darwin]
 ---
 name: UnixHostsFile
 doc: Unix hosts file
-collectors:
-- collector_type: FILE
-  args:
-    path_list:
-      - '/etc/hosts'
+sources:
+- type: FILE
+  attributes: {paths: ['/etc/hosts']}
 labels: [Configuration Files]
 supported_os: [Linux, Darwin]

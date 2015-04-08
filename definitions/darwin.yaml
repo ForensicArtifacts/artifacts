@@ -2,10 +2,10 @@
 
 name: OSXLaunchAgents
 doc: Mac OS X Launch Agent files.
-collectors:
-- collector_type: FILE
-  args:
-    path_list:
+sources:
+- type: FILE
+  attributes:
+    paths:
       - '/Library/LaunchAgents/*'
       - '/System/Library/LaunchAgents/*'
       - '%%users.homedir%%/Library/LaunchAgents/*'
@@ -15,10 +15,10 @@ urls: ['http://www.forensicswiki.org/wiki/Mac_OS_X']
 ---
 name: OSXLaunchDaemons
 doc: Mac OS X Launch Daemons files.
-collectors:
-- collector_type: FILE
-  args:
-    path_list:
+sources:
+- type: FILE
+  attributes:
+    paths:
       - '/Library/LaunchDaemons/*'
       - '/System/Library/LaunchDaemons/*'
       - '%%users.homedir%%/Library/LaunchDaemons/*'
@@ -28,10 +28,10 @@ urls: ['http://www.forensicswiki.org/wiki/Mac_OS_X']
 ---
 name: OSXQuarantineEvents
 doc: Mac OS X quarantine event database.
-collectors:
-- collector_type: FILE
-  args:
-    path_list:
+sources:
+- type: FILE
+  attributes:
+    paths:
       - '%%users.homedir%%/Library/Preferences/com.apple.LaunchServices.QuarantineEvents'
       - '%%users.homedir%%/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV2'
 labels: [Software]
@@ -40,10 +40,10 @@ urls: ['http://www.forensicswiki.org/wiki/Mac_OS_X']
 ---
 name: OSXStartupItems
 doc: Mac OS X Startup Items files.
-collectors:
-- collector_type: FILE
-  args:
-    path_list:
+sources:
+- type: FILE
+  attributes:
+    paths:
       - '/Library/StartupItems/*'
       - '/System/Library/StartupItems/*'
 labels: [System]
@@ -52,50 +52,50 @@ urls: ['http://www.forensicswiki.org/wiki/Mac_OS_X']
 ---
 name: OSXSystemLogs
 doc: Mac OS X system log files (/var/log).
-collectors:
-- collector_type: FILE
-  args: {path_list: ['/var/log/*']}
+sources:
+- type: FILE
+  attributes: {paths: ['/var/log/*']}
 labels: [Logs, System]
 supported_os: [Darwin]
 ---
 name: OSXSystemPreferences
 doc: Mac OS X system preferences files.
-collectors:
-- collector_type: FILE
-  args: {path_list: ['/Library/Preferences/*']}
+sources:
+- type: FILE
+  attributes: {paths: ['/Library/Preferences/*']}
 labels: [System]
 supported_os: [Darwin]
 ---
 name: OSXUserLogs
 doc: Mac OS X user log files.
-collectors:
-- collector_type: FILE
-  args: {path_list: ['%%users.homedir%%/Library/Logs/*']}
+sources:
+- type: FILE
+  attributes: {paths: ['%%users.homedir%%/Library/Logs/*']}
 labels: [Logs, Users]
 supported_os: [Darwin]
 ---
 name: OSXUserPreferences
 doc: Mac OS X user preferences files.
-collectors:
-- collector_type: FILE
-  args: {path_list: ['%%users.homedir%%/Library/Preferences/*']}
+sources:
+- type: FILE
+  attributes: {paths: ['%%users.homedir%%/Library/Preferences/*']}
 labels: [Users]
 supported_os: [Darwin]
 ---
 name: OSXUserLoginItems
 doc: Mac OS X user login items.
-collectors:
-- collector_type: FILE
-  args: {path_list: ['%%users.homedir%%/Library/Preferences/com.apple.loginitems.plist']}
+sources:
+- type: FILE
+  attributes: {paths: ['%%users.homedir%%/Library/Preferences/com.apple.loginitems.plist']}
 labels: [Users]
 supported_os: [Darwin]
 ---
 name: OSXPeriodicSystemFunctions
 doc: Mac OS X periodic system functions scripts and configuration.
-collectors:
-- collector_type: FILE
-  args:
-    path_list:
+sources:
+- type: FILE
+  attributes:
+    paths:
       - '/etc/defaults/periodic.conf'
       - '/etc/periodic.conf'
       - '/etc/periodic.conf.local'
@@ -110,21 +110,19 @@ urls: ['https://developer.apple.com/library/mac/documentation/Darwin/Reference/M
 ---
 name: OSXAtJobs
 doc: Mac OS X at jobs.
-collectors:
-- collector_type: FILE
-  args:
-    path_list:
-      - '/usr/lib/cron/jobs/*'
+sources:
+- type: FILE
+  attributes: {paths: ['/usr/lib/cron/jobs/*']}
 labels: [System]
 supported_os: [Darwin]
 urls: ['https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/at.1.html#//apple_ref/doc/man/1/at']
 ---
 name: OSXCronTabs
 doc: Mac OS X cron tabs.
-collectors:
-- collector_type: FILE
-  args:
-    path_list:
+sources:
+- type: FILE
+  attributes:
+    paths:
       - '/etc/crontab'
       - '/usr/lib/cron/tabs/*'
 labels: [System]
@@ -133,10 +131,10 @@ urls: ['https://developer.apple.com/library/mac/documentation/Darwin/Reference/M
 ---
 name: OSXKexts
 doc: Mac OS X Kernel Extentions.
-collectors:
-- collector_type: FILE
-  args:
-    path_list:
+sources:
+- type: FILE
+  attributes:
+    paths:
       - '/System/Library/Extensions/*'
       - '/Library/Extensions/*'
 labels: [System]
@@ -144,9 +142,9 @@ supported_os: [Darwin]
 ---
 name: OSXLoadedKexts
 doc: Mac OS X Loaded Kernel Extensions.
-collectors:
-- collector_type: COMMAND
-  args:
+sources:
+- type: COMMAND
+  attributes:
     args: []
     cmd: /usr/sbin/kextstat
 labels: [System]
