@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 """The collector definition objects.
 
@@ -16,19 +15,8 @@ class CollectorDefinition(object):
 
   TYPE_INDICATOR = None
 
-  def __init__(self, **kwargs):
-    """Initializes the collector definition object.
-
-    Args:
-      kwargs: a dictionary of keyword arguments dependending on
-              the collector type.
-
-    Raises:
-      FormatError: when there are unused keyword arguments.
-    """
-    if kwargs:
-      raise errors.FormatError(u'Unused keyword arguments.')
-
+  def __init__(self):
+    """Initializes the collector definition object."""
     super(CollectorDefinition, self).__init__()
     self.conditions = []
     self.returned_types = []
@@ -49,20 +37,19 @@ class ArtifactCollectorDefinition(CollectorDefinition):
 
   TYPE_INDICATOR = definitions.TYPE_INDICATOR_ARTIFACT
 
-  def __init__(self, artifact_list=None, **kwargs):
+  def __init__(self, artifact_list=None):
     """Initializes the collector definition object.
 
     Args:
       artifact_list: optional list of artifact definition names.
                      The default is None.
-
     Raises:
       FormatError: when artifact_list is not set.
     """
     if not artifact_list:
       raise errors.FormatError(u'Missing artifact_list value.')
 
-    super(ArtifactCollectorDefinition, self).__init__(**kwargs)
+    super(ArtifactCollectorDefinition, self).__init__()
     self.artifact_list = artifact_list
 
 
@@ -71,7 +58,7 @@ class CommandCollectorDefinition(CollectorDefinition):
 
   TYPE_INDICATOR = definitions.TYPE_INDICATOR_COMMAND
 
-  def __init__(self, args=None, cmd=None, **kwargs):
+  def __init__(self, args=None, cmd=None):
     """Initializes the collector definition object.
 
     Args:
@@ -84,7 +71,7 @@ class CommandCollectorDefinition(CollectorDefinition):
     if args is None or cmd is None:
       raise errors.FormatError(u'Missing args or cmd value.')
 
-    super(CommandCollectorDefinition, self).__init__(**kwargs)
+    super(CommandCollectorDefinition, self).__init__()
     self.args = args
     self.cmd = cmd
 
@@ -94,7 +81,7 @@ class FileCollectorDefinition(CollectorDefinition):
 
   TYPE_INDICATOR = definitions.TYPE_INDICATOR_FILE
 
-  def __init__(self, path_list=None, **kwargs):
+  def __init__(self, path_list=None):
     """Initializes the collector definition object.
 
     Args:
@@ -106,7 +93,7 @@ class FileCollectorDefinition(CollectorDefinition):
     if not path_list:
       raise errors.FormatError(u'Missing path_list value.')
 
-    super(FileCollectorDefinition, self).__init__(**kwargs)
+    super(FileCollectorDefinition, self).__init__()
     self.path_list = path_list
 
 
@@ -115,7 +102,7 @@ class WindowsRegistryKeyCollectorDefinition(CollectorDefinition):
 
   TYPE_INDICATOR = definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_KEY
 
-  def __init__(self, path_list=None, **kwargs):
+  def __init__(self, path_list=None):
     """Initializes the collector definition object.
 
     Args:
@@ -127,7 +114,7 @@ class WindowsRegistryKeyCollectorDefinition(CollectorDefinition):
     if not path_list:
       raise errors.FormatError(u'Missing path_list value.')
 
-    super(WindowsRegistryKeyCollectorDefinition, self).__init__(**kwargs)
+    super(WindowsRegistryKeyCollectorDefinition, self).__init__()
     self.path_list = path_list
 
 
@@ -136,7 +123,7 @@ class WindowsRegistryValueCollectorDefinition(CollectorDefinition):
 
   TYPE_INDICATOR = definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_VALUE
 
-  def __init__(self, path_list=None, **kwargs):
+  def __init__(self, path_list=None):
     """Initializes the collector definition object.
 
     Args:
@@ -148,7 +135,7 @@ class WindowsRegistryValueCollectorDefinition(CollectorDefinition):
     if not path_list:
       raise errors.FormatError(u'Missing path_list value.')
 
-    super(WindowsRegistryValueCollectorDefinition, self).__init__(**kwargs)
+    super(WindowsRegistryValueCollectorDefinition, self).__init__()
     self.path_list = path_list
 
 
@@ -157,7 +144,7 @@ class WMIQueryCollectorDefinition(CollectorDefinition):
 
   TYPE_INDICATOR = definitions.TYPE_INDICATOR_WMI_QUERY
 
-  def __init__(self, query=None, **kwargs):
+  def __init__(self, query=None):
     """Initializes the collector definition object.
 
     Args:
@@ -169,5 +156,5 @@ class WMIQueryCollectorDefinition(CollectorDefinition):
     if not query:
       raise errors.FormatError(u'Missing query value.')
 
-    super(WMIQueryCollectorDefinition, self).__init__(**kwargs)
+    super(WMIQueryCollectorDefinition, self).__init__()
     self.query = query

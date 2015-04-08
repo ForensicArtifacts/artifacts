@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 """Tests for the artifact definitions registry."""
 
@@ -55,6 +54,20 @@ class ArtifactDefinitionsRegistryTest(unittest.TestCase):
         u'Windows Security Event log for Vista or later systems.')
     self.assertEquals(
         test_artifact_definition.description, expected_description)
+
+    bad_args = """
+name: SecurityEventLogEvtx
+doc: Windows Security Event log for Vista or later systems.
+collectors:
+- collector_type: FILE
+  args: {broken: ['%%environ_systemroot%%\System32\winevt\Logs\Security.evtx']}
+conditions: [os_major_version >= 6]
+labels: [Logs]
+supported_os: [Windows]
+urls: ['http://www.forensicswiki.org/wiki/Windows_XML_Event_Log_(EVTX)']
+"""
+    with self.assertRaises(TypeError):
+      bad_artifact = artifact_reader.Read(bad_args).next()
 
 
 if __name__ == '__main__':
