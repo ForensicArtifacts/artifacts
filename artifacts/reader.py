@@ -3,12 +3,13 @@
 
 import abc
 import glob
-import yaml
 import os
 
 from artifacts import artifact
 from artifacts import definitions
 from artifacts import errors
+
+import yaml
 
 
 class ArtifactsReader(object):
@@ -71,12 +72,12 @@ class YamlArtifactsReader(ArtifactsReader):
     if not yaml_definition:
       raise errors.FormatError(u'Missing YAML definition.')
 
-    name = yaml_definition.get('name', None)
+    name = yaml_definition.get(u'name', None)
     if not name:
       raise errors.FormatError(u'Invalid artifact definition missing name.')
 
     # The description is assumed to be mandatory.
-    description = yaml_definition.get('doc', None)
+    description = yaml_definition.get(u'doc', None)
     if not description:
       raise errors.FormatError(
           u'Invalid artifact definition: {0:s} missing description.'.format(
@@ -85,18 +86,18 @@ class YamlArtifactsReader(ArtifactsReader):
     artifact_definition = artifact.ArtifactDefinition(
         name, description=description)
 
-    if yaml_definition.get('collectors', []):
+    if yaml_definition.get(u'collectors', []):
       raise errors.FormatError(
           u'Invalid artifact definition: {0:s} still uses collectors.'.format(
               name))
 
-    for source in yaml_definition.get('sources', []):
-      type_indicator = source.get('type', None)
+    for source in yaml_definition.get(u'sources', []):
+      type_indicator = source.get(u'type', None)
       if not type_indicator:
         raise errors.FormatError(
             u'Invalid artifact definition: {0:s} source type.'.format(name))
 
-      attributes = source.get('attributes', None)
+      attributes = source.get(u'attributes', None)
       try:
         source_type = artifact_definition.AppendSource(
             type_indicator, attributes)
@@ -107,16 +108,16 @@ class YamlArtifactsReader(ArtifactsReader):
 
       # TODO: deprecate these left overs from the collector definition.
       if source_type:
-        source_type.conditions = source.get('conditions', [])
-        source_type.returned_types = source.get('returned_types', [])
+        source_type.conditions = source.get(u'conditions', [])
+        source_type.returned_types = source.get(u'returned_types', [])
         self._ReadSupportedOS(yaml_definition, source_type, name)
 
     # TODO: check conditions.
-    artifact_definition.conditions = yaml_definition.get('conditions', [])
-    artifact_definition.provides = yaml_definition.get('provides', [])
+    artifact_definition.conditions = yaml_definition.get(u'conditions', [])
+    artifact_definition.provides = yaml_definition.get(u'provides', [])
     self._ReadLabels(yaml_definition, artifact_definition, name)
     self._ReadSupportedOS(yaml_definition, artifact_definition, name)
-    artifact_definition.urls = yaml_definition.get('urls', [])
+    artifact_definition.urls = yaml_definition.get(u'urls', [])
 
     return artifact_definition
 
@@ -127,11 +128,12 @@ class YamlArtifactsReader(ArtifactsReader):
       yaml_definition: the YAML artifact definition.
       artifact_definition: the artifact definition object (instance of
                            ArtifactDefinition).
+      name: string containing the name of the artifact definition.
 
     Raises:
       FormatError: if there are undefined labels.
     """
-    labels = yaml_definition.get('labels', [])
+    labels = yaml_definition.get(u'labels', [])
     undefined_labels = [
         item for item in labels if item not in definitions.LABELS]
 
@@ -140,21 +142,21 @@ class YamlArtifactsReader(ArtifactsReader):
           u'Artifact definition: {0:s} label(s): {1:s} not defined.'.format(
               name, ', '.join(undefined_labels)))
 
-    artifact_definition.labels = yaml_definition.get('labels', [])
+    artifact_definition.labels = yaml_definition.get(u'labels', [])
 
   def _ReadSupportedOS(self, yaml_definition, definition_object, name):
     """Reads the optional artifact or source type supported OS.
 
     Args:
       yaml_definition: the YAML artifact definition.
-      defintion_object: the definition object (instance of ArtifactDefinition
+      definition_object: the definition object (instance of ArtifactDefinition
                         or SourceType).
-      name: string containing the name of the arifact defintion.
+      name: string containing the name of the artifact definition.
 
     Raises:
       FormatError: if there are undefined supported operating systems.
     """
-    supported_os = yaml_definition.get('supported_os', [])
+    supported_os = yaml_definition.get(u'supported_os', [])
 
     if not isinstance(supported_os, list):
       raise errors.FormatError(
@@ -167,7 +169,7 @@ class YamlArtifactsReader(ArtifactsReader):
     if undefined_supported_os:
       raise errors.FormatError((
           u'Artifact definition: {0:s} supported operating system: {1:s} '
-          u'not defined.').format(name, ', '.join(undefined_supported_os)))
+          u'not defined.').format(name, u', '.join(undefined_supported_os)))
 
     definition_object.supported_os = supported_os
 
@@ -199,7 +201,7 @@ class YamlArtifactsReader(ArtifactsReader):
       for artifact_definition in self.ReadFileObject(file_object):
         yield artifact_definition
 
-  def ReadDirectory(self, path, extension='yaml'):
+  def ReadDirectory(self, path, extension=u'yaml'):
     """Reads artifact definitions from YAML files in a directory.
 
     This function does not recurse sub directories.
@@ -213,9 +215,9 @@ class YamlArtifactsReader(ArtifactsReader):
       Artifact definitions (instances of ArtifactDefinition).
     """
     if extension:
-      glob_spec = os.path.join(path, '*.{0:s}'.format(extension))
+      glob_spec = os.path.join(path, u'*.{0:s}'.format(extension))
     else:
-      glob_spec = os.path.join(path, '*')
+      glob_spec = os.path.join(path, u'*')
 
     for yaml_file in glob.glob(glob_spec):
       for artifact_definition in self.ReadFile(yaml_file):

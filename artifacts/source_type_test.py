@@ -4,7 +4,6 @@
 
 import unittest
 
-from artifacts import errors
 from artifacts import source_type
 
 
@@ -13,7 +12,7 @@ class SourceTypeTest(unittest.TestCase):
 
   def testInitialize(self):
     """Tests the __init__ function."""
-    with self.assertRaises(errors.FormatError):
+    with self.assertRaises(TypeError):
       source_type.SourceType(bogus=u'bogus')
 
 
@@ -24,10 +23,10 @@ class ArtifactSourceTypeTest(unittest.TestCase):
     """Tests the __init__ function."""
     source_type.ArtifactSourceType(names=[u'test'])
 
-    with self.assertRaises(errors.FormatError):
+    with self.assertRaises(TypeError):
       source_type.ArtifactSourceType(bogus=u'bogus')
 
-    with self.assertRaises(errors.FormatError):
+    with self.assertRaises(TypeError):
       source_type.ArtifactSourceType(names=[u'test'], bogus=u'bogus')
 
 
@@ -39,10 +38,10 @@ class FileSourceTypeTest(unittest.TestCase):
     source_type.FileSourceType(paths=[u'test'])
     source_type.FileSourceType(paths=[u'test'], separator=u'\\')
 
-    with self.assertRaises(errors.FormatError):
+    with self.assertRaises(TypeError):
       source_type.FileSourceType(bogus=u'bogus')
 
-    with self.assertRaises(errors.FormatError):
+    with self.assertRaises(TypeError):
       source_type.FileSourceType(paths=[u'test'], bogus=u'bogus')
 
 
@@ -54,10 +53,10 @@ class PathSourceTypeTest(unittest.TestCase):
     source_type.PathSourceType(paths=[u'test'])
     source_type.PathSourceType(paths=[u'test'], separator=u'\\')
 
-    with self.assertRaises(errors.FormatError):
+    with self.assertRaises(TypeError):
       source_type.PathSourceType(bogus=u'bogus')
 
-    with self.assertRaises(errors.FormatError):
+    with self.assertRaises(TypeError):
       source_type.PathSourceType(paths=[u'test'], bogus=u'bogus')
 
 
@@ -68,10 +67,10 @@ class WindowsRegistryKeySourceTypeTest(unittest.TestCase):
     """Tests the __init__ function."""
     source_type.WindowsRegistryKeySourceType(keys=[u'test'])
 
-    with self.assertRaises(errors.FormatError):
+    with self.assertRaises(TypeError):
       source_type.WindowsRegistryKeySourceType(bogus=u'bogus')
 
-    with self.assertRaises(errors.FormatError):
+    with self.assertRaises(TypeError):
       source_type.WindowsRegistryKeySourceType(keys=[u'test'], bogus=u'bogus')
 
 
@@ -83,10 +82,10 @@ class WindowsRegistryValueSourceTypeTest(unittest.TestCase):
     source_type.WindowsRegistryValueSourceType(
         key_value_pairs={'key': u'test', 'value': u'test'})
 
-    with self.assertRaises(errors.FormatError):
+    with self.assertRaises(TypeError):
       source_type.WindowsRegistryValueSourceType(bogus=u'bogus')
 
-    with self.assertRaises(errors.FormatError):
+    with self.assertRaises(TypeError):
       source_type.WindowsRegistryValueSourceType(
         key_value_pairs={'key': u'test', 'value': u'test'}, bogus=u'bogus')
 
@@ -98,10 +97,10 @@ class WMIQuerySourceType(unittest.TestCase):
     """Tests the __init__ function."""
     source_type.WMIQuerySourceType(query=u'test')
 
-    with self.assertRaises(errors.FormatError):
+    with self.assertRaises(TypeError):
       source_type.WMIQuerySourceType(bogus=u'bogus')
 
-    with self.assertRaises(errors.FormatError):
+    with self.assertRaises(TypeError):
       source_type.WMIQuerySourceType(query=u'test', bogus=u'bogus')
 
 

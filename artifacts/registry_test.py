@@ -1,7 +1,7 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 """Tests for the artifact definitions registry."""
 
+import io
 import os
 import unittest
 
@@ -54,6 +54,23 @@ class ArtifactDefinitionsRegistryTest(unittest.TestCase):
         u'Windows Security Event log for Vista or later systems.')
     self.assertEquals(
         test_artifact_definition.description, expected_description)
+
+    bad_args = io.BytesIO(b'\n'.join([
+        b'name: SecurityEventLogEvtx',
+        b'doc: Windows Security Event log for Vista or later systems.',
+        b'sources:',
+        b'- type: FILE',
+        (b'  attributes: {broken: [\'%%environ_systemroot%%\\System32\\'
+         b'winevt\\Logs\\Security.evtx\']}'),
+        b'conditions: [os_major_version >= 6]',
+        b'labels: [Logs]',
+        b'supported_os: [Windows]',
+        (b'urls: [\'http://www.forensicswiki.org/wiki/'
+         b'Windows_XML_Event_Log_(EVTX)\']')]))
+
+    generator = artifact_reader.ReadFileObject(bad_args)
+    with self.assertRaises(TypeError):
+      _ = generator.next()
 
 
 if __name__ == '__main__':
