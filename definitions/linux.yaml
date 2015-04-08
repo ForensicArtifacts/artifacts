@@ -73,21 +73,15 @@ sources:
 labels: [Configuration Files]
 supported_os: [Linux]
 ---
-name: LinuxPasswd
-doc: Linux passwd file.
-sources:
-- type: FILE
-  attributes: {paths: ['/etc/passwd']}
-labels: [Authentication]
-supported_os: [Linux]
----
 name: RootUserShellConfigs
-doc: Linux root shell configuration files.
+doc: Common unix root shell configuration files.
 sources:
 - type: FILE
   attributes:
     paths:
       - '/root/.bashrc'
+      - '/root/.bash_profile'
+      - '/root/.bash_logout'
       - '/root/.cshrc'
       - '/root/.ksh'
       - '/root/.logout'
@@ -96,7 +90,19 @@ sources:
       - '/root/.zlogin'
       - '/root/.zlogout'
       - '/root/.zprofile'
-      - '/root/.zprofile'
+labels: [Configuration Files]
+supported_os: [Linux]
+---
+name: RootUserShellHistory
+doc: Common unix root shell configuration files.
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '/root/.bash_history'
+      - '/root/.sh_history'
+      - '/root/.zhistory'
+      - '/root/.zsh_history'
 labels: [Configuration Files]
 supported_os: [Linux]
 ---
@@ -147,25 +153,6 @@ sources:
 labels: [Authentication, Configuration Files]
 supported_os: [Linux]
 ---
-name: GlobalShellConfigs
-doc: Linux global shell configuration files.
-sources:
-- type: FILE
-  attributes:
-    paths:
-      - '/etc/bash.bashrc'
-      - '/etc/csh.cshrc'
-      - '/etc/csh.login'
-      - '/etc/csh.logout'
-      - '/etc/profile'
-      - '/etc/zsh/zlogin'
-      - '/etc/zsh/zlogout'
-      - '/etc/zsh/zprofile'
-      - '/etc/zsh/zshenv'
-      - '/etc/zsh/zshrc'
-labels: [Configuration Files]
-supported_os: [Linux]
----
 name: LinuxWtmp
 doc: Linux wtmp file.
 sources:
@@ -182,15 +169,6 @@ sources:
   attributes: {paths: ['/etc/netgroup']}
 labels: [Authentication, Configuration Files]
 provides: [users.username]
-supported_os: [Linux]
----
-name: SudoersConfiguration
-doc: Linux sudoers configuration.
-sources:
-- type: FILE
-  attributes:
-    paths: ['/etc/sudoers']
-labels: [Authentication, Configuration Files]
 supported_os: [Linux]
 ---
 name: ThumbnailCacheFolder

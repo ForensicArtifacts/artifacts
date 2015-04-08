@@ -1,0 +1,85 @@
+# Artifacts common to Unix based OSs
+
+name: UsersShellConfigs
+doc: Unix user shell configuration files.
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '%%users.homedir%%/.bashrc'
+      - '%%users.homedir%%/.bash_profile'
+      - '%%users.homedir%%/.bash_logout'
+      - '%%users.homedir%%/.cshrc'
+      - '%%users.homedir%%/.ksh'
+      - '%%users.homedir%%/.logout'
+      - '%%users.homedir%%/.profile'
+      - '%%users.homedir%%/.tcsh'
+      - '%%users.homedir%%/.zlogin'
+      - '%%users.homedir%%/.zlogout'
+      - '%%users.homedir%%/.zprofile'
+labels: [Configuration Files]
+supported_os: [Linux, Darwin]
+---
+name: UsersShellHistory
+doc: Unix user shell configuration files.
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '/%%users.homedir%%/.bash_history'
+      - '/%%users.homedir%%/.sh_history'
+      - '/%%users.homedir%%/.zhistory'
+      - '/%%users.homedir%%/.zsh_history'
+labels: [Configuration Files]
+supported_os: [Linux, Darwin]
+---
+name: GlobalShellConfigs
+doc: Unix global shell configuration files.
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '/etc/bashrc'
+      - '/etc/bash.bashrc'
+      - '/etc/kshrc'
+      - '/etc/csh.cshrc'
+      - '/etc/csh.login'
+      - '/etc/csh.logout'
+      - '/etc/profile'
+      - '/etc/zsh/zlogin'
+      - '/etc/zsh/zlogout'
+      - '/etc/zsh/zprofile'
+      - '/etc/zsh/zshenv'
+      - '/etc/zsh/zshrc'
+      - '/etc/zshenv'
+      - '/etc/zshrc'      
+labels: [Configuration Files]
+supported_os: [Linux, Darwin]
+---
+name: UnixSudoersConfiguration
+doc: Unix sudoers configuration.
+sources:
+- type: FILE
+  attributes: {paths: ['/etc/sudoers']}
+labels: [Authentication, Configuration Files]
+supported_os: [Linux, Darwin]
+---
+name: UnixUsersGroups
+doc: Unix users and groups files.
+sources:
+- type: FILE
+  attributes: 
+    paths: 
+      - '/etc/passwd'
+      - '/etc/shadow'
+      - '/etc/group'
+labels: [Authentication]
+supported_os: [Linux, Darwin]
+---
+name: UnixHostsFile
+doc: Unix hosts file
+sources:
+- type: FILE
+  attributes: {paths: ['/etc/hosts']}
+labels: [Configuration Files]
+supported_os: [Linux, Darwin]

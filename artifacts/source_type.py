@@ -2,7 +2,7 @@
 """The source type objects.
 
 The source type objects define the source of the artifact data. In earlier
-versions of the artifact defintions collector definitions had a similar
+versions of the artifact definitions collector definitions had a similar
 purpose as the source type. Currently the following source types are defined:
 * artifact; the source is one or more artifact definitions;
 * file; the source is one or more files;
@@ -28,21 +28,6 @@ class SourceType(object):
 
   TYPE_INDICATOR = None
 
-  def __init__(self, **kwargs):
-    """Initializes the source type object.
-
-    Args:
-      kwargs: a dictionary of keyword arguments dependending on
-              the source type.
-
-    Raises:
-      FormatError: when there are unused keyword arguments.
-    """
-    if kwargs:
-      raise errors.FormatError(u'Unused keyword arguments.')
-
-    super(SourceType, self).__init__()
-
   @property
   def type_indicator(self):
     """The type indicator.
@@ -61,13 +46,11 @@ class ArtifactSourceType(SourceType):
 
   TYPE_INDICATOR = definitions.TYPE_INDICATOR_ARTIFACT
 
-  def __init__(self, names=None, **kwargs):
+  def __init__(self, names=None):
     """Initializes the source type object.
 
     Args:
       names: optional list of artifact definition names.  The default is None.
-      kwargs: a dictionary of keyword arguments dependending on
-              the source type.
 
     Raises:
       FormatError: when artifact names is not set.
@@ -75,7 +58,7 @@ class ArtifactSourceType(SourceType):
     if not names:
       raise errors.FormatError(u'Missing names value.')
 
-    super(ArtifactSourceType, self).__init__(**kwargs)
+    super(ArtifactSourceType, self).__init__()
     self.names = names
 
 
@@ -84,7 +67,7 @@ class FileSourceType(SourceType):
 
   TYPE_INDICATOR = definitions.TYPE_INDICATOR_FILE
 
-  def __init__(self, paths=None, separator=u'/', **kwargs):
+  def __init__(self, paths=None, separator=u'/'):
     """Initializes the source type object.
 
     Args:
@@ -92,8 +75,6 @@ class FileSourceType(SourceType):
              to the root of the file system. The default is None.
       separator: optional string containing the path segment separator.
                  The default is /.
-      kwargs: a dictionary of keyword arguments dependending on
-              the source type.
 
     Raises:
       FormatError: when paths is not set.
@@ -101,7 +82,7 @@ class FileSourceType(SourceType):
     if not paths:
       raise errors.FormatError(u'Missing paths value.')
 
-    super(FileSourceType, self).__init__(**kwargs)
+    super(FileSourceType, self).__init__()
     self.paths = paths
     self.separator = separator
 
@@ -111,7 +92,7 @@ class CommandSourceType(SourceType):
 
   TYPE_INDICATOR = definitions.TYPE_INDICATOR_COMMAND
 
-  def __init__(self, args=None, cmd=None, **kwargs):
+  def __init__(self, args=None, cmd=None):
     """Initializes the source type object.
 
     Args:
@@ -124,7 +105,7 @@ class CommandSourceType(SourceType):
     if args is None or cmd is None:
       raise errors.FormatError(u'Missing args or cmd value.')
 
-    super(CommandSourceType, self).__init__(**kwargs)
+    super(CommandSourceType, self).__init__()
     self.args = args
     self.cmd = cmd
 
@@ -134,7 +115,7 @@ class PathSourceType(SourceType):
 
   TYPE_INDICATOR = definitions.TYPE_INDICATOR_PATH
 
-  def __init__(self, paths=None, separator=u'/', **kwargs):
+  def __init__(self, paths=None, separator=u'/'):
     """Initializes the source type object.
 
     Args:
@@ -142,8 +123,6 @@ class PathSourceType(SourceType):
              to the root of the file system. The default is None.
       separator: optional string containing the path segment separator.
                  The default is /.
-      kwargs: a dictionary of keyword arguments dependending on
-              the source type.
 
     Raises:
       FormatError: when paths is not set.
@@ -151,7 +130,7 @@ class PathSourceType(SourceType):
     if not paths:
       raise errors.FormatError(u'Missing paths value.')
 
-    super(PathSourceType, self).__init__(**kwargs)
+    super(PathSourceType, self).__init__()
     self.paths = paths
     self.separator = separator
 
@@ -161,14 +140,12 @@ class WindowsRegistryKeySourceType(SourceType):
 
   TYPE_INDICATOR = definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_KEY
 
-  def __init__(self, keys=None, **kwargs):
+  def __init__(self, keys=None):
     """Initializes the source type object.
 
     Args:
       keys: optional list of key paths. The key paths are considered relative
             to the root of the Windows Registry. The default is None.
-      kwargs: a dictionary of keyword arguments dependending on
-              the source type.
 
     Raises:
       FormatError: when keys is not set.
@@ -176,7 +153,7 @@ class WindowsRegistryKeySourceType(SourceType):
     if not keys:
       raise errors.FormatError(u'Missing keys value.')
 
-    super(WindowsRegistryKeySourceType, self).__init__(**kwargs)
+    super(WindowsRegistryKeySourceType, self).__init__()
     self.keys = keys
 
 
@@ -185,15 +162,13 @@ class WindowsRegistryValueSourceType(SourceType):
 
   TYPE_INDICATOR = definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_VALUE
 
-  def __init__(self, key_value_pairs=None, **kwargs):
+  def __init__(self, key_value_pairs=None):
     """Initializes the source type object.
 
     Args:
       key_value_pairs: optional list of key path and value name pairs.
                        The key paths are considered relative to the root
                        of the Windows Registry. The default is None.
-      kwargs: a dictionary of keyword arguments dependending on
-              the source type.
 
     Raises:
       FormatError: when key value pairs is not set.
@@ -201,7 +176,7 @@ class WindowsRegistryValueSourceType(SourceType):
     if not key_value_pairs:
       raise errors.FormatError(u'Missing key value pairs value.')
 
-    super(WindowsRegistryValueSourceType, self).__init__(**kwargs)
+    super(WindowsRegistryValueSourceType, self).__init__()
     self.key_value_pairs = key_value_pairs
 
 
@@ -210,13 +185,11 @@ class WMIQuerySourceType(SourceType):
 
   TYPE_INDICATOR = definitions.TYPE_INDICATOR_WMI_QUERY
 
-  def __init__(self, query=None, **kwargs):
+  def __init__(self, query=None):
     """Initializes the source type object.
 
     Args:
       query: optional string containing the WMI query. The default is None.
-      kwargs: a dictionary of keyword arguments dependending on
-              the source type.
 
     Raises:
       FormatError: when query is not set.
@@ -224,5 +197,5 @@ class WMIQuerySourceType(SourceType):
     if not query:
       raise errors.FormatError(u'Missing query value.')
 
-    super(WMIQuerySourceType, self).__init__(**kwargs)
+    super(WMIQuerySourceType, self).__init__()
     self.query = query
