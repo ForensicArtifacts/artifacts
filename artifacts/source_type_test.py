@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 """Tests for the source type objects."""
 
@@ -87,7 +86,7 @@ class WindowsRegistryValueSourceTypeTest(unittest.TestCase):
 
     with self.assertRaises(TypeError):
       source_type.WindowsRegistryValueSourceType(
-        key_value_pairs={'key': u'test', 'value': u'test'}, bogus=u'bogus')
+          key_value_pairs={'key': u'test', 'value': u'test'}, bogus=u'bogus')
 
 
 class WMIQuerySourceType(unittest.TestCase):
