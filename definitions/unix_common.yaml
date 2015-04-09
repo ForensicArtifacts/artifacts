@@ -52,7 +52,7 @@ sources:
       - '/etc/zsh/zshenv'
       - '/etc/zsh/zshrc'
       - '/etc/zshenv'
-      - '/etc/zshrc'      
+      - '/etc/zshrc'
 labels: [Configuration Files]
 supported_os: [Linux, Darwin]
 ---
