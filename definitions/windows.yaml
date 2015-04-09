@@ -486,13 +486,31 @@ collectors:
       - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Active Setup\Installed Components\*\StubPath'
 supported_os: [Windows]
 ---
-name: WindowsBootExecute
-doc: Windows BootExecute persistence
+name: WindowsSessionManagerBootExecute
+doc: Windows Session Manager BootExecute persistence
 collectors:
 - collector_type: REGISTRY_KEY #REGISTRY_VALUE
   args:
     path_list:
       - 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\BootExecute'
+supported_os: [Windows]
+---
+name: WindowsSessionManagerSetupExecute
+doc: Windows Session Manager SetupExecute persistence
+collectors:
+- collector_type: REGISTRY_KEY #REGISTRY_VALUE
+  args:
+    path_list:
+      - 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\SetupExecute'
+supported_os: [Windows]
+---
+name: WindowsSessionManagerExecute
+doc: Windows Session Manager Execute persistence
+collectors:
+- collector_type: REGISTRY_KEY #REGISTRY_VALUE
+  args:
+    path_list:
+      - 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Execute'
 supported_os: [Windows]
 ---
 name: WindowsNetshHelpers
