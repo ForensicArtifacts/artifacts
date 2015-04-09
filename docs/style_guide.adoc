@@ -18,9 +18,9 @@ Here's a typical artifact definition:
 ----
 name: ApplicationEventLogEvtx
 doc: Windows Application Event Log for Vista or newer systems.
-collectors:
-- collector_type: FILE
-  args:
+sources:
+- type: FILE
+  attributes:
     path_list:
       - '%%environ_systemroot%%\System32\winevt\Logs\Application.evtx'
 conditions: [os_major_version >= 6]
@@ -33,9 +33,9 @@ urls: ['http://www.forensicswiki.org/wiki/Windows_XML_Event_Log_(EVTX)']
 - *doc*: First line is a short description of the artifact, mentioning
   important caveats.  If more description is necessary, use the
   link:#long-docs[long form].
-- *collectors*: List of collectors and necessary arguments.  This is the key
+- *sources*: List of sources and necessary arguments.  This is the key
   part of the artifact that describes the data on the client. See
-  link:#collectors[the Collectors section] for more details.
+  link:#sources[the Sources section] for more details.
 - *conditions*: Conditions that will apply to this artifact. See
   link:#conditions[the Conditions section] for more details.
 - *labels*: List of labels.  Labels are used to logically group artifacts into
@@ -57,26 +57,26 @@ portion.  Explicit newlines (\n) should not be used:
 [source,yaml]
 ----
 doc: |
-  Collect windows run keys.
+  The Windows run keys.
 
   Note users.sid will currently only expand to SIDs with profiles on the system,
   not all SIDs.
 ----
 
-== Collectors
+== Sources
 
-The available collector types are defined in
+The available sources types are defined in
 link:https://github.com/ForensicArtifacts/artifacts/blob/master/artifacts/definitions.py[definitions.py]
 as TYPE_INDICATOR constants.
 
-Where collectors take a single argument with a single value, the {} form should
+Where sources take a single argument with a single value, the {} form should
 be used to save on line breaks:
 
 [source,yaml]
 ----
-collectors:
-- collector_type: FILE
-  args: {path_list: [/var/log/wtmp]}
+sources:
+- type: FILE
+  attributes: {path_list: [/var/log/wtmp]}
 ----
 
 Where there are multiple arguments, or the arguments have multiple values, the
@@ -84,17 +84,17 @@ longer form should be used:
 
 [source,yaml]
 ----
-collectors:
-- collector_type: COMMAND
-  args:
+sources:
+- type: COMMAND
+  attributes:
     args: [-qa]
     cmd: /bin/rpm
 ----
 [source,yaml]
 ----
-collectors:
-- collector_type: FILE
-  args:
+sources:
+- type: FILE
+  attributes:
     path_list:
       - /root/.bashrc
       - /root/.cshrc
@@ -155,12 +155,13 @@ content_regex_list: ["^%%users.username%%:[^:]*\n"]
 
 == Conditions
 
-Artifact conditions are implemented using the
+Artifact conditions are currently implemented using the
 link:https://code.google.com/p/objectfilter/[objectfilter] system that allows
 you to apply complex conditions to the attributes of an object. Artifacts can
 apply conditions to any of the Knowledge Base object attributes as defined in
 the GRR link:https://code.google.com/p/grr/source/browse/proto/knowledge_base.proto[knowledge_base.proto].
-TODO: move this out of GRR into something local.
+
+*TODO: work is in progress to move this out of GRR into something more portable.*
 
 Since OS conditions are a very common constraint, this has been provided as a
 separate option "supported_os" to simplify syntax.  Under the hood, this:
@@ -185,7 +186,7 @@ required.  Single quotes should be used for strings when writing conditions.
 conditions: [os_major_version >= 6 and time_zone == 'America/Los_Angeles']
 ----
 
-== Minimize the Number of Definitions by Using Multiple Collectors
+== Minimize the Number of Definitions by Using Multiple Sources
 
 To minimize the number of artifacts in the list, combine them using the
 supported_os and conditions attributes where it makes sense. e.g. rather than
@@ -195,19 +196,19 @@ having FirefoxHistoryWindows, FirefoxHistoryLinux, FirefoxHistoryDarwin, do:
 ----
 name: FirefoxHistory
 doc: Firefox places.sqlite files.
-collectors:
-- collector_type: FILE
-  args:
+sources:
+- type: FILE
+  attributes:
     path_list:
       - %%users.localappdata%%\Mozilla\Firefox\Profiles\*\places.sqlite
       - %%users.appdata%%\Mozilla\Firefox\Profiles\*\places.sqlite
   supported_os: [Windows]
-- collector_type: FILE
-  args:
+- type: FILE
+  attributes:
     path_list: [%%users.homedir%%/Library/Application Support/Firefox/Profiles/*/places.sqlite]
   supported_os: [Darwin]
-- collector_type: FILE
-  args:
+- type: FILE
+  attributes:
     path_list: ['%%users.homedir%%/.mozilla/firefox/*/places.sqlite']
   supported_os: [Linux]
 labels: [Browser]
