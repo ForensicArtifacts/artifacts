@@ -58,10 +58,13 @@ supported_os: [Windows]
 urls: ['http://environmentvariables.org/ProgramFiles']
 ---
 name: SystemDriveEnvironmentVariable
-doc: The %SystemDrive% environment variable, usually "C:".
+doc: |
+  The %SystemDrive% environment variable, usually "C:".
+  This value isn't actually present in the registry but with some parsing we
+  can figure it out from SystemRoot.
 sources:
 - type: REGISTRY_VALUE
-  attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion', value: 'SystemDrive'}]}
+  attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion', value: 'SystemRoot'}]}
 provides: [environ_systemdrive]
 supported_os: [Windows]
 urls: ['http://environmentvariables.org/SystemDrive']
