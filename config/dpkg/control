@@ -1,7 +1,7 @@
 Source: python-artifacts
 Section: python
 Priority: extra
-Maintainer: Log2Timeline <log2timeline-dev@googlegroups.com>
+Maintainer: Forensic artifacts <forensicartifacts@googlegroups.com>
 Build-Depends: debhelper (>= 7.0.0), python, python-setuptools
 Standards-Version: 3.9.2
 Homepage: https://github.com/ForensicArtifacts/artifacts
