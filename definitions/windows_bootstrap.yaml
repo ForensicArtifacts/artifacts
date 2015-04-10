@@ -60,6 +60,7 @@ urls: ['http://environmentvariables.org/ProgramFiles']
 name: SystemDriveEnvironmentVariable
 doc: |
   The %SystemDrive% environment variable, usually "C:".
+
   This value isn't actually present in the Registry but with some parsing we
   can figure it out from SystemRoot.
 sources:
