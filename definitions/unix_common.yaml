@@ -80,9 +80,7 @@ name: UnixPasswd
 doc: Unix /etc/passwd file.
 sources:
 - type: FILE
-  attributes:
-    paths:
-      - '/etc/passwd'
+  attributes: {paths: ['/etc/passwd']}
 labels: [Authentication]
 supported_os: [Linux, Darwin]
 ---
@@ -90,9 +88,7 @@ name: UnixShadowFile
 doc: Unix /etc/shadow file.
 sources:
 - type: FILE
-  attributes:
-    paths:
-      - '/etc/shadow'
+  attributes: {paths: ['/etc/shadow']}
 labels: [Authentication]
 supported_os: [Linux, Darwin]
 ---
@@ -100,9 +96,7 @@ name: UnixGroups
 doc: Unix groups file.
 sources:
 - type: FILE
-  attributes:
-    paths:
-      - '/etc/group'
+  attributes: {paths: ['/etc/group']}
 labels: [Authentication]
 supported_os: [Linux, Darwin]
 ---
