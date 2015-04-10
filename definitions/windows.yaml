@@ -254,7 +254,7 @@ supported_os: [Windows]
 urls: ['http://www.forensicswiki.org/wiki/Windows_Desktop_Search']
 ---
 name: WindowsServices
-doc: Windows services from the registry.
+doc: Windows services from the Registry.
 sources:
 - type: REGISTRY_KEY
   attributes:
@@ -403,7 +403,7 @@ supported_os: [Windows]
 urls: ['http://msdn.microsoft.com/en-us/library/windows/desktop/aa394507(v=vs.85).aspx']
 ---
 name: WindowsHotkeyReplacement
-doc: Hotkey executable replacement
+doc: Hotkey executable replacement.
 sources:
 - type: FILE
   attributes:
@@ -415,7 +415,7 @@ sources:
 supported_os: [Windows]
 ---
 name: WindowsAutorun
-doc: Filebased Tests
+doc: Filebased Tests.
 sources:
 - type: FILE
   attributes:
@@ -424,7 +424,7 @@ sources:
 supported_os: [Windows]
 ---
 name: WindowsCommonFilePlacementAttacks
-doc: Common files associated with search order hijacking and other file placement attacks
+doc: Common files associated with search order hijacking and other file placement attacks.
 sources:
 - type: FILE
   attributes:
@@ -443,7 +443,7 @@ sources:
 supported_os: [Windows]
 ---
 name: WindowsStartupFolders
-doc: Windows startup folder persistence
+doc: Windows startup folder persistence.
 sources:
 - type: FILE
   attributes:
@@ -454,7 +454,7 @@ sources:
 supported_os: [Windows]
 ---
 name: WindowsStubPaths
-doc: Windows StubPath persistence
+doc: Windows StubPath persistence.
 sources:
 - type: REGISTRY_VALUE
   attributes:
@@ -465,7 +465,7 @@ supported_os: [Windows]
 urls: ['http://blogs.msdn.com/b/aruns_blog/archive/2011/06/20/active-setup-registry-key-what-it-is-and-how-to-create-in-the-package-using-admin-studio-install-shield.aspx']
 ---
 name: WindowsBootExecute
-doc: Windows BootExecute persistence
+doc: Windows BootExecute persistence.
 sources:
 - type: REGISTRY_VALUE
   attributes:
@@ -474,7 +474,7 @@ supported_os: [Windows]
 urls: ['https://technet.microsoft.com/en-us/library/cc963230.aspx']
 ---
 name: WindowsExcludeFromKnownDlls
-doc: ExcludeFromKnownDlls can be used to bypass search order hijacking protection
+doc: ExcludeFromKnownDlls can be used to bypass search order hijacking protection.
 sources:
 - type: REGISTRY_VALUE
   attributes:
@@ -483,7 +483,7 @@ supported_os: [Windows]
 urls: ['https://msdn.microsoft.com/en-us/library/windows/desktop/ms682586%28v=vs.85%29.aspx']
 ---
 name: WindowsAppCertDlls
-doc: Windows AppCertDlls persistence
+doc: Windows AppCertDlls persistence.
 sources:
 - type: REGISTRY_KEY
   attributes:
@@ -492,7 +492,7 @@ supported_os: [Windows]
 urls: ['http://blogs.technet.com/b/mmpc/archive/2011/03/19/how-to-defang-the-fake-defragmenter.aspx']
 ---
 name: WindowsStartupFolderModification
-doc: Windows startup folder registry values
+doc: Windows startup folder Registry values.
 sources:
 - type: REGISTRY_VALUE
   attributes:
@@ -508,7 +508,7 @@ sources:
 supported_os: [Windows]
 ---
 name: WindowsDebugger
-doc: Windows Debugger peristence or AV disable
+doc: Windows Debugger peristence or AV disable.
 sources:
 - type: REGISTRY_VALUE
   attributes:
@@ -519,7 +519,7 @@ supported_os: [Windows]
 urls: ['https://msdn.microsoft.com/en-us/library/a329t4ed%28VS.71%29.aspx']
 ---
 name: WindowsRunServices
-doc: Windows Run Services
+doc: Windows Run Services.
 sources:
 - type: REGISTRY_KEY
   attributes:
@@ -532,7 +532,7 @@ supported_os: [Windows]
 urls: ['https://msdn.microsoft.com/en-us/library/windows/desktop/aa376977%28v=vs.85%29.aspx']
 ---
 name: WindowsWinlogonNotify
-doc: Windows Winlogon Notify
+doc: Windows Winlogon Notify.
 sources:
 - type: REGISTRY_KEY
   attributes:
@@ -543,7 +543,7 @@ supported_os: [Windows]
 urls: ['https://msdn.microsoft.com/en-us/library/windows/desktop/aa379402%28v=vs.85%29.aspx']
 ---
 name: WindowsWinlogonUserinit
-doc: Windows Winlogon Userinit
+doc: Windows Winlogon Userinit.
 sources:
 - type: REGISTRY_VALUE
   attributes:
@@ -554,7 +554,7 @@ supported_os: [Windows]
 urls: ['https://technet.microsoft.com/en-us/library/cc939862.aspx']
 ---
 name: WindowsWinlogonShell
-doc: Windows shell replacement
+doc: Windows shell replacement.
 sources:
 - type: REGISTRY_KEY
   attributes:
@@ -565,7 +565,7 @@ supported_os: [Windows]
 urls: ['https://msdn.microsoft.com/en-us/library/ms838576%28v=winembedded.5%29.aspx']
 ---
 name: WindowsLoadAndRunValues
-doc: Windows Load and Run values
+doc: Windows Load and Run values.
 sources:
 - type: REGISTRY_VALUE
   attributes:
@@ -578,7 +578,7 @@ supported_os: [Windows]
 urls: ['http://support.microsoft.com/en-us/kb/103865']
 ---
 name: WindowsAppInit
-doc: Windows AppInit persistence
+doc: Windows AppInit persistence.
 sources:
 - type: REGISTRY_VALUE
   attributes:
