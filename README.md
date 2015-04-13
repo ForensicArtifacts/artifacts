@@ -31,7 +31,7 @@ The definition of artifact within computer forensics could be:
 An object of digital archaeological interest.
 ```
 
-Where digital archaeological roughly refers to computer forensics without the forensic (legal) context.
+Where digital archaeology roughly refers to computer forensics without the forensic (legal) context.
 
 ## Artifact Definition Format
 
