@@ -40,7 +40,7 @@ The format is designed to be simple and straight forward, so that a digital fore
 analysist is able to quickly write artifact definitions during an investigation without having
 to rely on complex standards or tooling.
 
-The format is intended to describe forensically-relevant data on a machine, while being tool agnostic.  In particular we intentionally avoided adding IOC-like logic, or describing how the data should be collected since this various between tools.
+The format is intended to describe forensically-relevant data on a machine, while being tool agnostic. In particular we intentionally avoided adding IOC-like logic, or describing how the data should be collected since this various between tools.
 
 == Terminology
 The term artifact (or artefact) is widely used within computer (or digital) 
@@ -109,7 +109,7 @@ See section: <<labels,Labels>>.
 | supported_os | Optional list that indicates which operating systems the artifact definition applies to.
 See section: <<supported_os,Supported operating system>>.
 | urls | Optional list of URLs with more contextual information. +
-Ideally the artifact definition links to an article that discusses the artificat in more depth e.g. on http://forensicswiki.org[forensicswiki.org]
+Ideally the artifact definition links to an article that discusses the artificat in more depth e.g. on http://forensicswiki.org[Forensics Wiki]
 |===
 
 === [[long_docs]]Long docs form
