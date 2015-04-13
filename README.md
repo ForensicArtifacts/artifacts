@@ -35,7 +35,7 @@ Where digital archaeological roughly refers to computer forensics without the fo
 
 ## Artifact Definition Format
 
-The artifact definition format is described in detail in the [Style Guide](https://github.com/ForensicArtifacts/artifacts/blob/master/docs/style_guide.adoc).
+The artifact definition format is described in detail in the [Style Guide](https://github.com/ForensicArtifacts/artifacts/blob/master/docs/Artifacts%20definition%20format%20and%20style%20guide.asciidoc).
 
 ## Contributing
 
