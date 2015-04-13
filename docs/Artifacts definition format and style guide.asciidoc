@@ -9,7 +9,7 @@
 :numbered!:
 [abstract]
 == Summary
-This guide contains a description of the forensics artifacts definitions as-is. 
+This guide contains a description of the forensics artifacts definitions. 
 The artifacts definitions are 
 link:http://www.yaml.org/spec/1.2/spec.html[YAML]-based. The format is 
 currently still under development and is likely to undergo some change. One of 
@@ -32,20 +32,15 @@ toc::[]
 
 :numbered:
 == Background
-A first version of the artifact definitions originate from the 
-https://github.com/google/grr[GRR project] where it is used to more easily 
-collect data of interest, e.g. specific files or Windows Registry keys. The 
-goal of the format is not to provide an all encompassing way to describe 
-forensic artifacts, but at least a fair portion of it.
+The first version of the artifact definitions originated from the 
+https://github.com/google/grr[GRR project], where it is used to describe and quickly collect data of interest, e.g. specific files or Windows Registry keys. The 
+goal of the format is to provide a way to describe the majority of forensic artifacts in a language that is readable by humans and machines.
 
-The format should kept simple and straight forward, so that a digital forensic
-analysist is able to easily write artifact definitions in anger without having
+The format is designed to be simple and straight forward, so that a digital forensic
+analysist is able to quickly write artifact definitions during an investigation without having
 to rely on complex standards or tooling.
 
-The format is descriptive in nature and should be tied to a specific 
-use case as little as possible. E.g. GRR uses the artifact definition
-for collection but other projects could use them for annotation or just to
-reference contextual information.
+The format is intended to describe forensically-relevant data on a machine, while being tool agnostic.  In particular we intentionally avoided adding IOC-like logic, or describing how the data should be collected since this various between tools.
 
 == Terminology
 The term artifact (or artefact) is widely used within computer (or digital) 
@@ -73,7 +68,7 @@ ____
 An object of digital archaeological interest.
 ____
 
-Where digital archaeological roughly refers to computer forensics without the 
+Where digital archaeology roughly refers to computer forensics without the 
 forensic (legal) context.
 
 == The artifact definition
@@ -106,7 +101,7 @@ The artifact definition can have the following values:
 If more description is necessary, use the <<long_docs,Long docs form>>.
 | sources | A list of source definitions. +
 See section: <<sources,Sources>>.
-| conditions | Optional list of conditions to when the artifact definition should apply. +
+| conditions | Optional list of conditions that describe when the artifact definition should apply. +
 See section: <<conditions,Conditions>>.
 | labels | Optional list of predefined labels.
 See section: <<labels,Labels>>.
@@ -114,7 +109,7 @@ See section: <<labels,Labels>>.
 | supported_os | Optional list that indicates which operating systems the artifact definition applies to.
 See section: <<supported_os,Supported operating system>>.
 | urls | Optional list of URLs with more contextual information. +
-Ideally the artifact definition links to an article that discusses the artificat in more depth e.g. forensicswiki.org
+Ideally the artifact definition links to an article that discusses the artificat in more depth e.g. on http://forensicswiki.org[forensicswiki.org]
 |===
 
 === [[long_docs]]Long docs form
@@ -133,10 +128,10 @@ doc: |
 *Style note*: the short description (first line) and the longer portion are 
 separated by an empty line.
 
-*Style not*: explicit newlines (\n) should not be used.
+*Style note*: explicit newlines (\n) should not be used.
 
 == [[sources]]Sources
-Every source definition start with a `type` followed by arguments e.g.
+Every source definition starts with a `type` followed by arguments e.g.
 
 [source,yaml]
 ----
@@ -165,8 +160,8 @@ sources:
       - /root/.zprofile
 ----
 
-*Style note*: where sources take a single argument with a single value, the {} 
-form should be used to save on line breaks.
+*Style note*: where sources take a single argument with a single value, the one-line {} 
+form should be used to save on line breaks as below:
 
 [source,yaml]
 ----
