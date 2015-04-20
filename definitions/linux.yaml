@@ -219,3 +219,14 @@ collectors:
 labels: [Configuration Files, System]
 supported_os: [Linux]
 urls: ['https://wiki.debian.org/LSBInitScripts']
+---
+name: LinuxXinetd
+doc: Linux xinetd configurations.
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '/etc/xinetd.conf'
+      - '/etc/xinetd.d/**'
+labels: [Configuration Files, System]
+supported_os: [Linux]
