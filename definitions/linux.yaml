@@ -230,3 +230,4 @@ sources:
       - '/etc/xinetd.d/**'
 labels: [Configuration Files, System]
 supported_os: [Linux]
+urls: ['http://en.wikipedia.org/wiki/Xinetd']
