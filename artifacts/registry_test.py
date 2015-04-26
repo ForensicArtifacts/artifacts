@@ -70,7 +70,7 @@ class ArtifactDefinitionsRegistryTest(unittest.TestCase):
 
     generator = artifact_reader.ReadFileObject(bad_args)
     with self.assertRaises(TypeError):
-      _ = generator.next()
+      _ = next(generator)
 
 
 if __name__ == '__main__':

@@ -1,5 +1,8 @@
 # Files to ignore by git
 
+# Tests
+.tox
+
 # Back-up files
 *~
 *.swp
