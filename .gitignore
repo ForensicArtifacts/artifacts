@@ -1,8 +1,5 @@
 # Files to ignore by git
 
-# Tests
-.tox
-
 # Back-up files
 *~
 *.swp
@@ -16,3 +13,6 @@
 /artifacts.egg-info
 /build
 /dist
+
+# Tests files
+.tox
