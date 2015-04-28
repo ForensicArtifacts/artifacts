@@ -13,3 +13,6 @@
 /artifacts.egg-info
 /build
 /dist
+
+# Tests files
+.tox

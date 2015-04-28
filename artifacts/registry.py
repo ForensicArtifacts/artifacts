@@ -49,7 +49,7 @@ class ArtifactDefinitionsRegistry(object):
     Yields:
       An artifact definitions (instances of ArtifactDefinition).
     """
-    for artifact_definition in self._artifact_definitions.itervalues():
+    for artifact_definition in self._artifact_definitions.values():
       yield artifact_definition
 
   def RegisterDefinition(self, artifact_definition):

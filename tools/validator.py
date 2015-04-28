@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 """Tool to validate artifact definitions."""
 
+from __future__ import print_function
+from __future__ import unicode_literals
 import argparse
 import logging
 import os
@@ -63,24 +65,24 @@ def Main():
   options = args_parser.parse_args()
 
   if not options.filename:
-    print u'Source value is missing.'
-    print u''
+    print('Source value is missing.')
+    print('')
     args_parser.print_help()
-    print u''
+    print('')
     return False
 
   if not os.path.isfile(options.filename):
-    print u'No such file: {0:s}'.format(options.filename)
-    print u''
+    print('No such file: {0:s}'.format(options.filename))
+    print('')
     return False
 
-  print u'Validating: {0:s}'.format(options.filename)
+  print('Validating: {0:s}'.format(options.filename))
   validator = ArtifactDefinitionsValidator()
   if not validator.CheckFile(options.filename):
-    print u'FAILURE'
+    print('FAILURE')
     return False
 
-  print u'SUCCESS'
+  print('SUCCESS')
   return True
 
 
