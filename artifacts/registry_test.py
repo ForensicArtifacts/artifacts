@@ -19,12 +19,14 @@ class ArtifactDefinitionsRegistryTest(unittest.TestCase):
     artifact_reader = reader.YamlArtifactsReader()
     test_file = os.path.join('test_data', 'definitions.yaml')
 
-    artifact_definition = None
     for artifact_definition in artifact_reader.ReadFile(test_file):
       artifact_registry.RegisterDefinition(artifact_definition)
 
     # Make sure the test file got turned into artifacts.
     self.assertEqual(len(artifact_registry.GetDefinitions()), 7)
+
+    artifact_definition = artifact_registry.GetDefinitionByName("EventLogs")
+    self.assertNotEquals(artifact_definition, None)
 
     # Try to register something already registered
     with self.assertRaises(KeyError):
