@@ -207,7 +207,7 @@ The artifact source is a source that consists of other artifacts e.g.
 ----
 - type: ARTIFACT
   attributes:
-    artifact_list: [WindowsRunKeys, WindowsServices]
+    names: [WindowsRunKeys, WindowsServices]
   returned_types: [PersistenceFile]
 ----
 
