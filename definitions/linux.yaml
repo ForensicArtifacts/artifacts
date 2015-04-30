@@ -7,10 +7,10 @@ sources:
   attributes:
     paths:
       - '/etc/anacrontab'
-      - '/etc/cron.daily'
-      - '/etc/cron.hourly'
-      - '/etc/cron.monthly'
-      - '/etc/cron.weekly'
+      - '/etc/cron.daily/*'
+      - '/etc/cron.hourly/*'
+      - '/etc/cron.monthly/*'
+      - '/etc/cron.weekly/*'
       - '/var/spool/anacron/cron.daily'
       - '/var/spool/anacron/cron.hourly'
       - '/var/spool/anacron/cron.monthly'
@@ -26,7 +26,7 @@ sources:
     paths:
       - '/etc/crontab'
       - '/etc/cron.d/*'
-      - '/var/spool/cron/*'
+      - '/var/spool/cron/**'
 labels: [Configuration Files]
 supported_os: [Linux]
 ---
@@ -35,6 +35,16 @@ doc: Linux at jobs.
 sources:
 - type: FILE
   attributes: {paths: ['/var/spool/at/*']}
+labels: [Configuration Files]
+supported_os: [Linux]
+---
+name: LinuxScheduleFiles
+doc: All Linux job scheduling files.
+sources:
+- type: ARTIFACT
+  attributes:
+    names: [AnacronFiles, LinuxCronTabs, LinuxAtJobs]
+  returned_types: [StatEntry]
 labels: [Configuration Files]
 supported_os: [Linux]
 ---
