@@ -4,9 +4,9 @@
 
 class Error(Exception):
 
-    """The error interface."""
+  """The error interface."""
 
 
 class FormatError(Error):
 
-    """Error that is raised when the format is incorrect."""
+  """Error that is raised when the format is incorrect."""
