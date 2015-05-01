@@ -16,7 +16,7 @@ name: ApplicationEventLogEvtx
 doc: Windows Application Event log for Vista or later systems.
 sources:
 - type: FILE
-  attributes: 
+  attributes:
     paths: ['%%environ_systemroot%%\System32\winevt\Logs\Application.evtx']
     separator: '\'
 conditions: [os_major_version >= 6]

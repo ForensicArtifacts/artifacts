@@ -46,11 +46,10 @@ class ArtifactDefinitionsRegistry(object):
   def GetDefinitions(self):
     """Retrieves the artifact definitions.
 
-    Yields:
-      An artifact definitions (instances of ArtifactDefinition).
+    Returns:
+      An array of ArtifactDefinition objects.
     """
-    for artifact_definition in self._artifact_definitions.values():
-      yield artifact_definition
+    return self._artifact_definitions.values()
 
   def RegisterDefinition(self, artifact_definition):
     """Registers an artifact definition.
