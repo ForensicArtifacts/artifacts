@@ -24,6 +24,7 @@ from artifacts import errors
 
 
 class SourceType(object):
+
   """Class that implements the artifact definition source type interface."""
 
   TYPE_INDICATOR = None
@@ -42,6 +43,7 @@ class SourceType(object):
 
 
 class ArtifactSourceType(SourceType):
+
   """Class that implements the artifacts source type."""
 
   TYPE_INDICATOR = definitions.TYPE_INDICATOR_ARTIFACT
@@ -50,7 +52,8 @@ class ArtifactSourceType(SourceType):
     """Initializes the source type object.
 
     Args:
-      names: optional list of artifact definition names.  The default is None.
+      names: optional list of artifact definition names.  The default is
+            None.
 
     Raises:
       FormatError: when artifact names is not set.
@@ -63,6 +66,7 @@ class ArtifactSourceType(SourceType):
 
 
 class FileSourceType(SourceType):
+
   """Class that implements the file source type."""
 
   TYPE_INDICATOR = definitions.TYPE_INDICATOR_FILE
@@ -88,6 +92,7 @@ class FileSourceType(SourceType):
 
 
 class CommandSourceType(SourceType):
+
   """Class that implements the command source type."""
 
   TYPE_INDICATOR = definitions.TYPE_INDICATOR_COMMAND
@@ -96,7 +101,8 @@ class CommandSourceType(SourceType):
     """Initializes the source type object.
 
     Args:
-      args: list of strings that will be passed as arguments to the command.
+      args: list of strings that will be passed as arguments to the
+            command.
       cmd: string representing the command to run.
 
     Raises:
@@ -111,6 +117,7 @@ class CommandSourceType(SourceType):
 
 
 class PathSourceType(SourceType):
+
   """Class that implements the path source type."""
 
   TYPE_INDICATOR = definitions.TYPE_INDICATOR_PATH
@@ -136,6 +143,7 @@ class PathSourceType(SourceType):
 
 
 class WindowsRegistryKeySourceType(SourceType):
+
   """Class that implements the Windows Registry key source type."""
 
   TYPE_INDICATOR = definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_KEY
@@ -144,8 +152,9 @@ class WindowsRegistryKeySourceType(SourceType):
     """Initializes the source type object.
 
     Args:
-      keys: optional list of key paths. The key paths are considered relative
-            to the root of the Windows Registry. The default is None.
+      keys: optional list of key paths. The key paths are considered
+            relative to the root of the Windows Registry. The default is
+            None.
 
     Raises:
       FormatError: when keys is not set.
@@ -158,6 +167,7 @@ class WindowsRegistryKeySourceType(SourceType):
 
 
 class WindowsRegistryValueSourceType(SourceType):
+
   """Class that implements the Windows Registry value source type."""
 
   TYPE_INDICATOR = definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_VALUE
@@ -181,6 +191,7 @@ class WindowsRegistryValueSourceType(SourceType):
 
 
 class WMIQuerySourceType(SourceType):
+
   """Class that implements the WMI query source type."""
 
   TYPE_INDICATOR = definitions.TYPE_INDICATOR_WMI_QUERY

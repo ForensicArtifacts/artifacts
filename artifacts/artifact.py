@@ -7,6 +7,7 @@ from artifacts import source_type
 
 
 class ArtifactDefinition(object):
+
   """Class that implements the artifact reader interface."""
 
   def __init__(self, name, description=None):
@@ -30,10 +31,10 @@ class ArtifactDefinition(object):
   def AppendSource(self, type_indicator, attributes):
     """Appends a source.
 
-    If you want to implement your own source type you should create a subclass
-    in source_type.py and change the AppendSource method to handle the new
-    subclass. This function raises FormatError if an unsupported source type
-    indicator is encountered.
+    If you want to implement your own source type you should create a
+    subclass in source_type.py and change the AppendSource method to handle
+    the new subclass. This function raises FormatError if an unsupported
+    source type indicator is encountered.
 
     Args:
       type_indicator: the source type indicator.
@@ -69,7 +70,8 @@ class ArtifactDefinition(object):
     elif type_indicator == definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_KEY:
       source_type_class = source_type.WindowsRegistryKeySourceType
 
-    elif type_indicator == definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_VALUE:
+    elif (type_indicator ==
+            definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_VALUE):
       source_type_class = source_type.WindowsRegistryValueSourceType
 
     elif type_indicator == definitions.TYPE_INDICATOR_WMI_QUERY:

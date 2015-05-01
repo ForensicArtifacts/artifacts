@@ -27,6 +27,6 @@ LABELS = {
     'System': 'Core system artifacts.',
     'Users': 'Information about users.',
     'Rekall': 'Artifacts using the Rekall memory forensics framework.',
-    }
+}
 
 SUPPORTED_OS = frozenset(['Darwin', 'Linux', 'Windows'])

@@ -10,6 +10,7 @@ from artifacts import registry
 
 
 class ArtifactDefinitionsRegistryTest(unittest.TestCase):
+
   """Tests for the artifact definitions registry."""
 
   def testArtifactDefinitionsRegistry(self):
@@ -25,7 +26,8 @@ class ArtifactDefinitionsRegistryTest(unittest.TestCase):
     # Make sure the test file got turned into artifacts.
     self.assertEqual(len(artifact_registry.GetDefinitions()), 7)
 
-    artifact_definition = artifact_registry.GetDefinitionByName("EventLogs")
+    artifact_definition = artifact_registry.GetDefinitionByName(
+        "EventLogs")
     self.assertNotEquals(artifact_definition, None)
 
     # Try to register something already registered
@@ -45,7 +47,9 @@ class ArtifactDefinitionsRegistryTest(unittest.TestCase):
         'SecurityEventLogEvtx')
     self.assertNotEquals(test_artifact_definition, None)
 
-    self.assertEquals(test_artifact_definition.name, u'SecurityEventLogEvtx')
+    self.assertEquals(
+        test_artifact_definition.name,
+        u'SecurityEventLogEvtx')
 
     expected_description = (
         u'Windows Security Event log for Vista or later systems.')

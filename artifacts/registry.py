@@ -3,6 +3,7 @@
 
 
 class ArtifactDefinitionsRegistry(object):
+
   """Class that implements the artifact definitions registry."""
 
   def __init__(self):
@@ -20,7 +21,8 @@ class ArtifactDefinitionsRegistry(object):
                            ArtifactDefinition).
 
     Raises:
-      KeyError: if an artifact definition is not set for the corresponding name.
+      KeyError: if an artifact definition is not set for the corresponding
+                name.
     """
     artifact_definition_name = artifact_definition.name.lower()
     if artifact_definition_name not in self._artifact_definitions:
@@ -54,7 +56,8 @@ class ArtifactDefinitionsRegistry(object):
   def RegisterDefinition(self, artifact_definition):
     """Registers an artifact definition.
 
-    The artifact definitiones are identified based on their lower case name.
+    The artifact definitiones are identified based on their lower case
+    name.
 
     Args:
       artifact_definition: the artifact definitions (instance of
@@ -70,4 +73,5 @@ class ArtifactDefinitionsRegistry(object):
           u'Artifact definition already set for name: {0:s}.').format(
               artifact_definition.name))
 
-    self._artifact_definitions[artifact_definition_name] = artifact_definition
+    self._artifact_definitions[
+        artifact_definition_name] = artifact_definition

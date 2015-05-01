@@ -7,6 +7,7 @@ from artifacts import source_type
 
 
 class SourceTypeTest(unittest.TestCase):
+
   """Class to test the artifact source type."""
 
   def testInitialize(self):
@@ -16,6 +17,7 @@ class SourceTypeTest(unittest.TestCase):
 
 
 class ArtifactSourceTypeTest(unittest.TestCase):
+
   """Class to test the artifacts source type."""
 
   def testInitialize(self):
@@ -30,6 +32,7 @@ class ArtifactSourceTypeTest(unittest.TestCase):
 
 
 class FileSourceTypeTest(unittest.TestCase):
+
   """Class to test the files source type."""
 
   def testInitialize(self):
@@ -45,6 +48,7 @@ class FileSourceTypeTest(unittest.TestCase):
 
 
 class PathSourceTypeTest(unittest.TestCase):
+
   """Class to test the paths source type."""
 
   def testInitialize(self):
@@ -60,6 +64,7 @@ class PathSourceTypeTest(unittest.TestCase):
 
 
 class WindowsRegistryKeySourceTypeTest(unittest.TestCase):
+
   """Class to test the Windows Registry keys source type."""
 
   def testInitialize(self):
@@ -70,10 +75,13 @@ class WindowsRegistryKeySourceTypeTest(unittest.TestCase):
       source_type.WindowsRegistryKeySourceType(bogus=u'bogus')
 
     with self.assertRaises(TypeError):
-      source_type.WindowsRegistryKeySourceType(keys=[u'test'], bogus=u'bogus')
+      source_type.WindowsRegistryKeySourceType(
+          keys=[u'test'],
+          bogus=u'bogus')
 
 
 class WindowsRegistryValueSourceTypeTest(unittest.TestCase):
+
   """Class to test the Windows Registry value source type."""
 
   def testInitialize(self):
@@ -86,10 +94,12 @@ class WindowsRegistryValueSourceTypeTest(unittest.TestCase):
 
     with self.assertRaises(TypeError):
       source_type.WindowsRegistryValueSourceType(
-          key_value_pairs={'key': u'test', 'value': u'test'}, bogus=u'bogus')
+          key_value_pairs={'key': u'test', 'value': u'test'},
+          bogus=u'bogus')
 
 
 class WMIQuerySourceType(unittest.TestCase):
+
   """Class to test the WMI query source type."""
 
   def testInitialize(self):

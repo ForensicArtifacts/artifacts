@@ -15,6 +15,7 @@ from artifacts import registry
 
 
 class ArtifactDefinitionsValidator(object):
+
   """Class to define an artifact definitions validator."""
 
   def __init__(self):
@@ -34,11 +35,12 @@ class ArtifactDefinitionsValidator(object):
     try:
       for artifact_definition in artifact_reader.ReadFile(filename):
         try:
-          self._artifact_registry.RegisterDefinition(artifact_definition)
+          self._artifact_registry.RegisterDefinition(
+              artifact_definition)
         except KeyError:
           logging.warning(
-              u'Duplicate artifact definition: {0:s} in file: {1:s}'.format(
-                  artifact_definition.name, filename))
+              u'Duplicate artifact definition: {0:s} in file: {1:s}'
+              .format(artifact_definition.name, filename))
           result = False
 
     except errors.FormatError as exception:

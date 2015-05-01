@@ -11,6 +11,7 @@ from artifacts import reader
 
 
 class YamlArtifactsReaderTest(unittest.TestCase):
+
   """Class to test the YAML artifacts reader."""
 
   def testReadFileObject(self):
@@ -19,7 +20,8 @@ class YamlArtifactsReaderTest(unittest.TestCase):
     test_file = os.path.join('test_data', 'definitions.yaml')
 
     with open(test_file, 'rb') as file_object:
-      artifact_definitions = list(artifact_reader.ReadFileObject(file_object))
+      artifact_definitions = list(
+          artifact_reader.ReadFileObject(file_object))
 
     self.assertEqual(len(artifact_definitions), 7)
 
@@ -69,10 +71,10 @@ class YamlArtifactsReaderTest(unittest.TestCase):
         definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_KEY)
 
     expected_keys = sorted([
-        ('HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion\\'
-         'ProfileList\\ProfilesDirectory'),
-        ('HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion\\'
-         'ProfileList\\AllUsersProfile')])
+        ('HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT'
+            '\\CurrentVersion\\ProfileList\\ProfilesDirectory'),
+        ('HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT'
+            '\\CurrentVersion\\ProfileList\\AllUsersProfile')])
     self.assertEqual(sorted(source_type.keys), expected_keys)
 
     # Artifact with Windows Registry value source type.
@@ -98,7 +100,10 @@ class YamlArtifactsReaderTest(unittest.TestCase):
     self.assertEqual(artifact_definition.name, 'WMIProfileUsersHomeDir')
 
     expected_provides = sorted(['users.homedir'])
-    self.assertEqual(sorted(artifact_definition.provides), expected_provides)
+    self.assertEqual(
+        sorted(
+            artifact_definition.provides),
+        expected_provides)
 
     self.assertEqual(len(artifact_definition.sources), 1)
     source_type = artifact_definition.sources[0]
