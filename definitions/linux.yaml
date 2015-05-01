@@ -68,7 +68,6 @@ sources:
 - type: ARTIFACT
   attributes:
     names: [AnacronFiles, LinuxCronTabs, LinuxAtJobs]
-  returned_types: [StatEntry]
 labels: [Configuration Files]
 supported_os: [Linux]
 ---
