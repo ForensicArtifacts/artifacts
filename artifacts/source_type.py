@@ -88,7 +88,7 @@ class FileSourceType(SourceType):
 
 
 class ListFilesSourceType(SourceType):
-  """Class that implements the file source type."""
+  """Class that implements the list files source type."""
 
   TYPE_INDICATOR = definitions.TYPE_INDICATOR_LIST_FILES
 
