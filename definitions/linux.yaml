@@ -38,14 +38,47 @@ sources:
 labels: [Configuration Files]
 supported_os: [Linux]
 ---
+name: LinuxCronParentFolders
+doc: Collect stat information on parent folders of cron and at jobs.
+sources:
+- type: LIST_FILES
+  attributes:
+    paths:
+      - '/etc/cron.daily*'
+      - '/etc/cron.hourly*'
+      - '/etc/cron.monthly*'
+      - '/etc/cron.weekly*'
+      - '/etc/cron.d*'
+      - '/var/spool/cron*'
+      - '/var/spool/at*'
+labels: [Configuration Files]
+supported_os: [Linux]
+urls: ['https://help.ubuntu.com/community/CronHowto#How_Anacron_is_Arranged']
+---
 name: LinuxScheduleFiles
 doc: All Linux job scheduling files.
 sources:
 - type: ARTIFACT
   attributes:
-    names: [AnacronFiles, LinuxCronTabs, LinuxAtJobs]
+    names: [AnacronFiles, LinuxCronTabs, LinuxAtJobs, LinuxCronParentFolders]
 labels: [Configuration Files]
 supported_os: [Linux]
+---
+name: CronAtAllowDenyFiles
+doc: Files containing users authorised to run cron or at jobs.
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '/etc/cron.allow'
+      - '/etc/cron.deny'
+      - '/etc/at.allow'
+      - '/etc/at.deny'
+labels: [Configuration Files]
+supported_os: [Linux]
+urls:
+  - http://manpages.ubuntu.com/manpages/saucy/man5/at.allow.5.html
+  - http://manpages.ubuntu.com/manpages/precise/en/man1/crontab.1.html
 ---
 name: HostAccessPolicyConfiguration
 doc: Linux files related to host access policy configuration.
