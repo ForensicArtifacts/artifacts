@@ -75,6 +75,9 @@ class ArtifactDefinition(object):
     elif type_indicator == definitions.TYPE_INDICATOR_WMI_QUERY:
       source_type_class = source_type.WMIQuerySourceType
 
+    elif type_indicator == definitions.TYPE_INDICATOR_LIST_FILES:
+      source_type_class = source_type.ListFilesSourceType
+
     else:
       raise errors.FormatError(
           u'Unsupported type indicator: {0:s}.'.format(type_indicator))

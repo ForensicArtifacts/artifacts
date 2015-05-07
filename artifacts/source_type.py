@@ -87,6 +87,31 @@ class FileSourceType(SourceType):
     self.separator = separator
 
 
+class ListFilesSourceType(SourceType):
+  """Class that implements the file source type."""
+
+  TYPE_INDICATOR = definitions.TYPE_INDICATOR_LIST_FILES
+
+  def __init__(self, paths=None, separator=u'/'):
+    """Initializes the source type object.
+
+    Args:
+      paths: optional list of paths. The paths are considered relative
+             to the root of the file system. The default is None.
+      separator: optional string containing the path segment separator.
+                 The default is /.
+
+    Raises:
+      FormatError: when paths is not set.
+    """
+    if not paths:
+      raise errors.FormatError(u'Missing paths value.')
+
+    super(ListFilesSourceType, self).__init__()
+    self.paths = paths
+    self.separator = separator
+
+
 class CommandSourceType(SourceType):
   """Class that implements the command source type."""
 
