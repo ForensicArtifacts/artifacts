@@ -25,7 +25,7 @@ class ArtifactDefinitionsRegistryTest(unittest.TestCase):
     # Make sure the test file got turned into artifacts.
     self.assertEqual(len(artifact_registry.GetDefinitions()), 7)
 
-    artifact_definition = artifact_registry.GetDefinitionByName("EventLogs")
+    artifact_definition = artifact_registry.GetDefinitionByName('EventLogs')
     self.assertNotEquals(artifact_definition, None)
 
     # Try to register something already registered
