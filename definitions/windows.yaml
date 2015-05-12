@@ -68,7 +68,7 @@ name: PrefetchFiles
 doc: Windows Prefetch files.
 sources:
 - type: FILE
-  attributes: 
+  attributes:
     paths: ['%%environ_systemroot%%\Prefetch\*.pf']
     separator: '\'
 labels: [System]
@@ -92,7 +92,7 @@ name: SecurityEventLog
 doc: Windows Security Event log.
 sources:
 - type: FILE
-  attributes: 
+  attributes:
     paths: ['%%environ_systemroot%%\System32\winevt\Logs\SecEvent.evt']
     separator: '\'
 conditions: [os_major_version < 6]
@@ -104,7 +104,7 @@ name: SecurityEventLogEvtx
 doc: Windows Security Event log for Vista or later systems.
 sources:
 - type: FILE
-  attributes: 
+  attributes:
     paths: ['%%environ_systemroot%%\System32\winevt\Logs\Security.evtx']
     separator: '\'
 conditions: [os_major_version >= 6]
@@ -147,7 +147,7 @@ name: SystemEventLog
 doc: Windows System Event log.
 sources:
 - type: FILE
-  attributes: 
+  attributes:
     paths: ['%%environ_systemroot%%\System32\winevt\Logs\SysEvent.evt']
     separator: '\'
 conditions: [os_major_version < 6]
@@ -159,7 +159,7 @@ name: SystemEventLogEvtx
 doc: Windows System Event log for Vista or later systems.
 sources:
 - type: FILE
-  attributes: 
+  attributes:
     paths: ['%%environ_systemroot%%\System32\winevt\Logs\System.evtx']
     separator: '\'
 conditions: [os_major_version >= 6]
@@ -171,7 +171,7 @@ name: TerminalServicesEventLogEvtx
 doc: Windows TerminalServices Event log.
 sources:
 - type: FILE
-  attributes: 
+  attributes:
     paths: ['%%environ_systemroot%%\System32\winevt\Logs\Microsoft-Windows-TerminalServices-LocalSessionManager%4Operational.evtx']
     separator: '\'
 conditions: [os_major_version >= 6]
@@ -246,7 +246,7 @@ name: WindowsSearchDatabase
 doc: Windows Search database (Windows.edb).
 sources:
 - type: FILE
-  attributes: 
+  attributes:
     paths: ['%%environ_allusersappdata%%\Microsoft\Search\Data\Applications\Windows\Windows.edb']
     separator: '\'
 labels: [Software]
