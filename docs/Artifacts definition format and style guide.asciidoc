@@ -2,18 +2,18 @@
 
 :toc:
 :toc-placement: manual
-:toc-title: 
+:toc-title:
 :toclevels: 4
 :icons:
 
 :numbered!:
 [abstract]
 == Summary
-This guide contains a description of the forensics artifacts definitions. 
-The artifacts definitions are 
-link:http://www.yaml.org/spec/1.2/spec.html[YAML]-based. The format is 
-currently still under development and is likely to undergo some change. One of 
-the goals of this guide is to ensure consistency and readbility of the 
+This guide contains a description of the forensics artifacts definitions.
+The artifacts definitions are
+link:http://www.yaml.org/spec/1.2/spec.html[YAML]-based. The format is
+currently still under development and is likely to undergo some change. One of
+the goals of this guide is to ensure consistency and readbility of the
 artifacts definitions.
 
 [preface]
@@ -32,8 +32,8 @@ toc::[]
 
 :numbered:
 == Background
-The first version of the artifact definitions originated from the 
-https://github.com/google/grr[GRR project], where it is used to describe and quickly collect data of interest, e.g. specific files or Windows Registry keys. The 
+The first version of the artifact definitions originated from the
+https://github.com/google/grr[GRR project], where it is used to describe and quickly collect data of interest, e.g. specific files or Windows Registry keys. The
 goal of the format is to provide a way to describe the majority of forensic artifacts in a language that is readable by humans and machines.
 
 The format is designed to be simple and straight forward, so that a digital forensic
@@ -43,14 +43,14 @@ to rely on complex standards or tooling.
 The format is intended to describe forensically-relevant data on a machine, while being tool agnostic. In particular we intentionally avoided adding IOC-like logic, or describing how the data should be collected since this various between tools.
 
 == Terminology
-The term artifact (or artefact) is widely used within computer (or digital) 
+The term artifact (or artefact) is widely used within computer (or digital)
 forensics, though there is no official definition of this term.
 
-The definition closest to the meaning of the word within computer forensics is 
-that of the word artifact within 
-http://en.wikipedia.org/wiki/Artifact_(archaeology)[archaeology]. The term 
-should not be confused with the word artifact used within 
-http://en.wikipedia.org/wiki/Artifact_(software_development)[software 
+The definition closest to the meaning of the word within computer forensics is
+that of the word artifact within
+http://en.wikipedia.org/wiki/Artifact_(archaeology)[archaeology]. The term
+should not be confused with the word artifact used within
+http://en.wikipedia.org/wiki/Artifact_(software_development)[software
 development].
 
 If archaeology defines an artifact as:
@@ -68,12 +68,12 @@ ____
 An object of digital archaeological interest.
 ____
 
-Where digital archaeology roughly refers to computer forensics without the 
+Where digital archaeology roughly refers to computer forensics without the
 forensic (legal) context.
 
 == The artifact definition
-The best way to show what an artifact definition is, is by example. The 
-following example is the artifact definition for the Windows EVTX System Event 
+The best way to show what an artifact definition is, is by example. The
+following example is the artifact definition for the Windows EVTX System Event
 Logs.
 
 [source,yaml]
@@ -125,7 +125,7 @@ doc: |
   not all SIDs.
 ----
 
-*Style note*: the short description (first line) and the longer portion are 
+*Style note*: the short description (first line) and the longer portion are
 separated by an empty line.
 
 *Style note*: explicit newlines (\n) should not be used.
@@ -160,7 +160,7 @@ sources:
       - /root/.zprofile
 ----
 
-*Style note*: where sources take a single argument with a single value, the one-line {} 
+*Style note*: where sources take a single argument with a single value, the one-line {}
 form should be used to save on line breaks as below:
 
 [source,yaml]
@@ -282,7 +282,7 @@ See section: <<parameter_expansion,Parameter expansion and globs>>
 |===
 
 === Windows Registry key source
-The Windows Registry key source is a source that consists of the contents of 
+The Windows Registry key source is a source that consists of the contents of
 Windows Registry keys e.g.
 
 [source,yaml]
@@ -305,7 +305,7 @@ See section: <<parameter_expansion,Parameter expansion and globs>>
 |===
 
 === Windows Registry value source
-The Windows Registry value source is a source that consists of the contents of 
+The Windows Registry value source is a source that consists of the contents of
 Windows Registry values e.g.
 
 [source,yaml]
@@ -327,7 +327,7 @@ See section: <<parameter_expansion,Parameter expansion and globs>>
 |===
 
 === Windows Management Instrumentation (WMI) query source
-The  Windows Management Instrumentation (WMI) query source is a source that 
+The  Windows Management Instrumentation (WMI) query source is a source that
 consists of the output of Windows Management Instrumentation (WMI) queries e.g.
 
 [source,yaml]
@@ -364,8 +364,8 @@ conditions: [os_major_version >= 6 and time_zone == 'America/Los_Angeles']
 ----
 
 === [[supported_os]]Supported operating system
-Since operating system (OS) conditions are a very common constraint, this has 
-been provided as a separate option "supported_os" to simplify syntax. For 
+Since operating system (OS) conditions are a very common constraint, this has
+been provided as a separate option "supported_os" to simplify syntax. For
 supported_os no quotes are required. The currently supported operating systems
 are:
 
@@ -408,7 +408,7 @@ Currently the following different labels are defined:
 | Rekall | Artifacts using the Rekall memory forensics framework.
 |===
 
-The labes are defined in 
+The labes are defined in
 link:https://github.com/ForensicArtifacts/artifacts/blob/master/artifacts/definitions.py[definitions.py].
 
 == Style notes
@@ -420,8 +420,8 @@ $FILENAME.yaml
 
 Where $FILENAME is name of the file e.g. windows.yaml.
 
-Each defintion file should have a comment at the top of the file with a 
-one-line summary describing the type of artifact definitions contained in the 
+Each defintion file should have a comment at the top of the file with a
+one-line summary describing the type of artifact definitions contained in the
 file e.g.
 
 [source,yaml]
