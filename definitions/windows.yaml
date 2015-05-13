@@ -588,6 +588,21 @@ sources:
 supported_os: [Windows]
 urls: ['http://support.microsoft.com/en-us/kb/197571']
 ---
+name: WindowsUpdateStatus
+doc: Windows auto update status.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\Results\Detect', value: 'LastError'}
+      - {key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\Results\Detect', value: 'LastSuccessTime'}
+      - {key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\Results\Download', value: 'LastError'}
+      - {key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\Results\Download', value: 'LastSuccessTime'}
+      - {key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\Results\Install', value: 'LastError'}
+      - {key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\Results\Install', value: 'LastSuccessTime'}
+supported_os: [Windows]
+urls: ['http://forensicswiki.org/wiki/Windows_Update']
+---
 name: WMILoggedOnSessions
 doc: Logged on users queried from WMI.
 sources:
