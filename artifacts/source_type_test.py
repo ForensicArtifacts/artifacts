@@ -3,6 +3,7 @@
 
 import unittest
 
+from artifacts import errors
 from artifacts import source_type
 
 
@@ -79,14 +80,22 @@ class WindowsRegistryValueSourceTypeTest(unittest.TestCase):
   def testInitialize(self):
     """Tests the __init__ function."""
     source_type.WindowsRegistryValueSourceType(
-        key_value_pairs={'key': u'test', 'value': u'test'})
+        key_value_pairs=[{'key': u'test', 'value': u'test'}])
 
     with self.assertRaises(TypeError):
       source_type.WindowsRegistryValueSourceType(bogus=u'bogus')
 
     with self.assertRaises(TypeError):
       source_type.WindowsRegistryValueSourceType(
-          key_value_pairs={'key': u'test', 'value': u'test'}, bogus=u'bogus')
+          key_value_pairs=[{'key': u'test', 'value': u'test'}], bogus=u'bogus')
+
+    with self.assertRaises(errors.FormatError):
+      source_type.WindowsRegistryValueSourceType(
+          key_value_pairs=[{'bad': u'test', 'value': u'test'}])
+
+    with self.assertRaises(errors.FormatError):
+      source_type.WindowsRegistryValueSourceType(
+          key_value_pairs={'bad': u'test', 'value': u'test'})
 
 
 class WMIQuerySourceType(unittest.TestCase):
