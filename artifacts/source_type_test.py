@@ -98,7 +98,6 @@ class WindowsRegistryValueSourceTypeTest(unittest.TestCase):
           key_value_pairs={'bad': u'test', 'value': u'test'})
 
 
-
 class WMIQuerySourceType(unittest.TestCase):
   """Class to test the WMI query source type."""
 
