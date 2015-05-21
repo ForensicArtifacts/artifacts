@@ -176,6 +176,18 @@ class WindowsRegistryValueSourceType(SourceType):
     if not key_value_pairs:
       raise errors.FormatError(u'Missing key value pairs value.')
 
+    if not isinstance(key_value_pairs, list):
+      raise errors.FormatError(u'key_value_pairs must be a list, got: %s' %
+                               key_value_pairs)
+
+    for pair in key_value_pairs:
+      if not isinstance(pair, dict):
+        raise errors.FormatError(u'key_value_pair must be a dict, got: %s' %
+                                 key_value_pairs)
+      if set(pair.keys()) != set(['key', 'value']):
+        raise errors.FormatError(u'key_value_pair missing "key" and "value"'
+                                 u' keys, got: %s' % key_value_pairs)
+
     super(WindowsRegistryValueSourceType, self).__init__()
     self.key_value_pairs = key_value_pairs
 
