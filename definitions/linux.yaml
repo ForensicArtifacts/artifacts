@@ -154,6 +154,15 @@ sources:
 labels: [Authentication, Configuration Files]
 supported_os: [Linux]
 ---
+name: LinuxFstab
+doc: Linux fstab file.
+sources:
+- type: FILE
+  attributes: {paths: ['/etc/fstab']}
+labels: [System, Configuration Files]
+supported_os: [Linux]
+urls: ['http://en.wikipedia.org/wiki/Fstab']
+---
 name: LinuxWtmp
 doc: Linux wtmp file.
 sources:
