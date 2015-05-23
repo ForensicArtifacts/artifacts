@@ -217,6 +217,18 @@ sources:
     cmd: /sbin/lsmod
 supported_os: [Linux]
 ---
+name: LinuxRsyslogConfigs
+doc: Linux rsyslog configurations.
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '/etc/rsyslog.conf'
+      - '/etc/rsyslog.d*'
+labels: [Configuration Files, Logs]
+supported_os: [Linux]
+urls: ['http://www.rsyslog.com/doc/rsyslog_conf.html']
+---
 name: LinuxLSBInit
 doc: Linux LSB-style init scripts.
 sources:
