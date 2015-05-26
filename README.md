@@ -8,7 +8,7 @@ If you'd like to use the artifacts in your own tools, **all you need to be able 
 The [ForensicArtifacts.com](http://forensicartifacts.com/) artifact repository
 was forked from the [GRR project](https://github.com/google/grr) artifact
 collection into a stand-alone repository that is not tool-specific. The GRR
-developers will migrate to using this repository and make contributions here. In
+developers have migrated to using this repository and make contributions here. In
 addition the ForensicArtifact team will begin backfilling artifacts in the new
 format from the [ForensicArtifacts.com](http://forensicartifacts.com/) website.
 
