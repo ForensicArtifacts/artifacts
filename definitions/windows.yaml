@@ -607,6 +607,26 @@ sources:
 supported_os: [Windows]
 urls: ['http://forensicswiki.org/wiki/Windows_Update']
 ---
+name: WinRARExternalViewer
+doc: Executable run when a file is opened by WinRAR inside an archive.
+sources:
+- type: REGISTRY_VALUE
+  attributes: {key_value_pairs: [{key: 'HKEY_USERS\%%users.sid%%\Software\WinRAR\Viewer\', value: 'ExternalViewer'}]}
+supported_os: [Windows]
+urls:
+- 'http://www.hexacorn.com/blog/2012/09/16/beyond-good-ol-run-key-part-2/'
+- 'http://acritum.com/software/manuals/winrar/html/helpinterfaceviewing.htm'
+---
+name: WinRARAVScan
+doc: Executable run to scan a file when it is opened by WinRAR.
+sources:
+- type: REGISTRY_VALUE
+  attributes: {key_value_pairs: [{key: 'HKEY_USERS\%%users.sid%%\Software\WinRAR\VirusScan\', value: 'Name'}]}
+supported_os: [Windows]
+urls:
+- 'http://www.hexacorn.com/blog/2012/09/16/beyond-good-ol-run-key-part-2/'
+- 'http://acritum.com/software/manuals/winrar/html/helpcommandsvirusscan.htm'
+---
 name: WMILoggedOnSessions
 doc: Logged on users queried from WMI.
 sources:
