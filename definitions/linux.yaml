@@ -118,12 +118,12 @@ sources:
 labels: [Configuration Files]
 supported_os: [Linux]
 ---
-name: AllUsersShellConfigs
-doc: Common shell configuration files for root and users.
+name: AllShellConfigs
+doc: Common shell configuration files containing global, users & root settings.
 sources:
 - type: ARTIFACT
   attributes:
-    names: [UsersShellConfigs, RootUserShellConfigs]
+    names: [GlobalShellConfigs, UsersShellConfigs, RootUserShellConfigs]
 labels: [Configuration Files]
 supported_os: [Linux]
 ---
