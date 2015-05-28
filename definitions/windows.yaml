@@ -648,7 +648,7 @@ sources:
   attributes: {query: SELECT * FROM Win32_Service}
 supported_os: [Windows]
 ---
-name: WindowsAutoexec
+name: WindowsAutoexecBat
 doc: Windows autoexec.bat file
 sources:
 - type: FILE
@@ -691,8 +691,8 @@ sources:
     separator: '\'
 supported_os: [Windows]
 ---
-name: WindowsIniFiles
-doc: Windows ini file 
+name: WindowsSystemIniFiles
+doc: Windows system ini files
 sources:
 - type: FILE
   attributes:
@@ -710,6 +710,7 @@ sources:
   attributes:
     key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager', value: 'SetupExecute'}]
 supported_os: [Windows]
+urls: ['https://msdn.microsoft.com/en-us/library/windows/desktop/dd392286%28v=vs.85%29.aspx']
 ---
 name: WindowsSessionManagerExecute
 doc: Windows Session Manager Execute persistence
@@ -718,7 +719,7 @@ sources:
   attributes:
     key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager', value: 'Execute'}]
 supported_os: [Windows]
-
+urls: ['https://technet.microsoft.com/en-us/library/cc976130.aspx']
 ---
 name: WindowsNetshHelpers
 doc: Windows Netsh helpers are loaded on boot 
@@ -728,6 +729,7 @@ sources:
     keys:
       - 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Netsh'
 supported_os: [Windows]
+urls: ['https://support.microsoft.com/en-us/kb/242468']
 ---
 name: WindowsPendingFileRenames
 doc: Windows Pending file renames on reboot
@@ -773,6 +775,7 @@ sources:
       - {key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'GinaDll'}
       - {key: 'HKEY_USERS\%%users.sid%%\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'GinaDll'}
 supported_os: [Windows]
+urls: ['https://technet.microsoft.com/en-us/library/cc939701.aspx']
 ---
 name: WindowsWinlogonTaskman
 doc: Windows Winlogon Taskman
@@ -783,6 +786,7 @@ sources:
       - {key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'Taskman'}
       - {key: 'HKEY_USERS\%%users.sid%%\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'Taskman'}
 supported_os: [Windows]
+urls: ['https://technet.microsoft.com/en-us/library/cc939701.aspx']
 ---
 name: WindowsPolicyShell
 doc: Windows shell replacement
@@ -805,7 +809,7 @@ sources:
       - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Windows', value: 'run'}
       - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Windows', value: 'run'}
 supported_os: [Windows]
-urls: http://support.microsoft.com/en-us/kb/103865
+urls: ['http://support.microsoft.com/en-us/kb/103865']
 ---
 name: WindowsTerminalServerStartupPrograms
 doc: Windows Terminal Server Startup Programs
@@ -824,6 +828,7 @@ sources:
     key_value_pairs:
       - {key: 'HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'AppSetup'}
 supported_os: [Windows]
+urls: ['https://technet.microsoft.com/en-us/library/cc939701.aspx']
 ---
 name: WindowsWinlogonVmApplet
 doc: Windows Winlogon VmApplet 
@@ -833,6 +838,7 @@ sources:
     key_value_pairs:
       - {key: 'HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'VmApplet'}
 supported_os: [Windows]
+urls: ['https://technet.microsoft.com/en-us/library/cc939701.aspx']
 ---
 name: WindowsStartupScript
 doc: Windows shell replacement
@@ -842,6 +848,7 @@ sources:
     key_value_pairs:    
       - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\System\Scripts', value: 'Startup'}
 supported_os: [Windows]
+urls: ['https://technet.microsoft.com/en-us/library/cc940158.aspx']
 ---
 name: WindowsLogonScript
 doc: Windows shell replacement
@@ -852,3 +859,5 @@ sources:
       - {key: 'HKEY_USERS\%%users.sid%%\Software\Policies\Microsoft\Windows\System\Scripts', value: 'Logon'}
       - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\System\Scripts', value: 'Logon'}
 supported_os: [Windows]
+urls: ['https://technet.microsoft.com/en-us/library/cc940158.aspx']
+
