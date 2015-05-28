@@ -163,6 +163,16 @@ labels: [System, Configuration Files]
 supported_os: [Linux]
 urls: ['http://en.wikipedia.org/wiki/Fstab']
 ---
+name: LinuxMountInfo
+doc: Linux mount options.
+sources:
+- type: ARTIFACT
+  attributes:
+    names: [LinuxFstab, LinuxProcMounts]
+labels: [System, Configuration Files]
+supported_os: [Linux]
+urls: ['http://en.wikipedia.org/wiki/Fstab']
+---
 name: LinuxWtmp
 doc: Linux wtmp file.
 sources:
