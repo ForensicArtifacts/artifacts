@@ -1,7 +1,7 @@
 # Artifacts common to Unix based OSs
 
 name: UsersShellConfigs
-doc: Unix user shell configuration files.
+doc: Common unix user shell configuration files.
 sources:
 - type: FILE
   attributes:
@@ -21,7 +21,7 @@ labels: [Configuration Files]
 supported_os: [Linux, Darwin]
 ---
 name: UsersShellHistory
-doc: Unix user shell configuration files.
+doc: Common unix user shell history files.
 sources:
 - type: FILE
   attributes:
