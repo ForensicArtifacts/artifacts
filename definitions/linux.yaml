@@ -94,8 +94,20 @@ sources:
 labels: [Configuration Files]
 supported_os: [Linux]
 ---
+name: AllShellConfigs
+doc: Common shell configuration files containing global, users & root settings.
+sources:
+- type: ARTIFACT
+  attributes:
+    names:
+      - GlobalShellConfigs
+      - UsersShellConfigs
+      - RootUserShellConfigs
+labels: [Configuration Files]
+supported_os: [Linux]
+---
 name: RootUserShellHistory
-doc: Common unix root shell configuration files.
+doc: Common unix root shell history files.
 sources:
 - type: FILE
   attributes:
@@ -104,6 +116,17 @@ sources:
       - '/root/.sh_history'
       - '/root/.zhistory'
       - '/root/.zsh_history'
+labels: [Configuration Files]
+supported_os: [Linux]
+---
+name: AllUsersShellHistory
+doc: Common shell history files for root and users.
+sources:
+- type: ARTIFACT
+  attributes:
+    names:
+      - UsersShellConfigs
+      - RootUserShellConfigs
 labels: [Configuration Files]
 supported_os: [Linux]
 ---
