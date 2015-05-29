@@ -741,8 +741,8 @@ sources:
 supported_os: [Windows]
 urls: ['https://technet.microsoft.com/en-us/library/cc960241.aspx']
 ---
-name: WindowsMSDTCDlls
-doc: Windows MSDTC attempts to load these dlls on start
+name: WindowsMSDTCDLLs
+doc: Windows MSDTC attempts to load these DLLs on start
 sources:
 - type: REGISTRY_KEY
   attributes:
@@ -841,17 +841,17 @@ supported_os: [Windows]
 urls: ['https://technet.microsoft.com/en-us/library/cc939701.aspx']
 ---
 name: WindowsStartupScript
-doc: Windows shell replacement
+doc: Windows policy startup script
 sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:    
       - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\System\Scripts', value: 'Startup'}
 supported_os: [Windows]
-urls: ['https://technet.microsoft.com/en-us/library/cc940158.aspx']
+urls: ['https://technet.microsoft.com/en-us/library/ff404236.aspx']
 ---
 name: WindowsLogonScript
-doc: Windows shell replacement
+doc: Windows policy logon script
 sources:
 - type: REGISTRY_VALUE
   attributes:
@@ -859,5 +859,4 @@ sources:
       - {key: 'HKEY_USERS\%%users.sid%%\Software\Policies\Microsoft\Windows\System\Scripts', value: 'Logon'}
       - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\System\Scripts', value: 'Logon'}
 supported_os: [Windows]
-urls: ['https://technet.microsoft.com/en-us/library/cc940158.aspx']
-
+urls: ['https://technet.microsoft.com/en-us/library/ff404236.aspx']
