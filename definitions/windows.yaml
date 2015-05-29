@@ -231,6 +231,7 @@ sources:
       - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunOnce\*'
       - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\Run\*'
       - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer\Run\*'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\RunOnce\Setup\*'
       - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run\*'
       - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Run\*'
       - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunOnce\*'
@@ -239,6 +240,7 @@ sources:
       - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunOnceEx\*'
       - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\Run\*'
       - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer\Run\*'
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunOnce\Setup\*'
 labels: [Software]
 supported_os: [Windows]
 ---
@@ -448,8 +450,10 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '%%environ_allusersprofile%%\Microsoft\Windows\Start Menu\Programs\Startup\*'
+      - '%%users.homedir%%\Start Menu\Programs\Startup\*'
+      - '%%environ_allusersprofile%%\Start Menu\Programs\Startup\*'
       - '%%users.homedir%%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\*'
+      - '%%environ_allusersprofile%%\Microsoft\Windows\Start Menu\Programs\Startup\*'
     separator: '\'
 supported_os: [Windows]
 ---
@@ -556,11 +560,11 @@ urls: ['https://technet.microsoft.com/en-us/library/cc939862.aspx']
 name: WindowsWinlogonShell
 doc: Windows shell replacement.
 sources:
-- type: REGISTRY_KEY
+- type: REGISTRY_VALUE
   attributes:
-    keys:
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\Shell'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\Shell'
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'Shell'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'Shell'}
 supported_os: [Windows]
 urls: ['https://msdn.microsoft.com/en-us/library/ms838576%28v=winembedded.5%29.aspx']
 ---
@@ -643,3 +647,216 @@ sources:
 - type: WMI
   attributes: {query: SELECT * FROM Win32_Service}
 supported_os: [Windows]
+---
+name: WindowsAutoexecBat
+doc: Windows autoexec.bat file
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '%%environ_systemdrive%%\autoexec.bat'
+      - '%%environ_windir%%\autoexec.nt'
+    separator: '\'
+supported_os: [Windows]
+---
+name: WindowsConfigSys
+doc: Windows config.sys file
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '%%environ_systemdrive%%\config.sys'
+      - '%%environ_windir%%\config.nt'
+    separator: '\'
+supported_os: [Windows]
+---
+name: WindowsGroupPolicyScripts
+doc: Windows group policy scripts
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '%%environ_systemdroot%%\GroupPolicy\User\Scripts\scripts.ini'
+    separator: '\'
+supported_os: [Windows]
+---
+name: WindowsWinstart
+doc: Windows winstart.bat file
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '%%environ_windir%%\winstart.bat'
+      - '%%environ_windir%%\dosstart.bat'
+    separator: '\'
+supported_os: [Windows]
+---
+name: WindowsSystemIniFiles
+doc: Windows system ini files
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '%%environ_systemdrive%%\system.ini'
+      - '%%environ_windir%%\win.ini'
+      - '%%environ_windir%%\wininit.ini'
+    separator: '\'
+supported_os: [Windows]
+---
+name: WindowsSessionManagerSetupExecute
+doc: Windows Session Manager SetupExecute persistence
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager', value: 'SetupExecute'}]
+supported_os: [Windows]
+urls: ['https://msdn.microsoft.com/en-us/library/windows/desktop/dd392286%28v=vs.85%29.aspx']
+---
+name: WindowsSessionManagerExecute
+doc: Windows Session Manager Execute persistence
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager', value: 'Execute'}]
+supported_os: [Windows]
+urls: ['https://technet.microsoft.com/en-us/library/cc976130.aspx']
+---
+name: WindowsNetshHelpers
+doc: Windows Netsh helpers are loaded on boot 
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
+      - 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Netsh'
+supported_os: [Windows]
+urls: ['https://support.microsoft.com/en-us/kb/242468']
+---
+name: WindowsPendingFileRenames
+doc: Windows Pending file renames on reboot
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager', value: 'PendingFileRenameOperations'}
+supported_os: [Windows]
+urls: ['https://technet.microsoft.com/en-us/library/cc960241.aspx']
+---
+name: WindowsMSDTCDLLs
+doc: Windows MSDTC attempts to load these DLLs on start
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
+      - 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\MSDTC\MTxOCI\*'
+      - 'HKEY_USERS\%%users.sid%%\SOFTWARE\Microsoft\MSDTC\MTxOCI\*'
+supported_os: [Windows]
+urls: ['https://www.mandiant.com/blog/hikit-rootkit-advanced-persistent-attack-techniques-part-1-2/']
+---
+name: WindowsTerminalServerRunKeys
+doc: Windows Terminal Server Run Keys
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
+      - 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Terminal Server\Install\Software\Microsoft\Windows\CurrentVersion\Runonce\*'
+      - 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Terminal Server\Install\Software\Microsoft\Windows\CurrentVersion\RunonceEx\*'
+      - 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Terminal Server\Install\Software\Microsoft\Windows\CurrentVersion\Run\*'
+      - 'HKEY_USERS\%%users.sid%%\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Terminal Server\Install\Software\Microsoft\Windows\CurrentVersion\Runonce\*'
+      - 'HKEY_USERS\%%users.sid%%\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Terminal Server\Install\Software\Microsoft\Windows\CurrentVersion\RunonceEx\*'
+      - 'HKEY_USERS\%%users.sid%%\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Terminal Server\Install\Software\Microsoft\Windows\CurrentVersion\Run\*'
+supported_os: [Windows]
+---
+name: WindowsWinlogonMSGina
+doc: Windows Winlogon MSGina
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'GinaDll'}
+      - {key: 'HKEY_USERS\%%users.sid%%\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'GinaDll'}
+supported_os: [Windows]
+urls: ['https://technet.microsoft.com/en-us/library/cc939701.aspx']
+---
+name: WindowsWinlogonTaskman
+doc: Windows Winlogon Taskman
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'Taskman'}
+      - {key: 'HKEY_USERS\%%users.sid%%\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'Taskman'}
+supported_os: [Windows]
+urls: ['https://technet.microsoft.com/en-us/library/cc939701.aspx']
+---
+name: WindowsPolicyShell
+doc: Windows shell replacement
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Policies\System', value: 'Shell'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System', value: 'Shell'}
+supported_os: [Windows]
+---
+name: WindowsProgManRunKeys
+doc: Windows Legacy shell run keys
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Windows', value: 'load'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Windows', value: 'load'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Windows', value: 'run'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Windows', value: 'run'}
+supported_os: [Windows]
+urls: ['http://support.microsoft.com/en-us/kb/103865']
+---
+name: WindowsTerminalServerStartupPrograms
+doc: Windows Terminal Server Startup Programs
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Terminal Server\Wds\rdpwd', value: 'StartupPrograms'}
+supported_os: [Windows]
+---
+name: WindowsWinlogonAppSetup
+doc: Windows Winlogon Appsetup 
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'AppSetup'}
+supported_os: [Windows]
+urls: ['https://technet.microsoft.com/en-us/library/cc939701.aspx']
+---
+name: WindowsWinlogonVmApplet
+doc: Windows Winlogon VmApplet 
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'VmApplet'}
+supported_os: [Windows]
+urls: ['https://technet.microsoft.com/en-us/library/cc939701.aspx']
+---
+name: WindowsStartupScript
+doc: Windows policy startup script
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:    
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\System\Scripts', value: 'Startup'}
+supported_os: [Windows]
+urls: ['https://technet.microsoft.com/en-us/library/ff404236.aspx']
+---
+name: WindowsLogonScript
+doc: Windows policy logon script
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:    
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Policies\Microsoft\Windows\System\Scripts', value: 'Logon'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\System\Scripts', value: 'Logon'}
+supported_os: [Windows]
+urls: ['https://technet.microsoft.com/en-us/library/ff404236.aspx']
