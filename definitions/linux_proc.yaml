@@ -165,7 +165,6 @@ sources:
       - 'LinuxNetworkIpForwardingState'
       - 'LinuxNetworkPathFilteringSettings'
       - 'LinuxNetworkRedirectState'
-      - 'LinuxProcMounts'
       - 'LinuxRestrictedDmesgReadPrivileges'
       - 'LinuxRestrictedKernelPointerReadPrivileges'
       - 'LinuxSecureSuidCoreDumps'

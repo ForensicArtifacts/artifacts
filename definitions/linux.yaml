@@ -43,7 +43,10 @@ doc: All Linux job scheduling files.
 sources:
 - type: ARTIFACT
   attributes:
-    names: [AnacronFiles, LinuxCronTabs, LinuxAtJobs]
+    names:
+      - AnacronFiles
+      - LinuxCronTabs
+      - LinuxAtJobs
 labels: [Configuration Files]
 supported_os: [Linux]
 ---
@@ -186,6 +189,17 @@ labels: [System, Configuration Files]
 supported_os: [Linux]
 urls: ['http://en.wikipedia.org/wiki/Fstab']
 ---
+name: LinuxMountInfo
+doc: Linux mount options.
+sources:
+- type: ARTIFACT
+  attributes:
+    names:
+      - LinuxFstab
+      - LinuxProcMounts
+labels: [System, Configuration Files]
+supported_os: [Linux]
+---
 name: LinuxWtmp
 doc: Linux wtmp file.
 sources:
@@ -292,7 +306,10 @@ doc: Services running on a Linux system.
 sources:
 - type: ARTIFACT
   attributes:
-    names: [LinuxXinetd, LinuxLSBInit, LinuxSysVInit]
+    names:
+      - LinuxXinetd
+      - LinuxLSBInit
+      - LinuxSysVInit
 labels: [Configuration Files, System]
 supported_os: [Linux]
 ---
