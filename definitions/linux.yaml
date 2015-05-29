@@ -123,7 +123,10 @@ doc: Common shell configuration files containing global, users & root settings.
 sources:
 - type: ARTIFACT
   attributes:
-    names: [GlobalShellConfigs, UsersShellConfigs, RootUserShellConfigs]
+    names:
+      - GlobalShellConfigs
+      - UsersShellConfigs
+      - RootUserShellConfigs
 labels: [Configuration Files]
 supported_os: [Linux]
 ---
@@ -145,7 +148,9 @@ doc: Common shell history files for root and users.
 sources:
 - type: ARTIFACT
   attributes:
-    names: [UsersShellConfigs, RootUserShellConfigs]
+    names:
+      - UsersShellConfigs
+      - RootUserShellConfigs
 labels: [Configuration Files]
 supported_os: [Linux]
 ---
