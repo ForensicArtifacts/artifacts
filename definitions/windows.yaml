@@ -676,7 +676,7 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '%%environ_systemdroot%%\GroupPolicy\User\Scripts\scripts.ini'
+      - '%%environ_systemroot%%\GroupPolicy\User\Scripts\scripts.ini'
     separator: '\'
 supported_os: [Windows]
 ---
