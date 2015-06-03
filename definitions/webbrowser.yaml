@@ -252,7 +252,7 @@ sources:
     keys:
       - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer\Low Rights\ElevationPolicy\*\*'
       - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Internet Explorer\Low Rights\ElevationPolicy\*\*'
-labels: [Software]
+labels: [Browser]
 supported_os: [Windows]
 urls:
  - 'http://blogs.technet.com/b/juanand/archive/2010/10/29/internet-explorer-protected-mode-elevation-policy-and-administrative-templates.aspx'

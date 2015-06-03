@@ -686,7 +686,7 @@ doc: |
   CopyHookHandlers, DragDropHandlers, and ColumnHandlers are similar contextual
   settings to trigger on these actions.
 sources:
-- type: REGISTRY_VALUE
+- type: REGISTRY_KEY
   attributes:
     keys:
       - 'HKEY_LOCAL_MACHINE\software\classes\directory\background\shellex\contextmenuhandlers\*'
