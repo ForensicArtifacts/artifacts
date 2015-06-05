@@ -680,6 +680,41 @@ sources:
     separator: '\'
 supported_os: [Windows]
 ---
+name: WindowsShellHandlersRegistryKeys
+doc: |
+  Windows registry values for shell handler artifacts.
+
+  ContextMenuHandlers are added to right-click menus.
+  CopyHookHandlers, DragDropHandlers, and ColumnHandlers are similar contextual
+  settings to trigger on these actions.
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
+      - 'HKEY_LOCAL_MACHINE\Software\Classes\Directory\Background\ShellEx\ContextMenuHandlers\*'
+      - 'HKEY_LOCAL_MACHINE\Software\Classes\Directory\Background\ShellEx\CopyHookHandlers\*'
+      - 'HKEY_LOCAL_MACHINE\Software\Classes\Directory\Background\ShellEx\DragDropHandlers\*'
+      - 'HKEY_LOCAL_MACHINE\Software\Classes\Directory\Background\ShellEx\PropertySheetHandlers\*'
+      - 'HKEY_LOCAL_MACHINE\Software\Classes\*\ShellEx\ContextMenuHandlers\*'
+      - 'HKEY_LOCAL_MACHINE\Software\Classes\*\ShellEx\CopyHookHandlers\*'
+      - 'HKEY_LOCAL_MACHINE\Software\Classes\*\ShellEx\DragDropHandlers\*'
+      - 'HKEY_LOCAL_MACHINE\Software\Classes\*\ShellEx\PropertySheetHandlers\*'
+      - 'HKEY_LOCAL_MACHINE\Software\Classes\*\ShellEx\ColumnHandlers\*'
+      - 'HKEY_USERS\%%users.sid%%\Software\Classes\Directory\Background\ShellEx\ContextMenuHandlers\*'
+      - 'HKEY_USERS\%%users.sid%%\Software\Classes\Directory\Background\ShellEx\CopyHookHandlers\*'
+      - 'HKEY_USERS\%%users.sid%%\Software\Classes\Directory\Background\ShellEx\DragDropHandlers\*'
+      - 'HKEY_USERS\%%users.sid%%\Software\Classes\Directory\Background\ShellEx\PropertySheetHandlers\*'
+      - 'HKEY_USERS\%%users.sid%%\Software\Classes\*\ShellEx\ContextMenuHandlers\*'
+      - 'HKEY_USERS\%%users.sid%%\Software\Classes\*\ShellEx\CopyHookHandlers\*'
+      - 'HKEY_USERS\%%users.sid%%\Software\Classes\*\ShellEx\DragDropHandlers\*'
+      - 'HKEY_USERS\%%users.sid%%\Software\Classes\*\ShellEx\PropertySheetHandlers\*'
+      - 'HKEY_USERS\%%users.sid%%\Software\Classes\Folder\ShellEx\ColumnHandlers\*'
+supported_os: [Windows]
+urls:
+  - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
+  - 'http://www.codeguru.com/cpp/com-tech/shell/article.php/c4515/Logging-the-Shell-Activity.htm'
+  - 'http://www.trendmicro.com/vinfo/us/threat-encyclopedia/archive/malware/troj_qoolaid.r'
+---
 name: WindowsWinstart
 doc: Windows winstart.bat file
 sources:
@@ -765,6 +800,7 @@ sources:
       - 'HKEY_USERS\%%users.sid%%\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Terminal Server\Install\Software\Microsoft\Windows\CurrentVersion\RunonceEx\*'
       - 'HKEY_USERS\%%users.sid%%\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Terminal Server\Install\Software\Microsoft\Windows\CurrentVersion\Run\*'
 supported_os: [Windows]
+urls: ['http://gladiator-antivirus.com/forum/index.php?showtopic=24610']
 ---
 name: WindowsWinlogonMSGina
 doc: Windows Winlogon MSGina
@@ -819,6 +855,7 @@ sources:
     key_value_pairs:
       - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Terminal Server\Wds\rdpwd', value: 'StartupPrograms'}
 supported_os: [Windows]
+urls: ['http://forum.sysinternals.com/rdpclip_topic4729.html']
 ---
 name: WindowsWinlogonAppSetup
 doc: Windows Winlogon Appsetup

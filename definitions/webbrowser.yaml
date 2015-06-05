@@ -230,6 +230,41 @@ labels: [Browser]
 supported_os: [Windows]
 urls: ['http://www.forensicswiki.org/wiki/Internet_Explorer']
 ---
+name: InternetExplorerProtectedModeElevationPolicies
+doc: |
+  Trust levels of apps launched from low rights IE sessions.
+
+  The ElevationPolicy dictates how IE handles applications that want to execute
+  in other applications that reside outside of the Low Rights IE session.
+
+  * AppName is the executable
+  * AppPath is the directory
+  * CLSID is used if it launches a COM server through CoCreateInstance
+  * Policy (DWORD) is the trust level, of 0 through 3.
+
+  * 3 Protected Mode silently launches the broker as a medium integrity process.
+  * 2 Protected Mode prompts the user for permission to launch the process. If
+      permission is granted, the process is launched as a medium integrity process.
+  * 1 Protected Mode silently launches the broker as a low integrity process.
+  * 0 Protected Mode prevents the process from launching.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer\Low Rights\ElevationPolicy\*', value: 'Policy'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer\Low Rights\ElevationPolicy\*', value: 'AppName'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer\Low Rights\ElevationPolicy\*', value: 'AppPath'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer\Low Rights\ElevationPolicy\*', value: 'CLSID'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Internet Explorer\Low Rights\ElevationPolicy\*', value: 'Policy'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Internet Explorer\Low Rights\ElevationPolicy\*', value: 'AppName'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Internet Explorer\Low Rights\ElevationPolicy\*', value: 'AppPath'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Internet Explorer\Low Rights\ElevationPolicy\*', value: 'CLSID'}
+labels: [Browser]
+supported_os: [Windows]
+urls:
+ - 'http://blogs.technet.com/b/juanand/archive/2010/10/29/internet-explorer-protected-mode-elevation-policy-and-administrative-templates.aspx'
+ - 'https://msdn.microsoft.com/en-us/library/bb250462(VS.85).aspx'
+---
 name: InternetExplorerTypedURLsKeys
 doc: Microsoft Internet Explorer TypedUrls keys.
 sources:
