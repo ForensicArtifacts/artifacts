@@ -239,6 +239,7 @@ doc: |
 
   * AppName is the executable
   * AppPath is the directory
+  * CLSID is used if it launches a COM server through CoCreateInstance
   * Policy (DWORD) is the trust level, of 0 through 3.
 
   * 3 Protected Mode silently launches the broker as a medium integrity process.
@@ -247,11 +248,17 @@ doc: |
   * 1 Protected Mode silently launches the broker as a low integrity process.
   * 0 Protected Mode prevents the process from launching.
 sources:
-- type: REGISTRY_KEY
+- type: REGISTRY_VALUE
   attributes:
-    keys:
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer\Low Rights\ElevationPolicy\*\*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Internet Explorer\Low Rights\ElevationPolicy\*\*'
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer\Low Rights\ElevationPolicy\*', value: 'Policy'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer\Low Rights\ElevationPolicy\*', value: 'AppName'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer\Low Rights\ElevationPolicy\*', value: 'AppPath'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer\Low Rights\ElevationPolicy\*', value: 'CLSID'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Internet Explorer\Low Rights\ElevationPolicy\*', value: 'Policy'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Internet Explorer\Low Rights\ElevationPolicy\*', value: 'AppName'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Internet Explorer\Low Rights\ElevationPolicy\*', value: 'AppPath'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Internet Explorer\Low Rights\ElevationPolicy\*', value: 'CLSID'}
 labels: [Browser]
 supported_os: [Windows]
 urls:
