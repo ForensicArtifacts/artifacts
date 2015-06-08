@@ -238,7 +238,8 @@ sources:
   attributes:
     paths:
       - '/etc/rsyslog.conf'
-      - '/etc/rsyslog.d*'
+      - '/etc/rsyslog.d'
+      - '/etc/rsyslog.d/*'
 labels: [Configuration Files, Logs]
 supported_os: [Linux]
 urls: ['http://www.rsyslog.com/doc/rsyslog_conf.html']
