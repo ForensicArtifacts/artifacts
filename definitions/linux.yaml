@@ -218,6 +218,15 @@ labels: [Authentication, Configuration Files]
 provides: [users.username]
 supported_os: [Linux]
 ---
+name: NtpConfFile
+doc: The configuration file for ntpd. e.g. ntp.conf.
+sources:
+- type: FILE
+  attributes: {paths: ['/etc/ntp.conf']}
+labels: [Configuration Files]
+supported_os: [Linux]
+urls: ['https://www.freebsd.org/cgi/man.cgi?query=ntp.conf&sektion=5']
+---
 name: ThumbnailCacheFolder
 doc: Thumbnail cache folder.
 sources:
