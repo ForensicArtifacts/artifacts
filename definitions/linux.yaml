@@ -300,6 +300,17 @@ labels: [Configuration Files, Logs]
 supported_os: [Linux]
 urls: ['http://www.rsyslog.com/doc/rsyslog_conf.html']
 ---
+name: LinuxSyslogNgConfigs
+doc: Linux syslog-ng configuration.
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '/etc/syslog-ng/syslog-ng.conf'
+labels: [Configuration Files, Logs]
+supported_os: [Linux]
+urls: ['http://linux.die.net/man/5/syslog-ng.conf']
+---
 name: LinuxLSBInit
 doc: Linux LSB-style init scripts.
 sources:
