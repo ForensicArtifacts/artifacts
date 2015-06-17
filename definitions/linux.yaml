@@ -276,7 +276,7 @@ labels: [Configuration Files, Logs]
 supported_os: [Linux]
 urls: ['http://www.rsyslog.com/doc/rsyslog_conf.html']
 ---
-name: LinuxSyslogNgConfigs
+name: LinuxSyslogNgConfig
 doc: Linux syslog-ng configuration.
 sources:
 - type: FILE
