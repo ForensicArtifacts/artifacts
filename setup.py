@@ -50,7 +50,7 @@ setup(
         'Operating System :: OS Independent',
         'Programming Language :: Python',
     ],
-    packages=find_packages('.', exclude=[u'tools']),
+    packages=find_packages('.', exclude=[u'tests', u'tests.*', u'tools']),
     package_dir={'artifacts': 'artifacts'},
     data_files=[
         ('share/artifacts', glob.glob(os.path.join('definitions', '*'))),
