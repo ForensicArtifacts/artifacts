@@ -7,6 +7,9 @@ from artifacts import errors
 from artifacts import source_type
 
 
+# pylint: disable=unexpected-keyword-arg
+
+
 class SourceTypeTest(unittest.TestCase):
   """Class to test the artifact source type."""
 
