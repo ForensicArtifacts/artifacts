@@ -15,3 +15,10 @@ sources:
   attributes: {paths: ['/etc/exports']}
 labels: [Configuration Files]
 supported_os: [Linux, Darwin]
+---
+name: Sudoers
+doc: Sudo configuration file
+sources:
+- type: FILE
+  supported_os: [Linux, Darwin]
+  attributes: {paths: ['/etc/sudoers']}
