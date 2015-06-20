@@ -1,5 +1,15 @@
 # Linux specific /proc artifacts.
 
+name: LinuxSysctlCmd
+doc: Linux output of systctl -a.
+sources:
+- type: COMMAND
+  attributes:
+    args: ["-a"]
+    cmd: /sbin/sysctl
+supported_os: [Linux]
+urls: ['https://www.kernel.org/doc/Documentation/sysctl']
+---
 name: LinuxASLREnabled
 doc: Kernel ASLR state.
 sources:
