@@ -213,6 +213,16 @@ labels: [System, Configuration Files]
 supported_os: [Linux]
 urls: ['http://en.wikipedia.org/wiki/Fstab']
 ---
+name: LinuxMountCmd
+doc: Linux output of mount
+sources:
+- type: COMMAND
+  attributes:
+    args: []
+    cmd: /bin/mount
+labels: [System]
+supported_os: [Linux]
+---
 name: LinuxMountInfo
 doc: Linux mount options.
 sources:
