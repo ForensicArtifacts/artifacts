@@ -114,7 +114,6 @@ provides:
   - users.startup
   - users.homedir
   - users.desktop
-  - users.local_settings
   - users.internet_cache
   - users.localappdata
   - users.localappdata_low
