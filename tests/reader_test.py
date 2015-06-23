@@ -2,8 +2,8 @@
 """Tests for the artifact definitions readers."""
 
 import io
-import unittest
 import os
+import unittest
 
 from artifacts import definitions
 from artifacts import errors

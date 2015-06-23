@@ -10,6 +10,7 @@ from artifacts import source_type
 class SourceTypeTest(unittest.TestCase):
   """Class to test the artifact source type."""
 
+
 class ArtifactSourceTypeTest(unittest.TestCase):
   """Class to test the artifacts source type."""
 

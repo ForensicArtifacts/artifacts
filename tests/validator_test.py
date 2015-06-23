@@ -3,8 +3,8 @@
 """Tests for the artifact definitions validator."""
 
 import glob
-import unittest
 import os
+import unittest
 
 from tools import validator
 
