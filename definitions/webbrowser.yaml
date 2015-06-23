@@ -223,7 +223,7 @@ sources:
       - '%%users.localappdata%%\Microsoft\Windows\History\Low\History.IE5\index.dat'
       - '%%users.localappdata%%\Microsoft\Windows\History\History.IE5\*\index.dat'
       - '%%users.localappdata%%\Microsoft\Windows\History\Low\History.IE5\*\index.dat'
-      - '%%users.local_settings%%\Application Data\Microsoft\Feeds Cache\index.dat'
+      - '%%users.userprofile%%\Local Settings\Application Data\Microsoft\Feeds Cache\index.dat'
       - '%%users.appdata%%\Microsoft\Windows\IEDownloadHistory\index.dat'
       - '%%users.localappdata%%\Microsoft\Windows\WebCache\WebCacheV*.dat'
 labels: [Browser]
