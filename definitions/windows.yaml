@@ -568,19 +568,6 @@ sources:
 supported_os: [Windows]
 urls: ['https://msdn.microsoft.com/en-us/library/ms838576%28v=winembedded.5%29.aspx']
 ---
-name: WindowsLoadAndRunValues
-doc: Windows Load and Run values.
-sources:
-- type: REGISTRY_VALUE
-  attributes:
-    key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Windows', value: 'load'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Windows', value: 'run'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Windows', value: 'load'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Windows', value: 'run'}
-supported_os: [Windows]
-urls: ['http://support.microsoft.com/en-us/kb/103865']
----
 name: WindowsAppInit
 doc: Windows AppInit persistence.
 sources:
