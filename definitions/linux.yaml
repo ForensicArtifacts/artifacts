@@ -382,7 +382,7 @@ sources:
 labels: [Configuration Files, System]
 supported_os: [Linux]
 ---
-name: ListProcessesPs
+name: ListProcessesPsCommand
 doc: Full process listing via the 'ps' command.
 sources:
 - type: COMMAND
