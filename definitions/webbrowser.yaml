@@ -159,6 +159,18 @@ supported_os: [Windows, Darwin, Linux]
 labels: [Browser]
 urls: ['http://forensicswiki.org/wiki/Google_Chrome#Extensions']
 ---
+name: ChromeExtensionRegistryKeys
+doc: Chrome extensions installed by writing windows registry keys.
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
+      - 'HKEY_LOCAL_MACHINE\Software\Google\Chrome\Extensions\**5'
+      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Google\Chrome\Extensions\**5'
+labels: [Browser]
+supported_os: [Windows]
+urls: ['https://developer.chrome.com/extensions/external_extensions#registry']
+---
 name: FirefoxHistory
 doc: Firefox browser history (places.sqlite).
 sources:
