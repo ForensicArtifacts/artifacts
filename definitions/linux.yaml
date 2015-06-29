@@ -354,6 +354,7 @@ sources:
     names:
       - LinuxXinetd
       - LinuxLSBInit
+      - LinuxSysVInit
 labels: [Configuration Files, System]
 supported_os: [Linux]
 ---
