@@ -32,6 +32,16 @@ sources:
 supported_os: [Windows]
 urls: ['https://github.com/libyal/winreg-kb/wiki/Time-zone-keys']
 ---
+name: BITSQueueManagerDatabases
+doc: Databases that control BITS job specs and state.
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '%%environ_allusersprofile%%\Microsoft\Network\Downloader\qmgr*.dat'
+supported_os: [Windows]
+urls: ['http://dfrws.org/2015/proceedings/presentations/DFRWS2015-pres3.pdf']
+---
 name: EventLogs
 doc: Windows Event logs.
 sources:
