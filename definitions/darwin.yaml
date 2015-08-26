@@ -1,6 +1,8 @@
 # Mac OS X (Darwin) specific artifacts.
-# URL: https://github.com/pstirparo/mac4n6
-# Last update: 2015-08-16
+# mac4n6: https://github.com/pstirparo/mac4n6
+# Reference: http://forensicswiki.org/wiki/Mac_OS_X
+# Reference: http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location
+# Last update: 2015-08-26
 
 name: OSXLaunchAgents
 doc: Launch Agents files
@@ -86,15 +88,6 @@ sources:
 - type: FILE
   attributes:
     paths: ['/Library/Preferences/.GlobalPreferences.plist']
-labels: [System]
-supported_os: [Darwin]
----
-name: OSXUpdate
-doc: Software Update
-sources:
-- type: FILE
-  attributes:
-    paths: ['/Library/Preferences/com.apple.SoftwareUpdate.plist']
 labels: [System]
 supported_os: [Darwin]
 ---
@@ -197,15 +190,6 @@ sources:
   attributes:
     paths: ['/Library/Preferences/com.apple.SoftwareUpdate.plist']
 labels: [System]
-supported_os: [Darwin]
----
-name: OSXApplications
-doc: Applications
-sources:
-- type: FILE
-  attributes:
-    paths: ['/Applications/*']
-labels: [Users]
 supported_os: [Darwin]
 ---
 name: OSXLocalTime
@@ -560,7 +544,7 @@ doc: User Trash Folder
 sources:
 - type: FILE
   attributes:
-    paths: ['%%users.homedir%%/.Trash/']
+    paths: ['%%users.homedir%%/.Trash/*']
 labels: [Users]
 supported_os: [Darwin]
 ---
@@ -569,7 +553,7 @@ doc: iCloud Accounts
 sources:
 - type: FILE
   attributes:
-    paths: ['%%users.homedir%%/Library/Application Support/iCloud/Accounts/']
+    paths: ['%%users.homedir%%/Library/Application Support/iCloud/Accounts/*']
 labels: [Users, Software, Cloud, Account]
 supported_os: [Darwin]
 ---
@@ -1150,5 +1134,5 @@ sources:
 labels: [Users, Software, Mail]
 supported_os: [Darwin]
 ---
-# Total Artifacts:  124
-# Total Locations:  142
+# Total Artifacts:  122
+# Total Locations:  140
