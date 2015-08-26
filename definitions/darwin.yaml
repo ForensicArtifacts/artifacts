@@ -1,101 +1,249 @@
 # Mac OS X (Darwin) specific artifacts.
+# URL: https://github.com/pstirparo/mac4n6
+# Last update: 2015-08-16
 
 name: OSXLaunchAgents
-doc: Mac OS X Launch Agent files.
+doc: Launch Agents files
 sources:
 - type: FILE
   attributes:
-    paths:
+    paths: 
       - '/Library/LaunchAgents/*'
       - '/System/Library/LaunchAgents/*'
-      - '%%users.homedir%%/Library/LaunchAgents/*'
 labels: [System]
 supported_os: [Darwin]
-urls: ['http://www.forensicswiki.org/wiki/Mac_OS_X']
 ---
 name: OSXLaunchDaemons
-doc: Mac OS X Launch Daemons files.
+doc: Launch Daemons files
 sources:
 - type: FILE
   attributes:
-    paths:
+    paths: 
       - '/Library/LaunchDaemons/*'
       - '/System/Library/LaunchDaemons/*'
-      - '%%users.homedir%%/Library/LaunchDaemons/*'
 labels: [System]
 supported_os: [Darwin]
-urls: ['http://www.forensicswiki.org/wiki/Mac_OS_X']
----
-name: OSXQuarantineEvents
-doc: Mac OS X quarantine event database.
-sources:
-- type: FILE
-  attributes:
-    paths:
-      - '%%users.homedir%%/Library/Preferences/com.apple.LaunchServices.QuarantineEvents'
-      - '%%users.homedir%%/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV2'
-labels: [Software]
-supported_os: [Darwin]
-urls: ['http://www.forensicswiki.org/wiki/Mac_OS_X']
 ---
 name: OSXStartupItems
-doc: Mac OS X Startup Items files.
+doc: Startup Items file
 sources:
 - type: FILE
   attributes:
-    paths:
+    paths: 
       - '/Library/StartupItems/*'
       - '/System/Library/StartupItems/*'
 labels: [System]
 supported_os: [Darwin]
-urls: ['http://www.forensicswiki.org/wiki/Mac_OS_X']
 ---
-name: OSXSystemLogs
-doc: Mac OS X system log files (/var/log).
-sources:
-- type: FILE
-  attributes: {paths: ['/var/log/*']}
-labels: [Logs, System]
-supported_os: [Darwin]
----
-name: OSXSystemPreferences
-doc: Mac OS X system preferences files.
-sources:
-- type: FILE
-  attributes: {paths: ['/Library/Preferences/*']}
-labels: [System]
-supported_os: [Darwin]
----
-name: OSXUserLogs
-doc: Mac OS X user log files.
-sources:
-- type: FILE
-  attributes: {paths: ['%%users.homedir%%/Library/Logs/*']}
-labels: [Logs, Users]
-supported_os: [Darwin]
----
-name: OSXUserPreferences
-doc: Mac OS X user preferences files.
-sources:
-- type: FILE
-  attributes: {paths: ['%%users.homedir%%/Library/Preferences/*']}
-labels: [Users]
-supported_os: [Darwin]
----
-name: OSXUserLoginItems
-doc: Mac OS X user login items.
-sources:
-- type: FILE
-  attributes: {paths: ['%%users.homedir%%/Library/Preferences/com.apple.loginitems.plist']}
-labels: [Users]
-supported_os: [Darwin]
----
-name: OSXPeriodicSystemFunctions
-doc: Mac OS X periodic system functions scripts and configuration.
+name: OSXGeneralSystemLogs
+doc: System Log files main folder
 sources:
 - type: FILE
   attributes:
-    paths:
+    paths: ['/var/log/*']
+labels: [System, Logs]
+supported_os: [Darwin]
+---
+name: OSXAppleSystemLogs
+doc: Apple System Log
+sources:
+- type: FILE
+  attributes:
+    paths: ['/var/log/asl/*']
+labels: [System, Logs]
+supported_os: [Darwin]
+---
+name: OSXAuditLogs
+doc: Audit Log
+sources:
+- type: FILE
+  attributes:
+    paths: ['/var/audit/*']
+labels: [System, Logs]
+supported_os: [Darwin]
+---
+name: OSXInstallationLog
+doc: Installation log
+sources:
+- type: FILE
+  attributes:
+    paths: ['/var/log/install.log']
+labels: [System, Logs]
+supported_os: [Darwin]
+---
+name: OSXSystemPreferences
+doc: System Preferences files
+sources:
+- type: FILE
+  attributes:
+    paths: ['/Library/Preferences/*']
+labels: [System]
+supported_os: [Darwin]
+---
+name: OSXGlobalPrefs
+doc: Global Preferences
+sources:
+- type: FILE
+  attributes:
+    paths: ['/Library/Preferences/.GlobalPreferences.plist']
+labels: [System]
+supported_os: [Darwin]
+---
+name: OSXUpdate
+doc: Software Update
+sources:
+- type: FILE
+  attributes:
+    paths: ['/Library/Preferences/com.apple.SoftwareUpdate.plist']
+labels: [System]
+supported_os: [Darwin]
+---
+name: OSXLoginWindow
+doc: Login Window Info
+sources:
+- type: FILE
+  attributes:
+    paths: ['/Library/Preferences/com.apple.loginwindow.plist']
+labels: [System, Authentication]
+supported_os: [Darwin]
+---
+name: OSXBluetooth
+doc: Bluetooth Preferences and paierd device info
+sources:
+- type: FILE
+  attributes:
+    paths: ['/Library/Preferences/com.apple.Bluetooth.plist']
+labels: [System, Logs]
+supported_os: [Darwin]
+---
+name: OSXTimeMachine
+doc: Time Machine Info
+sources:
+- type: FILE
+  attributes:
+    paths: ['/Library/Preferences/com.apple.TimeMachine.plist']
+labels: [System]
+supported_os: [Darwin]
+---
+name: OSXInstallationTime
+doc: OS Installation time
+sources:
+- type: FILE
+  attributes:
+    paths: ['/var/db/.AppleSetupDone']
+labels: [System]
+supported_os: [Darwin]
+---
+name: OSXSystemVersion
+doc: OS name and version
+sources:
+- type: FILE
+  attributes:
+    paths: ['/System/Library/CoreServices/SystemVersion.plist']
+labels: [System]
+supported_os: [Darwin]
+---
+name: OSXPasswordHashes
+doc: Users Log In Password Hash Plist
+sources:
+- type: FILE
+  attributes:
+    paths: ['/var/db/dslocal/nodes/Default/users/*']
+labels: [System, Users, Authentication]
+supported_os: [Darwin]
+---
+name: OSXSleepimage
+doc: Sleep Image File
+sources:
+- type: FILE
+  attributes:
+    paths: ['/var/vm/sleepimage']
+labels: [System]
+supported_os: [Darwin]
+---
+name: OSXSwapfiles
+doc: Swap Files
+sources:
+- type: FILE
+  attributes:
+    paths: ['/var/vm/swapfile#']
+labels: [System]
+supported_os: [Darwin]
+---
+name: OSXKexts
+doc: Kernel Extension
+sources:
+- type: FILE
+  attributes:
+    paths: 
+      - '/System/Library/Extensions/*'
+      - '/Library/Extensions/*'
+labels: [System]
+supported_os: [Darwin]
+---
+name: OSXInstallationHistory
+doc: Software Installation History
+sources:
+- type: FILE
+  attributes:
+    paths: ['/Library/Receipts/InstallHistory.plist']
+labels: [System]
+supported_os: [Darwin]
+---
+name: OSXUpdate
+doc: Software Update
+sources:
+- type: FILE
+  attributes:
+    paths: ['/Library/Preferences/com.apple.SoftwareUpdate.plist']
+labels: [System]
+supported_os: [Darwin]
+---
+name: OSXApplications
+doc: Applications
+sources:
+- type: FILE
+  attributes:
+    paths: ['/Applications/*']
+labels: [Users]
+supported_os: [Darwin]
+---
+name: OSXLocalTime
+doc: Current Time Zone
+sources:
+- type: FILE
+  attributes:
+    paths: ['/etc/localtime']
+labels: [System]
+supported_os: [Darwin]
+---
+name: OSXAtJobs
+doc: Mac OS X at jobs
+sources:
+- type: FILE
+  attributes:
+    paths: ['/usr/lib/cron/jobs/*']
+labels: [System]
+supported_os: [Darwin]
+urls: ['https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/at.1.html#//apple_ref/doc/man/1/at']
+---
+name: OSXCronTabs
+doc: Cron tabs
+sources:
+- type: FILE
+  attributes:
+    paths: 
+      - '/etc/crontab'
+      - '/usr/lib/cron/tabs/*'
+labels: [System]
+supported_os: [Darwin]
+---
+name: OSXPeriodicSystemFunctions
+doc: Periodic system functions scripts and configuration
+sources:
+- type: FILE
+  attributes:
+    paths: 
       - '/etc/defaults/periodic.conf'
       - '/etc/periodic.conf'
       - '/etc/periodic.conf.local'
@@ -108,44 +256,899 @@ labels: [System]
 supported_os: [Darwin]
 urls: ['https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man8/periodic.8.html#//apple_ref/doc/man/8/periodic']
 ---
-name: OSXAtJobs
-doc: Mac OS X at jobs.
-sources:
-- type: FILE
-  attributes: {paths: ['/usr/lib/cron/jobs/*']}
-labels: [System]
-supported_os: [Darwin]
-urls: ['https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/at.1.html#//apple_ref/doc/man/1/at']
----
-name: OSXCronTabs
-doc: Mac OS X cron tabs.
+name: OSXHostsFIle
+doc: Hosts file
 sources:
 - type: FILE
   attributes:
-    paths:
-      - '/etc/crontab'
-      - '/usr/lib/cron/tabs/*'
-labels: [System]
+    paths: ['/etc/hosts']
+labels: [System, Network]
 supported_os: [Darwin]
-urls: ['https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man5/crontab.5.html#//apple_ref/doc/man/5/crontab']
 ---
-name: OSXKexts
-doc: Mac OS X Kernel Extentions.
+name: OSXWirelessNetworks
+doc: Remembered Wireless Networks
 sources:
 - type: FILE
   attributes:
-    paths:
-      - '/System/Library/Extensions/*'
-      - '/Library/Extensions/*'
-labels: [System]
+    paths: ['/Library/Preferences/SystemConfiguration/com.apple.airport.preferences.plist']
+labels: [System, Network]
 supported_os: [Darwin]
 ---
-name: OSXLoadedKexts
-doc: Mac OS X Loaded Kernel Extensions.
+name: OSXUserLoginItems
+doc: Login Items
 sources:
-- type: COMMAND
+- type: FILE
   attributes:
-    args: []
-    cmd: /usr/sbin/kextstat
-labels: [System]
+    paths: ['%%users.homedir%%/Library/Preferences/com.apple.loginitems.plist']
+labels: [Users]
 supported_os: [Darwin]
+---
+name: OSXUsers
+doc: Users directories in /Users
+sources:
+- type: FILE
+  attributes:
+    paths: ['/Users/*']
+labels: [Users]
+supported_os: [Darwin]
+---
+name: OSXUserDownloadsDir
+doc: Downloads Directory
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Downloads/*']
+labels: [Users]
+supported_os: [Darwin]
+---
+name: OSXUserDocumentsDir
+doc: Documents Directory
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Documents/*']
+labels: [Users]
+supported_os: [Darwin]
+---
+name: OSXUserMusicDir
+doc: Music Directory
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Music/*']
+labels: [Users]
+supported_os: [Darwin]
+---
+name: OSXUserDesktopDir
+doc: Desktop Directory
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Desktop/*']
+labels: [Users]
+supported_os: [Darwin]
+---
+name: OSXUserLibraryDir
+doc: Library Directory
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/*']
+labels: [Users]
+supported_os: [Darwin]
+---
+name: OSXUserMoviesDir
+doc: Movies Directory
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Movies/*']
+labels: [Users]
+supported_os: [Darwin]
+---
+name: OSXUserPicturesDir
+doc: Pictures Directory
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Pictures/*']
+labels: [Users]
+supported_os: [Darwin]
+---
+name: OSXUserPublicDir
+doc: Public Directory
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Public/*']
+labels: [Users]
+supported_os: [Darwin]
+---
+name: OSXApplications
+doc: Applications
+sources:
+- type: FILE
+  attributes:
+    paths: ['/Applications/*']
+labels: [Users, Software]
+supported_os: [Darwin]
+---
+name: OSXUserPref
+doc: User preferences directory
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Preferences/*']
+labels: [Users]
+supported_os: [Darwin]
+---
+name: OSXiCloudPref
+doc: iCloud user preferences
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Preferences/MobileMeAccounts.plist']
+labels: [Users, Cloud, Account]
+supported_os: [Darwin]
+---
+name: OSXSidebarlists
+doc: Sidebar Lists Preferences
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Preferences/com.apple.sidebarlists.plist']
+labels: [Users, External Media]
+supported_os: [Darwin]
+---
+name: OSXGlobalPreferences
+doc: Global Preferences
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Preferences/.GlobalPreferences.plist']
+labels: [Users]
+supported_os: [Darwin]
+---
+name: OSXDock
+doc: Dock database
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Preferences/com.apple.Dock.plist']
+labels: [Users]
+supported_os: [Darwin]
+---
+name: OSXiDevices
+doc: Attached iDevices
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Preferences/com.apple.iPod.plist']
+labels: [Users, External Media]
+supported_os: [Darwin]
+---
+name: OSXQuarantineEvents
+doc: Quarantine Event Database
+sources:
+- type: FILE
+  attributes:
+    paths: 
+      - '%%users.homedir%%/Library/Preferences/com.apple.LaunchServices.QuarantineEvents'
+      - '%%users.homedir%%/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV2'
+labels: [Users, Software]
+supported_os: [Darwin]
+---
+name: OSXUserApplicationLogs
+doc: User and Applications Logs Directory
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Logs/*']
+labels: [Users, Logs]
+supported_os: [Darwin]
+---
+name: OSXMiscLogs
+doc: Misc. Logs
+sources:
+- type: FILE
+  attributes:
+    paths: ['/Library/Logs/*']
+labels: [Users, Logs]
+supported_os: [Darwin]
+---
+name: OSXBashHistory
+doc: Terminal Commands History
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/.bash_history']
+labels: [Users, Logs]
+supported_os: [Darwin]
+---
+name: OSXUserSocialAccounts
+doc: User's Social Accounts
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Accounts/Accounts3.sqlite']
+labels: [Users, Accounts]
+supported_os: [Darwin]
+---
+name: OSXiOSBackupsMainDir
+doc: iOS device backups directory
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Application Support/MobileSync/Backup/*']
+labels: [Users, iOS]
+supported_os: [Darwin]
+---
+name: OSXiOSBackupInfo
+doc: iOS device backup information
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Application Support/MobileSync/Backup/*/info.plist']
+labels: [Users, iOS]
+supported_os: [Darwin]
+---
+name: OSXiOSBackupManifest
+doc: iOS device backup apps information
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Application Support/MobileSync/Backup/*/Manifest.plist']
+labels: [Users, iOS]
+supported_os: [Darwin]
+---
+name: OSXiOSBackupMbdb
+doc: iOS device backup files information
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Application Support/MobileSync/Backup/*/Manifest.mdbd']
+labels: [Users, iOS]
+supported_os: [Darwin]
+---
+name: OSXiOSBackupStatus
+doc: iOS device backup status information
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Application Support/MobileSync/Backup/*/Status.plist']
+labels: [Users, iOS]
+supported_os: [Darwin]
+---
+name: OSXRecentItems
+doc: Recent Items
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Preferences/com.apple.recentitems.plist']
+labels: [Users]
+supported_os: [Darwin]
+---
+name: OSXApplicationsRecentItems
+doc: Recent Items application specific
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Preferences/*LSSharedFileList.plist']
+labels: [Users, Software]
+supported_os: [Darwin]
+---
+name: OSXApplicationSupport
+doc: Application Support Directory
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Application Support/*']
+labels: [Users, Software]
+supported_os: [Darwin]
+---
+name: OSXKeychains
+doc: Keychain Directory
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Keychains/*']
+labels: [Users]
+supported_os: [Darwin]
+---
+name: OSXUserTrash
+doc: User Trash Folder
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/.Trash/']
+labels: [Users]
+supported_os: [Darwin]
+---
+name: OSXiCloudAccounts
+doc: iCloud Accounts
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Application Support/iCloud/Accounts/']
+labels: [Users, Software, Cloud, Account]
+supported_os: [Darwin]
+---
+name: OSXSkypeMainDir
+doc: Skype Directory
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Application Support/Skype/*']
+labels: [Users, Software, IM]
+supported_os: [Darwin]
+---
+name: OSXSkypeUserProfile
+doc: Skype User profile
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Application Support/Skype/*/*']
+labels: [Users, Software, IM]
+supported_os: [Darwin]
+---
+name: OSXSkypePreferences
+doc: Skype Preferences and Recent Searches
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Preferences/com.skype.skype.plist']
+labels: [Users, Software, IM]
+supported_os: [Darwin]
+---
+name: OSXSkypeDb
+doc: Main Skype database
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Application Support/Skype/*/Main.db']
+labels: [Users, Software, IM]
+supported_os: [Darwin]
+---
+name: OSXSkypechatsync
+doc: Chat Sync Directory
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Application Support/Skype/*/chatsync/*']
+labels: [Users, Software, IM]
+supported_os: [Darwin]
+---
+name: OSXSafariMainDir
+doc: Safari Main Folder
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Safari/*']
+labels: [Users, Software, Browser]
+supported_os: [Darwin]
+---
+name: OSXSafariBookmarks
+doc: Safari Bookmarks
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Safari/Bookmarks.plist']
+labels: [Users, Software, Browser]
+supported_os: [Darwin]
+---
+name: OSXSafariDownloads
+doc: Safari Downloads
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Safari/Downloads.plist']
+labels: [Users, Software, Browser]
+supported_os: [Darwin]
+---
+name: OSXSafariExtensions
+doc: Safari Installed Extensions
+sources:
+- type: FILE
+  attributes:
+    paths: 
+      - '%%users.homedir%%/Library/Safari/Extensions/Extensions.plist'
+      - '%%users.homedir%%/Library/Safari/Extensions/*'
+labels: [Users, Software, Browser]
+supported_os: [Darwin]
+---
+name: OSXSafariHistory
+doc: Safari History
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Safari/History.plist']
+labels: [Users, Software, Browser]
+supported_os: [Darwin]
+---
+name: OSXSafariHistoryIndex
+doc: Safari History Index
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Safari/HistoryIndex.sk']
+labels: [Users, Software, Browser]
+supported_os: [Darwin]
+---
+name: OSXSafariLastSession
+doc: Safari Last Session
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Safari/LastSession.plist']
+labels: [Users, Software, Browser]
+supported_os: [Darwin]
+---
+name: OSXSafariLocalStorage
+doc: Safari Local Storage Directory
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Safari/LocalStorage/*']
+labels: [Users, Software, Browser]
+supported_os: [Darwin]
+---
+name: OSXSafariStorageTracker
+doc: Safari Local Storage Database
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Safari/LocalStorage/StorageTracker.db']
+labels: [Users, Software, Browser]
+supported_os: [Darwin]
+---
+name: OSXSafariTopSites
+doc: Safari Top Sites
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Safari/TopSites.plist']
+labels: [Users, Software, Browser]
+supported_os: [Darwin]
+---
+name: OSXSafariWebpageIcons
+doc: Safari Webpage Icons Database
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Safari/WebpageIcons.db']
+labels: [Users, Software, Browser]
+supported_os: [Darwin]
+---
+name: OSXSafariDatabases
+doc: Safari Webpage Databases
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Safari/Databases/*']
+labels: [Users, Software, Browser]
+supported_os: [Darwin]
+---
+name: OSXSafariCacheDir
+doc: Safari Cache Directory
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Caches/com.apple.Safari/*']
+labels: [Users, Software, Browser]
+supported_os: [Darwin]
+---
+name: OSXSafariCache
+doc: Safari Cache
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Caches/com.apple.Safari/Cache.db']
+labels: [Users, Software, Browser]
+supported_os: [Darwin]
+---
+name: OSXSafariCacheExtensions
+doc: Safari Extensions Cache
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Caches/com.apple.Safari/Extensions/*']
+labels: [Users, Software, Browser]
+supported_os: [Darwin]
+---
+name: OSXSafariWebPreviews
+doc: Safari Webpage Previews
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Caches/com.apple.Safari/Webpage Previews/*']
+labels: [Users, Software, Browser]
+supported_os: [Darwin]
+---
+name: OSXSafariCookies
+doc: Safari Cookies
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Cookies/Cookies.binarycookies']
+labels: [Users, Software, Browser]
+supported_os: [Darwin]
+---
+name: OSXSafariPreferences
+doc: Safari Preferences and Search terms
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Preferences/com.apple.Safari.plist']
+labels: [Users, Software, Browser]
+supported_os: [Darwin]
+---
+name: OSXSafariExtPreferences
+doc: Safari Extension Preferences
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Preferences/com.apple.Safari.Extensions.plist']
+labels: [Users, Software, Browser]
+supported_os: [Darwin]
+---
+name: OSXSafariCacheBookmarks
+doc: Safari Bookmark Cache
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Caches/Metadata/Safari/Bookmarks/*']
+labels: [Users, Software, Browser]
+supported_os: [Darwin]
+---
+name: OSXSafariCacheHistory
+doc: Safari History Cache
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Caches/Metadata/Safari/History/*']
+labels: [Users, Software, Browser]
+supported_os: [Darwin]
+---
+name: OSXSafariTempImg
+doc: Safari Temporary Images
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Caches/com.apple.Safari/fsCachedData/*']
+labels: [Users, Software, Browser]
+supported_os: [Darwin]
+---
+name: OSXFirefoxDir
+doc: Firefox Directory
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Application Support/Firefox/*']
+labels: [Users, Software, Browser]
+supported_os: [Darwin]
+---
+name: OSXFirefoxProfiles
+doc: Firefox Profiles
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Application Support/Firefox/Profiles/*']
+labels: [Users, Software, Browser]
+supported_os: [Darwin]
+---
+name: OSXFirefoxCookies
+doc: Firefox Cookies
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Application Support/Firefox/Profiles/*/Cookies.sqlite']
+labels: [Users, Software, Browser]
+supported_os: [Darwin]
+---
+name: OSXFirefoxDownloads
+doc: Firefox Downloads
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Application Support/Firefox/Profiles/*/Downloads.sqlite']
+labels: [Users, Software, Browser]
+supported_os: [Darwin]
+---
+name: OSXFirefoxFormhistory
+doc: Firefox Form History
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Application Support/Firefox/Profiles/*/Formhistory.sqlite']
+labels: [Users, Software, Browser]
+supported_os: [Darwin]
+---
+name: OSXFirefoxHistory
+doc: Firefox History
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Application Support/Firefox/Profiles/*/Places.sqlite']
+labels: [Users, Software, Browser]
+supported_os: [Darwin]
+---
+name: OSXFirefoxPassword
+doc: Firefox Signon
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Application Support/Firefox/Profiles/*/signons.sqlite']
+labels: [Users, Software, Browser]
+supported_os: [Darwin]
+---
+name: OSXFirefoxKey
+doc: Firefox Key
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Application Support/Firefox/Profiles/*/key3.db']
+labels: [Users, Software, Browser]
+supported_os: [Darwin]
+---
+name: OSXFirefoxPermission
+doc: Firefox Permissions
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Application Support/Firefox/Profiles/*/permissions.sqlite']
+labels: [Users, Software, Browser]
+supported_os: [Darwin]
+---
+name: OSXFirefoxAddons
+doc: Firefox Add-ons
+sources:
+- type: FILE
+  attributes:
+    paths: 
+      - '%%users.homedir%%/Library/Application Support/Firefox/Profiles/*/addons.sqlite'
+      - '%%users.homedir%%/Library/Application Support/Firefox/Profiles/*/addons.json'
+labels: [Users, Software, Browser]
+supported_os: [Darwin]
+---
+name: OSXFirefoxExtension
+doc: Firefox Extension
+sources:
+- type: FILE
+  attributes:
+    paths: 
+      - '%%users.homedir%%/Library/Application Support/Firefox/Profiles/*/extensions.sqlite'
+      - '%%users.homedir%%/Library/Application Support/Firefox/Profiles/*/extensions.json'
+labels: [Users, Software, Browser]
+supported_os: [Darwin]
+---
+name: OSXFirefoxContentPrefs
+doc: Firefox Pages Settings
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Application Support/Firefox/Profiles/*/content-prefs.sqlite']
+labels: [Users, Software, Browser]
+supported_os: [Darwin]
+---
+name: OSXChromeMainDir
+doc: Chrome Main Folder
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Application Support/Google/Chrome/*']
+labels: [Users, Software, Browser]
+supported_os: [Darwin]
+---
+name: OSXChromeDefaultDir
+doc: Chrome Default profile
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Application Support/Google/Chrome/default/*']
+labels: [Users, Software, Browser]
+supported_os: [Darwin]
+---
+name: OSXChromeHistory
+doc: Chrome History
+sources:
+- type: FILE
+  attributes:
+    paths: 
+      - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/History'
+      - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Archived History'
+labels: [Users, Software, Browser]
+supported_os: [Darwin]
+---
+name: OSXChromeBookmarks
+doc: Chrome Bookmarks
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Application Support/Google/Chrome/*/Bookmarks']
+labels: [Users, Software, Browser]
+supported_os: [Darwin]
+---
+name: OSXChromeCookies
+doc: Chrome Cookies
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Application Support/Google/Chrome/*/Cookies']
+labels: [Users, Software, Browser]
+supported_os: [Darwin]
+---
+name: OSXChromeLocalStorage
+doc: Chrome Local Storage
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Application Support/Google/Chrome/*/Local Storage/*.localstorage']
+labels: [Users, Software, Browser]
+supported_os: [Darwin]
+---
+name: OSXChromeLogin
+doc: Chrome Login Data
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Application Support/Google/Chrome/*/Login Data']
+labels: [Users, Software, Browser]
+supported_os: [Darwin]
+---
+name: OSXChromeTopSistes
+doc: Chrome Top Sites
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Application Support/Google/Chrome/*/Top Sites']
+labels: [Users, Software, Browser]
+supported_os: [Darwin]
+---
+name: OSXChromeWebData
+doc: Chrome Web Data
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Application Support/Google/Chrome/*/Web Data']
+labels: [Users, Software, Browser]
+supported_os: [Darwin]
+---
+name: OSXChromeExtension
+doc: Chrome Extensions
+sources:
+- type: FILE
+  attributes:
+    paths: 
+      - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/databases/*'
+      - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/databases/Databases.db'
+labels: [Users, Software, Browser]
+supported_os: [Darwin]
+---
+name: OSXChromeCache
+doc: Chrome Cache
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Caches/com.google.Chrome/Cache.db']
+labels: [Users, Software, Browser]
+supported_os: [Darwin]
+---
+name: OSXChromePreferences
+doc: Chrome Preferences Files
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Preferences/com.google.Chrome.plist']
+labels: [Users, Software, Browser]
+supported_os: [Darwin]
+---
+name: OSXMailMainDir
+doc: Mail Main Folder
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Mail/V2/*']
+labels: [Users, Software, Mail]
+supported_os: [Darwin]
+---
+name: OSXMailboxes
+doc: Mail Mailbox Directory
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Mail/V2/Mailboxes/*']
+labels: [Users, Software, Mail]
+supported_os: [Darwin]
+---
+name: OSXMailIMAP
+doc: Mail IMAP Synched Mailboxes
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Mail/V2/IMAP-<name@address>/*']
+labels: [Users, Software, Mail]
+supported_os: [Darwin]
+---
+name: OSXMailPOP
+doc: Mail POP Synched Mailboxes
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Mail/V2/POP-<name@address>/*']
+labels: [Users, Software, Mail]
+supported_os: [Darwin]
+---
+name: OSXMailBackupTOC
+doc: Mail BackupTOC
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Mail/V2/MailData/BackupTOC.plist']
+labels: [Users, Software, Mail]
+supported_os: [Darwin]
+---
+name: OSCMailEnvelopIndex
+doc: Mail Envelope Index
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Mail/V2/MailData/Envelope Index']
+labels: [Users, Software, Mail]
+supported_os: [Darwin]
+---
+name: OSXMailOpenedAttachments
+doc: Mail Opened Attachments
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Mail/V2/MailData/OpenedAttachmentsV2.plist']
+labels: [Users, Software, Mail]
+supported_os: [Darwin]
+---
+name: OSXMailSignatures
+doc: Mail Signatures by Account
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Mail/V2/MailData/Signatures/*']
+labels: [Users, Software, Mail]
+supported_os: [Darwin]
+---
+name: OSXMailDownloadAttachment
+doc: Mail Downloads Directory
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Containers/com.apple.mail/Data/Library/Mail Downloads/*']
+labels: [Users, Software, Mail]
+supported_os: [Darwin]
+---
+name: OSXMailPrefs
+doc: Mail Preferences
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Preferences/com.apple.Mail.plist']
+labels: [Users, Software, Mail]
+supported_os: [Darwin]
+---
+name: OSXMailRecentContacts
+doc: Mail Recent Contacts
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Application Support/AddressBook/MailRecents-v4.abcdmr']
+labels: [Users, Software, Mail]
+supported_os: [Darwin]
+---
+name: OSXMailAccounts
+doc: Mail Accounts
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Mail/V2/MailData/Accounts.plist']
+labels: [Users, Software, Mail]
+supported_os: [Darwin]
+---
+# Total Artifacts:  124
+# Total Locations:  142
