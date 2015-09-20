@@ -1,5 +1,16 @@
 # Windows specific artifacts.
 
+name: AppCompatCache
+doc: Windows Application Compatibility Cache
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\AppCompatibility', value: 'AppCompatCache'}
+      - {key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\AppCompatCache', value: 'AppCompatCache'}
+supported_os: [Windows]
+urls: ['https://github.com/libyal/winreg-kb/blob/master/documentation/Application%20Compatibility%20Cache%20key.asciidoc']
+---
 name: ApplicationEventLog
 doc: Windows Application Event log.
 sources:
@@ -84,6 +95,17 @@ sources:
 labels: [System]
 supported_os: [Windows]
 urls: ['http://www.forensicswiki.org/wiki/Prefetch']
+---
+name: ProgramsCache
+doc: Windows Programs Cache
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\StartPage', value: 'ProgramsCache'}
+      - {key: 'HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\StartPage2', value: 'ProgramsCache'}
+supported_os: [Windows]
+urls: ['https://github.com/libyal/winreg-kb/blob/master/documentation/Programs%20Cache%20values.asciidoc']
 ---
 name: ScheduledTasks
 doc: Windows Scheduled Tasks.
