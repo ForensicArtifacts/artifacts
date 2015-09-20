@@ -1,5 +1,31 @@
 # Web browser artifacts.
 
+name: BrowserCache
+doc: Web browser cache of multiple web browsers.
+sources:
+- type: ARTIFACT
+  attributes:
+    names:
+      - 'ChromeCache'
+      - 'InternetExplorerCache'
+      - 'SafariCache'
+labels: [Browser]
+supported_os: [Darwin,Linux,Windows]
+---
+name: BrowserHistory
+doc: Web browser history of multiple web browsers.
+sources:
+- type: ARTIFACT
+  attributes:
+    names:
+      - 'ChromeHistory'
+      - 'FirefoxHistory'
+      - 'InternetExplorerHistory'
+      - 'OperaHistory'
+      - 'SafariHistory'
+labels: [Browser]
+supported_os: [Darwin,Linux,Windows]
+---
 name: ChromeCache
 doc: |
   Google Chrome, Canary and Chromium browser caches.
