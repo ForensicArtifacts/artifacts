@@ -28,6 +28,7 @@ toc::[]
 | 0.0.1 | G. Castle | November 2014 | Initial version.
 | 0.0.2 | G. Castle | December 2014 | Minor format changes.
 | 0.0.3 | J.B. Metz | April 2015 | Merged style guide and artifact definitions wiki page.
+| 0.0.3 | J.B. Metz | September 2015 | Additional label.
 |===
 
 :numbered:
@@ -394,6 +395,7 @@ Currently the following different labels are defined:
 | Antivirus | Antivirus related artifacts, e.g. quarantine files.
 | Authentication | Authentication artifacts.
 | Browser | Web Browser artifacts.
+| Cloud Storage | Cloud Storage artifacts.
 | Configuration Files | Configuration files artifacts.
 | Execution | Contain execution events.
 | External Media | Contain external media data or events e.g. USB drives.
