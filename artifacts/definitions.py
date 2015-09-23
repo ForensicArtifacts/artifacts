@@ -15,6 +15,7 @@ LABELS = {
     'Antivirus': 'Antivirus related artifacts, e.g. quarantine files.',
     'Authentication': 'Authentication artifacts.',
     'Browser': 'Web Browser artifacts.',
+    'Cloud Storage': 'Cloud storage artifacts.',
     'Configuration Files': 'Configuration files artifacts.',
     'Execution': 'Contain execution events.',
     'External Media': 'Contain external media data or events e.g. USB drives.',
