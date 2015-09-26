@@ -310,7 +310,7 @@ doc: |
 
   * Applies to MSIE versions 7-11
 sources:
-- type: REGISTRY_VALUE
+- type: REGISTRY_KEY
   attributes: {keys: ['HKEY_USERS\%%users.sid%%\Software\Microsoft\Internet Explorer\Main\NoProtectedModeBanner']}
 labels: [Browser]
 supported_os: [Windows]
@@ -319,7 +319,7 @@ urls: ['http://www.blackforce.co.uk/2014/01/07/disable-protected-mode-is-turned-
 name: InternetExplorer6Settings
 doc: Registry keys affecting default behavior for MSIE6.
 sources:
-- type: REGISTRY_KEY
+- type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
       - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer', value: 'AboutURLs'}
