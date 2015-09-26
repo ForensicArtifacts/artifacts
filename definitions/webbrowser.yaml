@@ -311,9 +311,7 @@ doc: |
   * Applies to MSIE versions 7-11
 sources:
 - type: REGISTRY_VALUE
-  attributes:
-    keys:
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Internet Explorer\Main\NoProtectedModeBanner'
+  attributes: {keys: ['HKEY_USERS\%%users.sid%%\Software\Microsoft\Internet Explorer\Main\NoProtectedModeBanner']}
 labels: [Browser]
 supported_os: [Windows]
 urls: ['http://www.blackforce.co.uk/2014/01/07/disable-protected-mode-is-turned-off-for-the-internet-zone-group-policy']
