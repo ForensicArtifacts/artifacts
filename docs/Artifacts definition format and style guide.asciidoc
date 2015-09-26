@@ -1,8 +1,6 @@
 = Artifact definition format and style guide
 
 :toc:
-:toc-placement: manual
-:toc-title:
 :toclevels: 4
 :icons:
 
@@ -17,10 +15,6 @@ the goals of this guide is to ensure consistency and readbility of the
 artifacts definitions.
 
 [preface]
-== Table of contents
-toc::[]
-
-[preface]
 == Revision history
 [cols="1,1,1,5",options="header"]
 |===
@@ -33,14 +27,19 @@ toc::[]
 :numbered:
 == Background
 The first version of the artifact definitions originated from the
-https://github.com/google/grr[GRR project], where it is used to describe and quickly collect data of interest, e.g. specific files or Windows Registry keys. The
-goal of the format is to provide a way to describe the majority of forensic artifacts in a language that is readable by humans and machines.
+https://github.com/google/grr[GRR project], where it is used to describe and
+quickly collect data of interest, e.g. specific files or Windows Registry keys.
+The goal of the format is to provide a way to describe the majority of forensic
+artifacts in a language that is readable by humans and machines.
 
-The format is designed to be simple and straight forward, so that a digital forensic
-analysist is able to quickly write artifact definitions during an investigation without having
-to rely on complex standards or tooling.
+The format is designed to be simple and straight forward, so that a digital
+forensic analysist is able to quickly write artifact definitions during an
+investigation without having to rely on complex standards or tooling.
 
-The format is intended to describe forensically-relevant data on a machine, while being tool agnostic. In particular we intentionally avoided adding IOC-like logic, or describing how the data should be collected since this various between tools.
+The format is intended to describe forensically-relevant data on a machine,
+while being tool agnostic. In particular we intentionally avoided adding
+IOC-like logic, or describing how the data should be collected since this
+various between tools.
 
 == Terminology
 The term artifact (or artefact) is widely used within computer (or digital)
