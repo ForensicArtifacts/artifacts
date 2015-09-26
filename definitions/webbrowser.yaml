@@ -308,7 +308,7 @@ doc: |
   Microsoft Internet Explorer (MSIE) Protected Mode Banner can be suppressed
   by setting NoProtectedModeBanner.
 
-  * Applies to MSIE versions 7-11
+  * Applies to versions 7-11
 sources:
 - type: REGISTRY_KEY
   attributes: {keys: ['HKEY_USERS\%%users.sid%%\Software\Microsoft\Internet Explorer\Main\NoProtectedModeBanner']}
@@ -317,7 +317,7 @@ supported_os: [Windows]
 urls: ['http://www.blackforce.co.uk/2014/01/07/disable-protected-mode-is-turned-off-for-the-internet-zone-group-policy']
 ---
 name: InternetExplorer6Settings
-doc: Registry keys affecting default behavior for MSIE6.
+doc: Registry keys affecting default behavior for Microsoft Internet Explorer 6.
 sources:
 - type: REGISTRY_VALUE
   attributes:
