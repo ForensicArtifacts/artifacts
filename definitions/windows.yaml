@@ -5,6 +5,17 @@ doc: Windows Application Compatibility Cache
 sources:
 - type: REGISTRY_VALUE
   attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\AppCompatibility', value: 'AppCompatCache'}
+      - {key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\AppCompatCache', value: 'AppCompatCache'}
+supported_os: [Windows]
+urls: ['https://github.com/libyal/winreg-kb/blob/master/documentation/Application%20Compatibility%20Cache%20key.asciidoc']
+---
+name: WindowsActiveDesktop
+doc: Windows Active Desktop executable paths, used for persistence.
+sources:
+- type: REGISTRY_KEY
+  attributes:
     keys:
       - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Internet Explorer\Desktop\Components\*'
       - 'KEY_USERS\%%users.sid%%\Software\Microsoft\Internet Explorer\Desktop\General'
