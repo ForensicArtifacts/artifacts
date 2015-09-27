@@ -303,6 +303,53 @@ urls:
  - 'http://blogs.technet.com/b/juanand/archive/2010/10/29/internet-explorer-protected-mode-elevation-policy-and-administrative-templates.aspx'
  - 'https://msdn.microsoft.com/en-us/library/bb250462(VS.85).aspx'
 ---
+name: InternetExplorerProtectedModeDisable
+doc: |
+  Microsoft Internet Explorer (MSIE) Protected Mode Banner can be suppressed
+  by setting NoProtectedModeBanner.
+
+  * Applies to versions 7-11
+sources:
+- type: REGISTRY_KEY
+  attributes: {keys: ['HKEY_USERS\%%users.sid%%\Software\Microsoft\Internet Explorer\Main\NoProtectedModeBanner']}
+labels: [Browser]
+supported_os: [Windows]
+urls: ['http://www.blackforce.co.uk/2014/01/07/disable-protected-mode-is-turned-off-for-the-internet-zone-group-policy']
+---
+name: InternetExplorer6Settings
+doc: Registry keys affecting default behavior for Microsoft Internet Explorer 6.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer', value: 'AboutURLs'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer', value: 'UrlSearchHooks'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer', value: 'Extensions'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer', value: 'ExplorerBars'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer', value: 'Toolbar'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer', value: 'SearchURL'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer\Main', value: 'Default_Page_URL'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer\Main', value: 'Default_Search_URL'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer\Main', value: 'Search Page'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer\Main', value: 'Start Page'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer\Main', value: 'Search Bar'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer\Search', value: 'CustomizeSearch'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Internet Explorer', value: 'UrlSearchHooks'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Internet Explorer', value: 'Extensions'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Internet Explorer', value: 'ExplorerBars'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Internet Explorer', value: 'Toolbar'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Internet Explorer', value: 'SearchURL'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Internet Explorer\Main', value: 'Default_Page_URL'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Internet Explorer\Main', value: 'Default_Search_URL'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Internet Explorer\Main', value: 'Search Page'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Internet Explorer\Main', value: 'Start Page'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Internet Explorer\Main', value: 'Search Bar'}
+labels: [Browser]
+supported_os: [Windows]
+urls:
+  - 'https://support.microsoft.com/en-us/kb/895339'
+  - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
+---
 name: InternetExplorerTypedURLsKeys
 doc: Microsoft Internet Explorer TypedUrls keys.
 sources:

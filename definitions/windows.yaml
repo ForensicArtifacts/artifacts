@@ -11,6 +11,21 @@ sources:
 supported_os: [Windows]
 urls: ['https://github.com/libyal/winreg-kb/blob/master/documentation/Application%20Compatibility%20Cache%20key.asciidoc']
 ---
+name: WindowsActiveDesktop
+doc: Windows Active Desktop executable paths, used for persistence.
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Internet Explorer\Desktop\Components\*'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Internet Explorer\Desktop\General'
+conditions: [os_major_version < 6]
+supported_os: [Windows]
+urls:
+- 'https://www.sophos.com/en-us/threat-center/threat-analyses/viruses-and-spyware/Troj~DwnLdr-GWV/detailed-analysis.aspx'
+- 'https://support.microsoft.com/en-us/kb/929200'
+- 'https://en.wikipedia.org/wiki/Active_Desktop'
+---
 name: ApplicationEventLog
 doc: Windows Application Event log.
 sources:
@@ -67,6 +82,17 @@ sources:
       - 'SystemEventLogEvtx'
 labels: [Logs]
 supported_os: [Windows]
+---
+name: FileTypeAutorunAssociations
+doc: Registry value for what application class identifier (CLSID) to launch for a file extension.
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
+      - 'HKEY_LOCAL_MACHINE\software\classes\*'
+      - 'HKEY_USERS\%%users.sid%%\software\classes\*'
+supported_os: [Windows]
+urls: ['https://msdn.microsoft.com/en-us/library/windows/desktop/ms678415(v=vs.85).aspx']
 ---
 name: MFTFiles
 doc: |
@@ -275,6 +301,10 @@ sources:
       - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunOnce\Setup\*'
 labels: [Software]
 supported_os: [Windows]
+urls:
+  - 'https://msdn.microsoft.com/en-us/library/windows/desktop/aa376977%28v=vs.85%29.aspx'
+  - 'https://support.microsoft.com/en-us/kb/137367'
+  - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
 ---
 name: WindowsSearchDatabase
 doc: Windows Search database (Windows.edb).
@@ -517,6 +547,19 @@ sources:
     key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager', value: 'ExcludeFromKnownDlls'}]
 supported_os: [Windows]
 urls: ['https://msdn.microsoft.com/en-us/library/windows/desktop/ms682586%28v=vs.85%29.aspx']
+---
+name: WindowsLSASecurityPackages
+doc: CurrentControlSet Security Packages can be injected into LSASS.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa', value: 'Security Packages'}
+      - {key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa\OSConfig', value: 'Security Packages'}
+supported_os: [Windows]
+urls:
+  - 'https://msdn.microsoft.com/en-us/library/windows/desktop/aa379392(v=vs.85).aspx'
+  - 'https://dl.mandiant.com/EE/library/MIRcon2014/MIRcon_2014_IR_Track_Analysis_of_Malicious_SSP.pdf'
 ---
 name: WindowsAppCertDlls
 doc: Windows AppCertDlls persistence.
@@ -906,6 +949,16 @@ sources:
 supported_os: [Windows]
 urls: ['https://technet.microsoft.com/en-us/library/ff404236.aspx']
 ---
+name: WindowsShutdownScript
+doc: Windows policy shutdown script
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\System\Scripts', value: 'Shutdown'}
+supported_os: [Windows]
+urls: ['https://technet.microsoft.com/en-us/library/ff404236.aspx']
+---
 name: WindowsLogonScript
 doc: Windows policy logon script
 sources:
@@ -914,5 +967,16 @@ sources:
     key_value_pairs:
       - {key: 'HKEY_USERS\%%users.sid%%\Software\Policies\Microsoft\Windows\System\Scripts', value: 'Logon'}
       - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\System\Scripts', value: 'Logon'}
+supported_os: [Windows]
+urls: ['https://technet.microsoft.com/en-us/library/ff404236.aspx']
+---
+name: WindowsLogoffScript
+doc: Windows policy logoff script
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Policies\Microsoft\Windows\System\Scripts', value: 'Logoff'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\System\Scripts', value: 'Logoff'}
 supported_os: [Windows]
 urls: ['https://technet.microsoft.com/en-us/library/ff404236.aspx']
