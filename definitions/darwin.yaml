@@ -1,8 +1,4 @@
 # Mac OS X (Darwin) specific artifacts.
-# mac4n6: https://github.com/pstirparo/mac4n6
-# Reference: http://forensicswiki.org/wiki/Mac_OS_X
-# Reference: http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location
-# Last update: 2015-08-26
 
 name: OSXLaunchAgents
 doc: Launch Agents files
@@ -12,8 +8,12 @@ sources:
     paths: 
       - '/Library/LaunchAgents/*'
       - '/System/Library/LaunchAgents/*'
+      - '%%users.homedir%%/Library/LaunchAgents/*'
 labels: [System]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Autorun_Locations'
 ---
 name: OSXLaunchDaemons
 doc: Launch Daemons files
@@ -23,11 +23,15 @@ sources:
     paths: 
       - '/Library/LaunchDaemons/*'
       - '/System/Library/LaunchDaemons/*'
+      - '%%users.homedir%%/Library/LaunchDaemons/*'
 labels: [System]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Autorun_Locations'
 ---
 name: OSXStartupItems
-doc: Startup Items file
+doc: Startup Items files
 sources:
 - type: FILE
   attributes:
@@ -36,135 +40,166 @@ sources:
       - '/System/Library/StartupItems/*'
 labels: [System]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Autorun_Locations'
 ---
-name: OSXGeneralSystemLogs
+name: OSXSystemLogs
 doc: System Log files main folder
 sources:
 - type: FILE
-  attributes:
-    paths: ['/var/log/*']
+  attributes: {paths: ['/var/log/*']}
 labels: [System, Logs]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#System_Logs'
 ---
 name: OSXAppleSystemLogs
 doc: Apple System Log
 sources:
 - type: FILE
-  attributes:
-    paths: ['/var/log/asl/*']
+  attributes: {paths: ['/var/log/asl/*']}
 labels: [System, Logs]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#System_Logs'
 ---
 name: OSXAuditLogs
 doc: Audit Log
 sources:
 - type: FILE
-  attributes:
-    paths: ['/var/audit/*']
+  attributes: {paths: ['/var/audit/*']}
 labels: [System, Logs]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#System_Logs'
 ---
 name: OSXInstallationLog
 doc: Installation log
 sources:
 - type: FILE
-  attributes:
-    paths: ['/var/log/install.log']
+  attributes: {paths: ['/var/log/install.log']}
 labels: [System, Logs]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#System_Logs'
 ---
 name: OSXSystemPreferences
 doc: System Preferences files
 sources:
 - type: FILE
-  attributes:
-    paths: ['/Library/Preferences/*']
+  attributes: {paths: ['/Library/Preferences/**']}
 labels: [System]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#System_Preferences'
 ---
 name: OSXGlobalPrefs
 doc: Global Preferences
 sources:
 - type: FILE
-  attributes:
-    paths: ['/Library/Preferences/.GlobalPreferences.plist']
+  attributes: {paths: ['/Library/Preferences/.GlobalPreferences.plist']}
 labels: [System]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#System_Preferences'
 ---
 name: OSXLoginWindow
 doc: Login Window Info
 sources:
 - type: FILE
-  attributes:
-    paths: ['/Library/Preferences/com.apple.loginwindow.plist']
+  attributes: {paths: ['/Library/Preferences/com.apple.loginwindow.plist']}
 labels: [System, Authentication]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#System_Preferences'
 ---
 name: OSXBluetooth
-doc: Bluetooth Preferences and paierd device info
+doc: Bluetooth preferences and paierd device info
 sources:
 - type: FILE
-  attributes:
-    paths: ['/Library/Preferences/com.apple.Bluetooth.plist']
+  attributes: {paths: ['/Library/Preferences/com.apple.Bluetooth.plist']}
 labels: [System, Logs]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#System_Preferences'
 ---
 name: OSXTimeMachine
 doc: Time Machine Info
 sources:
 - type: FILE
-  attributes:
-    paths: ['/Library/Preferences/com.apple.TimeMachine.plist']
+  attributes: {paths: ['/Library/Preferences/com.apple.TimeMachine.plist']}
 labels: [System]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#System_Preferences'
 ---
 name: OSXInstallationTime
 doc: OS Installation time
 sources:
 - type: FILE
-  attributes:
-    paths: ['/var/db/.AppleSetupDone']
+  attributes: {paths: ['/var/db/.AppleSetupDone']}
 labels: [System]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#System_Settings_and_Informations'
 ---
 name: OSXSystemVersion
 doc: OS name and version
 sources:
 - type: FILE
-  attributes:
-    paths: ['/System/Library/CoreServices/SystemVersion.plist']
+  attributes: {paths: ['/System/Library/CoreServices/SystemVersion.plist']}
 labels: [System]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#System_Settings_and_Informations'
 ---
 name: OSXPasswordHashes
 doc: Users Log In Password Hash Plist
 sources:
 - type: FILE
-  attributes:
-    paths: ['/var/db/dslocal/nodes/Default/users/*']
+  attributes: {paths: ['/var/db/dslocal/nodes/Default/users/*']}
 labels: [System, Users, Authentication]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#System_Settings_and_Informations'
 ---
 name: OSXSleepimage
 doc: Sleep Image File
 sources:
 - type: FILE
-  attributes:
-    paths: ['/var/vm/sleepimage']
+  attributes: {paths: ['/var/vm/sleepimage']}
 labels: [System]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Sleep.2FHibernate_and_Swap_Image_File'
 ---
 name: OSXSwapfiles
 doc: Swap Files
 sources:
 - type: FILE
-  attributes:
-    paths: ['/var/vm/swapfile#']
+  attributes: {paths: ['/var/vm/swapfile#']}
 labels: [System]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Sleep.2FHibernate_and_Swap_Image_File'
 ---
 name: OSXKexts
-doc: Kernel Extension
+doc: Kernel extensions
 sources:
 - type: FILE
   attributes:
@@ -173,43 +208,54 @@ sources:
       - '/Library/Extensions/*'
 labels: [System]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Kernel_Extension'
 ---
 name: OSXInstallationHistory
 doc: Software Installation History
 sources:
 - type: FILE
-  attributes:
-    paths: ['/Library/Receipts/InstallHistory.plist']
+  attributes: {paths: ['/Library/Receipts/InstallHistory.plist']}
 labels: [System]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Software_Installation'
 ---
 name: OSXUpdate
 doc: Software Update
 sources:
 - type: FILE
-  attributes:
-    paths: ['/Library/Preferences/com.apple.SoftwareUpdate.plist']
+  attributes: {paths: ['/Library/Preferences/com.apple.SoftwareUpdate.plist']}
 labels: [System]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Software_Installation'
 ---
 name: OSXLocalTime
 doc: Current Time Zone
 sources:
 - type: FILE
-  attributes:
-    paths: ['/etc/localtime']
+  attributes: {paths: ['/etc/localtime']}
 labels: [System]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#System_Info_Misc.'
 ---
 name: OSXAtJobs
 doc: Mac OS X at jobs
 sources:
 - type: FILE
-  attributes:
-    paths: ['/usr/lib/cron/jobs/*']
+  attributes: {paths: ['/usr/lib/cron/jobs/*']}
 labels: [System]
 supported_os: [Darwin]
-urls: ['https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/at.1.html#//apple_ref/doc/man/1/at']
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#System_Info_Misc.'
+- 'https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/at.1.html#//apple_ref/doc/man/1/at'
 ---
 name: OSXCronTabs
 doc: Cron tabs
@@ -221,6 +267,9 @@ sources:
       - '/usr/lib/cron/tabs/*'
 labels: [System]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#System_Info_Misc.'
 ---
 name: OSXPeriodicSystemFunctions
 doc: Periodic system functions scripts and configuration
@@ -238,178 +287,219 @@ sources:
       - '/etc/monthly.local/*'
 labels: [System]
 supported_os: [Darwin]
-urls: ['https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man8/periodic.8.html#//apple_ref/doc/man/8/periodic']
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#System_Info_Misc.'
+- 'https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man8/periodic.8.html#//apple_ref/doc/man/8/periodic'
 ---
-name: OSXHostsFIle
+name: OSXHostsFile
 doc: Hosts file
 sources:
 - type: FILE
-  attributes:
-    paths: ['/etc/hosts']
+  attributes: {paths: ['/etc/hosts']}
 labels: [System, Network]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Networking'
 ---
 name: OSXWirelessNetworks
 doc: Remembered Wireless Networks
 sources:
 - type: FILE
-  attributes:
-    paths: ['/Library/Preferences/SystemConfiguration/com.apple.airport.preferences.plist']
+  attributes: {paths: ['/Library/Preferences/SystemConfiguration/com.apple.airport.preferences.plist']}
 labels: [System, Network]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Networking'
 ---
 name: OSXUserLoginItems
 doc: Login Items
 sources:
 - type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Preferences/com.apple.loginitems.plist']
+  attributes: {paths: ['%%users.homedir%%/Library/Preferences/com.apple.loginitems.plist']}
 labels: [Users]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Autorun_Locations_2'
 ---
 name: OSXUsers
 doc: Users directories in /Users
 sources:
-- type: FILE
-  attributes:
-    paths: ['/Users/*']
+- type: PATH
+  attributes: {paths: ['/Users/*']}
 labels: [Users]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Users'
 ---
 name: OSXUserDownloadsDir
 doc: Downloads Directory
 sources:
-- type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Downloads/*']
+- type: PATH
+  attributes: {paths: ['%%users.homedir%%/Downloads/*']}
 labels: [Users]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#User_Directories'
 ---
 name: OSXUserDocumentsDir
 doc: Documents Directory
 sources:
-- type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Documents/*']
+- type: PATH
+  attributes: {paths: ['%%users.homedir%%/Documents/*']}
 labels: [Users]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#User_Directories'
 ---
 name: OSXUserMusicDir
 doc: Music Directory
 sources:
-- type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Music/*']
+- type: PATH
+  attributes: {paths: ['%%users.homedir%%/Music/*']}
 labels: [Users]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#User_Directories'
 ---
 name: OSXUserDesktopDir
 doc: Desktop Directory
 sources:
-- type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Desktop/*']
+- type: PATH
+  attributes: {paths: ['%%users.homedir%%/Desktop/*']}
 labels: [Users]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#User_Directories'
 ---
 name: OSXUserLibraryDir
 doc: Library Directory
 sources:
-- type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/*']
+- type: PATH
+  attributes: {paths: ['%%users.homedir%%/Library/*']}
 labels: [Users]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#User_Directories'
 ---
 name: OSXUserMoviesDir
 doc: Movies Directory
 sources:
-- type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Movies/*']
+- type: PATH
+  attributes: {paths: ['%%users.homedir%%/Movies/*']}
 labels: [Users]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#User_Directories'
 ---
 name: OSXUserPicturesDir
 doc: Pictures Directory
 sources:
-- type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Pictures/*']
+- type: PATH
+  attributes: {paths: ['%%users.homedir%%/Pictures/*']}
 labels: [Users]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#User_Directories'
 ---
 name: OSXUserPublicDir
 doc: Public Directory
 sources:
-- type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Public/*']
+- type: PATH
+  attributes: {paths: ['%%users.homedir%%/Public/*']}
 labels: [Users]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#User_Directories'
 ---
 name: OSXApplications
 doc: Applications
 sources:
-- type: FILE
-  attributes:
-    paths: ['/Applications/*']
+- type: PATH
+  attributes: {paths: ['/Applications/*']}
 labels: [Users, Software]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#User_Directories'
 ---
-name: OSXUserPref
+name: OSXUserPreferences
 doc: User preferences directory
 sources:
 - type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Preferences/*']
+  attributes: {paths: ['%%users.homedir%%/Library/Preferences/*']}
 labels: [Users]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Preferences'
 ---
-name: OSXiCloudPref
+name: OSXiCloudPreferences
 doc: iCloud user preferences
 sources:
 - type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Preferences/MobileMeAccounts.plist']
-labels: [Users, Cloud, Account]
+  attributes: {paths: ['%%users.homedir%%/Library/Preferences/MobileMeAccounts.plist']}
+labels: [Users, Cloud, ExternalAccount]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Preferences'
 ---
 name: OSXSidebarlists
 doc: Sidebar Lists Preferences
 sources:
 - type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Preferences/com.apple.sidebarlists.plist']
+  attributes: {paths: ['%%users.homedir%%/Library/Preferences/com.apple.sidebarlists.plist']}
 labels: [Users, External Media]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Preferences'
 ---
 name: OSXGlobalPreferences
 doc: Global Preferences
 sources:
 - type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Preferences/.GlobalPreferences.plist']
+  attributes: {paths: ['%%users.homedir%%/Library/Preferences/.GlobalPreferences.plist']}
 labels: [Users]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Preferences'
 ---
 name: OSXDock
 doc: Dock database
 sources:
 - type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Preferences/com.apple.Dock.plist']
+  attributes: {paths: ['%%users.homedir%%/Library/Preferences/com.apple.Dock.plist']}
 labels: [Users]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Preferences'
 ---
 name: OSXiDevices
 doc: Attached iDevices
 sources:
 - type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Preferences/com.apple.iPod.plist']
+  attributes: {paths: ['%%users.homedir%%/Library/Preferences/com.apple.iPod.plist']}
 labels: [Users, External Media]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Preferences'
 ---
 name: OSXQuarantineEvents
 doc: Quarantine Event Database
@@ -421,718 +511,347 @@ sources:
       - '%%users.homedir%%/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV2'
 labels: [Users, Software]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Preferences'
 ---
 name: OSXUserApplicationLogs
 doc: User and Applications Logs Directory
 sources:
 - type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Logs/*']
+  attributes: {paths: ['%%users.homedir%%/Library/Logs/*']}
 labels: [Users, Logs]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Logs'
 ---
 name: OSXMiscLogs
 doc: Misc. Logs
 sources:
 - type: FILE
-  attributes:
-    paths: ['/Library/Logs/*']
+  attributes: {paths: ['/Library/Logs/*']}
 labels: [Users, Logs]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Logs'
 ---
 name: OSXBashHistory
 doc: Terminal Commands History
 sources:
 - type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/.bash_history']
+  attributes: {paths: ['%%users.homedir%%/.bash_history']}
 labels: [Users, Logs]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Logs'
 ---
 name: OSXUserSocialAccounts
 doc: User's Social Accounts
 sources:
 - type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Accounts/Accounts3.sqlite']
-labels: [Users, Accounts]
+  attributes: {paths: ['%%users.homedir%%/Library/Accounts/Accounts3.sqlite']}
+labels: [Users, ExternalAccount]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#User.27s_Accounts'
 ---
 name: OSXiOSBackupsMainDir
 doc: iOS device backups directory
 sources:
 - type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Application Support/MobileSync/Backup/*']
+  attributes: {paths: ['%%users.homedir%%/Library/Application Support/MobileSync/Backup/*']}
 labels: [Users, iOS]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#iDevice_Backup'
 ---
 name: OSXiOSBackupInfo
 doc: iOS device backup information
 sources:
 - type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Application Support/MobileSync/Backup/*/info.plist']
+  attributes: {paths: ['%%users.homedir%%/Library/Application Support/MobileSync/Backup/*/info.plist']}
 labels: [Users, iOS]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#iDevice_Backup'
 ---
 name: OSXiOSBackupManifest
 doc: iOS device backup apps information
 sources:
 - type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Application Support/MobileSync/Backup/*/Manifest.plist']
+  attributes: {paths: ['%%users.homedir%%/Library/Application Support/MobileSync/Backup/*/Manifest.plist']}
 labels: [Users, iOS]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#iDevice_Backup'
 ---
 name: OSXiOSBackupMbdb
 doc: iOS device backup files information
 sources:
 - type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Application Support/MobileSync/Backup/*/Manifest.mdbd']
+  attributes: {paths: ['%%users.homedir%%/Library/Application Support/MobileSync/Backup/*/Manifest.mdbd']}
 labels: [Users, iOS]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#iDevice_Backup'
 ---
 name: OSXiOSBackupStatus
 doc: iOS device backup status information
 sources:
 - type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Application Support/MobileSync/Backup/*/Status.plist']
+  attributes: {paths: ['%%users.homedir%%/Library/Application Support/MobileSync/Backup/*/Status.plist']}
 labels: [Users, iOS]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#iDevice_Backup'
 ---
 name: OSXRecentItems
 doc: Recent Items
 sources:
 - type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Preferences/com.apple.recentitems.plist']
+  attributes: {paths: ['%%users.homedir%%/Library/Preferences/com.apple.recentitems.plist']}
 labels: [Users]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Recent_Items'
 ---
 name: OSXApplicationsRecentItems
 doc: Recent Items application specific
 sources:
 - type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Preferences/*LSSharedFileList.plist']
+  attributes: {paths: ['%%users.homedir%%/Library/Preferences/*LSSharedFileList.plist']}
 labels: [Users, Software]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Recent_Items'
 ---
 name: OSXApplicationSupport
 doc: Application Support Directory
 sources:
-- type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Application Support/*']
+- type: PATH
+  attributes: {paths: ['%%users.homedir%%/Library/Application Support/*']}
 labels: [Users, Software]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Misc.'
 ---
 name: OSXKeychains
 doc: Keychain Directory
 sources:
 - type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Keychains/*']
+  attributes: {paths: ['%%users.homedir%%/Library/Keychains/*']}
 labels: [Users]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Misc.'
 ---
 name: OSXUserTrash
 doc: User Trash Folder
 sources:
 - type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/.Trash/*']
+  attributes: {paths: ['%%users.homedir%%/.Trash/*']}
 labels: [Users]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Misc.'
 ---
 name: OSXiCloudAccounts
 doc: iCloud Accounts
 sources:
 - type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Application Support/iCloud/Accounts/*']
-labels: [Users, Software, Cloud, Account]
+  attributes: {paths: ['%%users.homedir%%/Library/Application Support/iCloud/Accounts/*']}
+labels: [Users, Software, Cloud, ExternalAccount]
 supported_os: [Darwin]
----
-name: OSXSkypeMainDir
-doc: Skype Directory
-sources:
-- type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Application Support/Skype/*']
-labels: [Users, Software, IM]
-supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#iCloud'
 ---
 name: OSXSkypeUserProfile
 doc: Skype User profile
 sources:
 - type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Application Support/Skype/*/*']
+  attributes: {paths: ['%%users.homedir%%/Library/Application Support/Skype/*/*']}
 labels: [Users, Software, IM]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Skype'
 ---
 name: OSXSkypePreferences
 doc: Skype Preferences and Recent Searches
 sources:
 - type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Preferences/com.skype.skype.plist']
+  attributes: {paths: ['%%users.homedir%%/Library/Preferences/com.skype.skype.plist']}
 labels: [Users, Software, IM]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Skype'
 ---
 name: OSXSkypeDb
 doc: Main Skype database
 sources:
 - type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Application Support/Skype/*/Main.db']
+  attributes: {paths: ['%%users.homedir%%/Library/Application Support/Skype/*/Main.db']}
 labels: [Users, Software, IM]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Skype'
 ---
 name: OSXSkypechatsync
 doc: Chat Sync Directory
 sources:
 - type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Application Support/Skype/*/chatsync/*']
+  attributes: {paths: ['%%users.homedir%%/Library/Application Support/Skype/*/chatsync/*']}
 labels: [Users, Software, IM]
 supported_os: [Darwin]
----
-name: OSXSafariMainDir
-doc: Safari Main Folder
-sources:
-- type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Safari/*']
-labels: [Users, Software, Browser]
-supported_os: [Darwin]
----
-name: OSXSafariBookmarks
-doc: Safari Bookmarks
-sources:
-- type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Safari/Bookmarks.plist']
-labels: [Users, Software, Browser]
-supported_os: [Darwin]
----
-name: OSXSafariDownloads
-doc: Safari Downloads
-sources:
-- type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Safari/Downloads.plist']
-labels: [Users, Software, Browser]
-supported_os: [Darwin]
----
-name: OSXSafariExtensions
-doc: Safari Installed Extensions
-sources:
-- type: FILE
-  attributes:
-    paths: 
-      - '%%users.homedir%%/Library/Safari/Extensions/Extensions.plist'
-      - '%%users.homedir%%/Library/Safari/Extensions/*'
-labels: [Users, Software, Browser]
-supported_os: [Darwin]
----
-name: OSXSafariHistory
-doc: Safari History
-sources:
-- type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Safari/History.plist']
-labels: [Users, Software, Browser]
-supported_os: [Darwin]
----
-name: OSXSafariHistoryIndex
-doc: Safari History Index
-sources:
-- type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Safari/HistoryIndex.sk']
-labels: [Users, Software, Browser]
-supported_os: [Darwin]
----
-name: OSXSafariLastSession
-doc: Safari Last Session
-sources:
-- type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Safari/LastSession.plist']
-labels: [Users, Software, Browser]
-supported_os: [Darwin]
----
-name: OSXSafariLocalStorage
-doc: Safari Local Storage Directory
-sources:
-- type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Safari/LocalStorage/*']
-labels: [Users, Software, Browser]
-supported_os: [Darwin]
----
-name: OSXSafariStorageTracker
-doc: Safari Local Storage Database
-sources:
-- type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Safari/LocalStorage/StorageTracker.db']
-labels: [Users, Software, Browser]
-supported_os: [Darwin]
----
-name: OSXSafariTopSites
-doc: Safari Top Sites
-sources:
-- type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Safari/TopSites.plist']
-labels: [Users, Software, Browser]
-supported_os: [Darwin]
----
-name: OSXSafariWebpageIcons
-doc: Safari Webpage Icons Database
-sources:
-- type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Safari/WebpageIcons.db']
-labels: [Users, Software, Browser]
-supported_os: [Darwin]
----
-name: OSXSafariDatabases
-doc: Safari Webpage Databases
-sources:
-- type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Safari/Databases/*']
-labels: [Users, Software, Browser]
-supported_os: [Darwin]
----
-name: OSXSafariCacheDir
-doc: Safari Cache Directory
-sources:
-- type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Caches/com.apple.Safari/*']
-labels: [Users, Software, Browser]
-supported_os: [Darwin]
----
-name: OSXSafariCache
-doc: Safari Cache
-sources:
-- type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Caches/com.apple.Safari/Cache.db']
-labels: [Users, Software, Browser]
-supported_os: [Darwin]
----
-name: OSXSafariCacheExtensions
-doc: Safari Extensions Cache
-sources:
-- type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Caches/com.apple.Safari/Extensions/*']
-labels: [Users, Software, Browser]
-supported_os: [Darwin]
----
-name: OSXSafariWebPreviews
-doc: Safari Webpage Previews
-sources:
-- type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Caches/com.apple.Safari/Webpage Previews/*']
-labels: [Users, Software, Browser]
-supported_os: [Darwin]
----
-name: OSXSafariCookies
-doc: Safari Cookies
-sources:
-- type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Cookies/Cookies.binarycookies']
-labels: [Users, Software, Browser]
-supported_os: [Darwin]
----
-name: OSXSafariPreferences
-doc: Safari Preferences and Search terms
-sources:
-- type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Preferences/com.apple.Safari.plist']
-labels: [Users, Software, Browser]
-supported_os: [Darwin]
----
-name: OSXSafariExtPreferences
-doc: Safari Extension Preferences
-sources:
-- type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Preferences/com.apple.Safari.Extensions.plist']
-labels: [Users, Software, Browser]
-supported_os: [Darwin]
----
-name: OSXSafariCacheBookmarks
-doc: Safari Bookmark Cache
-sources:
-- type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Caches/Metadata/Safari/Bookmarks/*']
-labels: [Users, Software, Browser]
-supported_os: [Darwin]
----
-name: OSXSafariCacheHistory
-doc: Safari History Cache
-sources:
-- type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Caches/Metadata/Safari/History/*']
-labels: [Users, Software, Browser]
-supported_os: [Darwin]
----
-name: OSXSafariTempImg
-doc: Safari Temporary Images
-sources:
-- type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Caches/com.apple.Safari/fsCachedData/*']
-labels: [Users, Software, Browser]
-supported_os: [Darwin]
----
-name: OSXFirefoxDir
-doc: Firefox Directory
-sources:
-- type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Application Support/Firefox/*']
-labels: [Users, Software, Browser]
-supported_os: [Darwin]
----
-name: OSXFirefoxProfiles
-doc: Firefox Profiles
-sources:
-- type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Application Support/Firefox/Profiles/*']
-labels: [Users, Software, Browser]
-supported_os: [Darwin]
----
-name: OSXFirefoxCookies
-doc: Firefox Cookies
-sources:
-- type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Application Support/Firefox/Profiles/*/Cookies.sqlite']
-labels: [Users, Software, Browser]
-supported_os: [Darwin]
----
-name: OSXFirefoxDownloads
-doc: Firefox Downloads
-sources:
-- type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Application Support/Firefox/Profiles/*/Downloads.sqlite']
-labels: [Users, Software, Browser]
-supported_os: [Darwin]
----
-name: OSXFirefoxFormhistory
-doc: Firefox Form History
-sources:
-- type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Application Support/Firefox/Profiles/*/Formhistory.sqlite']
-labels: [Users, Software, Browser]
-supported_os: [Darwin]
----
-name: OSXFirefoxHistory
-doc: Firefox History
-sources:
-- type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Application Support/Firefox/Profiles/*/Places.sqlite']
-labels: [Users, Software, Browser]
-supported_os: [Darwin]
----
-name: OSXFirefoxPassword
-doc: Firefox Signon
-sources:
-- type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Application Support/Firefox/Profiles/*/signons.sqlite']
-labels: [Users, Software, Browser]
-supported_os: [Darwin]
----
-name: OSXFirefoxKey
-doc: Firefox Key
-sources:
-- type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Application Support/Firefox/Profiles/*/key3.db']
-labels: [Users, Software, Browser]
-supported_os: [Darwin]
----
-name: OSXFirefoxPermission
-doc: Firefox Permissions
-sources:
-- type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Application Support/Firefox/Profiles/*/permissions.sqlite']
-labels: [Users, Software, Browser]
-supported_os: [Darwin]
----
-name: OSXFirefoxAddons
-doc: Firefox Add-ons
-sources:
-- type: FILE
-  attributes:
-    paths: 
-      - '%%users.homedir%%/Library/Application Support/Firefox/Profiles/*/addons.sqlite'
-      - '%%users.homedir%%/Library/Application Support/Firefox/Profiles/*/addons.json'
-labels: [Users, Software, Browser]
-supported_os: [Darwin]
----
-name: OSXFirefoxExtension
-doc: Firefox Extension
-sources:
-- type: FILE
-  attributes:
-    paths: 
-      - '%%users.homedir%%/Library/Application Support/Firefox/Profiles/*/extensions.sqlite'
-      - '%%users.homedir%%/Library/Application Support/Firefox/Profiles/*/extensions.json'
-labels: [Users, Software, Browser]
-supported_os: [Darwin]
----
-name: OSXFirefoxContentPrefs
-doc: Firefox Pages Settings
-sources:
-- type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Application Support/Firefox/Profiles/*/content-prefs.sqlite']
-labels: [Users, Software, Browser]
-supported_os: [Darwin]
----
-name: OSXChromeMainDir
-doc: Chrome Main Folder
-sources:
-- type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Application Support/Google/Chrome/*']
-labels: [Users, Software, Browser]
-supported_os: [Darwin]
----
-name: OSXChromeDefaultDir
-doc: Chrome Default profile
-sources:
-- type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Application Support/Google/Chrome/default/*']
-labels: [Users, Software, Browser]
-supported_os: [Darwin]
----
-name: OSXChromeHistory
-doc: Chrome History
-sources:
-- type: FILE
-  attributes:
-    paths: 
-      - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/History'
-      - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Archived History'
-labels: [Users, Software, Browser]
-supported_os: [Darwin]
----
-name: OSXChromeBookmarks
-doc: Chrome Bookmarks
-sources:
-- type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Application Support/Google/Chrome/*/Bookmarks']
-labels: [Users, Software, Browser]
-supported_os: [Darwin]
----
-name: OSXChromeCookies
-doc: Chrome Cookies
-sources:
-- type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Application Support/Google/Chrome/*/Cookies']
-labels: [Users, Software, Browser]
-supported_os: [Darwin]
----
-name: OSXChromeLocalStorage
-doc: Chrome Local Storage
-sources:
-- type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Application Support/Google/Chrome/*/Local Storage/*.localstorage']
-labels: [Users, Software, Browser]
-supported_os: [Darwin]
----
-name: OSXChromeLogin
-doc: Chrome Login Data
-sources:
-- type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Application Support/Google/Chrome/*/Login Data']
-labels: [Users, Software, Browser]
-supported_os: [Darwin]
----
-name: OSXChromeTopSistes
-doc: Chrome Top Sites
-sources:
-- type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Application Support/Google/Chrome/*/Top Sites']
-labels: [Users, Software, Browser]
-supported_os: [Darwin]
----
-name: OSXChromeWebData
-doc: Chrome Web Data
-sources:
-- type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Application Support/Google/Chrome/*/Web Data']
-labels: [Users, Software, Browser]
-supported_os: [Darwin]
----
-name: OSXChromeExtension
-doc: Chrome Extensions
-sources:
-- type: FILE
-  attributes:
-    paths: 
-      - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/databases/*'
-      - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/databases/Databases.db'
-labels: [Users, Software, Browser]
-supported_os: [Darwin]
----
-name: OSXChromeCache
-doc: Chrome Cache
-sources:
-- type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Caches/com.google.Chrome/Cache.db']
-labels: [Users, Software, Browser]
-supported_os: [Darwin]
----
-name: OSXChromePreferences
-doc: Chrome Preferences Files
-sources:
-- type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Preferences/com.google.Chrome.plist']
-labels: [Users, Software, Browser]
-supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Skype'
 ---
 name: OSXMailMainDir
 doc: Mail Main Folder
 sources:
 - type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Mail/V2/*']
+  attributes: {paths: ['%%users.homedir%%/Library/Mail/V2/*']}
 labels: [Users, Software, Mail]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Mail'
 ---
 name: OSXMailboxes
 doc: Mail Mailbox Directory
 sources:
 - type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Mail/V2/Mailboxes/*']
+  attributes: {paths: ['%%users.homedir%%/Library/Mail/V2/Mailboxes/*']}
 labels: [Users, Software, Mail]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Mail'
 ---
 name: OSXMailIMAP
 doc: Mail IMAP Synched Mailboxes
 sources:
 - type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Mail/V2/IMAP-<name@address>/*']
+  attributes: {paths: ['%%users.homedir%%/Library/Mail/V2/IMAP-*/*']}
 labels: [Users, Software, Mail]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Mail'
 ---
 name: OSXMailPOP
 doc: Mail POP Synched Mailboxes
 sources:
 - type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Mail/V2/POP-<name@address>/*']
+  attributes: {paths: ['%%users.homedir%%/Library/Mail/V2/POP-*/*']}
 labels: [Users, Software, Mail]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Mail'
 ---
 name: OSXMailBackupTOC
 doc: Mail BackupTOC
 sources:
 - type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Mail/V2/MailData/BackupTOC.plist']
+  attributes: {paths: ['%%users.homedir%%/Library/Mail/V2/MailData/BackupTOC.plist']}
 labels: [Users, Software, Mail]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Mail'
 ---
 name: OSCMailEnvelopIndex
 doc: Mail Envelope Index
 sources:
 - type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Mail/V2/MailData/Envelope Index']
+  attributes: {paths: ['%%users.homedir%%/Library/Mail/V2/MailData/Envelope Index']}
 labels: [Users, Software, Mail]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Mail'
 ---
 name: OSXMailOpenedAttachments
 doc: Mail Opened Attachments
 sources:
 - type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Mail/V2/MailData/OpenedAttachmentsV2.plist']
+  attributes: {paths: ['%%users.homedir%%/Library/Mail/V2/MailData/OpenedAttachmentsV2.plist']}
 labels: [Users, Software, Mail]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Mail'
 ---
 name: OSXMailSignatures
 doc: Mail Signatures by Account
 sources:
 - type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Mail/V2/MailData/Signatures/*']
+  attributes: {paths: ['%%users.homedir%%/Library/Mail/V2/MailData/Signatures/*']}
 labels: [Users, Software, Mail]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Mail'
 ---
-name: OSXMailDownloadAttachment
+name: OSXMailDownloadAttachments
 doc: Mail Downloads Directory
 sources:
 - type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Containers/com.apple.mail/Data/Library/Mail Downloads/*']
+  attributes: {paths: ['%%users.homedir%%/Library/Containers/com.apple.mail/Data/Library/Mail Downloads/*']}
 labels: [Users, Software, Mail]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Mail'
 ---
 name: OSXMailPrefs
 doc: Mail Preferences
 sources:
 - type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Preferences/com.apple.Mail.plist']
+  attributes: {paths: ['%%users.homedir%%/Library/Preferences/com.apple.Mail.plist']}
 labels: [Users, Software, Mail]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Mail'
 ---
 name: OSXMailRecentContacts
 doc: Mail Recent Contacts
 sources:
 - type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Application Support/AddressBook/MailRecents-v4.abcdmr']
+  attributes: {paths: ['%%users.homedir%%/Library/Application Support/AddressBook/MailRecents-v4.abcdmr']}
 labels: [Users, Software, Mail]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Mail'
 ---
 name: OSXMailAccounts
 doc: Mail Accounts
 sources:
 - type: FILE
-  attributes:
-    paths: ['%%users.homedir%%/Library/Mail/V2/MailData/Accounts.plist']
+  attributes: {paths: ['%%users.homedir%%/Library/Mail/V2/MailData/Accounts.plist']}
 labels: [Users, Software, Mail]
 supported_os: [Darwin]
----
-# Total Artifacts:  122
-# Total Locations:  140
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Mail'
