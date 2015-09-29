@@ -353,10 +353,16 @@ doc: Services started by sysv-style init scripts.
 sources:
 - type: FILE
   attributes:
-    paths: ["/etc/rc*.d", "/etc/rc*.d/*"]
+    paths:
+      - '/etc/rc*.d'
+      - '/etc/rc*.d/*'
+      - '/etc/rc.d/rc*.d/*'
+      - '/etc/rc.d/init.d/*'
 labels: [Configuration Files, System]
 supported_os: [Linux]
-urls: ['http://savannah.nongnu.org/projects/sysvinit']
+urls:
+  - 'http://savannah.nongnu.org/projects/sysvinit'
+  - 'http://docs.oracle.com/cd/E37670_01/E41138/html/ol_svcscripts.html'
 ---
 name: LinuxXinetd
 doc: Linux xinetd configurations.
