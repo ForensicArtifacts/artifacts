@@ -149,3 +149,13 @@ sources:
     cmd: /usr/sbin/kextstat
 labels: [System]
 supported_os: [Darwin]
+---
+name: OSXMountedDMGs
+doc: Mac OS X Mounted DMG Files.
+sources:
+- type: COMMAND
+  attributes:
+    args: ['info']
+    cmd: /usr/bin/hdiutil
+labels: [System]
+supported_os: [Darwin]
