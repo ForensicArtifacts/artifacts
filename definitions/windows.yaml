@@ -95,6 +95,20 @@ sources:
 supported_os: [Windows]
 urls: ['http://dfrws.org/2015/proceedings/presentations/DFRWS2015-pres3.pdf']
 ---
+name: EnvironmentUserLoginScripts
+doc: User login scripts configured via environment variables.
+source:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+        - {key: 'HKEY_USERS\%%users.sid%%\Environment', value: 'UserInitLogonServer'}
+        - {key: 'HKEY_USERS\%%users.sid%%\Environment', value: 'UserInitLogonScript'}
+        - {key: 'HKEY_USERS\%%users.sid%%\Environment', value: 'UserMprLogonScript'}
+supported_os: [Windows]
+urls:
+- 'http://www.hexacorn.com/blog/2014/11/14/beyond-good-ol-run-key-part-18/'
+- 'https://social.msdn.microsoft.com/Forums/windowsdesktop/en-US/cb6f1d6f-60a6-4369-803e-ec03d902e638/gina-how-to-run-domain-scripts-after-logon'
+---
 name: EventLogs
 doc: Windows Event logs.
 sources:
@@ -335,20 +349,6 @@ conditions: [os_major_version >= 6]
 labels: [Logs]
 supported_os: [Windows]
 urls: ['http://www.forensicswiki.org/wiki/Windows_XML_Event_Log_(EVTX)']
----
-name: EnvironmentUserLoginScripts
-doc: User login scripts configured via environment variables.
-source:
-- type: REGISTRY_VALUE
-  attributes:
-    key_value_pairs:
-        - {key: 'HKEY_USERS\%%users.sid%%\Environment', value: 'UserInitLogonServer'}
-        - {key: 'HKEY_USERS\%%users.sid%%\Environment', value: 'UserInitLogonScript'}
-        - {key: 'HKEY_USERS\%%users.sid%%\Environment', value: 'UserMprLogonScript'}
-supported_os: [Windows]
-urls:
-- 'http://www.hexacorn.com/blog/2014/11/14/beyond-good-ol-run-key-part-18/'
-- 'https://social.msdn.microsoft.com/Forums/windowsdesktop/en-US/cb6f1d6f-60a6-4369-803e-ec03d902e638/gina-how-to-run-domain-scripts-after-logon'
 ---
 name: WindowsHostsFiles
 doc: The Windows hosts and lmhosts file.
