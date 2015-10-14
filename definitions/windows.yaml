@@ -505,6 +505,13 @@ conditions: [os_major_version >= 6]
 labels: [Software]
 supported_os: [Windows]
 ---
+name: WMIEnumerateASEC
+doc: Enumerate instances of ActiveScriptEventConsumer.
+sources:
+- type: WMI
+  attributes: {query: SELECT * FROM ActiveScriptEventConsumer, base_object: 'winmgmts:\root\subscription'}
+supported_os: [Windows]
+---
 name: WMIHotFixes
 doc: Installed hotfixes via Windows Management Instrumentation (WMI).
 sources:
