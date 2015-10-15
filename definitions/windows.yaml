@@ -97,7 +97,7 @@ urls: ['http://dfrws.org/2015/proceedings/presentations/DFRWS2015-pres3.pdf']
 ---
 name: EnvironmentUserLoginScripts
 doc: User login scripts configured via environment variables.
-source:
+sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
