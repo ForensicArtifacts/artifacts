@@ -495,6 +495,20 @@ labels: [System]
 supported_os: [Windows]
 urls: ['http://msdn.microsoft.com/en-us/library/aa394105(v=vs.85).aspx']
 ---
+name: WMIEnumerateASEC
+doc: Enumerate instances of ActiveScriptEventConsumer.
+sources:
+- type: WMI
+  attributes: {query: SELECT * FROM ActiveScriptEventConsumer, base_object: 'winmgmts:\root\subscription'}
+supported_os: [Windows]
+---
+name: WMIEnumerateCLEC
+doc: Enumerate instances of CommandLineEventConsumer.
+sources:
+- type: WMI
+  attributes: {query: SELECT * FROM CommandLineEventConsumer, base_object: 'winmgmts:\root\subscription'}
+supported_os: [Windows]
+---
 name: WMIDrivers
 doc: Installed drivers via Windows Management Instrumentation (WMI).
 sources:
