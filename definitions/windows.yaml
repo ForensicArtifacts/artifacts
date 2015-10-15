@@ -464,6 +464,16 @@ labels: [System]
 supported_os: [Windows]
 urls: ['http://msdn.microsoft.com/en-us/library/aa394105(v=vs.85).aspx']
 ---
+name: WMIDrivers
+doc: Installed drivers via Windows Management Instrumentation (WMI).
+sources:
+- type: WMI
+  attributes: {query: 'SELECT DisplayName, Description, InstallDate, Name, PathName, Status,
+      State, ServiceType from Win32_SystemDriver'}
+conditions: [os_major_version >= 6]
+labels: [Software]
+supported_os: [Windows]
+---
 name: WMIEnumerateASEC
 doc: Enumerate instances of ActiveScriptEventConsumer.
 sources:
@@ -476,16 +486,6 @@ doc: Enumerate instances of CommandLineEventConsumer.
 sources:
 - type: WMI
   attributes: {query: SELECT * FROM CommandLineEventConsumer, base_object: 'winmgmts:\root\subscription'}
-supported_os: [Windows]
----
-name: WMIDrivers
-doc: Installed drivers via Windows Management Instrumentation (WMI).
-sources:
-- type: WMI
-  attributes: {query: 'SELECT DisplayName, Description, InstallDate, Name, PathName, Status,
-      State, ServiceType from Win32_SystemDriver'}
-conditions: [os_major_version >= 6]
-labels: [Software]
 supported_os: [Windows]
 ---
 name: WMIHotFixes
