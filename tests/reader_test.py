@@ -141,6 +141,36 @@ class YamlArtifactsReaderTest(unittest.TestCase):
         collector_definition.type_indicator,
         definitions.TYPE_INDICATOR_COMMAND)
 
+  def testBadKey(self):
+    """Tests top level keys are correct."""
+    artifact_reader = reader.YamlArtifactsReader()
+    file_object = io.StringIO(initial_value=u"""name: BadKey
+doc: bad extra key.
+sources:
+- type: ARTIFACT
+  attributes:
+    names:
+      - 'SystemEventLogEvtx'
+extra_key: 'wrong'
+labels: [Logs]
+supported_os: [Windows]
+""")
+
+    with self.assertRaises(errors.FormatError):
+      _ = list(artifact_reader.ReadFileObject(file_object))
+
+  def testMissingSources(self):
+    """Tests sources is present."""
+    artifact_reader = reader.YamlArtifactsReader()
+    file_object = io.StringIO(initial_value=u"""name: BadSources
+doc: must have one sources.
+labels: [Logs]
+supported_os: [Windows]
+""")
+
+    with self.assertRaises(errors.FormatError):
+      _ = list(artifact_reader.ReadFileObject(file_object))
+
   def testBadSupportedOS(self):
     """Tests supported_os is checked correctly."""
     artifact_reader = reader.YamlArtifactsReader()
