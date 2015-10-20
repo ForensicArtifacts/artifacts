@@ -135,6 +135,31 @@ class PathSourceType(SourceType):
     self.separator = separator
 
 
+class DirectorySourceType(SourceType):
+  """Class that implements the directory source type."""
+
+  TYPE_INDICATOR = definitions.TYPE_INDICATOR_DIRECTORY
+
+  def __init__(self, paths=None, separator=u'/'):
+    """Initializes the source type object.
+
+    Args:
+      paths: optional list of paths. The paths are considered relative
+             to the root of the file system. The default is None.
+      separator: optional string containing the path segment separator.
+                 The default is /.
+
+    Raises:
+      FormatError: when paths is not set.
+    """
+    if not paths:
+      raise errors.FormatError(u'Missing directory value.')
+
+    super(DirectorySourceType, self).__init__()
+    self.paths = paths
+    self.separator = separator
+
+
 class WindowsRegistryKeySourceType(SourceType):
   """Class that implements the Windows Registry key source type."""
 
