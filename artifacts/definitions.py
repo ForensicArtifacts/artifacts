@@ -31,3 +31,6 @@ LABELS = {
     }
 
 SUPPORTED_OS = frozenset(['Darwin', 'Linux', 'Windows'])
+
+TOP_LEVEL_KEYS = frozenset(['conditions', 'doc', 'labels', 'name', 'provides',
+                            'sources', 'supported_os', 'urls'])

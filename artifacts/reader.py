@@ -72,6 +72,11 @@ class YamlArtifactsReader(ArtifactsReader):
     if not yaml_definition:
       raise errors.FormatError(u'Missing YAML definition.')
 
+    different_keys = set(yaml_definition) - definitions.TOP_LEVEL_KEYS
+    if different_keys:
+      raise errors.FormatError(u'Undefined keys: {0!s}'.format(
+          different_keys))
+
     name = yaml_definition.get(u'name', None)
     if not name:
       raise errors.FormatError(u'Invalid artifact definition missing name.')
@@ -91,7 +96,13 @@ class YamlArtifactsReader(ArtifactsReader):
           u'Invalid artifact definition: {0:s} still uses collectors.'.format(
               name))
 
-    for source in yaml_definition.get(u'sources', []):
+    sources = yaml_definition.get(u'sources')
+    if not sources:
+      raise errors.FormatError(
+          u'Invalid artifact definition: {0:s} missing sources.'.format(
+              name))
+
+    for source in sources:
       type_indicator = source.get(u'type', None)
       if not type_indicator:
         raise errors.FormatError(
