@@ -99,7 +99,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#System_Preferences'
 ---
-name: OSXGlobalPrefs
+name: OSXGlobalPreferences
 doc: Global Preferences
 sources:
 - type: FILE
@@ -122,7 +122,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#System_Preferences'
 ---
 name: OSXBluetooth
-doc: Bluetooth preferences and paierd device info
+doc: Bluetooth preferences and paired device info
 sources:
 - type: FILE
   attributes: {paths: ['/Library/Preferences/com.apple.Bluetooth.plist']}
@@ -328,7 +328,7 @@ urls:
 name: OSXUsers
 doc: Users directories in /Users
 sources:
-- type: PATH
+- type: DIRECTORY
   attributes: {paths: ['/Users/*']}
 labels: [Users]
 supported_os: [Darwin]
@@ -339,7 +339,7 @@ urls:
 name: OSXUserDownloadsDir
 doc: Downloads Directory
 sources:
-- type: PATH
+- type: DIRECTORY
   attributes: {paths: ['%%users.homedir%%/Downloads/*']}
 labels: [Users]
 supported_os: [Darwin]
@@ -350,7 +350,7 @@ urls:
 name: OSXUserDocumentsDir
 doc: Documents Directory
 sources:
-- type: PATH
+- type: DIRECTORY
   attributes: {paths: ['%%users.homedir%%/Documents/*']}
 labels: [Users]
 supported_os: [Darwin]
@@ -361,7 +361,7 @@ urls:
 name: OSXUserMusicDir
 doc: Music Directory
 sources:
-- type: PATH
+- type: DIRECTORY
   attributes: {paths: ['%%users.homedir%%/Music/*']}
 labels: [Users]
 supported_os: [Darwin]
@@ -372,7 +372,7 @@ urls:
 name: OSXUserDesktopDir
 doc: Desktop Directory
 sources:
-- type: PATH
+- type: DIRECTORY
   attributes: {paths: ['%%users.homedir%%/Desktop/*']}
 labels: [Users]
 supported_os: [Darwin]
@@ -383,7 +383,7 @@ urls:
 name: OSXUserLibraryDir
 doc: Library Directory
 sources:
-- type: PATH
+- type: DIRECTORY
   attributes: {paths: ['%%users.homedir%%/Library/*']}
 labels: [Users]
 supported_os: [Darwin]
@@ -394,7 +394,7 @@ urls:
 name: OSXUserMoviesDir
 doc: Movies Directory
 sources:
-- type: PATH
+- type: DIRECTORY
   attributes: {paths: ['%%users.homedir%%/Movies/*']}
 labels: [Users]
 supported_os: [Darwin]
@@ -405,7 +405,7 @@ urls:
 name: OSXUserPicturesDir
 doc: Pictures Directory
 sources:
-- type: PATH
+- type: DIRECTORY
   attributes: {paths: ['%%users.homedir%%/Pictures/*']}
 labels: [Users]
 supported_os: [Darwin]
@@ -416,7 +416,7 @@ urls:
 name: OSXUserPublicDir
 doc: Public Directory
 sources:
-- type: PATH
+- type: DIRECTORY
   attributes: {paths: ['%%users.homedir%%/Public/*']}
 labels: [Users]
 supported_os: [Darwin]
@@ -427,7 +427,7 @@ urls:
 name: OSXApplications
 doc: Applications
 sources:
-- type: PATH
+- type: DIRECTORY
   attributes: {paths: ['/Applications/*']}
 labels: [Users, Software]
 supported_os: [Darwin]
@@ -457,8 +457,11 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Preferences'
 ---
-name: OSXSidebarlists
-doc: Sidebar Lists Preferences
+name: OSXSidebarLists
+doc: |
+  Sidebar Lists Preferences
+
+  This plist contains the names of volumes mounted on the desktop that have appeared in the sidebar list.
 sources:
 - type: FILE
   attributes: {paths: ['%%users.homedir%%/Library/Preferences/com.apple.sidebarlists.plist']}
@@ -468,8 +471,8 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Preferences'
 ---
-name: OSXGlobalPreferences
-doc: Global Preferences
+name: OSXUserGlobalPreferences
+doc: User Global Preferences
 sources:
 - type: FILE
   attributes: {paths: ['%%users.homedir%%/Library/Preferences/.GlobalPreferences.plist']}
@@ -639,7 +642,7 @@ urls:
 name: OSXApplicationSupport
 doc: Application Support Directory
 sources:
-- type: PATH
+- type: DIRECTORY
   attributes: {paths: ['%%users.homedir%%/Library/Application Support/*']}
 labels: [Users, Software]
 supported_os: [Darwin]
