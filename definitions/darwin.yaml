@@ -855,11 +855,9 @@ sources:
   attributes: {paths: ['%%users.homedir%%/Library/Mail/V2/MailData/Accounts.plist']}
 labels: [Users, Software, Mail]
 supported_os: [Darwin]
-<<<<<<< HEAD
 urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Mail'
-=======
 ---
 name: OSXMountedDMGs
 doc: Mac OS X Mounted DMG Files.
@@ -870,4 +868,23 @@ sources:
     cmd: /usr/bin/hdiutil
 labels: [System]
 supported_os: [Darwin]
->>>>>>> upstream/master
+---
+name: OSXLoadedKexts
+doc: Mac OS X Loaded Kernel Extensions.
+sources:
+- type: COMMAND
+  attributes:
+    args: []
+    cmd: /usr/sbin/kextstat
+labels: [System]
+supported_os: [Darwin]
+---
+name: OSXMountedDMGs
+doc: Mac OS X Mounted DMG Files.
+sources:
+- type: COMMAND
+  attributes:
+    args: ['info']
+    cmd: /usr/bin/hdiutil
+labels: [System]
+supported_os: [Darwin]
