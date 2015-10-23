@@ -208,7 +208,7 @@ name: ProgramsCache
 doc: Windows Programs Cache
 sources:
 - type: REGISTRY_KEY
-  attributes: {keys: 'HKEY_USERS\\%%users.sid%%\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\RunGrpConv'}
+  attributes: {keys: ['HKEY_USERS\\%%users.sid%%\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\RunGrpConv']}
 supported_os: [Windows]
 conditions: [os_major_version <= 5]
 urls:
