@@ -1,0 +1,45 @@
+# Cloud service artifacts.
+
+name: CloudStorageClients
+doc: Multiple cloud storage client artifacts.
+sources:
+- type: ARTIFACT
+  attributes:
+    names:
+      - 'DropboxClient'
+      - 'GoogleDriveClient'
+labels: [Cloud Storage]
+supported_os: [Darwin,Linux,Windows]
+---
+name: DropboxClient
+doc: Dropbox cloud storage client artifacts.
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '%%users.appdata%%\Dropbox\*.db*'
+      - '%%users.localappdata%%\Dropbox\*.db*'
+  supported_os: [Windows]
+- type: FILE
+  attributes:
+    paths:
+      - '%%users.homedir%%/.dropbox/*.db*'
+  supported_os: [Darwin,Linux]
+labels: [Cloud Storage]
+urls: ['http://www.forensicswiki.org/wiki/Dropbox']
+---
+name: GoogleDriveClient
+doc: Google Drive cloud storage client artifacts.
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '%%users.localappdata%%\Google\Drive\snapshot.db'
+      - '%%users.localappdata%%\Google\Drive\sync_config.db'
+      - '%%users.localappdata%%\Google\Drive\sync_config.log*'
+      - '%%users.localappdata%%\Google\Drive\user_default\snapshot.db'
+      - '%%users.localappdata%%\Google\Drive\user_default\sync_config.db'
+      - '%%users.localappdata%%\Google\Drive\user_default\sync_config.log*'
+  supported_os: [Windows]
+labels: [Cloud Storage]
+urls: ['http://www.forensicswiki.org/wiki/Google_Drive']

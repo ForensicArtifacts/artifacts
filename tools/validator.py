@@ -42,7 +42,9 @@ class ArtifactDefinitionsValidator(object):
           result = False
 
     except errors.FormatError as exception:
-      logging.warning(exception.message)
+      logging.warning(
+          u'Unable to validate file: {0:s} with error: {1:s}'.format(
+              filename, exception))
       result = False
 
     return result

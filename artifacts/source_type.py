@@ -220,7 +220,7 @@ class WMIQuerySourceType(SourceType):
 
   TYPE_INDICATOR = definitions.TYPE_INDICATOR_WMI_QUERY
 
-  def __init__(self, query=None):
+  def __init__(self, query=None, base_object=None):
     """Initializes the source type object.
 
     Args:
@@ -234,3 +234,4 @@ class WMIQuerySourceType(SourceType):
 
     super(WMIQuerySourceType, self).__init__()
     self.query = query
+    self.base_object = base_object

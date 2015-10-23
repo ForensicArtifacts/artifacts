@@ -16,7 +16,11 @@ LABELS = {
     'Antivirus': 'Antivirus related artifacts, e.g. quarantine files.',
     'Authentication': 'Authentication artifacts.',
     'Browser': 'Web Browser artifacts.',
+<<<<<<< HEAD
     'Cloud': 'Cloud applications artifacts.',
+=======
+    'Cloud Storage': 'Cloud storage artifacts.',
+>>>>>>> upstream/master
     'Configuration Files': 'Configuration files artifacts.',
     'Execution': 'Contain execution events.',
     'ExternalAccount': 'Information about any users\' account, e.g. username, account ID, etc.',    
@@ -36,3 +40,6 @@ LABELS = {
     }
 
 SUPPORTED_OS = frozenset(['Darwin', 'Linux', 'Windows'])
+
+TOP_LEVEL_KEYS = frozenset(['conditions', 'doc', 'labels', 'name', 'provides',
+                            'sources', 'supported_os', 'urls'])
