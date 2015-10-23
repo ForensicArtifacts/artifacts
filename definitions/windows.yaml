@@ -239,7 +239,7 @@ name: RunGrpConvFlag
 doc: The RunGrpConv registry key. When this key is set and has a non-zero value, userinit.exe will launch grpconv.exe at user login.
 sources:
 - type: REGISTRY_KEY
-  attributes: {keys: 'HKEY_USERS\\%%users.sid%%\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\RunGrpConv'}
+  attributes: {keys: ['HKEY_USERS\\%%users.sid%%\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\RunGrpConv']}
 supported_os: [Windows]
 conditions: [os_major_version <= 5]
 urls:
