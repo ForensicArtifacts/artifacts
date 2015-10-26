@@ -1037,6 +1037,20 @@ sources:
 supported_os: [Windows]
 urls: ['https://technet.microsoft.com/en-us/library/cc939701.aspx']
 ---
+name: WindowsPolicyDisallowRun
+doc: |
+  Restrict users from running specific applications.
+  Typically used by malware to block AV application.
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
+      - 'HKEY_USERS\%%users.sid%%\software\microsoft\windows\currentversion\policies\explorer\DisallowRun'
+labels: [Software]
+supported_os: [Windows]
+urls:
+- 'https://support.microsoft.com/en-us/kb/323525'
+---
 name: WindowsPolicyShell
 doc: Windows shell replacement
 sources:
