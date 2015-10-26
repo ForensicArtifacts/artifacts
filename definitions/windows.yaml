@@ -716,6 +716,20 @@ sources:
       - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders', value: 'Startup'}
 supported_os: [Windows]
 ---
+name: WindowsShellExecuteHooks
+doc: Shell execution hooks are called when ShellExecuteEx() is called.
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\ShellExecuteHooks\*'
+      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\ShellExecuteHook\s*'
+supported_os: [Windows]
+urls:
+- 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
+- 'http://regenerus.com/malware-common-loadpoints/'
+- 'https://code.google.com/p/regripper/wiki/ASEPs'
+---
 name: WindowsDebugger
 doc: Windows Debugger peristence or AV disable.
 sources:
