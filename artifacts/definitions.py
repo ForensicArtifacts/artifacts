@@ -4,6 +4,7 @@
 # The type indictor constants.
 TYPE_INDICATOR_ARTIFACT = 'ARTIFACT'
 TYPE_INDICATOR_COMMAND = 'COMMAND'
+TYPE_INDICATOR_DIRECTORY = 'DIRECTORY'
 TYPE_INDICATOR_ENVIRONMENT = 'ENVIRONMENT'
 TYPE_INDICATOR_FILE = 'FILE'
 TYPE_INDICATOR_PATH = 'PATH'
@@ -15,12 +16,17 @@ LABELS = {
     'Antivirus': 'Antivirus related artifacts, e.g. quarantine files.',
     'Authentication': 'Authentication artifacts.',
     'Browser': 'Web Browser artifacts.',
+    'Cloud': 'Cloud applications artifacts.',
     'Cloud Storage': 'Cloud storage artifacts.',
     'Configuration Files': 'Configuration files artifacts.',
     'Execution': 'Contain execution events.',
+    'ExternalAccount': 'Information about any users\' account, e.g. username, account ID, etc.',    
     'External Media': 'Contain external media data or events e.g. USB drives.',
     'KnowledgeBase': 'Artifacts used in knowledge base generation.',
+    'IM': 'Instant Messaging / Chat applications artifacts.',
+    'iOS' : 'Artifacts related to iOS devices connected to the system.',
     'Logs': 'Contain log files.',
+    'Mail': 'Mail client applications artifacts.',
     'Memory': 'Artifacts retrieved from memory.',
     'Network': 'Describe networking state.',
     'Processes': 'Describe running processes.',
