@@ -1038,7 +1038,7 @@ sources:
 - type: REGISTRY_KEY
   attributes:
     keys:
-      - 'HKEY_USERS\%%users.sid%%\software\microsoft\windows\currentversion\policies\explorer\DisallowRun'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\DisallowRun\*'
 labels: [Software]
 supported_os: [Windows]
 urls:
