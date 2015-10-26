@@ -215,6 +215,18 @@ sources:
 labels: [Browser]
 urls: ['http://www.forensicswiki.org/wiki/Mozilla_Firefox']
 ---
+name: InternetExplorerBrowserHelperObjects
+doc: Loaded on Internet Explorer startup
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys: ['HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\Browser Helper Objects\*']
+supported_os: [Windows]
+urls:
+- 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
+- 'http://regenerus.com/malware-common-loadpoints/'
+- 'https://code.google.com/p/regripper/wiki/ASEPs'
+---
 name: InternetExplorerCache
 doc: |
   Microsoft Internet Explorer (MSIE) browser cache.
