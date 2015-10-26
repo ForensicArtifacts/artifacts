@@ -1044,8 +1044,7 @@ doc: |
 sources:
 - type: REGISTRY_KEY
   attributes:
-    keys:
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\DisallowRun\*'
+    keys: ['HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\DisallowRun\*']
 labels: [Software]
 supported_os: [Windows]
 urls:
