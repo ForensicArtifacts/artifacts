@@ -152,6 +152,19 @@ sources:
 labels: [System]
 supported_os: [Windows]
 ---
+name: MostRecentApplication
+doc: Most Recent Application name key
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\*\MostRecentApplication', value: 'Name'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\*\MostRecentApplication', value: 'Name'}
+supported_os: [Windows]
+urls:
+- 'http://www.trendmicro.com/vinfo/us/threat-encyclopedia/malware/troj_ransom.smc7'
+- 'https://www.symantec.com/security_response/writeup.jsp?docid=2014-092314-3644-99&tabid=2'
+---
 name: PowerShellEnableScripts
 doc: Registry keys that control whether PowerShell scripts can execute directly.
 sources:
