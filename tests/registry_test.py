@@ -69,16 +69,6 @@ class ArtifactDefinitionsRegistryTest(unittest.TestCase):
     with self.assertRaises(TypeError):
       _ = next(generator)
 
-  def testHeadVersion(self):
-    """Tests the ArtifactDefinitionsRegistry functions."""
-    artifact_registry = registry.ArtifactDefinitionsRegistry()
-
-    artifact_reader = reader.YamlArtifactsReader()
-    test_file = os.path.join('test_data', 'definitions.yaml')
-
-    for artifact_definition in artifact_reader.ReadFile(test_file):
-      artifact_registry.RegisterDefinition(artifact_definition)
-
 
 if __name__ == '__main__':
   unittest.main()
