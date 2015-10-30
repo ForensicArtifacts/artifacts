@@ -743,6 +743,17 @@ urls:
 - 'http://regenerus.com/malware-common-loadpoints/'
 - 'https://code.google.com/p/regripper/wiki/ASEPs'
 ---
+name: WindowsShellIconOverlayIdentifiers
+doc: Called to display custom icons.
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys: ['HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\ShellIconOverlayIdentifiers\*']
+supported_os: [Windows]
+urls:
+  - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
+  - 'https://msdn.microsoft.com/en-us/library/windows/desktop/hh127455(v=vs.85).aspx'
+---
 name: WindowsDebugger
 doc: Windows Debugger peristence or AV disable.
 sources:
