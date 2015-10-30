@@ -82,9 +82,9 @@ sources:
     key_value_pairs:
     - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\WindowsUpdate', value: 'CISCNF4654'}
     - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\WindowsUpdate', value: 'CISCNF0654'}
-    - {key: 'HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\WindowsUpdate', value: 'CISCNF4654'}
-    - {key: 'HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\WindowsUpdate', value: 'CISCNF0654'}
-    - {key: 'HKEY_CURRENT_USER\Software\Classes\\CLSID\{ECD4FC4D-521C-11D0-B792-00A0C90312E1}', value: 'InprocServer32'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\WindowsUpdate', value: 'CISCNF4654'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\WindowsUpdate', value: 'CISCNF0654'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\\CLSID\{ECD4FC4D-521C-11D0-B792-00A0C90312E1}', value: 'InprocServer32'}
     - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\CLSID\{E6BB64BE-0618-4353-9193-0AFE606D6F0C}', value: 'InprocServer32'}
 supported_os: [Windows]
 urls: ['http://www.securelist.com/en/downloads/vlpdfs/unveilingthemask_v1.0.pdf']

@@ -1289,7 +1289,7 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'AppSetup'}
+      - {key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'AppSetup'}
 supported_os: [Windows]
 urls: ['https://technet.microsoft.com/en-us/library/cc939701.aspx']
 ---
@@ -1312,7 +1312,7 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'VmApplet'}
+      - {key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'VmApplet'}
 supported_os: [Windows]
 urls: ['https://technet.microsoft.com/en-us/library/cc939701.aspx']
 ---

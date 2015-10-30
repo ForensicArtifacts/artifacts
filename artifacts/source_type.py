@@ -165,6 +165,13 @@ class WindowsRegistryKeySourceType(SourceType):
 
   TYPE_INDICATOR = definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_KEY
 
+  VALID_PREFIXES = [
+      r'HKEY_LOCAL_MACHINE',
+      r'HKEY_USERS',
+      r'HKEY_CLASSES_ROOT',
+      r'%%current_control_set%%',
+  ]
+
   def __init__(self, keys=None):
     """Initializes the source type object.
 
@@ -178,8 +185,21 @@ class WindowsRegistryKeySourceType(SourceType):
     if not keys:
       raise errors.FormatError(u'Missing keys value.')
 
+    if not isinstance(keys, list):
+      raise errors.FormatError(u'keys must be a list')
+
+    for key in keys:
+      self.ValidateKey(key)
+
     super(WindowsRegistryKeySourceType, self).__init__()
     self.keys = keys
+
+  @classmethod
+  def ValidateKey(cls, key):
+    for prefix in cls.VALID_PREFIXES:
+      if key.startswith(prefix):
+        return
+    raise errors.FormatError(u'Not a supported registry key prefix, got: {}'.format(key))
 
 
 class WindowsRegistryValueSourceType(SourceType):
@@ -210,6 +230,7 @@ class WindowsRegistryValueSourceType(SourceType):
       if set(pair.keys()) != set(['key', 'value']):
         raise errors.FormatError(u'key_value_pair missing "key" and "value"'
                                  u' keys, got: {}'.format(key_value_pairs))
+      WindowsRegistryKeySourceType.ValidateKey(pair['key'])
 
     super(WindowsRegistryValueSourceType, self).__init__()
     self.key_value_pairs = key_value_pairs
