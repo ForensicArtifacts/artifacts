@@ -77,6 +77,17 @@ supported_os: [Windows]
 conditions: [os_major_version >= 6 AND os_minor_version >= 2]
 urls: ['http://www.hexacorn.com/blog/2014/08/31/beyond-good-ol-run-key-part-17/']
 ---
+name: AutoplayHandlers
+doc: Handlers for autoplay events.
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys: ['HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\*']
+supported_os: [Windows]
+urls:
+  - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
+  - 'https://msdn.microsoft.com/en-us/library/windows/desktop/aa468474.aspx'
+---
 name: AvailableTimeZones
 doc: The timezones available on the system.
 sources:
@@ -94,6 +105,31 @@ sources:
       - '%%environ_allusersprofile%%\Microsoft\Network\Downloader\qmgr*.dat'
 supported_os: [Windows]
 urls: ['http://dfrws.org/2015/proceedings/presentations/DFRWS2015-pres3.pdf']
+---
+name: BootVerificationProgram
+doc: Path to custom startup verification program.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs: [{key: '%%current_control_set%%\SYSTEM\CurrentControlSet\Control\BootVerificationProgram', value: 'ImagePath'}]
+supported_os: [Windows]
+urls:
+  - 'https://technet.microsoft.com/en-us/library/cc786702(WS.10).aspx'
+  - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
+---
+name: CmdExeAutoRun
+doc: Executable run when cmd.exe starts.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Command Processor', value: 'AutoRun'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Command Processor', value: 'AutoRun'}
+supported_os: [Windows]
+urls:
+  - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
+  - 'http://blogs.msdn.com/b/oldnewthing/archive/2007/11/21/6447771.aspx'
+  - 'https://technet.microsoft.com/en-us/library/cc756720(v=ws.10).aspx'
 ---
 name: EnvironmentUserLoginScripts
 doc: User login scripts configured via environment variables.
@@ -165,6 +201,17 @@ urls:
 - 'http://www.trendmicro.com/vinfo/us/threat-encyclopedia/malware/troj_ransom.smc7'
 - 'https://www.symantec.com/security_response/writeup.jsp?docid=2014-092314-3644-99&tabid=2'
 ---
+name: PostmortemDebugger
+doc: The application is run on application crash.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\AeDebug', value: 'Debugger'}]
+supported_os: [Windows]
+urls:
+  - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
+  - 'https://msdn.microsoft.com/en-us/library/windows/desktop/bb204634(v=vs.85).aspx'
+---
 name: PowerShellEnableScripts
 doc: Registry keys that control whether PowerShell scripts can execute directly.
 sources:
@@ -217,6 +264,17 @@ labels: [System]
 supported_os: [Windows]
 urls: ['http://www.forensicswiki.org/wiki/Prefetch']
 ---
+name: PrintMonitors
+doc: Print Monitor DLL config.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs: [{key: '%%current_control_set%%\Control\Print\Monitors\*', value: 'Driver'}]
+supported_os: [Windows]
+urls:
+  - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
+  - 'https://support.microsoft.com/en-us/kb/102966'
+---
 name: ProgramsCache
 doc: Windows Programs Cache
 sources:
@@ -241,6 +299,20 @@ sources:
 supported_os: [Windows]
 urls: ['http://forensicswiki.org/wiki/Windows#Scheduled_Tasks']
 ---
+name: ScreenSaverExecutable
+doc: ScreenSaver Executable
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Policies\Microsoft\Windows\Control Panel\Desktop', value: 'scrnsave.exe'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Control Panel\Desktop', value: 'scrnsave.exe'}
+supported_os: [Windows]
+urls:
+  - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
+  - 'https://technet.microsoft.com/en-us/library/cc737855(v=ws.10).aspx'
+  - 'https://technet.microsoft.com/en-us/library/cc957840.aspx'
+---
 name: SecurityEventLog
 doc: Windows Security Event log.
 sources:
@@ -264,6 +336,18 @@ conditions: [os_major_version >= 6]
 labels: [Logs]
 supported_os: [Windows]
 urls: ['http://www.forensicswiki.org/wiki/Windows_XML_Event_Log_(EVTX)']
+---
+name: ServiceControlManagerExtension
+doc: Service Control Manager Extension application path
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\', value: 'ServiceControlManagerExtension'}]
+supported_os: [Windows]
+urls:
+  - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
+  - 'http://www.silentrunners.org/Silent%20Runners.vbs'
+  - 'http://forum.sysinternals.com/autoruns-and-windows-7_topic19770.html'
 ---
 name: SetupApiLogs
 doc: Windows setup API logs.
@@ -332,6 +416,31 @@ labels: [Logs]
 supported_os: [Windows]
 urls: ['http://www.forensicswiki.org/wiki/Windows_XML_Event_Log_(EVTX)']
 ---
+name: WindowsAlternateShell
+doc: Alternate Shell to be run via Userinit.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs: [{key: '%%current_control_set%%\Control\SafeBoot', value: 'AlternateShell'}]
+supported_os: [Windows]
+urls:
+  - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
+  - 'https://technet.microsoft.com/en-us/library/cc976124.aspx'
+---
+name: WindowsCredentialProviders
+doc: CLSIDs of applications to use as Credential Providers
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Authentication\Credential Provider Filters'
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Authentication\Credential Providers'
+supported_os: [Windows]
+urls:
+  - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
+  - 'http://blogs.technet.com/b/ad/archive/2009/05/26/thoughts-on-single-sign-on-and-credential-providers.aspx'
+  - 'https://www.sophos.com/en-us/support/knowledgebase/114190.aspx'
+---
 name: WindowsHostsFiles
 doc: The Windows hosts and lmhosts file.
 sources:
@@ -342,6 +451,39 @@ sources:
       - '%%environ_systemroot%%\System32\Drivers\etc\hosts'
     separator: '\'
 supported_os: [Windows]
+---
+name: WindowsLSAAuthenticationPackages
+doc: LSA Authentication Packages can be injected into LSASS.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa', value: 'Authentication Packages'}]
+supported_os: [Windows]
+urls:
+  - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
+  - 'https://technet.microsoft.com/en-us/library/cc963218.aspx'
+---
+name: WindowsLSANotificationPackages
+doc: LSA Notification Packages can be injected into LSASS.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa', value: 'Notification Packages'}]
+supported_os: [Windows]
+urls:
+  - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
+  - 'https://technet.microsoft.com/en-us/library/cc963221.aspx'
+---
+name: WindowsMultiMediaDrivers
+doc: Configured drivers for different multimedia filetypes.
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys: ['HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Drivers32\*']
+supported_os: [Windows]
+urls:
+  - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
+  - 'https://support.microsoft.com/en-us/kb/126054'
 ---
 name: WindowsPersistenceMechanisms
 doc: Persistence mechanisms in Windows.
@@ -412,6 +554,17 @@ labels: [Software]
 supported_os: [Windows]
 urls: ['http://www.forensicswiki.org/wiki/Windows_Desktop_Search']
 ---
+name: WindowsSecurityProviders
+doc: Security Providers DLLs
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs: [{key: '%%current_control_set%%\Control\SecurityProviders', value: 'SecurityProviders'}]
+supported_os: [Windows]
+urls:
+  - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
+  - 'https://github.com/wmark/security-configuration/blob/master/Windows/disable-weak-ciphers-and-enable-TLS1.x.reg'
+---
 name: WindowsServices
 doc: Windows services from the Registry.
 sources:
@@ -425,6 +578,17 @@ supported_os: [Windows]
 urls:
   - 'http://support.microsoft.com/kb/103000'
   - 'https://github.com/libyal/winreg-kb/wiki/System-keys'
+---
+name: WindowsSessionManagerSubSystems
+doc: Windows Session Manager SubSystems persistence
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\SubSystems', value: 'Windows'}]
+supported_os: [Windows]
+urls:
+  - 'https://technet.microsoft.com/en-us/library/cc976130.aspx'
+  - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
 ---
 name: WindowsSystemRegistryFiles
 doc: Windows system Registry files.
@@ -441,6 +605,21 @@ sources:
 labels: [System]
 supported_os: [Windows]
 urls: ['https://github.com/libyal/winreg-kb/wiki/Registry-files']
+---
+name: WindowsToolPaths
+doc: Paths to windows tools such as defrag, chkdsk.
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
+      - 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\BackupPath'
+      - 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\ChkDskPath'
+      - 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\cleanuppath'
+      - 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\DefragPath'
+supported_os: [Windows]
+urls:
+  - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
+  - 'http://www.liutilities.com/products/registrybooster/tweaklibrary/tweaks/11118/'
 ---
 name: WindowsUserRecentFiles
 doc: Windows user specific recent files.
@@ -1081,6 +1260,19 @@ sources:
 supported_os: [Windows]
 urls: ['http://support.microsoft.com/en-us/kb/103865']
 ---
+name: WindowsSharedTaskScheduler
+doc: Runs on windows boot.
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\SharedTaskScheduler\*'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SharedTaskScheduler\*'
+supported_os: [Windows]
+urls:
+  - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
+  - 'http://www.bleepingcomputer.com/tutorials/windows-program-automatic-startup-locations/'
+---
 name: WindowsTerminalServerStartupPrograms
 doc: Windows Terminal Server Startup Programs
 sources:
@@ -1101,7 +1293,7 @@ sources:
 supported_os: [Windows]
 urls: ['https://technet.microsoft.com/en-us/library/cc939701.aspx']
 ---
-name: Windows WinlogonUiHost
+name: WindowsWinlogonUiHost
 doc: Windows Winlogon UI screen application
 sources:
 - type: REGISTRY_VALUE
@@ -1165,3 +1357,28 @@ sources:
       - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\System\Scripts', value: 'Logoff'}
 supported_os: [Windows]
 urls: ['https://technet.microsoft.com/en-us/library/ff404236.aspx']
+---
+name: WinSock2LayeredServiceProviders
+doc: Used to filter TCP/IP traffic through WinSock2.
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys: ['%%current_control_set%%\Services\WinSock2\Parameters\Protocol_Catalog9\Catalog_Entries\*']
+supported_os: [Windows]
+urls:
+  - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
+  - 'https://en.wikipedia.org/wiki/Layered_Service_Provider'
+---
+name: WinSock2NamespaceProviders
+doc: WinSock2NamespaceProviders
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: '%%current_control_set%%\Services\WinSock2\Parameters\namespace_catalog5\catalog_entries\*', value: 'LibraryPath'}
+supported_os: [Windows]
+urls:
+  - 'https://www.symantec.com/security_response/writeup.jsp?docid=2012-020609-4221-99&tabid=2'
+  - 'http://www.nirsoft.net/utils/winsock_service_providers.html'
+  - 'https://msdn.microsoft.com/en-us/library/windows/desktop/ms739923(v=vs.85).aspx'
+
