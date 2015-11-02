@@ -42,7 +42,10 @@ class WindowsRegistryKeySourceTypeTest(unittest.TestCase):
 
   def testInitialize(self):
     """Tests the __init__ function."""
-    source_type.WindowsRegistryKeySourceType(keys=[u'test'])
+    source_type.WindowsRegistryKeySourceType(keys=[u'HKEY_LOCAL_MACHINE\\test'])
+
+    with self.assertRaises(errors.FormatError):
+      source_type.WindowsRegistryKeySourceType(keys=u'HKEY_LOCAL_MACHINE\\test')
 
 
 class WindowsRegistryValueSourceTypeTest(unittest.TestCase):
@@ -51,7 +54,7 @@ class WindowsRegistryValueSourceTypeTest(unittest.TestCase):
   def testInitialize(self):
     """Tests the __init__ function."""
     source_type.WindowsRegistryValueSourceType(
-        key_value_pairs=[{'key': u'test', 'value': u'test'}])
+        key_value_pairs=[{'key': u'HKEY_LOCAL_MACHINE\\test', 'value': u'test'}])
 
     with self.assertRaises(errors.FormatError):
       source_type.WindowsRegistryValueSourceType(
