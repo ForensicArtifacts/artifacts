@@ -291,7 +291,7 @@ doc: Executed every time this file type is opened, should be "%1 %*".
 sources:
 - type: REGISTRY_KEY
   attributes:
-    keys: ['HKEY_LOCAL_MACHINE\Software\Classes\\*\shell\open\command']
+    keys: ['HKEY_LOCAL_MACHINE\Software\Classes\*\shell\open\command']
 supported_os: [Windows]
 urls: ['http://gladiator-antivirus.com/forum/index.php?showtopic=24610']
 ---
