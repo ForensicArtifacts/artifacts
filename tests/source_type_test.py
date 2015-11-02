@@ -44,6 +44,9 @@ class WindowsRegistryKeySourceTypeTest(unittest.TestCase):
     """Tests the __init__ function."""
     source_type.WindowsRegistryKeySourceType(keys=[u'HKEY_LOCAL_MACHINE\\test'])
 
+    with self.assertRaises(errors.FormatError):
+      source_type.WindowsRegistryKeySourceType(keys=u'HKEY_LOCAL_MACHINE\\test')
+
 
 class WindowsRegistryValueSourceTypeTest(unittest.TestCase):
   """Class to test the Windows Registry value source type."""

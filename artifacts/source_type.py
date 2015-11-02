@@ -196,10 +196,18 @@ class WindowsRegistryKeySourceType(SourceType):
 
   @classmethod
   def ValidateKey(cls, key):
+    """Validates this key against supported key names.
+
+    Args:
+      keys: Key name.
+
+    Raises:
+      FormatError: when key is not supported.
+    """
     for prefix in cls.VALID_PREFIXES:
       if key.startswith(prefix):
         return
-    raise errors.FormatError(u'Not a supported registry key prefix, got: {}'.format(key))
+    raise errors.FormatError(u'Not a supported registry key prefix, got: {0:s}'.format(key))
 
 
 class WindowsRegistryValueSourceType(SourceType):
