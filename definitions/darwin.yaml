@@ -5,7 +5,7 @@ doc: Launch Agents files
 sources:
 - type: FILE
   attributes:
-    paths: 
+    paths:
       - '/Library/LaunchAgents/*'
       - '/System/Library/LaunchAgents/*'
       - '%%users.homedir%%/Library/LaunchAgents/*'
@@ -20,7 +20,7 @@ doc: Launch Daemons files
 sources:
 - type: FILE
   attributes:
-    paths: 
+    paths:
       - '/Library/LaunchDaemons/*'
       - '/System/Library/LaunchDaemons/*'
       - '%%users.homedir%%/Library/LaunchDaemons/*'
@@ -35,7 +35,7 @@ doc: Startup Items files
 sources:
 - type: FILE
   attributes:
-    paths: 
+    paths:
       - '/Library/StartupItems/*'
       - '/System/Library/StartupItems/*'
 labels: [System]
@@ -203,7 +203,7 @@ doc: Kernel extensions
 sources:
 - type: FILE
   attributes:
-    paths: 
+    paths:
       - '/System/Library/Extensions/*'
       - '/Library/Extensions/*'
 labels: [System]
@@ -262,7 +262,7 @@ doc: Cron tabs
 sources:
 - type: FILE
   attributes:
-    paths: 
+    paths:
       - '/etc/crontab'
       - '/usr/lib/cron/tabs/*'
 labels: [System]
@@ -276,7 +276,7 @@ doc: Periodic system functions scripts and configuration
 sources:
 - type: FILE
   attributes:
-    paths: 
+    paths:
       - '/etc/defaults/periodic.conf'
       - '/etc/periodic.conf'
       - '/etc/periodic.conf.local'
@@ -509,7 +509,7 @@ doc: Quarantine Event Database
 sources:
 - type: FILE
   attributes:
-    paths: 
+    paths:
       - '%%users.homedir%%/Library/Preferences/com.apple.LaunchServices.QuarantineEvents'
       - '%%users.homedir%%/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV2'
 labels: [Users, Software]
