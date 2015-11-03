@@ -1,26 +1,94 @@
 # Modules for interpreted languages.
 
-name: PythonModules
-doc: Python module files.
+name: PythonEggInfo
+doc: Python module files distributed in .egg formats. |
+
+  Python eggs can have multiple formats, as described by setuptools.
+
+  egg artifacts can be either a zipfile or a directory that contains an info
+  file.
+
+  egg-info artifacts can be either a directory or a file. If they are
+  directories, they should contain a MANIFEST that identifies the installed
+  module.
+
+  PEP-0370 describes a default install location for per-user modules.
 sources:
-# Setuptools allows multiple formats for python eggs.
 - type: FILE
   attributes:
     paths:
-    - '%%users.homedir%%/.local/lib/python2.*/*-packages/*.egg-info'
-    - '%%users.homedir%%/.local/lib/python*/*-packages/*.egg'
-    - '/usr/local/lib/python*/*-packages/*.egg-info'
-    - '/usr/local/lib/python*/*-packages/*.egg'
+    - '%%users.homedir%%/.local/lib/python*/(dist|site)-packages/*.egg-info'
+    - '%%users.homedir%%/.local/lib/python*/(dist|site)-packages/*.egg'
+    - '%%users.homedir%%/.cache/pip/*.egg-info'
+    - '%%users.homedir%%/.cache/pip/*.egg'
+    - '/usr/local/lib/python*/(dist|site)-packages/*.egg-info'
+    - '/usr/local/lib/python*/(dist|site)-packages/*.egg'
+    - '/usr/share/pyshared/*.egg'
+    - '/usr/share/pyshared/*.egg-info'
   supported_os: [Linux]
 - type: DIRECTORY
   attributes:
     paths:
-    - '%%users.homedir%%/.local/lib/python2.*/*-packages/*.egg-info'
-    - '%%users.homedir%%/.local/lib/python*/*-packages/*.egg'
-    - '/usr/local/lib/python*/*-packages/*.egg-info'
-    - '/usr/local/lib/python*/*-packages/*.egg'
+    - '%%users.homedir%%/.local/lib/python*/(dist|site)-packages/*.egg-info'
+    - '%%users.homedir%%/.local/lib/python*/(dist|site)-packages/*.egg'
+    - '%%users.homedir%%/.cache/pip/*.egg-info'
+    - '%%users.homedir%%/.cache/pip/*.egg'
+    - '/usr/local/lib/python*/(dist|site)-packages/*.egg-info'
+    - '/usr/local/lib/python*/(dist|site)-packages/*.egg'
+    - '/usr/share/pyshared/*.egg'
+    - '/usr/share/pyshared/*.egg-info'
   supported_os: [Linux]
-urls: ['https://pythonhosted.org/setuptools/formats.html']
+labels: [Software]
+urls: ['https://pythonhosted.org/setuptools/formats.html',
+       'https://www.python.org/dev/peps/pep-0370/']
+---
+name: PythonDistInfo
+doc: Python module files distributed in the dist-info format of PEP-0376
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/.local/lib/python*/(dist|site)-packages/*.dist-info'
+    - '/usr/local/lib/python*/(dist|site)-packages/*.dist-info'
+  supported_os: [Linux]
+- type: DIRECTORY
+  attributes:
+    paths:
+    - '%%users.homedir%%/.local/lib/python*/(dist|site)-packages/*.dist-info'
+    - '/usr/local/lib/python*/(dist|site)-packages/*.dist-info'
+    - '%%users.homedir%%/.cache/pip/*.dist-info'
+  supported_os: [Linux]
+labels: [Software]
+urls: ['https://www.python.org/dev/peps/pep-0376/']
+---
+name: PythonWheelInfo
+doc: Python module files distributed in the wheel format.
+
+  Zip archives with the .whl extension.
+
+  Wheels are installed per the standard installer described in PEP-0376, so
+  should mostly be discoverable as dist-info entries.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/usr/share/python-wheels/*.whl'
+    - '%%users.homedir%%/.cache/pip/wheels/*.whl'
+  supported_os: [Linux]
+labels: [Software]
+urls: ['https://wheel.readthedocs.org/en/latest/',
+       'http://pip.readthedocs.org/en/stable/reference/pip_install/']
+---
+name: PythonModuleInfo
+doc: Python module installation information.
+sources:
+- type: ARTIFACT
+  attributes:
+    names:
+      - PythonDistInfo
+      - PythonEggInfo
+      - PythonWheelInfo
+labels: [Software]
 ---
 name: RubyGems
 doc: Ruby Gems
@@ -28,9 +96,9 @@ sources:
 - type: FILE
   attributes:
     paths:
-    - '%%users.homedir%%/.gem/specs/**/*.gemspec'
-    - '/var/lib/gems/*/**/*.gemspec'
-    - '/usr/local/lib/ruby/gems/*/**/*.gemspec'
+    - '%%users.homedir%%/.gem/ruby/**2/*.gemspec'
+    - '/var/lib/gems/**2/*.gemspec'
+    - '/usr/share/rubygems-integration/**2/*.gemspec'
   supported_os: [Linux]
 urls: ['http://guides.rubygems.org']
 
