@@ -878,4 +878,3 @@ sources:
     cmd: /usr/bin/hdiutil
 labels: [System]
 supported_os: [Darwin]
-
