@@ -1,5 +1,28 @@
 # Linux specific artifacts.
 
+name: AllUsersShellHistory
+doc: Common shell history files for root and users.
+sources:
+- type: ARTIFACT
+  attributes:
+    names:
+      - UsersShellConfigs
+      - RootUserShellConfigs
+labels: [Configuration Files]
+supported_os: [Linux]
+---
+name: AllShellConfigs
+doc: Common shell configuration files containing global, users & root settings.
+sources:
+- type: ARTIFACT
+  attributes:
+    names:
+      - GlobalShellConfigs
+      - UsersShellConfigs
+      - RootUserShellConfigs
+labels: [Configuration Files]
+supported_os: [Linux]
+---
 name: AnacronFiles
 doc: Anacron files.
 sources:
@@ -18,20 +41,20 @@ sources:
 labels: [Configuration Files]
 supported_os: [Linux]
 ---
-name: LinuxCronTabs
-doc: Crontab files.
+name: APTSources
+doc: APT package sources list
 sources:
 - type: FILE
   attributes:
     paths:
-      - '/etc/crontab'
-      - '/etc/cron.d/*'
-      - '/var/spool/cron/**'
-labels: [Configuration Files]
+      - '/etc/apt/sources.list'
+      - '/etc/apt/sources.list.d/*.list'
+labels: [Configuration Files, System]
 supported_os: [Linux]
+urls: ['http://manpages.ubuntu.com/manpages/trusty/en/man5/sources.list.5.html']
 ---
-name: LinuxAtJobs
-doc: Linux at jobs.
+name: APTTrustKeys
+doc: APT trusted keys
 sources:
 - type: FILE
   attributes:
@@ -67,12 +90,14 @@ doc: All Linux job scheduling files.
 sources:
 - type: ARTIFACT
   attributes:
-    names:
-      - AnacronFiles
-      - LinuxCronTabs
-      - LinuxAtJobs
-labels: [Configuration Files]
+    paths:
+      - '/etc/apt/trusted.gpg'
+      - '/etc/apt/trusted.gpg.d/*.gpg'
+      - '/etc/apt/trustdb.gpg'
+      - '/usr/share/keyrings/*.gpg'
+labels: [Configuration Files, System]
 supported_os: [Linux]
+urls: ['https://wiki.debian.org/SecureApt']
 ---
 name: CronAtAllowDenyFiles
 doc: Files containing users authorised to run cron or at jobs.
@@ -90,6 +115,14 @@ urls:
   - http://manpages.ubuntu.com/manpages/saucy/man5/at.allow.5.html
   - http://manpages.ubuntu.com/manpages/precise/en/man1/crontab.1.html
 ---
+name: DebianPackagesStatus
+doc: Linux dpkg status file.
+sources:
+- type: FILE
+  attributes: {paths: ['/var/lib/dpkg/status']}
+labels: [Software]
+supported_os: [Linux]
+---
 name: HostAccessPolicyConfiguration
 doc: Linux files related to host access policy configuration.
 sources:
@@ -101,68 +134,22 @@ sources:
 labels: [Configuration Files]
 supported_os: [Linux]
 ---
-name: RootUserShellConfigs
-doc: Common unix root shell configuration files.
+name: KernelModules
+doc: Kernel modules to be loaded on boot.
 sources:
 - type: FILE
   attributes:
     paths:
-      - '/root/.bashrc'
-      - '/root/.bash_profile'
-      - '/root/.bash_logout'
-      - '/root/.cshrc'
-      - '/root/.ksh'
-      - '/root/.logout'
-      - '/root/.profile'
-      - '/root/.tcsh'
-      - '/root/.zlogin'
-      - '/root/.zlogout'
-      - '/root/.zprofile'
-labels: [Configuration Files]
+      - '/etc/modules.conf'
+      - '/etc/modprobe.d/*'
 supported_os: [Linux]
 ---
-name: AllShellConfigs
-doc: Common shell configuration files containing global, users & root settings.
-sources:
-- type: ARTIFACT
-  attributes:
-    names:
-      - GlobalShellConfigs
-      - UsersShellConfigs
-      - RootUserShellConfigs
-labels: [Configuration Files]
-supported_os: [Linux]
----
-name: RootUserShellHistory
-doc: Common unix root shell history files.
+name: LinuxAtJobs
+doc: Linux at jobs.
 sources:
 - type: FILE
-  attributes:
-    paths:
-      - '/root/.bash_history'
-      - '/root/.sh_history'
-      - '/root/.zhistory'
-      - '/root/.zsh_history'
+  attributes: {paths: ['/var/spool/at/*']}
 labels: [Configuration Files]
-supported_os: [Linux]
----
-name: AllUsersShellHistory
-doc: Common shell history files for root and users.
-sources:
-- type: ARTIFACT
-  attributes:
-    names:
-      - UsersShellConfigs
-      - RootUserShellConfigs
-labels: [Configuration Files]
-supported_os: [Linux]
----
-name: DebianPackagesStatus
-doc: Linux dpkg status file.
-sources:
-- type: FILE
-  attributes: {paths: ['/var/lib/dpkg/status']}
-labels: [Software]
 supported_os: [Linux]
 ---
 name: LinuxAuditLogs
@@ -181,6 +168,39 @@ sources:
 labels: [Logs, Authentication]
 supported_os: [Linux]
 ---
+name: LinuxCronTabs
+doc: Crontab files.
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '/etc/crontab'
+      - '/etc/cron.d/*'
+      - '/var/spool/cron/**'
+labels: [Configuration Files]
+supported_os: [Linux]
+---
+name: LinuxScheduleFiles
+doc: All Linux job scheduling files.
+sources:
+- type: ARTIFACT
+  attributes:
+    names:
+      - AnacronFiles
+      - LinuxCronTabs
+      - LinuxAtJobs
+labels: [Configuration Files]
+supported_os: [Linux]
+---
+name: LoadedKernelModules
+doc: Linux output of lsmod.
+sources:
+- type: COMMAND
+  attributes:
+    args: []
+    cmd: /sbin/lsmod
+supported_os: [Linux]
+---
 name: LinuxCronLogs
 doc: Linux cron log files.
 sources:
@@ -188,34 +208,6 @@ sources:
   attributes: {paths: ['/var/log/cron.log*']}
 labels: [Logs]
 supported_os: [Linux]
----
-name: LoginPolicyConfiguration
-doc: Linux files related to login policy configuration.
-sources:
-- type: FILE
-  attributes:
-    paths:
-      - '/etc/netgroup'
-      - '/etc/nsswitch.conf'
-      - '/etc/passwd'
-      - '/etc/shadow'
-      - '/etc/security/access.conf'
-      - '/root/.k5login'
-labels: [Authentication, Configuration Files]
-supported_os: [Linux]
----
-name: LinuxPamConfigs
-doc: Configuration files for PAM.
-sources:
-- type: FILE
-  attributes:
-    paths:
-      - '/etc/pam.conf'
-      - '/etc/pam.d'
-      - '/etc/pam.d/*'
-labels: [Authentication, Configuration Files]
-supported_os: [Linux]
-urls: ['http://www.linux-pam.org/']
 ---
 name: LinuxFstab
 doc: Linux fstab file.
@@ -225,6 +217,31 @@ sources:
 labels: [System, Configuration Files]
 supported_os: [Linux]
 urls: ['http://en.wikipedia.org/wiki/Fstab']
+---
+name: LinuxInitrdFiles
+doc: Initrd files in /boot/ executed on startup.
+sources:
+- type: FILE
+  attributes:
+    paths: ['/boot/initrd.*']
+labels: [Configuration Files, System]
+supported_os: [Linux]
+urls:
+  - 'http://en.wikipedia.org/wiki/Initrd'
+  - 'https://www.kernel.org/doc/Documentation/initrd.txt'
+---
+name: LinuxLSBInit
+doc: Linux LSB-style init scripts.
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '/etc/init.d/*'
+      - '/etc/insserv.conf'
+      - '/etc/insserv.conf.d/**'
+labels: [Configuration Files, System]
+supported_os: [Linux]
+urls: ['https://wiki.debian.org/LSBInitScripts']
 ---
 name: LinuxMountCmd
 doc: Linux output of mount
@@ -247,68 +264,18 @@ sources:
 labels: [System, Configuration Files]
 supported_os: [Linux]
 ---
-name: LinuxWtmp
-doc: Linux wtmp file.
-sources:
-- type: FILE
-  attributes: {paths: ['/var/log/wtmp']}
-labels: [Logs, Authentication]
-provides: [users.username, users.last_logon]
-supported_os: [Linux]
----
-name: NetgroupConfiguration
-doc: Linux netgroup configuration.
-sources:
-- type: FILE
-  attributes: {paths: ['/etc/netgroup']}
-labels: [Authentication, Configuration Files]
-provides: [users.username]
-supported_os: [Linux]
----
-name: NtpConfFile
-doc: The configuration file for ntpd. e.g. ntp.conf.
-sources:
-- type: FILE
-  attributes: {paths: ['/etc/ntp.conf']}
-labels: [Configuration Files]
-supported_os: [Linux]
-urls: ['https://www.freebsd.org/cgi/man.cgi?query=ntp.conf&sektion=5']
----
-name: ThumbnailCacheFolder
-doc: Thumbnail cache folder.
-sources:
-- type: FILE
-  attributes: {paths: ['%%users.homedir%%/.thumbnails/**3']}
-labels: [Users]
-supported_os: [Linux]
----
-name: ZeitgeistDatabase
-doc: Zeitgeist user activity database.
-sources:
-- type: FILE
-  attributes: {paths: ['%%users.homedir%%/.local/share/zeitgeist/activity.sqlite']}
-labels: [Users, Logs]
-urls: ['http://forensicswiki.org/wiki/Zeitgeist']
-supported_os: [Linux]
----
-name: KernelModules
-doc: Kernel modules to be loaded on boot.
+name: LinuxPamConfigs
+doc: Configuration files for PAM.
 sources:
 - type: FILE
   attributes:
     paths:
-      - '/etc/modules.conf'
-      - '/etc/modprobe.d/*'
+      - '/etc/pam.conf'
+      - '/etc/pam.d'
+      - '/etc/pam.d/*'
+labels: [Authentication, Configuration Files]
 supported_os: [Linux]
----
-name: LoadedKernelModules
-doc: Linux output of lsmod.
-sources:
-- type: COMMAND
-  attributes:
-    args: []
-    cmd: /sbin/lsmod
-supported_os: [Linux]
+urls: ['http://www.linux-pam.org/']
 ---
 name: LinuxRsyslogConfigs
 doc: Linux rsyslog configurations.
@@ -323,6 +290,18 @@ labels: [Configuration Files, Logs]
 supported_os: [Linux]
 urls: ['http://www.rsyslog.com/doc/rsyslog_conf.html']
 ---
+name: LinuxServices
+doc: Services running on a Linux system.
+sources:
+- type: ARTIFACT
+  attributes:
+    names:
+      - LinuxXinetd
+      - LinuxLSBInit
+      - LinuxSysVInit
+labels: [Configuration Files, System]
+supported_os: [Linux]
+---
 name: LinuxSyslogNgConfigs
 doc: Linux syslog-ng configurations.
 sources:
@@ -334,19 +313,6 @@ sources:
 labels: [Configuration Files, Logs]
 supported_os: [Linux]
 urls: ['http://linux.die.net/man/5/syslog-ng.conf']
----
-name: LinuxLSBInit
-doc: Linux LSB-style init scripts.
-sources:
-- type: FILE
-  attributes:
-    paths:
-      - '/etc/init.d/*'
-      - '/etc/insserv.conf'
-      - '/etc/insserv.conf.d/**'
-labels: [Configuration Files, System]
-supported_os: [Linux]
-urls: ['https://wiki.debian.org/LSBInitScripts']
 ---
 name: LinuxSysVInit
 doc: Services started by sysv-style init scripts.
@@ -376,18 +342,6 @@ labels: [Configuration Files, System]
 supported_os: [Linux]
 urls: ['http://en.wikipedia.org/wiki/Xinetd']
 ---
-name: LinuxServices
-doc: Services running on a Linux system.
-sources:
-- type: ARTIFACT
-  attributes:
-    names:
-      - LinuxXinetd
-      - LinuxLSBInit
-      - LinuxSysVInit
-labels: [Configuration Files, System]
-supported_os: [Linux]
----
 name: ListProcessesPsCommand
 doc: Full process listing via the 'ps' command.
 sources:
@@ -398,31 +352,88 @@ sources:
 supported_os: [Linux]
 urls: ['https://gitlab.com/procps-ng/procps']
 ---
-name: APTSources
-doc: APT package sources list
+name: LoginPolicyConfiguration
+doc: Linux files related to login policy configuration.
 sources:
 - type: FILE
   attributes:
     paths:
-      - '/etc/apt/sources.list'
-      - '/etc/apt/sources.list.d/*.list'
-labels: [Configuration Files, System]
+      - '/etc/netgroup'
+      - '/etc/nsswitch.conf'
+      - '/etc/passwd'
+      - '/etc/shadow'
+      - '/etc/security/access.conf'
+      - '/root/.k5login'
+labels: [Authentication, Configuration Files]
 supported_os: [Linux]
-urls: ['http://manpages.ubuntu.com/manpages/trusty/en/man5/sources.list.5.html']
 ---
-name: APTTrustKeys
-doc: APT trusted keys
+name: LinuxWtmp
+doc: Linux wtmp file.
+sources:
+- type: FILE
+  attributes: {paths: ['/var/log/wtmp']}
+labels: [Logs, Authentication]
+provides: [users.username, users.last_logon]
+supported_os: [Linux]
+---
+name: NetgroupConfiguration
+doc: Linux netgroup configuration.
+sources:
+- type: FILE
+  attributes: {paths: ['/etc/netgroup']}
+labels: [Authentication, Configuration Files]
+provides: [users.username]
+supported_os: [Linux]
+---
+name: NtpConfFile
+doc: The configuration file for ntpd. e.g. ntp.conf.
+sources:
+- type: FILE
+  attributes: {paths: ['/etc/ntp.conf']}
+labels: [Configuration Files]
+supported_os: [Linux]
+urls: ['https://www.freebsd.org/cgi/man.cgi?query=ntp.conf&sektion=5']
+---
+name: RootUserShellConfigs
+doc: Common unix root shell configuration files.
 sources:
 - type: FILE
   attributes:
     paths:
-      - '/etc/apt/trusted.gpg'
-      - '/etc/apt/trusted.gpg.d/*.gpg'
-      - '/etc/apt/trustdb.gpg'
-      - '/usr/share/keyrings/*.gpg'
-labels: [Configuration Files, System]
+      - '/root/.bashrc'
+      - '/root/.bash_profile'
+      - '/root/.bash_logout'
+      - '/root/.cshrc'
+      - '/root/.ksh'
+      - '/root/.logout'
+      - '/root/.profile'
+      - '/root/.tcsh'
+      - '/root/.zlogin'
+      - '/root/.zlogout'
+      - '/root/.zprofile'
+labels: [Configuration Files]
 supported_os: [Linux]
-urls: ['https://wiki.debian.org/SecureApt']
+---
+name: RootUserShellHistory
+doc: Common unix root shell history files.
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '/root/.bash_history'
+      - '/root/.sh_history'
+      - '/root/.zhistory'
+      - '/root/.zsh_history'
+labels: [Configuration Files]
+supported_os: [Linux]
+---
+name: ThumbnailCacheFolder
+doc: Thumbnail cache folder.
+sources:
+- type: FILE
+  attributes: {paths: ['%%users.homedir%%/.thumbnails/**3']}
+labels: [Users]
+supported_os: [Linux]
 ---
 name: YumSources
 doc: Yum package sources list
@@ -436,14 +447,11 @@ labels: [Configuration Files, System]
 supported_os: [Linux]
 urls: ['https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/System_Administrators_Guide/sec-Configuring_Yum_and_Yum_Repositories.html']
 ---
-name: LinuxInitrdFiles
-doc: Initrd files in /boot/ executed on startup.
+name: ZeitgeistDatabase
+doc: Zeitgeist user activity database.
 sources:
 - type: FILE
-  attributes:
-    paths: ['/boot/initrd.*']
-labels: [Configuration Files, System]
+  attributes: {paths: ['%%users.homedir%%/.local/share/zeitgeist/activity.sqlite']}
+labels: [Users, Logs]
+urls: ['http://forensicswiki.org/wiki/Zeitgeist']
 supported_os: [Linux]
-urls:
-  - 'http://en.wikipedia.org/wiki/Initrd'
-  - 'https://www.kernel.org/doc/Documentation/initrd.txt'
