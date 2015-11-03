@@ -6,25 +6,10 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\AppCompatibility', value: 'AppCompatCache'}
-      - {key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\AppCompatCache', value: 'AppCompatCache'}
+      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\AppCompatibility', value: 'AppCompatCache'}
+      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\AppCompatCache', value: 'AppCompatCache'}
 supported_os: [Windows]
 urls: ['https://github.com/libyal/winreg-kb/blob/master/documentation/Application%20Compatibility%20Cache%20key.asciidoc']
----
-name: WindowsActiveDesktop
-doc: Windows Active Desktop executable paths, used for persistence.
-sources:
-- type: REGISTRY_KEY
-  attributes:
-    keys:
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Internet Explorer\Desktop\Components\*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Internet Explorer\Desktop\General'
-conditions: [os_major_version < 6]
-supported_os: [Windows]
-urls:
-- 'https://www.sophos.com/en-us/threat-center/threat-analyses/viruses-and-spyware/Troj~DwnLdr-GWV/detailed-analysis.aspx'
-- 'https://support.microsoft.com/en-us/kb/929200'
-- 'https://en.wikipedia.org/wiki/Active_Desktop'
 ---
 name: ApplicationEventLog
 doc: Windows Application Event log.
@@ -56,13 +41,13 @@ sources:
 - type: REGISTRY_KEY
   attributes:
     keys:
-    - 'HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\App Paths\\*'
-    - 'HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\App Paths\\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\App Paths\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\App Paths\*'
 supported_os: [Windows]
 urls:
-  - 'https://github.com/keydet89/RegRipper2.8/blob/master/plugins/apppaths.pl'
-  - 'http://www.hexacorn.com/blog/2013/01/19/beyond-good-ol-run-key-part-3/'
-  - 'https://msdn.microsoft.com/en-us/library/windows/desktop/ee872121(v=vs.85).aspx'
+- 'https://github.com/keydet89/RegRipper2.8/blob/master/plugins/apppaths.pl'
+- 'http://www.hexacorn.com/blog/2013/01/19/beyond-good-ol-run-key-part-3/'
+- 'https://msdn.microsoft.com/en-us/library/windows/desktop/ee872121(v=vs.85).aspx'
 ---
 name: APPX_PROCESSEnvironmentVariable
 doc: |
@@ -92,7 +77,7 @@ name: AvailableTimeZones
 doc: The timezones available on the system.
 sources:
 - type: REGISTRY_KEY
-  attributes: {keys: ['HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Time Zones\*\*']}
+  attributes: {keys: ['HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Time Zones\*\*']}
 supported_os: [Windows]
 urls: ['https://github.com/libyal/winreg-kb/wiki/Time-zone-keys']
 ---
@@ -173,7 +158,7 @@ urls: ['https://msdn.microsoft.com/en-us/library/windows/desktop/ms678415(v=vs.8
 ---
 name: MFTFiles
 doc: |
-  $MFT and $MFTMirr files.
+  The NTFS $MFT and $MFTMirr file system metadata files.
 
   GRR collection note: you currently need to specify 'use tsk' and
   'ignore download size limits' for this artifact to work. This will go away in
@@ -301,7 +286,7 @@ doc: |
   %SystemRoot%\System32\rover.dll' and call its RunMonitor export.
 sources:
 - type: REGISTRY_KEY
-  attributes: {keys: ['HKEY_CLASSES_ROOT\\CLSID\\{16d12736-7a9e-4765-bec6-f301d679caaa}']}
+  attributes: {keys: ['HKEY_CLASSES_ROOT\CLSID\{16d12736-7a9e-4765-bec6-f301d679caaa}']}
 supported_os: [Windows]
 urls: ['http://www.hexacorn.com/blog/2014/05/21/beyond-good-ol-run-key-part-12/']
 ---
@@ -319,7 +304,7 @@ name: RunGrpConvFlag
 doc: The RunGrpConv registry key. When this key is set and has a non-zero value, userinit.exe will launch grpconv.exe at user login.
 sources:
 - type: REGISTRY_KEY
-  attributes: {keys: ['HKEY_USERS\\%%users.sid%%\\Software\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\RunGrpConv']}
+  attributes: {keys: ['HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\RunGrpConv']}
 supported_os: [Windows]
 conditions: [os_major_version <= 5]
 urls:
@@ -456,6 +441,21 @@ labels: [Logs]
 supported_os: [Windows]
 urls: ['http://www.forensicswiki.org/wiki/Windows_XML_Event_Log_(EVTX)']
 ---
+name: WindowsActiveDesktop
+doc: Windows Active Desktop executable paths, used for persistence.
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Internet Explorer\Desktop\Components\*'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Internet Explorer\Desktop\General'
+conditions: [os_major_version < 6]
+supported_os: [Windows]
+urls:
+- 'https://www.sophos.com/en-us/threat-center/threat-analyses/viruses-and-spyware/Troj~DwnLdr-GWV/detailed-analysis.aspx'
+- 'https://support.microsoft.com/en-us/kb/929200'
+- 'https://en.wikipedia.org/wiki/Active_Desktop'
+---
 name: WindowsAlternateShell
 doc: Alternate Shell to be run via Userinit.
 sources:
@@ -464,8 +464,69 @@ sources:
     key_value_pairs: [{key: '%%current_control_set%%\Control\SafeBoot', value: 'AlternateShell'}]
 supported_os: [Windows]
 urls:
-  - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
-  - 'https://technet.microsoft.com/en-us/library/cc976124.aspx'
+- 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
+- 'https://technet.microsoft.com/en-us/library/cc976124.aspx'
+---
+name: WindowsAppCertDLLs
+doc: Windows AppCertDLLs persistence.
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys: ['HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\AppCertDLLs']
+supported_os: [Windows]
+urls: ['http://blogs.technet.com/b/mmpc/archive/2011/03/19/how-to-defang-the-fake-defragmenter.aspx']
+---
+name: WindowsAppInitDLLs
+doc: |
+  Windows Application Initial (AppInit) DLLs persistence.
+
+  AppInit DLLs is a mechanism that allows an arbitrary list of DLLs to be loaded
+  into each user mode process on the system.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Windows', value: 'AppInit_DLLs'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows NT\CurrentVersion\Windows', value: 'AppInit_DLLs'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Windows', value: 'AppInit_DLLs'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows NT\CurrentVersion\Windows', value: 'AppInit_DLLs'}
+supported_os: [Windows]
+urls: 
+- 'https://msdn.microsoft.com/en-us/library/windows/desktop/dd744762(v=vs.85).aspx'
+- 'https://support.microsoft.com/en-us/kb/197571'
+---
+name: WindowsAutorun
+doc: Filebased Tests.
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%environ_systemdrive%%\autorun.inf']
+    separator: '\'
+supported_os: [Windows]
+---
+name: WindowsCommandProcessorAutoRun
+doc: Commands that are run each time the Command Processor (Cmd.exe) is started.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Command Processor', value: 'AutoRun'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Command Processor', value: 'AutoRun'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Command Processor', value: 'AutoRun'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Command Processor', value: 'AutoRun'}
+supported_os: [Windows]
+urls: ['https://technet.microsoft.com/en-us/library/cc779439(v=ws.10).aspx']
+---
+name: WindowsCredentialProviderFilters
+doc: Windows Credential Provider Filters
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Authentication\Credential Provider Filters\*'
+      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Authentication\Credential Provider Filters\*'
+supported_os: [Windows]
+urls: ['http://blog.leetsys.com/2012/01/02/capturing-windows-7-credentials-at-logon-using-custom-credential-provider/']
 ---
 name: WindowsCredentialProviders
 doc: CLSIDs of applications to use as Credential Providers
@@ -473,13 +534,58 @@ sources:
 - type: REGISTRY_KEY
   attributes:
     keys:
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Authentication\Credential Provider Filters'
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Authentication\Credential Providers'
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Authentication\Credential Providers\*'
+      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Authentication\Credential Providers\*'
 supported_os: [Windows]
 urls:
-  - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
-  - 'http://blogs.technet.com/b/ad/archive/2009/05/26/thoughts-on-single-sign-on-and-credential-providers.aspx'
-  - 'https://www.sophos.com/en-us/support/knowledgebase/114190.aspx'
+- 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
+- 'http://blogs.technet.com/b/ad/archive/2009/05/26/thoughts-on-single-sign-on-and-credential-providers.aspx'
+- 'http://blog.leetsys.com/2012/01/02/capturing-windows-7-credentials-at-logon-using-custom-credential-provider/'
+- 'https://www.sophos.com/en-us/support/knowledgebase/114190.aspx'
+---
+name: WindowsCommonFilePlacementAttacks
+doc: Common files associated with search order hijacking and other file placement attacks.
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '%%environ_programfiles%%\Internet Explorer\sxs.dll'
+      - '%%environ_programfilesx86%%\Internet Explorer\sxs.dll'
+      - '%%environ_systemdrive%%\explorer.exe'
+      - '%%environ_systemdrive%%\program.exe'
+      - '%%environ_systemroot%%\linkinfo.dll'
+      - '%%environ_systemroot%%\ntshrui.dll'
+      - '%%environ_systemroot%%\System32\oci.dll'
+      - '%%environ_systemroot%%\System32\sysprep\cryptbase.dll'
+      - '%%environ_systemroot%%\SysWOW64\oci.dll'
+      - '%%environ_systemroot%%\SysWOW64\sysprep\cryptbase.dll'
+    separator: '\'
+supported_os: [Windows]
+urls:
+- 'http://web.cs.ucdavis.edu/~su/publications/issta10-loading.pdf'
+- 'https://www.mandiant.com/blog/fxsst/'
+---
+name: WindowsDebugger
+doc: Windows Debugger peristence or AV disable.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\*', value: 'Debugger'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\*', value: 'Debugger'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\*', value: 'Debugger'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\*', value: 'Debugger'}
+supported_os: [Windows]
+urls: ['https://msdn.microsoft.com/en-us/library/a329t4ed%28VS.71%29.aspx']
+---
+name: WindowsExcludeFromKnownDLLs
+doc: ExcludeFromKnownDLLs can be used to bypass search order hijacking protection.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager', value: 'ExcludeFromKnownDLLs'}]
+supported_os: [Windows]
+urls: ['https://msdn.microsoft.com/en-us/library/windows/desktop/ms682586%28v=vs.85%29.aspx']
 ---
 name: WindowsHostsFiles
 doc: The Windows hosts and lmhosts file.
@@ -492,38 +598,56 @@ sources:
     separator: '\'
 supported_os: [Windows]
 ---
+name: WindowsHotkeyReplacement
+doc: Hotkey executable replacement.
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '%%environ_systemroot%%\System32\magnifier.exe'
+      - '%%environ_systemroot%%\System32\sethc.exe'
+      - '%%environ_systemroot%%\System32\utilman.exe'
+    separator: '\'
+supported_os: [Windows]
+---
 name: WindowsLSAAuthenticationPackages
-doc: LSA Authentication Packages can be injected into LSASS.
+doc: Authentication Packages can be injected into LSASS.
 sources:
 - type: REGISTRY_VALUE
   attributes:
-    key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa', value: 'Authentication Packages'}]
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Lsa', value: 'Authentication Packages'}
+      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Lsa\OSConfig', value: 'Authentication Packages'}
 supported_os: [Windows]
 urls:
-  - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
-  - 'https://technet.microsoft.com/en-us/library/cc963218.aspx'
+- 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
+- 'https://technet.microsoft.com/en-us/library/cc963218.aspx'
 ---
 name: WindowsLSANotificationPackages
-doc: LSA Notification Packages can be injected into LSASS.
+doc: Notification Packages can be injected into LSASS.
 sources:
 - type: REGISTRY_VALUE
   attributes:
-    key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa', value: 'Notification Packages'}]
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Lsa', value: 'Notification Packages'}
+      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Lsa\OSConfig', value: 'Notification Packages'}
 supported_os: [Windows]
 urls:
-  - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
-  - 'https://technet.microsoft.com/en-us/library/cc963221.aspx'
+- 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
+- 'https://technet.microsoft.com/en-us/library/cc963221.aspx'
 ---
-name: WindowsMultiMediaDrivers
-doc: Configured drivers for different multimedia filetypes.
+name: WindowsLSASecurityPackages
+doc: Security Packages can be injected into LSASS.
 sources:
-- type: REGISTRY_KEY
+- type: REGISTRY_VALUE
   attributes:
-    keys: ['HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Drivers32\*']
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Lsa', value: 'Security Packages'}
+      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Lsa\OSConfig', value: 'Security Packages'}
 supported_os: [Windows]
 urls:
-  - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
-  - 'https://support.microsoft.com/en-us/kb/126054'
+- 'https://msdn.microsoft.com/en-us/library/windows/desktop/aa379392(v=vs.85).aspx'
+- 'https://dl.mandiant.com/EE/library/MIRcon2014/MIRcon_2014_IR_Track_Analysis_of_Malicious_SSP.pdf'
 ---
 name: WindowsPersistenceMechanisms
 doc: Persistence mechanisms in Windows.
@@ -531,11 +655,57 @@ sources:
 - type: ARTIFACT
   attributes:
     names:
-      - WindowsRunKeys
+      - WindowsPersistenceRegistryKeys
       - WindowsServices
   returned_types: [PersistenceFile]
 labels: [Software]
 supported_os: [Windows]
+---
+name: WindowsPersistenceRegistryKeys
+doc: Windows Registry keys used for persistence.
+sources:
+- type: ARTIFACT
+  attributes:
+    names:
+      - InternetExplorerBrowserHelperObjects
+      - WindowsAppInitDLLs
+      - WindowsCredentialProviderFilters
+      - WindowsCredentialProviders
+      - WindowsCommandProcessorAutoRun
+      - WindowsWinlogonGinaDLL
+      - WindowsWinlogonNotify
+      - WindowsWinlogonShell
+      - WindowsWinlogonSystem
+      - WindowsWinlogonTaskman
+      - WindowsWinlogonUserinit
+      - WindowsWinlogonVMApplet
+      - WindowsLSAAuthenticationPackages
+      - WindowsLSANotificationPackages
+      - WindowsLSASecurityPackages
+      - WindowsPLAPProviders
+      - WindowsRunKeys
+      - WindowsRunServices
+      - WindowsSessionManagerBootExecute
+      - WindowsSessionManagerExecute
+      - WindowsSessionManagerSetupExecute
+      - WindowsShellExecuteHooks
+      - WindowsShellExtensions
+      - WindowsShellIconOverlayIdentifiers
+      - WindowsShellServiceObjects
+      - WindowsStubPaths
+labels: [Software]
+supported_os: [Windows]
+---
+name: WindowsPLAPProviders
+doc: Windows Pre-Logon Access Provider (PLAP) Providers
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Authentication\PLAP Providers\*'
+      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Authentication\PLAP Providers\*'
+supported_os: [Windows]
+urls: ['https://msdn.microsoft.com/en-us/library/windows/desktop/bb530584(v=vs.85).aspx']
 ---
 name: WindowsRecycleBin
 doc: Windows Recycle Bin (Recyler, $Recycle.Bin) files.
@@ -560,28 +730,56 @@ sources:
 - type: REGISTRY_KEY
   attributes:
     keys:
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Run\*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Run\*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\RunOnce\*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunOnce\*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\Run\*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer\Run\*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\RunOnce\Setup\*'
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run\*'
-      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Run\*'
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunOnce\*'
-      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunOnce\*'
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunOnceEx\*'
-      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunOnceEx\*'
       - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\Run\*'
-      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer\Run\*'
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run\*'
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunOnce\*'
       - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunOnce\Setup\*'
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunOnceEx\*'
+      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Run\*'
+      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunOnce\*'
+      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunOnce\Setup\*'
+      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunOnceEx\*'
+      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer\Run\*'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\Run\*'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Run\*'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\RunOnce\*'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\RunOnce\Setup\*'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\RunOnceEx\*'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer\Run\*'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Run\*'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunOnce\*'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunOnce\Setup\*'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunOnceEx\*'
 labels: [Software]
 supported_os: [Windows]
 urls:
-  - 'https://msdn.microsoft.com/en-us/library/windows/desktop/aa376977%28v=vs.85%29.aspx'
-  - 'https://support.microsoft.com/en-us/kb/137367'
-  - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
+- 'https://msdn.microsoft.com/en-us/library/windows/desktop/aa376977%28v=vs.85%29.aspx'
+- 'https://support.microsoft.com/en-us/kb/137367'
+- 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
+---
+name: WindowsRunServices
+doc: Windows Run Services.
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunServicesOnce\*'
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunServices\*'
+      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunServicesOnce\*'
+      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunServices\*'
+supported_os: [Windows]
+urls: ['https://support.microsoft.com/en-us/kb/179365']
+---
+name: WindowsSecurityProviders
+doc: Security Providers DLLs
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs: [{key: '%%current_control_set%%\Control\SecurityProviders', value: 'SecurityProviders'}]
+supported_os: [Windows]
+urls:
+- 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
+- 'https://github.com/wmark/security-configuration/blob/master/Windows/disable-weak-ciphers-and-enable-TLS1.x.reg'
 ---
 name: WindowsSearchDatabase
 doc: Windows Search database (Windows.edb).
@@ -594,17 +792,6 @@ labels: [Software]
 supported_os: [Windows]
 urls: ['http://www.forensicswiki.org/wiki/Windows_Desktop_Search']
 ---
-name: WindowsSecurityProviders
-doc: Security Providers DLLs
-sources:
-- type: REGISTRY_VALUE
-  attributes:
-    key_value_pairs: [{key: '%%current_control_set%%\Control\SecurityProviders', value: 'SecurityProviders'}]
-supported_os: [Windows]
-urls:
-  - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
-  - 'https://github.com/wmark/security-configuration/blob/master/Windows/disable-weak-ciphers-and-enable-TLS1.x.reg'
----
 name: WindowsServices
 doc: Windows services from the Registry.
 sources:
@@ -616,8 +803,8 @@ sources:
 labels: [Software]
 supported_os: [Windows]
 urls:
-  - 'http://support.microsoft.com/kb/103000'
-  - 'https://github.com/libyal/winreg-kb/wiki/System-keys'
+- 'http://support.microsoft.com/kb/103000'
+- 'https://github.com/libyal/winreg-kb/wiki/System-keys'
 ---
 name: WindowsSessionManagerSubSystems
 doc: Windows Session Manager SubSystems persistence
@@ -627,8 +814,110 @@ sources:
     key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\SubSystems', value: 'Windows'}]
 supported_os: [Windows]
 urls:
-  - 'https://technet.microsoft.com/en-us/library/cc976130.aspx'
-  - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
+- 'https://technet.microsoft.com/en-us/library/cc976130.aspx'
+- 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
+---
+name: WindowsShellExtensions
+doc: Approved extensions to the Windows Shell (explorer.exe).
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved'
+      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved'
+supported_os: [Windows]
+urls: ['https://msdn.microsoft.com/en-us/library/windows/desktop/cc144110(v=vs.85).aspx']
+---
+name: WindowsShellExecuteHooks
+doc: Shell execution hooks are called when ShellExecuteEx() is called.
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\ShellExecuteHooks\*'
+      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\ShellExecuteHooks\*'
+supported_os: [Windows]
+urls:
+- 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
+- 'http://regenerus.com/malware-common-loadpoints/'
+- 'https://code.google.com/p/regripper/wiki/ASEPs'
+---
+name: WindowsShellIconOverlayIdentifiers
+doc: Called to display custom icons.
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\ShellIconOverlayIdentifiers\*'
+      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\ShellIconOverlayIdentifiers\*'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\ShellIconOverlayIdentifiers\*'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\ShellIconOverlayIdentifiers\*'
+supported_os: [Windows]
+urls:
+- 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
+- 'https://msdn.microsoft.com/en-us/library/windows/desktop/hh127455(v=vs.85).aspx'
+---
+name: WindowsShellServiceObjects
+doc: Windows Shell (explorer.exe) service objects delayed load.
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\ShellServiceObjectDelayLoad'
+      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\ShellServiceObjectDelayLoad'
+supported_os: [Windows]
+urls: ['http://www.microsoft.com/security/portal/threat/encyclopedia/Entry.aspx?Name=TrojanClicker:Win32/Zirit.X#tab=2']
+---
+name: WindowsStartupFolders
+doc: Windows startup folder persistence.
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '%%users.homedir%%\Start Menu\Programs\Startup\*'
+      - '%%environ_allusersprofile%%\Start Menu\Programs\Startup\*'
+      - '%%users.homedir%%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\*'
+      - '%%environ_allusersprofile%%\Microsoft\Windows\Start Menu\Programs\Startup\*'
+    separator: '\'
+supported_os: [Windows]
+---
+name: WindowsStartupFolderModification
+doc: Windows startup folder Registry values.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders', value: 'Common Startup'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders', value: 'Startup'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders', value: 'Common Startup'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders', value: 'Startup'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders', value: 'Common Startup'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders', value: 'Startup'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders', value: 'Common Startup'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders', value: 'Startup'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders', value: 'Common Startup'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders', value: 'Startup'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders', value: 'Common Startup'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders', value: 'Startup'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders', value: 'Common Startup'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders', value: 'Startup'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders', value: 'Common Startup'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders', value: 'Startup'}
+supported_os: [Windows]
+---
+name: WindowsStubPaths
+doc: Windows StubPath persistence.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Active Setup\Installed Components\*', value: 'StubPath'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Active Setup\Installed Components\*', value: 'StubPath'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Active Setup\Installed Components\*', value: 'StubPath'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Active Setup\Installed Components\*', value: 'StubPath'}
+supported_os: [Windows]
 ---
 name: WindowsSystemRegistryFiles
 doc: Windows system Registry files.
@@ -646,20 +935,22 @@ labels: [System]
 supported_os: [Windows]
 urls: ['https://github.com/libyal/winreg-kb/wiki/Registry-files']
 ---
-name: WindowsToolPaths
-doc: Paths to windows tools such as defrag, chkdsk.
+name: WindowsUpdateStatus
+doc: Windows auto update status.
 sources:
-- type: REGISTRY_KEY
+- type: REGISTRY_VALUE
   attributes:
-    keys:
-      - 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\BackupPath'
-      - 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\ChkDskPath'
-      - 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\cleanuppath'
-      - 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\DefragPath'
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\Results\Detect', value: 'LastError'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\Results\Detect', value: 'LastSuccessTime'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\Results\Download', value: 'LastError'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\Results\Download', value: 'LastSuccessTime'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\Results\Install', value: 'LastError'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\Results\Install', value: 'LastSuccessTime'}
 supported_os: [Windows]
 urls:
-  - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
-  - 'http://www.liutilities.com/products/registrybooster/tweaklibrary/tweaks/11118/'
+- 'http://forensicswiki.org/wiki/Windows_Update'
+- 'http://blogs.msdn.com/b/aruns_blog/archive/2011/06/20/active-setup-registry-key-what-it-is-and-how-to-create-in-the-package-using-admin-studio-install-shield.aspx'
 ---
 name: WindowsUserRecentFiles
 doc: Windows user specific recent files.
@@ -687,306 +978,27 @@ labels: [Users]
 supported_os: [Windows]
 urls: ['https://github.com/libyal/winreg-kb/wiki/Registry-files']
 ---
-name: WMIComputerSystemProduct
-doc: Computer System Product including Identifiying number queried from WMI.
-sources:
-- type: WMI
-  attributes: {query: SELECT * FROM Win32_ComputerSystemProduct}
-labels: [System]
-supported_os: [Windows]
-urls: ['http://msdn.microsoft.com/en-us/library/aa394105(v=vs.85).aspx']
----
-name: WMIDrivers
-doc: Installed drivers via Windows Management Instrumentation (WMI).
-sources:
-- type: WMI
-  attributes: {query: 'SELECT DisplayName, Description, InstallDate, Name, PathName, Status,
-      State, ServiceType from Win32_SystemDriver'}
-conditions: [os_major_version >= 6]
-labels: [Software]
-supported_os: [Windows]
----
-name: WMIEnumerateASEC
-doc: Enumerate instances of ActiveScriptEventConsumer.
-sources:
-- type: WMI
-  attributes: {query: SELECT * FROM ActiveScriptEventConsumer, base_object: 'winmgmts:\root\subscription'}
-supported_os: [Windows]
----
-name: WMIEnumerateCLEC
-doc: Enumerate instances of CommandLineEventConsumer.
-sources:
-- type: WMI
-  attributes: {query: SELECT * FROM CommandLineEventConsumer, base_object: 'winmgmts:\root\subscription'}
-supported_os: [Windows]
----
-name: WMIHotFixes
-doc: Installed hotfixes via Windows Management Instrumentation (WMI).
-sources:
-- type: WMI
-  attributes: {query: SELECT * from Win32_QuickFixEngineering}
-conditions: [os_major_version >= 6]
-labels: [Software]
-supported_os: [Windows]
----
-name: WMIInstalledSoftware
-doc: Installed software via Windows Management Instrumentation (WMI).
-sources:
-- type: WMI
-  attributes: {query: 'SELECT Name, Vendor, Description, InstallDate, InstallDate2, Version
-      from Win32_Product'}
-conditions: [os_major_version >= 6]
-labels: [Software]
-supported_os: [Windows]
----
-name: WMILogicalDisks
-doc: Disk information via Windows Management Instrumentation (WMI).
-sources:
-- type: WMI
-  attributes: {query: SELECT * FROM Win32_LogicalDisk}
-labels: [System]
-supported_os: [Windows]
-urls: ['http://msdn.microsoft.com/en-us/library/aa394173(v=vs.85).aspx']
----
-name: WMILoginUsers
-doc: |
-  Login Users via Windows Management Instrumentation (WMI).
-
-  This WMI query may take a long time to complete when run on a domain and
-  will create load on a domain controller.
-sources:
-- type: WMI
-  attributes: {query: SELECT * from Win32_GroupUser where Name = "login_users"}
-conditions: [os_major_version >= 6]
-labels: [Software]
-supported_os: [Windows]
----
-name: WMIPhysicalMemory
-doc: Physical memory information via Windows Management Instrumentation (WMI).
-sources:
-- type: WMI
-  attributes: {query: SELECT * from Win32_PhysicalMemory}
-conditions: [os_major_version >= 6]
-labels: [System]
-supported_os: [Windows]
-urls: ["http://msdn.microsoft.com/en-us/library/aa394347%28v=vs.85%29.aspx"]
----
-name: WMIProcessList
-doc: Process listing via Windows Management Instrumentation (WMI).
-sources:
-- type: WMI
-  attributes: {query: SELECT * from Win32_Process}
-conditions: [os_major_version >= 6]
-labels: [Software]
-supported_os: [Windows]
----
-name: WMIUsers
-doc: |
-  Users via Windows Management Instrumentation (WMI).
-
-  Note that in a domain setup, this will probably return all users in the
-  domain which will be expensive and slow. Consider limiting by SID like
-  WMIProfileUsersHomeDir.
-sources:
-- type: WMI
-  attributes: {query: SELECT * FROM Win32_UserAccount}
-labels: [Users]
-supported_os: [Windows]
-urls: ['http://msdn.microsoft.com/en-us/library/windows/desktop/aa394507(v=vs.85).aspx']
----
-name: WindowsHotkeyReplacement
-doc: Hotkey executable replacement.
-sources:
-- type: FILE
-  attributes:
-    paths:
-      - '%%environ_systemroot%%\System32\magnifier.exe'
-      - '%%environ_systemroot%%\System32\sethc.exe'
-      - '%%environ_systemroot%%\System32\utilman.exe'
-    separator: '\'
-supported_os: [Windows]
----
-name: WindowsAutorun
-doc: Filebased Tests.
-sources:
-- type: FILE
-  attributes:
-    paths: ['%%environ_systemdrive%%\autorun.inf']
-    separator: '\'
-supported_os: [Windows]
----
-name: WindowsCommonFilePlacementAttacks
-doc: Common files associated with search order hijacking and other file placement attacks.
-sources:
-- type: FILE
-  attributes:
-    paths:
-      - '%%environ_programfiles%%\Internet Explorer\sxs.dll'
-      - '%%environ_programfilesx86%%\Internet Explorer\sxs.dll'
-      - '%%environ_systemdrive%%\explorer.exe'
-      - '%%environ_systemdrive%%\program.exe'
-      - '%%environ_systemroot%%\linkinfo.dll'
-      - '%%environ_systemroot%%\ntshrui.dll'
-      - '%%environ_systemroot%%\System32\oci.dll'
-      - '%%environ_systemroot%%\System32\sysprep\cryptbase.dll'
-      - '%%environ_systemroot%%\SysWOW64\oci.dll'
-      - '%%environ_systemroot%%\SysWOW64\sysprep\cryptbase.dll'
-    separator: '\'
-supported_os: [Windows]
-urls:
-- 'http://web.cs.ucdavis.edu/~su/publications/issta10-loading.pdf'
-- 'https://www.mandiant.com/blog/fxsst/'
----
-name: WindowsStartupFolders
-doc: Windows startup folder persistence.
-sources:
-- type: FILE
-  attributes:
-    paths:
-      - '%%users.homedir%%\Start Menu\Programs\Startup\*'
-      - '%%environ_allusersprofile%%\Start Menu\Programs\Startup\*'
-      - '%%users.homedir%%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\*'
-      - '%%environ_allusersprofile%%\Microsoft\Windows\Start Menu\Programs\Startup\*'
-    separator: '\'
-supported_os: [Windows]
----
-name: WindowsStubPaths
-doc: Windows StubPath persistence.
+name: WindowsWinlogonGinaDLL
+doc: Windows Gina DLL replacement.
 sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Active Setup\Installed Components\*', value: 'StubPath'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Active Setup\Installed Components\*', value: 'StubPath'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'GinaDLL'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'GinaDLL'}
 supported_os: [Windows]
-urls: ['http://blogs.msdn.com/b/aruns_blog/archive/2011/06/20/active-setup-registry-key-what-it-is-and-how-to-create-in-the-package-using-admin-studio-install-shield.aspx']
----
-name: WindowsBootExecute
-doc: Windows BootExecute persistence.
-sources:
-- type: REGISTRY_VALUE
-  attributes:
-    key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager', value: 'BootExecute'}]
-supported_os: [Windows]
-urls: ['https://technet.microsoft.com/en-us/library/cc963230.aspx']
----
-name: WindowsExcludeFromKnownDlls
-doc: ExcludeFromKnownDlls can be used to bypass search order hijacking protection.
-sources:
-- type: REGISTRY_VALUE
-  attributes:
-    key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager', value: 'ExcludeFromKnownDlls'}]
-supported_os: [Windows]
-urls: ['https://msdn.microsoft.com/en-us/library/windows/desktop/ms682586%28v=vs.85%29.aspx']
----
-name: WindowsLSASecurityPackages
-doc: CurrentControlSet Security Packages can be injected into LSASS.
-sources:
-- type: REGISTRY_VALUE
-  attributes:
-    key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa', value: 'Security Packages'}
-      - {key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa\OSConfig', value: 'Security Packages'}
-supported_os: [Windows]
-urls:
-  - 'https://msdn.microsoft.com/en-us/library/windows/desktop/aa379392(v=vs.85).aspx'
-  - 'https://dl.mandiant.com/EE/library/MIRcon2014/MIRcon_2014_IR_Track_Analysis_of_Malicious_SSP.pdf'
----
-name: WindowsAppCertDlls
-doc: Windows AppCertDlls persistence.
-sources:
-- type: REGISTRY_KEY
-  attributes:
-    keys: ['HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\AppCertDlls']
-supported_os: [Windows]
-urls: ['http://blogs.technet.com/b/mmpc/archive/2011/03/19/how-to-defang-the-fake-defragmenter.aspx']
----
-name: WindowsStartupFolderModification
-doc: Windows startup folder Registry values.
-sources:
-- type: REGISTRY_VALUE
-  attributes:
-    key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders', value: 'Common Startup'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders', value: 'Common Startup'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders', value: 'Startup'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders', value: 'Startup'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders', value: 'Common Startup'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders', value: 'Common Startup'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders', value: 'Startup'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders', value: 'Startup'}
-supported_os: [Windows]
----
-name: WindowsShellExecuteHooks
-doc: Shell execution hooks are called when ShellExecuteEx() is called.
-sources:
-- type: REGISTRY_KEY
-  attributes:
-    keys:
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\ShellExecuteHooks\*'
-      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\ShellExecuteHooks\*'
-supported_os: [Windows]
-urls:
-- 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
-- 'http://regenerus.com/malware-common-loadpoints/'
-- 'https://code.google.com/p/regripper/wiki/ASEPs'
----
-name: WindowsShellIconOverlayIdentifiers
-doc: Called to display custom icons.
-sources:
-- type: REGISTRY_KEY
-  attributes:
-    keys: ['HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\ShellIconOverlayIdentifiers\*']
-supported_os: [Windows]
-urls:
-  - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
-  - 'https://msdn.microsoft.com/en-us/library/windows/desktop/hh127455(v=vs.85).aspx'
----
-name: WindowsDebugger
-doc: Windows Debugger peristence or AV disable.
-sources:
-- type: REGISTRY_VALUE
-  attributes:
-    key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\*', value: 'Debugger'}
-      - {key: 'HKEY_USERS\%%users.sid%%\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\*', value: 'Debugger'}
-supported_os: [Windows]
-urls: ['https://msdn.microsoft.com/en-us/library/a329t4ed%28VS.71%29.aspx']
----
-name: WindowsRunServices
-doc: Windows Run Services.
-sources:
-- type: REGISTRY_KEY
-  attributes:
-    keys:
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunServicesOnce\*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\RunServicesOnce\*'
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunServices\*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\RunServices\*'
-supported_os: [Windows]
-urls: ['https://msdn.microsoft.com/en-us/library/windows/desktop/aa376977%28v=vs.85%29.aspx']
+urls: ['https://technet.microsoft.com/en-us/library/cc939701.aspx']
 ---
 name: WindowsWinlogonNotify
-doc: Windows Winlogon Notify.
-sources:
-- type: REGISTRY_KEY
-  attributes:
-    keys:
-      - 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\Notify'
-      - 'HKEY_USERS\%%users.sid%%\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\Notify'
-supported_os: [Windows]
-urls: ['https://msdn.microsoft.com/en-us/library/windows/desktop/aa379402%28v=vs.85%29.aspx']
----
-name: WindowsWinlogonUserinit
-doc: Windows Winlogon Userinit.
+doc: Windows Winlogon Notify DLL names.
 sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'Userinit'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'Userinit'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\Notify\*', value: 'DLLName'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\Notify\*', value: 'DLLName'}
 supported_os: [Windows]
-urls: ['https://technet.microsoft.com/en-us/library/cc939862.aspx']
+urls: ['https://msdn.microsoft.com/en-us/library/windows/desktop/aa379402(v=vs.85).aspx']
 ---
 name: WindowsWinlogonShell
 doc: Windows shell replacement.
@@ -1006,37 +1018,45 @@ sources:
   attributes:
     key_value_pairs:
       - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'System'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'System'}
 supported_os: [Windows]
 urls:
 - 'https://code.google.com/p/regripper/wiki/ASEPs'
 - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
 - 'http://regenerus.com/malware-common-loadpoints/'
 ---
-name: WindowsAppInit
-doc: Windows AppInit persistence.
+name: WindowsWinlogonTaskman
+doc: Windows Winlogon Taskman replacement.
 sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Windows', value: 'AppInit_DLLs'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Windows', value: 'AppInit_DLLs'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'Taskman'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'Taskman'}
 supported_os: [Windows]
-urls: ['http://support.microsoft.com/en-us/kb/197571']
+urls: ['https://technet.microsoft.com/en-us/library/cc939701.aspx']
 ---
-name: WindowsUpdateStatus
-doc: Windows auto update status.
+name: WindowsWinlogonUserinit
+doc: Windows Winlogon Userinit replacement.
 sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\Results\Detect', value: 'LastError'}
-      - {key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\Results\Detect', value: 'LastSuccessTime'}
-      - {key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\Results\Download', value: 'LastError'}
-      - {key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\Results\Download', value: 'LastSuccessTime'}
-      - {key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\Results\Install', value: 'LastError'}
-      - {key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\Results\Install', value: 'LastSuccessTime'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'Userinit'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'Userinit'}
 supported_os: [Windows]
-urls: ['http://forensicswiki.org/wiki/Windows_Update']
+urls: ['https://technet.microsoft.com/en-us/library/cc939862.aspx']
+---
+name: WindowsWinlogonVMApplet
+doc: Windows VMApplet replacement.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'VMApplet'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'VMApplet'}
+supported_os: [Windows]
+urls: ['https://technet.microsoft.com/en-us/library/cc939701.aspx']
 ---
 name: WinRARExternalViewer
 doc: Executable run when a file is opened by WinRAR inside an archive.
@@ -1058,27 +1078,6 @@ urls:
 - 'http://www.hexacorn.com/blog/2012/09/16/beyond-good-ol-run-key-part-2/'
 - 'http://acritum.com/software/manuals/winrar/html/helpcommandsvirusscan.htm'
 ---
-name: WMILoggedOnSessions
-doc: Logged on users queried from WMI.
-sources:
-- type: WMI
-  attributes: {query: SELECT * FROM Win32_LogonSession}
-supported_os: [Windows]
----
-name: WMILoggedOnUsers
-doc: Logged on users queried from WMI.
-sources:
-- type: WMI
-  attributes: {query: SELECT * FROM Win32_LoggedonUser}
-supported_os: [Windows]
----
-name: WMIServices
-doc: Services queried from WMI.
-sources:
-- type: WMI
-  attributes: {query: SELECT * FROM Win32_Service}
-supported_os: [Windows]
----
 name: WinAppXRT
 doc: WinAppXRT DLL loaded by .Net applications when the APPX_PROCESS environment variable is set.
 sources:
@@ -1088,7 +1087,7 @@ sources:
     - '%%environ_systemroot%%\system32\WinAppXRT.dll'
     - '%%environ_systemroot%%\WinAppXRT.dll'
     - '%%environ_systemroot%%\System32\Wbem\WinAppXRT.dll'
-    - '%%environ_systemroot%%\\System32\WindowsPowerShell\v1.0\WinAppXRT.dll'
+    - '%%environ_systemroot%%\System32\WindowsPowerShell\v1.0\WinAppXRT.dll'
 supported_os: [Windows]
 conditions: [os_major_version >= 6 AND os_minor_version >= 2]
 urls: ['http://www.hexacorn.com/blog/2014/08/31/beyond-good-ol-run-key-part-17/']
@@ -1156,9 +1155,9 @@ sources:
       - 'HKEY_USERS\%%users.sid%%\Software\Classes\Folder\ShellEx\ColumnHandlers\*'
 supported_os: [Windows]
 urls:
-  - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
-  - 'http://www.codeguru.com/cpp/com-tech/shell/article.php/c4515/Logging-the-Shell-Activity.htm'
-  - 'http://www.trendmicro.com/vinfo/us/threat-encyclopedia/archive/malware/troj_qoolaid.r'
+- 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
+- 'http://www.codeguru.com/cpp/com-tech/shell/article.php/c4515/Logging-the-Shell-Activity.htm'
+- 'http://www.trendmicro.com/vinfo/us/threat-encyclopedia/archive/malware/troj_qoolaid.r'
 ---
 name: WindowsWinstart
 doc: Windows winstart.bat file
@@ -1183,31 +1182,13 @@ sources:
     separator: '\'
 supported_os: [Windows]
 ---
-name: WindowsSessionManagerSetupExecute
-doc: Windows Session Manager SetupExecute persistence
-sources:
-- type: REGISTRY_VALUE
-  attributes:
-    key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager', value: 'SetupExecute'}]
-supported_os: [Windows]
-urls: ['https://msdn.microsoft.com/en-us/library/windows/desktop/dd392286%28v=vs.85%29.aspx']
----
-name: WindowsSessionManagerExecute
-doc: Windows Session Manager Execute persistence
-sources:
-- type: REGISTRY_VALUE
-  attributes:
-    key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager', value: 'Execute'}]
-supported_os: [Windows]
-urls: ['https://technet.microsoft.com/en-us/library/cc976130.aspx']
----
 name: WindowsNetshHelpers
 doc: Windows Netsh helpers are loaded on boot
 sources:
 - type: REGISTRY_KEY
   attributes:
     keys:
-      - 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Netsh'
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Netsh'
 supported_os: [Windows]
 urls: ['https://support.microsoft.com/en-us/kb/242468']
 ---
@@ -1217,7 +1198,7 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager', value: 'PendingFileRenameOperations'}
+      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager', value: 'PendingFileRenameOperations'}
 supported_os: [Windows]
 urls: ['https://technet.microsoft.com/en-us/library/cc960241.aspx']
 ---
@@ -1227,47 +1208,21 @@ sources:
 - type: REGISTRY_KEY
   attributes:
     keys:
-      - 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\MSDTC\MTxOCI\*'
-      - 'HKEY_USERS\%%users.sid%%\SOFTWARE\Microsoft\MSDTC\MTxOCI\*'
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\MSDTC\MTxOCI\*'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\MSDTC\MTxOCI\*'
 supported_os: [Windows]
 urls: ['https://www.mandiant.com/blog/hikit-rootkit-advanced-persistent-attack-techniques-part-1-2/']
 ---
-name: WindowsTerminalServerRunKeys
-doc: Windows Terminal Server Run Keys
+name: WindowsMultiMediaDrivers
+doc: Configured drivers for different multimedia filetypes.
 sources:
 - type: REGISTRY_KEY
   attributes:
-    keys:
-      - 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Terminal Server\Install\Software\Microsoft\Windows\CurrentVersion\Runonce\*'
-      - 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Terminal Server\Install\Software\Microsoft\Windows\CurrentVersion\RunonceEx\*'
-      - 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Terminal Server\Install\Software\Microsoft\Windows\CurrentVersion\Run\*'
-      - 'HKEY_USERS\%%users.sid%%\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Terminal Server\Install\Software\Microsoft\Windows\CurrentVersion\Runonce\*'
-      - 'HKEY_USERS\%%users.sid%%\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Terminal Server\Install\Software\Microsoft\Windows\CurrentVersion\RunonceEx\*'
-      - 'HKEY_USERS\%%users.sid%%\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Terminal Server\Install\Software\Microsoft\Windows\CurrentVersion\Run\*'
+    keys: ['HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Drivers32\*']
 supported_os: [Windows]
-urls: ['http://gladiator-antivirus.com/forum/index.php?showtopic=24610']
----
-name: WindowsWinlogonMSGina
-doc: Windows Winlogon MSGina
-sources:
-- type: REGISTRY_VALUE
-  attributes:
-    key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'GinaDll'}
-      - {key: 'HKEY_USERS\%%users.sid%%\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'GinaDll'}
-supported_os: [Windows]
-urls: ['https://technet.microsoft.com/en-us/library/cc939701.aspx']
----
-name: WindowsWinlogonTaskman
-doc: Windows Winlogon Taskman
-sources:
-- type: REGISTRY_VALUE
-  attributes:
-    key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'Taskman'}
-      - {key: 'HKEY_USERS\%%users.sid%%\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'Taskman'}
-supported_os: [Windows]
-urls: ['https://technet.microsoft.com/en-us/library/cc939701.aspx']
+urls:
+- 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
+- 'https://support.microsoft.com/en-us/kb/126054'
 ---
 name: WindowsPolicyDisallowRun
 doc: Restrict users from running specific applications, typically used by malware to block AV.
@@ -1296,8 +1251,8 @@ sources:
   attributes:
     key_value_pairs:
       - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Windows', value: 'load'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Windows', value: 'load'}
       - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Windows', value: 'run'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Windows', value: 'load'}
       - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Windows', value: 'run'}
 supported_os: [Windows]
 urls: ['http://support.microsoft.com/en-us/kb/103865']
@@ -1312,8 +1267,92 @@ sources:
       - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SharedTaskScheduler\*'
 supported_os: [Windows]
 urls:
-  - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
-  - 'http://www.bleepingcomputer.com/tutorials/windows-program-automatic-startup-locations/'
+- 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
+- 'http://www.bleepingcomputer.com/tutorials/windows-program-automatic-startup-locations/'
+---
+name: WindowsLogoffScript
+doc: Windows policy logoff script
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Policies\Microsoft\Windows\System\Scripts', value: 'Logoff'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\System\Scripts', value: 'Logoff'}
+supported_os: [Windows]
+urls: ['https://technet.microsoft.com/en-us/library/ff404236.aspx']
+---
+name: WindowsLogonScript
+doc: Windows policy logon script
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Policies\Microsoft\Windows\System\Scripts', value: 'Logon'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\System\Scripts', value: 'Logon'}
+supported_os: [Windows]
+urls: ['https://technet.microsoft.com/en-us/library/ff404236.aspx']
+---
+name: WindowsSessionManagerBootExecute
+doc: Windows Session Manager BootExecute persistence.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager', value: 'BootExecute'}]
+supported_os: [Windows]
+urls: ['https://technet.microsoft.com/en-us/library/cc963230.aspx']
+---
+name: WindowsSessionManagerExecute
+doc: Windows Session Manager Execute persistence
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager', value: 'Execute'}]
+supported_os: [Windows]
+urls: ['https://technet.microsoft.com/en-us/library/cc976130.aspx']
+---
+name: WindowsSessionManagerSetupExecute
+doc: Windows Session Manager SetupExecute persistence
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager', value: 'SetupExecute'}]
+supported_os: [Windows]
+urls: ['https://msdn.microsoft.com/en-us/library/windows/desktop/dd392286%28v=vs.85%29.aspx']
+---
+name: WindowsShutdownScript
+doc: Windows policy shutdown script
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\System\Scripts', value: 'Shutdown'}
+supported_os: [Windows]
+urls: ['https://technet.microsoft.com/en-us/library/ff404236.aspx']
+---
+name: WindowsStartupScript
+doc: Windows policy startup script
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\System\Scripts', value: 'Startup'}
+supported_os: [Windows]
+urls: ['https://technet.microsoft.com/en-us/library/ff404236.aspx']
+---
+name: WindowsTerminalServerRunKeys
+doc: Windows Terminal Server Run Keys
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Terminal Server\Install\Software\Microsoft\Windows\CurrentVersion\Runonce\*'
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Terminal Server\Install\Software\Microsoft\Windows\CurrentVersion\RunonceEx\*'
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Terminal Server\Install\Software\Microsoft\Windows\CurrentVersion\Run\*'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Terminal Server\Install\Software\Microsoft\Windows\CurrentVersion\Runonce\*'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Terminal Server\Install\Software\Microsoft\Windows\CurrentVersion\RunonceEx\*'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Terminal Server\Install\Software\Microsoft\Windows\CurrentVersion\Run\*'
+supported_os: [Windows]
+urls: ['http://gladiator-antivirus.com/forum/index.php?showtopic=24610']
 ---
 name: WindowsTerminalServerStartupPrograms
 doc: Windows Terminal Server Startup Programs
@@ -1325,13 +1364,28 @@ sources:
 supported_os: [Windows]
 urls: ['http://forum.sysinternals.com/rdpclip_topic4729.html']
 ---
+name: WindowsToolPaths
+doc: Paths to windows tools such as defrag, chkdsk.
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
+      - 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\BackupPath'
+      - 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\ChkDskPath'
+      - 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\cleanuppath'
+      - 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\DefragPath'
+supported_os: [Windows]
+urls:
+- 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
+- 'http://www.liutilities.com/products/registrybooster/tweaklibrary/tweaks/11118/'
+---
 name: WindowsWinlogonAppSetup
 doc: Windows Winlogon Appsetup
 sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'AppSetup'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'AppSetup'}
 supported_os: [Windows]
 urls: ['https://technet.microsoft.com/en-us/library/cc939701.aspx']
 ---
@@ -1348,58 +1402,6 @@ urls:
 - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
 - 'http://www.bleepingcomputer.com/forums/t/14028/change-the-loginwelcome-screen/'
 ---
-name: WindowsWinlogonVmApplet
-doc: Windows Winlogon VmApplet
-sources:
-- type: REGISTRY_VALUE
-  attributes:
-    key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'VmApplet'}
-supported_os: [Windows]
-urls: ['https://technet.microsoft.com/en-us/library/cc939701.aspx']
----
-name: WindowsStartupScript
-doc: Windows policy startup script
-sources:
-- type: REGISTRY_VALUE
-  attributes:
-    key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\System\Scripts', value: 'Startup'}
-supported_os: [Windows]
-urls: ['https://technet.microsoft.com/en-us/library/ff404236.aspx']
----
-name: WindowsShutdownScript
-doc: Windows policy shutdown script
-sources:
-- type: REGISTRY_VALUE
-  attributes:
-    key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\System\Scripts', value: 'Shutdown'}
-supported_os: [Windows]
-urls: ['https://technet.microsoft.com/en-us/library/ff404236.aspx']
----
-name: WindowsLogonScript
-doc: Windows policy logon script
-sources:
-- type: REGISTRY_VALUE
-  attributes:
-    key_value_pairs:
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Policies\Microsoft\Windows\System\Scripts', value: 'Logon'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\System\Scripts', value: 'Logon'}
-supported_os: [Windows]
-urls: ['https://technet.microsoft.com/en-us/library/ff404236.aspx']
----
-name: WindowsLogoffScript
-doc: Windows policy logoff script
-sources:
-- type: REGISTRY_VALUE
-  attributes:
-    key_value_pairs:
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Policies\Microsoft\Windows\System\Scripts', value: 'Logoff'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\System\Scripts', value: 'Logoff'}
-supported_os: [Windows]
-urls: ['https://technet.microsoft.com/en-us/library/ff404236.aspx']
----
 name: WinSock2LayeredServiceProviders
 doc: Used to filter TCP/IP traffic through WinSock2.
 sources:
@@ -1408,8 +1410,8 @@ sources:
     keys: ['%%current_control_set%%\Services\WinSock2\Parameters\Protocol_Catalog9\Catalog_Entries\*']
 supported_os: [Windows]
 urls:
-  - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
-  - 'https://en.wikipedia.org/wiki/Layered_Service_Provider'
+- 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
+- 'https://en.wikipedia.org/wiki/Layered_Service_Provider'
 ---
 name: WinSock2NamespaceProviders
 doc: WinSock2NamespaceProviders
@@ -1420,7 +1422,134 @@ sources:
       - {key: '%%current_control_set%%\Services\WinSock2\Parameters\namespace_catalog5\catalog_entries\*', value: 'LibraryPath'}
 supported_os: [Windows]
 urls:
-  - 'https://www.symantec.com/security_response/writeup.jsp?docid=2012-020609-4221-99&tabid=2'
-  - 'http://www.nirsoft.net/utils/winsock_service_providers.html'
-  - 'https://msdn.microsoft.com/en-us/library/windows/desktop/ms739923(v=vs.85).aspx'
+- 'https://www.symantec.com/security_response/writeup.jsp?docid=2012-020609-4221-99&tabid=2'
+- 'http://www.nirsoft.net/utils/winsock_service_providers.html'
+- 'https://msdn.microsoft.com/en-us/library/windows/desktop/ms739923(v=vs.85).aspx'
+---
+name: WMIComputerSystemProduct
+doc: Computer System Product including Identifiying number queried from WMI.
+sources:
+- type: WMI
+  attributes: {query: SELECT * FROM Win32_ComputerSystemProduct}
+labels: [System]
+supported_os: [Windows]
+urls: ['http://msdn.microsoft.com/en-us/library/aa394105(v=vs.85).aspx']
+---
+name: WMIDrivers
+doc: Installed drivers via Windows Management Instrumentation (WMI).
+sources:
+- type: WMI
+  attributes: {query: 'SELECT DisplayName, Description, InstallDate, Name, PathName, Status,
+      State, ServiceType from Win32_SystemDriver'}
+conditions: [os_major_version >= 6]
+labels: [Software]
+supported_os: [Windows]
+---
+name: WMIEnumerateASEC
+doc: Enumerate instances of ActiveScriptEventConsumer.
+sources:
+- type: WMI
+  attributes: {query: SELECT * FROM ActiveScriptEventConsumer, base_object: 'winmgmts:\root\subscription'}
+supported_os: [Windows]
+---
+name: WMIEnumerateCLEC
+doc: Enumerate instances of CommandLineEventConsumer.
+sources:
+- type: WMI
+  attributes: {query: SELECT * FROM CommandLineEventConsumer, base_object: 'winmgmts:\root\subscription'}
+supported_os: [Windows]
+---
+name: WMIHotFixes
+doc: Installed hotfixes via Windows Management Instrumentation (WMI).
+sources:
+- type: WMI
+  attributes: {query: SELECT * from Win32_QuickFixEngineering}
+conditions: [os_major_version >= 6]
+labels: [Software]
+supported_os: [Windows]
+---
+name: WMIInstalledSoftware
+doc: Installed software via Windows Management Instrumentation (WMI).
+sources:
+- type: WMI
+  attributes: {query: 'SELECT Name, Vendor, Description, InstallDate, InstallDate2, Version
+      from Win32_Product'}
+conditions: [os_major_version >= 6]
+labels: [Software]
+supported_os: [Windows]
+---
+name: WMILogicalDisks
+doc: Disk information via Windows Management Instrumentation (WMI).
+sources:
+- type: WMI
+  attributes: {query: SELECT * FROM Win32_LogicalDisk}
+labels: [System]
+supported_os: [Windows]
+urls: ['http://msdn.microsoft.com/en-us/library/aa394173(v=vs.85).aspx']
+---
+name: WMILoggedOnSessions
+doc: Logged on users queried from WMI.
+sources:
+- type: WMI
+  attributes: {query: SELECT * FROM Win32_LogonSession}
+supported_os: [Windows]
+---
+name: WMILoggedOnUsers
+doc: Logged on users queried from WMI.
+sources:
+- type: WMI
+  attributes: {query: SELECT * FROM Win32_LoggedonUser}
+supported_os: [Windows]
+---
+name: WMILoginUsers
+doc: |
+  Login Users via Windows Management Instrumentation (WMI).
 
+  This WMI query may take a long time to complete when run on a domain and
+  will create load on a domain controller.
+sources:
+- type: WMI
+  attributes: {query: SELECT * from Win32_GroupUser where Name = "login_users"}
+conditions: [os_major_version >= 6]
+labels: [Software]
+supported_os: [Windows]
+---
+name: WMIPhysicalMemory
+doc: Physical memory information via Windows Management Instrumentation (WMI).
+sources:
+- type: WMI
+  attributes: {query: SELECT * from Win32_PhysicalMemory}
+conditions: [os_major_version >= 6]
+labels: [System]
+supported_os: [Windows]
+urls: ["http://msdn.microsoft.com/en-us/library/aa394347%28v=vs.85%29.aspx"]
+---
+name: WMIProcessList
+doc: Process listing via Windows Management Instrumentation (WMI).
+sources:
+- type: WMI
+  attributes: {query: SELECT * from Win32_Process}
+conditions: [os_major_version >= 6]
+labels: [Software]
+supported_os: [Windows]
+---
+name: WMIServices
+doc: Services queried from WMI.
+sources:
+- type: WMI
+  attributes: {query: SELECT * FROM Win32_Service}
+supported_os: [Windows]
+---
+name: WMIUsers
+doc: |
+  Users via Windows Management Instrumentation (WMI).
+
+  Note that in a domain setup, this will probably return all users in the
+  domain which will be expensive and slow. Consider limiting by SID like
+  WMIProfileUsersHomeDir.
+sources:
+- type: WMI
+  attributes: {query: SELECT * FROM Win32_UserAccount}
+labels: [Users]
+supported_os: [Windows]
+urls: ['http://msdn.microsoft.com/en-us/library/windows/desktop/aa394507(v=vs.85).aspx']
