@@ -96,9 +96,9 @@ sources:
 - type: FILE
   attributes:
     paths:
-    - '%%users.homedir%%/.gem/specs/**/*.gemspec'
-    - '/var/lib/gems/*/**/*.gemspec'
-    - '/usr/local/lib/ruby/gems/*/**/*.gemspec'
+    - '%%users.homedir%%/.gem/ruby/**2/*.gemspec'
+    - '/var/lib/gems/**2/*.gemspec'
+    - '/usr/share/rubygems-integration/**2/*.gemspec'
   supported_os: [Linux]
 urls: ['http://guides.rubygems.org']
 
