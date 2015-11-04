@@ -6,8 +6,8 @@ sources:
 - type: ARTIFACT
   attributes:
     names:
-      - UsersShellConfigs
-      - RootUserShellConfigs
+      - UsersShellHistory
+      - RootUserShellHistory
 labels: [Configuration Files]
 supported_os: [Linux]
 ---
