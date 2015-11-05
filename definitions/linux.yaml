@@ -423,3 +423,13 @@ sources:
 labels: [Users, Logs]
 urls: ['http://forensicswiki.org/wiki/Zeitgeist']
 supported_os: [Linux]
+---
+name: SSHHostPubKeys
+doc: Collect SSH public keys from Linux machines
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '/etc/ssh/ssh_host_*_key.pub'
+labels: [Authentication, Configuration Files]
+supported_os: [Linux]
