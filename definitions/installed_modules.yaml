@@ -2,7 +2,7 @@
 
 name: PythonEggInfo
 doc: |
-  Python module files distributed in .egg formats.
+  Python module files distributed in .egg formats (currently linux only).
 
   Python eggs can have multiple formats, as described by setuptools.
 
@@ -21,7 +21,7 @@ sources:
     - '/usr/{lib,lib64}/python*/{dist,site}-packages/*.{egg,egg-info}'
     - '/usr/local/{lib,lib64}/python*/{dist,site}-packages/*.{egg,egg-info}'
     - '/usr/share/pyshared/*.{egg,egg-info}'
-    # Directory containing the install metadata as separate files.
+    # Directories containing the install metadata as separate files.
     - '%%users.homedir%%/.local/lib/python*/site-packages/*.{egg,egg-info}/*'
     - '%%users.homedir%%/.cache/pip/*.{egg,egg-info}/*'
     - '/usr/{lib,lib64}/python*/{dist,site}-packages/*.{egg,egg-info}/*'
@@ -36,6 +36,7 @@ urls:
 name: PythonDistInfo
 doc: |
   Python module files distributed in the dist-info format of PEP-0376
+  (currently linux only).
 
   dist-info is always a directory that must contain METADATA, RECORD and
   INSTALLER. It may also contain REQUESTED.
@@ -48,12 +49,11 @@ sources:
     - '/usr/local/{lib,lib64}/python*/{dist,site}-packages/*.dist-info/*'
   supported_os: [Linux]
 labels: [Software]
-urls:
-  - 'https://www.python.org/dev/peps/pep-0376/'
+urls: ['https://www.python.org/dev/peps/pep-0376/']
 ---
 name: PythonWheelInfo
 doc: |
-  Python module files distributed in the wheel format.
+  Python module files distributed in the wheel format (currently linux only).
 
   Zip archives with the .whl extension.
 
@@ -83,7 +83,7 @@ sources:
 labels: [Software]
 ---
 name: RubyGems
-doc: Ruby Gems
+doc: Ruby Gems (currently linux only).
 sources:
 - type: FILE
   attributes:
@@ -92,5 +92,4 @@ sources:
     - '/var/lib/gems/**2/*.gemspec'
     - '/usr/share/rubygems-integration/**2/*.gemspec'
   supported_os: [Linux]
-urls:
-  - 'http://guides.rubygems.org'
+urls: ['http://guides.rubygems.org']
