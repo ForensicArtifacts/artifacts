@@ -427,6 +427,16 @@ sources:
 labels: [History Files]
 supported_os: [Linux]
 ---
+name: SSHHostPubKeys
+doc: SSH host public keys
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '/etc/ssh/ssh_host_*_key.pub'
+labels: [Authentication, Configuration Files]
+supported_os: [Linux]
+---
 name: ThumbnailCacheFolder
 doc: Thumbnail cache folder.
 sources:
