@@ -35,9 +35,9 @@ An object of digital archaeological interest.
 
 Where digital archaeology roughly refers to computer forensics without the forensic (legal) context.
 
-## Artifact Definition Format
+## Artifact Definitions
 
-The artifact definition format is described in detail in the [Style Guide](https://github.com/ForensicArtifacts/artifacts/blob/master/docs/Artifacts%20definition%20format%20and%20style%20guide.asciidoc).
+The artifact definitions are in the [definitions directory](https://github.com/ForensicArtifacts/artifacts/tree/master/definitions) and the format is described in detail in the [Style Guide](https://github.com/ForensicArtifacts/artifacts/blob/master/docs/Artifacts%20definition%20format%20and%20style%20guide.asciidoc).
 
 ## Contributing
 
