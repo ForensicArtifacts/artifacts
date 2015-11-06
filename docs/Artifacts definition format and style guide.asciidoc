@@ -354,7 +354,7 @@ Artifact conditions are currently implemented using the
 link:https://code.google.com/p/objectfilter/[objectfilter] system that allows
 you to apply complex conditions to the attributes of an object. Artifacts can
 apply conditions to any of the Knowledge Base object attributes as defined in
-the GRR link:https://code.google.com/p/grr/source/browse/proto/knowledge_base.proto[knowledge_base.proto].
+the GRR link:https://github.com/google/grr/blob/master/proto/knowledge_base.proto[knowledge_base.proto].
 
 *Style note*: single quotes should be used for strings when writing conditions.
 
