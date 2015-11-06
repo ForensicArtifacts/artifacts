@@ -351,7 +351,7 @@ See section: <<parameter_expansion,Parameter expansion and globs>>
 *TODO: work is in progress to move this out of GRR into something more portable.*
 
 Artifact conditions are currently implemented using the
-link:https://code.google.com/p/objectfilter/[objectfilter] system that allows
+link:https://github.com/google/objectfilter[objectfilter] system that allows
 you to apply complex conditions to the attributes of an object. Artifacts can
 apply conditions to any of the Knowledge Base object attributes as defined in
 the GRR link:https://github.com/google/grr/blob/master/proto/knowledge_base.proto[knowledge_base.proto].
