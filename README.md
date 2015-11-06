@@ -53,9 +53,9 @@ and use the GitHub Web UI to [create and send the pull
 request](https://help.github.com/articles/using-pull-requests).  We'll review
 and merge the change.
 
-## Artifact Definition Format
+## Artifact Definitions
 
-The artifact definition format is described in detail in the [Style Guide](https://github.com/ForensicArtifacts/artifacts/blob/master/docs/Artifacts%20definition%20format%20and%20style%20guide.asciidoc).
+The artifact definitions are in the [definitions directory](https://github.com/ForensicArtifacts/artifacts/tree/master/definitions) and the format is described in detail in the [Style Guide](https://github.com/ForensicArtifacts/artifacts/blob/master/docs/Artifacts%20definition%20format%20and%20style%20guide.asciidoc).
 
 ## Contributing
 
