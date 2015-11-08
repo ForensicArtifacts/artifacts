@@ -6,8 +6,8 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\AppCompatibility', value: 'AppCompatCache'}
-      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\AppCompatCache', value: 'AppCompatCache'}
+      - {key: '%%current_control_set%%\Control\Session Manager\AppCompatibility', value: 'AppCompatCache'}
+      - {key: '%%current_control_set%%\Control\Session Manager\AppCompatCache', value: 'AppCompatCache'}
 supported_os: [Windows]
 urls: ['https://github.com/libyal/winreg-kb/blob/master/documentation/Application%20Compatibility%20Cache%20key.asciidoc']
 ---
@@ -90,17 +90,6 @@ sources:
       - '%%environ_allusersprofile%%\Microsoft\Network\Downloader\qmgr*.dat'
 supported_os: [Windows]
 urls: ['http://dfrws.org/2015/proceedings/presentations/DFRWS2015-pres3.pdf']
----
-name: BootVerificationProgram
-doc: Path to custom startup verification program.
-sources:
-- type: REGISTRY_VALUE
-  attributes:
-    key_value_pairs: [{key: '%%current_control_set%%\SYSTEM\CurrentControlSet\Control\BootVerificationProgram', value: 'ImagePath'}]
-supported_os: [Windows]
-urls:
-  - 'https://technet.microsoft.com/en-us/library/cc786702(WS.10).aspx'
-  - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
 ---
 name: EnvironmentUserLoginScripts
 doc: User login scripts configured via environment variables.
@@ -188,17 +177,6 @@ supported_os: [Windows]
 urls:
 - 'http://www.trendmicro.com/vinfo/us/threat-encyclopedia/malware/troj_ransom.smc7'
 - 'https://www.symantec.com/security_response/writeup.jsp?docid=2014-092314-3644-99&tabid=2'
----
-name: PostmortemDebugger
-doc: The application is run on application crash.
-sources:
-- type: REGISTRY_VALUE
-  attributes:
-    key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\AeDebug', value: 'Debugger'}]
-supported_os: [Windows]
-urls:
-  - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
-  - 'https://msdn.microsoft.com/en-us/library/windows/desktop/bb204634(v=vs.85).aspx'
 ---
 name: PowerShellEnableScripts
 doc: Registry keys that control whether PowerShell scripts can execute directly.
@@ -325,18 +303,6 @@ labels: [Logs]
 supported_os: [Windows]
 urls: ['http://www.forensicswiki.org/wiki/Windows_XML_Event_Log_(EVTX)']
 ---
-name: ServiceControlManagerExtension
-doc: Service Control Manager Extension application path
-sources:
-- type: REGISTRY_VALUE
-  attributes:
-    key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\', value: 'ServiceControlManagerExtension'}]
-supported_os: [Windows]
-urls:
-  - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
-  - 'http://www.silentrunners.org/Silent%20Runners.vbs'
-  - 'http://forum.sysinternals.com/autoruns-and-windows-7_topic19770.html'
----
 name: SetupApiLogs
 doc: Windows setup API logs.
 sources:
@@ -424,18 +390,21 @@ doc: Alternate Shell to be run via Userinit.
 sources:
 - type: REGISTRY_VALUE
   attributes:
-    key_value_pairs: [{key: '%%current_control_set%%\Control\SafeBoot', value: 'AlternateShell'}]
+    key_value_pairs:
+      - {key: '%%current_control_set%%\Control\SafeBoot', value: 'AlternateShell'}
+      - {key: '%%current_control_set%%\Control\SafeBoot\Option', value: 'UseAlternateShell'}
 supported_os: [Windows]
 urls:
-- 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
+- 'https://www.microsoftpressstore.com/articles/article.aspx'
 - 'https://technet.microsoft.com/en-us/library/cc976124.aspx'
+- 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
 ---
 name: WindowsAppCertDLLs
 doc: Windows AppCertDLLs persistence.
 sources:
 - type: REGISTRY_KEY
   attributes:
-    keys: ['HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\AppCertDLLs']
+    keys: ['%%current_control_set%%\Control\Session Manager\AppCertDLLs']
 supported_os: [Windows]
 urls: ['http://blogs.technet.com/b/mmpc/archive/2011/03/19/how-to-defang-the-fake-defragmenter.aspx']
 ---
@@ -458,6 +427,27 @@ urls:
 - 'https://msdn.microsoft.com/en-us/library/windows/desktop/dd744762(v=vs.85).aspx'
 - 'https://support.microsoft.com/en-us/kb/197571'
 ---
+name: WindowsAutomaticDebugging
+doc: Windows automatic debugging (Aedebug)
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\AeDebug', value: 'Debugger'}
+supported_os: [Windows]
+urls:
+- 'https://msdn.microsoft.com/en-us/library/windows/desktop/bb204634(v=vs.85).aspx'
+- 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
+---
+name: WindowsAutomaticDebuggingExclusionList
+doc: Windows automatic debugging (Aedebug) exclusion list
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys: ['HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\AutoExclusionList\*']
+supported_os: [Windows]
+urls: ['https://msdn.microsoft.com/en-us/library/windows/desktop/bb204634(v=vs.85).aspx']
+---
 name: WindowsAutorun
 doc: Filebased Tests.
 sources:
@@ -466,6 +456,17 @@ sources:
     paths: ['%%environ_systemdrive%%\autorun.inf']
     separator: '\'
 supported_os: [Windows]
+---
+name: WindowsBootVerificationProgram
+doc: Path to custom startup verification program.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs: [{key: '%%current_control_set%%\Control\BootVerificationProgram', value: 'ImagePath'}]
+supported_os: [Windows]
+urls:
+- 'https://technet.microsoft.com/en-us/library/cc786702(WS.10).aspx'
+- 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
 ---
 name: WindowsCommandProcessorAutoRun
 doc: Commands that are run each time the Command Processor (Cmd.exe) is started.
@@ -550,7 +551,7 @@ doc: ExcludeFromKnownDLLs can be used to bypass search order hijacking protectio
 sources:
 - type: REGISTRY_VALUE
   attributes:
-    key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager', value: 'ExcludeFromKnownDLLs'}]
+    key_value_pairs: [{key: '%%current_control_set%%\Control\Session Manager', value: 'ExcludeFromKnownDLLs'}]
 supported_os: [Windows]
 urls: ['https://msdn.microsoft.com/en-us/library/windows/desktop/ms682586%28v=vs.85%29.aspx']
 ---
@@ -583,8 +584,8 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Lsa', value: 'Authentication Packages'}
-      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Lsa\OSConfig', value: 'Authentication Packages'}
+      - {key: '%%current_control_set%%\Control\Lsa', value: 'Authentication Packages'}
+      - {key: '%%current_control_set%%\Control\Lsa\OSConfig', value: 'Authentication Packages'}
 supported_os: [Windows]
 urls:
 - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
@@ -596,8 +597,8 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Lsa', value: 'Notification Packages'}
-      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Lsa\OSConfig', value: 'Notification Packages'}
+      - {key: '%%current_control_set%%\Control\Lsa', value: 'Notification Packages'}
+      - {key: '%%current_control_set%%\Control\Lsa\OSConfig', value: 'Notification Packages'}
 supported_os: [Windows]
 urls:
 - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
@@ -609,8 +610,8 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Lsa', value: 'Security Packages'}
-      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Lsa\OSConfig', value: 'Security Packages'}
+      - {key: '%%current_control_set%%\Control\Lsa', value: 'Security Packages'}
+      - {key: '%%current_control_set%%\Control\Lsa\OSConfig', value: 'Security Packages'}
 supported_os: [Windows]
 urls:
 - 'https://msdn.microsoft.com/en-us/library/windows/desktop/aa379392(v=vs.85).aspx'
@@ -622,6 +623,7 @@ sources:
 - type: ARTIFACT
   attributes:
     names:
+      - PowershellDefaultProfiles
       - WindowsPersistenceRegistryKeys
       - WindowsServices
   returned_types: [PersistenceFile]
@@ -638,8 +640,6 @@ sources:
       - BootVerificationProgram
       - EnvironmentUserLoginScripts
       - InternetExplorerBrowserHelperObjects
-      - PostmortemDebugger
-      - PowershellDefaultProfiles
       - PrintMonitors
       - RegistryShellSpawning
       - RunGrpConvFlag
@@ -650,6 +650,7 @@ sources:
       - WindowsAppCertDLLs
       - WindowsAppInitDLLs
       - WindowsCommandProcessorAutoRun
+      - WindowsBootVerificationProgram
       - WindowsCredentialProviderFilters
       - WindowsCredentialProviders
       - WindowsDebugger
@@ -677,9 +678,11 @@ sources:
       - WindowsSessionManagerSetupExecute
       - WindowsSessionManagerSubSystems
       - WindowsSharedTaskScheduler
+      - WindowsSessionManagerWOW
       - WindowsShellExecuteHooks
       - WindowsShellExtensions
       - WindowsShellIconOverlayIdentifiers
+      - WindowsShellLoadAndRun
       - WindowsShellServiceObjects
       - WindowsStubPaths
       - WindowsTerminalServerRunKeys
@@ -687,6 +690,7 @@ sources:
       - WindowsToolPaths
       - WinSock2LayeredServiceProviders
       - WinSock2NamespaceProviders
+      - WindowsSystemPolicyShell
 labels: [Software]
 supported_os: [Windows]
 ---
@@ -750,6 +754,7 @@ urls:
 - 'https://msdn.microsoft.com/en-us/library/windows/desktop/aa376977%28v=vs.85%29.aspx'
 - 'https://support.microsoft.com/en-us/kb/137367'
 - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
+- 'https://technet.microsoft.com/en-us/magazine/ee851671.aspx'
 ---
 name: WindowsRunServices
 doc: Windows Run Services.
@@ -767,9 +772,9 @@ urls: ['https://support.microsoft.com/en-us/kb/179365']
 name: WindowsSecurityProviders
 doc: Security Providers DLLs
 sources:
-- type: REGISTRY_VALUE
+- type: REGISTRY_KEY
   attributes:
-    key_value_pairs: [{key: '%%current_control_set%%\Control\SecurityProviders', value: 'SecurityProviders'}]
+    keys: ['%%current_control_set%%\Control\SecurityProviders\*']
 supported_os: [Windows]
 urls:
 - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
@@ -785,6 +790,20 @@ sources:
 labels: [Software]
 supported_os: [Windows]
 urls: ['http://www.forensicswiki.org/wiki/Windows_Desktop_Search']
+---
+name: WindowsServiceControlManagerExtension
+doc: Windows service control manager extension
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs: [{key: '%%current_control_set%%\Control', value: 'ServiceControlManagerExtension'}]
+labels: [Software]
+supported_os: [Windows]
+urls:
+- 'http://forum.sysinternals.com/autoruns-and-windows-7_topic19770.html'
+- 'https://support.microsoft.com/en-us/kb/102985'
+- 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
+- 'http://www.silentrunners.org/Silent%20Runners.vbs'
 ---
 name: WindowsServices
 doc: Windows services from the Registry.
@@ -805,7 +824,7 @@ doc: Windows Session Manager SubSystems persistence
 sources:
 - type: REGISTRY_VALUE
   attributes:
-    key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\SubSystems', value: 'Windows'}]
+    key_value_pairs: [{key: '%%current_control_set%%\Control\Session Manager\SubSystems', value: 'Windows'}]
 supported_os: [Windows]
 urls:
 - 'https://technet.microsoft.com/en-us/library/cc976130.aspx'
@@ -1063,6 +1082,17 @@ sources:
       - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Active Setup\Installed Components\*', value: 'StubPath'}
       - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Active Setup\Installed Components\*', value: 'StubPath'}
 supported_os: [Windows]
+---
+name: WindowsSystemPolicyShell
+doc: Windows System policy replacement shell (custom user interface).
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System', value: 'Shell'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\System', value: 'Shell'}
+supported_os: [Windows]
+urls: ['https://technet.microsoft.com/en-us/library/cc728472(v=ws.10).aspx']
 ---
 name: WindowsSystemRegistryFiles
 doc: Windows system Registry files.
@@ -1343,7 +1373,7 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager', value: 'PendingFileRenameOperations'}
+      - {key: '%%current_control_set%%\Control\Session Manager', value: 'PendingFileRenameOperations'}
 supported_os: [Windows]
 urls: ['https://technet.microsoft.com/en-us/library/cc960241.aspx']
 ---
@@ -1442,7 +1472,7 @@ doc: Windows Session Manager BootExecute persistence.
 sources:
 - type: REGISTRY_VALUE
   attributes:
-    key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager', value: 'BootExecute'}]
+    key_value_pairs: [{key: '%%current_control_set%%\Control\Session Manager', value: 'BootExecute'}]
 supported_os: [Windows]
 urls: ['https://technet.microsoft.com/en-us/library/cc963230.aspx']
 ---
@@ -1451,7 +1481,7 @@ doc: Windows Session Manager Execute persistence
 sources:
 - type: REGISTRY_VALUE
   attributes:
-    key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager', value: 'Execute'}]
+    key_value_pairs: [{key: '%%current_control_set%%\Control\Session Manager', value: 'Execute'}]
 supported_os: [Windows]
 urls: ['https://technet.microsoft.com/en-us/library/cc976130.aspx']
 ---
@@ -1460,9 +1490,20 @@ doc: Windows Session Manager SetupExecute persistence
 sources:
 - type: REGISTRY_VALUE
   attributes:
-    key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager', value: 'SetupExecute'}]
+    key_value_pairs: [{key: '%%current_control_set%%\Control\Session Manager', value: 'SetupExecute'}]
 supported_os: [Windows]
 urls: ['https://msdn.microsoft.com/en-us/library/windows/desktop/dd392286%28v=vs.85%29.aspx']
+---
+name: WindowsSessionManagerWOWCommandLine
+doc: Windows Session Manager Windows-on-Windows (WOW) command line
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: '%%current_control_set%%\Control\Session Manager\WOW', value: 'cmdline'}
+      - {key: '%%current_control_set%%\Control\Session Manager\WOW', value: 'wowcmdline'}
+supported_os: [Windows]
+urls: ['https://support.microsoft.com/en-us/kb/102986']
 ---
 name: WindowsShutdownScript
 doc: Windows policy shutdown script
@@ -1505,7 +1546,7 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Terminal Server\Wds\rdpwd', value: 'StartupPrograms'}
+      - {key: '%%current_control_set%%\Control\Terminal Server\Wds\rdpwd', value: 'StartupPrograms'}
 supported_os: [Windows]
 urls: ['http://forum.sysinternals.com/rdpclip_topic4729.html']
 ---
