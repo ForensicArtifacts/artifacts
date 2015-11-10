@@ -423,3 +423,16 @@ sources:
 labels: [Users, Logs]
 urls: ['http://forensicswiki.org/wiki/Zeitgeist']
 supported_os: [Linux]
+---
+name: PCIDevicesInfoFiles
+doc: Info and config files for PCI devices located on the system.
+sources:
+- type: FILE
+  attributes:
+     paths:
+        - '/sys/bus/pci/devices/*/vendor'
+        - '/sys/bus/pci/devices/*/device'
+        - '/sys/bus/pci/devices/*/class'
+        - '/sys/bus/pci/devices/*/config'
+labels: [Configuration Files, System]
+supported_os: [Linux]
