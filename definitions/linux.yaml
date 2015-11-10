@@ -435,4 +435,8 @@ sources:
         - '/sys/bus/pci/devices/*/class'
         - '/sys/bus/pci/devices/*/config'
 labels: [Configuration Files, System]
+urls:
+  - 'https://www.kernel.org/doc/Documentation/ABI/testing/sysfs-bus-pci'
+  - 'https://www.kernel.org/doc/Documentation/filesystems/sysfs-pci.txt'
+  - 'https://wiki.debian.org/HowToIdentifyADevice/PCI'
 supported_os: [Linux]
