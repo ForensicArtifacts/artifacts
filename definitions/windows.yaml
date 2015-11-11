@@ -657,32 +657,59 @@ sources:
 - type: ARTIFACT
   attributes:
     names:
+      - AutoplayHandlers
+      - BootVerificationProgram
+      - EnvironmentUserLoginScripts
       - InternetExplorerBrowserHelperObjects
+      - PostmortemDebugger
+      - PowershellDefaultProfiles
+      - PrintMonitors
+      - RegistryShellSpawning
+      - RunGrpConvFlag
+      - ScreenSaverExecutable
+      - ServiceControlManagerExtension
+      - WindowsActiveDesktop
+      - WindowsAlternateShell
+      - WindowsAppCertDLLs
       - WindowsAppInitDLLs
+      - WindowsCommandProcessorAutoRun
       - WindowsCredentialProviderFilters
       - WindowsCredentialProviders
-      - WindowsCommandProcessorAutoRun
+      - WindowsDebugger
+      - WindowsMultiMediaDrivers
       - WindowsWinlogonGinaDLL
       - WindowsWinlogonNotify
       - WindowsWinlogonShell
       - WindowsWinlogonSystem
       - WindowsWinlogonTaskman
+      - WindowsWinlogonUiHost
       - WindowsWinlogonUserinit
       - WindowsWinlogonVMApplet
       - WindowsLSAAuthenticationPackages
       - WindowsLSANotificationPackages
       - WindowsLSASecurityPackages
+      - WindowsMSDTCDLLs
+      - WindowsPolicyShell
       - WindowsPLAPProviders
+      - WindowsProgManRunKeys
       - WindowsRunKeys
       - WindowsRunServices
+      - WindowsSecurityProviders
       - WindowsSessionManagerBootExecute
       - WindowsSessionManagerExecute
       - WindowsSessionManagerSetupExecute
+      - WindowsSessionManagerSubSystems
+      - WindowsSharedTaskScheduler
       - WindowsShellExecuteHooks
       - WindowsShellExtensions
       - WindowsShellIconOverlayIdentifiers
       - WindowsShellServiceObjects
       - WindowsStubPaths
+      - WindowsTerminalServerRunKeys
+      - WindowsTerminalServerStartupPrograms
+      - WindowsToolPaths
+      - WinSock2LayeredServiceProviders
+      - WinSock2NamespaceProviders
 labels: [Software]
 supported_os: [Windows]
 ---
