@@ -102,20 +102,6 @@ urls:
   - 'https://technet.microsoft.com/en-us/library/cc786702(WS.10).aspx'
   - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
 ---
-name: CmdExeAutoRun
-doc: Executable run when cmd.exe starts.
-sources:
-- type: REGISTRY_VALUE
-  attributes:
-    key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Command Processor', value: 'AutoRun'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Command Processor', value: 'AutoRun'}
-supported_os: [Windows]
-urls:
-  - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
-  - 'http://blogs.msdn.com/b/oldnewthing/archive/2007/11/21/6447771.aspx'
-  - 'https://technet.microsoft.com/en-us/library/cc756720(v=ws.10).aspx'
----
 name: EnvironmentUserLoginScripts
 doc: User login scripts configured via environment variables.
 sources:
@@ -515,7 +501,11 @@ sources:
       - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Command Processor', value: 'AutoRun'}
       - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Command Processor', value: 'AutoRun'}
 supported_os: [Windows]
-urls: ['https://technet.microsoft.com/en-us/library/cc779439(v=ws.10).aspx']
+urls:
+- 'https://technet.microsoft.com/en-us/library/cc779439(v=ws.10).aspx'
+- 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
+- 'http://blogs.msdn.com/b/oldnewthing/archive/2007/11/21/6447771.aspx'
+- 'https://technet.microsoft.com/en-us/library/cc756720(v=ws.10).aspx'
 ---
 name: WindowsCredentialProviderFilters
 doc: Windows Credential Provider Filters
