@@ -49,6 +49,18 @@ urls:
 - 'http://www.hexacorn.com/blog/2013/01/19/beyond-good-ol-run-key-part-3/'
 - 'https://msdn.microsoft.com/en-us/library/windows/desktop/ee872121(v=vs.85).aspx'
 ---
+name: AppKey
+doc: Handlers for special keys on some keyboards (file path or CLSID).
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\AppKey\*', value: 'ShellExecute'}
+supported_os: [Windows]
+urls:
+  - 'http://answers.microsoft.com/en-us/windows/forum/windows_vista-hardware/assigning-the-special-keys-at-the-top-of-the/d1ab2e13-5297-457d-a8e8-bc2c883d8b58?db=5'
+  - 'http://h30434.www3.hp.com/t5/Notebook-Hardware/How-do-I-customize-the-Action-Keys/td-p/379207'
+---
 name: APPX_PROCESSEnvironmentVariable
 doc: |
   APPX_PROCESS environment variable. If this variable is set, .NET applications will attempt to load WinAppXRT.dll
