@@ -195,19 +195,26 @@ class WindowsRegistryKeySourceType(SourceType):
     self.keys = keys
 
   @classmethod
-  def ValidateKey(cls, key):
+  def ValidateKey(cls, key_path):
     """Validates this key against supported key names.
 
     Args:
-      keys: Key name.
+      key_path: string containing the path fo the Registry key.
 
     Raises:
       FormatError: when key is not supported.
     """
     for prefix in cls.VALID_PREFIXES:
-      if key.startswith(prefix):
+      if key_path.startswith(prefix):
         return
-    raise errors.FormatError(u'Not a supported registry key prefix, got: {0:s}'.format(key))
+
+    if key_path.startswith(u'HKEY_CURRENT_USER\\'):
+      raise errors.FormatError(
+          u'HKEY_CURRENT_USER\\ is not supported instead use: '
+          u'HKEY_USERS\\%%users.sid%%\\')
+
+    raise errors.FormatError(
+        u'Unupported Registry key path: {0:s}'.format(key_path))
 
 
 class WindowsRegistryValueSourceType(SourceType):
