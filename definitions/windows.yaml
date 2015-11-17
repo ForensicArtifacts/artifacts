@@ -679,7 +679,6 @@ sources:
       - RegistryShellSpawning
       - RunGrpConvFlag
       - ScreenSaverExecutable
-      - ServiceControlManagerExtension
       - WindowsActiveDesktop
       - WindowsAlternateShell
       - WindowsAppCertDLLs
@@ -708,6 +707,7 @@ sources:
       - WindowsRunKeys
       - WindowsRunServices
       - WindowsSecurityProviders
+      - WindowsServiceControlManagerExtension
       - WindowsSessionManagerBootExecute
       - WindowsSessionManagerExecute
       - WindowsSessionManagerSetupExecute
