@@ -132,6 +132,23 @@ sources:
 labels: [Logs]
 supported_os: [Windows]
 ---
+name: ExplorerContextMenuHandlers
+doc: Handlers for subcommands on context menu
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+        - {key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\*', value: 'CommandStateHandler'}
+        - {key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\*', value: 'ExplorerCommandHandler'}
+        - {key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\*', value: 'command'}
+        - {key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\*\command', value: 'DelegateExecute'}
+supported_os: [Windows]
+urls:
+- 'https://msdn.microsoft.com/en-us/library/windows/desktop/hh127467(v=vs.85).aspx'
+- 'https://msdn.microsoft.com/en-us/library/windows/desktop/cc144171(v=vs.85).aspx'
+- 'http://www.windowrdb.com/w.php?w=hklm-software-microsoft-windows-currentversion-explorer-commandstore-shell-windows-closewindow'
+- 'http://www.checkfilename.com/view-details/Windows-7-Ultimate/RespageIndex/4/sTab/2/'
+---
 name: MFTFiles
 doc: |
   The NTFS $MFT and $MFTMirr file system metadata files.
