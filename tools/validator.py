@@ -12,6 +12,7 @@ import sys
 from artifacts import errors
 from artifacts import reader
 from artifacts import registry
+from artifacts import source_type
 
 
 class ArtifactDefinitionsValidator(object):
@@ -21,6 +22,8 @@ class ArtifactDefinitionsValidator(object):
     """Initializes the artifact definitions validator object."""
     super(ArtifactDefinitionsValidator, self).__init__()
     self._artifact_registry = registry.ArtifactDefinitionsRegistry()
+    self.defined_artifact_names = set()
+    self.artifact_name_references = set()
 
   def CheckFile(self, filename):
     """Validates the artifacts definition in a specific file.
@@ -40,6 +43,11 @@ class ArtifactDefinitionsValidator(object):
               u'Duplicate artifact definition: {0:s} in file: {1:s}'.format(
                   artifact_definition.name, filename))
           result = False
+
+        self.defined_artifact_names.add(artifact_definition.name)
+        for source in artifact_definition.sources:
+          if isinstance(source, source_type.ArtifactSourceType):
+            self.artifact_name_references.update(source.names)
 
     except errors.FormatError as exception:
       logging.warning(

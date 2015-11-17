@@ -680,7 +680,6 @@ sources:
   attributes:
     names:
       - AutoplayHandlers
-      - BootVerificationProgram
       - EnvironmentUserLoginScripts
       - InternetExplorerBrowserHelperObjects
       - PrintMonitors
@@ -703,8 +702,6 @@ sources:
       - WindowsMSDTCDLLs
       - WindowsMultiMediaDrivers
       - WindowsPLAPProviders
-      - WindowsPolicyShell
-      - WindowsProgManRunKeys
       - WindowsRunKeys
       - WindowsRunServices
       - WindowsSecurityProviders
@@ -713,7 +710,7 @@ sources:
       - WindowsSessionManagerExecute
       - WindowsSessionManagerSetupExecute
       - WindowsSessionManagerSubSystems
-      - WindowsSessionManagerWOW
+      - WindowsSessionManagerWOWCommandLine
       - WindowsSharedTaskScheduler
       - WindowsShellExecuteHooks
       - WindowsShellExtensions
