@@ -192,12 +192,29 @@ class YamlArtifactsReader(ArtifactsReader):
 
     Yields:
       Artifact definitions (instances of ArtifactDefinition).
+
+    Raises:
+      FormatError: if the format of the YAML artifact definition is not set
+                   or incorrect.
     """
     # TODO: add try, except?
     yaml_generator = yaml.safe_load_all(file_object)
 
+    last_artifact_definition = None
     for yaml_definition in yaml_generator:
-      yield self._ReadArtifactDefinition(yaml_definition)
+      try:
+        artifact_definition = self._ReadArtifactDefinition(yaml_definition)
+      except errors.FormatError as exception:
+        if last_artifact_definition:
+          error_location = u'After: {0:s}'.format(last_artifact_definition.name)
+        else:
+          error_location = u'At start'
+
+        raise errors.FormatError(u'{0:s} {1!s}'.format(
+            error_location, exception))
+
+      yield artifact_definition
+      last_artifact_definition = artifact_definition
 
   def ReadFile(self, filename):
     """Reads artifact definitions from a YAML file.

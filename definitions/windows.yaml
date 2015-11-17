@@ -132,17 +132,6 @@ sources:
 labels: [Logs]
 supported_os: [Windows]
 ---
-name: FileTypeAutorunAssociations
-doc: Registry value for what application class identifier (CLSID) to launch for a file extension.
-sources:
-- type: REGISTRY_KEY
-  attributes:
-    keys:
-      - 'HKEY_LOCAL_MACHINE\software\classes\*'
-      - 'HKEY_USERS\%%users.sid%%\software\classes\*'
-supported_os: [Windows]
-urls: ['https://msdn.microsoft.com/en-us/library/windows/desktop/ms678415(v=vs.85).aspx']
----
 name: MFTFiles
 doc: |
   The NTFS $MFT and $MFTMirr file system metadata files.
@@ -252,7 +241,9 @@ doc: Executed every time this file type is opened, should be "%1 %*".
 sources:
 - type: REGISTRY_KEY
   attributes:
-    keys: ['HKEY_LOCAL_MACHINE\Software\Classes\*\shell\open\command']
+    keys:
+      - 'HKEY_LOCAL_MACHINE\Software\Classes\*\shell\open\command'
+      - 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\*\shell\open\command'
 supported_os: [Windows]
 urls: ['http://gladiator-antivirus.com/forum/index.php?showtopic=24610']
 ---
@@ -684,26 +675,19 @@ sources:
       - WindowsAlternateShell
       - WindowsAppCertDLLs
       - WindowsAppInitDLLs
-      - WindowsCommandProcessorAutoRun
       - WindowsBootVerificationProgram
+      - WindowsCommandProcessorAutoRun
       - WindowsCredentialProviderFilters
       - WindowsCredentialProviders
       - WindowsDebugger
-      - WindowsMultiMediaDrivers
-      - WindowsWinlogonGinaDLL
-      - WindowsWinlogonNotify
-      - WindowsWinlogonShell
-      - WindowsWinlogonSystem
-      - WindowsWinlogonTaskman
-      - WindowsWinlogonUiHost
-      - WindowsWinlogonUserinit
-      - WindowsWinlogonVMApplet
+      - WindowsFileTypeAutorunAssociations
       - WindowsLSAAuthenticationPackages
       - WindowsLSANotificationPackages
       - WindowsLSASecurityPackages
       - WindowsMSDTCDLLs
-      - WindowsPolicyShell
+      - WindowsMultiMediaDrivers
       - WindowsPLAPProviders
+      - WindowsPolicyShell
       - WindowsProgManRunKeys
       - WindowsRunKeys
       - WindowsRunServices
@@ -712,20 +696,28 @@ sources:
       - WindowsSessionManagerExecute
       - WindowsSessionManagerSetupExecute
       - WindowsSessionManagerSubSystems
-      - WindowsSharedTaskScheduler
       - WindowsSessionManagerWOW
+      - WindowsSharedTaskScheduler
       - WindowsShellExecuteHooks
       - WindowsShellExtensions
       - WindowsShellIconOverlayIdentifiers
       - WindowsShellLoadAndRun
       - WindowsShellServiceObjects
       - WindowsStubPaths
+      - WindowsSystemPolicyShell
       - WindowsTerminalServerRunKeys
       - WindowsTerminalServerStartupPrograms
       - WindowsToolPaths
+      - WindowsWinlogonGinaDLL
+      - WindowsWinlogonNotify
+      - WindowsWinlogonShell
+      - WindowsWinlogonSystem
+      - WindowsWinlogonTaskman
+      - WindowsWinlogonUiHost
+      - WindowsWinlogonUserinit
+      - WindowsWinlogonVMApplet
       - WinSock2LayeredServiceProviders
       - WinSock2NamespaceProviders
-      - WindowsSystemPolicyShell
 labels: [Software]
 supported_os: [Windows]
 ---
@@ -1007,6 +999,17 @@ labels: [System]
 supported_os: [Windows]
 urls: ['https://github.com/libyal/winreg-kb/wiki/Registry-files']
 ---
+name: WindowsUnistallKeys
+doc: Uninstall Registry keys
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Uninstall\*'
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Uninstall\Userdata\%%users.sid%%\Products\*\InstallProperties'
+supported_os: [Windows]
+urls: ['https://msdn.microsoft.com/en-us/library/aa372105(v=vs.85).aspx']
+---
 name: WindowsUpdateStatus
 doc: Windows auto update status.
 sources:
@@ -1186,6 +1189,22 @@ sources:
     separator: '\'
 supported_os: [Windows]
 ---
+name: WindowsFileTypeAutorunAssociations
+doc: |
+  Registry value for what application class identifier (CLSID) to launch for a file extension.
+
+  Extension subkeys start with a dot.
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
+      - 'HKEY_LOCAL_MACHINE\Software\Classes\.*'
+      - 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\.*'
+      - 'HKEY_USERS\%%users.sid%%\Software\Classes\.*'
+      - 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\.*'
+supported_os: [Windows]
+urls: ['https://msdn.microsoft.com/en-us/library/windows/desktop/ms678415(v=vs.85).aspx']
+---
 name: WindowsGroupPolicyScripts
 doc: Windows group policy scripts
 sources:
@@ -1207,24 +1226,42 @@ sources:
 - type: REGISTRY_KEY
   attributes:
     keys:
-      - 'HKEY_LOCAL_MACHINE\Software\Classes\Directory\Background\ShellEx\ContextMenuHandlers\*'
-      - 'HKEY_LOCAL_MACHINE\Software\Classes\Directory\Background\ShellEx\CopyHookHandlers\*'
-      - 'HKEY_LOCAL_MACHINE\Software\Classes\Directory\Background\ShellEx\DragDropHandlers\*'
-      - 'HKEY_LOCAL_MACHINE\Software\Classes\Directory\Background\ShellEx\PropertySheetHandlers\*'
+      - 'HKEY_LOCAL_MACHINE\Software\Classes\*\ShellEx\ColumnHandlers\*'
       - 'HKEY_LOCAL_MACHINE\Software\Classes\*\ShellEx\ContextMenuHandlers\*'
       - 'HKEY_LOCAL_MACHINE\Software\Classes\*\ShellEx\CopyHookHandlers\*'
       - 'HKEY_LOCAL_MACHINE\Software\Classes\*\ShellEx\DragDropHandlers\*'
       - 'HKEY_LOCAL_MACHINE\Software\Classes\*\ShellEx\PropertySheetHandlers\*'
-      - 'HKEY_LOCAL_MACHINE\Software\Classes\*\ShellEx\ColumnHandlers\*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Classes\Directory\Background\ShellEx\ContextMenuHandlers\*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Classes\Directory\Background\ShellEx\CopyHookHandlers\*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Classes\Directory\Background\ShellEx\DragDropHandlers\*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Classes\Directory\Background\ShellEx\PropertySheetHandlers\*'
+      - 'HKEY_LOCAL_MACHINE\Software\Classes\Directory\Background\ShellEx\ContextMenuHandlers\*'
+      - 'HKEY_LOCAL_MACHINE\Software\Classes\Directory\Background\ShellEx\CopyHookHandlers\*'
+      - 'HKEY_LOCAL_MACHINE\Software\Classes\Directory\Background\ShellEx\DragDropHandlers\*'
+      - 'HKEY_LOCAL_MACHINE\Software\Classes\Directory\Background\ShellEx\PropertySheetHandlers\*'
+      - 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\*\ShellEx\ColumnHandlers\*'
+      - 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\*\ShellEx\ContextMenuHandlers\*'
+      - 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\*\ShellEx\CopyHookHandlers\*'
+      - 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\*\ShellEx\DragDropHandlers\*'
+      - 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\*\ShellEx\PropertySheetHandlers\*'
+      - 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\Directory\Background\ShellEx\ContextMenuHandlers\*'
+      - 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\Directory\Background\ShellEx\CopyHookHandlers\*'
+      - 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\Directory\Background\ShellEx\DragDropHandlers\*'
+      - 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\Directory\Background\ShellEx\PropertySheetHandlers\*'
+      - 'HKEY_USERS\%%users.sid%%\Software\Classes\*\ShellEx\ColumnHandlers\*'
       - 'HKEY_USERS\%%users.sid%%\Software\Classes\*\ShellEx\ContextMenuHandlers\*'
       - 'HKEY_USERS\%%users.sid%%\Software\Classes\*\ShellEx\CopyHookHandlers\*'
       - 'HKEY_USERS\%%users.sid%%\Software\Classes\*\ShellEx\DragDropHandlers\*'
       - 'HKEY_USERS\%%users.sid%%\Software\Classes\*\ShellEx\PropertySheetHandlers\*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Classes\Folder\ShellEx\ColumnHandlers\*'
+      - 'HKEY_USERS\%%users.sid%%\Software\Classes\Directory\Background\ShellEx\ContextMenuHandlers\*'
+      - 'HKEY_USERS\%%users.sid%%\Software\Classes\Directory\Background\ShellEx\CopyHookHandlers\*'
+      - 'HKEY_USERS\%%users.sid%%\Software\Classes\Directory\Background\ShellEx\DragDropHandlers\*'
+      - 'HKEY_USERS\%%users.sid%%\Software\Classes\Directory\Background\ShellEx\PropertySheetHandlers\*'
+      - 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\*\ShellEx\ColumnHandlers\*'
+      - 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\*\ShellEx\ContextMenuHandlers\*'
+      - 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\*\ShellEx\CopyHookHandlers\*'
+      - 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\*\ShellEx\DragDropHandlers\*'
+      - 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\*\ShellEx\PropertySheetHandlers\*'
+      - 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\Directory\Background\ShellEx\ContextMenuHandlers\*'
+      - 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\Directory\Background\ShellEx\CopyHookHandlers\*'
+      - 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\Directory\Background\ShellEx\DragDropHandlers\*'
+      - 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\Directory\Background\ShellEx\PropertySheetHandlers\*'
 supported_os: [Windows]
 urls:
 - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
