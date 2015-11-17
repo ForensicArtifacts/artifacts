@@ -132,7 +132,6 @@ sources:
 labels: [Logs]
 supported_os: [Windows]
 ---
-<<<<<<< HEAD
 name: ExplorerContextMenuHandlers
 doc: Handlers for subcommands on context menu
 sources:
