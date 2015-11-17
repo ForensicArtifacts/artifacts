@@ -131,7 +131,7 @@ sources:
 labels: [Logs]
 supported_os: [Windows]
 ---
-name: ExplorerContextMenu
+name: ExplorerContextMenuHandlers
 doc: Handlers for subcommands on context menu
 - type: REGISTRY_VALUE
   attributes:
