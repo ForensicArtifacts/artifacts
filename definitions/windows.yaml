@@ -149,17 +149,6 @@ urls:
 - 'http://www.windowrdb.com/w.php?w=hklm-software-microsoft-windows-currentversion-explorer-commandstore-shell-windows-closewindow'
 - 'http://www.checkfilename.com/view-details/Windows-7-Ultimate/RespageIndex/4/sTab/2/'
 ---
-name: FileTypeAutorunAssociations
-doc: Registry value for what application class identifier (CLSID) to launch for a file extension.
-sources:
-- type: REGISTRY_KEY
-  attributes:
-    keys:
-      - 'HKEY_LOCAL_MACHINE\software\classes\*'
-      - 'HKEY_USERS\%%users.sid%%\software\classes\*'
-supported_os: [Windows]
-urls: ['https://msdn.microsoft.com/en-us/library/windows/desktop/ms678415(v=vs.85).aspx']
----
 name: MFTFiles
 doc: |
   The NTFS $MFT and $MFTMirr file system metadata files.
