@@ -133,6 +133,7 @@ supported_os: [Windows]
 ---
 name: ExplorerContextMenuHandlers
 doc: Handlers for subcommands on context menu
+sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
