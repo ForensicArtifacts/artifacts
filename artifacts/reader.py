@@ -205,10 +205,9 @@ class YamlArtifactsReader(ArtifactsReader):
       try:
         artifact_definition = self._ReadArtifactDefinition(yaml_definition)
       except errors.FormatError as exception:
+        error_location = u'At start'
         if last_artifact_definition:
           error_location = u'After: {0:s}'.format(last_artifact_definition.name)
-        else:
-          error_location = u'At start'
 
         raise errors.FormatError(u'{0:s} {1!s}'.format(
             error_location, exception))
