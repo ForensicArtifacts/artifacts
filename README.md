@@ -11,8 +11,6 @@ The artifact definitions are in the [definitions directory](https://github.com/F
 
 As of 2015-11-20 the repository contains:
 
-As of 2015-11-20 the repository contains:
-
 | **File paths covered** | **487** |
 | :------------------ | ------: |
 | **Registry keys covered** | **289** |
