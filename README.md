@@ -9,6 +9,26 @@ If you'd like to use the artifacts in your own tools, **all you need to be able 
 
 The artifact definitions are in the [definitions directory](https://github.com/ForensicArtifacts/artifacts/tree/master/definitions) and the format is described in detail in the [Style Guide](https://github.com/ForensicArtifacts/artifacts/blob/master/docs/Artifacts%20definition%20format%20and%20style%20guide.asciidoc).
 
+| | |
+| --- | --- | --- |
+| **Total artifacts** | 345 |
+| **Registry keys covered** | 289 |
+| **File paths covered** | 487|
+
+#### Artifacts by type
+| REGISTRY_KEY | ARTIFACT | WMI | COMMAND | FILE | DIRECTORY | PATH | REGISTRY_VALUE | 
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| 38 | 14 | 16 | 6 | 191 | 11 | 4 | 65 | 
+
+#### Artifacts by OS
+| Darwin | Linux | Windows |
+| --- | --- | --- |
+| 106 | 75 | 177
+
+
+
+
+
 ## Background/History
 
 The [ForensicArtifacts.com](http://forensicartifacts.com/) artifact repository
