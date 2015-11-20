@@ -5,6 +5,12 @@ that the world can use both as an information source and within other tools.
 
 If you'd like to use the artifacts in your own tools, **all you need to be able to do is read YAML**. That's it.  No other dependencies. The python code in this project is just used to validate all the artifacts to make sure they follow the spec.
 
+## Artifact Definitions
+
+The artifact definitions are in the [definitions directory](https://github.com/ForensicArtifacts/artifacts/tree/master/definitions) and the format is described in detail in the [Style Guide](https://github.com/ForensicArtifacts/artifacts/blob/master/docs/Artifacts%20definition%20format%20and%20style%20guide.asciidoc).
+
+## Background/History
+
 The [ForensicArtifacts.com](http://forensicartifacts.com/) artifact repository
 was forked from the [GRR project](https://github.com/google/grr) artifact
 collection into a stand-alone repository that is not tool-specific. The GRR
@@ -52,10 +58,6 @@ $ git push
 and use the GitHub Web UI to [create and send the pull
 request](https://help.github.com/articles/using-pull-requests).  We'll review
 and merge the change.
-
-## Artifact Definitions
-
-The artifact definitions are in the [definitions directory](https://github.com/ForensicArtifacts/artifacts/tree/master/definitions) and the format is described in detail in the [Style Guide](https://github.com/ForensicArtifacts/artifacts/blob/master/docs/Artifacts%20definition%20format%20and%20style%20guide.asciidoc).
 
 ## Contributing
 
