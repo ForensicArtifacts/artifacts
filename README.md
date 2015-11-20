@@ -11,10 +11,12 @@ The artifact definitions are in the [definitions directory](https://github.com/F
 
 As of 2015-11-20 the repository contains:
 
-| **Total artifacts** | **345** |
+As of 2015-11-20 the repository contains:
+
+| **File paths covered** | **487** |
 | :------------------ | ------: |
 | **Registry keys covered** | **289** |
-| **File paths covered** | **487** |
+| **Total artifacts** | **345** |
 
 **Artifacts by type**
 
@@ -33,7 +35,6 @@ As of 2015-11-20 the repository contains:
 |  Antivirus | Authentication | Browser | Cloud | Cloud Storage | Configuration Files | External Media | ExternalAccount | IM | Logs | Mail | Network | Software | System | Users | iOS | 
 |  :---: |  :---: |  :---: |  :---: |  :---: |  :---: |  :---: |  :---: |  :---: |  :---: |  :---: |  :---: |  :---: |  :---: |  :---: |  :---: | 
 |  6 | 12 | 18 | 2 | 3 | 34 | 2 | 3 | 4 | 27 | 12 | 7 | 35 | 62 | 59 | 5 | 
-
 
 ## Background/History
 
