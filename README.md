@@ -9,24 +9,30 @@ If you'd like to use the artifacts in your own tools, **all you need to be able 
 
 The artifact definitions are in the [definitions directory](https://github.com/ForensicArtifacts/artifacts/tree/master/definitions) and the format is described in detail in the [Style Guide](https://github.com/ForensicArtifacts/artifacts/blob/master/docs/Artifacts%20definition%20format%20and%20style%20guide.asciidoc).
 
+As of 2015-11-20 the repository contains:
+
 | **Total artifacts** | **345** |
 | :------------------ | ------: |
 | **Registry keys covered** | **289** |
 | **File paths covered** | **487** |
 
-### Artifacts by type
+**Artifacts by type**
+
 |  ARTIFACT | COMMAND | DIRECTORY | FILE | PATH | REGISTRY_KEY | REGISTRY_VALUE | WMI | 
-|  --- |  --- |  --- |  --- |  --- |  --- |  --- |  --- | 
+|  :---: |  :---: |  :---: |  :---: |  :---: |  :---: |  :---: |  :---: | 
 |  14 | 6 | 11 | 191 | 4 | 38 | 65 | 16 | 
 
-### Artifacts by OS
+**Artifacts by OS**
+
 |  Darwin | Linux | Windows | 
-|  --- |  --- |  --- | 
+|  :---: |  :---: |  :---: | 
 |  106 | 75 | 177 | 
 
+**Artifacts by label**
 
-
-
+|  Antivirus | Authentication | Browser | Cloud | Cloud Storage | Configuration Files | External Media | ExternalAccount | IM | Logs | Mail | Network | Software | System | Users | iOS | 
+|  :---: |  :---: |  :---: |  :---: |  :---: |  :---: |  :---: |  :---: |  :---: |  :---: |  :---: |  :---: |  :---: |  :---: |  :---: |  :---: | 
+|  6 | 12 | 18 | 2 | 3 | 34 | 2 | 3 | 4 | 27 | 12 | 7 | 35 | 62 | 59 | 5 | 
 
 
 ## Background/History
