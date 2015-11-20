@@ -42,34 +42,23 @@ while being tool agnostic. In particular we intentionally avoided adding
 IOC-like logic, or describing how the data should be collected since this
 various between tools.
 
-== Terminology
-The term artifact (or artefact) is widely used within computer (or digital)
-forensics, though there is no official definition of this term.
+=== Terminology
+The term artifact (or artefact) is widely used within computer (or digital) forensics, though there is no official definition of this term.
 
-The definition closest to the meaning of the word within computer forensics is
-that of the word artifact within
-http://en.wikipedia.org/wiki/Artifact_(archaeology)[archaeology]. The term
-should not be confused with the word artifact used within
-http://en.wikipedia.org/wiki/Artifact_(software_development)[software
-development].
+The definition closest to the meaning of the word within computer forensics is that of the word artifact within [archaeology](http://en.wikipedia.org/wiki/Artifact_(archaeology)). The term should not be confused with the word artifact used within [software development](http://en.wikipedia.org/wiki/Artifact_(software_development)).
 
 If archaeology defines an artifact as:
-
-[quote]
-____
+```
 something made or given shape by man, such as a tool or
 a work of art, esp an object of archaeological interest
-____
+```
 
 The definition of artifact within computer forensics could be:
-
-[quote]
-____
+```
 An object of digital archaeological interest.
-____
+```
 
-Where digital archaeology roughly refers to computer forensics without the
-forensic (legal) context.
+Where digital archaeology roughly refers to computer forensics without the forensic (legal) context.
 
 == The artifact definition
 The best way to show what an artifact definition is, is by example. The
