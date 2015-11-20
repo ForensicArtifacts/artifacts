@@ -45,7 +45,7 @@ various between tools.
 === Terminology
 The term artifact (or artefact) is widely used within computer (or digital) forensics, though there is no official definition of this term.
 
-The definition closest to the meaning of the word within computer forensics is that of the word artifact within [archaeology](http://en.wikipedia.org/wiki/Artifact_(archaeology)). The term should not be confused with the word artifact used within [software development](http://en.wikipedia.org/wiki/Artifact_(software_development)).
+The definition closest to the meaning of the word within computer forensics is that of the word artifact within http://en.wikipedia.org/wiki/Artifact_(archaeology)[archaeology]. The term should not be confused with the word artifact used within http://en.wikipedia.org/wiki/Artifact_(software_development)[software development].
 
 If archaeology defines an artifact as:
 ```
