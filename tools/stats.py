@@ -1,5 +1,6 @@
 """Report statistics about the artifact collection."""
 
+from __future__ import print_function
 import glob
 import os
 import time
@@ -15,35 +16,36 @@ class ArtifactStatistics(object):
     key_list = src_dict.keys()
     key_list.sort()
 
-    print "| ",
+    print('|', end='')
     for key in key_list:
-      print "{0} |".format(key),
-    print ""
+      print(' {0} |'.format(key), end='')
+    print('')
 
-    print "|",
+    print('|', end='')
     for key in key_list:
-      print " :---: |",
-    print ""
+      print(' :---: |', end='')
+    print('')
 
-    print "| ",
+
+    print('|', end='')
     for key in key_list:
-      print "{0} |".format(src_dict[key]),
-    print "\n"
+      print(' {0} |'.format(src_dict[key]), end='')
+    print('\n')
 
   def PrintOSTable(self):
-    print "**Artifacts by OS**\n"
+    print('**Artifacts by OS**\n')
     self._PrintDictAsTable(self.os_counts)
 
   def PrintLabelTable(self):
-    print "**Artifacts by label**\n"
+    print('**Artifacts by label**\n')
     self._PrintDictAsTable(self.label_counts)
 
   def PrintSourceTypeTable(self):
-    print "**Artifacts by type**\n"
+    print('**Artifacts by type**\n')
     self._PrintDictAsTable(self.source_type_counts)
 
   def PrintSummaryTable(self):
-    print """
+    print("""
 
 As of {0} the repository contains:
 
@@ -52,7 +54,7 @@ As of {0} the repository contains:
 | **Registry keys covered** | **{2}** |
 | **Total artifacts** | **{3}** |
 """.format(time.strftime('%Y-%m-%d'), self.path_count, self.reg_key_count,
-           self.total_count)
+           self.total_count))
 
   def BuildStats(self):
     artifact_reader = reader.YamlArtifactsReader()
@@ -66,7 +68,7 @@ As of {0} the repository contains:
     for definitions_file in glob.glob(os.path.join('definitions', '*.yaml')):
       for artifact_definition in artifact_reader.ReadFile(definitions_file):
 
-        if hasattr(artifact_definition, "labels"):
+        if hasattr(artifact_definition, 'labels'):
           for label in artifact_definition.labels:
             self.label_counts[label] = self.label_counts.get(label, 0) + 1
 
