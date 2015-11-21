@@ -26,7 +26,6 @@ class ArtifactStatistics(object):
       print(' :---: |', end='')
     print('')
 
-
     print('|', end='')
     for key in key_list:
       print(' {0} |'.format(src_dict[key]), end='')
