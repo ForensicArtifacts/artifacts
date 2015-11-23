@@ -104,13 +104,15 @@ supported_os: [Windows]
 urls: ['http://dfrws.org/2015/proceedings/presentations/DFRWS2015-pres3.pdf']
 ---
 name: ControlPanelFilePaths
-doc: Control Panel item registration.
+doc: DLLs listed here will be run when the user opens the Control Panel.
 sources:
 - type: REGISTRY_KEY
   attributes:
     keys:
       - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Control Panel\CPLs'
+      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Control Panel\CPLs'
       - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Control Panel\CPLs'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Control Panel\CPLs'
 supported_os: [Windows]
 urls:
   - 'https://msdn.microsoft.com/en-us/library/windows/desktop/hh127454(v=vs.85).aspx'
@@ -163,7 +165,7 @@ urls:
 - 'http://www.checkfilename.com/view-details/Windows-7-Ultimate/RespageIndex/4/sTab/2/'
 ---
 name: ExplorerNamespaceCommonPlaces
-doc: Namespaces for Common Places items
+doc: CLSIDs listed here are used to populate the Common Places items.
 sources:
 - type: REGISTRY_KEY
   attributes:
@@ -177,12 +179,11 @@ sources:
 supported_os: [Windows]
 urls:
   - 'https://msdn.microsoft.com/en-us/library/windows/desktop/hh127450(v=vs.85).aspx'
-
   - 'http://www.geoffchappell.com/studies/windows/shell/shell32/classes/commonplacesfolder.htm'
   - 'http://www.windowrdb.com/w.php?w=hklm-software-microsoft-windows-currentversion-explorer-commonplaces'
 ---
 name: ExplorerNamespaceControlPanel
-doc: Namespaces for Control Panel items
+doc: CLSIDs listed here are used to populate the Control Panel items.
 sources:
 - type: REGISTRY_KEY
   attributes:
@@ -193,13 +194,19 @@ sources:
       - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpace\DelegateFolders'
       - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\ControlPanel\NameSpace'
       - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\ControlPanel\NameSpace\DelegateFolders'
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanelWOW64\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanelWOW64\NameSpace'
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpaceWOW64\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanelWOW64\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\ControlPanelWOW64\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\ControlPanelWOW64\NameSpace\DelegateFolders'
 supported_os: [Windows]
 urls:
   - 'https://msdn.microsoft.com/en-us/library/windows/desktop/hh127450(v=vs.85).aspx'
   - 'http://www.geoffchappell.com/studies/windows/shell/shell32/classes/controlpanel.htm'
 ---
 name: ExplorerNamespaceDesktop
-doc: Namespaces for Desktop items
+doc: CLSIDs listed here are used to populate the Desktop items.
 sources:
 - type: REGISTRY_KEY
   attributes:
@@ -218,7 +225,7 @@ urls:
   - 'https://support.microsoft.com/en-us/kb/321777'
 ---
 name: ExplorerNamespaceMyComputer
-doc: Namespaces for MyComputer items
+doc: CLSIDs listed here are used to populate the MyComputer items.
 sources:
 - type: REGISTRY_KEY
   attributes:
@@ -236,7 +243,7 @@ urls:
   - 'http://answers.microsoft.com/en-us/windows/forum/windows8_1-files/how-to-remove-these-folders-from-windows-81/777c4ba3-7853-453e-bfa0-9a0f4245b9e1?db=5'
 ---
 name: ExplorerNamespaceNetworkNeighborhood
-doc: Namespaces for Network Neighborhood items
+doc: CLSIDs listed here are used to populate the Network Neighborhood items.
 sources:
 - type: REGISTRY_KEY
   attributes:
@@ -254,7 +261,7 @@ urls:
   - 'http://www.wikihow.com/Manually-Remove-Macatte-Malware'
 ---
 name: ExplorerNamespacePrintersAndFaxes
-doc: Namespaces for Printer and Fax items
+doc: CLSIDs listed here are used to populate the Printer and Fax items.
 sources:
 - type: REGISTRY_KEY
   attributes:
