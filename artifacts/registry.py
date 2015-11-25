@@ -25,7 +25,7 @@ class ArtifactDefinitionsRegistry(object):
     artifact_definition_name = artifact_definition.name.lower()
     if artifact_definition_name not in self._artifact_definitions:
       raise KeyError(
-          u'Artifact definition not set for name: {0:s}.'.format(
+          u'Artifact definition not set for name: {0}.'.format(
               artifact_definition.name))
 
     del self._artifact_definitions[artifact_definition_name]
@@ -67,7 +67,7 @@ class ArtifactDefinitionsRegistry(object):
     artifact_definition_name = artifact_definition.name.lower()
     if artifact_definition_name in self._artifact_definitions:
       raise KeyError((
-          u'Artifact definition already set for name: {0:s}.').format(
+          u'Artifact definition already set for name: {0}.').format(
               artifact_definition.name))
 
     self._artifact_definitions[artifact_definition_name] = artifact_definition
