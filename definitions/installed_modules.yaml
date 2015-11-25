@@ -74,7 +74,7 @@ urls:
 name: PythonModuleInfo
 doc: Python module installation information.
 sources:
-- type: ARTIFACT
+- type: ARTIFACT_GROUP
   attributes:
     names:
       - PythonDistInfo

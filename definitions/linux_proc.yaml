@@ -164,7 +164,7 @@ urls: ['https://www.kernel.org/doc/Documentation/networking/ip-sysctl.txt']
 name: LinuxProcSysHardeningSettings
 doc: Linux sysctl settings obtained from /proc/sys.
 sources:
-- type: ARTIFACT
+- type: ARTIFACT_GROUP
   attributes:
     names:
       - 'LinuxASLREnabled'

@@ -51,8 +51,8 @@ class ArtifactDefinition(object):
       raise errors.FormatError(u'Missing type indicator.')
 
     source_type_class = None
-    if type_indicator == definitions.TYPE_INDICATOR_ARTIFACT:
-      source_type_class = source_type.ArtifactSourceType
+    if type_indicator == definitions.TYPE_INDICATOR_ARTIFACT_GROUP:
+      source_type_class = source_type.ArtifactGroupSourceType
 
     elif type_indicator == definitions.TYPE_INDICATOR_COMMAND:
       source_type_class = source_type.CommandSourceType

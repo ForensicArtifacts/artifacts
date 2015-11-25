@@ -67,7 +67,7 @@ supported_os: [Linux, Darwin]
 name: UnixUsersGroups
 doc: Unix users and groups files.
 sources:
-- type: ARTIFACT
+- type: ARTIFACT_GROUP
   attributes:
     names:
       - 'UnixPasswd'
