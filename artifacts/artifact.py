@@ -80,7 +80,7 @@ class ArtifactDefinition(object):
 
     else:
       raise errors.FormatError(
-          u'Unsupported type indicator: {0:s}.'.format(type_indicator))
+          u'Unsupported type indicator: {0}.'.format(type_indicator))
 
     source_object = source_type_class(**attributes)
     self.sources.append(source_object)

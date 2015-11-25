@@ -74,7 +74,7 @@ class YamlArtifactsReader(ArtifactsReader):
 
     different_keys = set(yaml_definition) - definitions.TOP_LEVEL_KEYS
     if different_keys:
-      raise errors.FormatError(u'Undefined keys: {0!s}'.format(
+      raise errors.FormatError(u'Undefined keys: {0}'.format(
           different_keys))
 
     name = yaml_definition.get(u'name', None)
@@ -85,7 +85,7 @@ class YamlArtifactsReader(ArtifactsReader):
     description = yaml_definition.get(u'doc', None)
     if not description:
       raise errors.FormatError(
-          u'Invalid artifact definition: {0:s} missing description.'.format(
+          u'Invalid artifact definition: {0} missing description.'.format(
               name))
 
     artifact_definition = artifact.ArtifactDefinition(
@@ -93,20 +93,20 @@ class YamlArtifactsReader(ArtifactsReader):
 
     if yaml_definition.get(u'collectors', []):
       raise errors.FormatError(
-          u'Invalid artifact definition: {0:s} still uses collectors.'.format(
+          u'Invalid artifact definition: {0} still uses collectors.'.format(
               name))
 
     sources = yaml_definition.get(u'sources')
     if not sources:
       raise errors.FormatError(
-          u'Invalid artifact definition: {0:s} missing sources.'.format(
+          u'Invalid artifact definition: {0} missing sources.'.format(
               name))
 
     for source in sources:
       type_indicator = source.get(u'type', None)
       if not type_indicator:
         raise errors.FormatError(
-            u'Invalid artifact definition: {0:s} source type.'.format(name))
+            u'Invalid artifact definition: {0} source type.'.format(name))
 
       attributes = source.get(u'attributes', None)
       try:
@@ -114,7 +114,7 @@ class YamlArtifactsReader(ArtifactsReader):
             type_indicator, attributes)
       except errors.FormatError as exception:
         raise errors.FormatError(
-            u'Invalid artifact definition: {0:s}. {1:s}'.format(
+            u'Invalid artifact definition: {0}. {1}'.format(
                 name, exception))
 
       # TODO: deprecate these left overs from the collector definition.
@@ -150,7 +150,7 @@ class YamlArtifactsReader(ArtifactsReader):
 
     if undefined_labels:
       raise errors.FormatError(
-          u'Artifact definition: {0:s} label(s): {1:s} not defined.'.format(
+          u'Artifact definition: {0} label(s): {1} not defined.'.format(
               name, ', '.join(undefined_labels)))
 
     artifact_definition.labels = yaml_definition.get(u'labels', [])
@@ -171,7 +171,7 @@ class YamlArtifactsReader(ArtifactsReader):
 
     if not isinstance(supported_os, list):
       raise errors.FormatError(
-          u'supported_os must be a list of strings, got: {0:s}'.format(
+          u'supported_os must be a list of strings, got: {0}'.format(
               supported_os))
 
     undefined_supported_os = [
@@ -179,7 +179,7 @@ class YamlArtifactsReader(ArtifactsReader):
 
     if undefined_supported_os:
       raise errors.FormatError((
-          u'Artifact definition: {0:s} supported operating system: {1:s} '
+          u'Artifact definition: {0} supported operating system: {1} '
           u'not defined.').format(name, u', '.join(undefined_supported_os)))
 
     definition_object.supported_os = supported_os
@@ -207,10 +207,9 @@ class YamlArtifactsReader(ArtifactsReader):
       except errors.FormatError as exception:
         error_location = u'At start'
         if last_artifact_definition:
-          error_location = u'After: {0:s}'.format(last_artifact_definition.name)
+          error_location = u'After: {0}'.format(last_artifact_definition.name)
 
-        raise errors.FormatError(u'{0:s} {1!s}'.format(
-            error_location, exception))
+        raise errors.FormatError(u'{0} {1}'.format(error_location, exception))
 
       yield artifact_definition
       last_artifact_definition = artifact_definition
@@ -242,7 +241,7 @@ class YamlArtifactsReader(ArtifactsReader):
       Artifact definitions (instances of ArtifactDefinition).
     """
     if extension:
-      glob_spec = os.path.join(path, u'*.{0:s}'.format(extension))
+      glob_spec = os.path.join(path, u'*.{0}'.format(extension))
     else:
       glob_spec = os.path.join(path, u'*')
 

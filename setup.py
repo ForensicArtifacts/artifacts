@@ -22,7 +22,7 @@ artifacts_version = artifacts.__version__
 # Command bdist_msi does not support the library version, neither a date
 # as a version but if we suffix it with .1 everything is fine.
 if 'bdist_msi' in sys.argv:
-  artifacts_version = '{0:s}.1'.format(artifacts_version)
+  artifacts_version = '{0}.1'.format(artifacts_version)
 
 artifacts_description = (
     'ForensicArtifacts.com Artifact Repository.')
