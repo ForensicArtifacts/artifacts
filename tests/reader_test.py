@@ -118,7 +118,7 @@ class YamlArtifactsReaderTest(unittest.TestCase):
     source_type = artifact_definition.sources[0]
     self.assertNotEqual(source_type, None)
     self.assertEqual(
-        source_type.type_indicator, definitions.TYPE_INDICATOR_ARTIFACT)
+        source_type.type_indicator, definitions.TYPE_INDICATOR_ARTIFACT_GROUP)
 
     # Artifact with command definition source type.
     artifact_definition = artifact_definitions[5]
@@ -147,7 +147,7 @@ class YamlArtifactsReaderTest(unittest.TestCase):
     file_object = io.StringIO(initial_value=u"""name: BadKey
 doc: bad extra key.
 sources:
-- type: ARTIFACT
+- type: ARTIFACT_GROUP
   attributes:
     names:
       - 'SystemEventLogEvtx'
@@ -177,7 +177,7 @@ supported_os: [Windows]
     file_object = io.StringIO(initial_value=u"""name: BadSupportedOS
 doc: supported_os should be an array of strings.
 sources:
-- type: ARTIFACT
+- type: ARTIFACT_GROUP
   attributes:
     names:
       - 'SystemEventLogEvtx'
@@ -194,7 +194,7 @@ supported_os: Windows
     file_object = io.StringIO(initial_value=u"""name: BadLabel
 doc: badlabel.
 sources:
-- type: ARTIFACT
+- type: ARTIFACT_GROUP
   attributes:
     names:
       - 'SystemEventLogEvtx'
@@ -210,7 +210,7 @@ supported_os: [Windows]
     artifact_reader = reader.YamlArtifactsReader()
     file_object = io.StringIO(initial_value=u"""name: NoDoc
 sources:
-- type: ARTIFACT
+- type: ARTIFACT_GROUP
   attributes:
     names:
       - 'SystemEventLogEvtx'

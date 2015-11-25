@@ -3,7 +3,7 @@
 name: BrowserCache
 doc: Web browser cache of multiple web browsers.
 sources:
-- type: ARTIFACT
+- type: ARTIFACT_GROUP
   attributes:
     names:
       - 'ChromeCache'
@@ -15,7 +15,7 @@ supported_os: [Darwin,Linux,Windows]
 name: BrowserHistory
 doc: Web browser history of multiple web browsers.
 sources:
-- type: ARTIFACT
+- type: ARTIFACT_GROUP
   attributes:
     names:
       - 'ChromeHistory'

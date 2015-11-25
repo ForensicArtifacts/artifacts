@@ -3,7 +3,7 @@
 name: AllUsersShellHistory
 doc: Common shell history files for root and users.
 sources:
-- type: ARTIFACT
+- type: ARTIFACT_GROUP
   attributes:
     names:
       - UsersShellHistory
@@ -14,7 +14,7 @@ supported_os: [Linux]
 name: AllShellConfigs
 doc: Common shell configuration files containing global, users & root settings.
 sources:
-- type: ARTIFACT
+- type: ARTIFACT_GROUP
   attributes:
     names:
       - GlobalShellConfigs
@@ -183,7 +183,7 @@ supported_os: [Linux]
 name: LinuxScheduleFiles
 doc: All Linux job scheduling files.
 sources:
-- type: ARTIFACT
+- type: ARTIFACT_GROUP
   attributes:
     names:
       - AnacronFiles
@@ -256,7 +256,7 @@ supported_os: [Linux]
 name: LinuxMountInfo
 doc: Linux mount options.
 sources:
-- type: ARTIFACT
+- type: ARTIFACT_GROUP
   attributes:
     names:
       - LinuxFstab
@@ -293,7 +293,7 @@ urls: ['http://www.rsyslog.com/doc/rsyslog_conf.html']
 name: LinuxServices
 doc: Services running on a Linux system.
 sources:
-- type: ARTIFACT
+- type: ARTIFACT_GROUP
   attributes:
     names:
       - LinuxXinetd

@@ -3,7 +3,7 @@
 name: KasperskyCaretoIndicators
 doc: Kaspersky Careto Indicators.
 sources:
-- type: ARTIFACT
+- type: ARTIFACT_GROUP
   attributes:
     names:
       - KasperskyCaretoWindowsFiles

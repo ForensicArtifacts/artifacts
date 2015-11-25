@@ -46,7 +46,7 @@ class ArtifactDefinitionsValidator(object):
 
         self.defined_artifact_names.add(artifact_definition.name)
         for source in artifact_definition.sources:
-          if isinstance(source, source_type.ArtifactSourceType):
+          if isinstance(source, source_type.ArtifactGroupSourceType):
             self.artifact_name_references.update(source.names)
 
     except errors.FormatError as exception:

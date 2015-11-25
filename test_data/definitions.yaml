@@ -51,7 +51,7 @@ urls: ['http://msdn.microsoft.com/en-us/library/windows/desktop/ee886409(v=vs.85
 name: EventLogs
 doc: Windows Event logs.
 sources:
-- type: ARTIFACT
+- type: ARTIFACT_GROUP
   attributes:
     names:
       - 'ApplicationEventLog'

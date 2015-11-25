@@ -120,7 +120,7 @@ urls:
 name: EventLogs
 doc: Windows Event logs.
 sources:
-- type: ARTIFACT
+- type: ARTIFACT_GROUP
   attributes:
     names:
       - 'ApplicationEventLog'
@@ -621,7 +621,7 @@ urls:
 name: WindowsPersistenceMechanisms
 doc: Persistence mechanisms in Windows.
 sources:
-- type: ARTIFACT
+- type: ARTIFACT_GROUP
   attributes:
     names:
       - PowershellDefaultProfiles
@@ -634,7 +634,7 @@ supported_os: [Windows]
 name: WindowsPersistenceRegistryKeys
 doc: Windows Registry keys used for persistence.
 sources:
-- type: ARTIFACT
+- type: ARTIFACT_GROUP
   attributes:
     names:
       - AutoplayHandlers

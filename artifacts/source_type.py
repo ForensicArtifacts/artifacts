@@ -41,16 +41,16 @@ class SourceType(object):
     return self.TYPE_INDICATOR
 
 
-class ArtifactSourceType(SourceType):
-  """Class that implements the artifacts source type."""
+class ArtifactGroupSourceType(SourceType):
+  """Class that implements the artifact group source type."""
 
-  TYPE_INDICATOR = definitions.TYPE_INDICATOR_ARTIFACT
+  TYPE_INDICATOR = definitions.TYPE_INDICATOR_ARTIFACT_GROUP
 
   def __init__(self, names=None):
     """Initializes the source type object.
 
     Args:
-      names: optional list of artifact definition names.  The default is None.
+      names: optional list of artifact definition names. The default is None.
 
     Raises:
       FormatError: when artifact names is not set.
@@ -58,7 +58,7 @@ class ArtifactSourceType(SourceType):
     if not names:
       raise errors.FormatError(u'Missing names value.')
 
-    super(ArtifactSourceType, self).__init__()
+    super(ArtifactGroupSourceType, self).__init__()
     self.names = names
 
 

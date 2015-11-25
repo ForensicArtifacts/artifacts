@@ -3,7 +3,7 @@
 name: CloudStorageClients
 doc: Multiple cloud storage client artifacts.
 sources:
-- type: ARTIFACT
+- type: ARTIFACT_GROUP
   attributes:
     names:
       - 'DropboxClient'
