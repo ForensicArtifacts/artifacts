@@ -40,7 +40,7 @@ class ArtifactDefinitionsValidator(object):
           self._artifact_registry.RegisterDefinition(artifact_definition)
         except KeyError:
           logging.warning(
-              u'Duplicate artifact definition: {0:s} in file: {1:s}'.format(
+              u'Duplicate artifact definition: {0} in file: {1}'.format(
                   artifact_definition.name, filename))
           result = False
 
@@ -51,7 +51,7 @@ class ArtifactDefinitionsValidator(object):
 
     except errors.FormatError as exception:
       logging.warning(
-          u'Unable to validate file: {0:s} with error: {1:s}'.format(
+          u'Unable to validate file: {0} with error: {1}'.format(
               filename, exception))
       result = False
 
@@ -82,11 +82,11 @@ def Main():
     return False
 
   if not os.path.isfile(options.filename):
-    print('No such file: {0:s}'.format(options.filename))
+    print('No such file: {0}'.format(options.filename))
     print('')
     return False
 
-  print('Validating: {0:s}'.format(options.filename))
+  print('Validating: {0}'.format(options.filename))
   validator = ArtifactDefinitionsValidator()
   if not validator.CheckFile(options.filename):
     print('FAILURE')
