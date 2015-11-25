@@ -8,7 +8,7 @@ sources:
     names:
       - UsersShellHistory
       - RootUserShellHistory
-labels: [Configuration Files]
+labels: [History Files]
 supported_os: [Linux]
 ---
 name: AllShellConfigs
@@ -392,7 +392,7 @@ sources:
       - '/root/.sh_history'
       - '/root/.zhistory'
       - '/root/.zsh_history'
-labels: [Configuration Files]
+labels: [History Files]
 supported_os: [Linux]
 ---
 name: ThumbnailCacheFolder
