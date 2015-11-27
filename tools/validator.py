@@ -9,10 +9,10 @@ import logging
 import os
 import sys
 
+from artifacts import definitions
 from artifacts import errors
 from artifacts import reader
 from artifacts import registry
-from artifacts import source_type
 
 
 class ArtifactDefinitionsValidator(object):
@@ -21,9 +21,10 @@ class ArtifactDefinitionsValidator(object):
   def __init__(self):
     """Initializes the artifact definitions validator object."""
     super(ArtifactDefinitionsValidator, self).__init__()
+    self._artifact_name_references = set()
     self._artifact_registry = registry.ArtifactDefinitionsRegistry()
-    self.defined_artifact_names = set()
-    self.artifact_name_references = set()
+    self._artifact_registry_key_paths = set()
+    self._defined_artifact_names = set()
 
   def CheckFile(self, filename):
     """Validates the artifacts definition in a specific file.
@@ -44,10 +45,22 @@ class ArtifactDefinitionsValidator(object):
                   artifact_definition.name, filename))
           result = False
 
-        self.defined_artifact_names.add(artifact_definition.name)
+        self._defined_artifact_names.add(artifact_definition.name)
         for source in artifact_definition.sources:
-          if isinstance(source, source_type.ArtifactGroupSourceType):
-            self.artifact_name_references.update(source.names)
+          if source.type_indicator == definitions.TYPE_INDICATOR_ARTIFACT_GROUP:
+            self._artifact_name_references.update(source.names)
+
+          elif source.type_indicator in (
+              definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_KEY):
+            intersection = self._artifact_registry_key_paths.intersection(
+                set(source.keys))
+            if intersection:
+              duplicate_key_paths = u'\n'.join(intersection)
+              logging.warning((
+                  u'Artifact definition: {0} in file: {1} has duplicate '
+                  u'Registry key paths:\n{2}').format(
+                      artifact_definition.name, filename, duplicate_key_paths))
+            self._artifact_registry_key_paths.update(source.keys)
 
     except errors.FormatError as exception:
       logging.warning(
@@ -56,6 +69,14 @@ class ArtifactDefinitionsValidator(object):
       result = False
 
     return result
+
+  def MissingArtifacts(self):
+    """Determines the names of undefined artifacts used by artifact groups.
+
+    Returns:
+      A set of the missing artifacts names.
+    """
+    return self._artifact_name_references - self._defined_artifact_names
 
 
 def Main():
