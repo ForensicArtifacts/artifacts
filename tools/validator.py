@@ -31,6 +31,9 @@ class ArtifactDefinitionsValidator(object):
 
     Args:
       filename: the filename of the artifacts definition file.
+
+    Returns:
+      A boolean indicating the file contains valid artifacts definitions.
     """
     result = True
     artifact_reader = reader.YamlArtifactsReader()
