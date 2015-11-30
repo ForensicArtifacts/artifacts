@@ -26,6 +26,34 @@ class ArtifactDefinitionsValidator(object):
     self._artifact_registry_key_paths = set()
     self._defined_artifact_names = set()
 
+  def _CheckDuplicateRegistryKeyPaths(
+      self, filename, artifact_definition, source):
+    """Checks if Registry key paths are not already defined by other artifacts.
+
+    Args:
+      filename: the filename of the artifacts definition file.
+      artifact_definition: the artifact definition (instance of
+                           ArtifactDefinition).
+      source: the source definition (instance of SourceType).
+
+    Returns:
+      A boolean indicating the Registry key paths defined by the source type
+      are not already used in other artifacts.
+    """
+    result = True
+    intersection = self._artifact_registry_key_paths.intersection(
+        set(source.keys))
+    if intersection:
+      duplicate_key_paths = u'\n'.join(intersection)
+      logging.warning((
+          u'Artifact definition: {0} in file: {1} has duplicate '
+          u'Registry key paths:\n{2}').format(
+              artifact_definition.name, filename, duplicate_key_paths))
+      result = False
+
+    self._artifact_registry_key_paths.update(source.keys)
+    return result
+
   def CheckFile(self, filename):
     """Validates the artifacts definition in a specific file.
 
@@ -55,15 +83,9 @@ class ArtifactDefinitionsValidator(object):
 
           elif source.type_indicator in (
               definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_KEY):
-            intersection = self._artifact_registry_key_paths.intersection(
-                set(source.keys))
-            if intersection:
-              duplicate_key_paths = u'\n'.join(intersection)
-              logging.warning((
-                  u'Artifact definition: {0} in file: {1} has duplicate '
-                  u'Registry key paths:\n{2}').format(
-                      artifact_definition.name, filename, duplicate_key_paths))
-            self._artifact_registry_key_paths.update(source.keys)
+            if not self._CheckDuplicateRegistryKeyPaths(
+                filename, artifact_definition, source):
+              result = False
 
     except errors.FormatError as exception:
       logging.warning(
