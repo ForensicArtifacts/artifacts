@@ -1456,7 +1456,7 @@ sources:
 - type: FILE
   attributes:
     paths:
-    - '\Temp\*'
+    - '%%environ_systemdrive%%\Temp\*'
     - '%%environ_systemroot%%\Temp\*'
     - '%%users.localappdata%%\Temp\*'
     separator: '\'
