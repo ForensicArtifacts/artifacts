@@ -1546,6 +1546,18 @@ sources:
 supported_os: [Windows]
 urls: ['https://technet.microsoft.com/en-us/library/ff404236.aspx']
 ---
+name: WindowsTempDirectories
+doc: Contents of the Windows temporary directories
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '\Temp\*'
+    - '%%environ_systemroot%%\Temp\*'
+    - '%%users.localappdata%%\Temp\*'
+    separator: '\'
+supported_os: [Windows]
+---
 name: WindowsTerminalServerRunKeys
 doc: Windows Terminal Server Run Keys
 sources:
