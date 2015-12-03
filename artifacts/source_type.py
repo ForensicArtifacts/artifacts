@@ -214,7 +214,7 @@ class WindowsRegistryKeySourceType(SourceType):
           u'HKEY_USERS\\%%users.sid%%\\')
 
     raise errors.FormatError(
-        u'Unupported Registry key path: {0:s}'.format(key_path))
+        u'Unupported Registry key path: {0}'.format(key_path))
 
 
 class WindowsRegistryValueSourceType(SourceType):

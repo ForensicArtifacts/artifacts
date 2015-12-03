@@ -24,8 +24,10 @@ LABELS = {
         'Information about any users\' account, e.g. username, '
         'account ID, etc.'),
     'External Media': 'Contain external media data or events e.g. USB drives.',
+    'KnowledgeBase': 'Artifacts used in knowledge base generation.',
     'IM': 'Instant Messaging / Chat applications artifacts.',
     'iOS' : 'Artifacts related to iOS devices connected to the system.',
+    'History Files': 'History files artifacts e.g. .bash_history.',
     'KnowledgeBase': 'Artifacts used in knowledge base generation.',
     'Logs': 'Contain log files.',
     'Mail': 'Mail client applications artifacts.',

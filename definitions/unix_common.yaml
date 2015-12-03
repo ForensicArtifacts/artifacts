@@ -30,7 +30,7 @@ sources:
       - '/%%users.homedir%%/.sh_history'
       - '/%%users.homedir%%/.zhistory'
       - '/%%users.homedir%%/.zsh_history'
-labels: [Configuration Files]
+labels: [History Files]
 supported_os: [Linux, Darwin]
 ---
 name: GlobalShellConfigs
