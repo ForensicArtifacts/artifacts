@@ -11,12 +11,12 @@ class SourceTypeTest(unittest.TestCase):
   """Class to test the artifact source type."""
 
 
-class ArtifactSourceTypeTest(unittest.TestCase):
-  """Class to test the artifacts source type."""
+class ArtifactGroupSourceTypeTest(unittest.TestCase):
+  """Class to test the artifact group source type."""
 
   def testInitialize(self):
     """Tests the __init__ function."""
-    source_type.ArtifactSourceType(names=[u'test'])
+    source_type.ArtifactGroupSourceType(names=[u'test'])
 
 
 class FileSourceTypeTest(unittest.TestCase):
@@ -54,7 +54,8 @@ class WindowsRegistryValueSourceTypeTest(unittest.TestCase):
   def testInitialize(self):
     """Tests the __init__ function."""
     source_type.WindowsRegistryValueSourceType(
-        key_value_pairs=[{'key': u'HKEY_LOCAL_MACHINE\\test', 'value': u'test'}])
+        key_value_pairs=[{
+            'key': u'HKEY_LOCAL_MACHINE\\test', 'value': u'test'}])
 
     with self.assertRaises(errors.FormatError):
       source_type.WindowsRegistryValueSourceType(

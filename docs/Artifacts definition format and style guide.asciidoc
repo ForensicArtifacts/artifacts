@@ -176,7 +176,7 @@ Currently the following different source types are defined:
 [cols="1,5",options="header"]
 |===
 | Value | Description
-| ARTIFACT | A source that consists of other artifacts.
+| ARTIFACT_GROUP | A source that consists of a group of other artifacts.
 | COMMAND | A source that consists of the output of a command.
 | FILE | A source that consists of the contents of files.
 | PATH | A source that consists of the contents of paths.
@@ -189,12 +189,12 @@ The sources types are defined in
 link:https://github.com/ForensicArtifacts/artifacts/blob/master/artifacts/definitions.py[definitions.py]
 as TYPE_INDICATOR constants.
 
-=== Artifact source
-The artifact source is a source that consists of other artifacts e.g.
+=== Artifact group source
+The artifact group source is a source that consists of a group of other artifacts e.g.
 
 [source,yaml]
 ----
-- type: ARTIFACT
+- type: ARTIFACT_GROUP
   attributes:
     names: [WindowsRunKeys, WindowsServices]
   returned_types: [PersistenceFile]

@@ -2,7 +2,7 @@
 """Constants and definitions."""
 
 # The type indictor constants.
-TYPE_INDICATOR_ARTIFACT = 'ARTIFACT'
+TYPE_INDICATOR_ARTIFACT_GROUP = 'ARTIFACT_GROUP'
 TYPE_INDICATOR_COMMAND = 'COMMAND'
 TYPE_INDICATOR_DIRECTORY = 'DIRECTORY'
 TYPE_INDICATOR_ENVIRONMENT = 'ENVIRONMENT'
@@ -24,22 +24,23 @@ LABELS = {
         'Information about any users\' account, e.g. username, '
         'account ID, etc.'),
     'External Media': 'Contain external media data or events e.g. USB drives.',
-    'History Files': 'History files artifacts e.g. .bash_history.',
     'KnowledgeBase': 'Artifacts used in knowledge base generation.',
     'IM': 'Instant Messaging / Chat applications artifacts.',
     'iOS' : 'Artifacts related to iOS devices connected to the system.',
+    'History Files': 'History files artifacts e.g. .bash_history.',
+    'KnowledgeBase': 'Artifacts used in knowledge base generation.',
     'Logs': 'Contain log files.',
     'Mail': 'Mail client applications artifacts.',
     'Memory': 'Artifacts retrieved from memory.',
     'Network': 'Describe networking state.',
     'Processes': 'Describe running processes.',
+    'Rekall': 'Artifacts using the Rekall memory forensics framework.',
     'Software': 'Installed software.',
     'System': 'Core system artifacts.',
-    'Users': 'Information about users.',
-    'Rekall': 'Artifacts using the Rekall memory forensics framework.',
-    }
+    'Users': 'Information about users.'}
 
 SUPPORTED_OS = frozenset(['Darwin', 'Linux', 'Windows'])
 
-TOP_LEVEL_KEYS = frozenset(['conditions', 'doc', 'labels', 'name', 'provides',
-                            'sources', 'supported_os', 'urls'])
+TOP_LEVEL_KEYS = frozenset([
+    'conditions', 'doc', 'labels', 'name', 'provides', 'sources',
+    'supported_os', 'urls'])
