@@ -701,6 +701,7 @@ sources:
       - WindowsLSASecurityPackages
       - WindowsMSDTCDLLs
       - WindowsMultiMediaDrivers
+      - WindowsNetworkShellHelpers
       - WindowsPLAPProviders
       - WindowsRunKeys
       - WindowsRunServices
@@ -1305,13 +1306,14 @@ sources:
     separator: '\'
 supported_os: [Windows]
 ---
-name: WindowsNetshHelpers
-doc: Windows Netsh helpers are loaded on boot
+name: WindowsNetworkShellHelpers
+doc: Windows Network Shell (netsh) helpers are loaded on boot
 sources:
 - type: REGISTRY_KEY
   attributes:
     keys:
       - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Netsh'
+      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Netsh'
 supported_os: [Windows]
 urls: ['https://support.microsoft.com/en-us/kb/242468']
 ---
