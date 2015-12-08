@@ -30,6 +30,9 @@ class ArtifactDefinitionsValidator(object):
       self, filename, artifact_definition, source):
     """Checks if Registry key paths are not already defined by other artifacts.
 
+    Note that at the moment this function will only find exact duplicate
+    Registry key paths.
+
     Args:
       filename: the filename of the artifacts definition file.
       artifact_definition: the artifact definition (instance of
