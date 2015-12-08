@@ -26,7 +26,7 @@ class ArtifactDefinitionsValidator(object):
     self._artifact_registry_key_paths = set()
     self._defined_artifact_names = set()
 
-  def _CheckDuplicateRegistryKeyPaths(
+  def _HasDuplicateRegistryKeyPaths(
       self, filename, artifact_definition, source):
     """Checks if Registry key paths are not already defined by other artifacts.
 
@@ -38,9 +38,9 @@ class ArtifactDefinitionsValidator(object):
 
     Returns:
       A boolean indicating the Registry key paths defined by the source type
-      are not already used in other artifacts.
+      are used in other artifacts.
     """
-    result = True
+    result = False
     intersection = self._artifact_registry_key_paths.intersection(
         set(source.keys))
     if intersection:
@@ -49,7 +49,7 @@ class ArtifactDefinitionsValidator(object):
           u'Artifact definition: {0} in file: {1} has duplicate '
           u'Registry key paths:\n{2}').format(
               artifact_definition.name, filename, duplicate_key_paths))
-      result = False
+      result = True
 
     self._artifact_registry_key_paths.update(source.keys)
     return result
@@ -83,7 +83,7 @@ class ArtifactDefinitionsValidator(object):
 
           elif source.type_indicator in (
               definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_KEY):
-            if not self._CheckDuplicateRegistryKeyPaths(
+            if self._HasDuplicateRegistryKeyPaths(
                 filename, artifact_definition, source):
               result = False
 
