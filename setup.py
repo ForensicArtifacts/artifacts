@@ -42,6 +42,7 @@ setup(
     maintainer='The ForensicArtifacts.com Artifact Repository project',
     maintainer_email='forensicartifacts@googlegroups.com',
     scripts=[
+        os.path.join('tools', 'stats.py'),
         os.path.join('tools', 'validator.py'),
     ],
     classifiers=[
