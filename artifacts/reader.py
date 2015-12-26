@@ -16,11 +16,15 @@ class ArtifactsReader(object):
   """Class that implements the artifacts reader interface."""
 
   @abc.abstractmethod
-  def ReadFileObject(self, file_object):
-    """Reads artifact definitions from a file-like object.
+  def ReadDirectory(self, path, extension=None):
+    """Reads artifact definitions from a directory.
+
+    This function does not recurse sub directories.
 
     Args:
-      file_object: the file-like object to read from.
+      path: the path of the directory to read from.
+      extension: optional extension of the filenames to read.
+                 The default is None.
 
     Yields:
       Artifact definitions (instances of ArtifactDefinition).
@@ -38,15 +42,11 @@ class ArtifactsReader(object):
     """
 
   @abc.abstractmethod
-  def ReadDirectory(self, path, extension=None):
-    """Reads artifact definitions from a directory.
-
-    This function does not recurse sub directories.
+  def ReadFileObject(self, file_object):
+    """Reads artifact definitions from a file-like object.
 
     Args:
-      path: the path of the directory to read from.
-      extension: optional extension of the filenames to read.
-                 The default is None.
+      file_object: the file-like object to read from.
 
     Yields:
       Artifact definitions (instances of ArtifactDefinition).
@@ -184,6 +184,41 @@ class YamlArtifactsReader(ArtifactsReader):
 
     definition_object.supported_os = supported_os
 
+  def ReadDirectory(self, path, extension=u'yaml'):
+    """Reads artifact definitions from YAML files in a directory.
+
+    This function does not recurse sub directories.
+
+    Args:
+      path: the path of the directory to read from.
+      extension: optional extension of the filenames to read.
+                 The default is 'yaml'.
+
+    Yields:
+      Artifact definitions (instances of ArtifactDefinition).
+    """
+    if extension:
+      glob_spec = os.path.join(path, u'*.{0}'.format(extension))
+    else:
+      glob_spec = os.path.join(path, u'*')
+
+    for yaml_file in glob.glob(glob_spec):
+      for artifact_definition in self.ReadFile(yaml_file):
+        yield artifact_definition
+
+  def ReadFile(self, filename):
+    """Reads artifact definitions from a YAML file.
+
+    Args:
+      filename: the name of the file to read from.
+
+    Yields:
+      Artifact definitions (instances of ArtifactDefinition).
+    """
+    with open(filename, 'rb') as file_object:
+      for artifact_definition in self.ReadFileObject(file_object):
+        yield artifact_definition
+
   def ReadFileObject(self, file_object):
     """Reads artifact definitions from a file-like object.
 
@@ -213,38 +248,3 @@ class YamlArtifactsReader(ArtifactsReader):
 
       yield artifact_definition
       last_artifact_definition = artifact_definition
-
-  def ReadFile(self, filename):
-    """Reads artifact definitions from a YAML file.
-
-    Args:
-      filename: the name of the file to read from.
-
-    Yields:
-      Artifact definitions (instances of ArtifactDefinition).
-    """
-    with open(filename, 'rb') as file_object:
-      for artifact_definition in self.ReadFileObject(file_object):
-        yield artifact_definition
-
-  def ReadDirectory(self, path, extension=u'yaml'):
-    """Reads artifact definitions from YAML files in a directory.
-
-    This function does not recurse sub directories.
-
-    Args:
-      path: the path of the directory to read from.
-      extension: optional extension of the filenames to read.
-                 The default is 'yaml'.
-
-    Yields:
-      Artifact definitions (instances of ArtifactDefinition).
-    """
-    if extension:
-      glob_spec = os.path.join(path, u'*.{0}'.format(extension))
-    else:
-      glob_spec = os.path.join(path, u'*')
-
-    for yaml_file in glob.glob(glob_spec):
-      for artifact_definition in self.ReadFile(yaml_file):
-        yield artifact_definition

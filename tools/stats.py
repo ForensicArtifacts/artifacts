@@ -3,8 +3,6 @@
 """Report statistics about the artifact collection."""
 
 from __future__ import print_function
-import glob
-import os
 import time
 
 from artifacts import definitions
@@ -66,31 +64,28 @@ As of {0} the repository contains:
     self.path_count = 0
     self.reg_key_count = 0
 
-    for definitions_file in glob.glob(os.path.join('definitions', '*.yaml')):
-      for artifact_definition in artifact_reader.ReadFile(definitions_file):
+    for artifact_definition in artifact_reader.ReadDirectory('definitions'):
+      if hasattr(artifact_definition, 'labels'):
+        for label in artifact_definition.labels:
+          self.label_counts[label] = self.label_counts.get(label, 0) + 1
 
-        if hasattr(artifact_definition, 'labels'):
-          for label in artifact_definition.labels:
-            self.label_counts[label] = self.label_counts.get(label, 0) + 1
+      for source in artifact_definition.sources:
+        self.total_count += 1
+        source_type = source.type_indicator
+        self.source_type_counts[source_type] = self.source_type_counts.get(
+            source_type, 0) + 1
 
-        for source in artifact_definition.sources:
-          self.total_count += 1
-          source_type = source.type_indicator
-          self.source_type_counts[source_type] = self.source_type_counts.get(
-              source_type, 0) + 1
+        if source_type == definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_KEY:
+          self.reg_key_count += len(source.keys)
+        if source_type == definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_VALUE:
+          self.reg_key_count += len(source.key_value_pairs)
+        if (source_type == definitions.TYPE_INDICATOR_FILE or
+            source_type == definitions.TYPE_INDICATOR_DIRECTORY):
+          self.path_count += len(source.paths)
 
-          if source_type == definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_KEY:
-            self.reg_key_count += len(source.keys)
-          if source_type == definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_VALUE:
-            self.reg_key_count += len(source.key_value_pairs)
-          if (source_type == definitions.TYPE_INDICATOR_FILE or
-              source_type == definitions.TYPE_INDICATOR_DIRECTORY):
-            self.path_count += len(source.paths)
-
-          os_list = source.supported_os
-          for os_str in os_list:
-            self.os_counts[os_str] = self.os_counts.get(
-                os_str, 0) + 1
+        os_list = source.supported_os
+        for os_str in os_list:
+          self.os_counts[os_str] = self.os_counts.get(os_str, 0) + 1
 
   def PrintStats(self):
     """Build stats and print in MarkDown format."""

@@ -22,11 +22,11 @@ class ArtifactDefinitionsValidatorTest(unittest.TestCase):
       self.assertTrue(result, msg='in definitions file: {0}'.format(
           definitions_file))
 
-    missing_artifacts = validator_object.MissingArtifacts()
-    if missing_artifacts:
+    undefined_artifacts = validator_object.GetUndefinedArtifacts()
+    if undefined_artifacts:
       raise errors.MissingDependencyError(
           'Artifacts group referencing undefined artifacts: {0}'.format(
-              missing_artifacts))
+              undefined_artifacts))
 
   # TODO: add tests that deliberately provide invalid definitions to see
   # if the validator works correctly.
