@@ -21,10 +21,8 @@ class ArtifactDefinitionsValidator(object):
   def __init__(self):
     """Initializes the artifact definitions validator object."""
     super(ArtifactDefinitionsValidator, self).__init__()
-    self._artifact_name_references = set()
     self._artifact_registry = registry.ArtifactDefinitionsRegistry()
     self._artifact_registry_key_paths = set()
-    self._defined_artifact_names = set()
 
   def _HasDuplicateRegistryKeyPaths(
       self, filename, artifact_definition, source):
@@ -79,12 +77,8 @@ class ArtifactDefinitionsValidator(object):
                   artifact_definition.name, filename))
           result = False
 
-        self._defined_artifact_names.add(artifact_definition.name)
         for source in artifact_definition.sources:
-          if source.type_indicator == definitions.TYPE_INDICATOR_ARTIFACT_GROUP:
-            self._artifact_name_references.update(source.names)
-
-          elif source.type_indicator in (
+          if source.type_indicator in (
               definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_KEY):
             if self._HasDuplicateRegistryKeyPaths(
                 filename, artifact_definition, source):
@@ -98,13 +92,13 @@ class ArtifactDefinitionsValidator(object):
 
     return result
 
-  def MissingArtifacts(self):
-    """Determines the names of undefined artifacts used by artifact groups.
+  def GetUndefinedArtifacts(self):
+    """Retrieves the names of undefined artifacts used by artifact groups.
 
     Returns:
-      A set of the missing artifacts names.
+      A set of the undefined artifacts names.
     """
-    return self._artifact_name_references - self._defined_artifact_names
+    return self._artifact_registry.GetUndefinedArtifacts()
 
 
 def Main():
