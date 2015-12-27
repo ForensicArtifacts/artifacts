@@ -39,7 +39,7 @@ sources:
     paths: ['\Program Files']
     separator: '\'
 - type: REGISTRY_VALUE
-  attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion', value: 'ProgramFilesDir'}]}
+  attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion', value: 'ProgramFilesDir'}]}
 provides: [environ_programfiles]
 supported_os: [Windows]
 urls: ['http://environmentvariables.org/ProgramFiles']
@@ -52,7 +52,7 @@ sources:
     paths: ['\Program Files (x86)']
     separator: '\'
 - type: REGISTRY_VALUE
-  attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion', value: 'ProgramFilesDir (x86)'}]}
+  attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion', value: 'ProgramFilesDir (x86)'}]}
 provides: [environ_programfilesx86]
 supported_os: [Windows]
 urls: ['http://environmentvariables.org/ProgramFiles']
@@ -65,7 +65,7 @@ doc: |
   can figure it out from SystemRoot.
 sources:
 - type: REGISTRY_VALUE
-  attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion', value: 'SystemRoot'}]}
+  attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion', value: 'SystemRoot'}]}
 provides: [environ_systemdrive]
 supported_os: [Windows]
 urls:
@@ -84,7 +84,7 @@ sources:
       - '\WTSRV'
     separator: '\'
 - type: REGISTRY_VALUE
-  attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion', value: 'SystemRoot'}]}
+  attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion', value: 'SystemRoot'}]}
 provides: [environ_systemroot]
 supported_os: [Windows]
 urls: ['http://environmentvariables.org/SystemRoot']
@@ -182,7 +182,7 @@ doc: |
   the paths for each profile.
 sources:
 - type: REGISTRY_KEY
-  attributes: {keys: ['HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList\*\ProfileImagePath']}
+  attributes: {keys: ['HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\ProfileList\*\ProfileImagePath']}
 labels: [Users]
 provides: [users.sid, users.userprofile, users.homedir, users.username]
 supported_os: [Windows]
