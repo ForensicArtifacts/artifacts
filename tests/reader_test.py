@@ -33,7 +33,7 @@ class YamlArtifactsReaderTest(unittest.TestCase):
 
     self.assertEqual(len(artifact_definition.sources), 1)
     source_type = artifact_definition.sources[0]
-    self.assertNotEqual(source_type, None)
+    self.assertIsNotNone(source_type)
     self.assertEqual(
         source_type.type_indicator, definitions.TYPE_INDICATOR_FILE)
 
@@ -63,7 +63,7 @@ class YamlArtifactsReaderTest(unittest.TestCase):
 
     self.assertEqual(len(artifact_definition.sources), 1)
     source_type = artifact_definition.sources[0]
-    self.assertNotEqual(source_type, None)
+    self.assertIsNotNone(source_type)
     self.assertEqual(
         source_type.type_indicator,
         definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_KEY)
@@ -81,7 +81,7 @@ class YamlArtifactsReaderTest(unittest.TestCase):
 
     self.assertEqual(len(artifact_definition.sources), 1)
     source_type = artifact_definition.sources[0]
-    self.assertNotEqual(source_type, None)
+    self.assertIsNotNone(source_type)
     self.assertEqual(
         source_type.type_indicator,
         definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_VALUE)
@@ -102,7 +102,7 @@ class YamlArtifactsReaderTest(unittest.TestCase):
 
     self.assertEqual(len(artifact_definition.sources), 1)
     source_type = artifact_definition.sources[0]
-    self.assertNotEqual(source_type, None)
+    self.assertIsNotNone(source_type)
     self.assertEqual(
         source_type.type_indicator, definitions.TYPE_INDICATOR_WMI_QUERY)
 
@@ -116,7 +116,7 @@ class YamlArtifactsReaderTest(unittest.TestCase):
 
     self.assertEqual(len(artifact_definition.sources), 1)
     source_type = artifact_definition.sources[0]
-    self.assertNotEqual(source_type, None)
+    self.assertIsNotNone(source_type)
     self.assertEqual(
         source_type.type_indicator, definitions.TYPE_INDICATOR_ARTIFACT_GROUP)
 
@@ -126,7 +126,7 @@ class YamlArtifactsReaderTest(unittest.TestCase):
 
     self.assertEqual(len(artifact_definition.sources), 1)
     source_type = artifact_definition.sources[0]
-    self.assertNotEqual(source_type, None)
+    self.assertIsNotNone(source_type)
     self.assertEqual(
         source_type.type_indicator, definitions.TYPE_INDICATOR_COMMAND)
 
@@ -136,7 +136,7 @@ class YamlArtifactsReaderTest(unittest.TestCase):
 
     self.assertEqual(len(artifact_definition.sources), 1)
     collector_definition = artifact_definition.sources[0]
-    self.assertNotEqual(collector_definition, None)
+    self.assertIsNotNone(collector_definition)
     self.assertEqual(
         collector_definition.type_indicator,
         definitions.TYPE_INDICATOR_COMMAND)
