@@ -8,6 +8,7 @@ sources:
     names:
       - 'DropboxClient'
       - 'GoogleDriveClient'
+      - 'SkyDriveClient'
 labels: [Cloud Storage]
 supported_os: [Darwin,Linux,Windows]
 ---
@@ -43,3 +44,21 @@ sources:
   supported_os: [Windows]
 labels: [Cloud Storage]
 urls: ['http://www.forensicswiki.org/wiki/Google_Drive']
+---
+name: SkyDriveClient
+doc: |
+  Microsoft Sky Drive cloud storage client artifacts.
+
+  Note that Sky Drive was renamed to One Drive.
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '%%users.localappdata%%\Microsoft\SkyDrive\logs\*.log'
+      - '%%users.localappdata%%\Microsoft\SkyDrive\setup\logs\*.log'
+      - '%%users.localappdata%%\Microsoft\SkyDrive\settings\ApplicationSettings.xml'
+      - '%%users.localappdata%%\Microsoft\SkyDrive\settings\*.dat'
+      - '%%users.localappdata%%\Microsoft\SkyDrive\settings\*.ini'
+  supported_os: [Windows]
+labels: [Cloud Storage]
+urls: ['http://forensicswiki.org/wiki/One_Drive#Sky_Drive_client']
