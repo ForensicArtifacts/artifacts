@@ -337,8 +337,8 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Users'
 ---
-name: OSXUserDownloadsDir
-doc: Downloads Directory
+name: OSXUserDownloadsDirectory
+doc: User downloads directory
 sources:
 - type: DIRECTORY
   attributes: {paths: ['%%users.homedir%%/Downloads/*']}
@@ -348,7 +348,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#User_Directories'
 ---
-name: OSXUserDocumentsDir
+name: OSXUserDocumentsDirectory
 doc: Documents Directory
 sources:
 - type: DIRECTORY
@@ -359,7 +359,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#User_Directories'
 ---
-name: OSXUserMusicDir
+name: OSXUserMusicDirectory
 doc: Music Directory
 sources:
 - type: DIRECTORY
@@ -370,7 +370,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#User_Directories'
 ---
-name: OSXUserDesktopDir
+name: OSXUserDesktopDirectory
 doc: Desktop Directory
 sources:
 - type: DIRECTORY
@@ -381,7 +381,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#User_Directories'
 ---
-name: OSXUserLibraryDir
+name: OSXUserLibraryDirectory
 doc: Library Directory
 sources:
 - type: DIRECTORY
@@ -392,7 +392,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#User_Directories'
 ---
-name: OSXUserMoviesDir
+name: OSXUserMoviesDirectory
 doc: Movies Directory
 sources:
 - type: DIRECTORY
@@ -403,7 +403,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#User_Directories'
 ---
-name: OSXUserPicturesDir
+name: OSXUserPicturesDirectory
 doc: Pictures Directory
 sources:
 - type: DIRECTORY
@@ -414,7 +414,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#User_Directories'
 ---
-name: OSXUserPublicDir
+name: OSXUserPublicDirectory
 doc: Public Directory
 sources:
 - type: DIRECTORY
@@ -563,7 +563,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#User.27s_Accounts'
 ---
-name: OSXiOSBackupsMainDir
+name: OSXiOSBackupsMainDirectory
 doc: iOS device backups directory
 sources:
 - type: FILE
@@ -728,7 +728,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Skype'
 ---
-name: OSXMailMainDir
+name: OSXMailMainDirectory
 doc: Mail Main Folder
 sources:
 - type: FILE
