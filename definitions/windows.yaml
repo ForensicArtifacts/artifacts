@@ -528,6 +528,70 @@ urls:
 - 'http://blogs.msdn.com/b/oldnewthing/archive/2007/11/21/6447771.aspx'
 - 'https://technet.microsoft.com/en-us/library/cc756720(v=ws.10).aspx'
 ---
+name: WindowsCOMInprocHandlers
+doc: Windows COM in-process handlers
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\CLSID\*', value: 'InprocHandler'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\CLSID\*', value: 'InprocHandler32'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\CLSID\*', value: 'InprocHandler'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\CLSID\*', value: 'InprocHandler32'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\CLSID\*', value: 'InprocHandler'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\CLSID\*', value: 'InprocHandler32'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\CLSID\*', value: 'InprocHandler'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\CLSID\*', value: 'InprocHandler32'}
+supported_os: [Windows]
+urls:
+- 'https://msdn.microsoft.com/en-us/library/windows/desktop/ms694515(v=vs.85).aspx'
+- 'https://msdn.microsoft.com/en-us/library/windows/desktop/ms691354(v=vs.85).aspx'
+- 'https://msdn.microsoft.com/en-us/library/windows/desktop/ms693485(v=vs.85).aspx'
+---
+name: WindowsCOMInprocServers
+doc: Windows COM in-process servers
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\CLSID\*\InprocServer', value: ''}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\CLSID\*\InprocServer32', value: ''}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\CLSID\*\InprocServer', value: ''}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\CLSID\*\InprocServer32', value: ''}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\CLSID\*\InprocServer', value: ''}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\CLSID\*\InprocServer32', value: ''}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\CLSID\*\InprocServer', value: ''}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\CLSID\*\InprocServer32', value: ''}
+supported_os: [Windows]
+urls:
+- 'https://msdn.microsoft.com/en-us/library/windows/desktop/ms694515(v=vs.85).aspx'
+- 'https://msdn.microsoft.com/en-us/library/windows/desktop/ms682390(v=vs.85).aspx'
+- 'https://msdn.microsoft.com/en-us/library/windows/desktop/ms694328(v=vs.85).aspx'
+---
+name: WindowsCOMLocalServers
+doc: Windows COM local servers
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\CLSID\*', value: 'LocalServer'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\CLSID\*\LocalServer32', value: ''}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\CLSID\*\LocalServer32', value: 'ServerExecutable'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\CLSID\*', value: 'LocalServer'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\CLSID\*\LocalServer32', value: ''}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\CLSID\*\LocalServer32', value: 'ServerExecutable'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\CLSID\*', value: 'LocalServer'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\CLSID\*\LocalServer32', value: ''}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\CLSID\*\LocalServer32', value: 'ServerExecutable'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\CLSID\*', value: 'LocalServer'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\CLSID\*\LocalServer32', value: ''}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\CLSID\*\LocalServer32', value: 'ServerExecutable'}
+supported_os: [Windows]
+urls:
+- 'https://msdn.microsoft.com/en-us/library/windows/desktop/ms694515(v=vs.85).aspx'
+- 'https://msdn.microsoft.com/en-us/library/windows/desktop/ms686595(v=vs.85).aspx'
+- 'https://msdn.microsoft.com/en-us/library/windows/desktop/ms683844(v=vs.85).aspx'
+---
 name: WindowsCredentialProviderFilters
 doc: Windows Credential Provider Filters
 sources:
