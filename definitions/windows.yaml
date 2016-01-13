@@ -171,11 +171,17 @@ sources:
   attributes:
     keys:
       - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\CommonPlaces\NameSpace'
+      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\CommonPlaces\NameSpace'
       - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\CommonPlaces\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\CommonPlaces\NameSpace'
       - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\CommonPlaces\NameSpace\DelegateFolders'
+      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\CommonPlaces\NameSpace\DelegateFolders'
       - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\CommonPlaces\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\CommonPlaces\NameSpace\DelegateFolders'
       - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\CommonPlaces\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\CommonPlaces\NameSpace'
       - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\CommonPlaces\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\CommonPlaces\NameSpace\DelegateFolders'
 supported_os: [Windows]
 urls:
   - 'https://msdn.microsoft.com/en-us/library/windows/desktop/hh127450(v=vs.85).aspx'
@@ -200,6 +206,14 @@ sources:
       - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanelWOW64\NameSpace\DelegateFolders'
       - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\ControlPanelWOW64\NameSpace'
       - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\ControlPanelWOW64\NameSpace\DelegateFolders'
+      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpace'
+      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\ControlPanel\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\ControlPanel\NameSpace\DelegateFolders'
+      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\ControlPanelWOW64\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Wow6432Node\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\ControlPanelWOW64\NameSpace\DelegateFolders'
 supported_os: [Windows]
 urls:
   - 'https://msdn.microsoft.com/en-us/library/windows/desktop/hh127450(v=vs.85).aspx'
@@ -217,6 +231,12 @@ sources:
       - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace\DelegateFolders'
       - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\Desktop\NameSpace'
       - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\Desktop\NameSpace\DelegateFolders'
+      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace'
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Wow6432Node\Windows\CurrentVersion\Explorer\Desktop\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\Desktop\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\Desktop\NameSpace\DelegateFolders'
 supported_os: [Windows]
 urls:
   - 'https://social.technet.microsoft.com/Forums/windowsserver/en-US/2760309c-89d1-414c-a04c-ce4178e90787/hide-libraries-icon-from-desktop'
@@ -236,6 +256,12 @@ sources:
       - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\DelegateFolders'
       - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\MyComputer\NameSpace'
       - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\MyComputer\NameSpace\DelegateFolders'
+      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace'
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Wow6432Node\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\MyComputer\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\MyComputer\NameSpace\DelegateFolders'
 supported_os: [Windows]
 urls:
   - 'http://www.geoffchappell.com/studies/windows/shell/shell32/classes/mycomputer.htm'
@@ -254,6 +280,12 @@ sources:
       - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\NetworkNeighborhood\NameSpace\DelegateFolders'
       - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\NetworkNeighborhood\NameSpace'
       - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\NetworkNeighborhood\NameSpace\DelegateFolders'
+      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\NetworkNeighborhood\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\NetworkNeighborhood\NameSpace'
+      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\NetworkNeighborhood\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\NetworkNeighborhood\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\NetworkNeighborhood\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\NetworkNeighborhood\NameSpace\DelegateFolders'
 supported_os: [Windows]
 urls:
   - 'http://www.geoffchappell.com/studies/windows/shell/shell32/classes/regfolder.htm'
@@ -272,6 +304,12 @@ sources:
       - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\PrintersAndFaxes\NameSpace\DelegateFolders'
       - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\PrintersAndFaxes\NameSpace'
       - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\PrintersAndFaxes\NameSpace\DelegateFolders'
+      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\PrintersAndFaxes\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\PrintersAndFaxes\NameSpace'
+      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\PrintersAndFaxes\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\PrintersAndFaxes\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\PrintersAndFaxes\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\PrintersAndFaxes\NameSpace\DelegateFolders'
 supported_os: [Windows]
 urls:
   - 'http://www.geoffchappell.com/studies/windows/shell/shell32/classes/printers.htm'
