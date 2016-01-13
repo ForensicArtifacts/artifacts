@@ -103,6 +103,21 @@ sources:
 supported_os: [Windows]
 urls: ['http://dfrws.org/2015/proceedings/presentations/DFRWS2015-pres3.pdf']
 ---
+name: ControlPanelFilePaths
+doc: DLLs listed here will be run when the user opens the Control Panel.
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Control Panel\CPLs'
+      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Control Panel\CPLs'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Control Panel\CPLs'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Control Panel\CPLs'
+supported_os: [Windows]
+urls:
+  - 'https://msdn.microsoft.com/en-us/library/windows/desktop/hh127454(v=vs.85).aspx'
+  - 'http://www.geoffchappell.com/studies/windows/shell/shell32/classes/controlpanel.htm'
+---
 name: EnvironmentUserLoginScripts
 doc: User login scripts configured via environment variables.
 sources:
@@ -148,6 +163,156 @@ urls:
 - 'https://msdn.microsoft.com/en-us/library/windows/desktop/cc144171(v=vs.85).aspx'
 - 'http://www.windowrdb.com/w.php?w=hklm-software-microsoft-windows-currentversion-explorer-commandstore-shell-windows-closewindow'
 - 'http://www.checkfilename.com/view-details/Windows-7-Ultimate/RespageIndex/4/sTab/2/'
+---
+name: ExplorerNamespaceCommonPlaces
+doc: CLSIDs listed here are used to populate the Common Places items.
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\CommonPlaces\NameSpace'
+      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\CommonPlaces\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\CommonPlaces\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\CommonPlaces\NameSpace'
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\CommonPlaces\NameSpace\DelegateFolders'
+      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\CommonPlaces\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\CommonPlaces\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\CommonPlaces\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\CommonPlaces\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\CommonPlaces\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\CommonPlaces\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\CommonPlaces\NameSpace\DelegateFolders'
+supported_os: [Windows]
+urls:
+  - 'https://msdn.microsoft.com/en-us/library/windows/desktop/hh127450(v=vs.85).aspx'
+  - 'http://www.geoffchappell.com/studies/windows/shell/shell32/classes/commonplacesfolder.htm'
+  - 'http://www.windowrdb.com/w.php?w=hklm-software-microsoft-windows-currentversion-explorer-commonplaces'
+---
+name: ExplorerNamespaceControlPanel
+doc: CLSIDs listed here are used to populate the Control Panel items.
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpace'
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\ControlPanel\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\ControlPanel\NameSpace\DelegateFolders'
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanelWOW64\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanelWOW64\NameSpace'
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpaceWOW64\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanelWOW64\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\ControlPanelWOW64\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\ControlPanelWOW64\NameSpace\DelegateFolders'
+      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpace'
+      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\ControlPanel\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\ControlPanel\NameSpace\DelegateFolders'
+      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\ControlPanelWOW64\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Wow6432Node\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\ControlPanelWOW64\NameSpace\DelegateFolders'
+supported_os: [Windows]
+urls:
+  - 'https://msdn.microsoft.com/en-us/library/windows/desktop/hh127450(v=vs.85).aspx'
+  - 'http://www.geoffchappell.com/studies/windows/shell/shell32/classes/controlpanel.htm'
+---
+name: ExplorerNamespaceDesktop
+doc: CLSIDs listed here are used to populate the Desktop items.
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace'
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\Desktop\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\Desktop\NameSpace\DelegateFolders'
+      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace'
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Wow6432Node\Windows\CurrentVersion\Explorer\Desktop\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\Desktop\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\Desktop\NameSpace\DelegateFolders'
+supported_os: [Windows]
+urls:
+  - 'https://social.technet.microsoft.com/Forums/windowsserver/en-US/2760309c-89d1-414c-a04c-ce4178e90787/hide-libraries-icon-from-desktop'
+  - 'http://www.geoffchappell.com/studies/windows/shell/shell32/classes/regfolder.htm'
+  - 'http://www.geoffchappell.com/notes/windows/shell/controlpanel/desktopicons.htm'
+  - 'https://support.microsoft.com/en-us/kb/321777'
+---
+name: ExplorerNamespaceMyComputer
+doc: CLSIDs listed here are used to populate the MyComputer items.
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace'
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\MyComputer\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\MyComputer\NameSpace\DelegateFolders'
+      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace'
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Wow6432Node\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\MyComputer\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\MyComputer\NameSpace\DelegateFolders'
+supported_os: [Windows]
+urls:
+  - 'http://www.geoffchappell.com/studies/windows/shell/shell32/classes/mycomputer.htm'
+  - 'http://www.howtogeek.com/168081/how-to-remove-the-folders-from-my-computer-in-windows-8.1/'
+  - 'http://answers.microsoft.com/en-us/windows/forum/windows8_1-files/how-to-remove-these-folders-from-windows-81/777c4ba3-7853-453e-bfa0-9a0f4245b9e1?db=5'
+---
+name: ExplorerNamespaceNetworkNeighborhood
+doc: CLSIDs listed here are used to populate the Network Neighborhood items.
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\NetworkNeighborhood\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\NetworkNeighborhood\NameSpace'
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\NetworkNeighborhood\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\NetworkNeighborhood\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\NetworkNeighborhood\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\NetworkNeighborhood\NameSpace\DelegateFolders'
+      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\NetworkNeighborhood\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\NetworkNeighborhood\NameSpace'
+      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\NetworkNeighborhood\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\NetworkNeighborhood\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\NetworkNeighborhood\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\NetworkNeighborhood\NameSpace\DelegateFolders'
+supported_os: [Windows]
+urls:
+  - 'http://www.geoffchappell.com/studies/windows/shell/shell32/classes/regfolder.htm'
+  - 'http://www.lavasoft.com/mylavasoft/rogues/secretservice'
+  - 'http://www.wikihow.com/Manually-Remove-Macatte-Malware'
+---
+name: ExplorerNamespacePrintersAndFaxes
+doc: CLSIDs listed here are used to populate the Printer and Fax items.
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\PrintersAndFaxes\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\PrintersAndFaxes\NameSpace'
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\PrintersAndFaxes\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\PrintersAndFaxes\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\PrintersAndFaxes\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\PrintersAndFaxes\NameSpace\DelegateFolders'
+      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\PrintersAndFaxes\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\PrintersAndFaxes\NameSpace'
+      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\PrintersAndFaxes\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\PrintersAndFaxes\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\PrintersAndFaxes\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\PrintersAndFaxes\NameSpace\DelegateFolders'
+supported_os: [Windows]
+urls:
+  - 'http://www.geoffchappell.com/studies/windows/shell/shell32/classes/printers.htm'
 ---
 name: MFTFiles
 doc: |
