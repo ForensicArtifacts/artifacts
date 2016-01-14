@@ -1,14 +1,23 @@
-Source: python-artifacts
+Source: artifacts
 Section: python
 Priority: extra
 Maintainer: Forensic artifacts <forensicartifacts@googlegroups.com>
-Build-Depends: debhelper (>= 7.0.0), python, python-setuptools
-Standards-Version: 3.9.2
+Build-Depends: debhelper (>= 7), python-all (>= 2.7~), python-setuptools, python3-all (>= 3.2~), python3-setuptools
+Standards-Version: 3.9.5
+X-Python-Version: >= 2.7
+X-Python3-Version: >= 3.2
 Homepage: https://github.com/ForensicArtifacts/artifacts
 
 Package: python-artifacts
 Architecture: all
-Depends: python, python-yaml, ${misc:Depends}
+Depends: python-yaml, ${python:Depends}, ${misc:Depends}
+Description: ForensicArtifacts.com Artifact Repository.
+ A free, community-sourced, machine-readable knowledge base of forensic
+ artifacts that the world can use both as an information source and within other tools.
+
+Package: python3-artifacts
+Architecture: all
+Depends: python3-yaml, ${python3:Depends}, ${misc:Depends}
 Description: ForensicArtifacts.com Artifact Repository.
  A free, community-sourced, machine-readable knowledge base of forensic
  artifacts that the world can use both as an information source and within other tools.
