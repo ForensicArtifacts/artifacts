@@ -116,7 +116,7 @@ setup(
         os.path.join('tools', 'stats.py'),
         os.path.join('tools', 'validator.py'),
     ],
-    cmdclass={'bdist_rpm': BdistRPMCommand}
+    cmdclass={'bdist_rpm': BdistRPMCommand},
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Environment :: Console',
