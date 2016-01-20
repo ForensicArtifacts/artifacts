@@ -9,7 +9,26 @@ export DH_OPTIONS
 
 
 %:
-	dh  $@ --with python2
+	dh  $@ --buildsystem=python_distutils --with=python2,python3 
+
+.PHONY: override_dh_auto_clean
+override_dh_auto_clean:
+	dh_auto_clean
+	rm -rf build artifacts.egg-info/SOURCES.txt artifacts.egg-info/PKG-INFO
+
+.PHONY: override_dh_auto_build
+override_dh_auto_build:
+	dh_auto_build
+	set -ex; for python in $(shell py3versions -r); do \
+		$$python setup.py build; \
+	done;
+
+.PHONY: override_dh_auto_install
+override_dh_auto_install:
+	dh_auto_install --destdir $(CURDIR)/debian/python-artifacts
+	set -ex; for python in $(shell py3versions -r); do \
+		$$python setup.py install --root=$(CURDIR)/debian/python3-artifacts --install-layout=deb; \
+	done;
 
 .PHONY: override_dh_auto_test
 override_dh_auto_test:
@@ -52,11 +71,4 @@ override_dh_icons:
 
 .PHONY: override_dh_perl
 override_dh_perl:
-
-.PHONY: override_dh_pysupport
-override_dh_pysupport:
-
-.PHONY: override_dh_python2
-override_dh_python2:
-	dh_python2 -V 2.7 setup.py
 
