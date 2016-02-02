@@ -186,12 +186,26 @@ labels: [System, Configuration Files]
 supported_os: [Linux]
 urls: ['http://en.wikipedia.org/wiki/Fstab']
 ---
-name: LinuxInitrdFiles
-doc: Initrd files in /boot/ executed on startup.
+name: LinuxGrubConfiguration
+doc: Linux grub configuratoin file.
 sources:
 - type: FILE
   attributes:
-    paths: ['/boot/initrd.*']
+    paths:
+      - '/boot/grub/grub.cfg'
+      - '/boot/grub2/grub.cfg'
+labels: [System, Configuration Files]
+supported_os: [Linux]
+urls: ['https://en.wikipedia.org/wiki/GNU_GRUB']
+---
+name: LinuxInitrdFiles
+doc: Initrd (initramfs) files in /boot/ executed on startup.
+sources:
+- type: FILE
+  attributes:
+    paths: 
+     -  '/boot/initramfs*'
+     -  '/boot/initrd*'
 labels: [Configuration Files, System]
 supported_os: [Linux]
 urls:
