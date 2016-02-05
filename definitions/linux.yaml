@@ -196,7 +196,7 @@ supported_os: [Linux]
 urls: ['http://en.wikipedia.org/wiki/Fstab']
 ---
 name: LinuxGrubConfiguration
-doc: Linux grub configuratoin file.
+doc: Linux grub configuration file.
 sources:
 - type: FILE
   attributes:
