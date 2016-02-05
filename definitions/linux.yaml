@@ -111,6 +111,16 @@ sources:
 labels: [Configuration Files]
 supported_os: [Linux]
 ---
+name: IPTablesRules
+doc: List IPTables rules.
+sources:
+- type: COMMAND
+  attributes:
+    args: ["-L", "-n", "-v"]
+    cmd: /sbin/iptables
+labels: [System]
+supported_os: [Linux]
+---
 name: KernelModules
 doc: Kernel modules to be loaded on boot.
 sources:
