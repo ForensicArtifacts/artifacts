@@ -219,6 +219,19 @@ sources:
     with self.assertRaises(errors.FormatError):
       _ = list(artifact_reader.ReadFileObject(file_object))
 
+  def testMissingNamesAttribute(self):
+    artifact_reader = reader.YamlArtifactsReader()
+    file_object = io.StringIO(initial_value=u"""name: NoNames
+doc: Missing names attr.
+sources:
+- type: ARTIFACT_GROUP
+  attributes:
+    - 'SystemEventLogEvtx'
+""")
+
+    with self.assertRaises(errors.FormatError):
+      _ = list(artifact_reader.ReadFileObject(file_object))
+
   def testReadFile(self):
     """Tests the ReadFile function."""
     artifact_reader = reader.YamlArtifactsReader()
