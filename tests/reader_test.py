@@ -221,7 +221,8 @@ sources:
 
   def testMissingNamesAttribute(self):
     artifact_reader = reader.YamlArtifactsReader()
-    file_object = io.StringIO(initial_value=u"""name: NoDoc
+    file_object = io.StringIO(initial_value=u"""name: NoNames
+doc: Missing names attr.
 sources:
 - type: ARTIFACT_GROUP
   attributes:
