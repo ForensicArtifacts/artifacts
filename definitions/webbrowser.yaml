@@ -202,6 +202,33 @@ labels: [Browser]
 supported_os: [Windows]
 urls: ['https://developer.chrome.com/extensions/external_extensions#registry']
 ---
+name: ChromePreferences
+doc: Chrome Preferences file.
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '%%users.localappdata%%\Google\Chrome\User Data\*\Preferences'
+      - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Preferences'
+      - '%%users.localappdata%%\Chromium\User Data\*\Preferences'
+    separator: '\'
+  supported_os: [Windows]
+- type: FILE
+  attributes:
+    paths:
+      - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Preferences'
+      - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Preferences'
+      - '%%users.homedir%%/Library/Application Support/Chromium/*/Preferences'
+  supported_os: [Darwin]
+- type: FILE
+  attributes:
+    paths:
+      - '%%users.homedir%%/.config/google-chrome/*/Preferences'
+      - '%%users.homedir%%/.config/chromium/*/Preferences'
+  supported_os: [Linux]
+labels: [Browser]
+urls: ['http://forensicswiki.org/wiki/Google_Chrome#Configuration']
+---
 name: FirefoxCache
 doc: Mozilla Firefox browser caches.
 sources:
