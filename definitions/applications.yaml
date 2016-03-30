@@ -1,0 +1,17 @@
+# Application artifacts.
+
+name: NodeJSPackageManagerCacheFiles
+doc: Node JS package manager (NPM) cache files
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '%%users.homedir%%/.npm/*'
+  supported_os: [Darwin, Linux]
+- type: FILE
+  attributes:
+    paths:
+      - '%%users.appdata%%\npm-cache\*'
+    separator: '\'
+  supported_os: [Windows]
+urls: ['https://docs.npmjs.com/cli/cache']
