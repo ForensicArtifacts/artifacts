@@ -115,7 +115,7 @@ urls:
   - http://manpages.ubuntu.com/manpages/saucy/man5/at.allow.5.html
   - http://manpages.ubuntu.com/manpages/precise/en/man1/crontab.1.html
 ---
-name: DebianPackagesLog
+name: DebianPackagesLogFiles
 doc: Linux dpkg log files.
 sources:
 - type: FILE
@@ -543,7 +543,7 @@ urls:
   - 'https://wiki.debian.org/HowToIdentifyADevice/PCI'
 supported_os: [Linux]
 ---
-name: LinuxMessagesLog
+name: LinuxMessagesLogFiles
 doc: Linux messages log files.
 sources:
 - type: FILE
@@ -551,7 +551,7 @@ sources:
 labels: [Logs]
 supported_os: [Linux]
 ---
-name: LinuxDaemonLog
+name: LinuxDaemonLogFiles
 doc: Linux daemon log files.
 sources:
 - type: FILE
@@ -559,7 +559,7 @@ sources:
 labels: [Logs]
 supported_os: [Linux]
 ---
-name: LinuxKernelLog
+name: LinuxKernelLogFiles
 doc: Linux kernel log files.
 sources:
 - type: FILE
