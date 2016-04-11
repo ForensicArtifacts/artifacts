@@ -335,7 +335,7 @@ sources:
 labels: [Configuration Files, System]
 supported_os: [Linux]
 ---
-name: LinuxSysLogs
+name: LinuxSysLogFiles
 doc: Linux syslog log files.
 sources:
 - type: FILE
