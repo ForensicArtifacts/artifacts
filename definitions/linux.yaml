@@ -83,6 +83,17 @@ urls:
   - http://manpages.ubuntu.com/manpages/saucy/man5/at.allow.5.html
   - http://manpages.ubuntu.com/manpages/precise/en/man1/crontab.1.html
 ---
+name: DebianPackagesLogFiles
+doc: Linux dpkg log files.
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '/var/log/dpkg.log*'
+      - '/var/log/apt/history.log*'
+labels: [Logs]
+supported_os: [Linux]
+---
 name: DebianPackagesStatus
 doc: Linux dpkg status file.
 sources:
@@ -222,7 +233,7 @@ doc: Initrd (initramfs) files in /boot/ executed on startup.
 sources:
 - type: FILE
   attributes:
-    paths: 
+    paths:
      -  '/boot/initramfs*'
      -  '/boot/initrd*'
 labels: [Configuration Files, System]
@@ -303,6 +314,14 @@ sources:
 labels: [Configuration Files, System]
 supported_os: [Linux]
 ---
+name: LinuxSysLogFiles
+doc: Linux syslog log files.
+sources:
+- type: FILE
+  attributes: {paths: ['/var/log/syslog.log*']}
+labels: [Logs]
+supported_os: [Linux]
+---
 name: LinuxSyslogNgConfigs
 doc: Linux syslog-ng configurations.
 sources:
@@ -330,6 +349,14 @@ supported_os: [Linux]
 urls:
   - 'http://savannah.nongnu.org/projects/sysvinit'
   - 'http://docs.oracle.com/cd/E37670_01/E41138/html/ol_svcscripts.html'
+---
+name: LinuxTimezoneFile
+doc: Linux timezone file.
+sources:
+- type: FILE
+  attributes: {paths: ['/etc/timezone']}
+labels: [Configuration Files, System]
+supported_os: [Linux]
 ---
 name: LinuxXinetd
 doc: Linux xinetd configurations.
@@ -482,4 +509,28 @@ urls:
   - 'https://www.kernel.org/doc/Documentation/ABI/testing/sysfs-bus-pci'
   - 'https://www.kernel.org/doc/Documentation/filesystems/sysfs-pci.txt'
   - 'https://wiki.debian.org/HowToIdentifyADevice/PCI'
+supported_os: [Linux]
+---
+name: LinuxMessagesLogFiles
+doc: Linux messages log files.
+sources:
+- type: FILE
+  attributes: {paths: ['/var/log/messages.log*']}
+labels: [Logs]
+supported_os: [Linux]
+---
+name: LinuxDaemonLogFiles
+doc: Linux daemon log files.
+sources:
+- type: FILE
+  attributes: {paths: ['/var/log/daemon.log*']}
+labels: [Logs]
+supported_os: [Linux]
+---
+name: LinuxKernelLogFiles
+doc: Linux kernel log files.
+sources:
+- type: FILE
+  attributes: {paths: ['/var/log/kern.log*']}
+labels: [Logs]
 supported_os: [Linux]
