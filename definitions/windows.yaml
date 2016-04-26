@@ -1848,6 +1848,15 @@ conditions: [os_major_version >= 6]
 labels: [Software]
 supported_os: [Windows]
 ---
+name: WMILastBootupTime
+doc: Last system boot time (UTC) retrieved from WMI.
+sources:
+- type: WMI
+  attributes: {query: SELECT LastBootUpTime FROM Win32_OperatingSystem}
+labels: [System]
+supported_os: [Windows]
+urls: ['https://msdn.microsoft.com/en-us/library/windows/desktop/aa394239(v=vs.85).aspx']
+---
 name: WMILogicalDisks
 doc: Disk information via Windows Management Instrumentation (WMI).
 sources:
