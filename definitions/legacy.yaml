@@ -1,0 +1,121 @@
+# Deprecated definitions kept for backwards compatibility with GRR
+# for the time being.
+
+name: ProgramFiles
+doc: The %ProgramFiles% environment variable.
+sources:
+- type: PATH
+  attributes:
+    paths: ['\Program Files']
+    separator: '\'
+- type: REGISTRY_VALUE
+  attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion', value: 'ProgramFilesDir'}]}
+provides: [environ_programfiles]
+supported_os: [Windows]
+urls: ['http://environmentvariables.org/ProgramFiles']
+---
+name: ProgramFilesx86
+doc: The %ProgramFiles (x86)% environment variable.
+sources:
+- type: PATH
+  attributes:
+    paths: ['\Program Files (x86)']
+    separator: '\'
+- type: REGISTRY_VALUE
+  attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion', value: 'ProgramFilesDir (x86)'}]}
+provides: [environ_programfilesx86]
+supported_os: [Windows]
+urls: ['http://environmentvariables.org/ProgramFiles']
+---
+name: SystemDriveEnvironmentVariable
+doc: |
+  The %SystemDrive% environment variable, usually "C:".
+
+  This value isn't actually present in the Registry but with some parsing we
+  can figure it out from SystemRoot.
+sources:
+- type: REGISTRY_VALUE
+  attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion', value: 'SystemRoot'}]}
+provides: [environ_systemdrive]
+supported_os: [Windows]
+urls:
+- 'http://environmentvariables.org/SystemDrive'
+- 'https://msdn.microsoft.com/en-us/library/cc231436.aspx'
+---
+name: SystemRoot
+doc: The system root directory path, defined by %SystemRoot%, typically "C:\Windows".
+sources:
+- type: PATH
+  attributes:
+    paths:
+      - '\Windows'
+      - '\WinNT'
+      - '\WINNT35'
+      - '\WTSRV'
+    separator: '\'
+- type: REGISTRY_VALUE
+  attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion', value: 'SystemRoot'}]}
+provides: [environ_systemroot]
+supported_os: [Windows]
+urls: ['http://environmentvariables.org/SystemRoot']
+---
+name: TempEnvironmentVariable
+doc: The %TEMP% environment variable.
+sources:
+- type: REGISTRY_VALUE
+  attributes: {key_value_pairs: [{key: '%%current_control_set%%\Control\Session Manager\Environment', value: 'TEMP'}]}
+provides: [environ_temp]
+supported_os: [Windows]
+urls: ['http://environmentvariables.org/WinDir']
+---
+name: WinCodePage
+doc: The codepage of the system.
+sources:
+- type: REGISTRY_VALUE
+  attributes: {key_value_pairs: [{key: '%%current_control_set%%\Control\Nls\CodePage', value: 'ACP'}]}
+provides: [code_page]
+supported_os: [Windows]
+urls: ['http://en.wikipedia.org/wiki/Windows_code_page']
+---
+name: WinDirEnvironmentVariable
+doc: The %WinDir% environment variable.
+sources:
+- type: PATH
+  attributes:
+    paths:
+      - '\Windows'
+      - '\WinNT'
+      - '\WINNT35'
+      - '\WTSRV'
+    separator: '\'
+- type: REGISTRY_VALUE
+  attributes: {key_value_pairs: [{key: '%%current_control_set%%\Control\Session Manager\Environment', value: 'windir'}]}
+provides: [environ_windir]
+supported_os: [Windows]
+urls: ['http://environmentvariables.org/WinDir']
+---
+name: WinDomainName
+doc: The Windows domain the system is connected to.
+sources:
+- type: REGISTRY_VALUE
+  attributes: {key_value_pairs: [{key: '%%current_control_set%%\Services\Tcpip\Parameters', value: 'Domain'}]}
+provides: [domain]
+supported_os: [Windows]
+---
+name: WinPathEnvironmentVariable
+doc: The %PATH% environment variable.
+sources:
+- type: REGISTRY_VALUE
+  attributes: {key_value_pairs: [{key: '%%current_control_set%%\Control\Session Manager\Environment', value: 'Path'}]}
+provides: [environ_path]
+supported_os: [Windows]
+urls: ['http://environmentvariables.org/WinDir']
+---
+name: WinTimeZone
+doc: The timezone of the system in Olson format.
+sources:
+- type: REGISTRY_VALUE
+  attributes: {key_value_pairs: [{key: '%%current_control_set%%\Control\TimeZoneInformation', value: 'StandardName'}]}
+provides: [time_zone]
+supported_os: [Windows]
+urls: ['https://github.com/libyal/winreg-kb/wiki/Time-zone-keys']
