@@ -5,6 +5,7 @@ import io
 import os
 import unittest
 
+from artifacts import errors
 from artifacts import reader
 from artifacts import registry
 
@@ -66,7 +67,7 @@ class ArtifactDefinitionsRegistryTest(unittest.TestCase):
          b'Windows_XML_Event_Log_(EVTX)\']')]))
 
     generator = artifact_reader.ReadFileObject(bad_args)
-    with self.assertRaises(TypeError):
+    with self.assertRaises(errors.FormatError):
       _ = next(generator)
 
 
