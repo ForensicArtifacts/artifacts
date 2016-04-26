@@ -26,77 +26,10 @@ name: CurrentControlSet
 doc: The control set the system is currently using.
 sources:
 - type: REGISTRY_VALUE
-  attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\SYSTEM\Select', value: 'Current'}]}
+  attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\System\Select', value: 'Current'}]}
 provides: [current_control_set]
 supported_os: [Windows]
 urls: ['https://github.com/libyal/winreg-kb/wiki/System-keys']
----
-name: ProgramFiles
-doc: The %ProgramFiles% environment variable.
-sources:
-- type: PATH
-  attributes:
-    paths: ['\Program Files']
-    separator: '\'
-- type: REGISTRY_VALUE
-  attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion', value: 'ProgramFilesDir'}]}
-provides: [environ_programfiles]
-supported_os: [Windows]
-urls: ['http://environmentvariables.org/ProgramFiles']
----
-name: ProgramFilesx86
-doc: The %ProgramFiles (x86)% environment variable.
-sources:
-- type: PATH
-  attributes:
-    paths: ['\Program Files (x86)']
-    separator: '\'
-- type: REGISTRY_VALUE
-  attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion', value: 'ProgramFilesDir (x86)'}]}
-provides: [environ_programfilesx86]
-supported_os: [Windows]
-urls: ['http://environmentvariables.org/ProgramFiles']
----
-name: SystemDriveEnvironmentVariable
-doc: |
-  The %SystemDrive% environment variable, usually "C:".
-
-  This value isn't actually present in the Registry but with some parsing we
-  can figure it out from SystemRoot.
-sources:
-- type: REGISTRY_VALUE
-  attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion', value: 'SystemRoot'}]}
-provides: [environ_systemdrive]
-supported_os: [Windows]
-urls:
-- 'http://environmentvariables.org/SystemDrive'
-- 'https://msdn.microsoft.com/en-us/library/cc231436.aspx'
----
-name: SystemRoot
-doc: The system root directory path, defined by %SystemRoot%, typically "C:\Windows".
-sources:
-- type: PATH
-  attributes:
-    paths:
-      - '\Windows'
-      - '\WinNT'
-      - '\WINNT35'
-      - '\WTSRV'
-    separator: '\'
-- type: REGISTRY_VALUE
-  attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion', value: 'SystemRoot'}]}
-provides: [environ_systemroot]
-supported_os: [Windows]
-urls: ['http://environmentvariables.org/SystemRoot']
----
-name: TempEnvironmentVariable
-doc: The %TEMP% environment variable.
-sources:
-- type: REGISTRY_VALUE
-  attributes: {key_value_pairs: [{key: '%%current_control_set%%\Control\Session Manager\Environment', value: 'TEMP'}]}
-provides: [environ_temp]
-supported_os: [Windows]
-urls: ['http://environmentvariables.org/WinDir']
 ---
 name: UserShellFolders
 doc: The Shell Folders information for Windows users.
@@ -122,8 +55,8 @@ provides:
   - users.temp
 supported_os: [Windows]
 ---
-name: WinCodePage
-doc: The codepage of the system.
+name: WindowsCodePage
+doc: The code page of the system.
 sources:
 - type: REGISTRY_VALUE
   attributes: {key_value_pairs: [{key: '%%current_control_set%%\Control\Nls\CodePage', value: 'ACP'}]}
@@ -131,7 +64,99 @@ provides: [code_page]
 supported_os: [Windows]
 urls: ['http://en.wikipedia.org/wiki/Windows_code_page']
 ---
-name: WinDirEnvironmentVariable
+name: WindowsComputerName
+doc: The name of the system.
+sources:
+- type: REGISTRY_VALUE
+  attributes: {key_value_pairs: [{key: '%%current_control_set%%\Control\ComputerName\ComputerName', value: 'ComputerName'}]}
+provides: [hostname]
+supported_os: [Windows]
+---
+name: WindowsDomainName
+doc: The domain the system is connected to.
+sources:
+- type: REGISTRY_VALUE
+  attributes: {key_value_pairs: [{key: '%%current_control_set%%\Services\Tcpip\Parameters', value: 'Domain'}]}
+provides: [domain]
+supported_os: [Windows]
+---
+name: WindowsEnvironmentVariablePath
+doc: The %PATH% environment variable.
+sources:
+- type: REGISTRY_VALUE
+  attributes: {key_value_pairs: [{key: '%%current_control_set%%\Control\Session Manager\Environment', value: 'Path'}]}
+provides: [environ_path]
+supported_os: [Windows]
+urls: ['http://environmentvariables.org/WinDir']
+---
+name: WindowsEnvironmentVariableProgramFiles
+doc: The %ProgramFiles% environment variable.
+sources:
+- type: PATH
+  attributes:
+    paths: ['\Program Files']
+    separator: '\'
+- type: REGISTRY_VALUE
+  attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion', value: 'ProgramFilesDir'}]}
+provides: [environ_programfiles]
+supported_os: [Windows]
+urls: ['http://environmentvariables.org/ProgramFiles']
+---
+name: WindowsEnvironmentVariableProgramFilesX86
+doc: The %ProgramFiles(x86)% environment variable.
+sources:
+- type: PATH
+  attributes:
+    paths: ['\Program Files (x86)']
+    separator: '\'
+- type: REGISTRY_VALUE
+  attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion', value: 'ProgramFilesDir (x86)'}]}
+provides: [environ_programfilesx86]
+supported_os: [Windows]
+urls: ['http://environmentvariables.org/ProgramFiles']
+---
+name: WindowsEnvironmentVariableSystemDrive
+doc: |
+  The %SystemDrive% environment variable, usually "C:".
+
+  This value isn't actually present in the Registry but with some parsing we
+  can figure it out from SystemRoot.
+sources:
+- type: ARTIFACT_GROUP
+  attributes: {names: ['WindowsEnvironmentVariableSystemRoot']}
+provides: [environ_systemdrive]
+supported_os: [Windows]
+urls:
+- 'http://environmentvariables.org/SystemDrive'
+- 'https://msdn.microsoft.com/en-us/library/cc231436.aspx'
+---
+name: WindowsEnvironmentVariableSystemRoot
+doc: The system root directory path, defined by %SystemRoot%, typically "C:\Windows".
+sources:
+- type: PATH
+  attributes:
+    paths:
+      - '\Windows'
+      - '\WinNT'
+      - '\WINNT35'
+      - '\WTSRV'
+    separator: '\'
+- type: REGISTRY_VALUE
+  attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion', value: 'SystemRoot'}]}
+provides: [environ_systemroot]
+supported_os: [Windows]
+urls: ['http://environmentvariables.org/SystemRoot']
+---
+name: WindowsEnvironmentVariableTemp
+doc: The %TEMP% environment variable.
+sources:
+- type: REGISTRY_VALUE
+  attributes: {key_value_pairs: [{key: '%%current_control_set%%\Control\Session Manager\Environment', value: 'TEMP'}]}
+provides: [environ_temp]
+supported_os: [Windows]
+urls: ['http://environmentvariables.org/Temp']
+---
+name: WindowsEnvironmentVariableWinDir
 doc: The %WinDir% environment variable.
 sources:
 - type: PATH
@@ -148,31 +173,13 @@ provides: [environ_windir]
 supported_os: [Windows]
 urls: ['http://environmentvariables.org/WinDir']
 ---
-name: WinDomainName
-doc: The Windows domain the system is connected to.
+name: WindowsProductName
+doc: The Windows product name
 sources:
 - type: REGISTRY_VALUE
-  attributes: {key_value_pairs: [{key: '%%current_control_set%%\Services\Tcpip\Parameters', value: 'Domain'}]}
-provides: [domain]
+  attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion', value: 'ProductName'}]}
 supported_os: [Windows]
----
-name: WinPathEnvironmentVariable
-doc: The %PATH% environment variable.
-sources:
-- type: REGISTRY_VALUE
-  attributes: {key_value_pairs: [{key: '%%current_control_set%%\Control\Session Manager\Environment', value: 'Path'}]}
-provides: [environ_path]
-supported_os: [Windows]
-urls: ['http://environmentvariables.org/WinDir']
----
-name: WinTimeZone
-doc: The timezone of the system in Olson format.
-sources:
-- type: REGISTRY_VALUE
-  attributes: {key_value_pairs: [{key: '%%current_control_set%%\Control\TimeZoneInformation', value: 'StandardName'}]}
-provides: [time_zone]
-supported_os: [Windows]
-urls: ['https://github.com/libyal/winreg-kb/wiki/Time-zone-keys']
+urls: ['https://github.com/libyal/winreg-kb/blob/master/documentation/System%20keys.asciidoc']
 ---
 name: WindowsRegistryProfiles
 doc: |
@@ -181,12 +188,21 @@ doc: |
   This looks in the Windows Registry where the profiles are stored and retrieves
   the paths for each profile.
 sources:
-- type: REGISTRY_KEY
-  attributes: {keys: ['HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\ProfileList\*\ProfileImagePath']}
+- type: REGISTRY_VALUE
+  attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\ProfileList\*', value: 'ProfileImagePath'}]}
 labels: [Users]
 provides: [users.sid, users.userprofile, users.homedir, users.username]
 supported_os: [Windows]
 urls: ['http://msdn.microsoft.com/en-us/library/windows/desktop/bb776892(v=vs.85).aspx']
+---
+name: WindowsTimezone
+doc: The timezone of the system in Olson format.
+sources:
+- type: REGISTRY_VALUE
+  attributes: {key_value_pairs: [{key: '%%current_control_set%%\Control\TimeZoneInformation', value: 'StandardName'}]}
+provides: [time_zone]
+supported_os: [Windows]
+urls: ['https://github.com/libyal/winreg-kb/wiki/Time-zone-keys']
 ---
 name: WMIAccountUsersDomain
 doc: |
