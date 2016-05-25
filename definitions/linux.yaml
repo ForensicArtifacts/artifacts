@@ -534,3 +534,14 @@ sources:
   attributes: {paths: ['/var/log/kern.log*']}
 labels: [Logs]
 supported_os: [Linux]
+---
+name: DSDTTable
+doc: Linux file containing DSDT table.
+sources:
+- type: FILE
+  attributes:
+          paths: ['/sys/firmware/acpi/tables/DSDT']
+labels: [System]
+urls: ['https://www.kernel.org/doc/Documentation/acpi/initrd_table_override.txt']
+supported_os: [Linux]
+
