@@ -16,4 +16,3 @@ sources:
 provides: [os_release, os_major_version, os_minor_version]
 labels: [Software]
 supported_os: [Linux]
-

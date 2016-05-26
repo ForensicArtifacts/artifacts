@@ -1,5 +1,24 @@
 # Anti-Virus artifacts
 
+name: EsetAVQuarantine
+doc: Eset Anti-Virus Quarantine (Infected) files.
+sources:
+- type: FILE
+  attributes: {paths: ['/Library/Application Support/ESET/esets/cache/quarantine/*']}
+supported_os: [Darwin]
+labels: [Antivirus]
+---
+name: MicrosoftAVQuarantine
+doc: Microsoft Anti-Virus Quarantine (Infected) files.
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '%%environ_allusersappdata%%\Microsoft\Microsoft Antimalware\Quarantine\**'
+      - '%%environ_allusersappdata%%\Microsoft\Windows Defender\Quarantine\**'
+supported_os: [Windows]
+labels: [Antivirus]
+---
 name: SophosAVLogs
 doc: Sophos Anti-Virus log files.
 sources:
@@ -23,25 +42,6 @@ sources:
   attributes: {paths: ['/Users/Shared/Infected/*']}
   supported_os: [Darwin]
 supported_os: [Windows, Darwin]
-labels: [Antivirus]
----
-name: MicrosoftAVQuarantine
-doc: Microsoft Anti-Virus Quarantine (Infected) files.
-sources:
-- type: FILE
-  attributes:
-    paths:
-      - '%%environ_allusersappdata%%\Microsoft\Microsoft Antimalware\Quarantine\**'
-      - '%%environ_allusersappdata%%\Microsoft\Windows Defender\Quarantine\**'
-supported_os: [Windows]
-labels: [Antivirus]
----
-name: EsetAVQuarantine
-doc: Eset Anti-Virus Quarantine (Infected) files.
-sources:
-- type: FILE
-  attributes: {paths: ['/Library/Application Support/ESET/esets/cache/quarantine/*']}
-supported_os: [Darwin]
 labels: [Antivirus]
 ---
 name: SymantecAVLogs
