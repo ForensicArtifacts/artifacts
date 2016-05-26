@@ -1,5 +1,16 @@
 # Artifacts from the Kaspersky Careto report.
 
+name: KasperskyCaretoDarwinFiles
+doc: Darwin Careto IOCs.
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - /Applications/.DS_Store.app/**10
+      - /Library/LaunchAgents/com.apple.launchport.plist
+supported_os: [Darwin]
+urls: ['http://www.securelist.com/en/downloads/vlpdfs/unveilingthemask_v1.0.pdf']
+---
 name: KasperskyCaretoIndicators
 doc: Kaspersky Careto Indicators.
 sources:
@@ -87,15 +98,4 @@ sources:
     - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\\CLSID\{ECD4FC4D-521C-11D0-B792-00A0C90312E1}', value: 'InprocServer32'}
     - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\CLSID\{E6BB64BE-0618-4353-9193-0AFE606D6F0C}', value: 'InprocServer32'}
 supported_os: [Windows]
-urls: ['http://www.securelist.com/en/downloads/vlpdfs/unveilingthemask_v1.0.pdf']
----
-name: KasperskyCaretoDarwinFiles
-doc: Darwin Careto IOCs.
-sources:
-- type: FILE
-  attributes:
-    paths:
-      - /Applications/.DS_Store.app/**10
-      - /Library/LaunchAgents/com.apple.launchport.plist
-supported_os: [Darwin]
 urls: ['http://www.securelist.com/en/downloads/vlpdfs/unveilingthemask_v1.0.pdf']
