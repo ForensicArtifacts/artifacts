@@ -271,3 +271,20 @@ class WMIQuerySourceType(SourceType):
     super(WMIQuerySourceType, self).__init__()
     self.query = query
     self.base_object = base_object
+
+
+SOURCE_TYPES = {
+  definitions.TYPE_INDICATOR_ARTIFACT_GROUP: ArtifactGroupSourceType,
+  definitions.TYPE_INDICATOR_COMMAND: CommandSourceType,
+
+  # This seems missing now.
+  # definitions.TYPE_INDICATOR_COMMAND: CommandCollectorDefinition,
+  definitions.TYPE_INDICATOR_DIRECTORY: DirectorySourceType,
+  definitions.TYPE_INDICATOR_FILE: FileSourceType,
+  definitions.TYPE_INDICATOR_PATH: PathSourceType,
+  definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_KEY:
+    WindowsRegistryKeySourceType,
+  definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_VALUE:
+    WindowsRegistryValueSourceType,
+  definitions.TYPE_INDICATOR_WMI_QUERY: WMIQuerySourceType,
+}
