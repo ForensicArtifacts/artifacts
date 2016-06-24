@@ -50,13 +50,12 @@ class ArtifactDefinition(object):
     if not type_indicator:
       raise errors.FormatError(u'Missing type indicator.')
 
-    source_type_class = source_type.SOURCE_TYPES.get(type_indicator)
-    if source_type_class is None:
+    if type_indicator not in source_type.SOURCE_TYPES:
       raise errors.FormatError(
           u'Unsupported type indicator: {0}.'.format(type_indicator))
 
     try:
-      source_object = source_type_class(**attributes)
+      source_object = source_type.SOURCE_TYPES[type_indicator](**attributes)
     except (TypeError, AttributeError) as e:
       raise errors.FormatError(
           "Invalid artifact definition for {0}: {1}".format(self.name, e))
