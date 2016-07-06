@@ -337,6 +337,17 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Users'
 ---
+name: OSXUserDesktopsDirectory
+doc: User desktop directory
+sources:
+- type: DIRECTORY
+  attributes: {paths: ['%%users.homedir%%/Desktop/*']}
+labels: [Users]
+supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#User_Directories'
+---
 name: OSXUserDownloadsDirectory
 doc: User downloads directory
 sources:
