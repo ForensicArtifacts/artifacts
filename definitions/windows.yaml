@@ -1,597 +1,5 @@
 # Windows specific artifacts.
 
-name: AppCompatCache
-doc: Windows Application Compatibility Cache
-sources:
-- type: REGISTRY_VALUE
-  attributes:
-    key_value_pairs:
-      - {key: '%%current_control_set%%\Control\Session Manager\AppCompatibility', value: 'AppCompatCache'}
-      - {key: '%%current_control_set%%\Control\Session Manager\AppCompatCache', value: 'AppCompatCache'}
-supported_os: [Windows]
-urls: ['https://github.com/libyal/winreg-kb/blob/master/documentation/Application%20Compatibility%20Cache%20key.asciidoc']
----
-name: AppKey
-doc: Handlers for special keys on some keyboards (file path or CLSID).
-sources:
-- type: REGISTRY_VALUE
-  attributes:
-    key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\AppKey\*', value: 'ShellExecute'}
-supported_os: [Windows]
-urls:
-  - 'http://answers.microsoft.com/en-us/windows/forum/windows_vista-hardware/assigning-the-special-keys-at-the-top-of-the/d1ab2e13-5297-457d-a8e8-bc2c883d8b58?db=5'
-  - 'http://h30434.www3.hp.com/t5/Notebook-Hardware/How-do-I-customize-the-Action-Keys/td-p/379207'
----
-name: ApplicationEventLog
-doc: Windows Application Event log.
-sources:
-- type: FILE
-  attributes:
-    paths: ['%%environ_systemroot%%\System32\winevt\Logs\AppEvent.evt']
-    separator: '\'
-conditions: [os_major_version < 6]
-labels: [Logs]
-supported_os: [Windows]
-urls: ['http://www.forensicswiki.org/wiki/Windows_Event_Log_(EVT)']
----
-name: ApplicationEventLogEvtx
-doc: Windows Application Event log for Vista or later systems.
-sources:
-- type: FILE
-  attributes:
-    paths: ['%%environ_systemroot%%\System32\winevt\Logs\Application.evtx']
-    separator: '\'
-conditions: [os_major_version >= 6]
-labels: [Logs]
-supported_os: [Windows]
-urls: ['http://www.forensicswiki.org/wiki/Windows_XML_Event_Log_(EVTX)']
----
-name: ApplicationRegistration
-doc: Application Registration (AppPath) registry keys.
-sources:
-- type: REGISTRY_KEY
-  attributes:
-    keys:
-    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\App Paths\*'
-    - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\App Paths\*'
-supported_os: [Windows]
-urls:
-- 'https://github.com/keydet89/RegRipper2.8/blob/master/plugins/apppaths.pl'
-- 'http://www.hexacorn.com/blog/2013/01/19/beyond-good-ol-run-key-part-3/'
-- 'https://msdn.microsoft.com/en-us/library/windows/desktop/ee872121(v=vs.85).aspx'
----
-name: APPX_PROCESSEnvironmentVariable
-doc: |
-  APPX_PROCESS environment variable. If this variable is set, .NET applications will attempt to load WinAppXRT.dll
-  from PATH, which is a potential persistence mechanism.
-sources:
-- type: REGISTRY_VALUE
-  attributes:
-    key_value_pairs:
-      - {key: 'HKEY_USERS\%%users.sid%%\Environment', value: 'APPX_PROCESS'}
-supported_os: [Windows]
-conditions: [os_major_version >= 6 AND os_minor_version >= 2]
-urls: ['http://www.hexacorn.com/blog/2014/08/31/beyond-good-ol-run-key-part-17/']
----
-name: AutoplayHandlers
-doc: Handlers for autoplay events.
-sources:
-- type: REGISTRY_KEY
-  attributes:
-    keys: ['HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\*']
-supported_os: [Windows]
-urls:
-  - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
-  - 'https://msdn.microsoft.com/en-us/library/windows/desktop/aa468474.aspx'
----
-name: AvailableTimeZones
-doc: The timezones available on the system.
-sources:
-- type: REGISTRY_KEY
-  attributes: {keys: ['HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Time Zones\*\*']}
-supported_os: [Windows]
-urls: ['https://github.com/libyal/winreg-kb/wiki/Time-zone-keys']
----
-name: BITSQueueManagerDatabases
-doc: Databases that control BITS job specs and state.
-sources:
-- type: FILE
-  attributes:
-    paths:
-      - '%%environ_allusersprofile%%\Microsoft\Network\Downloader\qmgr*.dat'
-supported_os: [Windows]
-urls: ['http://dfrws.org/2015/proceedings/presentations/DFRWS2015-pres3.pdf']
----
-name: ControlPanelFilePaths
-doc: DLLs listed here will be run when the user opens the Control Panel.
-sources:
-- type: REGISTRY_KEY
-  attributes:
-    keys:
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Control Panel\CPLs'
-      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Control Panel\CPLs'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Control Panel\CPLs'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Control Panel\CPLs'
-supported_os: [Windows]
-urls:
-  - 'https://msdn.microsoft.com/en-us/library/windows/desktop/hh127454(v=vs.85).aspx'
-  - 'http://www.geoffchappell.com/studies/windows/shell/shell32/classes/controlpanel.htm'
----
-name: EnvironmentUserLoginScripts
-doc: User login scripts configured via environment variables.
-sources:
-- type: REGISTRY_VALUE
-  attributes:
-    key_value_pairs:
-        - {key: 'HKEY_USERS\%%users.sid%%\Environment', value: 'UserInitLogonServer'}
-        - {key: 'HKEY_USERS\%%users.sid%%\Environment', value: 'UserInitLogonScript'}
-        - {key: 'HKEY_USERS\%%users.sid%%\Environment', value: 'UserMprLogonScript'}
-supported_os: [Windows]
-urls:
-- 'http://www.hexacorn.com/blog/2014/11/14/beyond-good-ol-run-key-part-18/'
-- 'https://social.msdn.microsoft.com/Forums/windowsdesktop/en-US/cb6f1d6f-60a6-4369-803e-ec03d902e638/gina-how-to-run-domain-scripts-after-logon'
----
-name: EventLogs
-doc: Windows Event logs.
-sources:
-- type: ARTIFACT_GROUP
-  attributes:
-    names:
-      - 'ApplicationEventLog'
-      - 'ApplicationEventLogEvtx'
-      - 'SecurityEventLog'
-      - 'SecurityEventLogEvtx'
-      - 'SystemEventLog'
-      - 'SystemEventLogEvtx'
-labels: [Logs]
-supported_os: [Windows]
----
-name: ExplorerContextMenuHandlers
-doc: Handlers for subcommands on context menu
-sources:
-- type: REGISTRY_VALUE
-  attributes:
-    key_value_pairs:
-        - {key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\*', value: 'CommandStateHandler'}
-        - {key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\*', value: 'ExplorerCommandHandler'}
-        - {key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\*', value: 'command'}
-        - {key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\*\command', value: 'DelegateExecute'}
-supported_os: [Windows]
-urls:
-- 'https://msdn.microsoft.com/en-us/library/windows/desktop/hh127467(v=vs.85).aspx'
-- 'https://msdn.microsoft.com/en-us/library/windows/desktop/cc144171(v=vs.85).aspx'
-- 'http://www.windowrdb.com/w.php?w=hklm-software-microsoft-windows-currentversion-explorer-commandstore-shell-windows-closewindow'
-- 'http://www.checkfilename.com/view-details/Windows-7-Ultimate/RespageIndex/4/sTab/2/'
----
-name: ExplorerNamespaceCommonPlaces
-doc: CLSIDs listed here are used to populate the Common Places items.
-sources:
-- type: REGISTRY_KEY
-  attributes:
-    keys:
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\CommonPlaces\NameSpace'
-      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\CommonPlaces\NameSpace'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\CommonPlaces\NameSpace'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\CommonPlaces\NameSpace'
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\CommonPlaces\NameSpace\DelegateFolders'
-      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\CommonPlaces\NameSpace\DelegateFolders'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\CommonPlaces\NameSpace\DelegateFolders'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\CommonPlaces\NameSpace\DelegateFolders'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\CommonPlaces\NameSpace'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\CommonPlaces\NameSpace'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\CommonPlaces\NameSpace\DelegateFolders'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\CommonPlaces\NameSpace\DelegateFolders'
-supported_os: [Windows]
-urls:
-  - 'https://msdn.microsoft.com/en-us/library/windows/desktop/hh127450(v=vs.85).aspx'
-  - 'http://www.geoffchappell.com/studies/windows/shell/shell32/classes/commonplacesfolder.htm'
-  - 'http://www.windowrdb.com/w.php?w=hklm-software-microsoft-windows-currentversion-explorer-commonplaces'
----
-name: ExplorerNamespaceControlPanel
-doc: CLSIDs listed here are used to populate the Control Panel items.
-sources:
-- type: REGISTRY_KEY
-  attributes:
-    keys:
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpace'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpace'
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpace\DelegateFolders'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpace\DelegateFolders'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\ControlPanel\NameSpace'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\ControlPanel\NameSpace\DelegateFolders'
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanelWOW64\NameSpace'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanelWOW64\NameSpace'
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpaceWOW64\DelegateFolders'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanelWOW64\NameSpace\DelegateFolders'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\ControlPanelWOW64\NameSpace'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\ControlPanelWOW64\NameSpace\DelegateFolders'
-      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpace'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpace'
-      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpace\DelegateFolders'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpace\DelegateFolders'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\ControlPanel\NameSpace'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\ControlPanel\NameSpace\DelegateFolders'
-      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\ControlPanelWOW64\NameSpace'
-      - 'HKEY_USERS\%%users.sid%%\Wow6432Node\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\ControlPanelWOW64\NameSpace\DelegateFolders'
-supported_os: [Windows]
-urls:
-  - 'https://msdn.microsoft.com/en-us/library/windows/desktop/hh127450(v=vs.85).aspx'
-  - 'http://www.geoffchappell.com/studies/windows/shell/shell32/classes/controlpanel.htm'
----
-name: ExplorerNamespaceDesktop
-doc: CLSIDs listed here are used to populate the Desktop items.
-sources:
-- type: REGISTRY_KEY
-  attributes:
-    keys:
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace'
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace\DelegateFolders'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace\DelegateFolders'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\Desktop\NameSpace'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\Desktop\NameSpace\DelegateFolders'
-      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace'
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Wow6432Node\Windows\CurrentVersion\Explorer\Desktop\NameSpace\DelegateFolders'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace\DelegateFolders'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\Desktop\NameSpace'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\Desktop\NameSpace\DelegateFolders'
-supported_os: [Windows]
-urls:
-  - 'https://social.technet.microsoft.com/Forums/windowsserver/en-US/2760309c-89d1-414c-a04c-ce4178e90787/hide-libraries-icon-from-desktop'
-  - 'http://www.geoffchappell.com/studies/windows/shell/shell32/classes/regfolder.htm'
-  - 'http://www.geoffchappell.com/notes/windows/shell/controlpanel/desktopicons.htm'
-  - 'https://support.microsoft.com/en-us/kb/321777'
----
-name: ExplorerNamespaceMyComputer
-doc: CLSIDs listed here are used to populate the MyComputer items.
-sources:
-- type: REGISTRY_KEY
-  attributes:
-    keys:
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace'
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\DelegateFolders'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\DelegateFolders'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\MyComputer\NameSpace'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\MyComputer\NameSpace\DelegateFolders'
-      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace'
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Wow6432Node\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\DelegateFolders'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\DelegateFolders'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\MyComputer\NameSpace'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\MyComputer\NameSpace\DelegateFolders'
-supported_os: [Windows]
-urls:
-  - 'http://www.geoffchappell.com/studies/windows/shell/shell32/classes/mycomputer.htm'
-  - 'http://www.howtogeek.com/168081/how-to-remove-the-folders-from-my-computer-in-windows-8.1/'
-  - 'http://answers.microsoft.com/en-us/windows/forum/windows8_1-files/how-to-remove-these-folders-from-windows-81/777c4ba3-7853-453e-bfa0-9a0f4245b9e1?db=5'
----
-name: ExplorerNamespaceNetworkNeighborhood
-doc: CLSIDs listed here are used to populate the Network Neighborhood items.
-sources:
-- type: REGISTRY_KEY
-  attributes:
-    keys:
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\NetworkNeighborhood\NameSpace'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\NetworkNeighborhood\NameSpace'
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\NetworkNeighborhood\NameSpace\DelegateFolders'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\NetworkNeighborhood\NameSpace\DelegateFolders'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\NetworkNeighborhood\NameSpace'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\NetworkNeighborhood\NameSpace\DelegateFolders'
-      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\NetworkNeighborhood\NameSpace'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\NetworkNeighborhood\NameSpace'
-      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\NetworkNeighborhood\NameSpace\DelegateFolders'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\NetworkNeighborhood\NameSpace\DelegateFolders'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\NetworkNeighborhood\NameSpace'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\NetworkNeighborhood\NameSpace\DelegateFolders'
-supported_os: [Windows]
-urls:
-  - 'http://www.geoffchappell.com/studies/windows/shell/shell32/classes/regfolder.htm'
-  - 'http://www.lavasoft.com/mylavasoft/rogues/secretservice'
-  - 'http://www.wikihow.com/Manually-Remove-Macatte-Malware'
----
-name: ExplorerNamespacePrintersAndFaxes
-doc: CLSIDs listed here are used to populate the Printer and Fax items.
-sources:
-- type: REGISTRY_KEY
-  attributes:
-    keys:
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\PrintersAndFaxes\NameSpace'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\PrintersAndFaxes\NameSpace'
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\PrintersAndFaxes\NameSpace\DelegateFolders'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\PrintersAndFaxes\NameSpace\DelegateFolders'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\PrintersAndFaxes\NameSpace'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\PrintersAndFaxes\NameSpace\DelegateFolders'
-      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\PrintersAndFaxes\NameSpace'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\PrintersAndFaxes\NameSpace'
-      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\PrintersAndFaxes\NameSpace\DelegateFolders'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\PrintersAndFaxes\NameSpace\DelegateFolders'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\PrintersAndFaxes\NameSpace'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\PrintersAndFaxes\NameSpace\DelegateFolders'
-supported_os: [Windows]
-urls:
-  - 'http://www.geoffchappell.com/studies/windows/shell/shell32/classes/printers.htm'
----
-name: MFTFiles
-doc: |
-  The NTFS $MFT and $MFTMirr file system metadata files.
-
-  GRR collection note: you currently need to specify 'use tsk' and
-  'ignore download size limits' for this artifact to work. This will go away in
-  the future.
-sources:
-- type: FILE
-  attributes:
-    paths:
-      - '%%environ_systemdrive%%\$MFT'
-      - '%%environ_systemdrive%%\$MFTMirr'
-    separator: '\'
-labels: [System]
-supported_os: [Windows]
----
-name: MostRecentApplication
-doc: Most Recent Application name key
-sources:
-- type: REGISTRY_VALUE
-  attributes:
-    key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\*\MostRecentApplication', value: 'Name'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\*\MostRecentApplication', value: 'Name'}
-supported_os: [Windows]
-urls:
-- 'http://www.trendmicro.com/vinfo/us/threat-encyclopedia/malware/troj_ransom.smc7'
-- 'https://www.symantec.com/security_response/writeup.jsp?docid=2014-092314-3644-99&tabid=2'
----
-name: PowershellDefaultProfiles
-doc: Default PowerShell Profile files. These files are executed by default when Powershell starts up.
-sources:
-- type: FILE
-  attributes:
-    paths:
-      - '%%environ_systemroot%%\system32\Windows­PowerShell\v1.0\profile.ps1'
-      - '%%environ_systemroot%%\system32\Windows­PowerShell\v1.0\Microsoft.PowerShell_profile.ps1'
-      - '%%users.homedir%%\Documents\WindowsPowerShell\profile.ps1'
-      - '%%users.homedir%%\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1'
-  supported_os: [Windows]
-urls:
-- 'https://technet.microsoft.com/en-us/magazine/2008.10.windowspowershell.aspx#id0190010'
-- 'http://www.hexacorn.com/blog/2014/08/27/beyond-good-ol-run-key-part-16/'
----
-name: PowerShellEnableScripts
-doc: Registry keys that control whether PowerShell scripts can execute directly.
-sources:
-- type: REGISTRY_VALUE
-  attributes:
-    key_value_pairs:
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Policies\Microsoft\Windows\PowerShell', value: 'EnableScripts'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\PowerShell', value: 'EnableScripts'}
-  supported_os: [Windows]
-urls:
-- 'https://technet.microsoft.com/library/hh847748.aspx'
-- 'http://www.hexacorn.com/blog/2014/08/27/beyond-good-ol-run-key-part-16/'
----
-name: PowerShellExecutionPolicies
-doc: Powershell Script Execution Policies for all users, and the system.
-sources:
-- type: REGISTRY_VALUE
-  attributes:
-    key_value_pairs:
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Policies\Microsoft\Windows\PowerShell', value: 'ExecutionPolicy'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\PowerShell', value: 'ExecutionPolicy'}
-  supported_os: [Windows]
-urls:
-- 'https://technet.microsoft.com/library/hh847748.aspx'
-- 'http://www.hexacorn.com/blog/2014/08/27/beyond-good-ol-run-key-part-16/'
----
-name: PrefetchFiles
-doc: Windows Prefetch files.
-sources:
-- type: FILE
-  attributes:
-    paths: ['%%environ_systemroot%%\Prefetch\*.pf']
-    separator: '\'
-labels: [System]
-supported_os: [Windows]
-urls: ['http://www.forensicswiki.org/wiki/Prefetch']
----
-name: PrintMonitors
-doc: Print Monitor DLL config.
-sources:
-- type: REGISTRY_VALUE
-  attributes:
-    key_value_pairs: [{key: '%%current_control_set%%\Control\Print\Monitors\*', value: 'Driver'}]
-supported_os: [Windows]
-urls:
-  - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
-  - 'https://support.microsoft.com/en-us/kb/102966'
----
-name: ProgramsCache
-doc: Windows Programs Cache
-sources:
-- type: REGISTRY_VALUE
-  attributes:
-    key_value_pairs:
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\StartPage', value: 'ProgramsCache'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\StartPage2', value: 'ProgramsCache'}
-supported_os: [Windows]
-urls: ['https://github.com/libyal/winreg-kb/blob/master/documentation/Programs%20Cache%20values.asciidoc']
----
-name: RegistryShellSpawning
-doc: Executed every time this file type is opened, should be "%1 %*".
-sources:
-- type: REGISTRY_KEY
-  attributes:
-    keys:
-      - 'HKEY_LOCAL_MACHINE\Software\Classes\*\shell\open\command'
-      - 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\*\shell\open\command'
-supported_os: [Windows]
-urls: ['http://gladiator-antivirus.com/forum/index.php?showtopic=24610']
----
-name: RoverAutostartFile
-doc: |
-  DLL loaded via the 'Rover' autostart mechanism. If this file exists, and the rover autostart key is set,
-  userinit.exe will load this file and call its RunMonitor export.
-sources:
-- type: FILE
-  attributes: {paths: ['%%environ_systemroot%%\System32\rover.dll']}
-supported_os: [Windows]
-urls: ['http://www.hexacorn.com/blog/2014/05/21/beyond-good-ol-run-key-part-12/']
----
-name: RoverAutostartKey
-doc: |
-  Registry key that triggers the Rover autostart registry key. When set, userinit.exe will load the DLL at
-  %SystemRoot%\System32\rover.dll' and call its RunMonitor export.
-sources:
-- type: REGISTRY_KEY
-  attributes: {keys: ['HKEY_CLASSES_ROOT\CLSID\{16d12736-7a9e-4765-bec6-f301d679caaa}']}
-supported_os: [Windows]
-urls: ['http://www.hexacorn.com/blog/2014/05/21/beyond-good-ol-run-key-part-12/']
----
-name: RunGrpConvFlag
-doc: The RunGrpConv registry key. When this key is set and has a non-zero value, userinit.exe will launch grpconv.exe at user login.
-sources:
-- type: REGISTRY_KEY
-  attributes: {keys: ['HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\RunGrpConv']}
-supported_os: [Windows]
-conditions: [os_major_version <= 5]
-urls:
-- 'http://www.hexacorn.com/blog/2014/06/18/beyond-good-ol-run-key-part-13/'
-- 'http://www.exploit-id.com/local-exploits/windows-xp-sp2-grpconv-exe'
----
-name: ScheduledTasks
-doc: Windows Scheduled Tasks.
-sources:
-- type: FILE
-  attributes:
-    paths:
-      - '%%environ_systemroot%%\Tasks\**10'
-      - '%%environ_systemroot%%\System32\Tasks\**10'
-      - '%%environ_systemroot%%\SysWow64\Tasks\**10'
-    separator: '\'
-supported_os: [Windows]
-urls: ['http://forensicswiki.org/wiki/Windows#Scheduled_Tasks']
----
-name: ScreenSaverExecutable
-doc: ScreenSaver Executable
-sources:
-- type: REGISTRY_VALUE
-  attributes:
-    key_value_pairs:
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Policies\Microsoft\Windows\Control Panel\Desktop', value: 'scrnsave.exe'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Control Panel\Desktop', value: 'scrnsave.exe'}
-supported_os: [Windows]
-urls:
-  - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
-  - 'https://technet.microsoft.com/en-us/library/cc737855(v=ws.10).aspx'
-  - 'https://technet.microsoft.com/en-us/library/cc957840.aspx'
----
-name: SecurityEventLog
-doc: Windows Security Event log.
-sources:
-- type: FILE
-  attributes:
-    paths: ['%%environ_systemroot%%\System32\winevt\Logs\SecEvent.evt']
-    separator: '\'
-conditions: [os_major_version < 6]
-labels: [Logs]
-supported_os: [Windows]
-urls: ['http://www.forensicswiki.org/wiki/Windows_Event_Log_(EVT)']
----
-name: SecurityEventLogEvtx
-doc: Windows Security Event log for Vista or later systems.
-sources:
-- type: FILE
-  attributes:
-    paths: ['%%environ_systemroot%%\System32\winevt\Logs\Security.evtx']
-    separator: '\'
-conditions: [os_major_version >= 6]
-labels: [Logs]
-supported_os: [Windows]
-urls: ['http://www.forensicswiki.org/wiki/Windows_XML_Event_Log_(EVTX)']
----
-name: SetupApiLogs
-doc: Windows setup API logs.
-sources:
-- type: FILE
-  attributes: {paths: ['%%environ_systemroot%%\setupapi.log']}
-  conditions: [os_major_version < 6]
-- type: FILE
-  attributes:
-    paths:
-      - '%%environ_systemroot%%\inf\setupapi.app.log'
-      - '%%environ_systemroot%%\inf\setupapi.dev.log'
-      - '%%environ_systemroot%%\inf\setupapi.offline.log'
-    separator: '\'
-  conditions: [os_major_version >= 6]
-labels: [Logs]
-supported_os: [Windows]
-urls: ['http://www.forensicswiki.org/wiki/Setup_API_Logs']
----
-name: SuperFetchFiles
-doc: Windows SuperFetch files.
-sources:
-- type: FILE
-  attributes:
-    paths:
-      - '%%environ_systemroot%%\Prefetch\Ag*.db'
-      - '%%environ_systemroot%%\Prefetch\Ag*.db.trx'
-    separator: '\'
-labels: [System]
-supported_os: [Windows]
-urls: ['http://www.forensicswiki.org/wiki/SuperFetch']
----
-name: SystemEventLog
-doc: Windows System Event log.
-sources:
-- type: FILE
-  attributes:
-    paths: ['%%environ_systemroot%%\System32\winevt\Logs\SysEvent.evt']
-    separator: '\'
-conditions: [os_major_version < 6]
-labels: [Logs]
-supported_os: [Windows]
-urls: ['http://www.forensicswiki.org/wiki/Windows_Event_Log_(EVT)']
----
-name: SystemEventLogEvtx
-doc: Windows System Event log for Vista or later systems.
-sources:
-- type: FILE
-  attributes:
-    paths: ['%%environ_systemroot%%\System32\winevt\Logs\System.evtx']
-    separator: '\'
-conditions: [os_major_version >= 6]
-labels: [Logs]
-supported_os: [Windows]
-urls: ['http://www.forensicswiki.org/wiki/Windows_XML_Event_Log_(EVTX)']
----
-name: TerminalServicesEventLogEvtx
-doc: Windows TerminalServices Event log.
-sources:
-- type: FILE
-  attributes:
-    paths: ['%%environ_systemroot%%\System32\winevt\Logs\Microsoft-Windows-TerminalServices-LocalSessionManager%4Operational.evtx']
-    separator: '\'
-conditions: [os_major_version >= 6]
-labels: [Logs]
-supported_os: [Windows]
-urls: ['http://www.forensicswiki.org/wiki/Windows_XML_Event_Log_(EVTX)']
----
-name: WinAppXRT
-doc: WinAppXRT DLL loaded by .Net applications when the APPX_PROCESS environment variable is set.
-sources:
-- type: FILE
-  attributes:
-    paths:
-    - '%%environ_systemroot%%\system32\WinAppXRT.dll'
-    - '%%environ_systemroot%%\WinAppXRT.dll'
-    - '%%environ_systemroot%%\System32\Wbem\WinAppXRT.dll'
-    - '%%environ_systemroot%%\System32\WindowsPowerShell\v1.0\WinAppXRT.dll'
-supported_os: [Windows]
-conditions: [os_major_version >= 6 AND os_minor_version >= 2]
-urls: ['http://www.hexacorn.com/blog/2014/08/31/beyond-good-ol-run-key-part-17/']
----
 name: WindowsActiveDesktop
 doc: Windows Active Desktop executable paths, used for persistence.
 sources:
@@ -641,6 +49,17 @@ sources:
 supported_os: [Windows]
 urls: ['http://blogs.technet.com/b/mmpc/archive/2011/03/19/how-to-defang-the-fake-defragmenter.aspx']
 ---
+name: WindowsAppCompatCache
+doc: Windows Application Compatibility Cache
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: '%%current_control_set%%\Control\Session Manager\AppCompatibility', value: 'AppCompatCache'}
+      - {key: '%%current_control_set%%\Control\Session Manager\AppCompatCache', value: 'AppCompatCache'}
+supported_os: [Windows]
+urls: ['https://github.com/libyal/winreg-kb/blob/master/documentation/Application%20Compatibility%20Cache%20key.asciidoc']
+---
 name: WindowsAppInitDLLs
 doc: |
   Windows Application Initial (AppInit) DLLs persistence.
@@ -659,6 +78,34 @@ supported_os: [Windows]
 urls:
 - 'https://msdn.microsoft.com/en-us/library/windows/desktop/dd744762(v=vs.85).aspx'
 - 'https://support.microsoft.com/en-us/kb/197571'
+---
+name: WindowsApplicationRegistration
+doc: Windows Application Registration (AppPath) Registry keys.
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
+    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\App Paths\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\App Paths\*'
+supported_os: [Windows]
+urls:
+- 'https://github.com/keydet89/RegRipper2.8/blob/master/plugins/apppaths.pl'
+- 'http://www.hexacorn.com/blog/2013/01/19/beyond-good-ol-run-key-part-3/'
+- 'https://msdn.microsoft.com/en-us/library/windows/desktop/ee872121(v=vs.85).aspx'
+---
+name: WinAppXRT
+doc: WinAppXRT DLL loaded by .Net applications when the APPX_PROCESS environment variable is set.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%environ_systemroot%%\system32\WinAppXRT.dll'
+    - '%%environ_systemroot%%\WinAppXRT.dll'
+    - '%%environ_systemroot%%\System32\Wbem\WinAppXRT.dll'
+    - '%%environ_systemroot%%\System32\WindowsPowerShell\v1.0\WinAppXRT.dll'
+supported_os: [Windows]
+conditions: [os_major_version >= 6 AND os_minor_version >= 2]
+urls: ['http://www.hexacorn.com/blog/2014/08/31/beyond-good-ol-run-key-part-17/']
 ---
 name: WindowsAutoexecBat
 doc: Windows autoexec.bat file
@@ -701,16 +148,73 @@ sources:
     separator: '\'
 supported_os: [Windows]
 ---
+name: WindowsAvailableTimeZones
+doc: Timezones available on a Windows system.
+sources:
+- type: REGISTRY_KEY
+  attributes: {keys: ['HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Time Zones\*\*']}
+supported_os: [Windows]
+urls: ['https://github.com/libyal/winreg-kb/wiki/Time-zone-keys']
+---
+name: WindowsBITSQueueManagerDatabases
+doc: Databases that contain the Windows BITS jobs definition and state.
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '%%environ_allusersprofile%%\Microsoft\Network\Downloader\qmgr*.dat'
+supported_os: [Windows]
+urls: ['http://dfrws.org/2015/proceedings/presentations/DFRWS2015-pres3.pdf']
+---
 name: WindowsBootVerificationProgram
 doc: Path to custom startup verification program.
 sources:
 - type: REGISTRY_VALUE
   attributes:
-    key_value_pairs: [{key: '%%current_control_set%%\Control\BootVerificationProgram', value: 'ImagePath'}]
+    key_value_pairs:
+      - {key: '%%current_control_set%%\Control\BootVerificationProgram', value: 'ImagePath'}
 supported_os: [Windows]
 urls:
 - 'https://technet.microsoft.com/en-us/library/cc786702(WS.10).aspx'
 - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
+---
+name: WindowsCodePage
+doc: The code page of the system.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: '%%current_control_set%%\Control\Nls\CodePage', value: 'ACP'}
+provides: [code_page]
+supported_os: [Windows]
+urls: ['http://en.wikipedia.org/wiki/Windows_code_page']
+---
+name: WindowsComputerName
+doc: The name of the system.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: '%%current_control_set%%\Control\ComputerName\ComputerName', value: 'ComputerName'}
+provides: [hostname]
+supported_os: [Windows]
+---
+name: WindowsCommandProcessorAutoRun
+doc: Commands that are run each time the Command Processor (Cmd.exe) is started.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Command Processor', value: 'AutoRun'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Command Processor', value: 'AutoRun'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Command Processor', value: 'AutoRun'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Command Processor', value: 'AutoRun'}
+supported_os: [Windows]
+urls:
+- 'https://technet.microsoft.com/en-us/library/cc779439(v=ws.10).aspx'
+- 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
+- 'http://blogs.msdn.com/b/oldnewthing/archive/2007/11/21/6447771.aspx'
+- 'https://technet.microsoft.com/en-us/library/cc756720(v=ws.10).aspx'
 ---
 name: WindowsCOMInprocHandlers
 doc: Windows COM in-process handlers
@@ -774,46 +278,6 @@ supported_os: [Windows]
 urls:
 - 'https://msdn.microsoft.com/en-us/library/windows/desktop/ms694515(v=vs.85).aspx'
 - 'https://msdn.microsoft.com/en-us/library/windows/desktop/ms686595(v=vs.85).aspx'
-- 'https://msdn.microsoft.com/en-us/library/windows/desktop/ms683844(v=vs.85).aspx'
----
-name: WindowsCommandProcessorAutoRun
-doc: Commands that are run each time the Command Processor (Cmd.exe) is started.
-sources:
-- type: REGISTRY_VALUE
-  attributes:
-    key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Command Processor', value: 'AutoRun'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Command Processor', value: 'AutoRun'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Command Processor', value: 'AutoRun'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Command Processor', value: 'AutoRun'}
-supported_os: [Windows]
-urls:
-- 'https://technet.microsoft.com/en-us/library/cc779439(v=ws.10).aspx'
-- 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
-- 'http://blogs.msdn.com/b/oldnewthing/archive/2007/11/21/6447771.aspx'
-- 'https://technet.microsoft.com/en-us/library/cc756720(v=ws.10).aspx'
----
-name: WindowsCommonFilePlacementAttacks
-doc: Common files associated with search order hijacking and other file placement attacks.
-sources:
-- type: FILE
-  attributes:
-    paths:
-      - '%%environ_programfiles%%\Internet Explorer\sxs.dll'
-      - '%%environ_programfilesx86%%\Internet Explorer\sxs.dll'
-      - '%%environ_systemdrive%%\explorer.exe'
-      - '%%environ_systemdrive%%\program.exe'
-      - '%%environ_systemroot%%\linkinfo.dll'
-      - '%%environ_systemroot%%\ntshrui.dll'
-      - '%%environ_systemroot%%\System32\oci.dll'
-      - '%%environ_systemroot%%\System32\sysprep\cryptbase.dll'
-      - '%%environ_systemroot%%\SysWOW64\oci.dll'
-      - '%%environ_systemroot%%\SysWOW64\sysprep\cryptbase.dll'
-    separator: '\'
-supported_os: [Windows]
-urls:
-- 'http://web.cs.ucdavis.edu/~su/publications/issta10-loading.pdf'
-- 'https://www.mandiant.com/blog/fxsst/'
 ---
 name: WindowsConfigSys
 doc: Windows config.sys file
@@ -825,6 +289,22 @@ sources:
       - '%%environ_windir%%\config.nt'
     separator: '\'
 supported_os: [Windows]
+---
+name: WindowsControlPanelFilePaths
+doc: DLLs listed here will be run when the user opens the Windows Control Panel.
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Control Panel\CPLs'
+      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Control Panel\CPLs'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Control Panel\CPLs'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Control Panel\CPLs'
+supported_os: [Windows]
+urls:
+- 'https://msdn.microsoft.com/en-us/library/windows/desktop/hh127454(v=vs.85).aspx'
+- 'http://www.geoffchappell.com/studies/windows/shell/shell32/classes/controlpanel.htm'
+- 'https://msdn.microsoft.com/en-us/library/windows/desktop/ms683844(v=vs.85).aspx'
 ---
 name: WindowsCredentialProviderFilters
 doc: Windows Credential Provider Filters
@@ -852,6 +332,28 @@ urls:
 - 'http://blog.leetsys.com/2012/01/02/capturing-windows-7-credentials-at-logon-using-custom-credential-provider/'
 - 'https://www.sophos.com/en-us/support/knowledgebase/114190.aspx'
 ---
+name: WindowsCommonFilePlacementAttacks
+doc: Common files associated with search order hijacking and other file placement attacks.
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '%%environ_programfiles%%\Internet Explorer\sxs.dll'
+      - '%%environ_programfilesx86%%\Internet Explorer\sxs.dll'
+      - '%%environ_systemdrive%%\explorer.exe'
+      - '%%environ_systemdrive%%\program.exe'
+      - '%%environ_systemroot%%\linkinfo.dll'
+      - '%%environ_systemroot%%\ntshrui.dll'
+      - '%%environ_systemroot%%\System32\oci.dll'
+      - '%%environ_systemroot%%\System32\sysprep\cryptbase.dll'
+      - '%%environ_systemroot%%\SysWOW64\oci.dll'
+      - '%%environ_systemroot%%\SysWOW64\sysprep\cryptbase.dll'
+    separator: '\'
+supported_os: [Windows]
+urls:
+- 'http://web.cs.ucdavis.edu/~su/publications/issta10-loading.pdf'
+- 'https://www.mandiant.com/blog/fxsst/'
+---
 name: WindowsDebugger
 doc: Windows Debugger peristence or AV disable.
 sources:
@@ -865,6 +367,272 @@ sources:
 supported_os: [Windows]
 urls: ['https://msdn.microsoft.com/en-us/library/a329t4ed%28VS.71%29.aspx']
 ---
+name: WindowsDomainName
+doc: The domain the system is connected to.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: '%%current_control_set%%\Services\Tcpip\Parameters', value: 'Domain'}
+provides: [domain]
+supported_os: [Windows]
+---
+name: WindowsEnvironmentUserLoginScripts
+doc: User login scripts configured via Windows environment variables.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_USERS\%%users.sid%%\Environment', value: 'UserInitLogonServer'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Environment', value: 'UserInitLogonScript'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Environment', value: 'UserMprLogonScript'}
+supported_os: [Windows]
+urls:
+- 'http://www.hexacorn.com/blog/2014/11/14/beyond-good-ol-run-key-part-18/'
+- 'https://social.msdn.microsoft.com/Forums/windowsdesktop/en-US/cb6f1d6f-60a6-4369-803e-ec03d902e638/gina-how-to-run-domain-scripts-after-logon'
+---
+name: WindowsEnvironmentVariableAllUsersAppData
+doc: The %ProgramData% environment variable.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\ProfileList', value: 'ProgramData'}
+provides: [environ_allusersappdata]
+supported_os: [Windows]
+urls: ['http://environmentvariables.org/ProgramData']
+---
+name: WindowsEnvironmentVariableAllUsersProfile
+doc: The %AllUsersProfile% environment variable.
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\ProfileList\ProfilesDirectory'
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\ProfileList\AllUsersProfile'
+provides: [environ_allusersprofile]
+supported_os: [Windows]
+urls: ['http://support.microsoft.com/kb//214653']
+---
+name: WindowsEnvironmentVariableAppxProcess
+doc: |
+  The %APPX_PROCESS% environment variable.
+
+  If this variable is set, .NET applications will attempt to load WinAppXRT.dll
+  from PATH, which is a potential persistence mechanism.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_USERS\%%users.sid%%\Environment', value: 'APPX_PROCESS'}
+supported_os: [Windows]
+conditions: [os_major_version >= 6 AND os_minor_version >= 2]
+urls: ['http://www.hexacorn.com/blog/2014/08/31/beyond-good-ol-run-key-part-17/']
+---
+name: WindowsEnvironmentVariablePath
+doc: The %PATH% environment variable.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: '%%current_control_set%%\Control\Session Manager\Environment', value: 'Path'}
+provides: [environ_path]
+supported_os: [Windows]
+urls: ['http://environmentvariables.org/Path']
+---
+name: WindowsEnvironmentVariableProgramFiles
+doc: The %ProgramFiles% environment variable.
+sources:
+- type: PATH
+  attributes:
+    paths: ['\Program Files']
+    separator: '\'
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion', value: 'ProgramFilesDir'}
+provides: [environ_programfiles]
+supported_os: [Windows]
+urls: ['http://environmentvariables.org/ProgramFiles']
+---
+name: WindowsEnvironmentVariableProgramFilesX86
+doc: The %ProgramFiles(x86)% environment variable.
+sources:
+- type: PATH
+  attributes:
+    paths: ['\Program Files (x86)']
+    separator: '\'
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion', value: 'ProgramFilesDir (x86)'}
+provides: [environ_programfilesx86]
+supported_os: [Windows]
+urls: ['http://environmentvariables.org/ProgramFiles']
+---
+name: WindowsEnvironmentVariableSystemDrive
+doc: |
+  The %SystemDrive% environment variable, usually "C:".
+
+  This value isn't actually present in the Registry but with some parsing we
+  can figure it out from SystemRoot.
+sources:
+- type: ARTIFACT_GROUP
+  attributes: {names: ['WindowsEnvironmentVariableSystemRoot']}
+provides: [environ_systemdrive]
+supported_os: [Windows]
+urls:
+- 'http://environmentvariables.org/SystemDrive'
+- 'https://msdn.microsoft.com/en-us/library/cc231436.aspx'
+---
+name: WindowsEnvironmentVariableSystemRoot
+doc: The system root directory path, defined by %SystemRoot%, typically "C:\Windows".
+sources:
+- type: PATH
+  attributes:
+    paths:
+      - '\Windows'
+      - '\WinNT'
+      - '\WINNT35'
+      - '\WTSRV'
+    separator: '\'
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion', value: 'SystemRoot'}
+provides: [environ_systemroot]
+supported_os: [Windows]
+urls: ['http://environmentvariables.org/SystemRoot']
+---
+name: WindowsEnvironmentVariableTemp
+doc: The %TEMP% environment variable.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: '%%current_control_set%%\Control\Session Manager\Environment', value: 'TEMP'}
+provides: [environ_temp]
+supported_os: [Windows]
+urls: ['http://environmentvariables.org/Temp']
+---
+name: WindowsEnvironmentVariableWinDir
+doc: The %WinDir% environment variable.
+sources:
+- type: PATH
+  attributes:
+    paths:
+      - '\Windows'
+      - '\WinNT'
+      - '\WINNT35'
+      - '\WTSRV'
+    separator: '\'
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: '%%current_control_set%%\Control\Session Manager\Environment', value: 'windir'}
+provides: [environ_windir]
+supported_os: [Windows]
+urls: ['http://environmentvariables.org/WinDir']
+---
+name: WindowsEventLogs
+doc: Windows Event logs.
+sources:
+- type: ARTIFACT_GROUP
+  attributes:
+    names:
+      - 'WindowsEventLogApplication'
+      - 'WindowsEventLogSecurity'
+      - 'WindowsEventLogSystem'
+      - 'WindowsXMLEventLogApplication'
+      - 'WindowsXMLEventLogSecurity'
+      - 'WindowsXMLEventLogSystem'
+labels: [Logs]
+supported_os: [Windows]
+---
+name: WindowsEventLogApplication
+doc: Application Windows Event Log.
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%environ_systemroot%%\System32\winevt\Logs\AppEvent.evt']
+    separator: '\'
+conditions: [os_major_version < 6]
+labels: [Logs]
+supported_os: [Windows]
+urls: ['http://www.forensicswiki.org/wiki/Windows_Event_Log_(EVT)']
+---
+name: WindowsEventLogSecurity
+doc: Security Windows Event Log.
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%environ_systemroot%%\System32\winevt\Logs\SecEvent.evt']
+    separator: '\'
+conditions: [os_major_version < 6]
+labels: [Logs]
+supported_os: [Windows]
+urls: ['http://www.forensicswiki.org/wiki/Windows_Event_Log_(EVT)']
+---
+name: WindowsEventLogSystem
+doc: System Windows Event Log.
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%environ_systemroot%%\System32\winevt\Logs\SysEvent.evt']
+    separator: '\'
+conditions: [os_major_version < 6]
+labels: [Logs]
+supported_os: [Windows]
+urls: ['http://www.forensicswiki.org/wiki/Windows_Event_Log_(EVT)']
+---
+name: WindowsXMLEventLogApplication
+doc: Application Windows XML Event Log.
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%environ_systemroot%%\System32\winevt\Logs\Application.evtx']
+    separator: '\'
+conditions: [os_major_version >= 6]
+labels: [Logs]
+supported_os: [Windows]
+urls: ['http://www.forensicswiki.org/wiki/Windows_XML_Event_Log_(EVTX)']
+---
+name: WindowsXMLEventLogSecurity
+doc: Security Windows XML Event Log.
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%environ_systemroot%%\System32\winevt\Logs\Security.evtx']
+    separator: '\'
+conditions: [os_major_version >= 6]
+labels: [Logs]
+supported_os: [Windows]
+urls: ['http://www.forensicswiki.org/wiki/Windows_XML_Event_Log_(EVTX)']
+---
+name: WindowsXMLEventLogSystem
+doc: System Windows XML Event Log.
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%environ_systemroot%%\System32\winevt\Logs\System.evtx']
+    separator: '\'
+conditions: [os_major_version >= 6]
+labels: [Logs]
+supported_os: [Windows]
+urls: ['http://www.forensicswiki.org/wiki/Windows_XML_Event_Log_(EVTX)']
+---
+name: WindowsXMLEventLogTerminalServices
+doc: TerminalServices Windows XML Event Log.
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%environ_systemroot%%\System32\winevt\Logs\Microsoft-Windows-TerminalServices-LocalSessionManager%4Operational.evtx']
+    separator: '\'
+conditions: [os_major_version >= 6]
+labels: [Logs]
+supported_os: [Windows]
+urls: ['http://www.forensicswiki.org/wiki/Windows_XML_Event_Log_(EVTX)']
+---
 name: WindowsExcludeFromKnownDLLs
 doc: ExcludeFromKnownDLLs can be used to bypass search order hijacking protection.
 sources:
@@ -873,6 +641,196 @@ sources:
     key_value_pairs: [{key: '%%current_control_set%%\Control\Session Manager', value: 'ExcludeFromKnownDLLs'}]
 supported_os: [Windows]
 urls: ['https://msdn.microsoft.com/en-us/library/windows/desktop/ms682586%28v=vs.85%29.aspx']
+---
+name: WindowsExplorerAppKey
+doc: Handlers for special keys on some keyboards (file path or CLSID).
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\AppKey\*', value: 'ShellExecute'}
+supported_os: [Windows]
+urls:
+- 'http://answers.microsoft.com/en-us/windows/forum/windows_vista-hardware/assigning-the-special-keys-at-the-top-of-the/d1ab2e13-5297-457d-a8e8-bc2c883d8b58?db=5'
+- 'http://h30434.www3.hp.com/t5/Notebook-Hardware/How-do-I-customize-the-Action-Keys/td-p/379207'
+---
+name: WindowsExplorerAutoplayHandlers
+doc: Handlers for autoplay events in Windows Explorer.
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys: ['HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers\Handlers\*']
+supported_os: [Windows]
+urls:
+- 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
+- 'https://msdn.microsoft.com/en-us/library/windows/desktop/aa468474.aspx'
+---
+name: WindowsExplorerContextMenuHandlers
+doc: Handlers for subcommands on context menu
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+        - {key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\*', value: 'CommandStateHandler'}
+        - {key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\*', value: 'ExplorerCommandHandler'}
+        - {key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\*', value: 'command'}
+        - {key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\*\command', value: 'DelegateExecute'}
+supported_os: [Windows]
+urls:
+- 'https://msdn.microsoft.com/en-us/library/windows/desktop/hh127467(v=vs.85).aspx'
+- 'https://msdn.microsoft.com/en-us/library/windows/desktop/cc144171(v=vs.85).aspx'
+- 'http://www.windowrdb.com/w.php?w=hklm-software-microsoft-windows-currentversion-explorer-commandstore-shell-windows-closewindow'
+- 'http://www.checkfilename.com/view-details/Windows-7-Ultimate/RespageIndex/4/sTab/2/'
+---
+name: WindowsExplorerNamespaceCommonPlaces
+doc: CLSIDs listed here are used to populate the Common Places items.
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\CommonPlaces\NameSpace'
+      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\CommonPlaces\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\CommonPlaces\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\CommonPlaces\NameSpace'
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\CommonPlaces\NameSpace\DelegateFolders'
+      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\CommonPlaces\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\CommonPlaces\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\CommonPlaces\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\CommonPlaces\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\CommonPlaces\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\CommonPlaces\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\CommonPlaces\NameSpace\DelegateFolders'
+supported_os: [Windows]
+urls:
+- 'https://msdn.microsoft.com/en-us/library/windows/desktop/hh127450(v=vs.85).aspx'
+- 'http://www.geoffchappell.com/studies/windows/shell/shell32/classes/commonplacesfolder.htm'
+- 'http://www.windowrdb.com/w.php?w=hklm-software-microsoft-windows-currentversion-explorer-commonplaces'
+---
+name: WindowsExplorerNamespaceControlPanel
+doc: CLSIDs listed here are used to populate the Control Panel items.
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpace'
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\ControlPanel\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\ControlPanel\NameSpace\DelegateFolders'
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanelWOW64\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanelWOW64\NameSpace'
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpaceWOW64\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanelWOW64\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\ControlPanelWOW64\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\ControlPanelWOW64\NameSpace\DelegateFolders'
+      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpace'
+      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\ControlPanel\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\ControlPanel\NameSpace\DelegateFolders'
+      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\ControlPanelWOW64\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Wow6432Node\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\ControlPanelWOW64\NameSpace\DelegateFolders'
+supported_os: [Windows]
+urls:
+- 'https://msdn.microsoft.com/en-us/library/windows/desktop/hh127450(v=vs.85).aspx'
+- 'http://www.geoffchappell.com/studies/windows/shell/shell32/classes/controlpanel.htm'
+---
+name: WindowsExplorerNamespaceDesktop
+doc: CLSIDs listed here are used to populate the Desktop items.
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace'
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\Desktop\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\Desktop\NameSpace\DelegateFolders'
+      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace'
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Wow6432Node\Windows\CurrentVersion\Explorer\Desktop\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\Desktop\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\Desktop\NameSpace\DelegateFolders'
+supported_os: [Windows]
+urls:
+- 'https://social.technet.microsoft.com/Forums/windowsserver/en-US/2760309c-89d1-414c-a04c-ce4178e90787/hide-libraries-icon-from-desktop'
+- 'http://www.geoffchappell.com/studies/windows/shell/shell32/classes/regfolder.htm'
+- 'http://www.geoffchappell.com/notes/windows/shell/controlpanel/desktopicons.htm'
+- 'https://support.microsoft.com/en-us/kb/321777'
+---
+name: WindowsExplorerNamespaceMyComputer
+doc: CLSIDs listed here are used to populate the MyComputer items.
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace'
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\MyComputer\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\MyComputer\NameSpace\DelegateFolders'
+      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace'
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Wow6432Node\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\MyComputer\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\MyComputer\NameSpace\DelegateFolders'
+supported_os: [Windows]
+urls:
+- 'http://www.geoffchappell.com/studies/windows/shell/shell32/classes/mycomputer.htm'
+- 'http://www.howtogeek.com/168081/how-to-remove-the-folders-from-my-computer-in-windows-8.1/'
+- 'http://answers.microsoft.com/en-us/windows/forum/windows8_1-files/how-to-remove-these-folders-from-windows-81/777c4ba3-7853-453e-bfa0-9a0f4245b9e1?db=5'
+---
+name: WindowsExplorerNamespaceNetworkNeighborhood
+doc: CLSIDs listed here are used to populate the Network Neighborhood items.
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\NetworkNeighborhood\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\NetworkNeighborhood\NameSpace'
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\NetworkNeighborhood\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\NetworkNeighborhood\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\NetworkNeighborhood\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\NetworkNeighborhood\NameSpace\DelegateFolders'
+      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\NetworkNeighborhood\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\NetworkNeighborhood\NameSpace'
+      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\NetworkNeighborhood\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\NetworkNeighborhood\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\NetworkNeighborhood\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\NetworkNeighborhood\NameSpace\DelegateFolders'
+supported_os: [Windows]
+urls:
+- 'http://www.geoffchappell.com/studies/windows/shell/shell32/classes/regfolder.htm'
+- 'http://www.lavasoft.com/mylavasoft/rogues/secretservice'
+- 'http://www.wikihow.com/Manually-Remove-Macatte-Malware'
+---
+name: WindowsExplorerNamespacePrintersAndFaxes
+doc: CLSIDs listed here are used to populate the Printer and Fax items.
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\PrintersAndFaxes\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\PrintersAndFaxes\NameSpace'
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\PrintersAndFaxes\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\PrintersAndFaxes\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\PrintersAndFaxes\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\PrintersAndFaxes\NameSpace\DelegateFolders'
+      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\PrintersAndFaxes\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\PrintersAndFaxes\NameSpace'
+      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\PrintersAndFaxes\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\PrintersAndFaxes\NameSpace\DelegateFolders'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\PrintersAndFaxes\NameSpace'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\PrintersAndFaxes\NameSpace\DelegateFolders'
+supported_os: [Windows]
+urls:
+- 'http://www.geoffchappell.com/studies/windows/shell/shell32/classes/printers.htm'
 ---
 name: WindowsFileTypeAutorunAssociations
 doc: |
@@ -984,6 +942,19 @@ urls:
 - 'https://msdn.microsoft.com/en-us/library/windows/desktop/aa379392(v=vs.85).aspx'
 - 'https://dl.mandiant.com/EE/library/MIRcon2014/MIRcon_2014_IR_Track_Analysis_of_Malicious_SSP.pdf'
 ---
+name: WindowsMostRecentApplication
+doc: Windows Most Recent Application name key
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\*\MostRecentApplication', value: 'Name'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\*\MostRecentApplication', value: 'Name'}
+supported_os: [Windows]
+urls:
+- 'http://www.trendmicro.com/vinfo/us/threat-encyclopedia/malware/troj_ransom.smc7'
+- 'https://www.symantec.com/security_response/writeup.jsp?docid=2014-092314-3644-99&tabid=2'
+---
 name: WindowsMSDTCDLLs
 doc: Windows MSDTC attempts to load these DLLs on start
 sources:
@@ -1033,8 +1004,8 @@ sources:
 - type: ARTIFACT_GROUP
   attributes:
     names:
-      - PowershellDefaultProfiles
       - WindowsPersistenceRegistryKeys
+      - WindowsPowerShellDefaultProfiles
       - WindowsServices
   returned_types: [PersistenceFile]
 labels: [Software]
@@ -1046,13 +1017,7 @@ sources:
 - type: ARTIFACT_GROUP
   attributes:
     names:
-      - AutoplayHandlers
-      - EnvironmentUserLoginScripts
       - InternetExplorerBrowserHelperObjects
-      - PrintMonitors
-      - RegistryShellSpawning
-      - RunGrpConvFlag
-      - ScreenSaverExecutable
       - WindowsActiveDesktop
       - WindowsAlternateShell
       - WindowsAppCertDLLs
@@ -1062,6 +1027,8 @@ sources:
       - WindowsCredentialProviderFilters
       - WindowsCredentialProviders
       - WindowsDebugger
+      - WindowsEnvironmentUserLoginScripts
+      - WindowsExplorerAutoplayHandlers
       - WindowsFileTypeAutorunAssociations
       - WindowsLSAAuthenticationPackages
       - WindowsLSANotificationPackages
@@ -1070,8 +1037,11 @@ sources:
       - WindowsMultiMediaDrivers
       - WindowsNetworkShellHelpers
       - WindowsPLAPProviders
+      - WindowsPrintMonitors
+      - WindowsRunGrpConv
       - WindowsRunKeys
       - WindowsRunServices
+      - WindowsScreenSaverExecutable
       - WindowsSecurityProviders
       - WindowsServiceControlManagerExtension
       - WindowsSessionManagerBootExecute
@@ -1084,6 +1054,7 @@ sources:
       - WindowsShellExtensions
       - WindowsShellIconOverlayIdentifiers
       - WindowsShellLoadAndRun
+      - WindowsShellOpenCommand
       - WindowsShellServiceObjects
       - WindowsStubPaths
       - WindowsSystemPolicyShell
@@ -1124,6 +1095,88 @@ labels: [Software]
 supported_os: [Windows]
 urls: ['https://support.microsoft.com/en-us/kb/323525']
 ---
+name: WindowsPowerShellDefaultProfiles
+doc: Default PowerShell Profile files. These files are executed by default when PowerShell starts up.
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '%%environ_systemroot%%\system32\Windows­PowerShell\v1.0\profile.ps1'
+      - '%%environ_systemroot%%\system32\Windows­PowerShell\v1.0\Microsoft.PowerShell_profile.ps1'
+      - '%%users.homedir%%\Documents\WindowsPowerShell\profile.ps1'
+      - '%%users.homedir%%\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1'
+  supported_os: [Windows]
+urls:
+- 'https://technet.microsoft.com/en-us/magazine/2008.10.windowspowershell.aspx#id0190010'
+- 'http://www.hexacorn.com/blog/2014/08/27/beyond-good-ol-run-key-part-16/'
+---
+name: WindowsPowerShellEnableScripts
+doc: Registry keys that control whether PowerShell scripts can execute directly.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Policies\Microsoft\Windows\PowerShell', value: 'EnableScripts'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\PowerShell', value: 'EnableScripts'}
+  supported_os: [Windows]
+urls:
+- 'https://technet.microsoft.com/library/hh847748.aspx'
+- 'http://www.hexacorn.com/blog/2014/08/27/beyond-good-ol-run-key-part-16/'
+---
+name: WindowsPowerShellExecutionPolicies
+doc: PowerShell Script Execution Policies for all users, and the system.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Policies\Microsoft\Windows\PowerShell', value: 'ExecutionPolicy'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\PowerShell', value: 'ExecutionPolicy'}
+  supported_os: [Windows]
+urls:
+- 'https://technet.microsoft.com/library/hh847748.aspx'
+- 'http://www.hexacorn.com/blog/2014/08/27/beyond-good-ol-run-key-part-16/'
+---
+name: WindowsPrefetchFiles
+doc: Windows Prefetch files.
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%environ_systemroot%%\Prefetch\*.pf']
+    separator: '\'
+labels: [System]
+supported_os: [Windows]
+urls: ['http://www.forensicswiki.org/wiki/Prefetch']
+---
+name: WindowsPrintMonitors
+doc: Windows Print Monitor DLL config.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs: [{key: '%%current_control_set%%\Control\Print\Monitors\*', value: 'Driver'}]
+supported_os: [Windows]
+urls:
+- 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
+- 'https://support.microsoft.com/en-us/kb/102966'
+---
+name: WindowsProductName
+doc: The Windows product name
+sources:
+- type: REGISTRY_VALUE
+  attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion', value: 'ProductName'}]}
+supported_os: [Windows]
+urls: ['https://github.com/libyal/winreg-kb/blob/master/documentation/System%20keys.asciidoc']
+---
+name: WindowsProgramsCache
+doc: Windows Programs Cache
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\StartPage', value: 'ProgramsCache'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\StartPage2', value: 'ProgramsCache'}
+supported_os: [Windows]
+urls: ['https://github.com/libyal/winreg-kb/blob/master/documentation/Programs%20Cache%20values.asciidoc']
+---
 name: WindowsRecentFileCacheBCF
 doc: The RecentFileCache.bcf file.
 sources:
@@ -1147,6 +1200,67 @@ sources:
 labels: [Users]
 supported_os: [Windows]
 urls: ['http://www.forensicswiki.org/wiki/Windows#Recycle_Bin']
+---
+name: WindowsRegistryCurrentControlSet
+doc: The current control set of the Windows Registry.
+sources:
+- type: REGISTRY_VALUE
+  attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\System\Select', value: 'Current'}]}
+provides: [current_control_set]
+supported_os: [Windows]
+urls: ['https://github.com/libyal/winreg-kb/wiki/System-keys']
+---
+name: WindowsRegistryProfiles
+doc: |
+  Get SIDs for all users on the system with profiles present in the Registry.
+
+  This looks in the Windows Registry where the profiles are stored and retrieves
+  the paths for each profile.
+sources:
+- type: REGISTRY_VALUE
+  attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\ProfileList\*', value: 'ProfileImagePath'}]}
+labels: [Users]
+provides: [users.sid, users.userprofile, users.homedir, users.username]
+supported_os: [Windows]
+urls: ['http://msdn.microsoft.com/en-us/library/windows/desktop/bb776892(v=vs.85).aspx']
+---
+name: WindowsRoverAutostartDLL
+doc: |
+  Windows Rover autostart DLL.
+
+  The DLL loaded via the Windows Rover autostart mechanism.
+  If this file exists, and the Rover autostart Registry key is set,
+  userinit.exe will load this file and call its RunMonitor export.
+sources:
+- type: FILE
+  attributes: {paths: ['%%environ_systemroot%%\System32\rover.dll']}
+supported_os: [Windows]
+urls: ['http://www.hexacorn.com/blog/2014/05/21/beyond-good-ol-run-key-part-12/']
+---
+name: WindowsRoverAutostartKey
+doc: |
+  Windows Rover autostart Registry key.
+
+  When set userinit.exe will load the DLL at %SystemRoot%\System32\rover.dll and call its RunMonitor export.
+sources:
+- type: REGISTRY_KEY
+  attributes: {keys: ['HKEY_CLASSES_ROOT\CLSID\{16d12736-7a9e-4765-bec6-f301d679caaa}']}
+supported_os: [Windows]
+urls: ['http://www.hexacorn.com/blog/2014/05/21/beyond-good-ol-run-key-part-12/']
+---
+name: WindowsRunGrpConv
+doc: |
+  The Windows RunGrpConv Registry value.
+
+  When this Registry value is non-zero userinit.exe will launch grpconv.exe at user login.
+sources:
+- type: REGISTRY_VALUE
+  attributes: {key_value_pairs: [{key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'RunGrpConv'}]}
+supported_os: [Windows]
+conditions: [os_major_version <= 5]
+urls:
+- 'http://www.hexacorn.com/blog/2014/06/18/beyond-good-ol-run-key-part-13/'
+- 'http://www.exploit-id.com/local-exploits/windows-xp-sp2-grpconv-exe'
 ---
 name: WindowsRunKeys
 doc: |
@@ -1198,6 +1312,33 @@ sources:
       - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunServices\*'
 supported_os: [Windows]
 urls: ['https://support.microsoft.com/en-us/kb/179365']
+---
+name: WindowsScheduledTasks
+doc: Windows Scheduled Tasks.
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '%%environ_systemroot%%\Tasks\**10'
+      - '%%environ_systemroot%%\System32\Tasks\**10'
+      - '%%environ_systemroot%%\SysWow64\Tasks\**10'
+    separator: '\'
+supported_os: [Windows]
+urls: ['http://forensicswiki.org/wiki/Windows#Scheduled_Tasks']
+---
+name: WindowsScreenSaverExecutable
+doc: ScreenSaver Executable
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Policies\Microsoft\Windows\Control Panel\Desktop', value: 'scrnsave.exe'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Control Panel\Desktop', value: 'scrnsave.exe'}
+supported_os: [Windows]
+urls:
+- 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
+- 'https://technet.microsoft.com/en-us/library/cc737855(v=ws.10).aspx'
+- 'https://technet.microsoft.com/en-us/library/cc957840.aspx'
 ---
 name: WindowsSearchDatabase
 doc: Windows Search database (Windows.edb).
@@ -1419,6 +1560,17 @@ sources:
 supported_os: [Windows]
 urls: ['https://support.microsoft.com/en-us/kb/103865']
 ---
+name: WindowsShellOpenCommand
+doc: Executed every time this file type is opened, should be "%1 %*".
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
+      - 'HKEY_LOCAL_MACHINE\Software\Classes\*\shell\open\command'
+      - 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\*\shell\open\command'
+supported_os: [Windows]
+urls: ['http://gladiator-antivirus.com/forum/index.php?showtopic=24610']
+---
 name: WindowsShellServiceObjects
 doc: Windows Shell (explorer.exe) service objects delayed load.
 sources:
@@ -1429,6 +1581,24 @@ sources:
       - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\ShellServiceObjectDelayLoad'
 supported_os: [Windows]
 urls: ['http://www.microsoft.com/security/portal/threat/encyclopedia/Entry.aspx?Name=TrojanClicker:Win32/Zirit.X#tab=2']
+---
+name: WindowsSetupApiLogs
+doc: Windows setup API logs.
+sources:
+- type: FILE
+  attributes: {paths: ['%%environ_systemroot%%\setupapi.log']}
+  conditions: [os_major_version < 6]
+- type: FILE
+  attributes:
+    paths:
+      - '%%environ_systemroot%%\inf\setupapi.app.log'
+      - '%%environ_systemroot%%\inf\setupapi.dev.log'
+      - '%%environ_systemroot%%\inf\setupapi.offline.log'
+    separator: '\'
+  conditions: [os_major_version >= 6]
+labels: [Logs]
+supported_os: [Windows]
+urls: ['http://www.forensicswiki.org/wiki/Setup_API_Logs']
 ---
 name: WindowsShutdownScript
 doc: Windows policy shutdown script
@@ -1498,6 +1668,19 @@ sources:
       - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Active Setup\Installed Components\*', value: 'StubPath'}
       - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Active Setup\Installed Components\*', value: 'StubPath'}
 supported_os: [Windows]
+---
+name: WindowsSuperFetchFiles
+doc: Windows SuperFetch files.
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '%%environ_systemroot%%\Prefetch\Ag*.db'
+      - '%%environ_systemroot%%\Prefetch\Ag*.db.trx'
+    separator: '\'
+labels: [System]
+supported_os: [Windows]
+urls: ['http://www.forensicswiki.org/wiki/SuperFetch']
 ---
 name: WindowsSystemIniFiles
 doc: Windows system ini files
@@ -1581,6 +1764,15 @@ sources:
 supported_os: [Windows]
 urls: ['http://forum.sysinternals.com/rdpclip_topic4729.html']
 ---
+name: WindowsTimezone
+doc: The timezone of the system in Olson format.
+sources:
+- type: REGISTRY_VALUE
+  attributes: {key_value_pairs: [{key: '%%current_control_set%%\Control\TimeZoneInformation', value: 'StandardName'}]}
+provides: [time_zone]
+supported_os: [Windows]
+urls: ['https://github.com/libyal/winreg-kb/wiki/Time-zone-keys']
+---
 name: WindowsToolPaths
 doc: Paths to windows tools such as defrag, chkdsk.
 sources:
@@ -1660,15 +1852,29 @@ labels: [Users]
 supported_os: [Windows]
 urls: ['https://github.com/libyal/winreg-kb/wiki/Registry-files']
 ---
-name: WindowsWinlogonAppSetup
-doc: Windows Winlogon Appsetup
+name: WindowsUserShellFolders
+doc: The Shell Folders information for Windows users.
 sources:
-- type: REGISTRY_VALUE
+- type: REGISTRY_KEY
   attributes:
-    key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'AppSetup'}
+    keys:
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\*'
+      - 'HKEY_USERS\%%users.sid%%\Environment\*'
+      - 'HKEY_USERS\%%users.sid%%\Volatile Environment\*'
+provides:
+- users.cookies
+- users.appdata
+- users.personal
+- users.startup
+- users.homedir
+- users.desktop
+- users.internet_cache
+- users.localappdata
+- users.localappdata_low
+- users.recent
+- users.userprofile
+- users.temp
 supported_os: [Windows]
-urls: ['https://technet.microsoft.com/en-us/library/cc939701.aspx']
 ---
 name: WindowsWinlogonGinaDLL
 doc: Windows Gina DLL replacement.
@@ -1774,25 +1980,15 @@ sources:
     separator: '\'
 supported_os: [Windows]
 ---
-name: WinRARAVScan
-doc: Executable run to scan a file when it is opened by WinRAR.
+name: WindowsWinlogonAppSetup
+doc: Windows Winlogon Appsetup
 sources:
 - type: REGISTRY_VALUE
-  attributes: {key_value_pairs: [{key: 'HKEY_USERS\%%users.sid%%\Software\WinRAR\VirusScan\', value: 'Name'}]}
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'AppSetup'}
 supported_os: [Windows]
-urls:
-- 'http://www.hexacorn.com/blog/2012/09/16/beyond-good-ol-run-key-part-2/'
-- 'http://acritum.com/software/manuals/winrar/html/helpcommandsvirusscan.htm'
----
-name: WinRARExternalViewer
-doc: Executable run when a file is opened by WinRAR inside an archive.
-sources:
-- type: REGISTRY_VALUE
-  attributes: {key_value_pairs: [{key: 'HKEY_USERS\%%users.sid%%\Software\WinRAR\Viewer\', value: 'ExternalViewer'}]}
-supported_os: [Windows]
-urls:
-- 'http://www.hexacorn.com/blog/2012/09/16/beyond-good-ol-run-key-part-2/'
-- 'http://acritum.com/software/manuals/winrar/html/helpinterfaceviewing.htm'
+urls: ['https://technet.microsoft.com/en-us/library/cc939701.aspx']
 ---
 name: WinSock2LayeredServiceProviders
 doc: Used to filter TCP/IP traffic through WinSock2.
@@ -1817,140 +2013,3 @@ urls:
 - 'https://www.symantec.com/security_response/writeup.jsp?docid=2012-020609-4221-99&tabid=2'
 - 'http://www.nirsoft.net/utils/winsock_service_providers.html'
 - 'https://msdn.microsoft.com/en-us/library/windows/desktop/ms739923(v=vs.85).aspx'
----
-name: WMIComputerSystemProduct
-doc: Computer System Product including Identifiying number queried from WMI.
-sources:
-- type: WMI
-  attributes: {query: SELECT * FROM Win32_ComputerSystemProduct}
-labels: [System]
-supported_os: [Windows]
-urls: ['http://msdn.microsoft.com/en-us/library/aa394105(v=vs.85).aspx']
----
-name: WMIDrivers
-doc: Installed drivers via Windows Management Instrumentation (WMI).
-sources:
-- type: WMI
-  attributes: {query: 'SELECT DisplayName, Description, InstallDate, Name, PathName, Status,
-      State, ServiceType from Win32_SystemDriver'}
-conditions: [os_major_version >= 6]
-labels: [Software]
-supported_os: [Windows]
----
-name: WMIEnumerateASEC
-doc: Enumerate instances of ActiveScriptEventConsumer.
-sources:
-- type: WMI
-  attributes: {query: SELECT * FROM ActiveScriptEventConsumer, base_object: 'winmgmts:\root\subscription'}
-supported_os: [Windows]
----
-name: WMIEnumerateCLEC
-doc: Enumerate instances of CommandLineEventConsumer.
-sources:
-- type: WMI
-  attributes: {query: SELECT * FROM CommandLineEventConsumer, base_object: 'winmgmts:\root\subscription'}
-supported_os: [Windows]
----
-name: WMIHotFixes
-doc: Installed hotfixes via Windows Management Instrumentation (WMI).
-sources:
-- type: WMI
-  attributes: {query: SELECT * from Win32_QuickFixEngineering}
-conditions: [os_major_version >= 6]
-labels: [Software]
-supported_os: [Windows]
----
-name: WMIInstalledSoftware
-doc: Installed software via Windows Management Instrumentation (WMI).
-sources:
-- type: WMI
-  attributes: {query: 'SELECT Name, Vendor, Description, InstallDate, InstallDate2, Version
-      from Win32_Product'}
-conditions: [os_major_version >= 6]
-labels: [Software]
-supported_os: [Windows]
----
-name: WMILastBootupTime
-doc: Last system boot time (UTC) retrieved from WMI.
-sources:
-- type: WMI
-  attributes: {query: SELECT LastBootUpTime FROM Win32_OperatingSystem}
-labels: [System]
-supported_os: [Windows]
-urls: ['https://msdn.microsoft.com/en-us/library/windows/desktop/aa394239(v=vs.85).aspx']
----
-name: WMILoggedOnSessions
-doc: Logged on users queried from WMI.
-sources:
-- type: WMI
-  attributes: {query: SELECT * FROM Win32_LogonSession}
-supported_os: [Windows]
----
-name: WMILoggedOnUsers
-doc: Logged on users queried from WMI.
-sources:
-- type: WMI
-  attributes: {query: SELECT * FROM Win32_LoggedonUser}
-supported_os: [Windows]
----
-name: WMILogicalDisks
-doc: Disk information via Windows Management Instrumentation (WMI).
-sources:
-- type: WMI
-  attributes: {query: SELECT * FROM Win32_LogicalDisk}
-labels: [System]
-supported_os: [Windows]
-urls: ['http://msdn.microsoft.com/en-us/library/aa394173(v=vs.85).aspx']
----
-name: WMILoginUsers
-doc: |
-  Login Users via Windows Management Instrumentation (WMI).
-
-  This WMI query may take a long time to complete when run on a domain and
-  will create load on a domain controller.
-sources:
-- type: WMI
-  attributes: {query: SELECT * from Win32_GroupUser where Name = "login_users"}
-conditions: [os_major_version >= 6]
-labels: [Software]
-supported_os: [Windows]
----
-name: WMIPhysicalMemory
-doc: Physical memory information via Windows Management Instrumentation (WMI).
-sources:
-- type: WMI
-  attributes: {query: SELECT * from Win32_PhysicalMemory}
-conditions: [os_major_version >= 6]
-labels: [System]
-supported_os: [Windows]
-urls: ["http://msdn.microsoft.com/en-us/library/aa394347%28v=vs.85%29.aspx"]
----
-name: WMIProcessList
-doc: Process listing via Windows Management Instrumentation (WMI).
-sources:
-- type: WMI
-  attributes: {query: SELECT * from Win32_Process}
-conditions: [os_major_version >= 6]
-labels: [Software]
-supported_os: [Windows]
----
-name: WMIServices
-doc: Services queried from WMI.
-sources:
-- type: WMI
-  attributes: {query: SELECT * FROM Win32_Service}
-supported_os: [Windows]
----
-name: WMIUsers
-doc: |
-  Users via Windows Management Instrumentation (WMI).
-
-  Note that in a domain setup, this will probably return all users in the
-  domain which will be expensive and slow. Consider limiting by SID like
-  WMIProfileUsersHomeDir.
-sources:
-- type: WMI
-  attributes: {query: SELECT * FROM Win32_UserAccount}
-labels: [Users]
-supported_os: [Windows]
-urls: ['http://msdn.microsoft.com/en-us/library/windows/desktop/aa394507(v=vs.85).aspx']
