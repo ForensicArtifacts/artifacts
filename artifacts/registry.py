@@ -2,10 +2,26 @@
 """The artifact definitions registry."""
 
 from artifacts import definitions
+from artifacts import errors
+from artifacts import source_type
 
 
 class ArtifactDefinitionsRegistry(object):
   """Class that implements the artifact definitions registry."""
+
+  _source_type_classes = {
+      definitions.TYPE_INDICATOR_ARTIFACT_GROUP:
+          source_type.ArtifactGroupSourceType,
+      definitions.TYPE_INDICATOR_COMMAND: source_type.CommandSourceType,
+      definitions.TYPE_INDICATOR_DIRECTORY: source_type.DirectorySourceType,
+      definitions.TYPE_INDICATOR_FILE: source_type.FileSourceType,
+      definitions.TYPE_INDICATOR_PATH: source_type.PathSourceType,
+      definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_KEY:
+          source_type.WindowsRegistryKeySourceType,
+      definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_VALUE:
+          source_type.WindowsRegistryValueSourceType,
+      definitions.TYPE_INDICATOR_WMI_QUERY: source_type.WMIQuerySourceType,
+  }
 
   def __init__(self):
     """Initializes the artifact definitions registry object."""
@@ -13,6 +29,31 @@ class ArtifactDefinitionsRegistry(object):
     self._artifact_definitions = {}
     self._artifact_name_references = set()
     self._defined_artifact_names = set()
+
+  @classmethod
+  def CreateSourceType(cls, type_indicator, attributes):
+    """Creates a source type object.
+
+    Args:
+      type_indicator: the source type indicator.
+      attributes: a dictionary containing the source attributes.
+
+    Returns:
+      A source type object (instance of SourceType).
+
+    Raises:
+      The source type object (instance of SourceType) or None if the type
+      indicator is not supported.
+
+    Raises:
+      FormatError: if the type indicator is not set or unsupported,
+                   or if required attributes are missing.
+    """
+    if type_indicator not in cls._source_type_classes:
+      raise errors.FormatError(
+          u'Unsupported type indicator: {0}.'.format(type_indicator))
+
+    return cls._source_type_classes[type_indicator](**attributes)
 
   def DeregisterDefinition(self, artifact_definition):
     """Deregisters an artifact definition.
@@ -32,6 +73,25 @@ class ArtifactDefinitionsRegistry(object):
           artifact_definition.name))
 
     del self._artifact_definitions[artifact_definition_name]
+
+  @classmethod
+  def DeregisterSourceType(cls, source_type_class):
+    """Deregisters a source type.
+
+    The source types are identified based on their type indicator.
+
+    Args:
+      source_type_class: the source type (subclass of SourceType).
+
+    Raises:
+      KeyError: if a source type is not set for the corresponding type
+                indicator.
+    """
+    if source_type_class.TYPE_INDICATOR not in cls._source_type_classes:
+      raise KeyError(u'Source type not set for type: {0}.'.format(
+          source_type_class.TYPE_INDICATOR))
+
+    del cls._source_type_classes[source_type_class.TYPE_INDICATOR]
 
   def GetDefinitionByName(self, name):
     """Retrieves a specific artifact definition by name.
@@ -65,7 +125,7 @@ class ArtifactDefinitionsRegistry(object):
   def RegisterDefinition(self, artifact_definition):
     """Registers an artifact definition.
 
-    The artifact definitiones are identified based on their lower case name.
+    The artifact definitions are identified based on their lower case name.
 
     Args:
       artifact_definition: the artifact definitions (instance of
@@ -86,6 +146,38 @@ class ArtifactDefinitionsRegistry(object):
     for source in artifact_definition.sources:
       if source.type_indicator == definitions.TYPE_INDICATOR_ARTIFACT_GROUP:
         self._artifact_name_references.update(source.names)
+
+  @classmethod
+  def RegisterSourceType(cls, source_type_class):
+    """Registers a source type.
+
+    The source types are identified based on their type indicator.
+
+    Args:
+      source_type_class: the source type (subclass of SourceType).
+
+    Raises:
+      KeyError: if source types is already set for the corresponding
+                type indicator.
+    """
+    if source_type_class.TYPE_INDICATOR in cls._source_type_classes:
+      raise KeyError(u'Source type already set for type: {0}.'.format(
+          source_type_class.TYPE_INDICATOR))
+
+    cls._source_type_classes[source_type_class.TYPE_INDICATOR] = (
+        source_type_class)
+
+  @classmethod
+  def RegisterSourceTypes(cls, source_type_classes):
+    """Registers source types.
+
+    The source types are identified based on their type indicator.
+
+    Args:
+      source_type_classes: a list of source types (instances of SourceType).
+    """
+    for source_type_class in source_type_classes:
+      cls.RegisterSourceType(source_type_class)
 
   def ReadFromDirectory(self, artifact_reader, path, extension=u'yaml'):
     """Reads artifact definitions into the registry from files in a directory.

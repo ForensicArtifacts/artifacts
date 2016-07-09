@@ -8,10 +8,42 @@ import unittest
 from artifacts import errors
 from artifacts import reader
 from artifacts import registry
+from artifacts import source_type
+
+
+class TestSourceType(source_type.SourceType):
+  """Class that implements a test source type."""
+
+  TYPE_INDICATOR = u'test'
+
+  def __init__(self, test=None):
+    """Initializes the source type object.
+
+    Args:
+      test: optional test string. The default is None.
+
+    Raises:
+      FormatError: when test is not set.
+    """
+    if not test:
+      raise errors.FormatError(u'Missing test value.')
+
+    super(TestSourceType, self).__init__()
+    self.test = test
+
+  def CopyToDict(self):
+    """Copies the source type to a dictionary.
+
+    Returns:
+      A dictionary containing the source type attributes.
+    """
+    return {u'test': self.test}
 
 
 class ArtifactDefinitionsRegistryTest(unittest.TestCase):
   """Tests for the artifact definitions registry."""
+
+  # pylint: disable=protected-access
 
   def testArtifactDefinitionsRegistry(self):
     """Tests the ArtifactDefinitionsRegistry functions."""
@@ -67,7 +99,53 @@ class ArtifactDefinitionsRegistryTest(unittest.TestCase):
 
     generator = artifact_reader.ReadFileObject(bad_args)
     with self.assertRaises(errors.FormatError):
-      _ = next(generator)
+      next(generator)
+
+  def testSourceTypeFunctions(self):
+    """Tests the source type functions."""
+    number_of_source_types = len(
+        registry.ArtifactDefinitionsRegistry._source_type_classes)
+
+    registry.ArtifactDefinitionsRegistry.RegisterSourceType(TestSourceType)
+
+    self.assertEqual(
+        len(registry.ArtifactDefinitionsRegistry._source_type_classes),
+        number_of_source_types + 1)
+
+    with self.assertRaises(KeyError):
+      registry.ArtifactDefinitionsRegistry.RegisterSourceType(TestSourceType)
+
+    registry.ArtifactDefinitionsRegistry.DeregisterSourceType(TestSourceType)
+
+    self.assertEqual(
+        len(registry.ArtifactDefinitionsRegistry._source_type_classes),
+        number_of_source_types)
+
+    registry.ArtifactDefinitionsRegistry.RegisterSourceTypes([TestSourceType])
+
+    self.assertEqual(
+        len(registry.ArtifactDefinitionsRegistry._source_type_classes),
+        number_of_source_types + 1)
+
+    with self.assertRaises(KeyError):
+      registry.ArtifactDefinitionsRegistry.RegisterSourceTypes(
+          [TestSourceType])
+
+    source_object = registry.ArtifactDefinitionsRegistry.CreateSourceType(
+        u'test', {u'test': u'test123'})
+
+    self.assertIsNotNone(source_object)
+    self.assertEqual(source_object.test, u'test123')
+
+    with self.assertRaises(errors.FormatError):
+      source_object = registry.ArtifactDefinitionsRegistry.CreateSourceType(
+          u'test', {})
+
+    with self.assertRaises(errors.FormatError):
+      source_object = registry.ArtifactDefinitionsRegistry.CreateSourceType(
+          u'bogus', {})
+
+    registry.ArtifactDefinitionsRegistry.DeregisterSourceType(TestSourceType)
 
 
 if __name__ == '__main__':
