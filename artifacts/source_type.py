@@ -19,6 +19,8 @@ C:\\Windows\\System32\\winevt\\Logs\\AppEvent.evt a file artifact definition,
 pointing to the Application Event Log file.
 """
 
+import abc
+
 from artifacts import definitions
 from artifacts import errors
 
@@ -40,6 +42,14 @@ class SourceType(object):
           u'Invalid source type missing type indicator.')
     return self.TYPE_INDICATOR
 
+  @abc.abstractmethod
+  def CopyToDict(self):
+    """Copies the source type to a dictionary.
+
+    Returns:
+      A dictionary containing the source type attributes.
+    """
+
 
 class ArtifactGroupSourceType(SourceType):
   """Class that implements the artifact group source type."""
@@ -60,6 +70,14 @@ class ArtifactGroupSourceType(SourceType):
 
     super(ArtifactGroupSourceType, self).__init__()
     self.names = names
+
+  def CopyToDict(self):
+    """Copies the source type to a dictionary.
+
+    Returns:
+      A dictionary containing the source type attributes.
+    """
+    return {u'names': self.names}
 
 
 class FileSourceType(SourceType):
@@ -86,6 +104,18 @@ class FileSourceType(SourceType):
     self.paths = paths
     self.separator = separator
 
+  def CopyToDict(self):
+    """Copies the source type to a dictionary.
+
+    Returns:
+      A dictionary containing the source type attributes.
+    """
+    source_type_attributes = {u'paths': self.paths}
+    if self.separator != u'/':
+      source_type_attributes[u'separator'] = self.separator
+
+    return source_type_attributes
+
 
 class CommandSourceType(SourceType):
   """Class that implements the command source type."""
@@ -108,6 +138,14 @@ class CommandSourceType(SourceType):
     super(CommandSourceType, self).__init__()
     self.args = args
     self.cmd = cmd
+
+  def CopyToDict(self):
+    """Copies the source type to a dictionary.
+
+    Returns:
+      A dictionary containing the source type attributes.
+    """
+    return {u'cmd': self.cmd, u'args': self.args}
 
 
 class PathSourceType(SourceType):
@@ -134,6 +172,18 @@ class PathSourceType(SourceType):
     self.paths = paths
     self.separator = separator
 
+  def CopyToDict(self):
+    """Copies the source type to a dictionary.
+
+    Returns:
+      A dictionary containing the source type attributes.
+    """
+    source_type_attributes = {u'paths': self.paths}
+    if self.separator != u'/':
+      source_type_attributes[u'separator'] = self.separator
+
+    return source_type_attributes
+
 
 class DirectorySourceType(SourceType):
   """Class that implements the directory source type."""
@@ -158,6 +208,18 @@ class DirectorySourceType(SourceType):
     super(DirectorySourceType, self).__init__()
     self.paths = paths
     self.separator = separator
+
+  def CopyToDict(self):
+    """Copies the source type to a dictionary.
+
+    Returns:
+      A dictionary containing the source type attributes.
+    """
+    source_type_attributes = {u'paths': self.paths}
+    if self.separator != u'/':
+      source_type_attributes[u'separator'] = self.separator
+
+    return source_type_attributes
 
 
 class WindowsRegistryKeySourceType(SourceType):
@@ -193,6 +255,14 @@ class WindowsRegistryKeySourceType(SourceType):
 
     super(WindowsRegistryKeySourceType, self).__init__()
     self.keys = keys
+
+  def CopyToDict(self):
+    """Copies the source type to a dictionary.
+
+    Returns:
+      A dictionary containing the source type attributes.
+    """
+    return {u'keys': self.keys}
 
   @classmethod
   def ValidateKey(cls, key_path):
@@ -250,6 +320,14 @@ class WindowsRegistryValueSourceType(SourceType):
     super(WindowsRegistryValueSourceType, self).__init__()
     self.key_value_pairs = key_value_pairs
 
+  def CopyToDict(self):
+    """Copies the source type to a dictionary.
+
+    Returns:
+      A dictionary containing the source type attributes.
+    """
+    return {u'key_value_pairs': self.key_value_pairs}
+
 
 class WMIQuerySourceType(SourceType):
   """Class that implements the WMI query source type."""
@@ -269,5 +347,17 @@ class WMIQuerySourceType(SourceType):
       raise errors.FormatError(u'Missing query value.')
 
     super(WMIQuerySourceType, self).__init__()
-    self.query = query
     self.base_object = base_object
+    self.query = query
+
+  def CopyToDict(self):
+    """Copies the source type to a dictionary.
+
+    Returns:
+      A dictionary containing the source type attributes.
+    """
+    source_type_attributes = {u'query': self.query}
+    if self.base_object:
+      source_type_attributes[u'base_object'] = self.base_object
+
+    return source_type_attributes
