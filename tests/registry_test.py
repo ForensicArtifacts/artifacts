@@ -18,7 +18,7 @@ class ArtifactDefinitionsRegistryTest(unittest.TestCase):
     artifact_registry = registry.ArtifactDefinitionsRegistry()
 
     artifact_reader = reader.YamlArtifactsReader()
-    test_file = os.path.join('test_data', 'definitions.yaml')
+    test_file = os.path.join(u'test_data', u'definitions.yaml')
 
     for artifact_definition in artifact_reader.ReadFile(test_file):
       artifact_registry.RegisterDefinition(artifact_definition)
@@ -26,7 +26,7 @@ class ArtifactDefinitionsRegistryTest(unittest.TestCase):
     # Make sure the test file got turned into artifacts.
     self.assertEqual(len(artifact_registry.GetDefinitions()), 7)
 
-    artifact_definition = artifact_registry.GetDefinitionByName('EventLogs')
+    artifact_definition = artifact_registry.GetDefinitionByName(u'EventLogs')
     self.assertIsNotNone(artifact_definition)
 
     # Try to register something already registered
@@ -43,7 +43,7 @@ class ArtifactDefinitionsRegistryTest(unittest.TestCase):
     self.assertEqual(len(artifact_registry.GetDefinitions()), 6)
 
     test_artifact_definition = artifact_registry.GetDefinitionByName(
-        'SecurityEventLogEvtx')
+        u'SecurityEventLogEvtx')
     self.assertIsNotNone(test_artifact_definition)
 
     self.assertEqual(test_artifact_definition.name, u'SecurityEventLogEvtx')
