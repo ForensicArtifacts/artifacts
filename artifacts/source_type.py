@@ -361,3 +361,14 @@ class WMIQuerySourceType(SourceType):
       source_type_attributes[u'base_object'] = self.base_object
 
     return source_type_attributes
+
+TYPE_INDICATORS = {
+    definitions.TYPE_INDICATOR_ARTIFACT_GROUP: ArtifactGroupSourceType,
+    definitions.TYPE_INDICATOR_COMMAND: CommandSourceType,
+    definitions.TYPE_INDICATOR_DIRECTORY: DirectorySourceType,
+    definitions.TYPE_INDICATOR_FILE: FileSourceType,
+    definitions.TYPE_INDICATOR_PATH: PathSourceType,
+    definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_KEY: WindowsRegistryKeySourceType,
+    definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_VALUE: WindowsRegistryValueSourceType,
+    definitions.TYPE_INDICATOR_WMI_QUERY: WMIQuerySourceType,
+}
