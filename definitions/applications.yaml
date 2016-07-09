@@ -12,6 +12,7 @@ sources:
     paths: ['%%users.appdata%%\npm-cache\*']
     separator: '\'
   supported_os: [Windows]
+supported_os: [Darwin, Linux, Windows]
 urls: ['https://docs.npmjs.com/cli/cache']
 ---
 name: WinRARExternalViewer

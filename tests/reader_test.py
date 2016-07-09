@@ -189,6 +189,23 @@ supported_os: Windows
     with self.assertRaises(errors.FormatError):
       _ = list(artifact_reader.ReadFileObject(file_object))
 
+  def testBadTopSupportedOS(self):
+    """Tests top level supported_os is checked correctly."""
+    artifact_reader = reader.YamlArtifactsReader()
+    file_object = io.StringIO(initial_value=u"""name: BadTopSupportedOS
+doc: Top supported_os should match supported_os from sources.
+sources:
+- type: ARTIFACT_GROUP
+  attributes:
+    names:
+      - 'SystemEventLogEvtx'
+  supported_os: [Windows]
+labels: [Logs]
+""")
+
+    with self.assertRaises(errors.FormatError):
+      _ = list(artifact_reader.ReadFileObject(file_object))
+
   def testBadLabels(self):
     """Tests labels is checked correctly."""
     artifact_reader = reader.YamlArtifactsReader()
