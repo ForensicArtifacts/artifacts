@@ -1105,7 +1105,7 @@ sources:
       - '%%environ_systemroot%%\system32\Windows­PowerShell\v1.0\Microsoft.PowerShell_profile.ps1'
       - '%%users.homedir%%\Documents\WindowsPowerShell\profile.ps1'
       - '%%users.homedir%%\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1'
-  supported_os: [Windows]
+supported_os: [Windows]
 urls:
 - 'https://technet.microsoft.com/en-us/magazine/2008.10.windowspowershell.aspx#id0190010'
 - 'http://www.hexacorn.com/blog/2014/08/27/beyond-good-ol-run-key-part-16/'
@@ -1118,7 +1118,7 @@ sources:
     key_value_pairs:
       - {key: 'HKEY_USERS\%%users.sid%%\Software\Policies\Microsoft\Windows\PowerShell', value: 'EnableScripts'}
       - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\PowerShell', value: 'EnableScripts'}
-  supported_os: [Windows]
+supported_os: [Windows]
 urls:
 - 'https://technet.microsoft.com/library/hh847748.aspx'
 - 'http://www.hexacorn.com/blog/2014/08/27/beyond-good-ol-run-key-part-16/'
@@ -1131,7 +1131,7 @@ sources:
     key_value_pairs:
       - {key: 'HKEY_USERS\%%users.sid%%\Software\Policies\Microsoft\Windows\PowerShell', value: 'ExecutionPolicy'}
       - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\PowerShell', value: 'ExecutionPolicy'}
-  supported_os: [Windows]
+supported_os: [Windows]
 urls:
 - 'https://technet.microsoft.com/library/hh847748.aspx'
 - 'http://www.hexacorn.com/blog/2014/08/27/beyond-good-ol-run-key-part-16/'

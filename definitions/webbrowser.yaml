@@ -96,6 +96,7 @@ sources:
       - '%%users.homedir%%/.config/chromium/*/Media Cache/*'
       - '%%users.homedir%%/.config/chromium/*/GPUCache/*'
   supported_os: [Linux]
+supported_os: [Windows,Darwin,Linux]
 labels: [Browser]
 urls: ['http://www.forensicswiki.org/wiki/Google_Chrome']
 ---
@@ -131,6 +132,7 @@ sources:
       - '%%users.homedir%%/.config/chromium/*/Archived History'
       - '%%users.homedir%%/.config/chromium/*/History'
   supported_os: [Linux]
+supported_os: [Windows,Darwin,Linux]
 labels: [Browser]
 urls: ['http://www.forensicswiki.org/wiki/Google_Chrome']
 ---
@@ -158,6 +160,7 @@ sources:
       - '%%users.homedir%%/.config/google-chrome/*/Extension Activity'
       - '%%users.homedir%%/.config/chromium/*/Extension Activity'
   supported_os: [Linux]
+supported_os: [Windows,Darwin,Linux]
 labels: [Browser]
 urls: ['http://forensicswiki.org/wiki/Google_Chrome#Extension_Activity_database']
 ---
@@ -226,6 +229,7 @@ sources:
       - '%%users.homedir%%/.config/google-chrome/*/Preferences'
       - '%%users.homedir%%/.config/chromium/*/Preferences'
   supported_os: [Linux]
+supported_os: [Windows,Darwin,Linux]
 labels: [Browser]
 urls: ['http://forensicswiki.org/wiki/Google_Chrome#Configuration']
 ---
@@ -257,6 +261,7 @@ sources:
       - '%%users.homedir%%/.cache/.mozilla/firefox/*.default/cache2/doomed/*'
       - '%%users.homedir%%/.cache/.mozilla/firefox/*.default/cache2/entries/*'
   supported_os: [Linux]
+supported_os: [Windows,Darwin,Linux]
 labels: [Browser]
 urls: ['http://forensicswiki.org/wiki/Mozilla_Firefox']
 ---
@@ -276,6 +281,7 @@ sources:
 - type: FILE
   attributes: {paths: ['%%users.homedir%%/.mozilla/firefox/*/places.sqlite']}
   supported_os: [Linux]
+supported_os: [Windows,Darwin,Linux]
 labels: [Browser]
 urls: ['http://www.forensicswiki.org/wiki/Mozilla_Firefox']
 ---
@@ -454,6 +460,7 @@ sources:
     paths: ['%%users.appdata%%\Opera\Opera\global_history.dat']
     separator: '\'
   supported_os: [Windows]
+supported_os: [Windows,Darwin,Linux]
 labels: [Browser]
 urls: ['http://www.forensicswiki.org/wiki/Opera']
 ---
