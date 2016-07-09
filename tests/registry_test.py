@@ -27,7 +27,7 @@ class ArtifactDefinitionsRegistryTest(unittest.TestCase):
     self.assertEqual(len(artifact_registry.GetDefinitions()), 7)
 
     artifact_definition = artifact_registry.GetDefinitionByName('EventLogs')
-    self.assertNotEquals(artifact_definition, None)
+    self.assertNotEqual(artifact_definition, None)
 
     # Try to register something already registered
     with self.assertRaises(KeyError):
@@ -44,13 +44,13 @@ class ArtifactDefinitionsRegistryTest(unittest.TestCase):
 
     test_artifact_definition = artifact_registry.GetDefinitionByName(
         'SecurityEventLogEvtx')
-    self.assertNotEquals(test_artifact_definition, None)
+    self.assertNotEqual(test_artifact_definition, None)
 
-    self.assertEquals(test_artifact_definition.name, u'SecurityEventLogEvtx')
+    self.assertEqual(test_artifact_definition.name, u'SecurityEventLogEvtx')
 
     expected_description = (
         u'Windows Security Event log for Vista or later systems.')
-    self.assertEquals(
+    self.assertEqual(
         test_artifact_definition.description, expected_description)
 
     bad_args = io.BytesIO(b'\n'.join([
