@@ -40,6 +40,13 @@ class SourceType(object):
           u'Invalid source type missing type indicator.')
     return self.TYPE_INDICATOR
 
+  @property
+  def attributes_definition(self):
+    """Dictionary representation of the source attributes
+
+    """
+    return {}
+
 
 class ArtifactGroupSourceType(SourceType):
   """Class that implements the artifact group source type."""
@@ -60,6 +67,14 @@ class ArtifactGroupSourceType(SourceType):
 
     super(ArtifactGroupSourceType, self).__init__()
     self.names = names
+
+  @property
+  def attributes_definition(self):
+    """Dictionary representation of the source attributes
+
+    """
+
+    return {'names': self.names}
 
 
 class FileSourceType(SourceType):
@@ -86,6 +101,17 @@ class FileSourceType(SourceType):
     self.paths = paths
     self.separator = separator
 
+  @property
+  def attributes_definition(self):
+    """Dictionary representation of the source attributes
+
+    """
+    source_definition = { 'paths': self.paths}
+    if self.separator != u'/':
+      source_definition['separator'] = self.separator
+
+    return source_definition
+
 
 class CommandSourceType(SourceType):
   """Class that implements the command source type."""
@@ -108,6 +134,14 @@ class CommandSourceType(SourceType):
     super(CommandSourceType, self).__init__()
     self.args = args
     self.cmd = cmd
+
+  @property
+  def attributes_definition(self):
+    """Dictionary representation of the source attributes
+
+    """
+
+    return {'cmd': self.cmd, 'args': self.args}
 
 
 class PathSourceType(SourceType):
@@ -134,6 +168,17 @@ class PathSourceType(SourceType):
     self.paths = paths
     self.separator = separator
 
+  @property
+  def attributes_definition(self):
+    """Dictionary representation of the source attributes
+
+    """
+    source_definition = { 'paths': self.paths}
+    if self.separator != u'/':
+      source_definition['separator'] = self.separator
+
+    return source_definition
+
 
 class DirectorySourceType(SourceType):
   """Class that implements the directory source type."""
@@ -158,6 +203,17 @@ class DirectorySourceType(SourceType):
     super(DirectorySourceType, self).__init__()
     self.paths = paths
     self.separator = separator
+
+  @property
+  def attributes_definition(self):
+    """Dictionary representation of the source attributes
+
+    """
+    source_definition = { 'paths': self.paths}
+    if self.separator != u'/':
+      source_definition['separator'] = self.separator
+
+    return source_definition
 
 
 class WindowsRegistryKeySourceType(SourceType):
@@ -216,6 +272,12 @@ class WindowsRegistryKeySourceType(SourceType):
     raise errors.FormatError(
         u'Unupported Registry key path: {0}'.format(key_path))
 
+  @property
+  def attributes_definition(self):
+    """Dictionary representation of the source attributes
+
+    """
+    return {'keys': self.keys}
 
 class WindowsRegistryValueSourceType(SourceType):
   """Class that implements the Windows Registry value source type."""
@@ -250,6 +312,12 @@ class WindowsRegistryValueSourceType(SourceType):
     super(WindowsRegistryValueSourceType, self).__init__()
     self.key_value_pairs = key_value_pairs
 
+  @property
+  def attributes_definition(self):
+    """Dictionary representation of the source attributes
+
+    """
+    return {'key_value_pairs': self.key_value_pairs}
 
 class WMIQuerySourceType(SourceType):
   """Class that implements the WMI query source type."""
@@ -271,3 +339,14 @@ class WMIQuerySourceType(SourceType):
     super(WMIQuerySourceType, self).__init__()
     self.query = query
     self.base_object = base_object
+
+  @property
+  def attributes_definition(self):
+    """Dictionary representation of the source attributes
+
+    """
+    source_definition = { 'query': self.query}
+    if self.base_object:
+      source_definition['base_object'] = self.base_object
+
+    return source_definition
