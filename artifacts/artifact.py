@@ -86,3 +86,40 @@ class ArtifactDefinition(object):
 
     self.sources.append(source_object)
     return source_object
+
+  def CopyToDict(self):
+    """Converts artifact to dict from ArtifactDefinition
+
+    Returns:
+      dict representation of ArtifactDefinition instance
+    """
+    sources = []
+    for source in self.sources:
+      source_definition = {
+        'type': source.type_indicator,
+        'attributes': source.CopyToDict()
+      }
+      if source.supported_os:
+        source_definition['supported_os'] = source.supported_os
+      if source.conditions:
+        source_definition['conditions'] = source.conditions
+      if source.returned_types:
+        source_definition['returned_types'] = source.returned_types
+      sources.append(source_definition)
+
+    artifact_definition = {
+      'name': self.name,
+      'doc': self.description,
+      'sources': sources,
+    }
+    if self.labels:
+      artifact_definition['labels'] = self.labels
+    if self.supported_os:
+      artifact_definition['supported_os'] = self.supported_os
+    if self.provides:
+      artifact_definition['provides'] = self.provides
+    if self.conditions:
+      artifact_definition['conditions'] = self.conditions
+    if self.urls:
+      artifact_definition['urls'] = self.urls
+    return artifact_definition
