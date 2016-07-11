@@ -1,6 +1,36 @@
 # Deprecated definitions kept for backwards compatibility with GRR
 # for the time being.
 
+name: AllUsersAppDataEnvironmentVariable
+doc: The %ProgramData% environment variable.
+sources:
+- type: REGISTRY_VALUE
+  attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\ProfileList', value: 'ProgramData'}]}
+provides: [environ_allusersappdata]
+supported_os: [Windows]
+urls: ['http://environmentvariables.org/ProgramData']
+---
+name: AllUsersProfileEnvironmentVariable
+doc: The %AllUsersProfile% environment variable.
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\ProfileList\ProfilesDirectory'
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\ProfileList\AllUsersProfile'
+provides: [environ_allusersprofile]
+supported_os: [Windows]
+urls: ['http://support.microsoft.com/kb//214653']
+---
+name: CurrentControlSet
+doc: The control set the system is currently using.
+sources:
+- type: REGISTRY_VALUE
+  attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\SYSTEM\Select', value: 'Current'}]}
+provides: [current_control_set]
+supported_os: [Windows]
+urls: ['https://github.com/libyal/winreg-kb/wiki/System-keys']
+---
 name: ProgramFiles
 doc: The %ProgramFiles% environment variable.
 sources:
@@ -67,6 +97,30 @@ sources:
 provides: [environ_temp]
 supported_os: [Windows]
 urls: ['http://environmentvariables.org/WinDir']
+---
+name: UserShellFolders
+doc: The Shell Folders information for Windows users.
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\*'
+      - 'HKEY_USERS\%%users.sid%%\Environment\*'
+      - 'HKEY_USERS\%%users.sid%%\Volatile Environment\*'
+provides:
+  - users.cookies
+  - users.appdata
+  - users.personal
+  - users.startup
+  - users.homedir
+  - users.desktop
+  - users.internet_cache
+  - users.localappdata
+  - users.localappdata_low
+  - users.recent
+  - users.userprofile
+  - users.temp
+supported_os: [Windows]
 ---
 name: WinCodePage
 doc: The codepage of the system.
