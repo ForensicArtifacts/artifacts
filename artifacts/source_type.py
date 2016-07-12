@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""The source type objects.
+r"""The source type objects.
 
 The source type objects define the source of the artifact data. In earlier
 versions of the artifact definitions collector definitions had a similar
@@ -14,8 +14,8 @@ purpose as the source type. Currently the following source types are defined:
 The difference between the file and path source types are that file should
 be used to define file entries that contain data and path, file entries that
 define a location. E.g. on Windows %SystemRoot% could be considered a path
-artifact definition, pointing to a location e.g. C:\\Windows. And where
-C:\\Windows\\System32\\winevt\\Logs\\AppEvent.evt a file artifact definition,
+artifact definition, pointing to a location e.g. C:\Windows. And where
+C:\Windows\System32\winevt\Logs\AppEvent.evt a file artifact definition,
 pointing to the Application Event Log file.
 """
 
