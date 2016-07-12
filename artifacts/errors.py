@@ -12,3 +12,7 @@ class FormatError(Error):
 
 class MissingDependencyError(Error):
   """Artifact references artifact that is undefined."""
+
+
+class CodeStyleError(Error):
+  """Error that is raised when code formatting fails style checks."""
