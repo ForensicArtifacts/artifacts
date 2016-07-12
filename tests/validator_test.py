@@ -19,8 +19,8 @@ class ArtifactDefinitionsValidatorTest(unittest.TestCase):
 
     for definitions_file in glob.glob(os.path.join('definitions', '*.yaml')):
       result = validator_object.CheckFile(definitions_file)
-      self.assertTrue(
-          result, msg='in definitions file: {0}'.format(definitions_file))
+      self.assertTrue(result,
+                      msg='in definitions file: {0}'.format(definitions_file))
 
     undefined_artifacts = validator_object.GetUndefinedArtifacts()
     if undefined_artifacts:

@@ -75,8 +75,8 @@ class ArtifactDefinition(object):
       source_type_class = source_type.WMIQuerySourceType
 
     else:
-      raise errors.FormatError(
-          u'Unsupported type indicator: {0}.'.format(type_indicator))
+      raise errors.FormatError(u'Unsupported type indicator: {0}.'.format(
+          type_indicator))
 
     try:
       source_object = source_type_class(**attributes)

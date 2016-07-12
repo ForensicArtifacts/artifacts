@@ -34,8 +34,8 @@ class YamlArtifactsReaderTest(unittest.TestCase):
     self.assertEqual(len(artifact_definition.sources), 1)
     source_type = artifact_definition.sources[0]
     self.assertIsNotNone(source_type)
-    self.assertEqual(
-        source_type.type_indicator, definitions.TYPE_INDICATOR_FILE)
+    self.assertEqual(source_type.type_indicator,
+                     definitions.TYPE_INDICATOR_FILE)
 
     expected_paths = [
         '%%environ_systemroot%%\\System32\\winevt\\Logs\\Security.evtx'
@@ -59,15 +59,14 @@ class YamlArtifactsReaderTest(unittest.TestCase):
 
     # Artifact with Windows Registry key source type.
     artifact_definition = artifact_definitions[1]
-    self.assertEqual(
-        artifact_definition.name, 'AllUsersProfileEnvironmentVariable')
+    self.assertEqual(artifact_definition.name,
+                     'AllUsersProfileEnvironmentVariable')
 
     self.assertEqual(len(artifact_definition.sources), 1)
     source_type = artifact_definition.sources[0]
     self.assertIsNotNone(source_type)
-    self.assertEqual(
-        source_type.type_indicator,
-        definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_KEY)
+    self.assertEqual(source_type.type_indicator,
+                     definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_KEY)
 
     expected_key1 = (
         'HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion\\'
@@ -86,9 +85,8 @@ class YamlArtifactsReaderTest(unittest.TestCase):
     self.assertEqual(len(artifact_definition.sources), 1)
     source_type = artifact_definition.sources[0]
     self.assertIsNotNone(source_type)
-    self.assertEqual(
-        source_type.type_indicator,
-        definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_VALUE)
+    self.assertEqual(source_type.type_indicator,
+                     definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_VALUE)
 
     self.assertEqual(len(source_type.key_value_pairs), 1)
     key_value_pair = source_type.key_value_pairs[0]
@@ -107,8 +105,8 @@ class YamlArtifactsReaderTest(unittest.TestCase):
     self.assertEqual(len(artifact_definition.sources), 1)
     source_type = artifact_definition.sources[0]
     self.assertIsNotNone(source_type)
-    self.assertEqual(
-        source_type.type_indicator, definitions.TYPE_INDICATOR_WMI_QUERY)
+    self.assertEqual(source_type.type_indicator,
+                     definitions.TYPE_INDICATOR_WMI_QUERY)
 
     expected_query = (
         'SELECT * FROM Win32_UserProfile WHERE SID=\'%%users.sid%%\'')
@@ -121,8 +119,8 @@ class YamlArtifactsReaderTest(unittest.TestCase):
     self.assertEqual(len(artifact_definition.sources), 1)
     source_type = artifact_definition.sources[0]
     self.assertIsNotNone(source_type)
-    self.assertEqual(
-        source_type.type_indicator, definitions.TYPE_INDICATOR_ARTIFACT_GROUP)
+    self.assertEqual(source_type.type_indicator,
+                     definitions.TYPE_INDICATOR_ARTIFACT_GROUP)
 
     # Artifact with command definition source type.
     artifact_definition = artifact_definitions[5]
@@ -131,8 +129,8 @@ class YamlArtifactsReaderTest(unittest.TestCase):
     self.assertEqual(len(artifact_definition.sources), 1)
     source_type = artifact_definition.sources[0]
     self.assertIsNotNone(source_type)
-    self.assertEqual(
-        source_type.type_indicator, definitions.TYPE_INDICATOR_COMMAND)
+    self.assertEqual(source_type.type_indicator,
+                     definitions.TYPE_INDICATOR_COMMAND)
 
     # Artifact with COMMAND definition collector definition.
     artifact_definition = artifact_definitions[5]
@@ -141,14 +139,13 @@ class YamlArtifactsReaderTest(unittest.TestCase):
     self.assertEqual(len(artifact_definition.sources), 1)
     collector_definition = artifact_definition.sources[0]
     self.assertIsNotNone(collector_definition)
-    self.assertEqual(
-        collector_definition.type_indicator, definitions.TYPE_INDICATOR_COMMAND)
+    self.assertEqual(collector_definition.type_indicator,
+                     definitions.TYPE_INDICATOR_COMMAND)
 
   def testBadKey(self):
     """Tests top level keys are correct."""
     artifact_reader = reader.YamlArtifactsReader()
-    file_object = io.StringIO(
-        initial_value=u"""name: BadKey
+    file_object = io.StringIO(initial_value=u"""name: BadKey
 doc: bad extra key.
 sources:
 - type: ARTIFACT_GROUP
@@ -166,8 +163,7 @@ supported_os: [Windows]
   def testMissingSources(self):
     """Tests sources is present."""
     artifact_reader = reader.YamlArtifactsReader()
-    file_object = io.StringIO(
-        initial_value=u"""name: BadSources
+    file_object = io.StringIO(initial_value=u"""name: BadSources
 doc: must have one sources.
 labels: [Logs]
 supported_os: [Windows]
@@ -179,8 +175,7 @@ supported_os: [Windows]
   def testBadSupportedOS(self):
     """Tests supported_os is checked correctly."""
     artifact_reader = reader.YamlArtifactsReader()
-    file_object = io.StringIO(
-        initial_value=u"""name: BadSupportedOS
+    file_object = io.StringIO(initial_value=u"""name: BadSupportedOS
 doc: supported_os should be an array of strings.
 sources:
 - type: ARTIFACT_GROUP
@@ -197,8 +192,7 @@ supported_os: Windows
   def testBadLabels(self):
     """Tests labels is checked correctly."""
     artifact_reader = reader.YamlArtifactsReader()
-    file_object = io.StringIO(
-        initial_value=u"""name: BadLabel
+    file_object = io.StringIO(initial_value=u"""name: BadLabel
 doc: badlabel.
 sources:
 - type: ARTIFACT_GROUP
@@ -215,8 +209,7 @@ supported_os: [Windows]
   def testMissingDoc(self):
     """Tests doc is required."""
     artifact_reader = reader.YamlArtifactsReader()
-    file_object = io.StringIO(
-        initial_value=u"""name: NoDoc
+    file_object = io.StringIO(initial_value=u"""name: NoDoc
 sources:
 - type: ARTIFACT_GROUP
   attributes:
@@ -229,8 +222,7 @@ sources:
 
   def testMissingNamesAttribute(self):
     artifact_reader = reader.YamlArtifactsReader()
-    file_object = io.StringIO(
-        initial_value=u"""name: NoNames
+    file_object = io.StringIO(initial_value=u"""name: NoNames
 doc: Missing names attr.
 sources:
 - type: ARTIFACT_GROUP

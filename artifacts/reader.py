@@ -86,8 +86,8 @@ class YamlArtifactsReader(ArtifactsReader):
       raise errors.FormatError(
           u'Invalid artifact definition: {0} missing description.'.format(name))
 
-    artifact_definition = artifact.ArtifactDefinition(
-        name, description=description)
+    artifact_definition = artifact.ArtifactDefinition(name,
+                                                      description=description)
 
     if yaml_definition.get(u'collectors', []):
       raise errors.FormatError(
@@ -107,8 +107,8 @@ class YamlArtifactsReader(ArtifactsReader):
 
       attributes = source.get(u'attributes', None)
       try:
-        source_type = artifact_definition.AppendSource(
-            type_indicator, attributes)
+        source_type = artifact_definition.AppendSource(type_indicator,
+                                                       attributes)
       except errors.FormatError as exception:
         raise errors.FormatError(
             u'Invalid artifact definition: {0}. {1}'.format(name, exception))
