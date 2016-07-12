@@ -38,8 +38,7 @@ class SourceType(object):
       NotImplementedError: if the type indicator is not defined.
     """
     if not self.TYPE_INDICATOR:
-      raise NotImplementedError(
-          u'Invalid source type missing type indicator.')
+      raise NotImplementedError(u'Invalid source type missing type indicator.')
     return self.TYPE_INDICATOR
 
   @abc.abstractmethod
@@ -312,9 +311,11 @@ class WindowsRegistryValueSourceType(SourceType):
     for pair in key_value_pairs:
       if not isinstance(pair, dict):
         raise errors.FormatError(u'key_value_pair must be a dict')
-      if set(pair.keys()) != set(['key', 'value']):
-        raise errors.FormatError(u'key_value_pair missing "key" and "value"'
-                                 u' keys, got: {}'.format(key_value_pairs))
+      if set(pair.keys()) != set([u'key', u'value']):
+        error_message = (
+            u'key_value_pair missing "key" and "value" keys, got: {0}'
+        ).format(key_value_pairs)
+        raise errors.FormatError(error_message)
       WindowsRegistryKeySourceType.ValidateKey(pair['key'])
 
     super(WindowsRegistryValueSourceType, self).__init__()

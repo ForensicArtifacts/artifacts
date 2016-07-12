@@ -74,8 +74,7 @@ class YamlArtifactsReader(ArtifactsReader):
 
     different_keys = set(yaml_definition) - definitions.TOP_LEVEL_KEYS
     if different_keys:
-      raise errors.FormatError(u'Undefined keys: {0}'.format(
-          different_keys))
+      raise errors.FormatError(u'Undefined keys: {0}'.format(different_keys))
 
     name = yaml_definition.get(u'name', None)
     if not name:
@@ -85,8 +84,7 @@ class YamlArtifactsReader(ArtifactsReader):
     description = yaml_definition.get(u'doc', None)
     if not description:
       raise errors.FormatError(
-          u'Invalid artifact definition: {0} missing description.'.format(
-              name))
+          u'Invalid artifact definition: {0} missing description.'.format(name))
 
     artifact_definition = artifact.ArtifactDefinition(
         name, description=description)
@@ -99,8 +97,7 @@ class YamlArtifactsReader(ArtifactsReader):
     sources = yaml_definition.get(u'sources')
     if not sources:
       raise errors.FormatError(
-          u'Invalid artifact definition: {0} missing sources.'.format(
-              name))
+          u'Invalid artifact definition: {0} missing sources.'.format(name))
 
     for source in sources:
       type_indicator = source.get(u'type', None)
@@ -114,8 +111,7 @@ class YamlArtifactsReader(ArtifactsReader):
             type_indicator, attributes)
       except errors.FormatError as exception:
         raise errors.FormatError(
-            u'Invalid artifact definition: {0}. {1}'.format(
-                name, exception))
+            u'Invalid artifact definition: {0}. {1}'.format(name, exception))
 
       # TODO: deprecate these left overs from the collector definition.
       if source_type:
@@ -146,7 +142,8 @@ class YamlArtifactsReader(ArtifactsReader):
     """
     labels = yaml_definition.get(u'labels', [])
     undefined_labels = [
-        item for item in labels if item not in definitions.LABELS]
+        item for item in labels if item not in definitions.LABELS
+    ]
 
     if undefined_labels:
       raise errors.FormatError(
@@ -175,12 +172,14 @@ class YamlArtifactsReader(ArtifactsReader):
               supported_os))
 
     undefined_supported_os = [
-        item for item in supported_os if item not in definitions.SUPPORTED_OS]
+        item for item in supported_os if item not in definitions.SUPPORTED_OS
+    ]
 
     if undefined_supported_os:
-      raise errors.FormatError((
+      error_string = (
           u'Artifact definition: {0} supported operating system: {1} '
-          u'not defined.').format(name, u', '.join(undefined_supported_os)))
+          u'not defined.').format(name, u', '.join(undefined_supported_os))
+      raise errors.FormatError(error_string)
 
     definition_object.supported_os = supported_os
 

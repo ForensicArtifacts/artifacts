@@ -50,21 +50,20 @@ class ArtifactDefinitionsRegistryTest(unittest.TestCase):
 
     expected_description = (
         u'Windows Security Event log for Vista or later systems.')
-    self.assertEqual(
-        test_artifact_definition.description, expected_description)
+    self.assertEqual(test_artifact_definition.description, expected_description)
 
-    bad_args = io.BytesIO(b'\n'.join([
-        b'name: SecurityEventLogEvtx',
-        b'doc: Windows Security Event log for Vista or later systems.',
-        b'sources:',
-        b'- type: FILE',
-        (b'  attributes: {broken: [\'%%environ_systemroot%%\\System32\\'
-         b'winevt\\Logs\\Security.evtx\']}'),
-        b'conditions: [os_major_version >= 6]',
-        b'labels: [Logs]',
-        b'supported_os: [Windows]',
-        (b'urls: [\'http://www.forensicswiki.org/wiki/'
-         b'Windows_XML_Event_Log_(EVTX)\']')]))
+    bad_args = io.BytesIO(
+        b'name: SecurityEventLogEvtx\n'
+        b'doc: Windows Security Event log for Vista or later systems.\n'
+        b'sources:\n'
+        b'- type: FILE\n'
+        b'  attributes: {broken: [\'%%environ_systemroot%%\\System32\\'
+        b'winevt\\Logs\\Security.evtx\']}\n'
+        b'conditions: [os_major_version >= 6]\n'
+        b'labels: [Logs]\n'
+        b'supported_os: [Windows]\n'
+        b'urls: [\'http://www.forensicswiki.org/wiki/\n'
+        b'Windows_XML_Event_Log_(EVTX)\']\n')
 
     generator = artifact_reader.ReadFileObject(bad_args)
     with self.assertRaises(errors.FormatError):
