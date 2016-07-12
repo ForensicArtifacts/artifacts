@@ -18,6 +18,8 @@ from artifacts import registry
 class ArtifactDefinitionsValidator(object):
   """Class to define an artifact definitions validator."""
 
+  LEGACY_PATH = os.path.join('definitions', 'legacy.yaml')
+
   def __init__(self):
     """Initializes the artifact definitions validator object."""
     super(ArtifactDefinitionsValidator, self).__init__()
@@ -83,7 +85,7 @@ class ArtifactDefinitionsValidator(object):
 
             # Exempt the legacy file from duplicate checking because it has
             # duplicates intentionally.
-            if (filename != os.path.join('definitions', 'legacy.yaml') and
+            if (filename != self.LEGACY_PATH and
                 self._HasDuplicateRegistryKeyPaths(filename,
                                                    artifact_definition,
                                                    source)):
