@@ -34,7 +34,7 @@ LABELS = {
     'Cloud Storage': 'Cloud storage artifacts.',
     'Configuration Files': 'Configuration files artifacts.',
     'Execution': 'Contain execution events.',
-    'ExternalAccount': ('Information about any users\' account, e.g. username, '
+    'ExternalAccount': ('Information about any user accounts e.g. username, '
                         'account ID, etc.'),
     'External Media': 'Contain external media data or events e.g. USB drives.',
     'KnowledgeBase': 'Artifacts used in knowledge base generation.',
