@@ -83,7 +83,7 @@ class ArtifactDefinitionsValidator(object):
 
             # Exempt the legacy file from duplicate checking because it has
             # duplicates intentionally.
-            if (filename != 'definitions/legacy.yaml' and
+            if (filename != os.path.join('definitions', 'legacy.yaml') and
                 self._HasDuplicateRegistryKeyPaths(filename,
                                                    artifact_definition,
                                                    source)):
