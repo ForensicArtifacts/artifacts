@@ -26,8 +26,8 @@ class ArtifactDefinitionsValidator(object):
     self._artifact_registry = registry.ArtifactDefinitionsRegistry()
     self._artifact_registry_key_paths = set()
 
-  def _HasDuplicateRegistryKeyPaths(self, filename, artifact_definition,
-                                    source):
+  def _HasDuplicateRegistryKeyPaths(
+      self, filename, artifact_definition, source):
     """Checks if Registry key paths are not already defined by other artifacts.
 
     Note that at the moment this function will only find exact duplicate
@@ -44,14 +44,15 @@ class ArtifactDefinitionsValidator(object):
       are used in other artifacts.
     """
     result = False
-    intersection = self._artifact_registry_key_paths.intersection(set(
-        source.keys))
+    intersection = self._artifact_registry_key_paths.intersection(
+        set(source.keys))
     if intersection:
       duplicate_key_paths = u'\n'.join(intersection)
-      logging.warning((u'Artifact definition: {0} in file: {1} has duplicate '
-                       u'Registry key paths:\n{2}').format(
-                           artifact_definition.name, filename,
-                           duplicate_key_paths))
+      logging.warning(
+          (
+              u'Artifact definition: {0} in file: {1} has duplicate '
+              u'Registry key paths:\n{2}').format(
+                  artifact_definition.name, filename, duplicate_key_paths))
       result = True
 
     self._artifact_registry_key_paths.update(source.keys)
@@ -85,15 +86,16 @@ class ArtifactDefinitionsValidator(object):
 
             # Exempt the legacy file from duplicate checking because it has
             # duplicates intentionally.
-            if (filename != self.LEGACY_PATH and
-                self._HasDuplicateRegistryKeyPaths(filename,
-                                                   artifact_definition,
-                                                   source)):
+            if (
+                filename != self.LEGACY_PATH and
+                self._HasDuplicateRegistryKeyPaths(
+                    filename, artifact_definition, source)):
               result = False
 
     except errors.FormatError as exception:
-      logging.warning(u'Unable to validate file: {0} with error: {1}'.format(
-          filename, exception))
+      logging.warning(
+          u'Unable to validate file: {0} with error: {1}'.format(
+              filename, exception))
       result = False
 
     return result
@@ -113,16 +115,14 @@ def Main():
   Returns:
     A boolean containing True if successful or False if not.
   """
-  args_parser = argparse.ArgumentParser(description=(
-      'Validates an artifact definitions file.'))
+  args_parser = argparse.ArgumentParser(
+      description=('Validates an artifact definitions file.'))
 
-  args_parser.add_argument('filename',
-                           nargs='?',
-                           action='store',
-                           metavar='artifacts.yaml',
-                           default=None,
-                           help=('path of the file that contains the artifact '
-                                 'definitions.'))
+  args_parser.add_argument(
+      'filename', nargs='?', action='store', metavar='artifacts.yaml',
+      default=None,
+      help=('path of the file that contains the artifact '
+            'definitions.'))
 
   options = args_parser.parse_args()
 

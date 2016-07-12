@@ -44,7 +44,8 @@ class ArtifactStatistics(object):
     self._PrintDictAsTable(self.source_type_counts)
 
   def PrintSummaryTable(self):
-    print("""
+    print(
+        """
 
 As of {0} the repository contains:
 
@@ -52,8 +53,9 @@ As of {0} the repository contains:
 | :------------------ | ------: |
 | **Registry keys covered** | **{2}** |
 | **Total artifacts** | **{3}** |
-""".format(time.strftime('%Y-%m-%d'), self.path_count, self.reg_key_count,
-           self.total_count))
+""".format(
+            time.strftime('%Y-%m-%d'), self.path_count, self.reg_key_count,
+            self.total_count))
 
   def BuildStats(self):
     artifact_reader = reader.YamlArtifactsReader()
@@ -79,7 +81,8 @@ As of {0} the repository contains:
           self.reg_key_count += len(source.keys)
         if source_type == definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_VALUE:
           self.reg_key_count += len(source.key_value_pairs)
-        if (source_type == definitions.TYPE_INDICATOR_FILE or
+        if (
+            source_type == definitions.TYPE_INDICATOR_FILE or
             source_type == definitions.TYPE_INDICATOR_DIRECTORY):
           self.path_count += len(source.paths)
 
