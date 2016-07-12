@@ -282,8 +282,8 @@ class WindowsRegistryKeySourceType(SourceType):
           u'HKEY_CURRENT_USER\\ is not supported instead use: '
           u'HKEY_USERS\\%%users.sid%%\\')
 
-    raise errors.FormatError(
-        u'Unupported Registry key path: {0}'.format(key_path))
+    raise errors.FormatError(u'Unupported Registry key path: {0}'.format(
+        key_path))
 
 
 class WindowsRegistryValueSourceType(SourceType):
