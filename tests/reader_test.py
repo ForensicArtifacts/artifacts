@@ -37,9 +37,10 @@ class YamlArtifactsReaderTest(unittest.TestCase):
     self.assertEqual(
         source_type.type_indicator, definitions.TYPE_INDICATOR_FILE)
 
-    expected_paths = sorted([
-        '%%environ_systemroot%%\\System32\\winevt\\Logs\\Security.evtx'])
-    self.assertEqual(sorted(source_type.paths), expected_paths)
+    expected_paths = [
+        '%%environ_systemroot%%\\System32\\winevt\\Logs\\Security.evtx'
+    ]
+    self.assertEqual(sorted(source_type.paths), sorted(expected_paths))
 
     self.assertEqual(len(artifact_definition.conditions), 1)
     expected_condition = 'os_major_version >= 6'
@@ -68,12 +69,15 @@ class YamlArtifactsReaderTest(unittest.TestCase):
         source_type.type_indicator,
         definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_KEY)
 
-    expected_keys = sorted([
-        ('HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion\\'
-         'ProfileList\\ProfilesDirectory'),
-        ('HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion\\'
-         'ProfileList\\AllUsersProfile')])
-    self.assertEqual(sorted(source_type.keys), expected_keys)
+    expected_key1 = (
+        'HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion\\'
+        'ProfileList\\ProfilesDirectory')
+    expected_key2 = (
+        'HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Windows NT\\CurrentVersion\\'
+        'ProfileList\\AllUsersProfile')
+    expected_keys = [expected_key1, expected_key2]
+
+    self.assertEqual(sorted(source_type.keys), sorted(expected_keys))
 
     # Artifact with Windows Registry value source type.
     artifact_definition = artifact_definitions[2]
@@ -138,13 +142,13 @@ class YamlArtifactsReaderTest(unittest.TestCase):
     collector_definition = artifact_definition.sources[0]
     self.assertIsNotNone(collector_definition)
     self.assertEqual(
-        collector_definition.type_indicator,
-        definitions.TYPE_INDICATOR_COMMAND)
+        collector_definition.type_indicator, definitions.TYPE_INDICATOR_COMMAND)
 
   def testBadKey(self):
     """Tests top level keys are correct."""
     artifact_reader = reader.YamlArtifactsReader()
-    file_object = io.StringIO(initial_value=u"""name: BadKey
+    file_object = io.StringIO(
+        initial_value=u"""name: BadKey
 doc: bad extra key.
 sources:
 - type: ARTIFACT_GROUP
@@ -162,7 +166,8 @@ supported_os: [Windows]
   def testMissingSources(self):
     """Tests sources is present."""
     artifact_reader = reader.YamlArtifactsReader()
-    file_object = io.StringIO(initial_value=u"""name: BadSources
+    file_object = io.StringIO(
+        initial_value=u"""name: BadSources
 doc: must have one sources.
 labels: [Logs]
 supported_os: [Windows]
@@ -174,7 +179,8 @@ supported_os: [Windows]
   def testBadSupportedOS(self):
     """Tests supported_os is checked correctly."""
     artifact_reader = reader.YamlArtifactsReader()
-    file_object = io.StringIO(initial_value=u"""name: BadSupportedOS
+    file_object = io.StringIO(
+        initial_value=u"""name: BadSupportedOS
 doc: supported_os should be an array of strings.
 sources:
 - type: ARTIFACT_GROUP
@@ -191,7 +197,8 @@ supported_os: Windows
   def testBadLabels(self):
     """Tests labels is checked correctly."""
     artifact_reader = reader.YamlArtifactsReader()
-    file_object = io.StringIO(initial_value=u"""name: BadLabel
+    file_object = io.StringIO(
+        initial_value=u"""name: BadLabel
 doc: badlabel.
 sources:
 - type: ARTIFACT_GROUP
@@ -208,7 +215,8 @@ supported_os: [Windows]
   def testMissingDoc(self):
     """Tests doc is required."""
     artifact_reader = reader.YamlArtifactsReader()
-    file_object = io.StringIO(initial_value=u"""name: NoDoc
+    file_object = io.StringIO(
+        initial_value=u"""name: NoDoc
 sources:
 - type: ARTIFACT_GROUP
   attributes:
@@ -221,7 +229,8 @@ sources:
 
   def testMissingNamesAttribute(self):
     artifact_reader = reader.YamlArtifactsReader()
-    file_object = io.StringIO(initial_value=u"""name: NoNames
+    file_object = io.StringIO(
+        initial_value=u"""name: NoNames
 doc: Missing names attr.
 sources:
 - type: ARTIFACT_GROUP

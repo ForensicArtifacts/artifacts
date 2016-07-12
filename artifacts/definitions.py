@@ -12,6 +12,7 @@ TYPE_INDICATOR_WINDOWS_REGISTRY_KEY = 'REGISTRY_KEY'
 TYPE_INDICATOR_WINDOWS_REGISTRY_VALUE = 'REGISTRY_VALUE'
 TYPE_INDICATOR_WMI_QUERY = 'WMI'
 
+# yapf: disable
 TYPE_INDICATORS = frozenset([
     TYPE_INDICATOR_ARTIFACT_GROUP,
     TYPE_INDICATOR_COMMAND,
@@ -23,6 +24,7 @@ TYPE_INDICATORS = frozenset([
     TYPE_INDICATOR_WINDOWS_REGISTRY_VALUE,
     TYPE_INDICATOR_WMI_QUERY,
 ])
+# yapf: enable
 
 LABELS = {
     'Antivirus': 'Antivirus related artifacts, e.g. quarantine files.',
@@ -48,10 +50,14 @@ LABELS = {
     'Rekall': 'Artifacts using the Rekall memory forensics framework.',
     'Software': 'Installed software.',
     'System': 'Core system artifacts.',
-    'Users': 'Information about users.'}
+    'Users': 'Information about users.'
+}
 
 SUPPORTED_OS = frozenset(['Darwin', 'Linux', 'Windows'])
 
+# yapf: disable
 TOP_LEVEL_KEYS = frozenset([
     'conditions', 'doc', 'labels', 'name', 'provides', 'sources',
-    'supported_os', 'urls'])
+    'supported_os', 'urls'
+])
+# yapf: enable
