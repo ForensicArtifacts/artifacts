@@ -85,7 +85,7 @@ class ArtifactDefinition(object):
       source_object = source_type_class(**attributes)
     except (TypeError, AttributeError) as e:
       raise errors.FormatError(
-          'Invalid artifact definition for {0}: {1}'.format(self.name, e))
+          u'Invalid artifact definition for {0}: {1}'.format(self.name, e))
 
     self.sources.append(source_object)
     return source_object

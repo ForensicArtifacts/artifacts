@@ -7,8 +7,10 @@ from artifacts import errors
 
 
 class StyleTest(unittest.TestCase):
+  """Enforce code style requirements."""
 
   def testCodeStyle(self):
+    """Check yapf style enforcement runs cleanly."""
     try:
       subprocess.check_output(
           ['yapf', '--diff', '-r', 'artifacts tools', 'artifacts', 'tests'])
