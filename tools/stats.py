@@ -52,8 +52,9 @@ As of {0} the repository contains:
 | :------------------ | ------: |
 | **Registry keys covered** | **{2}** |
 | **Total artifacts** | **{3}** |
-""".format(time.strftime('%Y-%m-%d'), self.path_count, self.reg_key_count,
-           self.total_count))
+""".format(
+        time.strftime('%Y-%m-%d'), self.path_count, self.reg_key_count,
+        self.total_count))
 
   def BuildStats(self):
     artifact_reader = reader.YamlArtifactsReader()

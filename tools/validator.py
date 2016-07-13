@@ -113,14 +113,11 @@ def Main():
   Returns:
     A boolean containing True if successful or False if not.
   """
-  args_parser = argparse.ArgumentParser(description=(
-      'Validates an artifact definitions file.'))
+  args_parser = argparse.ArgumentParser(
+      description=('Validates an artifact definitions file.'))
 
-  args_parser.add_argument('filename',
-                           nargs='?',
-                           action='store',
-                           metavar='artifacts.yaml',
-                           default=None,
+  args_parser.add_argument('filename', nargs='?', action='store',
+                           metavar='artifacts.yaml', default=None,
                            help=('path of the file that contains the artifact '
                                  'definitions.'))
 
