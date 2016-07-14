@@ -53,11 +53,11 @@ class ArtifactDefinition(object):
 
     try:
       source_object = registry.ArtifactDefinitionsRegistry.CreateSourceType(
-        type_indicator, attributes)
+          type_indicator, attributes)
     except (AttributeError, TypeError) as exception:
       raise errors.FormatError(
-          u'Invalid artifact definition for {0}: {1}'.format(
-              self.name, exception))
+          u'Invalid artifact definition for {0}: {1}'.format(self.name,
+                                                             exception))
 
     self.sources.append(source_object)
     return source_object

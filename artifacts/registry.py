@@ -9,6 +9,8 @@ from artifacts import source_type
 class ArtifactDefinitionsRegistry(object):
   """Class that implements the artifact definitions registry."""
 
+  # yapf: disable
+  # yapf dedents the values of the key value pairs split across multiple lines.
   _source_type_classes = {
       definitions.TYPE_INDICATOR_ARTIFACT_GROUP:
           source_type.ArtifactGroupSourceType,
@@ -22,6 +24,7 @@ class ArtifactDefinitionsRegistry(object):
           source_type.WindowsRegistryValueSourceType,
       definitions.TYPE_INDICATOR_WMI_QUERY: source_type.WMIQuerySourceType,
   }
+  # yapf: enable
 
   def __init__(self):
     """Initializes the artifact definitions registry object."""
@@ -50,8 +53,8 @@ class ArtifactDefinitionsRegistry(object):
                    or if required attributes are missing.
     """
     if type_indicator not in cls._source_type_classes:
-      raise errors.FormatError(
-          u'Unsupported type indicator: {0}.'.format(type_indicator))
+      raise errors.FormatError(u'Unsupported type indicator: {0}.'.format(
+          type_indicator))
 
     return cls._source_type_classes[type_indicator](**attributes)
 

@@ -128,8 +128,7 @@ class ArtifactDefinitionsRegistryTest(unittest.TestCase):
         number_of_source_types + 1)
 
     with self.assertRaises(KeyError):
-      registry.ArtifactDefinitionsRegistry.RegisterSourceTypes(
-          [TestSourceType])
+      registry.ArtifactDefinitionsRegistry.RegisterSourceTypes([TestSourceType])
 
     source_object = registry.ArtifactDefinitionsRegistry.CreateSourceType(
         u'test', {u'test': u'test123'})
