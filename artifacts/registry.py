@@ -5,7 +5,7 @@ from artifacts import definitions
 
 
 class ArtifactDefinitionsRegistry(object):
-  """Class that implements the artifact definitions registry."""
+  """Class that implements an artifact definitions registry."""
 
   def __init__(self):
     """Initializes the artifact definitions registry object."""
@@ -65,7 +65,7 @@ class ArtifactDefinitionsRegistry(object):
   def RegisterDefinition(self, artifact_definition):
     """Registers an artifact definition.
 
-    The artifact definitiones are identified based on their lower case name.
+    The artifact definitions are identified based on their lower case name.
 
     Args:
       artifact_definition: the artifact definitions (instance of

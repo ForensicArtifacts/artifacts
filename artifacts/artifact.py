@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """The reader objects."""
 
-from artifacts import definitions
 from artifacts import errors
 from artifacts import source_type
 
@@ -82,10 +81,12 @@ class ArtifactDefinition(object):
           type_indicator))
 
     try:
-      source_object = source_type_class(**attributes)
-    except (TypeError, AttributeError) as e:
+      source_object = source_type.SourceTypeFactory.CreateSourceType(
+          type_indicator, attributes)
+    except (AttributeError, TypeError) as exception:
       raise errors.FormatError(
-          u'Invalid artifact definition for {0}: {1}'.format(self.name, e))
+          u'Invalid artifact definition for {0}: {1}'.format(self.name,
+                                                             exception))
 
     self.sources.append(source_object)
     return source_object
