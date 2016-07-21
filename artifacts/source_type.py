@@ -362,3 +362,105 @@ class WMIQuerySourceType(SourceType):
       source_type_attributes[u'base_object'] = self.base_object
 
     return source_type_attributes
+
+
+class SourceTypeFactory(object):
+  """Class that implements a source type factory."""
+
+  _source_type_classes = {
+      definitions.TYPE_INDICATOR_ARTIFACT_GROUP: ArtifactGroupSourceType,
+      definitions.TYPE_INDICATOR_COMMAND: CommandSourceType,
+      definitions.TYPE_INDICATOR_DIRECTORY: DirectorySourceType,
+      definitions.TYPE_INDICATOR_FILE: FileSourceType,
+      definitions.TYPE_INDICATOR_PATH: PathSourceType,
+      definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_KEY:
+          WindowsRegistryKeySourceType,
+      definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_VALUE:
+          WindowsRegistryValueSourceType,
+      definitions.TYPE_INDICATOR_WMI_QUERY: WMIQuerySourceType,
+  }
+
+  @classmethod
+  def CreateSourceType(cls, type_indicator, attributes):
+    """Creates a source type object.
+
+    Args:
+      type_indicator: the source type indicator.
+      attributes: a dictionary containing the source attributes.
+
+    Returns:
+      A source type object (instance of SourceType).
+
+    Raises:
+      The source type object (instance of SourceType) or None if the type
+      indicator is not supported.
+
+    Raises:
+      FormatError: if the type indicator is not set or unsupported,
+                   or if required attributes are missing.
+    """
+    if type_indicator not in cls._source_type_classes:
+      raise errors.FormatError(u'Unsupported type indicator: {0}.'.format(
+          type_indicator))
+
+    return cls._source_type_classes[type_indicator](**attributes)
+
+  @classmethod
+  def DeregisterSourceType(cls, source_type_class):
+    """Deregisters a source type.
+
+    The source types are identified based on their type indicator.
+
+    Args:
+      source_type_class: the source type (subclass of SourceType).
+
+    Raises:
+      KeyError: if a source type is not set for the corresponding type
+                indicator.
+    """
+    if source_type_class.TYPE_INDICATOR not in cls._source_type_classes:
+      raise KeyError(u'Source type not set for type: {0}.'.format(
+          source_type_class.TYPE_INDICATOR))
+
+    del cls._source_type_classes[source_type_class.TYPE_INDICATOR]
+
+  @classmethod
+  def GetSourceTypes(cls):
+    """Retriees the source types.
+
+    Returns:
+      A list of source types (subclasses of SourceType).
+    """
+    return cls._source_type_classes.values()
+
+  @classmethod
+  def RegisterSourceType(cls, source_type_class):
+    """Registers a source type.
+
+    The source types are identified based on their type indicator.
+
+    Args:
+      source_type_class: the source type (subclass of SourceType).
+
+    Raises:
+      KeyError: if source types is already set for the corresponding
+                type indicator.
+    """
+    if source_type_class.TYPE_INDICATOR in cls._source_type_classes:
+      raise KeyError(u'Source type already set for type: {0}.'.format(
+          source_type_class.TYPE_INDICATOR))
+
+    cls._source_type_classes[source_type_class.TYPE_INDICATOR] = (
+        source_type_class)
+
+  @classmethod
+  def RegisterSourceTypes(cls, source_type_classes):
+    """Registers source types.
+
+    The source types are identified based on their type indicator.
+
+    Args:
+      source_type_classes: a list of source types (instances of SourceType).
+    """
+    for source_type_class in source_type_classes:
+      cls.RegisterSourceType(source_type_class)
