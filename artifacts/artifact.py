@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """The reader objects."""
 
-from artifacts import definitions
 from artifacts import errors
 from artifacts import source_type
 
@@ -50,39 +49,13 @@ class ArtifactDefinition(object):
     if not type_indicator:
       raise errors.FormatError(u'Missing type indicator.')
 
-    if type_indicator == definitions.TYPE_INDICATOR_ARTIFACT_GROUP:
-      source_type_class = source_type.ArtifactGroupSourceType
-
-    elif type_indicator == definitions.TYPE_INDICATOR_COMMAND:
-      source_type_class = source_type.CommandSourceType
-
-    elif type_indicator == definitions.TYPE_INDICATOR_DIRECTORY:
-      source_type_class = source_type.DirectorySourceType
-
-    elif type_indicator == definitions.TYPE_INDICATOR_FILE:
-      source_type_class = source_type.FileSourceType
-
-    elif type_indicator == definitions.TYPE_INDICATOR_PATH:
-      source_type_class = source_type.PathSourceType
-
-    elif type_indicator == definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_KEY:
-      source_type_class = source_type.WindowsRegistryKeySourceType
-
-    elif type_indicator == definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_VALUE:
-      source_type_class = source_type.WindowsRegistryValueSourceType
-
-    elif type_indicator == definitions.TYPE_INDICATOR_WMI_QUERY:
-      source_type_class = source_type.WMIQuerySourceType
-
-    else:
-      raise errors.FormatError(u'Unsupported type indicator: {0}.'.format(
-          type_indicator))
-
     try:
-      source_object = source_type_class(**attributes)
-    except (TypeError, AttributeError) as e:
+      source_object = source_type.SourceTypeFactory.CreateSourceType(
+          type_indicator, attributes)
+    except (AttributeError, TypeError) as exception:
       raise errors.FormatError(
-          u'Invalid artifact definition for {0}: {1}'.format(self.name, e))
+          u'Invalid artifact definition for {0}: {1}'.format(self.name,
+                                                             exception))
 
     self.sources.append(source_object)
     return source_object
