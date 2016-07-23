@@ -60,7 +60,7 @@ class JsonArtifactsWriter(ArtifactWriter):
     if isinstance(artifacts, ArtifactDefinition):
       artifacts = [artifacts]
 
-    artifact_definitions = [artifact.CopyToDict() for artifact in artifacts]
+    artifact_definitions = [artifact.AsDict() for artifact in artifacts]
 
     return json.dumps(artifact_definitions)
 
@@ -80,7 +80,7 @@ class YamlArtifactsWriter(ArtifactWriter):
     if isinstance(artifacts, ArtifactDefinition):
       artifacts = [artifacts]
 
-    artifact_definitions = [artifact.CopyToDict() for artifact in artifacts]
+    artifact_definitions = [artifact.AsDict() for artifact in artifacts]
     yaml_data = yaml.dump_all(artifact_definitions)
 
     return yaml_data

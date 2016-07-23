@@ -42,7 +42,7 @@ class SourceType(object):
     return self.TYPE_INDICATOR
 
   @abc.abstractmethod
-  def CopyToDict(self):
+  def AsDict(self):
     """Copies the source type to a dictionary.
 
     Returns:
@@ -70,7 +70,7 @@ class ArtifactGroupSourceType(SourceType):
     super(ArtifactGroupSourceType, self).__init__()
     self.names = names
 
-  def CopyToDict(self):
+  def AsDict(self):
     """Copies the source type to a dictionary.
 
     Returns:
@@ -103,7 +103,7 @@ class FileSourceType(SourceType):
     self.paths = paths
     self.separator = separator
 
-  def CopyToDict(self):
+  def AsDict(self):
     """Copies the source type to a dictionary.
 
     Returns:
@@ -138,7 +138,7 @@ class CommandSourceType(SourceType):
     self.args = args
     self.cmd = cmd
 
-  def CopyToDict(self):
+  def AsDict(self):
     """Copies the source type to a dictionary.
 
     Returns:
@@ -171,7 +171,7 @@ class PathSourceType(SourceType):
     self.paths = paths
     self.separator = separator
 
-  def CopyToDict(self):
+  def AsDict(self):
     """Copies the source type to a dictionary.
 
     Returns:
@@ -208,7 +208,7 @@ class DirectorySourceType(SourceType):
     self.paths = paths
     self.separator = separator
 
-  def CopyToDict(self):
+  def AsDict(self):
     """Copies the source type to a dictionary.
 
     Returns:
@@ -255,7 +255,7 @@ class WindowsRegistryKeySourceType(SourceType):
     super(WindowsRegistryKeySourceType, self).__init__()
     self.keys = keys
 
-  def CopyToDict(self):
+  def AsDict(self):
     """Copies the source type to a dictionary.
 
     Returns:
@@ -321,7 +321,7 @@ class WindowsRegistryValueSourceType(SourceType):
     super(WindowsRegistryValueSourceType, self).__init__()
     self.key_value_pairs = key_value_pairs
 
-  def CopyToDict(self):
+  def AsDict(self):
     """Copies the source type to a dictionary.
 
     Returns:
@@ -351,7 +351,7 @@ class WMIQuerySourceType(SourceType):
     self.base_object = base_object
     self.query = query
 
-  def CopyToDict(self):
+  def AsDict(self):
     """Copies the source type to a dictionary.
 
     Returns:

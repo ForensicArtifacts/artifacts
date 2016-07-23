@@ -87,7 +87,7 @@ class ArtifactDefinition(object):
     self.sources.append(source_object)
     return source_object
 
-  def CopyToDict(self):
+  def AsDict(self):
     """Converts artifact to dict from ArtifactDefinition
 
     Returns:
@@ -97,7 +97,7 @@ class ArtifactDefinition(object):
     for source in self.sources:
       source_definition = {
           'type': source.type_indicator,
-          'attributes': source.CopyToDict()
+          'attributes': source.AsDict()
       }
       if source.supported_os:
         source_definition['supported_os'] = source.supported_os
