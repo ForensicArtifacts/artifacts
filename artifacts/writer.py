@@ -4,6 +4,7 @@
 import abc
 import json
 import yaml
+import sys
 from artifacts.artifact import ArtifactDefinition
 
 
@@ -22,7 +23,7 @@ class BaseArtifactsWriter(object):
 
   @abc.abstractmethod
   def FormatArtifacts(self, artifacts):
-    """Formats artifact desired output format
+    """Formats artifacts to desired output format
 
     Args:
       artifacts: an instance or list of ArtifactDefinition
@@ -61,8 +62,11 @@ class JsonArtifactsWriter(ArtifactWriter):
       artifacts = [artifacts]
 
     artifact_definitions = [artifact.AsDict() for artifact in artifacts]
+    json_data = json.dumps(artifact_definitions)
+    if sys.version_info <= (3, 0):
+      json_data = unicode(json_data)
 
-    return json.dumps(artifact_definitions)
+    return json_data
 
 
 class YamlArtifactsWriter(ArtifactWriter):
@@ -81,6 +85,9 @@ class YamlArtifactsWriter(ArtifactWriter):
       artifacts = [artifacts]
 
     artifact_definitions = [artifact.AsDict() for artifact in artifacts]
-    yaml_data = yaml.dump_all(artifact_definitions)
+    yaml_data = yaml.safe_dump_all(artifact_definitions)
+
+    if sys.version_info <= (3, 0):
+      yaml_data = unicode(yaml_data)
 
     return yaml_data

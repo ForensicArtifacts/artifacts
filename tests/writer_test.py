@@ -3,6 +3,7 @@
 
 import io
 import os
+import sys
 import unittest
 import yaml
 import json
@@ -59,9 +60,14 @@ class YamlArtifactsWriterTest(unittest.TestCase):
     file_object = io.StringIO(initial_value=artifacts_yaml)
     converted_artifact_definitions = list(artifact_reader.ReadFileObject(
         file_object))
-    self.assertCountEqual(
-        [artifact.AsDict() for artifact in artifact_definitions],
-        [artifact.AsDict() for artifact in converted_artifact_definitions])
+    if sys.version_info >= (3, 0):
+      self.assertCountEqual(
+          [artifact.AsDict() for artifact in artifact_definitions],
+          [artifact.AsDict() for artifact in converted_artifact_definitions])
+    else:
+      self.assertItemsEqual(
+          [artifact.AsDict() for artifact in artifact_definitions],
+          [artifact.AsDict() for artifact in converted_artifact_definitions])
 
 
 class JsonArtifactsWriterTest(unittest.TestCase):
@@ -80,9 +86,14 @@ class JsonArtifactsWriterTest(unittest.TestCase):
         artifact_reader._ReadArtifactDefinition(artifact_definition)
         for artifact_definition in json.loads(artifacts_json)
     ]
-    self.assertCountEqual(
-        [artifact.AsDict() for artifact in artifact_definitions],
-        [artifact.AsDict() for artifact in converted_artifact_definitions])
+    if sys.version_info >= (3, 0):
+      self.assertCountEqual(
+          [artifact.AsDict() for artifact in artifact_definitions],
+          [artifact.AsDict() for artifact in converted_artifact_definitions])
+    else:
+      self.assertItemsEqual(
+          [artifact.AsDict() for artifact in artifact_definitions],
+          [artifact.AsDict() for artifact in converted_artifact_definitions])
 
 
 if __name__ == '__main__':
