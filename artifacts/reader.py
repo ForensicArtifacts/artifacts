@@ -117,7 +117,7 @@ class YamlArtifactsReader(ArtifactsReader):
       if source_type:
         source_type.conditions = source.get(u'conditions', [])
         source_type.returned_types = source.get(u'returned_types', [])
-        self._ReadSupportedOS(yaml_definition, source_type, name)
+        self._ReadSupportedOS(source, source_type, name)
 
     # TODO: check conditions.
     artifact_definition.conditions = yaml_definition.get(u'conditions', [])
