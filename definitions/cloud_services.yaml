@@ -26,6 +26,7 @@ sources:
     paths:
       - '%%users.homedir%%/.dropbox/*.db*'
   supported_os: [Darwin,Linux]
+supported_os: [Darwin,Linux,Windows]
 labels: [Cloud Storage]
 urls: ['http://www.forensicswiki.org/wiki/Dropbox']
 ---
@@ -42,6 +43,7 @@ sources:
       - '%%users.localappdata%%\Google\Drive\user_default\sync_config.db'
       - '%%users.localappdata%%\Google\Drive\user_default\sync_config.log*'
   supported_os: [Windows]
+supported_os: [Windows]
 labels: [Cloud Storage]
 urls: ['http://www.forensicswiki.org/wiki/Google_Drive']
 ---
@@ -60,5 +62,6 @@ sources:
       - '%%users.localappdata%%\Microsoft\SkyDrive\settings\*.dat'
       - '%%users.localappdata%%\Microsoft\SkyDrive\settings\*.ini'
   supported_os: [Windows]
+supported_os: [Windows]
 labels: [Cloud Storage]
 urls: ['http://forensicswiki.org/wiki/One_Drive#Sky_Drive_client']

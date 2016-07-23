@@ -19,13 +19,13 @@ class BaseArtifactsReader(object):
 
   @property
   def supported_os(self):
-    """The suppported_os values.
+    """The supported supported_os values.
 
     Raises:
-      NotImplementedError: if the type indicator is not defined.
+      NotImplementedError: if the SUPPORTED_OS list is not defined.
     """
     if not self.SUPPORTED_OS:
-      raise NotImplementedError(u'Invalid source type missing type indicator.')
+      raise NotImplementedError(u'Invalid supported SUPPORTED_OS list.')
     return self.SUPPORTED_OS
 
   @property
@@ -33,10 +33,10 @@ class BaseArtifactsReader(object):
     """The supported label values.
 
     Raises:
-      NotImplementedError: if the type indicator is not defined.
+      NotImplementedError: if the LABELS list is not defined.
     """
     if not self.LABELS:
-      raise NotImplementedError(u'Invalid source type missing type indicator.')
+      raise NotImplementedError(u'Invalid supported LABELS list.')
     return self.LABELS
 
   @abc.abstractmethod
@@ -146,6 +146,7 @@ class ArtifactsReader(BaseArtifactsReader):
       raise errors.FormatError(
           u'Invalid artifact definition: {0} missing sources.'.format(name))
 
+    source_supported_os = []
     for source in sources:
       type_indicator = source.get(u'type', None)
       if not type_indicator:
@@ -168,7 +169,11 @@ class ArtifactsReader(BaseArtifactsReader):
         self._ReadSupportedOS(source, source_type, name)
         for supported_os in source_type.supported_os:
           if supported_os not in artifact_object.supported_os:
-            artifact_object.supported_os.append(supported_os)
+            source_supported_os.append(supported_os)
+    if not set(source_supported_os) <= set(artifact_object.supported_os):
+      raise errors.FormatError(
+          u'Invalid artifact definition: {0} missing supported_os.'.format(
+              name))
 
     return artifact_object
 
