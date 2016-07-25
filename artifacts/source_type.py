@@ -43,7 +43,7 @@ class SourceType(object):
 
   @abc.abstractmethod
   def AsDict(self):
-    """Copies the source type to a dictionary.
+    """Represents a source type as a dictionary.
 
     Returns:
       A dictionary containing the source type attributes.
@@ -71,7 +71,7 @@ class ArtifactGroupSourceType(SourceType):
     self.names = names
 
   def AsDict(self):
-    """Copies the source type to a dictionary.
+    """Represents a source type as a dictionary.
 
     Returns:
       A dictionary containing the source type attributes.
@@ -104,7 +104,7 @@ class FileSourceType(SourceType):
     self.separator = separator
 
   def AsDict(self):
-    """Copies the source type to a dictionary.
+    """Represents a source type as a dictionary.
 
     Returns:
       A dictionary containing the source type attributes.
@@ -139,7 +139,7 @@ class CommandSourceType(SourceType):
     self.cmd = cmd
 
   def AsDict(self):
-    """Copies the source type to a dictionary.
+    """Represents a source type as a dictionary.
 
     Returns:
       A dictionary containing the source type attributes.
@@ -172,7 +172,7 @@ class PathSourceType(SourceType):
     self.separator = separator
 
   def AsDict(self):
-    """Copies the source type to a dictionary.
+    """Represents a source type as a dictionary.
 
     Returns:
       A dictionary containing the source type attributes.
@@ -209,7 +209,7 @@ class DirectorySourceType(SourceType):
     self.separator = separator
 
   def AsDict(self):
-    """Copies the source type to a dictionary.
+    """Represents a source type as a dictionary.
 
     Returns:
       A dictionary containing the source type attributes.
@@ -256,7 +256,7 @@ class WindowsRegistryKeySourceType(SourceType):
     self.keys = keys
 
   def AsDict(self):
-    """Copies the source type to a dictionary.
+    """Represents a source type as a dictionary.
 
     Returns:
       A dictionary containing the source type attributes.
@@ -322,7 +322,7 @@ class WindowsRegistryValueSourceType(SourceType):
     self.key_value_pairs = key_value_pairs
 
   def AsDict(self):
-    """Copies the source type to a dictionary.
+    """Represents a source type as a dictionary.
 
     Returns:
       A dictionary containing the source type attributes.
@@ -352,7 +352,7 @@ class WMIQuerySourceType(SourceType):
     self.query = query
 
   def AsDict(self):
-    """Copies the source type to a dictionary.
+    """Represents a source type as a dictionary.
 
     Returns:
       A dictionary containing the source type attributes.

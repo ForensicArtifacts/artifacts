@@ -3,7 +3,6 @@
 
 import io
 import os
-import sys
 import unittest
 import yaml
 import json
@@ -17,7 +16,7 @@ class ArtifactAsDictTest(unittest.TestCase):
   """Class to test the artifacts AsDict conversion"""
 
   def testAsDict(self):
-    """Tests the ArtifactDefinition AsDict method."""
+    """Tests the ArtifactDefinition AsDict method returns the same dict that parsing artifact from yaml yields."""
     artifact_reader = reader.YamlArtifactsReader()
     test_file = os.path.join('test_data', 'definitions.yaml')
 
@@ -28,7 +27,7 @@ class ArtifactAsDictTest(unittest.TestCase):
         self.assertEqual(artifact_definition, artifact_object.AsDict())
 
   def testDefinitionsAsDict(self):
-    """Tests that all defined artifacts can convert to dictionary representation."""
+    """Tests that all defined artifacts can convert to dictionary representation without raising."""
     artifact_reader = reader.YamlArtifactsReader()
 
     artifact_definitions = list(artifact_reader.ReadDirectory('definitions'))
@@ -49,7 +48,7 @@ class YamlArtifactsWriterTest(unittest.TestCase):
   """Class to test the YAML artifacts writer"""
 
   def testYamlWriter(self):
-    """Tests the YamlArtifactsWriter FormatArtifacts method."""
+    """Tests the YamlArtifactsWriter FormatArtifacts method for loss during conversion."""
     artifact_reader = reader.YamlArtifactsReader()
     artifact_writer = writer.YamlArtifactsWriter()
     test_file = os.path.join('test_data', 'definitions.yaml')
@@ -60,21 +59,17 @@ class YamlArtifactsWriterTest(unittest.TestCase):
     file_object = io.StringIO(initial_value=artifacts_yaml)
     converted_artifact_definitions = list(artifact_reader.ReadFileObject(
         file_object))
-    if sys.version_info >= (3, 0):
-      self.assertCountEqual(
-          [artifact.AsDict() for artifact in artifact_definitions],
-          [artifact.AsDict() for artifact in converted_artifact_definitions])
-    else:
-      self.assertItemsEqual(
-          [artifact.AsDict() for artifact in artifact_definitions],
-          [artifact.AsDict() for artifact in converted_artifact_definitions])
+
+    self.assertListEqual(
+        [artifact.AsDict() for artifact in artifact_definitions],
+        [artifact.AsDict() for artifact in converted_artifact_definitions])
 
 
 class JsonArtifactsWriterTest(unittest.TestCase):
   """Class to test the JSON artifacts writer"""
 
   def testJsonWriter(self):
-    """Tests the JsonArtifactsWriter FormatArtifacts method."""
+    """Tests the JsonArtifactsWriter FormatArtifacts method for loss during conversion."""
     artifact_reader = reader.YamlArtifactsReader()
     artifact_writer = writer.JsonArtifactsWriter()
     test_file = os.path.join('test_data', 'definitions.yaml')
@@ -86,14 +81,10 @@ class JsonArtifactsWriterTest(unittest.TestCase):
         artifact_reader._ReadArtifactDefinition(artifact_definition)
         for artifact_definition in json.loads(artifacts_json)
     ]
-    if sys.version_info >= (3, 0):
-      self.assertCountEqual(
-          [artifact.AsDict() for artifact in artifact_definitions],
-          [artifact.AsDict() for artifact in converted_artifact_definitions])
-    else:
-      self.assertItemsEqual(
-          [artifact.AsDict() for artifact in artifact_definitions],
-          [artifact.AsDict() for artifact in converted_artifact_definitions])
+
+    self.assertListEqual(
+        [artifact.AsDict() for artifact in artifact_definitions],
+        [artifact.AsDict() for artifact in converted_artifact_definitions])
 
 
 if __name__ == '__main__':
