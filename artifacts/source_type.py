@@ -426,12 +426,21 @@ class SourceTypeFactory(object):
 
   @classmethod
   def GetSourceTypes(cls):
-    """Retriees the source types.
+    """Retrieves the source types.
 
     Returns:
       A list of source types (subclasses of SourceType).
     """
     return cls._source_type_classes.values()
+
+  @classmethod
+  def GetSourceTypeIndicators(cls):
+    """Retrieves the source type indicators.
+
+    Returns:
+      A list of source type indicators.
+    """
+    return cls._source_type_classes.keys()
 
   @classmethod
   def RegisterSourceType(cls, source_type_class):
