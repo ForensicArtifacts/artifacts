@@ -59,3 +59,40 @@ class ArtifactDefinition(object):
 
     self.sources.append(source_object)
     return source_object
+
+  def AsDict(self):
+    """Represents an artifact as a dictionary.
+
+    Returns:
+      A dictionary containing the artifact attributes.
+    """
+    sources = []
+    for source in self.sources:
+      source_definition = {
+          u'type': source.type_indicator,
+          u'attributes': source.AsDict()
+      }
+      if source.supported_os:
+        source_definition[u'supported_os'] = source.supported_os
+      if source.conditions:
+        source_definition[u'conditions'] = source.conditions
+      if source.returned_types:
+        source_definition[u'returned_types'] = source.returned_types
+      sources.append(source_definition)
+
+    artifact_definition = {
+        u'name': self.name,
+        u'doc': self.description,
+        u'sources': sources,
+    }
+    if self.labels:
+      artifact_definition[u'labels'] = self.labels
+    if self.supported_os:
+      artifact_definition[u'supported_os'] = self.supported_os
+    if self.provides:
+      artifact_definition[u'provides'] = self.provides
+    if self.conditions:
+      artifact_definition[u'conditions'] = self.conditions
+    if self.urls:
+      artifact_definition[u'urls'] = self.urls
+    return artifact_definition
