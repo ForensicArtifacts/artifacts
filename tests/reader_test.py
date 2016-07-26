@@ -4,6 +4,7 @@
 import io
 import os
 import unittest
+import yaml
 
 from artifacts import definitions
 from artifacts import errors
@@ -266,6 +267,34 @@ sources:
     artifact_definitions = list(artifact_reader.ReadDirectory('test_data'))
 
     self.assertEqual(len(artifact_definitions), 7)
+
+  def testArtifactAsDict(self):
+    """Tests the ArtifactDefinition AsDict method returns the same dict that parsing artifact from yaml yields."""
+    artifact_reader = reader.YamlArtifactsReader()
+    test_file = os.path.join('test_data', 'definitions.yaml')
+
+    with open(test_file, 'r') as file_object:
+      for artifact_definition in yaml.safe_load_all(file_object):
+        artifact_object = artifact_reader.ReadArtifactDefinition(
+            artifact_definition)
+        self.assertEqual(artifact_definition, artifact_object.AsDict())
+
+  def testDefinitionsAsDict(self):
+    """Tests that all defined artifacts can convert to dictionary representation without raising."""
+    artifact_reader = reader.YamlArtifactsReader()
+
+    artifact_definitions = list(artifact_reader.ReadDirectory('definitions'))
+
+    last_artifact_definition = None
+    for artifact in artifact_definitions:
+      try:
+        artifact_definition = artifact.AsDict()
+      except errors.FormatError:
+        error_location = u'At start'
+        if last_artifact_definition:
+          error_location = u'After: {0}'.format(last_artifact_definition.name)
+        self.fail(u'{0} failed to convert to dict'.format(error_location))
+      last_artifact_definition = artifact_definition
 
 
 if __name__ == '__main__':
