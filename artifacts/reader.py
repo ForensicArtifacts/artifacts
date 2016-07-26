@@ -139,45 +139,14 @@ class ArtifactsReader(BaseArtifactsReader):
         u'conditions', [])
     artifact_definition.provides = artifact_definition_values.get(u'provides',
                                                                   [])
-    self._ReadLabels(artifact_definition_values, artifact_definition)
+    self._ReadLabels(artifact_definition_values, artifact_definition, name)
     self._ReadSupportedOS(artifact_definition_values, artifact_definition, name)
     artifact_definition.urls = artifact_definition_values.get(u'urls', [])
-
-    sources = artifact_definition_values.get(u'sources')
-    if not sources:
-      raise errors.FormatError(
-          u'Invalid artifact definition: {0} missing sources.'.format(name))
-
-    for source in sources:
-      type_indicator = source.get(u'type', None)
-      if not type_indicator:
-        raise errors.FormatError(
-            u'Invalid artifact definition: {0} source type.'.format(name))
-
-      attributes = source.get(u'attributes', None)
-
-      try:
-        source_type = artifact_definition.AppendSource(type_indicator,
-                                                       attributes)
-
-      except errors.FormatError as exception:
-        raise errors.FormatError(
-            u'Invalid artifact definition: {0}. {1}'.format(name, exception))
-
-      # TODO: deprecate these left overs from the collector definition.
-      if source_type:
-        source_type.conditions = source.get(u'conditions', [])
-        source_type.returned_types = source.get(u'returned_types', [])
-        self._ReadSupportedOS(source, source_type, name)
-        for supported_os in source_type.supported_os:
-          if supported_os not in artifact_definition.supported_os:
-            raise errors.FormatError((
-                u'Invalid artifact definition: {0} missing '
-                u'supported_os.').format(name))
+    self._ReadSources(artifact_definition_values, artifact_definition, name)
 
     return artifact_definition
 
-  def _ReadLabels(self, artifact_definition_values, artifact_definition):
+  def _ReadLabels(self, artifact_definition_values, artifact_definition, name):
     """Reads the optional artifact definition labels.
 
     Args:
@@ -189,7 +158,6 @@ class ArtifactsReader(BaseArtifactsReader):
     Raises:
       FormatError: if there are undefined labels.
     """
-    name = artifact_definition_values.get(u'name', None)
     labels = artifact_definition_values.get(u'labels', [])
 
     undefined_labels = set(labels).difference(self.labels)
@@ -226,6 +194,49 @@ class ArtifactsReader(BaseArtifactsReader):
       raise errors.FormatError(error_string)
 
     definition_object.supported_os = supported_os
+
+  def _ReadSources(self, artifact_definition_values, artifact_definition, name):
+    """Reads the artifact definition sources.
+
+    Args:
+      artifact_definition_values: dictionary containing the artifact definition
+                                  values.
+      artifact_definition: the artifact definition (instance of
+                           ArtifactDefinition).09
+
+    Raises:
+      FormatError: if the type indicator is not set or unsupported,
+                   or if required attributes are missing.
+    """
+    sources = artifact_definition_values.get(u'sources')
+    if not sources:
+      raise errors.FormatError(
+          u'Invalid artifact definition: {0} missing sources.'.format(name))
+
+    for source in sources:
+      type_indicator = source.get(u'type', None)
+      if not type_indicator:
+        raise errors.FormatError(
+            u'Invalid artifact definition: {0} source type.'.format(name))
+
+      attributes = source.get(u'attributes', None)
+
+      try:
+        source_type = artifact_definition.AppendSource(type_indicator,
+                                                       attributes)
+      except errors.FormatError as exception:
+        raise errors.FormatError(
+            u'Invalid artifact definition: {0}. {1}'.format(name, exception))
+
+      # TODO: deprecate these left overs from the collector definition.
+      if source_type:
+        source_type.conditions = source.get(u'conditions', [])
+        source_type.returned_types = source.get(u'returned_types', [])
+        self._ReadSupportedOS(source, source_type, name)
+        if set(source_type.supported_os) - set(
+            artifact_definition.supported_os):
+          raise errors.FormatError((u'Invalid artifact definition: {0} missing '
+                                    u'supported_os.').format(name))
 
   def ReadDirectory(self, path, extension=u'yaml'):
     """Reads artifact definitions from files in a directory.
