@@ -15,6 +15,7 @@ sources:
     - '/usr/{lib,lib64}/python*/{dist,site}-packages/*.dist-info/*'
     - '/usr/local/{lib,lib64}/python*/{dist,site}-packages/*.dist-info/*'
   supported_os: [Linux]
+supported_os: [Linux]
 labels: [Software]
 urls: ['https://www.python.org/dev/peps/pep-0376/']
 ---
@@ -46,6 +47,7 @@ sources:
     - '/usr/local/{lib,lib64}/python*/{dist,site}-packages/*.{egg,egg-info}/*'
     - '/usr/share/pyshared/*.{egg,egg-info}/*'
   supported_os: [Linux]
+supported_os: [Linux]
 labels: [Software]
 urls:
 - 'https://pythonhosted.org/setuptools/formats.html'
@@ -77,6 +79,7 @@ sources:
     - '/usr/share/python-wheels/*.whl'
     - '%%users.homedir%%/.cache/pip/wheels/*.whl'
   supported_os: [Linux]
+supported_os: [Linux]
 labels: [Software]
 urls:
 - 'https://wheel.readthedocs.org/en/latest/'
@@ -92,4 +95,5 @@ sources:
     - '/var/lib/gems/**2/*.gemspec'
     - '/usr/share/rubygems-integration/**2/*.gemspec'
   supported_os: [Linux]
+supported_os: [Linux]
 urls: ['http://guides.rubygems.org']
