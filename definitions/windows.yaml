@@ -858,6 +858,42 @@ urls:
 - 'https://msdn.microsoft.com/en-us/library/windows/desktop/aa379392(v=vs.85).aspx'
 - 'https://dl.mandiant.com/EE/library/MIRcon2014/MIRcon_2014_IR_Track_Analysis_of_Malicious_SSP.pdf'
 ---
+name: WindowsMetroApplicationCache
+doc: Windows Metro application cache.
+sources:
+- type: FILE
+  attributes: {paths: ['%%users.homedir%%\AppData\Local\Packages\*\AC\INetCache']}
+supported_os: [Windows]
+urls:
+- 'http://www.forensicmag.com/article/2012/09/microsoft-windows-8-forensic-first-look'
+---
+name: WindowsMetroApplicationCookies
+doc: Windows Metro application cookies.
+sources:
+- type: FILE
+  attributes: {paths: ['%%users.homedir%%\AppData\Local\Packages\*\AC\INetCookies']}
+supported_os: [Windows]
+urls:
+- 'http://www.forensicmag.com/article/2012/09/microsoft-windows-8-forensic-first-look'
+---
+name: WindowsMetroApplicationHistory
+doc: Windows Metro application history.
+sources:
+- type: FILE
+  attributes: {paths: ['%%users.homedir%%\AppData\Local\Packages\*\AC\INetHistory']}
+supported_os: [Windows]
+urls:
+- 'http://www.forensicmag.com/article/2012/09/microsoft-windows-8-forensic-first-look'
+---
+name: WindowsMetroUserPinnedFavoriteTiles
+doc: Windows Metro user-pinned favorite tiles.
+sources:
+- type: FILE
+  attributes: {paths: ['%%users.homedir%%\AppData\Local\Microsoft\Windows\RoamingTiles']}
+supported_os: [Windows]
+urls:
+- 'http://www.forensicmag.com/article/2012/09/microsoft-windows-8-forensic-first-look'
+---
 name: WindowsMostRecentApplication
 doc: Windows Most Recent Application name key
 sources:
