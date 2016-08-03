@@ -5,6 +5,7 @@ import io
 import os
 import unittest
 import json
+import tempfile
 
 from artifacts import reader
 from artifacts import writer
@@ -20,14 +21,11 @@ class YamlArtifactsWriterTest(unittest.TestCase):
     test_file = os.path.join('test_data', 'definitions.yaml')
 
     artifact_definitions = list(artifact_reader.ReadFile(test_file))
-    artifacts_yaml = artifact_writer.FormatArtifacts(artifact_definitions)
-    if isinstance(artifacts_yaml, bytes):
-      file_object = io.BytesIO(initial_bytes=artifacts_yaml)
-    else:
-      file_object = io.StringIO(initial_value=artifacts_yaml)
-
-    converted_artifact_definitions = list(artifact_reader.ReadFileObject(
-        file_object))
+    with tempfile.NamedTemporaryFile() as artifact_file:
+      artifact_writer.WriteArtifactsFile(artifact_definitions,
+                                         artifact_file.name)
+      converted_artifact_definitions = list(artifact_reader.ReadFile(
+          artifact_file.name))
 
     self.assertListEqual(
         [artifact.AsDict() for artifact in artifact_definitions],
