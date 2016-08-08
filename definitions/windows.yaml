@@ -881,6 +881,15 @@ sources:
     separator: '\'
 supported_os: [Windows]
 ---
+name: WindowsInstallationDateTime
+doc: Windows installation date and time
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion', value: 'InstallDate'}
+supported_os: [Windows]
+---
 name: WindowsLogoffScript
 doc: Windows policy logoff script
 sources:
