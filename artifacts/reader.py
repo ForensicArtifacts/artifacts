@@ -4,7 +4,7 @@
 import abc
 import glob
 import os
-
+import json
 import yaml
 
 from artifacts import artifact
@@ -269,7 +269,7 @@ class ArtifactsReader(BaseArtifactsReader):
     Yields:
       Artifact definitions (instances of ArtifactDefinition).
     """
-    with open(filename, 'rb') as file_object:
+    with open(filename, 'r') as file_object:
       for artifact_definition in self.ReadFileObject(file_object):
         yield artifact_definition
 
@@ -308,6 +308,40 @@ class YamlArtifactsReader(ArtifactsReader):
     for yaml_definition in yaml_generator:
       try:
         artifact_definition = self.ReadArtifactDefinitionValues(yaml_definition)
+      except errors.FormatError as exception:
+        error_location = u'At start'
+        if last_artifact_definition:
+          error_location = u'After: {0}'.format(last_artifact_definition.name)
+
+        raise errors.FormatError(u'{0} {1}'.format(error_location, exception))
+
+      yield artifact_definition
+      last_artifact_definition = artifact_definition
+
+
+class JsonArtifactsReader(ArtifactsReader):
+  """Class that implements the JSON artifacts reader."""
+
+  def ReadFileObject(self, file_object):
+    """Reads artifact definitions from a file-like object.
+
+    Args:
+      file_object: the file-like object to read from.
+
+    Yields:
+      Artifact definitions (instances of ArtifactDefinition).
+
+    Raises:
+      FormatError: if the format of the JSON artifact definition is not set
+                   or incorrect.
+    """
+    # TODO: add try, except?
+    json_definitions = json.loads(file_object.read())
+
+    last_artifact_definition = None
+    for json_definition in json_definitions:
+      try:
+        artifact_definition = self.ReadArtifactDefinitionValues(json_definition)
       except errors.FormatError as exception:
         error_location = u'At start'
         if last_artifact_definition:

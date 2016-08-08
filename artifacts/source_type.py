@@ -42,8 +42,8 @@ class SourceType(object):
     return self.TYPE_INDICATOR
 
   @abc.abstractmethod
-  def CopyToDict(self):
-    """Copies the source type to a dictionary.
+  def AsDict(self):
+    """Represents a source type as a dictionary.
 
     Returns:
       A dictionary containing the source type attributes.
@@ -70,8 +70,8 @@ class ArtifactGroupSourceType(SourceType):
     super(ArtifactGroupSourceType, self).__init__()
     self.names = names
 
-  def CopyToDict(self):
-    """Copies the source type to a dictionary.
+  def AsDict(self):
+    """Represents a source type as a dictionary.
 
     Returns:
       A dictionary containing the source type attributes.
@@ -103,8 +103,8 @@ class FileSourceType(SourceType):
     self.paths = paths
     self.separator = separator
 
-  def CopyToDict(self):
-    """Copies the source type to a dictionary.
+  def AsDict(self):
+    """Represents a source type as a dictionary.
 
     Returns:
       A dictionary containing the source type attributes.
@@ -138,8 +138,8 @@ class CommandSourceType(SourceType):
     self.args = args
     self.cmd = cmd
 
-  def CopyToDict(self):
-    """Copies the source type to a dictionary.
+  def AsDict(self):
+    """Represents a source type as a dictionary.
 
     Returns:
       A dictionary containing the source type attributes.
@@ -171,8 +171,8 @@ class PathSourceType(SourceType):
     self.paths = paths
     self.separator = separator
 
-  def CopyToDict(self):
-    """Copies the source type to a dictionary.
+  def AsDict(self):
+    """Represents a source type as a dictionary.
 
     Returns:
       A dictionary containing the source type attributes.
@@ -208,8 +208,8 @@ class DirectorySourceType(SourceType):
     self.paths = paths
     self.separator = separator
 
-  def CopyToDict(self):
-    """Copies the source type to a dictionary.
+  def AsDict(self):
+    """Represents a source type as a dictionary.
 
     Returns:
       A dictionary containing the source type attributes.
@@ -255,8 +255,8 @@ class WindowsRegistryKeySourceType(SourceType):
     super(WindowsRegistryKeySourceType, self).__init__()
     self.keys = keys
 
-  def CopyToDict(self):
-    """Copies the source type to a dictionary.
+  def AsDict(self):
+    """Represents a source type as a dictionary.
 
     Returns:
       A dictionary containing the source type attributes.
@@ -321,8 +321,8 @@ class WindowsRegistryValueSourceType(SourceType):
     super(WindowsRegistryValueSourceType, self).__init__()
     self.key_value_pairs = key_value_pairs
 
-  def CopyToDict(self):
-    """Copies the source type to a dictionary.
+  def AsDict(self):
+    """Represents a source type as a dictionary.
 
     Returns:
       A dictionary containing the source type attributes.
@@ -351,8 +351,8 @@ class WMIQuerySourceType(SourceType):
     self.base_object = base_object
     self.query = query
 
-  def CopyToDict(self):
-    """Copies the source type to a dictionary.
+  def AsDict(self):
+    """Represents a source type as a dictionary.
 
     Returns:
       A dictionary containing the source type attributes.
