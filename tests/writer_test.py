@@ -12,7 +12,7 @@ from artifacts import writer
 
 
 class YamlArtifactsWriterTest(unittest.TestCase):
-  """Class to test the YAML artifacts writer"""
+  """Class to test the YAML artifacts writer."""
 
   def testYamlWriter(self):
     """Tests the YamlArtifactsWriter FormatArtifacts method for loss during conversion."""
@@ -33,21 +33,21 @@ class YamlArtifactsWriterTest(unittest.TestCase):
 
 
 class JsonArtifactsWriterTest(unittest.TestCase):
-  """Class to test the JSON artifacts writer"""
+  """Class to test the JSON artifacts writer."""
 
   def testJsonWriter(self):
     """Tests the JsonArtifactsWriter FormatArtifacts method for loss during conversion."""
-    artifact_reader = reader.YamlArtifactsReader()
+    artifact_reader = reader.JsonArtifactsReader()
     artifact_writer = writer.JsonArtifactsWriter()
-    test_file = os.path.join('test_data', 'definitions.yaml')
+    test_file = os.path.join('test_data', 'definitions.json')
 
     artifact_definitions = list(artifact_reader.ReadFile(test_file))
-    artifacts_json = artifact_writer.FormatArtifacts(artifact_definitions)
+    with tempfile.NamedTemporaryFile() as artifact_file:
+      artifact_writer.WriteArtifactsFile(artifact_definitions,
+                                         artifact_file.name)
 
-    converted_artifact_definitions = [
-        artifact_reader.ReadArtifactDefinitionValues(artifact_definition)
-        for artifact_definition in json.loads(artifacts_json)
-    ]
+      converted_artifact_definitions = list(artifact_reader.ReadFile(
+          artifact_file.name))
 
     self.assertListEqual(
         [artifact.AsDict() for artifact in artifact_definitions],

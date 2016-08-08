@@ -251,7 +251,7 @@ sources:
     with self.assertRaises(errors.FormatError):
       _ = list(artifact_reader.ReadFileObject(file_object))
 
-  def testReadFile(self):
+  def testReadYamlFile(self):
     """Tests the ReadFile function."""
     artifact_reader = reader.YamlArtifactsReader()
     test_file = os.path.join('test_data', 'definitions.yaml')
@@ -295,6 +295,19 @@ sources:
           error_location = u'After: {0}'.format(last_artifact_definition.name)
         self.fail(u'{0} failed to convert to dict'.format(error_location))
       last_artifact_definition = artifact_definition
+
+
+class JsonArtifactsReaderTest(unittest.TestCase):
+  """Class to test the JSON artifacts reader."""
+
+  def testReadJsonFile(self):
+    """Tests the ReadFile function."""
+    artifact_reader = reader.JsonArtifactsReader()
+    test_file = os.path.join('test_data', 'definitions.json')
+
+    artifact_definitions = list(artifact_reader.ReadFile(test_file))
+
+    self.assertEqual(len(artifact_definitions), 7)
 
 
 if __name__ == '__main__':
