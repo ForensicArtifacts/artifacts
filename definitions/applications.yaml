@@ -32,8 +32,7 @@ sources:
       - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Office\*\*\Place MRU', value: 'Item *'}
   supported_os: [Windows]
 supported_os: [Darwin, Windows]
-urls:
-- 'https://github.com/mac4n6/macMRU-Parser'
+urls: ['https://github.com/mac4n6/macMRU-Parser']
 ---
 name: WinRARExternalViewer
 doc: Executable run when a file is opened by WinRAR inside an archive.
