@@ -457,7 +457,9 @@ sources:
   supported_os: [Linux]
 - type: FILE
   attributes:
-    paths: ['%%users.appdata%%\Opera\Opera\global_history.dat']
+    paths:
+      - '%%users.appdata%%\Opera\Opera\global_history.dat'
+      - '%%users.appdata%%\Roaming\Opera Software\Opera Stable\History'
     separator: '\'
   supported_os: [Windows]
 supported_os: [Windows,Darwin,Linux]
