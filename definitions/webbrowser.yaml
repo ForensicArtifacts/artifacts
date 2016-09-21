@@ -273,6 +273,7 @@ sources:
     paths:
       - '%%users.localappdata%%\Mozilla\Firefox\Profiles\*\places.sqlite'
       - '%%users.appdata%%\Mozilla\Firefox\Profiles\*\places.sqlite'
+      - '%%users.appdata%%\Roaming\Mozilla\Firefox\Profiles\*\places.sqlite'
     separator: '\'
   supported_os: [Windows]
 - type: FILE
