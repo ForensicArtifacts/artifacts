@@ -34,7 +34,7 @@ doc: The AMCache.hve Windows NT Registry file.
 sources:
 - type: FILE
   attributes:
-    paths: ['%%environ_systemroot%%\System32\AppCompat\Programs\Amcache.hve']
+    paths: ['%%environ_systemroot%%\AppCompat\Programs\Amcache.hve']
     separator: '\'
 conditions: [os_major_version >= 6 AND os_minor_version >= 1]
 supported_os: [Windows]
@@ -1143,7 +1143,7 @@ doc: The RecentFileCache.bcf file.
 sources:
 - type: FILE
   attributes:
-    paths: ['%%environ_systemroot%%\System32\AppCompat\Programs\RecentFileCache.bcf']
+    paths: ['%%environ_systemroot%%\AppCompat\Programs\RecentFileCache.bcf']
     separator: '\'
 conditions: [os_major_version >= 6 AND os_minor_version >= 1]
 supported_os: [Windows]
