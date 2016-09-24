@@ -58,7 +58,7 @@ class ArtifactDefinitionsRegistryTest(test_lib.BaseTestCase):
       artifact_registry.RegisterDefinition(artifact_definition)
 
     # Make sure the test file got turned into artifacts.
-    self.assertEqual(len(artifact_registry.GetDefinitions()), 7)
+    self.assertEqual(len(artifact_registry.GetDefinitions()), 8)
 
     artifact_definition = artifact_registry.GetDefinitionByName(u'EventLogs')
     self.assertIsNotNone(artifact_definition)
@@ -74,7 +74,7 @@ class ArtifactDefinitionsRegistryTest(test_lib.BaseTestCase):
     with self.assertRaises(KeyError):
       artifact_registry.DeregisterDefinition(artifact_definition)
 
-    self.assertEqual(len(artifact_registry.GetDefinitions()), 6)
+    self.assertEqual(len(artifact_registry.GetDefinitions()), 7)
 
     test_artifact_definition = artifact_registry.GetDefinitionByName(
         u'SecurityEventLogEvtx')

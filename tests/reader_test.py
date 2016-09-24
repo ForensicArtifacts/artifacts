@@ -24,7 +24,7 @@ class YamlArtifactsReaderTest(test_lib.BaseTestCase):
     with open(test_file, 'rb') as file_object:
       artifact_definitions = list(artifact_reader.ReadFileObject(file_object))
 
-    self.assertEqual(len(artifact_definitions), 7)
+    self.assertEqual(len(artifact_definitions), 8)
 
     # Artifact with file source type.
     artifact_definition = artifact_definitions[0]
@@ -100,7 +100,7 @@ class YamlArtifactsReaderTest(test_lib.BaseTestCase):
     self.assertEqual(key_value_pair['value'], 'Current')
 
     # Artifact with WMI query source type.
-    artifact_definition = artifact_definitions[3]
+    artifact_definition = artifact_definitions[4]
     self.assertEqual(artifact_definition.name, 'WMIProfileUsersHomeDir')
 
     expected_provides = sorted(['users.homedir'])
@@ -116,8 +116,8 @@ class YamlArtifactsReaderTest(test_lib.BaseTestCase):
         'SELECT * FROM Win32_UserProfile WHERE SID=\'%%users.sid%%\'')
     self.assertEqual(source_type.query, expected_query)
 
-    # Artifact with artifact definition source type.
-    artifact_definition = artifact_definitions[4]
+    # Artifact with artifact source type.
+    artifact_definition = artifact_definitions[5]
     self.assertEqual(artifact_definition.name, 'EventLogs')
 
     self.assertEqual(len(artifact_definition.sources), 1)
@@ -126,8 +126,8 @@ class YamlArtifactsReaderTest(test_lib.BaseTestCase):
     self.assertEqual(
         source_type.type_indicator, definitions.TYPE_INDICATOR_ARTIFACT_GROUP)
 
-    # Artifact with command definition source type.
-    artifact_definition = artifact_definitions[5]
+    # Artifact with commandsource type.
+    artifact_definition = artifact_definitions[6]
     self.assertEqual(artifact_definition.name, 'RedhatPackagesList')
 
     self.assertEqual(len(artifact_definition.sources), 1)
@@ -136,8 +136,8 @@ class YamlArtifactsReaderTest(test_lib.BaseTestCase):
     self.assertEqual(
         source_type.type_indicator, definitions.TYPE_INDICATOR_COMMAND)
 
-    # Artifact with COMMAND definition collector definition.
-    artifact_definition = artifact_definitions[5]
+    # Artifact with command collector definition.
+    artifact_definition = artifact_definitions[6]
     self.assertEqual(artifact_definition.name, 'RedhatPackagesList')
 
     self.assertEqual(len(artifact_definition.sources), 1)
@@ -270,7 +270,7 @@ sources:
 
     artifact_definitions = list(artifact_reader.ReadFile(test_file))
 
-    self.assertEqual(len(artifact_definitions), 7)
+    self.assertEqual(len(artifact_definitions), 8)
 
   def testReadDirectory(self):
     """Tests the ReadDirectory function."""
@@ -279,7 +279,7 @@ sources:
 
     artifact_definitions = list(artifact_reader.ReadDirectory(test_file))
 
-    self.assertEqual(len(artifact_definitions), 7)
+    self.assertEqual(len(artifact_definitions), 8)
 
   @test_lib.skipUnlessHasTestFile(['definitions.yaml'])
   def testArtifactAsDict(self):
