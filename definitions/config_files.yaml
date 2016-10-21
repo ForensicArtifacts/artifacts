@@ -15,3 +15,11 @@ sources:
   attributes: {paths: ['/etc/ssh/sshd_config']}
 labels: [Configuration Files]
 supported_os: [Linux]
+---
+name: SshUserConfigFile
+doc: User ssh configuration file
+sources:
+- type: FILE
+  attributes: {paths: ['%%users.homedir%%/.ssh/config']}
+labels: [Configuration Files]
+supported_os: [Linux, Darwin]
