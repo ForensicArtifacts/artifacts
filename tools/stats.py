@@ -13,7 +13,7 @@ class ArtifactStatistics(object):
   """Generate and print statistics about artifact files."""
 
   def _PrintDictAsTable(self, src_dict):
-    key_list = src_dict.keys()
+    key_list = list(src_dict.keys())
     key_list.sort()
 
     print('|', end='')
