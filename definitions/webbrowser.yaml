@@ -492,7 +492,11 @@ sources:
     separator: '\'
   supported_os: [Windows]
 - type: FILE
-  attributes: {paths: ['%%users.homedir%%/Library/Safari/History.plist']}
+  attributes:
+    paths:
+      - '%%users.homedir%%/Library/Safari/History.plist'
+      - '%%users.homedir%%/Library/Safari/History.db'
+      - '%%users.homedir%%/Library/Safari/History.db-wal'
   supported_os: [Darwin]
 supported_os: [Windows, Darwin]
 labels: [Browser]
