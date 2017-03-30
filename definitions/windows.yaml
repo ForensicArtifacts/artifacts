@@ -949,6 +949,30 @@ sources:
 supported_os: [Windows]
 urls: ['https://support.microsoft.com/en-us/kb/242468']
 ---
+name: WindowsOpenSaveMRU
+doc: Information about files opened or saved in a Windows shell dialog.
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys: ['HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\ComDIg32\OpenSaveMRU\*\*']
+conditions: [os_major_version < 6]
+supported_os: [Windows]
+urls:
+ - 'http://www.forensicswiki.org/wiki/OpenSaveMRU'
+ - 'https://digital-forensics.sans.org/blog/2010/04/02/openrunsavemru-lastvisitedmru'
+---
+name: WindowsOpenSavePidlMRU
+doc: Information about files opened or saved in a Windows shell dialog.
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys: ['HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\ComDlg32\OpenSavePidlMRU\*\*']
+conditions: [os_major_version >= 6]
+supported_os: [Windows]
+urls:
+ - 'https://digital-forensics.sans.org/blog/2010/04/02/openrunsavemru-lastvisitedmru'
+ - 'http://www.forensicswiki.org/wiki/OpenSavePidlMRU'
+---
 name: WindowsPendingFileRenames
 doc: Windows Pending file renames on reboot
 sources:
