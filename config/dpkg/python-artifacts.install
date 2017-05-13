@@ -1,2 +1,2 @@
-usr/lib/python2*/dist-packages/dtformats/*.py
-usr/lib/python2*/dist-packages/dtformats*.egg-info/*
+usr/lib/python2*/dist-packages/artifacts/*.py
+usr/lib/python2*/dist-packages/artifacts*.egg-info/*
