@@ -4,9 +4,7 @@ name: NfsExportsFile
 doc: NFS Exports configuration
 sources:
 - type: FILE
-  attributes:
-    paths:
-      - '/etc/exports'
+  attributes: {paths: ['/etc/exports']}
 labels: [Configuration Files]
 supported_os: [Linux, Darwin]
 ---

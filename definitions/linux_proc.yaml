@@ -4,9 +4,7 @@ name: LinuxASLREnabled
 doc: Kernel ASLR state.
 sources:
 - type: FILE
-  attributes:
-    paths:
-      - '/proc/sys/kernel/randomize_va_space'
+  attributes: {paths: ['/proc/sys/kernel/randomize_va_space']}
 labels: [System]
 supported_os: [Linux]
 urls: ['https://www.kernel.org/doc/Documentation/sysctl/kernel.txt']
@@ -15,9 +13,7 @@ name: LinuxIgnoreICMPBroadcasts
 doc: Whether the system ignores ICMP pings.
 sources:
 - type: FILE
-  attributes:
-    paths:
-      - '/proc/sys/net/ipv4/icmp_echo_ignore_broadcasts'
+  attributes: {paths: ['/proc/sys/net/ipv4/icmp_echo_ignore_broadcasts']}
 labels: [Network, System]
 supported_os: [Linux]
 urls: ['https://www.kernel.org/doc/Documentation/networking/ip-sysctl.txt']
@@ -30,17 +26,6 @@ sources:
     paths:
       - '/proc/sys/kernel/bootloader_type'
       - '/proc/sys/kernel/bootloader_version'
-labels: [System]
-supported_os: [Linux]
-urls: ['https://www.kernel.org/doc/Documentation/sysctl/kernel.txt']
----
-name: LinuxKernelModuleTaintStatus
-doc: Taint state of loaded modules (binary blobs, unsigned modules etc).
-sources:
-- type: FILE
-  attributes:
-    paths:
-      - '/proc/sys/kernel/tainted'
 labels: [System]
 supported_os: [Linux]
 urls: ['https://www.kernel.org/doc/Documentation/sysctl/kernel.txt']
@@ -153,23 +138,10 @@ name: LinuxRestrictedKernelPointerReadPrivileges
 doc: Memory address obfuscation settings.
 sources:
 - type: FILE
-  attributes:
-    paths:
-      - '/proc/sys/kernel/kptr_restrict'
+  attributes: {paths: ['/proc/sys/kernel/kptr_restrict']}
 labels: [System]
 supported_os: [Linux]
 urls: ['https://www.kernel.org/doc/Documentation/sysctl/kernel.txt']
----
-name: LinuxSecureSuidCoreDumps
-doc: Security controls for suid core dumps.
-sources:
-- type: FILE
-  attributes:
-    paths:
-      - '/proc/sys/fs/suid_dumpable'
-labels: [System]
-supported_os: [Linux]
-urls: ['https://www.kernel.org/doc/Documentation/sysctl/fs.txt']
 ---
 name: LinuxSecureFsLinks
 doc: Security controls to restrict operations on links in world writable directories.
@@ -196,9 +168,7 @@ name: LinuxSyncookieState
 doc: Whether the system uses syncookies.
 sources:
 - type: FILE
-  attributes:
-    paths:
-      - '/proc/sys/net/ipv4/tcp_syncookies'
+  attributes: {paths: ['/proc/sys/net/ipv4/tcp_syncookies']}
 labels: [Network, System]
 supported_os: [Linux]
 urls: ['https://www.kernel.org/doc/Documentation/networking/ip-sysctl.txt']

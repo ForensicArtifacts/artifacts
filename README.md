@@ -50,42 +50,6 @@ team.
 
 ## Contributing
 
-We love contributions! If you're contributing artifacts, please follow the
-[Style Guide](https://github.com/ForensicArtifacts/artifacts/blob/master/docs/style_guide.adoc)
-and make sure the tests pass:
-
-```
-$ python run_tests.py
-```
-
-If you're contributing python code, check with us on the mailing list first,
-especially if it's something big.
-
-We use the github [fork and pull review
-process](link:https://help.github.com/articles/using-pull-requests) to review
-all contributions. First, fork the [Artifact
-repository](https://github.com/ForensicArtifacts/artifacts) by following [the
-github instructions](https://help.github.com/articles/fork-a-repo).
-
-Now that you have a github.com/your-username/artifacts repository, make your
-changes. When you're ready for review, [sync your branch with
-upstream](https://help.github.com/articles/syncing-a-fork):
-
-```
-$ git fetch upstream
-$ git merge upstream/master
-
-# Fix any conflicts and commit your changes with a description
-$ git commit -a
-$ git push
-```
-
-and use the GitHub Web UI to [create and send the pull
-request](https://help.github.com/articles/using-pull-requests).  We'll review
-and merge the change.
-
-## Contributing
-
 Please send us your contribution! See [the developers guide](https://github.com/ForensicArtifacts/artifacts/wiki/Developers-guide) for instructions.
 
 ## External links
