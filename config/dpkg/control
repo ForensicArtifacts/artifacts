@@ -8,17 +8,24 @@ X-Python-Version: >= 2.7
 X-Python3-Version: >= 3.2
 Homepage: https://github.com/ForensicArtifacts/artifacts
 
+Package: artifacts-data
+Architecture: all
+Depends: ${misc:Depends}
+Description: Data files for ForensicArtifacts.com Artifact Repository
+ A free, community-sourced, machine-readable knowledge base of forensic
+ artifacts that the world can use both as an information source and within other tools.
+
 Package: python-artifacts
 Architecture: all
-Depends: python-yaml, ${python:Depends}, ${misc:Depends}
-Description: ForensicArtifacts.com Artifact Repository.
+Depends: artifacts-data, python-yaml, ${python:Depends}, ${misc:Depends}
+Description: Python bindings for ForensicArtifacts.com Artifact Repository
  A free, community-sourced, machine-readable knowledge base of forensic
  artifacts that the world can use both as an information source and within other tools.
 
 Package: python3-artifacts
 Architecture: all
-Depends: python3-yaml, ${python3:Depends}, ${misc:Depends}
-Description: ForensicArtifacts.com Artifact Repository.
+Depends: artifacts-data, python3-yaml, ${python3:Depends}, ${misc:Depends}
+Description: Python bindings for ForensicArtifacts.com Artifact Repository
  A free, community-sourced, machine-readable knowledge base of forensic
  artifacts that the world can use both as an information source and within other tools.
 
