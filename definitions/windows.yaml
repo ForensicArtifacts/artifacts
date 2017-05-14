@@ -279,6 +279,19 @@ urls:
 - 'https://msdn.microsoft.com/en-us/library/windows/desktop/ms694515(v=vs.85).aspx'
 - 'https://msdn.microsoft.com/en-us/library/windows/desktop/ms686595(v=vs.85).aspx'
 ---
+name: WindowsCOMRegisteredTypeLibraries
+doc: Windows COM registered type libraries
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Typelib\*\*\*\*', value: ''}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\Typelib\*\*\*\*', value: ''}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\Typelib\*\*\*\*', value: ''}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\Typelib\*\*\*\*', value: ''}
+supported_os: [Windows]
+urls: ['https://github.com/libyal/winreg-kb/blob/master/documentation/Component%20Object%20Model%20keys.asciidoc#type-libraries-key']
+---
 name: WindowsConfigSys
 doc: Windows config.sys file
 sources:
