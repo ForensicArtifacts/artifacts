@@ -315,7 +315,7 @@ class TravisBeforeInstallScriptWriter(DependencyFileWriter):
     file_content.append(u'PYTHON2_DEPENDENCIES="{0:s}";'.format(dependencies))
 
     file_content.append(u'')
-    file_content.append(u'PYTHON2_TEST_DEPENDENCIES="yapf";')
+    file_content.append(u'PYTHON2_TEST_DEPENDENCIES="python-yapf";')
 
     file_content.append(u'')
 
