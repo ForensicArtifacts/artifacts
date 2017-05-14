@@ -102,6 +102,7 @@ class AppveyorYmlWriter(DependencyFileWriter):
     file_content.extend(self._FILE_HEADER)
 
     dependencies = self._dependency_helper.GetL2TBinaries()
+    dependencies.extend([u'yapf'])
     dependencies = u' '.join(dependencies)
 
     l2tdevtools_update = self._L2TDEVTOOLS_UPDATE.format(dependencies)
