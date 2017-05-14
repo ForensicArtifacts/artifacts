@@ -11,7 +11,7 @@ install:
   - cmd: "%PYTHON%\\Scripts\\easy_install.exe C:\\Projects\\pywin32-220.win32-py2.7.exe"
   - cmd: "%PYTHON%\\Scripts\\easy_install.exe C:\\Projects\\WMI-1.4.9.win32.exe"
   - cmd: git clone https://github.com/log2timeline/l2tdevtools.git && move l2tdevtools ..\
-  - cmd: mkdir dependencies && set PYTHONPATH=..\l2tdevtools && "%PYTHON%\\python.exe" ..\l2tdevtools\tools\update.py --download-directory dependencies --machine-type x86 --msi-targetdir "%PYTHON%" PyYAML
+  - cmd: mkdir dependencies && set PYTHONPATH=..\l2tdevtools && "%PYTHON%\\python.exe" ..\l2tdevtools\tools\update.py --download-directory dependencies --machine-type x86 --msi-targetdir "%PYTHON%" PyYAML yapf
 
 build: off
 

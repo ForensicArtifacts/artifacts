@@ -126,8 +126,8 @@ class ArtifactsReader(BaseArtifactsReader):
       raise errors.FormatError(
           u'Invalid artifact definition: {0} missing description.'.format(name))
 
-    artifact_definition = artifact.ArtifactDefinition(name,
-                                                      description=description)
+    artifact_definition = artifact.ArtifactDefinition(
+        name, description=description)
 
     if artifact_definition_values.get(u'collectors', []):
       raise errors.FormatError(
@@ -137,8 +137,8 @@ class ArtifactsReader(BaseArtifactsReader):
     # TODO: check conditions.
     artifact_definition.conditions = artifact_definition_values.get(
         u'conditions', [])
-    artifact_definition.provides = artifact_definition_values.get(u'provides',
-                                                                  [])
+    artifact_definition.provides = artifact_definition_values.get(
+        u'provides', [])
     self._ReadLabels(artifact_definition_values, artifact_definition, name)
     self._ReadSupportedOS(artifact_definition_values, artifact_definition, name)
     artifact_definition.urls = artifact_definition_values.get(u'urls', [])
@@ -183,8 +183,8 @@ class ArtifactsReader(BaseArtifactsReader):
     """
     supported_os = definition_values.get(u'supported_os', [])
     if not isinstance(supported_os, list):
-      raise errors.FormatError(u'Invalid supported_os type: {0}'.format(type(
-          supported_os)))
+      raise errors.FormatError(
+          u'Invalid supported_os type: {0}'.format(type(supported_os)))
 
     undefined_supported_os = set(supported_os).difference(self.supported_os)
     if undefined_supported_os:
@@ -222,8 +222,8 @@ class ArtifactsReader(BaseArtifactsReader):
       attributes = source.get(u'attributes', None)
 
       try:
-        source_type = artifact_definition.AppendSource(type_indicator,
-                                                       attributes)
+        source_type = artifact_definition.AppendSource(
+            type_indicator, attributes)
       except errors.FormatError as exception:
         raise errors.FormatError(
             u'Invalid artifact definition: {0}. {1}'.format(name, exception))
@@ -235,8 +235,9 @@ class ArtifactsReader(BaseArtifactsReader):
         self._ReadSupportedOS(source, source_type, name)
         if set(source_type.supported_os) - set(
             artifact_definition.supported_os):
-          raise errors.FormatError((u'Invalid artifact definition: {0} missing '
-                                    u'supported_os.').format(name))
+          raise errors.FormatError(
+              (u'Invalid artifact definition: {0} missing '
+               u'supported_os.').format(name))
 
   def ReadDirectory(self, path, extension=u'yaml'):
     """Reads artifact definitions from files in a directory.

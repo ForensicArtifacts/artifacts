@@ -1,9 +1,16 @@
-## ForensicArtifacts.com Artifact Repository [![Build Status](https://travis-ci.org/ForensicArtifacts/artifacts.svg?branch=master)](https://travis-ci.org/ForensicArtifacts/artifacts)
+## ForensicArtifacts.com Artifact Repository
 
 A free, community-sourced, machine-readable knowledge base of forensic artifacts
 that the world can use both as an information source and within other tools.
 
 If you'd like to use the artifacts in your own tools, **all you need to be able to do is read YAML**. That's it.  No other dependencies. The python code in this project is just used to validate all the artifacts to make sure they follow the spec.
+
+### Project status
+
+[Travis-CI](https://travis-ci.org/) | [AppVeyor](https://ci.appveyor.com) | [Coveralls](https://coveralls.io/)
+--- | --- | --- 
+[![Build Status](https://travis-ci.org/ForensicArtifacts/artifacts.svg?branch=master)](https://travis-ci.org/ForensicArtifacts/artifacts) | [![Build status](https://ci.appveyor.com/api/projects/status/3yark6bipveg55e0?svg=true)](https://ci.appveyor.com/project/joachimmetz/artifacts) | [![Coverage Status](https://img.shields.io/coveralls/ForensicArtifacts/artifacts.svg)](https://coveralls.io/r/ForensicArtifacts/artifacts?branch=master)
+
 
 ## Artifact Definitions
 

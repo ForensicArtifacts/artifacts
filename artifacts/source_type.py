@@ -46,7 +46,7 @@ class SourceType(object):
     """Represents a source type as a dictionary.
 
     Returns:
-      A dictionary containing the source type attributes.
+      dict[str, str]: source type attributes.
     """
 
 
@@ -74,7 +74,7 @@ class ArtifactGroupSourceType(SourceType):
     """Represents a source type as a dictionary.
 
     Returns:
-      A dictionary containing the source type attributes.
+      dict[str, str]: source type attributes.
     """
     return {u'names': self.names}
 
@@ -107,7 +107,7 @@ class FileSourceType(SourceType):
     """Represents a source type as a dictionary.
 
     Returns:
-      A dictionary containing the source type attributes.
+      dict[str, str]: source type attributes.
     """
     source_type_attributes = {u'paths': self.paths}
     if self.separator != u'/':
@@ -142,7 +142,7 @@ class CommandSourceType(SourceType):
     """Represents a source type as a dictionary.
 
     Returns:
-      A dictionary containing the source type attributes.
+      dict[str, str]: source type attributes.
     """
     return {u'cmd': self.cmd, u'args': self.args}
 
@@ -175,7 +175,7 @@ class PathSourceType(SourceType):
     """Represents a source type as a dictionary.
 
     Returns:
-      A dictionary containing the source type attributes.
+      dict[str, str]: source type attributes.
     """
     source_type_attributes = {u'paths': self.paths}
     if self.separator != u'/':
@@ -212,7 +212,7 @@ class DirectorySourceType(SourceType):
     """Represents a source type as a dictionary.
 
     Returns:
-      A dictionary containing the source type attributes.
+      dict[str, str]: source type attributes.
     """
     source_type_attributes = {u'paths': self.paths}
     if self.separator != u'/':
@@ -230,8 +230,7 @@ class WindowsRegistryKeySourceType(SourceType):
       r'HKEY_LOCAL_MACHINE',
       r'HKEY_USERS',
       r'HKEY_CLASSES_ROOT',
-      r'%%current_control_set%%',
-  ]
+      r'%%current_control_set%%',]
 
   def __init__(self, keys=None):
     """Initializes the source type object.
@@ -259,7 +258,7 @@ class WindowsRegistryKeySourceType(SourceType):
     """Represents a source type as a dictionary.
 
     Returns:
-      A dictionary containing the source type attributes.
+      dict[str, str]: source type attributes.
     """
     return {u'keys': self.keys}
 
@@ -282,8 +281,8 @@ class WindowsRegistryKeySourceType(SourceType):
           u'HKEY_CURRENT_USER\\ is not supported instead use: '
           u'HKEY_USERS\\%%users.sid%%\\')
 
-    raise errors.FormatError(u'Unupported Registry key path: {0}'.format(
-        key_path))
+    raise errors.FormatError(
+        u'Unupported Registry key path: {0}'.format(key_path))
 
 
 class WindowsRegistryValueSourceType(SourceType):
@@ -325,7 +324,7 @@ class WindowsRegistryValueSourceType(SourceType):
     """Represents a source type as a dictionary.
 
     Returns:
-      A dictionary containing the source type attributes.
+      dict[str, str]: source type attributes.
     """
     return {u'key_value_pairs': self.key_value_pairs}
 
@@ -355,7 +354,7 @@ class WMIQuerySourceType(SourceType):
     """Represents a source type as a dictionary.
 
     Returns:
-      A dictionary containing the source type attributes.
+      dict[str, str]: source type attributes.
     """
     source_type_attributes = {u'query': self.query}
     if self.base_object:
@@ -368,17 +367,22 @@ class SourceTypeFactory(object):
   """Class that implements a source type factory."""
 
   _source_type_classes = {
-      definitions.TYPE_INDICATOR_ARTIFACT_GROUP: ArtifactGroupSourceType,
-      definitions.TYPE_INDICATOR_COMMAND: CommandSourceType,
-      definitions.TYPE_INDICATOR_DIRECTORY: DirectorySourceType,
-      definitions.TYPE_INDICATOR_FILE: FileSourceType,
-      definitions.TYPE_INDICATOR_PATH: PathSourceType,
+      definitions.TYPE_INDICATOR_ARTIFACT_GROUP:
+          ArtifactGroupSourceType,
+      definitions.TYPE_INDICATOR_COMMAND:
+          CommandSourceType,
+      definitions.TYPE_INDICATOR_DIRECTORY:
+          DirectorySourceType,
+      definitions.TYPE_INDICATOR_FILE:
+          FileSourceType,
+      definitions.TYPE_INDICATOR_PATH:
+          PathSourceType,
       definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_KEY:
           WindowsRegistryKeySourceType,
       definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_VALUE:
           WindowsRegistryValueSourceType,
-      definitions.TYPE_INDICATOR_WMI_QUERY: WMIQuerySourceType,
-  }
+      definitions.TYPE_INDICATOR_WMI_QUERY:
+          WMIQuerySourceType,}
 
   @classmethod
   def CreateSourceType(cls, type_indicator, attributes):
@@ -400,8 +404,8 @@ class SourceTypeFactory(object):
                    or if required attributes are missing.
     """
     if type_indicator not in cls._source_type_classes:
-      raise errors.FormatError(u'Unsupported type indicator: {0}.'.format(
-          type_indicator))
+      raise errors.FormatError(
+          u'Unsupported type indicator: {0}.'.format(type_indicator))
 
     return cls._source_type_classes[type_indicator](**attributes)
 
@@ -419,8 +423,9 @@ class SourceTypeFactory(object):
                 indicator.
     """
     if source_type_class.TYPE_INDICATOR not in cls._source_type_classes:
-      raise KeyError(u'Source type not set for type: {0}.'.format(
-          source_type_class.TYPE_INDICATOR))
+      raise KeyError(
+          u'Source type not set for type: {0}.'.format(
+              source_type_class.TYPE_INDICATOR))
 
     del cls._source_type_classes[source_type_class.TYPE_INDICATOR]
 
@@ -456,8 +461,9 @@ class SourceTypeFactory(object):
                 type indicator.
     """
     if source_type_class.TYPE_INDICATOR in cls._source_type_classes:
-      raise KeyError(u'Source type already set for type: {0}.'.format(
-          source_type_class.TYPE_INDICATOR))
+      raise KeyError(
+          u'Source type already set for type: {0}.'.format(
+              source_type_class.TYPE_INDICATOR))
 
     cls._source_type_classes[source_type_class.TYPE_INDICATOR] = (
         source_type_class)
