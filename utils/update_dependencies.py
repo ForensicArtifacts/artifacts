@@ -199,6 +199,7 @@ class RequirementsWriter(DependencyFileWriter):
 
   _FILE_HEADER = [
       u'pip >= 7.0.0',
+      u'pytest',
       u'yapf']
 
   def Write(self):
@@ -253,10 +254,92 @@ class SetupCfgWriter(DependencyFileWriter):
       file_object.write(file_content)
 
 
+class TravisBeforeInstallScriptWriter(DependencyFileWriter):
+  """Travis-CI install.sh file writer."""
+
+  _PATH = os.path.join(u'config', u'travis', u'install.sh')
+
+  _FILE_HEADER = [
+      u'#!/bin/bash',
+      u'#',
+      u'# Script to set up Travis-CI test VM.',
+      u'',
+      (u'COVERALL_DEPENDENCIES="python-coverage python-coveralls '
+       u'python-docopt";'),
+      u'']
+
+  _FILE_FOOTER = [
+      u'',
+      u'# Exit on error.',
+      u'set -e;',
+      u'',
+      u'if test `uname -s` = "Darwin";',
+      u'then',
+      u'\tgit clone https://github.com/log2timeline/l2tdevtools.git;',
+      u'',
+      u'\tmv l2tdevtools ../;',
+      u'\tmkdir dependencies;',
+      u'',
+      (u'\tPYTHONPATH=../l2tdevtools ../l2tdevtools/tools/update.py '
+       u'--download-directory=dependencies ${L2TBINARIES_DEPENDENCIES} '
+       u'${L2TBINARIES_TEST_DEPENDENCIES};'),
+      u'',
+      u'elif test `uname -s` = "Linux";',
+      u'then',
+      u'\tsudo add-apt-repository ppa:gift/dev -y;',
+      u'\tsudo apt-get update -q;',
+      (u'\tsudo apt-get install -y ${COVERALL_DEPENDENCIES} '
+       u'${PYTHON2_DEPENDENCIES} ${PYTHON2_TEST_DEPENDENCIES} '
+       u'${PYTHON3_DEPENDENCIES} ${PYTHON3_TEST_DEPENDENCIES};'),
+      u'fi',
+      u'']
+
+  def Write(self):
+    """Writes an install.sh file."""
+    file_content = []
+    file_content.extend(self._FILE_HEADER)
+
+    dependencies = self._dependency_helper.GetL2TBinaries()
+    dependencies = u' '.join(dependencies)
+    file_content.append(u'L2TBINARIES_DEPENDENCIES="{0:s}";'.format(
+        dependencies))
+
+    file_content.append(u'')
+    file_content.append(u'L2TBINARIES_TEST_DEPENDENCIES="yapf";')
+
+    file_content.append(u'')
+
+    dependencies = self._dependency_helper.GetDPKGDepends(exclude_version=True)
+    dependencies = u' '.join(dependencies)
+    file_content.append(u'PYTHON2_DEPENDENCIES="{0:s}";'.format(dependencies))
+
+    file_content.append(u'')
+    file_content.append(u'PYTHON2_TEST_DEPENDENCIES="python-yapf";')
+
+    file_content.append(u'')
+
+    dependencies = self._dependency_helper.GetDPKGDepends(exclude_version=True)
+    dependencies = u' '.join(dependencies)
+    dependencies = dependencies.replace(u'python', u'python3')
+    file_content.append(u'PYTHON3_DEPENDENCIES="{0:s}";'.format(dependencies))
+
+    file_content.append(u'')
+    file_content.append(u'PYTHON3_TEST_DEPENDENCIES="python3-yapf";')
+
+    file_content.extend(self._FILE_FOOTER)
+
+    file_content = u'\n'.join(file_content)
+    file_content = file_content.encode(u'utf-8')
+
+    with open(self._PATH, 'wb') as file_object:
+      file_object.write(file_content)
+
+
 if __name__ == u'__main__':
   helper = utils.dependencies.DependencyHelper()
 
   for writer_class in (
-      AppveyorYmlWriter, DPKGControlWriter, RequirementsWriter, SetupCfgWriter):
+      AppveyorYmlWriter, DPKGControlWriter, RequirementsWriter, SetupCfgWriter,
+      TravisBeforeInstallScriptWriter):
     writer = writer_class(helper)
     writer.Write()
