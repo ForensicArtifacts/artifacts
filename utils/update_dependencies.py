@@ -274,7 +274,7 @@ class TravisBeforeInstallScriptWriter(DependencyFileWriter):
       u'# Exit on error.',
       u'set -e;',
       u'',
-      u'if test `uname -s` = "Darwin";',
+      u'if test ${TRAVIS_OS_NAME} = "osx";',
       u'then',
       u'\tgit clone https://github.com/log2timeline/l2tdevtools.git;',
       u'',
@@ -285,13 +285,21 @@ class TravisBeforeInstallScriptWriter(DependencyFileWriter):
        u'--download-directory=dependencies ${L2TBINARIES_DEPENDENCIES} '
        u'${L2TBINARIES_TEST_DEPENDENCIES};'),
       u'',
-      u'elif test `uname -s` = "Linux";',
+      (u'elif test ${TRAVIS_OS_NAME} = "linux" && '
+       u'test ${TRAVIS_PYTHON_VERSION} = "2.7";'),
       u'then',
       u'\tsudo add-apt-repository ppa:gift/dev -y;',
       u'\tsudo apt-get update -q;',
       (u'\tsudo apt-get install -y ${COVERALL_DEPENDENCIES} '
-       u'${PYTHON2_DEPENDENCIES} ${PYTHON2_TEST_DEPENDENCIES} '
-       u'${PYTHON3_DEPENDENCIES} ${PYTHON3_TEST_DEPENDENCIES};'),
+       u'${PYTHON2_DEPENDENCIES} ${PYTHON_TEST_DEPENDENCIES};'),
+      u'',
+      (u'elif test ${TRAVIS_OS_NAME} = "linux" && '
+       u'test ${TRAVIS_PYTHON_VERSION} = "3.4";'),
+      u'then',
+      u'\tsudo add-apt-repository ppa:gift/dev -y;',
+      u'\tsudo apt-get update -q;',
+      (u'\tsudo apt-get install -y ${COVERALL_DEPENDENCIES} '
+       u'${PYTHON3_DEPENDENCIES} ${PYTHON_TEST_DEPENDENCIES};'),
       u'fi',
       u'']
 
@@ -315,9 +323,6 @@ class TravisBeforeInstallScriptWriter(DependencyFileWriter):
     file_content.append(u'PYTHON2_DEPENDENCIES="{0:s}";'.format(dependencies))
 
     file_content.append(u'')
-    file_content.append(u'PYTHON2_TEST_DEPENDENCIES="python-yapf";')
-
-    file_content.append(u'')
 
     dependencies = self._dependency_helper.GetDPKGDepends(exclude_version=True)
     dependencies = u' '.join(dependencies)
@@ -325,7 +330,7 @@ class TravisBeforeInstallScriptWriter(DependencyFileWriter):
     file_content.append(u'PYTHON3_DEPENDENCIES="{0:s}";'.format(dependencies))
 
     file_content.append(u'')
-    file_content.append(u'PYTHON3_TEST_DEPENDENCIES="python3-yapf";')
+    file_content.append(u'PYTHON_TEST_DEPENDENCIES="python-yapf";')
 
     file_content.extend(self._FILE_FOOTER)
 

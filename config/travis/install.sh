@@ -10,11 +10,9 @@ L2TBINARIES_TEST_DEPENDENCIES="yapf";
 
 PYTHON2_DEPENDENCIES="python-yaml";
 
-PYTHON2_TEST_DEPENDENCIES="python-yapf";
-
 PYTHON3_DEPENDENCIES="python3-yaml";
 
-PYTHON3_TEST_DEPENDENCIES="python3-yapf";
+PYTHON_TEST_DEPENDENCIES="python-yapf";
 
 # Exit on error.
 set -e;
@@ -32,11 +30,11 @@ elif test ${TRAVIS_OS_NAME} = "linux" && test ${TRAVIS_PYTHON_VERSION} = "2.7";
 then
 	sudo add-apt-repository ppa:gift/dev -y;
 	sudo apt-get update -q;
-	sudo apt-get install -y ${COVERALL_DEPENDENCIES} ${PYTHON2_DEPENDENCIES} ${PYTHON2_TEST_DEPENDENCIES};
+	sudo apt-get install -y ${COVERALL_DEPENDENCIES} ${PYTHON2_DEPENDENCIES} ${PYTHON_TEST_DEPENDENCIES};
 
 elif test ${TRAVIS_OS_NAME} = "linux" && test ${TRAVIS_PYTHON_VERSION} = "3.4";
 then
 	sudo add-apt-repository ppa:gift/dev -y;
 	sudo apt-get update -q;
-	sudo apt-get install -y ${COVERALL_DEPENDENCIES} ${PYTHON3_DEPENDENCIES} ${PYTHON3_TEST_DEPENDENCIES};
+	sudo apt-get install -y ${COVERALL_DEPENDENCIES} ${PYTHON3_DEPENDENCIES} ${PYTHON_TEST_DEPENDENCIES};
 fi
