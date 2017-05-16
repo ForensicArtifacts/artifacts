@@ -7,56 +7,66 @@ import yaml
 
 
 class BaseArtifactsWriter(object):
-  """Class that implements the artifacts writer interface."""
-
-  @abc.abstractmethod
-  def WriteArtifactsFile(self, artifacts, filename):
-    """Writes artifact definitions to a file.
-
-    Args:
-      artifacts: a list of ArtifactDefinition objects to be written.
-
-      filename: the filename to write artifacts to.
-    """
+  """Artifacts writer interface."""
 
   @abc.abstractmethod
   def FormatArtifacts(self, artifacts):
     """Formats artifacts to desired output format.
 
     Args:
-      artifacts: an ArtifactDefinition instance or list of ArtifactDefinitions.
+      artifacts (list[ArtifactDefinition]): artifact definitions.
 
     Returns:
-      formatted string of artifact definition.
+      str: formatted string of artifact definition.
+    """
+
+  @abc.abstractmethod
+  def WriteArtifactsFile(self, artifacts, filename):
+    """Writes artifact definitions to a file.
+
+    Args:
+      artifacts (list[ArtifactDefinition]): artifact definitions to be written.
+      filename (str): name of the file to write artifacts to.
     """
 
 
 class ArtifactWriter(BaseArtifactsWriter):
-  """Class that implements the artifacts writer interface."""
+  """File artifacts writer."""
+
+  @abc.abstractmethod
+  def FormatArtifacts(self, artifacts):
+    """Formats artifacts to desired output format.
+
+    Args:
+      artifacts (ArtifactDefinition|list[ArtifactDefinition]): artifact
+          definitions.
+
+    Returns:
+      str: formatted string of artifact definition.
+    """
 
   def WriteArtifactsFile(self, artifacts, filename):
     """Writes artifact definitions to a file.
 
     Args:
-      artifacts: a list of ArtifactDefinition objects to be written.
-
-      filename: the filename to write artifacts to.
+      artifacts (list[ArtifactDefinition]): artifact definitions to be written.
+      filename (str): name of the file to write artifacts to.
     """
     with open(filename, 'w') as file_object:
       file_object.write(self.FormatArtifacts(artifacts))
 
 
 class JsonArtifactsWriter(ArtifactWriter):
-  """Class that implements the JSON artifacts writer interface."""
+  """JSON artifacts writer interface."""
 
   def FormatArtifacts(self, artifacts):
     """Formats artifacts to desired output format.
 
     Args:
-      artifacts: a list of ArtifactDefinitions.
+      artifacts (list[ArtifactDefinition]): artifact definitions.
 
     Returns:
-      formatted string of artifact definition.
+      str: formatted string of artifact definition.
     """
     artifact_definitions = [artifact.AsDict() for artifact in artifacts]
     json_data = json.dumps(artifact_definitions)
@@ -64,16 +74,16 @@ class JsonArtifactsWriter(ArtifactWriter):
 
 
 class YamlArtifactsWriter(ArtifactWriter):
-  """Class that implements the YAML artifacts writer interface."""
+  """YAML artifacts writer interface."""
 
   def FormatArtifacts(self, artifacts):
     """Formats artifacts to desired output format.
 
     Args:
-      artifacts: a list of ArtifactDefinitions.
+      artifacts (list[ArtifactDefinition]): artifact definitions.
 
     Returns:
-      formatted string of artifact definition.
+      str: formatted string of artifact definition.
     """
     # TODO: improve output formatting of yaml
     artifact_definitions = [artifact.AsDict() for artifact in artifacts]

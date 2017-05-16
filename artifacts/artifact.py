@@ -54,8 +54,8 @@ class ArtifactDefinition(object):
           type_indicator, attributes)
     except (AttributeError, TypeError) as exception:
       raise errors.FormatError(
-          u'Invalid artifact definition for {0}: {1}'.format(self.name,
-                                                             exception))
+          u'Invalid artifact definition for {0}: {1}'.format(
+              self.name, exception))
 
     self.sources.append(source_object)
     return source_object
@@ -70,8 +70,7 @@ class ArtifactDefinition(object):
     for source in self.sources:
       source_definition = {
           u'type': source.type_indicator,
-          u'attributes': source.AsDict()
-      }
+          u'attributes': source.AsDict()}
       if source.supported_os:
         source_definition[u'supported_os'] = source.supported_os
       if source.conditions:
@@ -83,8 +82,7 @@ class ArtifactDefinition(object):
     artifact_definition = {
         u'name': self.name,
         u'doc': self.description,
-        u'sources': sources,
-    }
+        u'sources': sources,}
     if self.labels:
       artifact_definition[u'labels'] = self.labels
     if self.supported_os:

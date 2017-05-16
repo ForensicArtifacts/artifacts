@@ -9,8 +9,10 @@ import unittest
 from artifacts import errors
 from tools import validator
 
+from tests import test_lib
 
-class ArtifactDefinitionsValidatorTest(unittest.TestCase):
+
+class ArtifactDefinitionsValidatorTest(test_lib.BaseTestCase):
   """Class to test the validator."""
 
   def testArtifactDefinitionsValidator(self):
@@ -19,8 +21,8 @@ class ArtifactDefinitionsValidatorTest(unittest.TestCase):
 
     for definitions_file in glob.glob(os.path.join('definitions', '*.yaml')):
       result = validator_object.CheckFile(definitions_file)
-      self.assertTrue(result,
-                      msg='in definitions file: {0}'.format(definitions_file))
+      self.assertTrue(
+          result, msg='in definitions file: {0}'.format(definitions_file))
 
     undefined_artifacts = validator_object.GetUndefinedArtifacts()
     if undefined_artifacts:

@@ -1,45 +1,57 @@
 # -*- coding: utf-8 -*-
 """Tests for the artifact definitions readers."""
 
-import io
 import os
 import unittest
-import json
-import tempfile
 
 from artifacts import reader
 from artifacts import writer
 
+from tests import test_lib
 
-class ArtifactsWriterTest(unittest.TestCase):
+
+class ArtifactsWriterTest(test_lib.BaseTestCase):
   """Class to test the artifacts writer."""
 
-  def checkArtifactConversion(self, artifact_reader, artifact_writer,
-                              test_file):
+  def _TestArtifactsConversion(
+      self, artifact_reader, artifact_writer, filename):
+    """Tests artifacts conversion.
+
+    Args:
+      artifact_reader (ArtifactsReader): artifact reader.
+      artifact_writer (ArtifactsWriter): artifact writer.
+      filename (str): name of the file to convert.
+    """
+    test_file = self._GetTestFilePath([filename])
     artifact_definitions = list(artifact_reader.ReadFile(test_file))
-    with tempfile.NamedTemporaryFile() as artifact_file:
-      artifact_writer.WriteArtifactsFile(artifact_definitions,
-                                         artifact_file.name)
-      converted_artifact_definitions = list(artifact_reader.ReadFile(
-          artifact_file.name))
+
+    with test_lib.TempDirectory() as temporary_directory:
+      output_file = os.path.join(temporary_directory, filename)
+
+      artifact_writer.WriteArtifactsFile(artifact_definitions, output_file)
+
+      converted_artifact_definitions = list(
+          artifact_reader.ReadFile(output_file))
 
     self.assertListEqual(
         [artifact.AsDict() for artifact in artifact_definitions],
         [artifact.AsDict() for artifact in converted_artifact_definitions])
 
-  def testYamlWriter(self):
-    """Tests the YamlArtifactsWriter FormatArtifacts method for loss during conversion."""
-    artifact_reader = reader.YamlArtifactsReader()
-    artifact_writer = writer.YamlArtifactsWriter()
-    test_file = os.path.join('test_data', 'definitions.yaml')
-    self.checkArtifactConversion(artifact_reader, artifact_writer, test_file)
-
+  @test_lib.skipUnlessHasTestFile(['definitions.json'])
   def testJsonWriter(self):
-    """Tests the JsonArtifactsWriter FormatArtifacts method for loss during conversion."""
+    """Tests conversion with the JsonArtifactsWriter."""
     artifact_reader = reader.JsonArtifactsReader()
     artifact_writer = writer.JsonArtifactsWriter()
-    test_file = os.path.join('test_data', 'definitions.json')
-    self.checkArtifactConversion(artifact_reader, artifact_writer, test_file)
+    self._TestArtifactsConversion(
+        artifact_reader, artifact_writer, 'definitions.json')
+
+  @test_lib.skipUnlessHasTestFile(['definitions.yaml'])
+  def testYamlWriter(self):
+    """Tests conversion with the YamlArtifactsWriter."""
+    artifact_reader = reader.YamlArtifactsReader()
+    artifact_writer = writer.YamlArtifactsWriter()
+    self._TestArtifactsConversion(
+        artifact_reader, artifact_writer, 'definitions.yaml')
 
 
 if __name__ == '__main__':

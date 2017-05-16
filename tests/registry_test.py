@@ -2,23 +2,25 @@
 """Tests for the artifact definitions registry."""
 
 import io
-import os
 import unittest
 
 from artifacts import errors
 from artifacts import reader
 from artifacts import registry
 
+from tests import test_lib
 
-class ArtifactDefinitionsRegistryTest(unittest.TestCase):
+
+class ArtifactDefinitionsRegistryTest(test_lib.BaseTestCase):
   """Tests for the artifact definitions registry."""
 
+  @test_lib.skipUnlessHasTestFile(['definitions.yaml'])
   def testArtifactDefinitionsRegistry(self):
     """Tests the ArtifactDefinitionsRegistry functions."""
     artifact_registry = registry.ArtifactDefinitionsRegistry()
 
     artifact_reader = reader.YamlArtifactsReader()
-    test_file = os.path.join(u'test_data', u'definitions.yaml')
+    test_file = self._GetTestFilePath(['definitions.yaml'])
 
     for artifact_definition in artifact_reader.ReadFile(test_file):
       artifact_registry.RegisterDefinition(artifact_definition)
