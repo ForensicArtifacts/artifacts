@@ -28,3 +28,10 @@ Depends: artifacts-data, python3-yaml (>= 3.10), ${python3:Depends}, ${misc:Depe
 Description: Python bindings for ForensicArtifacts.com Artifact Repository
  A free, community-sourced, machine-readable knowledge base of forensic
  artifacts that the world can use both as an information source and within other tools.
+
+Package: artifacts-tools
+Architecture: all
+Depends: python-artifacts, python (>= 2.7), ${python:Depends}, ${misc:Depends}
+Description: Tools for ForensicArtifacts.com Artifact Repository
+ A free, community-sourced, machine-readable knowledge base of forensic
+ artifacts that the world can use both as an information source and within other tools.

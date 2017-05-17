@@ -156,13 +156,22 @@ class DPKGControlWriter(DependencyFileWriter):
       u'Package: python3-{0:s}'.format(_PROJECT_NAME),
       u'Architecture: all']
 
-  _PYTHON_PACKAGE_FOOTER = [
+  _PYTHON_PACKAGE_DESCRIPTION = [
       (u'Description: Python bindings for ForensicArtifacts.com Artifact '
        u'Repository'),
       (u' A free, community-sourced, machine-readable knowledge base of '
        u'forensic'),
       (u' artifacts that the world can use both as an information source '
        u'and within other tools.'),
+      u'']
+
+  _PYTHON_PACKAGE_FOOTER = [
+      u'Package: artifacts-tools',
+      u'Architecture: all',
+      u'Depends: python-artifacts, python (>= 2.7), ${python:Depends}, ${misc:Depends}',
+      u'Description: Tools for ForensicArtifacts.com Artifact Repository',
+      u' A free, community-sourced, machine-readable knowledge base of forensic',
+      u' artifacts that the world can use both as an information source and within other tools.',
       u'']
 
   def Write(self):
@@ -177,13 +186,14 @@ class DPKGControlWriter(DependencyFileWriter):
 
     file_content.append(u'Depends: artifacts-data, {0:s}'.format(dependencies))
 
-    file_content.extend(self._PYTHON_PACKAGE_FOOTER)
+    file_content.extend(self._PYTHON_PACKAGE_DESCRIPTION)
     file_content.extend(self._PYTHON3_PACKAGE_HEADER)
 
     dependencies = dependencies.replace(u'python', u'python3')
 
     file_content.append(u'Depends: artifacts-data, {0:s}'.format(dependencies))
 
+    file_content.extend(self._PYTHON_PACKAGE_DESCRIPTION)
     file_content.extend(self._PYTHON_PACKAGE_FOOTER)
 
     file_content = u'\n'.join(file_content)
