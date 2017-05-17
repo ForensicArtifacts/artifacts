@@ -168,7 +168,7 @@ class DPKGControlWriter(DependencyFileWriter):
   _PYTHON_PACKAGE_FOOTER = [
       u'Package: artifacts-tools',
       u'Architecture: all',
-      u'Depends: python-artifacts, python (>= 2.7), ${python:Depends}, ${misc:Depends}',
+      u'Depends: python-artifacts, python (>= 2.7~), ${python:Depends}, ${misc:Depends}',
       u'Description: Tools for ForensicArtifacts.com Artifact Repository',
       u' A free, community-sourced, machine-readable knowledge base of forensic',
       u' artifacts that the world can use both as an information source and within other tools.',
