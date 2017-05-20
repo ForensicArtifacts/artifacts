@@ -1,3 +1,4 @@
 pip >= 7.0.0
+pytest
 yapf
 PyYAML >= 3.10

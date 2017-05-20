@@ -6,6 +6,8 @@ import unittest
 from artifacts import errors
 from artifacts import source_type
 
+from tests import test_lib
+
 
 class TestSourceType(source_type.SourceType):
   """Class that implements a test source type."""
@@ -27,20 +29,20 @@ class TestSourceType(source_type.SourceType):
     super(TestSourceType, self).__init__()
     self.test = test
 
-  def CopyToDict(self):
-    """Copies the source type to a dictionary.
+  def AsDict(self):
+    """Represents a source type as a dictionary.
 
     Returns:
-      A dictionary containing the source type attributes.
+      dict[str, str]: source type attributes.
     """
     return {u'test': self.test}
 
 
-class SourceTypeTest(unittest.TestCase):
+class SourceTypeTest(test_lib.BaseTestCase):
   """Class to test the artifact source type."""
 
 
-class ArtifactGroupSourceTypeTest(unittest.TestCase):
+class ArtifactGroupSourceTypeTest(test_lib.BaseTestCase):
   """Class to test the artifact group source type."""
 
   def testInitialize(self):
@@ -48,7 +50,7 @@ class ArtifactGroupSourceTypeTest(unittest.TestCase):
     source_type.ArtifactGroupSourceType(names=[u'test'])
 
 
-class FileSourceTypeTest(unittest.TestCase):
+class FileSourceTypeTest(test_lib.BaseTestCase):
   """Class to test the files source type."""
 
   def testInitialize(self):
@@ -57,7 +59,7 @@ class FileSourceTypeTest(unittest.TestCase):
     source_type.FileSourceType(paths=[u'test'], separator=u'\\')
 
 
-class PathSourceTypeTest(unittest.TestCase):
+class PathSourceTypeTest(test_lib.BaseTestCase):
   """Class to test the paths source type."""
 
   def testInitialize(self):
@@ -66,7 +68,7 @@ class PathSourceTypeTest(unittest.TestCase):
     source_type.PathSourceType(paths=[u'test'], separator=u'\\')
 
 
-class WindowsRegistryKeySourceTypeTest(unittest.TestCase):
+class WindowsRegistryKeySourceTypeTest(test_lib.BaseTestCase):
   """Class to test the Windows Registry keys source type."""
 
   def testInitialize(self):
@@ -77,7 +79,7 @@ class WindowsRegistryKeySourceTypeTest(unittest.TestCase):
       source_type.WindowsRegistryKeySourceType(keys=u'HKEY_LOCAL_MACHINE\\test')
 
 
-class WindowsRegistryValueSourceTypeTest(unittest.TestCase):
+class WindowsRegistryValueSourceTypeTest(test_lib.BaseTestCase):
   """Class to test the Windows Registry value source type."""
 
   def testInitialize(self):
@@ -94,7 +96,7 @@ class WindowsRegistryValueSourceTypeTest(unittest.TestCase):
       source_type.WindowsRegistryValueSourceType(key_value_pairs=key_value_pair)
 
 
-class WMIQuerySourceTypeTest(unittest.TestCase):
+class WMIQuerySourceTypeTest(test_lib.BaseTestCase):
   """Class to test the WMI query source type."""
 
   def testInitialize(self):
@@ -102,7 +104,7 @@ class WMIQuerySourceTypeTest(unittest.TestCase):
     source_type.WMIQuerySourceType(query=u'test')
 
 
-class SourceTypeFactoryTest(unittest.TestCase):
+class SourceTypeFactoryTest(test_lib.BaseTestCase):
   """Class to test the source type factory."""
 
   def testCreateSourceType(self):
@@ -119,12 +121,12 @@ class SourceTypeFactoryTest(unittest.TestCase):
     self.assertEqual(source_object.test, u'test123')
 
     with self.assertRaises(errors.FormatError):
-      source_object = source_type.SourceTypeFactory.CreateSourceType(u'test',
-                                                                     {})
+      source_object = source_type.SourceTypeFactory.CreateSourceType(
+          u'test', {})
 
     with self.assertRaises(errors.FormatError):
-      source_object = source_type.SourceTypeFactory.CreateSourceType(u'bogus',
-                                                                     {})
+      source_object = source_type.SourceTypeFactory.CreateSourceType(
+          u'bogus', {})
 
     source_type.SourceTypeFactory.DeregisterSourceType(TestSourceType)
 
@@ -136,8 +138,8 @@ class SourceTypeFactoryTest(unittest.TestCase):
     source_type.SourceTypeFactory.RegisterSourceType(TestSourceType)
 
     number_of_source_types = len(source_type.SourceTypeFactory.GetSourceTypes())
-    self.assertEqual(number_of_source_types,
-                     expected_number_of_source_types + 1)
+    self.assertEqual(
+        number_of_source_types, expected_number_of_source_types + 1)
 
     source_type.SourceTypeFactory.DeregisterSourceType(TestSourceType)
 

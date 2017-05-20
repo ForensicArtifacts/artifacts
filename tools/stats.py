@@ -12,7 +12,22 @@ from artifacts import reader
 class ArtifactStatistics(object):
   """Generate and print statistics about artifact files."""
 
+  def __init__(self):
+    """Initializes artifact statistics."""
+    super(ArtifactStatistics, self).__init__()
+    self.label_counts = {}
+    self.os_counts = {}
+    self.path_count = 0
+    self.reg_key_count = 0
+    self.source_type_counts = {}
+    self.total_count = 0
+
   def _PrintDictAsTable(self, src_dict):
+    """Prints a table of artifact definitions.
+
+    Args:
+      src_dict (dict[str, ArtifactDefinition]): artifact definitions by name.
+    """
     key_list = list(src_dict.keys())
     key_list.sort()
 
@@ -32,18 +47,22 @@ class ArtifactStatistics(object):
     print('\n')
 
   def PrintOSTable(self):
+    """Prints a table of artifact definitions by operating system."""
     print('**Artifacts by OS**\n')
     self._PrintDictAsTable(self.os_counts)
 
   def PrintLabelTable(self):
+    """Prints a table of artifact definitions by label."""
     print('**Artifacts by label**\n')
     self._PrintDictAsTable(self.label_counts)
 
   def PrintSourceTypeTable(self):
+    """Prints a table of artifact definitions by source type."""
     print('**Artifacts by type**\n')
     self._PrintDictAsTable(self.source_type_counts)
 
   def PrintSummaryTable(self):
+    """Prints a summary table."""
     print("""
 
 As of {0} the repository contains:
@@ -53,17 +72,18 @@ As of {0} the repository contains:
 | **Registry keys covered** | **{2}** |
 | **Total artifacts** | **{3}** |
 """.format(
-        time.strftime('%Y-%m-%d'), self.path_count, self.reg_key_count,
-        self.total_count))
+    time.strftime('%Y-%m-%d'), self.path_count, self.reg_key_count,
+    self.total_count))
 
   def BuildStats(self):
+    """Builds the statistics."""
     artifact_reader = reader.YamlArtifactsReader()
-    self.source_type_counts = {}
     self.label_counts = {}
     self.os_counts = {}
-    self.total_count = 0
     self.path_count = 0
     self.reg_key_count = 0
+    self.source_type_counts = {}
+    self.total_count = 0
 
     for artifact_definition in artifact_reader.ReadDirectory('definitions'):
       if hasattr(artifact_definition, 'labels'):
@@ -98,6 +118,7 @@ As of {0} the repository contains:
 
 
 def main():
+  """The main function."""
   statsbuilder = ArtifactStatistics()
   statsbuilder.PrintStats()
 
