@@ -107,7 +107,7 @@ Ideally the artifact definition links to an article that discusses the artificat
 
 As of July 2016 we are migrating to the following naming convention:
 
-* Prefix platform specific artifact definitions with the name of the operating system using "Linux", "MacOSX" or "Windows"
+* Prefix platform specific artifact definitions with the name of the operating system using "Linux", "MacOS" or "Windows"
 * If not platform specific:
 ** prefix with the application name, for example "ChromeHistory".
 ** prefix with the name of the subsystem, for example "WMIComputerSystemProduct".

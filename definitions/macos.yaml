@@ -1,6 +1,6 @@
-# Mac OS X (Darwin) specific artifacts.
+# MacOS (Darwin) specific artifacts.
 
-name: MacOSXAppleSystemLogFiles
+name: MacOSAppleSystemLogFiles
 doc: Apple system log (ASL) files
 sources:
 - type: FILE
@@ -11,7 +11,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#System_Logs'
 ---
-name: MacOSXAuditLogFiles
+name: MacOSAuditLogFiles
 doc: Audit log files
 sources:
 - type: FILE
@@ -22,7 +22,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#System_Logs'
 ---
-name: MacOSXBluetoothPlistFile
+name: MacOSBluetoothPlistFile
 doc: Bluetooth preferences and paired device information plist file
 sources:
 - type: FILE
@@ -33,7 +33,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#System_Preferences'
 ---
-name: MacOSXGlobalPreferencesPlistFile
+name: MacOSGlobalPreferencesPlistFile
 doc: Global Preferences plist file
 sources:
 - type: FILE
@@ -44,7 +44,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#System_Preferences'
 ---
-name: MacOSXInstallationLogFile
+name: MacOSInstallationLogFile
 doc: Installation log file
 sources:
 - type: FILE
@@ -55,7 +55,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#System_Logs'
 ---
-name: MacOSXLaunchAgentsPlistFiles
+name: MacOSLaunchAgentsPlistFiles
 doc: Launch Agents plist files
 sources:
 - type: FILE
@@ -70,7 +70,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Autorun_Locations'
 ---
-name: MacOSXLaunchDaemonsPlistFiles
+name: MacOSLaunchDaemonsPlistFiles
 doc: Launch Daemons plist files
 sources:
 - type: FILE
@@ -85,7 +85,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Autorun_Locations'
 ---
-name: MacOSXLoginWindowPlistFile
+name: MacOSLoginWindowPlistFile
 doc: Log-in Window information plist file
 sources:
 - type: FILE
@@ -96,7 +96,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#System_Preferences'
 ---
-name: MacOSXStartupItemsPlistFiles
+name: MacOSStartupItemsPlistFiles
 doc: Startup Items plist files
 sources:
 - type: FILE
@@ -110,7 +110,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Autorun_Locations'
 ---
-name: MacOSXSystemInstallationTime
+name: MacOSSystemInstallationTime
 doc: System installation time
 sources:
 - type: FILE
@@ -121,7 +121,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#System_Settings_and_Informations'
 ---
-name: MacOSXSystemLogFiles
+name: MacOSSystemLogFiles
 doc: System log files
 sources:
 - type: FILE
@@ -132,7 +132,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#System_Logs'
 ---
-name: MacOSXSystemPreferencesPlistFiles
+name: MacOSSystemPreferencesPlistFiles
 doc: System Preferences plist files
 sources:
 - type: FILE
@@ -143,7 +143,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#System_Preferences'
 ---
-name: MacOSXSystemVersionPlistFile
+name: MacOSSystemVersionPlistFile
 doc: Operating system name and version plist file
 sources:
 - type: FILE
@@ -154,7 +154,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#System_Settings_and_Informations'
 ---
-name: MacOSXTimeMachinePlistFile
+name: MacOSTimeMachinePlistFile
 doc: Time Machine information plist file
 sources:
 - type: FILE
@@ -165,7 +165,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#System_Preferences'
 ---
-name: MacOSXUserPasswordHashesPlistFiles
+name: MacOSUserPasswordHashesPlistFiles
 doc: Users log-in password hashes plist files
 sources:
 - type: FILE
@@ -176,7 +176,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#System_Settings_and_Informations'
 ---
-name: MacOSXSleepimageFile
+name: MacOSSleepimageFile
 doc: Sleepimage file which contains the content of memory before going to sleep
 sources:
 - type: FILE
@@ -190,7 +190,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Sleep.2FHibernate_and_Swap_Image_File'
 ---
-name: MacOSXSwapFiles
+name: MacOSSwapFiles
 doc: Swap files
 sources:
 - type: FILE
@@ -201,7 +201,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Sleep.2FHibernate_and_Swap_Image_File'
 ---
-name: MacOSXKextFiles
+name: MacOSKextFiles
 doc: Kernel extension (.kext) files
 sources:
 - type: FILE
@@ -215,7 +215,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Kernel_Extension'
 ---
-name: MacOSXInstallationHistory
+name: MacOSInstallationHistory
 doc: Software Installation History
 sources:
 - type: FILE
@@ -226,7 +226,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Software_Installation'
 ---
-name: MacOSXUpdate
+name: MacOSUpdate
 doc: Software Update
 sources:
 - type: FILE
@@ -237,7 +237,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Software_Installation'
 ---
-name: MacOSXLocalTime
+name: MacOSLocalTime
 doc: Current Time Zone
 sources:
 - type: FILE
@@ -248,8 +248,8 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#System_Info_Misc.'
 ---
-name: MacOSXAtJobs
-doc: Mac OS X at jobs
+name: MacOSAtJobs
+doc: MacOS at jobs
 sources:
 - type: FILE
   attributes: {paths: ['/usr/lib/cron/jobs/*']}
@@ -260,7 +260,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#System_Info_Misc.'
 - 'https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/at.1.html#//apple_ref/doc/man/1/at'
 ---
-name: MacOSXCronTabs
+name: MacOSCronTabs
 doc: Cron tabs
 sources:
 - type: FILE
@@ -274,7 +274,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#System_Info_Misc.'
 ---
-name: MacOSXPeriodicSystemFunctions
+name: MacOSPeriodicSystemFunctions
 doc: Periodic system functions scripts and configuration
 sources:
 - type: FILE
@@ -295,7 +295,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#System_Info_Misc.'
 - 'https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man8/periodic.8.html#//apple_ref/doc/man/8/periodic'
 ---
-name: MacOSXHostsFile
+name: MacOSHostsFile
 doc: Hosts file
 sources:
 - type: FILE
@@ -306,7 +306,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Networking'
 ---
-name: MacOSXWirelessNetworks
+name: MacOSWirelessNetworks
 doc: Remembered Wireless Networks
 sources:
 - type: FILE
@@ -317,7 +317,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Networking'
 ---
-name: MacOSXUserLoginItems
+name: MacOSUserLoginItems
 doc: Login Items
 sources:
 - type: FILE
@@ -328,7 +328,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Autorun_Locations_2'
 ---
-name: MacOSXUsers
+name: MacOSUsers
 doc: Users directories in /Users
 sources:
 - type: DIRECTORY
@@ -340,7 +340,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Users'
 ---
-name: MacOSXUserDownloadsDirectory
+name: MacOSUserDownloadsDirectory
 doc: User downloads directory
 sources:
 - type: DIRECTORY
@@ -351,7 +351,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#User_Directories'
 ---
-name: MacOSXUserDocumentsDirectory
+name: MacOSUserDocumentsDirectory
 doc: Documents Directory
 sources:
 - type: DIRECTORY
@@ -362,7 +362,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#User_Directories'
 ---
-name: MacOSXUserMusicDirectory
+name: MacOSUserMusicDirectory
 doc: Music Directory
 sources:
 - type: DIRECTORY
@@ -373,7 +373,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#User_Directories'
 ---
-name: MacOSXUserDesktopDirectory
+name: MacOSUserDesktopDirectory
 doc: Desktop Directory
 sources:
 - type: DIRECTORY
@@ -384,7 +384,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#User_Directories'
 ---
-name: MacOSXUserLibraryDirectory
+name: MacOSUserLibraryDirectory
 doc: Library Directory
 sources:
 - type: DIRECTORY
@@ -395,7 +395,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#User_Directories'
 ---
-name: MacOSXUserMoviesDirectory
+name: MacOSUserMoviesDirectory
 doc: Movies Directory
 sources:
 - type: DIRECTORY
@@ -406,7 +406,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#User_Directories'
 ---
-name: MacOSXUserPicturesDirectory
+name: MacOSUserPicturesDirectory
 doc: Pictures Directory
 sources:
 - type: DIRECTORY
@@ -417,7 +417,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#User_Directories'
 ---
-name: MacOSXUserPublicDirectory
+name: MacOSUserPublicDirectory
 doc: Public Directory
 sources:
 - type: DIRECTORY
@@ -428,7 +428,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#User_Directories'
 ---
-name: MacOSXApplications
+name: MacOSApplications
 doc: Applications
 sources:
 - type: DIRECTORY
@@ -439,7 +439,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#User_Directories'
 ---
-name: MacOSXUserPreferences
+name: MacOSUserPreferences
 doc: User preferences directory
 sources:
 - type: FILE
@@ -450,7 +450,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Preferences'
 ---
-name: MacOSXiCloudPreferences
+name: MacOSiCloudPreferences
 doc: iCloud user preferences
 sources:
 - type: FILE
@@ -461,7 +461,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Preferences'
 ---
-name: MacOSXSidebarLists
+name: MacOSSidebarLists
 doc: |
   Sidebar Lists Preferences
 
@@ -475,7 +475,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Preferences'
 ---
-name: MacOSXUserGlobalPreferences
+name: MacOSUserGlobalPreferences
 doc: User Global Preferences
 sources:
 - type: FILE
@@ -486,7 +486,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Preferences'
 ---
-name: MacOSXDock
+name: MacOSDock
 doc: Dock database
 sources:
 - type: FILE
@@ -497,7 +497,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Preferences'
 ---
-name: MacOSXiDevices
+name: MacOSiDevices
 doc: Attached iDevices
 sources:
 - type: FILE
@@ -508,7 +508,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Preferences'
 ---
-name: MacOSXQuarantineEvents
+name: MacOSQuarantineEvents
 doc: Quarantine Event Database
 sources:
 - type: FILE
@@ -522,7 +522,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Preferences'
 ---
-name: MacOSXUserApplicationLogs
+name: MacOSUserApplicationLogs
 doc: User and Applications Logs Directory
 sources:
 - type: FILE
@@ -533,7 +533,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Logs'
 ---
-name: MacOSXMiscLogs
+name: MacOSMiscLogs
 doc: Misc. Logs
 sources:
 - type: FILE
@@ -544,7 +544,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Logs'
 ---
-name: MacOSXBashHistory
+name: MacOSBashHistory
 doc: Terminal Commands History
 sources:
 - type: FILE
@@ -555,7 +555,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Logs'
 ---
-name: MacOSXUserSocialAccounts
+name: MacOSUserSocialAccounts
 doc: User's Social Accounts
 sources:
 - type: FILE
@@ -566,7 +566,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#User.27s_Accounts'
 ---
-name: MacOSXiOSBackupsMainDirectory
+name: MacOSiOSBackupsMainDirectory
 doc: iOS device backups directory
 sources:
 - type: FILE
@@ -577,7 +577,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#iDevice_Backup'
 ---
-name: MacOSXiOSBackupInfo
+name: MacOSiOSBackupInfo
 doc: iOS device backup information
 sources:
 - type: FILE
@@ -588,7 +588,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#iDevice_Backup'
 ---
-name: MacOSXiOSBackupManifest
+name: MacOSiOSBackupManifest
 doc: iOS device backup apps information
 sources:
 - type: FILE
@@ -599,7 +599,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#iDevice_Backup'
 ---
-name: MacOSXiOSBackupMbdb
+name: MacOSiOSBackupMbdb
 doc: iOS device backup files information
 sources:
 - type: FILE
@@ -610,7 +610,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#iDevice_Backup'
 ---
-name: MacOSXiOSBackupStatus
+name: MacOSiOSBackupStatus
 doc: iOS device backup status information
 sources:
 - type: FILE
@@ -621,7 +621,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#iDevice_Backup'
 ---
-name: MacOSXRecentItems
+name: MacOSRecentItems
 doc: Recent Items
 sources:
 - type: FILE
@@ -632,7 +632,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Recent_Items'
 ---
-name: MacOSXApplicationsRecentItems
+name: MacOSApplicationsRecentItems
 doc: Recent Items application specific
 sources:
 - type: FILE
@@ -643,7 +643,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Recent_Items'
 ---
-name: MacOSXApplicationSupport
+name: MacOSApplicationSupport
 doc: Application Support Directory
 sources:
 - type: DIRECTORY
@@ -654,7 +654,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Misc.'
 ---
-name: MacOSXKeychains
+name: MacOSKeychains
 doc: Keychain Directory
 sources:
 - type: FILE
@@ -665,7 +665,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Misc.'
 ---
-name: MacOSXUserTrash
+name: MacOSUserTrash
 doc: User Trash Folder
 sources:
 - type: FILE
@@ -676,7 +676,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Misc.'
 ---
-name: MacOSXiCloudAccounts
+name: MacOSiCloudAccounts
 doc: iCloud Accounts
 sources:
 - type: FILE
@@ -687,7 +687,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#iCloud'
 ---
-name: MacOSXSkypeUserProfile
+name: MacOSSkypeUserProfile
 doc: Skype User profile
 sources:
 - type: FILE
@@ -698,7 +698,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Skype'
 ---
-name: MacOSXSkypePreferences
+name: MacOSSkypePreferences
 doc: Skype Preferences and Recent Searches
 sources:
 - type: FILE
@@ -709,7 +709,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Skype'
 ---
-name: MacOSXSkypeDb
+name: MacOSSkypeDb
 doc: Main Skype database
 sources:
 - type: FILE
@@ -720,7 +720,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Skype'
 ---
-name: MacOSXSkypechatsync
+name: MacOSSkypechatsync
 doc: Chat Sync Directory
 sources:
 - type: FILE
@@ -731,7 +731,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Skype'
 ---
-name: MacOSXMailMainDirectory
+name: MacOSMailMainDirectory
 doc: Mail Main Folder
 sources:
 - type: FILE
@@ -742,7 +742,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Mail'
 ---
-name: MacOSXMailboxes
+name: MacOSMailboxes
 doc: Mail Mailbox Directory
 sources:
 - type: FILE
@@ -753,7 +753,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Mail'
 ---
-name: MacOSXMailIMAP
+name: MacOSMailIMAP
 doc: Mail IMAP Synched Mailboxes
 sources:
 - type: FILE
@@ -764,7 +764,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Mail'
 ---
-name: MacOSXMailPOP
+name: MacOSMailPOP
 doc: Mail POP Synched Mailboxes
 sources:
 - type: FILE
@@ -775,7 +775,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Mail'
 ---
-name: MacOSXMailBackupTOC
+name: MacOSMailBackupTOC
 doc: Mail BackupTOC
 sources:
 - type: FILE
@@ -786,7 +786,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Mail'
 ---
-name: OSCMailEnvelopIndex
+name: MacOSMailEnvelopIndex
 doc: Mail Envelope Index
 sources:
 - type: FILE
@@ -797,7 +797,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Mail'
 ---
-name: MacOSXMailOpenedAttachments
+name: MacOSMailOpenedAttachments
 doc: Mail Opened Attachments
 sources:
 - type: FILE
@@ -808,7 +808,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Mail'
 ---
-name: MacOSXMailSignatures
+name: MacOSMailSignatures
 doc: Mail Signatures by Account
 sources:
 - type: FILE
@@ -819,7 +819,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Mail'
 ---
-name: MacOSXMailDownloadAttachments
+name: MacOSMailDownloadAttachments
 doc: Mail Downloads Directory
 sources:
 - type: FILE
@@ -830,7 +830,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Mail'
 ---
-name: MacOSXMailPrefs
+name: MacOSMailPrefs
 doc: Mail Preferences
 sources:
 - type: FILE
@@ -841,7 +841,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Mail'
 ---
-name: MacOSXMailRecentContacts
+name: MacOSMailRecentContacts
 doc: Mail Recent Contacts
 sources:
 - type: FILE
@@ -852,7 +852,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Mail'
 ---
-name: MacOSXMailAccounts
+name: MacOSMailAccounts
 doc: Mail Accounts
 sources:
 - type: FILE
@@ -863,8 +863,8 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Mail'
 ---
-name: MacOSXLoadedKexts
-doc: Mac OS X Loaded Kernel Extensions.
+name: MacOSLoadedKexts
+doc: MacOS Loaded Kernel Extensions.
 sources:
 - type: COMMAND
   attributes:
@@ -873,8 +873,8 @@ sources:
 labels: [System]
 supported_os: [Darwin]
 ---
-name: MacOSXMountedDMGs
-doc: Mac OS X Mounted DMG Files.
+name: MacOSMountedDMGs
+doc: MacOS Mounted DMG Files.
 sources:
 - type: COMMAND
   attributes:
