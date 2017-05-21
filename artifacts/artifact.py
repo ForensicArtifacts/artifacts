@@ -2,6 +2,7 @@
 """The reader objects."""
 
 from artifacts import errors
+from artifacts import registry
 from artifacts import source_type
 
 
@@ -50,7 +51,7 @@ class ArtifactDefinition(object):
       raise errors.FormatError(u'Missing type indicator.')
 
     try:
-      source_object = source_type.SourceTypeFactory.CreateSourceType(
+      source_object = registry.ArtifactDefinitionsRegistry.CreateSourceType(
           type_indicator, attributes)
     except (AttributeError, TypeError) as exception:
       raise errors.FormatError(
