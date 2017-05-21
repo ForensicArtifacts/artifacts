@@ -1,5 +1,8 @@
 # Deprecated definitions kept for backwards compatibility with GRR
 # for the time being.
+#
+# https://github.com/google/grr/blob/master/grr/config/artifacts.py
+# https://github.com/google/grr/blob/master/grr/parsers/windows_registry_parser.py
 
 name: AllUsersAppDataEnvironmentVariable
 doc: The %ProgramData% environment variable.
@@ -30,6 +33,18 @@ sources:
 provides: [current_control_set]
 supported_os: [Windows]
 urls: ['https://github.com/libyal/winreg-kb/wiki/System-keys']
+---
+name: OSXUsers
+doc: Users directories in /Users
+sources:
+- type: DIRECTORY
+  attributes: {paths: ['/Users/*']}
+labels: [Users]
+supported_os: [Darwin]
+provides: [users.username]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Users'
 ---
 name: ProgramFiles
 doc: The %ProgramFiles% environment variable.
