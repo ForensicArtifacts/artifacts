@@ -312,7 +312,10 @@ name: MacOSLocalTime
 doc: Current Time Zone
 sources:
 - type: FILE
-  attributes: {paths: ['/etc/localtime']}
+  attributes:
+    paths:
+      - '/etc/localtime'
+      - '/private/etc/localtime'
 labels: [System]
 supported_os: [Darwin]
 urls:
@@ -789,10 +792,13 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#User_Directories'
 ---
 name: MacOSUserPasswordHashesPlistFiles
-doc: Users log-in password hashes plist files
+doc: User password hashes plist files
 sources:
 - type: FILE
-  attributes: {paths: ['/var/db/dslocal/nodes/Default/users/*']}
+  attributes:
+    paths:
+      - '/var/db/dslocal/nodes/Default/users/*.plist'
+      - '/private/var/db/dslocal/nodes/Default/users/*.plist'
 labels: [System, Users, Authentication]
 supported_os: [Darwin]
 urls:
