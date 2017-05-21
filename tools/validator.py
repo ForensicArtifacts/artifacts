@@ -16,42 +16,41 @@ from artifacts import registry
 
 
 class ArtifactDefinitionsValidator(object):
-  """Class to define an artifact definitions validator."""
+  """Artifact definitions validator."""
 
   LEGACY_PATH = os.path.join('definitions', 'legacy.yaml')
 
   def __init__(self):
-    """Initializes the artifact definitions validator object."""
+    """Initializes an artifact definitions validator."""
     super(ArtifactDefinitionsValidator, self).__init__()
     self._artifact_registry = registry.ArtifactDefinitionsRegistry()
     self._artifact_registry_key_paths = set()
 
-  def _HasDuplicateRegistryKeyPaths(self, filename, artifact_definition,
-                                    source):
+  def _HasDuplicateRegistryKeyPaths(
+      self, filename, artifact_definition, source):
     """Checks if Registry key paths are not already defined by other artifacts.
 
     Note that at the moment this function will only find exact duplicate
     Registry key paths.
 
     Args:
-      filename: the filename of the artifacts definition file.
-      artifact_definition: the artifact definition (instance of
-                           ArtifactDefinition).
-      source: the source definition (instance of SourceType).
+      filename (str): name of the artifacts definition file.
+      artifact_definition (ArtifactDefinition): artifact definition.
+      source (SourceType): source definition.
 
     Returns:
-      A boolean indicating the Registry key paths defined by the source type
-      are used in other artifacts.
+      bool: True if the Registry key paths defined by the source type
+          are used in other artifacts.
     """
     result = False
-    intersection = self._artifact_registry_key_paths.intersection(set(
-        source.keys))
+    intersection = self._artifact_registry_key_paths.intersection(
+        set(source.keys))
     if intersection:
       duplicate_key_paths = u'\n'.join(intersection)
-      logging.warning((u'Artifact definition: {0} in file: {1} has duplicate '
-                       u'Registry key paths:\n{2}').format(
-                           artifact_definition.name, filename,
-                           duplicate_key_paths))
+      logging.warning((
+          u'Artifact definition: {0} in file: {1} has duplicate '
+          u'Registry key paths:\n{2}').format(
+              artifact_definition.name, filename, duplicate_key_paths))
       result = True
 
     self._artifact_registry_key_paths.update(source.keys)
@@ -61,10 +60,10 @@ class ArtifactDefinitionsValidator(object):
     """Validates the artifacts definition in a specific file.
 
     Args:
-      filename: the filename of the artifacts definition file.
+      filename (str): name of the artifacts definition file.
 
     Returns:
-      A boolean indicating the file contains valid artifacts definitions.
+      bool: True if the file contains valid artifacts definitions.
     """
     result = True
     artifact_reader = reader.YamlArtifactsReader()
@@ -86,14 +85,14 @@ class ArtifactDefinitionsValidator(object):
             # Exempt the legacy file from duplicate checking because it has
             # duplicates intentionally.
             if (filename != self.LEGACY_PATH and
-                self._HasDuplicateRegistryKeyPaths(filename,
-                                                   artifact_definition,
-                                                   source)):
+                self._HasDuplicateRegistryKeyPaths(
+                    filename, artifact_definition, source)):
               result = False
 
     except errors.FormatError as exception:
-      logging.warning(u'Unable to validate file: {0} with error: {1}'.format(
-          filename, exception))
+      logging.warning(
+          u'Unable to validate file: {0} with error: {1}'.format(
+              filename, exception))
       result = False
 
     return result
@@ -102,7 +101,7 @@ class ArtifactDefinitionsValidator(object):
     """Retrieves the names of undefined artifacts used by artifact groups.
 
     Returns:
-      A set of the undefined artifacts names.
+      set[str]: undefined artifacts names.
     """
     return self._artifact_registry.GetUndefinedArtifacts()
 
@@ -111,15 +110,19 @@ def Main():
   """The main program function.
 
   Returns:
-    A boolean containing True if successful or False if not.
+    bool: True if successful or False if not.
   """
   args_parser = argparse.ArgumentParser(
-      description=('Validates an artifact definitions file.'))
+      description='Validates an artifact definitions file.')
 
-  args_parser.add_argument('filename', nargs='?', action='store',
-                           metavar='artifacts.yaml', default=None,
-                           help=('path of the file that contains the artifact '
-                                 'definitions.'))
+  args_parser.add_argument(
+      'filename',
+      nargs='?',
+      action='store',
+      metavar='artifacts.yaml',
+      default=None,
+      help=('path of the file that contains the artifact '
+            'definitions.'))
 
   options = args_parser.parse_args()
 

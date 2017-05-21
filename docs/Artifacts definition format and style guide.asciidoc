@@ -23,6 +23,7 @@ artifacts definitions.
 | 0.0.2 | G. Castle | December 2014 | Minor format changes.
 | 0.0.3 | J.B. Metz | April 2015 | Merged style guide and artifact definitions wiki page.
 | 0.0.3 | J.B. Metz | September 2015 | Additional label.
+| 0.0.4 | J.B. Metz | July 2016 | Added information about a naming convention.
 |===
 
 :numbered:
@@ -67,7 +68,7 @@ Logs.
 
 [source,yaml]
 ----
-name: SystemEventLogEvtx
+name: WindowsSystemEventLogEvtx
 doc: Windows System Event log for Vista or later systems.
 sources:
 - type: FILE
@@ -84,10 +85,10 @@ The artifact definition can have the following values:
 |===
 | Value | Description
 | name | The name. An unique string that identifies the artifact definition. +
-*Style note*: the name should be in CamelCase name without spaces.
+Also see section: <<artifact_name,Name>>.
 | doc | The description (or documentation). A human readable string that describes the artifact definition. +
 *Style note*: Typically one line description of the artifact, mentioning important caveats. +
-If more description is necessary, use the <<long_docs,Long docs form>>.
+If more description is necessary, use the <<artifact_long_docs,Long docs form>>.
 | sources | A list of source definitions. +
 See section: <<sources,Sources>>.
 | conditions | Optional list of conditions that describe when the artifact definition should apply. +
@@ -101,7 +102,20 @@ See section: <<supported_os,Supported operating system>>.
 Ideally the artifact definition links to an article that discusses the artificat in more depth e.g. on http://forensicswiki.org[Forensics Wiki]
 |===
 
-=== [[long_docs]]Long docs form
+=== [[artifact_name]]Name
+*Style note*: The name of an artifact defintion should be in CamelCase name without spaces.
+
+As of July 2016 we are migrating to the following naming convention:
+
+* Prefix platform specific artifact definitions with the name of the operating system using "Linux", "MacOS" or "Windows"
+* If not platform specific:
+** prefix with the application name, for example "ChromeHistory".
+** prefix with the name of the subsystem, for example "WMIComputerSystemProduct".
+
+*Style note*: If the sole source of the artifact definition for example are
+files use "BrowserHistoryFiles" instead of "BrowserHistory" to reduce ambiguity.
+
+=== [[artifact_long_docs]]Long docs form
 Multi-line documentation should use the YAML Literal Style as indicated by the |
 character.
 
