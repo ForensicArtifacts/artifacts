@@ -246,6 +246,14 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Misc.'
 ---
+name: MacOSKeyboardLayoutPlistFile
+doc: Keyboard layout plist file
+sources:
+- type: FILE
+  attributes: {paths: ['/Library/Preferences/com.apple.HIToolbox.plist']}
+labels: [System]
+supported_os: [Darwin]
+---
 name: MacOSKextFiles
 doc: Kernel extension (.kext) files
 sources:
@@ -617,6 +625,14 @@ supported_os: [Darwin]
 urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Sleep.2FHibernate_and_Swap_Image_File'
+---
+name: MacOSSystemConfigurationPreferencesPlistFile
+doc: System configuration preferences plist file
+sources:
+- type: FILE
+  attributes: {paths: ['/Library/Preferences/SystemConfiguration/preferences.plist']}
+labels: [System]
+supported_os: [Darwin]
 ---
 name: MacOSSystemInstallationTime
 doc: System installation time
