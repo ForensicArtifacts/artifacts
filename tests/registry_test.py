@@ -9,6 +9,8 @@ from artifacts import reader
 from artifacts import registry
 from artifacts import source_type
 
+from tests import test_lib
+
 
 class TestSourceType(source_type.SourceType):
   """Class that implements a test source type."""
@@ -30,15 +32,13 @@ class TestSourceType(source_type.SourceType):
     super(TestSourceType, self).__init__()
     self.test = test
 
-  def CopyToDict(self):
-    """Copies the source type to a dictionary.
+  def AsDict(self):
+    """Represents a source type as a dictionary.
 
     Returns:
-      A dictionary containing the source type attributes.
+      dict[str, str]: source type attributes.
     """
     return {u'test': self.test}
-
-from tests import test_lib
 
 
 class ArtifactDefinitionsRegistryTest(test_lib.BaseTestCase):

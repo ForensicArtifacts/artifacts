@@ -126,7 +126,7 @@ setup(
     packages=find_packages('.', exclude=[u'tests', u'tests.*', u'tools']),
     package_dir={'artifacts': 'artifacts'},
     data_files=[
-        ('share/artifacts', glob.glob(os.path.join('definitions', '*'))),
+        ('share/artifacts', glob.glob(os.path.join('data', '*'))),
     ],
     install_requires=[
         'PyYAML >= 3.11',
