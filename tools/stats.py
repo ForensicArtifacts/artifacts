@@ -85,7 +85,7 @@ As of {0} the repository contains:
     self.source_type_counts = {}
     self.total_count = 0
 
-    for artifact_definition in artifact_reader.ReadDirectory('definitions'):
+    for artifact_definition in artifact_reader.ReadDirectory('data'):
       if hasattr(artifact_definition, 'labels'):
         for label in artifact_definition.labels:
           self.label_counts[label] = self.label_counts.get(label, 0) + 1

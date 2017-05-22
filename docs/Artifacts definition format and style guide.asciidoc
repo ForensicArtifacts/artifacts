@@ -200,7 +200,7 @@ Currently the following different source types are defined:
 |===
 
 The sources types are defined in
-link:https://github.com/ForensicArtifacts/artifacts/blob/master/artifacts/definitions.py[definitions.py]
+link:https://github.com/ForensicArtifacts/artifacts/blob/master/artifacts/definitions.py[definitions.py].
 as TYPE_INDICATOR constants.
 
 === Artifact group source

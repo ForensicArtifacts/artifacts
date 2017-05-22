@@ -1,7 +1,7 @@
 include ACKNOWLEDGEMENTS AUTHORS LICENSE README
 include dependencies.ini run_tests.py utils/dependencies.py
 recursive-include config *
-recursive-include definitions *.yaml
+recursive-include data *
 recursive-include test_data *
 exclude .gitignore
 exclude *.pyc

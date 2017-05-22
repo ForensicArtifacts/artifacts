@@ -296,7 +296,7 @@ sources:
     """Tests the AsDict function."""
     artifact_reader = reader.YamlArtifactsReader()
 
-    artifact_definitions = list(artifact_reader.ReadDirectory('definitions'))
+    artifact_definitions = list(artifact_reader.ReadDirectory('data'))
 
     last_artifact_definition = None
     for artifact in artifact_definitions:

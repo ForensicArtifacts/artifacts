@@ -18,7 +18,7 @@ from artifacts import registry
 class ArtifactDefinitionsValidator(object):
   """Artifact definitions validator."""
 
-  LEGACY_PATH = os.path.join('definitions', 'legacy.yaml')
+  LEGACY_PATH = os.path.join('data', 'legacy.yaml')
 
   def __init__(self):
     """Initializes an artifact definitions validator."""
