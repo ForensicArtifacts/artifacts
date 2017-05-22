@@ -275,8 +275,9 @@ sources:
   def testReadDirectory(self):
     """Tests the ReadDirectory function."""
     artifact_reader = reader.YamlArtifactsReader()
+    test_file = self._GetTestFilePath(['.'])
 
-    artifact_definitions = list(artifact_reader.ReadDirectory('test_data'))
+    artifact_definitions = list(artifact_reader.ReadDirectory(test_file))
 
     self.assertEqual(len(artifact_definitions), 7)
 
