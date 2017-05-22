@@ -3,7 +3,6 @@
 
 from artifacts import errors
 from artifacts import registry
-from artifacts import source_type
 
 
 class ArtifactDefinition(object):
