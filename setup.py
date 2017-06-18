@@ -123,7 +123,8 @@ setup(
         'Operating System :: OS Independent',
         'Programming Language :: Python',
     ],
-    packages=find_packages('.', exclude=[u'tests', u'tests.*', u'tools']),
+    packages=find_packages('.', exclude=[
+        'tests', 'tests.*', 'tools', 'utils']),
     package_dir={'artifacts': 'artifacts'},
     data_files=[
         ('share/artifacts', glob.glob(os.path.join('data', '*'))),
