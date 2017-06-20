@@ -52,8 +52,7 @@ format from the [ForensicArtifacts.com](http://forensicartifacts.com/) website.
 
 For some background on the artifacts system and how we expect it to be used see
 [this blackhat presentation](https://www.blackhat.com/us-14/archives.html#grr-find-all-the-badness-collect-all-the-things)
-and [youtube video](http://www.youtube.com/watch?v=DudGrSv26NY) from the GRR
-team.
+from the GRR team.
 
 ## Contributing
 
