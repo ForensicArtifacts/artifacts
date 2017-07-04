@@ -367,6 +367,14 @@ urls:
 - 'http://web.cs.ucdavis.edu/~su/publications/issta10-loading.pdf'
 - 'https://www.mandiant.com/blog/fxsst/'
 ---
+name: WindowsCurrentVersion
+doc: The Windows current verson
+sources:
+- type: REGISTRY_VALUE
+  attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion', value: 'CurrentVersion'}]}
+supported_os: [Windows]
+urls: ['https://github.com/libyal/winreg-kb/blob/master/documentation/System%20keys.asciidoc']
+---
 name: WindowsDebugger
 doc: Windows Debugger peristence or AV disable.
 sources:
