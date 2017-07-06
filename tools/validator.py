@@ -104,9 +104,7 @@ class ArtifactDefinitionsValidator(object):
           result = False
 
         for source in artifact_definition.sources:
-          if source.type_indicator == definitions.TYPE_INDICATOR_FILE:
-
-          elif source.type_indicator == (
+          if source.type_indicator == (
               definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_KEY):
 
             # Exempt the legacy file from duplicate checking because it has
