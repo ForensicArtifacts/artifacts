@@ -26,6 +26,31 @@ class ArtifactDefinitionsValidator(object):
     self._artifact_registry = registry.ArtifactDefinitionsRegistry()
     self._artifact_registry_key_paths = set()
 
+  def _CheckRegistryKeyPath(self, filename, artifact_definition, key_path):
+    """Checks a Windows Registry key path.
+
+    Args:
+      filename (str): name of the artifacts definition file.
+      artifact_definition (ArtifactDefinition): artifact definition.
+      key_path (str): key path.
+
+    Returns:
+      bool: True if the Registry key path is valid.
+    """
+    result = True
+    key_path = key_path.upper()
+
+    if key_path.startswith(u'%%CURRENT_CONTROL_SET%%'):
+      result = False
+      logging.warning((
+          u'Artifact definition: {0} in file: {1} contains Windows '
+          u'Registry key path that starts with '
+          u'%%CURRENT_CONTROL_SET%%. Replace %%CURRENT_CONTROL_SET%% with '
+          u'HKEY_LOCAL_MACHINE\\System\\CurrentControlSet').format(
+              artifact_definition.name, filename))
+
+    return result
+
   def _HasDuplicateRegistryKeyPaths(
       self, filename, artifact_definition, source):
     """Checks if Registry key paths are not already defined by other artifacts.
@@ -79,7 +104,9 @@ class ArtifactDefinitionsValidator(object):
           result = False
 
         for source in artifact_definition.sources:
-          if source.type_indicator in (
+          if source.type_indicator == definitions.TYPE_INDICATOR_FILE:
+
+          elif source.type_indicator == (
               definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_KEY):
 
             # Exempt the legacy file from duplicate checking because it has
@@ -88,6 +115,19 @@ class ArtifactDefinitionsValidator(object):
                 self._HasDuplicateRegistryKeyPaths(
                     filename, artifact_definition, source)):
               result = False
+
+            for key_path in source.keys:
+              if self._CheckRegistryKeyPath(
+                  filename, artifact_definition, key_path):
+                result = False
+
+          elif source.type_indicator == (
+              definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_VALUE):
+
+            for key_value_pair in source.key_value_pairs:
+              if self._CheckRegistryKeyPath(
+                  filename, artifact_definition, key_value_pair[u'key']):
+                result = False
 
     except errors.FormatError as exception:
       logging.warning(
