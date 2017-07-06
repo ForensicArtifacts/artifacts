@@ -115,7 +115,7 @@ class ArtifactDefinitionsValidator(object):
               result = False
 
             for key_path in source.keys:
-              if self._CheckRegistryKeyPath(
+              if not self._CheckRegistryKeyPath(
                   filename, artifact_definition, key_path):
                 result = False
 
@@ -123,7 +123,7 @@ class ArtifactDefinitionsValidator(object):
               definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_VALUE):
 
             for key_value_pair in source.key_value_pairs:
-              if self._CheckRegistryKeyPath(
+              if not self._CheckRegistryKeyPath(
                   filename, artifact_definition, key_value_pair[u'key']):
                 result = False
 

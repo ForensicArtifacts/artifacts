@@ -21,8 +21,8 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: '%%current_control_set%%\Control\SafeBoot', value: 'AlternateShell'}
-      - {key: '%%current_control_set%%\Control\SafeBoot\Option', value: 'UseAlternateShell'}
+      - {key: 'HKEY_LOCAL_MACHINESystemCurrentControlSet\Control\SafeBoot', value: 'AlternateShell'}
+      - {key: 'HKEY_LOCAL_MACHINESystemCurrentControlSet\Control\SafeBoot\Option', value: 'UseAlternateShell'}
 supported_os: [Windows]
 urls:
 - 'https://www.microsoftpressstore.com/articles/article.aspx'
@@ -45,7 +45,7 @@ doc: Windows AppCertDLLs persistence.
 sources:
 - type: REGISTRY_KEY
   attributes:
-    keys: ['%%current_control_set%%\Control\Session Manager\AppCertDLLs']
+    keys: ['HKEY_LOCAL_MACHINESystemCurrentControlSet\Control\Session Manager\AppCertDLLs']
 supported_os: [Windows]
 urls: ['http://blogs.technet.com/b/mmpc/archive/2011/03/19/how-to-defang-the-fake-defragmenter.aspx']
 ---
@@ -55,8 +55,8 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: '%%current_control_set%%\Control\Session Manager\AppCompatibility', value: 'AppCompatCache'}
-      - {key: '%%current_control_set%%\Control\Session Manager\AppCompatCache', value: 'AppCompatCache'}
+      - {key: 'HKEY_LOCAL_MACHINESystemCurrentControlSet\Control\Session Manager\AppCompatibility', value: 'AppCompatCache'}
+      - {key: 'HKEY_LOCAL_MACHINESystemCurrentControlSet\Control\Session Manager\AppCompatCache', value: 'AppCompatCache'}
 supported_os: [Windows]
 urls: ['https://github.com/libyal/winreg-kb/blob/master/documentation/Application%20Compatibility%20Cache%20key.asciidoc']
 ---
@@ -172,7 +172,7 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: '%%current_control_set%%\Control\BootVerificationProgram', value: 'ImagePath'}
+      - {key: 'HKEY_LOCAL_MACHINESystemCurrentControlSet\Control\BootVerificationProgram', value: 'ImagePath'}
 supported_os: [Windows]
 urls:
 - 'https://technet.microsoft.com/en-us/library/cc786702(WS.10).aspx'
@@ -184,7 +184,7 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: '%%current_control_set%%\Control\Nls\CodePage', value: 'ACP'}
+      - {key: 'HKEY_LOCAL_MACHINESystemCurrentControlSet\Control\Nls\CodePage', value: 'ACP'}
 provides: [code_page]
 supported_os: [Windows]
 urls: ['http://en.wikipedia.org/wiki/Windows_code_page']
@@ -195,7 +195,7 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: '%%current_control_set%%\Control\ComputerName\ComputerName', value: 'ComputerName'}
+      - {key: 'HKEY_LOCAL_MACHINESystemCurrentControlSet\Control\ComputerName\ComputerName', value: 'ComputerName'}
 provides: [hostname]
 supported_os: [Windows]
 ---
@@ -394,7 +394,7 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: '%%current_control_set%%\Services\Tcpip\Parameters', value: 'Domain'}
+      - {key: 'HKEY_LOCAL_MACHINESystemCurrentControlSet\Services\Tcpip\Parameters', value: 'Domain'}
 provides: [domain]
 supported_os: [Windows]
 ---
@@ -456,7 +456,7 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: '%%current_control_set%%\Control\Session Manager\Environment', value: 'Path'}
+      - {key: 'HKEY_LOCAL_MACHINESystemCurrentControlSet\Control\Session Manager\Environment', value: 'Path'}
 provides: [environ_path]
 supported_os: [Windows]
 urls: ['http://environmentvariables.org/Path']
@@ -531,7 +531,7 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: '%%current_control_set%%\Control\Session Manager\Environment', value: 'TEMP'}
+      - {key: 'HKEY_LOCAL_MACHINESystemCurrentControlSet\Control\Session Manager\Environment', value: 'TEMP'}
 provides: [environ_temp]
 supported_os: [Windows]
 urls: ['http://environmentvariables.org/Temp']
@@ -550,7 +550,7 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: '%%current_control_set%%\Control\Session Manager\Environment', value: 'windir'}
+      - {key: 'HKEY_LOCAL_MACHINESystemCurrentControlSet\Control\Session Manager\Environment', value: 'windir'}
 provides: [environ_windir]
 supported_os: [Windows]
 urls: ['http://environmentvariables.org/WinDir']
@@ -659,7 +659,7 @@ doc: ExcludeFromKnownDLLs can be used to bypass search order hijacking protectio
 sources:
 - type: REGISTRY_VALUE
   attributes:
-    key_value_pairs: [{key: '%%current_control_set%%\Control\Session Manager', value: 'ExcludeFromKnownDLLs'}]
+    key_value_pairs: [{key: 'HKEY_LOCAL_MACHINESystemCurrentControlSet\Control\Session Manager', value: 'ExcludeFromKnownDLLs'}]
 supported_os: [Windows]
 urls: ['https://msdn.microsoft.com/en-us/library/windows/desktop/ms682586%28v=vs.85%29.aspx']
 ---
@@ -939,8 +939,8 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: '%%current_control_set%%\Control\Lsa', value: 'Authentication Packages'}
-      - {key: '%%current_control_set%%\Control\Lsa\OSConfig', value: 'Authentication Packages'}
+      - {key: 'HKEY_LOCAL_MACHINESystemCurrentControlSet\Control\Lsa', value: 'Authentication Packages'}
+      - {key: 'HKEY_LOCAL_MACHINESystemCurrentControlSet\Control\Lsa\OSConfig', value: 'Authentication Packages'}
 supported_os: [Windows]
 urls:
 - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
@@ -952,8 +952,8 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: '%%current_control_set%%\Control\Lsa', value: 'Notification Packages'}
-      - {key: '%%current_control_set%%\Control\Lsa\OSConfig', value: 'Notification Packages'}
+      - {key: 'HKEY_LOCAL_MACHINESystemCurrentControlSet\Control\Lsa', value: 'Notification Packages'}
+      - {key: 'HKEY_LOCAL_MACHINESystemCurrentControlSet\Control\Lsa\OSConfig', value: 'Notification Packages'}
 supported_os: [Windows]
 urls:
 - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
@@ -965,8 +965,8 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: '%%current_control_set%%\Control\Lsa', value: 'Security Packages'}
-      - {key: '%%current_control_set%%\Control\Lsa\OSConfig', value: 'Security Packages'}
+      - {key: 'HKEY_LOCAL_MACHINESystemCurrentControlSet\Control\Lsa', value: 'Security Packages'}
+      - {key: 'HKEY_LOCAL_MACHINESystemCurrentControlSet\Control\Lsa\OSConfig', value: 'Security Packages'}
 supported_os: [Windows]
 urls:
 - 'https://msdn.microsoft.com/en-us/library/windows/desktop/aa379392(v=vs.85).aspx'
@@ -1084,7 +1084,7 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: '%%current_control_set%%\Control\Session Manager', value: 'PendingFileRenameOperations'}
+      - {key: 'HKEY_LOCAL_MACHINESystemCurrentControlSet\Control\Session Manager', value: 'PendingFileRenameOperations'}
 supported_os: [Windows]
 urls: ['https://technet.microsoft.com/en-us/library/cc960241.aspx']
 ---
@@ -1242,7 +1242,7 @@ doc: Windows Print Monitor DLL config.
 sources:
 - type: REGISTRY_VALUE
   attributes:
-    key_value_pairs: [{key: '%%current_control_set%%\Control\Print\Monitors\*', value: 'Driver'}]
+    key_value_pairs: [{key: 'HKEY_LOCAL_MACHINESystemCurrentControlSet\Control\Print\Monitors\*', value: 'Driver'}]
 supported_os: [Windows]
 urls:
 - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
@@ -1446,7 +1446,7 @@ doc: Security Providers DLLs
 sources:
 - type: REGISTRY_KEY
   attributes:
-    keys: ['%%current_control_set%%\Control\SecurityProviders\*']
+    keys: ['HKEY_LOCAL_MACHINESystemCurrentControlSet\Control\SecurityProviders\*']
 supported_os: [Windows]
 urls:
 - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
@@ -1457,7 +1457,7 @@ doc: Windows service control manager extension
 sources:
 - type: REGISTRY_VALUE
   attributes:
-    key_value_pairs: [{key: '%%current_control_set%%\Control', value: 'ServiceControlManagerExtension'}]
+    key_value_pairs: [{key: 'HKEY_LOCAL_MACHINESystemCurrentControlSet\Control', value: 'ServiceControlManagerExtension'}]
 labels: [Software]
 supported_os: [Windows]
 urls:
@@ -1472,8 +1472,8 @@ sources:
 - type: REGISTRY_KEY
   attributes:
     keys:
-      - '%%current_control_set%%\services\*\*'
-      - '%%current_control_set%%\services\*\Parameters\*'
+      - 'HKEY_LOCAL_MACHINESystemCurrentControlSet\services\*\*'
+      - 'HKEY_LOCAL_MACHINESystemCurrentControlSet\services\*\Parameters\*'
 labels: [Software]
 supported_os: [Windows]
 urls:
@@ -1485,7 +1485,7 @@ doc: Windows Session Manager BootExecute persistence.
 sources:
 - type: REGISTRY_VALUE
   attributes:
-    key_value_pairs: [{key: '%%current_control_set%%\Control\Session Manager', value: 'BootExecute'}]
+    key_value_pairs: [{key: 'HKEY_LOCAL_MACHINESystemCurrentControlSet\Control\Session Manager', value: 'BootExecute'}]
 supported_os: [Windows]
 urls: ['https://technet.microsoft.com/en-us/library/cc963230.aspx']
 ---
@@ -1494,7 +1494,7 @@ doc: Windows Session Manager Execute persistence
 sources:
 - type: REGISTRY_VALUE
   attributes:
-    key_value_pairs: [{key: '%%current_control_set%%\Control\Session Manager', value: 'Execute'}]
+    key_value_pairs: [{key: 'HKEY_LOCAL_MACHINESystemCurrentControlSet\Control\Session Manager', value: 'Execute'}]
 supported_os: [Windows]
 urls: ['https://technet.microsoft.com/en-us/library/cc976130.aspx']
 ---
@@ -1503,7 +1503,7 @@ doc: Windows Session Manager SetupExecute persistence
 sources:
 - type: REGISTRY_VALUE
   attributes:
-    key_value_pairs: [{key: '%%current_control_set%%\Control\Session Manager', value: 'SetupExecute'}]
+    key_value_pairs: [{key: 'HKEY_LOCAL_MACHINESystemCurrentControlSet\Control\Session Manager', value: 'SetupExecute'}]
 supported_os: [Windows]
 urls: ['https://msdn.microsoft.com/en-us/library/windows/desktop/dd392286%28v=vs.85%29.aspx']
 ---
@@ -1512,7 +1512,7 @@ doc: Windows Session Manager SubSystems persistence
 sources:
 - type: REGISTRY_VALUE
   attributes:
-    key_value_pairs: [{key: '%%current_control_set%%\Control\Session Manager\SubSystems', value: 'Windows'}]
+    key_value_pairs: [{key: 'HKEY_LOCAL_MACHINESystemCurrentControlSet\Control\Session Manager\SubSystems', value: 'Windows'}]
 supported_os: [Windows]
 urls:
 - 'https://technet.microsoft.com/en-us/library/cc976130.aspx'
@@ -1524,8 +1524,8 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: '%%current_control_set%%\Control\Session Manager\WOW', value: 'cmdline'}
-      - {key: '%%current_control_set%%\Control\Session Manager\WOW', value: 'wowcmdline'}
+      - {key: 'HKEY_LOCAL_MACHINESystemCurrentControlSet\Control\Session Manager\WOW', value: 'cmdline'}
+      - {key: 'HKEY_LOCAL_MACHINESystemCurrentControlSet\Control\Session Manager\WOW', value: 'wowcmdline'}
 supported_os: [Windows]
 urls: ['https://support.microsoft.com/en-us/kb/102986']
 ---
@@ -1850,7 +1850,7 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: '%%current_control_set%%\Control\Terminal Server\Wds\rdpwd', value: 'StartupPrograms'}
+      - {key: 'HKEY_LOCAL_MACHINESystemCurrentControlSet\Control\Terminal Server\Wds\rdpwd', value: 'StartupPrograms'}
 supported_os: [Windows]
 urls: ['http://forum.sysinternals.com/rdpclip_topic4729.html']
 ---
@@ -1858,7 +1858,7 @@ name: WindowsTimezone
 doc: The timezone of the system in Olson format.
 sources:
 - type: REGISTRY_VALUE
-  attributes: {key_value_pairs: [{key: '%%current_control_set%%\Control\TimeZoneInformation', value: 'StandardName'}]}
+  attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINESystemCurrentControlSet\Control\TimeZoneInformation', value: 'StandardName'}]}
 provides: [time_zone]
 supported_os: [Windows]
 urls: ['https://github.com/libyal/winreg-kb/wiki/Time-zone-keys']
@@ -2085,7 +2085,7 @@ doc: Used to filter TCP/IP traffic through WinSock2.
 sources:
 - type: REGISTRY_KEY
   attributes:
-    keys: ['%%current_control_set%%\Services\WinSock2\Parameters\Protocol_Catalog9\Catalog_Entries\*']
+    keys: ['HKEY_LOCAL_MACHINESystemCurrentControlSet\Services\WinSock2\Parameters\Protocol_Catalog9\Catalog_Entries\*']
 supported_os: [Windows]
 urls:
 - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
@@ -2097,7 +2097,7 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: '%%current_control_set%%\Services\WinSock2\Parameters\namespace_catalog5\catalog_entries\*', value: 'LibraryPath'}
+      - {key: 'HKEY_LOCAL_MACHINESystemCurrentControlSet\Services\WinSock2\Parameters\namespace_catalog5\catalog_entries\*', value: 'LibraryPath'}
 supported_os: [Windows]
 urls:
 - 'https://www.symantec.com/security_response/writeup.jsp?docid=2012-020609-4221-99&tabid=2'

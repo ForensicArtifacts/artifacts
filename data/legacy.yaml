@@ -108,7 +108,7 @@ name: TempEnvironmentVariable
 doc: The %TEMP% environment variable.
 sources:
 - type: REGISTRY_VALUE
-  attributes: {key_value_pairs: [{key: '%%current_control_set%%\Control\Session Manager\Environment', value: 'TEMP'}]}
+  attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINESystemCurrentControlSet\Control\Session Manager\Environment', value: 'TEMP'}]}
 provides: [environ_temp]
 supported_os: [Windows]
 urls: ['http://environmentvariables.org/WinDir']
@@ -141,7 +141,7 @@ name: WinCodePage
 doc: The codepage of the system.
 sources:
 - type: REGISTRY_VALUE
-  attributes: {key_value_pairs: [{key: '%%current_control_set%%\Control\Nls\CodePage', value: 'ACP'}]}
+  attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINESystemCurrentControlSet\Control\Nls\CodePage', value: 'ACP'}]}
 provides: [code_page]
 supported_os: [Windows]
 urls: ['http://en.wikipedia.org/wiki/Windows_code_page']
@@ -158,7 +158,7 @@ sources:
       - '\WTSRV'
     separator: '\'
 - type: REGISTRY_VALUE
-  attributes: {key_value_pairs: [{key: '%%current_control_set%%\Control\Session Manager\Environment', value: 'windir'}]}
+  attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINESystemCurrentControlSet\Control\Session Manager\Environment', value: 'windir'}]}
 provides: [environ_windir]
 supported_os: [Windows]
 urls: ['http://environmentvariables.org/WinDir']
@@ -167,7 +167,7 @@ name: WinDomainName
 doc: The Windows domain the system is connected to.
 sources:
 - type: REGISTRY_VALUE
-  attributes: {key_value_pairs: [{key: '%%current_control_set%%\Services\Tcpip\Parameters', value: 'Domain'}]}
+  attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINESystemCurrentControlSet\Services\Tcpip\Parameters', value: 'Domain'}]}
 provides: [domain]
 supported_os: [Windows]
 ---
@@ -175,7 +175,7 @@ name: WinPathEnvironmentVariable
 doc: The %PATH% environment variable.
 sources:
 - type: REGISTRY_VALUE
-  attributes: {key_value_pairs: [{key: '%%current_control_set%%\Control\Session Manager\Environment', value: 'Path'}]}
+  attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINESystemCurrentControlSet\Control\Session Manager\Environment', value: 'Path'}]}
 provides: [environ_path]
 supported_os: [Windows]
 urls: ['http://environmentvariables.org/WinDir']
@@ -184,7 +184,7 @@ name: WinTimeZone
 doc: The timezone of the system in Olson format.
 sources:
 - type: REGISTRY_VALUE
-  attributes: {key_value_pairs: [{key: '%%current_control_set%%\Control\TimeZoneInformation', value: 'StandardName'}]}
+  attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINESystemCurrentControlSet\Control\TimeZoneInformation', value: 'StandardName'}]}
 provides: [time_zone]
 supported_os: [Windows]
 urls: ['https://github.com/libyal/winreg-kb/wiki/Time-zone-keys']
