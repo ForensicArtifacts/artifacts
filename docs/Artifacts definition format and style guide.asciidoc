@@ -24,6 +24,7 @@ artifacts definitions.
 | 0.0.3 | J.B. Metz | April 2015 | Merged style guide and artifact definitions wiki page.
 | 0.0.3 | J.B. Metz | September 2015 | Additional label.
 | 0.0.4 | J.B. Metz | July 2016 | Added information about a naming convention.
+| 0.0.5 | J.B. Metz | September 2016 | Added REGISTRY_VALUE_DATA source type.
 |===
 
 :numbered:
@@ -317,6 +318,11 @@ Windows Registry values e.g.
   attributes:
     key_value_pairs:
       - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\WindowsUpdate', value: 'CISCNF4654'}
+
+- type: REGISTRY_VALUE
+ attributes:
+   key_value_data_tuples:
+     - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run', value: 'WINDOWS', data_type: 'REG_SZ', data: 'c:\documents and settings\administrator\local settings\temp\test5.exe'}
 ----
 
 Where `attributes` can contain the following values:
@@ -328,6 +334,20 @@ Where `attributes` can contain the following values:
 The key path can use parameter expansion e.g. `%%users.sid%%`. +
 See section: <<parameter_expansion,Parameter expansion and globs>>
 |===
+
+Where `key_value_pairs` can contain the following values:
+
+[cols="1,5",options="header"]
+|===
+| Value | Description
+| key | Windows Registry key path
+| value | Windows Registry value name
+| data_type | Optional value data type
+| data | Optional value data
+|===
+
+[NOTE]
+The artifact definition is descriptive therefore it is up to the implementation on how to use the contents of `data_type` and `data`.
 
 === Windows Management Instrumentation (WMI) query source
 The  Windows Management Instrumentation (WMI) query source is a source that

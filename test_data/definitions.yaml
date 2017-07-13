@@ -33,6 +33,15 @@ provides: [current_control_set]
 supported_os: [Windows]
 urls: ['https://code.google.com/p/winreg-kb/wiki/SystemKeys']
 ---
+name: Win32AutorunZIPersistence
+doc: Win32-Autorun-ZI persistence techniques
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run', value: 'WINDOWS', data_type: 'REG_SZ', data: 'c:\documents and settings\administrator\local settings\temp\test5.exe'}
+urls: ['https://www.microsoft.com/security/portal/threat/encyclopedia/Entry.aspx?Name=Worm:Win32/Autorun.ZI']
+---
 name: WMIProfileUsersHomeDir
 doc: |
   Get user homedir from Win32_UserProfile based on a known user's SID.

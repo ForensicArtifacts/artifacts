@@ -56,10 +56,10 @@ class ArtifactGroupSourceType(SourceType):
   TYPE_INDICATOR = definitions.TYPE_INDICATOR_ARTIFACT_GROUP
 
   def __init__(self, names=None):
-    """Initializes the source type object.
+    """Initializes a source type object.
 
     Args:
-      names: optional list of artifact definition names. The default is None.
+      names (Optional[list[str]]): artifact definition names.
 
     Raises:
       FormatError: when artifact names is not set.
@@ -85,13 +85,12 @@ class FileSourceType(SourceType):
   TYPE_INDICATOR = definitions.TYPE_INDICATOR_FILE
 
   def __init__(self, paths=None, separator=u'/'):
-    """Initializes the source type object.
+    """Initializes a source type object.
 
     Args:
-      paths: optional list of paths. The paths are considered relative
-             to the root of the file system. The default is None.
-      separator: optional string containing the path segment separator.
-                 The default is /.
+      paths (Optional[list[str]]): paths. The paths are considered relative
+          to the root of the file system.
+      separator (Optional[str]): path segment separator.
 
     Raises:
       FormatError: when paths is not set.
@@ -122,11 +121,11 @@ class CommandSourceType(SourceType):
   TYPE_INDICATOR = definitions.TYPE_INDICATOR_COMMAND
 
   def __init__(self, args=None, cmd=None):
-    """Initializes the source type object.
+    """Initializes a source type object.
 
     Args:
-      args: list of strings that will be passed as arguments to the command.
-      cmd: string representing the command to run.
+      args (list[str]): arguments to pass to the command.
+      cmd (str): command to run.
 
     Raises:
       FormatError: when args or cmd is not set.
@@ -153,13 +152,12 @@ class PathSourceType(SourceType):
   TYPE_INDICATOR = definitions.TYPE_INDICATOR_PATH
 
   def __init__(self, paths=None, separator=u'/'):
-    """Initializes the source type object.
+    """Initializes a source type object.
 
     Args:
-      paths: optional list of paths. The paths are considered relative
-             to the root of the file system. The default is None.
-      separator: optional string containing the path segment separator.
-                 The default is /.
+      paths (Optional[list[str]]): paths. The paths are considered relative
+          to the root of the file system.
+      separator (Optional[str]): path segment separator.
 
     Raises:
       FormatError: when paths is not set.
@@ -190,13 +188,12 @@ class DirectorySourceType(SourceType):
   TYPE_INDICATOR = definitions.TYPE_INDICATOR_DIRECTORY
 
   def __init__(self, paths=None, separator=u'/'):
-    """Initializes the source type object.
+    """Initializes a source type object.
 
     Args:
-      paths: optional list of paths. The paths are considered relative
-             to the root of the file system. The default is None.
-      separator: optional string containing the path segment separator.
-                 The default is /.
+      paths (Optional[list[str]]): paths. The paths are considered relative
+          to the root of the file system.
+      separator (Optional[str]): path segment separator.
 
     Raises:
       FormatError: when paths is not set.
@@ -233,11 +230,11 @@ class WindowsRegistryKeySourceType(SourceType):
       r'%%current_control_set%%',]
 
   def __init__(self, keys=None):
-    """Initializes the source type object.
+    """Initializes a source type object.
 
     Args:
-      keys: optional list of key paths. The key paths are considered relative
-            to the root of the Windows Registry. The default is None.
+      keys (Optional[list[str]]): key paths. The key paths are considered
+          relative to the root of the Windows Registry.
 
     Raises:
       FormatError: when keys is not set.
@@ -267,7 +264,7 @@ class WindowsRegistryKeySourceType(SourceType):
     """Validates this key against supported key names.
 
     Args:
-      key_path: string containing the path fo the Registry key.
+      key_path (str): path of the Registry key.
 
     Raises:
       FormatError: when key is not supported.
@@ -286,20 +283,28 @@ class WindowsRegistryKeySourceType(SourceType):
 
 
 class WindowsRegistryValueSourceType(SourceType):
-  """Class that implements the Windows Registry value source type."""
+  """Class that implements the Windows Registry value source type.
+
+  Attributes:
+    key_value_pairs (list[dict]): key path and value name pairs, with
+        optional data_type and data specifications. The key paths are
+        considered relative to the root of the Windows Registry.
+  """
 
   TYPE_INDICATOR = definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_VALUE
 
+  _KEY_VALUE_PAIR = frozenset([u'key', u'value'])
+
   def __init__(self, key_value_pairs=None):
-    """Initializes the source type object.
+    """Initializes a source type object.
 
     Args:
-      key_value_pairs: optional list of key path and value name pairs.
-                       The key paths are considered relative to the root
-                       of the Windows Registry. The default is None.
+      key_value_pairs (Optional[list[dict]]): key path and value name pairs,
+          with optional data_type and data specifications. The key paths are
+          considered relative to the root of the Windows Registry.
 
     Raises:
-      FormatError: when key value pairs is not set.
+      FormatError: when the key value pairs are not set or valid.
     """
     if not key_value_pairs:
       raise errors.FormatError(u'Missing key value pairs value.')
@@ -310,11 +315,14 @@ class WindowsRegistryValueSourceType(SourceType):
     for pair in key_value_pairs:
       if not isinstance(pair, dict):
         raise errors.FormatError(u'key_value_pair must be a dict')
-      if set(pair.keys()) != set([u'key', u'value']):
+
+      pair_keys = set(pair.keys())
+      if pair_keys.intersection(self._KEY_VALUE_PAIR) != self._KEY_VALUE_PAIR:
         error_message = (
-            u'key_value_pair missing "key" and "value" keys, got: {0}'
-        ).format(key_value_pairs)
+            u'key_value_pair missing "key" and "value" keys, got: {0}').format(
+                key_value_pairs)
         raise errors.FormatError(error_message)
+
       WindowsRegistryKeySourceType.ValidateKey(pair['key'])
 
     super(WindowsRegistryValueSourceType, self).__init__()
@@ -335,10 +343,10 @@ class WMIQuerySourceType(SourceType):
   TYPE_INDICATOR = definitions.TYPE_INDICATOR_WMI_QUERY
 
   def __init__(self, query=None, base_object=None):
-    """Initializes the source type object.
+    """Initializes a source type object.
 
     Args:
-      query: optional string containing the WMI query. The default is None.
+      query (Optional[str]): WMI query.
 
     Raises:
       FormatError: when query is not set.
@@ -389,15 +397,11 @@ class SourceTypeFactory(object):
     """Creates a source type object.
 
     Args:
-      type_indicator: the source type indicator.
-      attributes: a dictionary containing the source attributes.
+      type_indicator (str): source type indicator.
+      attributes (dict): source attributes.
 
     Returns:
-      A source type object (instance of SourceType).
-
-    Raises:
-      The source type object (instance of SourceType) or None if the type
-      indicator is not supported.
+      SourceType: source type object.
 
     Raises:
       FormatError: if the type indicator is not set or unsupported,
@@ -416,7 +420,7 @@ class SourceTypeFactory(object):
     The source types are identified based on their type indicator.
 
     Args:
-      source_type_class: the source type (subclass of SourceType).
+      source_type_class (type): source type class.
 
     Raises:
       KeyError: if a source type is not set for the corresponding type
@@ -434,7 +438,7 @@ class SourceTypeFactory(object):
     """Retrieves the source types.
 
     Returns:
-      A list of source types (subclasses of SourceType).
+      list[type]: source type classes.
     """
     return cls._source_type_classes.values()
 
@@ -443,7 +447,7 @@ class SourceTypeFactory(object):
     """Retrieves the source type indicators.
 
     Returns:
-      A list of source type indicators.
+      list[str]: source types indicators.
     """
     return cls._source_type_classes.keys()
 
@@ -454,7 +458,7 @@ class SourceTypeFactory(object):
     The source types are identified based on their type indicator.
 
     Args:
-      source_type_class: the source type (subclass of SourceType).
+      source_type_class (type): source type class.
 
     Raises:
       KeyError: if source types is already set for the corresponding
@@ -475,7 +479,7 @@ class SourceTypeFactory(object):
     The source types are identified based on their type indicator.
 
     Args:
-      source_type_classes: a list of source types (instances of SourceType).
+      source_type_classes (list[type]): source type classes.
     """
     for source_type_class in source_type_classes:
       cls.RegisterSourceType(source_type_class)
