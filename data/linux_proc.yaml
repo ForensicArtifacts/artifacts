@@ -91,14 +91,14 @@ supported_os: [Linux]
 urls: ['https://www.kernel.org/doc/Documentation/networking/ip-sysctl.txt']
 ---
 name: LinuxProcArp
-doc: Arptable via /proc/net/arp.
-labels: [Network]
+doc: ARP table via /proc/net/arp.
 sources:
 - type: FILE
-  supported_os: [Linux]
   attributes:
     paths:
       - '/proc/net/arp'
+labels: [Network]
+supported_os: [Linux]
 ---
 name: LinuxProcMounts
 doc: Current mounted filesystems.
