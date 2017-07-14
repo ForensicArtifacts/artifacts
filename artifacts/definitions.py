@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 """Constants and definitions."""
 
-# The type indicator constants.
+from __future__ import unicode_literals
+
+
 TYPE_INDICATOR_ARTIFACT_GROUP = 'ARTIFACT_GROUP'
 TYPE_INDICATOR_COMMAND = 'COMMAND'
 TYPE_INDICATOR_DIRECTORY = 'DIRECTORY'

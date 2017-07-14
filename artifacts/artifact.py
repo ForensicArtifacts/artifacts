@@ -1,20 +1,33 @@
 # -*- coding: utf-8 -*-
-"""The reader objects."""
+"""The artifact definition."""
+
+from __future__ import unicode_literals
 
 from artifacts import errors
 from artifacts import registry
 
 
 class ArtifactDefinition(object):
-  """Class that implements the artifact reader interface."""
+  """Artifact definition interface.
+
+  Attributes:
+    conditions (list[str]): conditions.
+    description (str): description.
+    name (str): name that uniquely identifiers the artifact definition.
+    labels (list[str]): labels.
+    provides (list[str]): hints to what information the artifact definition
+        provides.
+    sources (list[str]): sources.
+    supported_os (list[str]): supported operating systems.
+    urls (list[str]): URLs with more information about the artifact definition.
+  """
 
   def __init__(self, name, description=None):
-    """Initializes the artifact definition object.
+    """Initializes an artifact definition.
 
     Args:
-      name: the name that uniquely identifiers the artifact definition.
-      description: optional description of the artifact definition.
-                   The default is None.
+      name (str): name that uniquely identifiers the artifact definition.
+      description (Optional[str]): description of the artifact definition.
     """
     super(ArtifactDefinition, self).__init__()
     self.conditions = []
@@ -35,27 +48,26 @@ class ArtifactDefinition(object):
     indicator is encountered.
 
     Args:
-      type_indicator: the source type indicator.
-      attributes: a dictionary containing the source attributes.
+      type_indicator (str): source type indicator.
+      attributes (dict[str, object]): source attributes.
 
     Returns:
-      The source type object (instance of SourceType) or None if the type
-      indicator is not supported.
+      SourceType: a source type.
 
     Raises:
       FormatError: if the type indicator is not set or unsupported,
-                   or if required attributes are missing.
+          or if required attributes are missing.
     """
     if not type_indicator:
-      raise errors.FormatError(u'Missing type indicator.')
+      raise errors.FormatError('Missing type indicator.')
 
     try:
       source_object = registry.ArtifactDefinitionsRegistry.CreateSourceType(
           type_indicator, attributes)
     except (AttributeError, TypeError) as exception:
-      raise errors.FormatError(
-          u'Invalid artifact definition for {0}: {1}'.format(
-              self.name, exception))
+      raise errors.FormatError((
+          'Unable to create source type: {0:s} for artifact definition: {1:s} '
+          'with error: {2!s}').format(type_indicator, self.name, exception))
 
     self.sources.append(source_object)
     return source_object
@@ -64,33 +76,33 @@ class ArtifactDefinition(object):
     """Represents an artifact as a dictionary.
 
     Returns:
-      A dictionary containing the artifact attributes.
+      dict[str, object]: artifact attributes.
     """
     sources = []
     for source in self.sources:
       source_definition = {
-          u'type': source.type_indicator,
-          u'attributes': source.AsDict()}
+          'type': source.type_indicator,
+          'attributes': source.AsDict()}
       if source.supported_os:
-        source_definition[u'supported_os'] = source.supported_os
+        source_definition['supported_os'] = source.supported_os
       if source.conditions:
-        source_definition[u'conditions'] = source.conditions
+        source_definition['conditions'] = source.conditions
       if source.returned_types:
-        source_definition[u'returned_types'] = source.returned_types
+        source_definition['returned_types'] = source.returned_types
       sources.append(source_definition)
 
     artifact_definition = {
-        u'name': self.name,
-        u'doc': self.description,
-        u'sources': sources,}
+        'name': self.name,
+        'doc': self.description,
+        'sources': sources,}
     if self.labels:
-      artifact_definition[u'labels'] = self.labels
+      artifact_definition['labels'] = self.labels
     if self.supported_os:
-      artifact_definition[u'supported_os'] = self.supported_os
+      artifact_definition['supported_os'] = self.supported_os
     if self.provides:
-      artifact_definition[u'provides'] = self.provides
+      artifact_definition['provides'] = self.provides
     if self.conditions:
-      artifact_definition[u'conditions'] = self.conditions
+      artifact_definition['conditions'] = self.conditions
     if self.urls:
-      artifact_definition[u'urls'] = self.urls
+      artifact_definition['urls'] = self.urls
     return artifact_definition

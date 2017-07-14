@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-r"""The source type objects.
+"""The source type objects.
 
 The source type objects define the source of the artifact data. In earlier
 versions of the artifact definitions collector definitions had a similar
@@ -14,10 +14,12 @@ purpose as the source type. Currently the following source types are defined:
 The difference between the file and path source types are that file should
 be used to define file entries that contain data and path, file entries that
 define a location. E.g. on Windows %SystemRoot% could be considered a path
-artifact definition, pointing to a location e.g. C:\Windows. And where
-C:\Windows\System32\winevt\Logs\AppEvent.evt a file artifact definition,
+artifact definition, pointing to a location e.g. C:\\Windows. And where
+C:\\Windows\\System32\\winevt\\Logs\\AppEvent.evt a file artifact definition,
 pointing to the Application Event Log file.
 """
+
+from __future__ import unicode_literals
 
 import abc
 
@@ -38,7 +40,7 @@ class SourceType(object):
       NotImplementedError: if the type indicator is not defined.
     """
     if not self.TYPE_INDICATOR:
-      raise NotImplementedError(u'Invalid source type missing type indicator.')
+      raise NotImplementedError('Invalid source type missing type indicator.')
     return self.TYPE_INDICATOR
 
   @abc.abstractmethod
@@ -65,7 +67,7 @@ class ArtifactGroupSourceType(SourceType):
       FormatError: when artifact names is not set.
     """
     if not names:
-      raise errors.FormatError(u'Missing names value.')
+      raise errors.FormatError('Missing names value.')
 
     super(ArtifactGroupSourceType, self).__init__()
     self.names = names
@@ -76,7 +78,7 @@ class ArtifactGroupSourceType(SourceType):
     Returns:
       dict[str, str]: source type attributes.
     """
-    return {u'names': self.names}
+    return {'names': self.names}
 
 
 class FileSourceType(SourceType):
@@ -84,7 +86,7 @@ class FileSourceType(SourceType):
 
   TYPE_INDICATOR = definitions.TYPE_INDICATOR_FILE
 
-  def __init__(self, paths=None, separator=u'/'):
+  def __init__(self, paths=None, separator='/'):
     """Initializes the source type object.
 
     Args:
@@ -97,7 +99,7 @@ class FileSourceType(SourceType):
       FormatError: when paths is not set.
     """
     if not paths:
-      raise errors.FormatError(u'Missing paths value.')
+      raise errors.FormatError('Missing paths value.')
 
     super(FileSourceType, self).__init__()
     self.paths = paths
@@ -109,9 +111,9 @@ class FileSourceType(SourceType):
     Returns:
       dict[str, str]: source type attributes.
     """
-    source_type_attributes = {u'paths': self.paths}
-    if self.separator != u'/':
-      source_type_attributes[u'separator'] = self.separator
+    source_type_attributes = {'paths': self.paths}
+    if self.separator != '/':
+      source_type_attributes['separator'] = self.separator
 
     return source_type_attributes
 
@@ -132,7 +134,7 @@ class CommandSourceType(SourceType):
       FormatError: when args or cmd is not set.
     """
     if args is None or cmd is None:
-      raise errors.FormatError(u'Missing args or cmd value.')
+      raise errors.FormatError('Missing args or cmd value.')
 
     super(CommandSourceType, self).__init__()
     self.args = args
@@ -144,7 +146,7 @@ class CommandSourceType(SourceType):
     Returns:
       dict[str, str]: source type attributes.
     """
-    return {u'cmd': self.cmd, u'args': self.args}
+    return {'cmd': self.cmd, 'args': self.args}
 
 
 class PathSourceType(SourceType):
@@ -152,7 +154,7 @@ class PathSourceType(SourceType):
 
   TYPE_INDICATOR = definitions.TYPE_INDICATOR_PATH
 
-  def __init__(self, paths=None, separator=u'/'):
+  def __init__(self, paths=None, separator='/'):
     """Initializes the source type object.
 
     Args:
@@ -165,7 +167,7 @@ class PathSourceType(SourceType):
       FormatError: when paths is not set.
     """
     if not paths:
-      raise errors.FormatError(u'Missing paths value.')
+      raise errors.FormatError('Missing paths value.')
 
     super(PathSourceType, self).__init__()
     self.paths = paths
@@ -177,9 +179,9 @@ class PathSourceType(SourceType):
     Returns:
       dict[str, str]: source type attributes.
     """
-    source_type_attributes = {u'paths': self.paths}
-    if self.separator != u'/':
-      source_type_attributes[u'separator'] = self.separator
+    source_type_attributes = {'paths': self.paths}
+    if self.separator != '/':
+      source_type_attributes['separator'] = self.separator
 
     return source_type_attributes
 
@@ -189,7 +191,7 @@ class DirectorySourceType(SourceType):
 
   TYPE_INDICATOR = definitions.TYPE_INDICATOR_DIRECTORY
 
-  def __init__(self, paths=None, separator=u'/'):
+  def __init__(self, paths=None, separator='/'):
     """Initializes the source type object.
 
     Args:
@@ -202,7 +204,7 @@ class DirectorySourceType(SourceType):
       FormatError: when paths is not set.
     """
     if not paths:
-      raise errors.FormatError(u'Missing directory value.')
+      raise errors.FormatError('Missing directory value.')
 
     super(DirectorySourceType, self).__init__()
     self.paths = paths
@@ -214,9 +216,9 @@ class DirectorySourceType(SourceType):
     Returns:
       dict[str, str]: source type attributes.
     """
-    source_type_attributes = {u'paths': self.paths}
-    if self.separator != u'/':
-      source_type_attributes[u'separator'] = self.separator
+    source_type_attributes = {'paths': self.paths}
+    if self.separator != '/':
+      source_type_attributes['separator'] = self.separator
 
     return source_type_attributes
 
@@ -243,10 +245,10 @@ class WindowsRegistryKeySourceType(SourceType):
       FormatError: when keys is not set.
     """
     if not keys:
-      raise errors.FormatError(u'Missing keys value.')
+      raise errors.FormatError('Missing keys value.')
 
     if not isinstance(keys, list):
-      raise errors.FormatError(u'keys must be a list')
+      raise errors.FormatError('keys must be a list')
 
     for key in keys:
       self.ValidateKey(key)
@@ -260,7 +262,7 @@ class WindowsRegistryKeySourceType(SourceType):
     Returns:
       dict[str, str]: source type attributes.
     """
-    return {u'keys': self.keys}
+    return {'keys': self.keys}
 
   @classmethod
   def ValidateKey(cls, key_path):
@@ -276,13 +278,13 @@ class WindowsRegistryKeySourceType(SourceType):
       if key_path.startswith(prefix):
         return
 
-    if key_path.startswith(u'HKEY_CURRENT_USER\\'):
+    if key_path.startswith('HKEY_CURRENT_USER\\'):
       raise errors.FormatError(
-          u'HKEY_CURRENT_USER\\ is not supported instead use: '
-          u'HKEY_USERS\\%%users.sid%%\\')
+          'HKEY_CURRENT_USER\\ is not supported instead use: '
+          'HKEY_USERS\\%%users.sid%%\\')
 
     raise errors.FormatError(
-        u'Unupported Registry key path: {0}'.format(key_path))
+        'Unupported Registry key path: {0}'.format(key_path))
 
 
 class WindowsRegistryValueSourceType(SourceType):
@@ -302,17 +304,17 @@ class WindowsRegistryValueSourceType(SourceType):
       FormatError: when key value pairs is not set.
     """
     if not key_value_pairs:
-      raise errors.FormatError(u'Missing key value pairs value.')
+      raise errors.FormatError('Missing key value pairs value.')
 
     if not isinstance(key_value_pairs, list):
-      raise errors.FormatError(u'key_value_pairs must be a list')
+      raise errors.FormatError('key_value_pairs must be a list')
 
     for pair in key_value_pairs:
       if not isinstance(pair, dict):
-        raise errors.FormatError(u'key_value_pair must be a dict')
-      if set(pair.keys()) != set([u'key', u'value']):
+        raise errors.FormatError('key_value_pair must be a dict')
+      if set(pair.keys()) != set(['key', 'value']):
         error_message = (
-            u'key_value_pair missing "key" and "value" keys, got: {0}'
+            'key_value_pair missing "key" and "value" keys, got: {0}'
         ).format(key_value_pairs)
         raise errors.FormatError(error_message)
       WindowsRegistryKeySourceType.ValidateKey(pair['key'])
@@ -326,7 +328,7 @@ class WindowsRegistryValueSourceType(SourceType):
     Returns:
       dict[str, str]: source type attributes.
     """
-    return {u'key_value_pairs': self.key_value_pairs}
+    return {'key_value_pairs': self.key_value_pairs}
 
 
 class WMIQuerySourceType(SourceType):
@@ -344,7 +346,7 @@ class WMIQuerySourceType(SourceType):
       FormatError: when query is not set.
     """
     if not query:
-      raise errors.FormatError(u'Missing query value.')
+      raise errors.FormatError('Missing query value.')
 
     super(WMIQuerySourceType, self).__init__()
     self.base_object = base_object
@@ -356,9 +358,9 @@ class WMIQuerySourceType(SourceType):
     Returns:
       dict[str, str]: source type attributes.
     """
-    source_type_attributes = {u'query': self.query}
+    source_type_attributes = {'query': self.query}
     if self.base_object:
-      source_type_attributes[u'base_object'] = self.base_object
+      source_type_attributes['base_object'] = self.base_object
 
     return source_type_attributes
 
@@ -405,7 +407,7 @@ class SourceTypeFactory(object):
     """
     if type_indicator not in cls._source_type_classes:
       raise errors.FormatError(
-          u'Unsupported type indicator: {0}.'.format(type_indicator))
+          'Unsupported type indicator: {0}.'.format(type_indicator))
 
     return cls._source_type_classes[type_indicator](**attributes)
 
@@ -424,7 +426,7 @@ class SourceTypeFactory(object):
     """
     if source_type_class.TYPE_INDICATOR not in cls._source_type_classes:
       raise KeyError(
-          u'Source type not set for type: {0}.'.format(
+          'Source type not set for type: {0}.'.format(
               source_type_class.TYPE_INDICATOR))
 
     del cls._source_type_classes[source_type_class.TYPE_INDICATOR]
@@ -462,7 +464,7 @@ class SourceTypeFactory(object):
     """
     if source_type_class.TYPE_INDICATOR in cls._source_type_classes:
       raise KeyError(
-          u'Source type already set for type: {0}.'.format(
+          'Source type already set for type: {0}.'.format(
               source_type_class.TYPE_INDICATOR))
 
     cls._source_type_classes[source_type_class.TYPE_INDICATOR] = (

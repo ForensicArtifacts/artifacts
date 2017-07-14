@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 """The artifact definitions registry."""
 
+from __future__ import unicode_literals
+
 from artifacts import definitions
 from artifacts import errors
 from artifacts import source_type
@@ -51,7 +53,7 @@ class ArtifactDefinitionsRegistry(object):
     """
     if type_indicator not in cls._source_type_classes:
       raise errors.FormatError(
-          u'Unsupported type indicator: {0}.'.format(type_indicator))
+          'Unsupported type indicator: {0}.'.format(type_indicator))
 
     return cls._source_type_classes[type_indicator](**attributes)
 
@@ -70,7 +72,7 @@ class ArtifactDefinitionsRegistry(object):
     artifact_definition_name = artifact_definition.name.lower()
     if artifact_definition_name not in self._artifact_definitions:
       raise KeyError(
-          u'Artifact definition not set for name: {0}.'.format(
+          'Artifact definition not set for name: {0}.'.format(
               artifact_definition.name))
 
     del self._artifact_definitions[artifact_definition_name]
@@ -89,7 +91,7 @@ class ArtifactDefinitionsRegistry(object):
                 indicator.
     """
     if source_type_class.TYPE_INDICATOR not in cls._source_type_classes:
-      raise KeyError(u'Source type not set for type: {0}.'.format(
+      raise KeyError('Source type not set for type: {0}.'.format(
           source_type_class.TYPE_INDICATOR))
 
     del cls._source_type_classes[source_type_class.TYPE_INDICATOR]
@@ -139,7 +141,7 @@ class ArtifactDefinitionsRegistry(object):
     artifact_definition_name = artifact_definition.name.lower()
     if artifact_definition_name in self._artifact_definitions:
       raise KeyError(
-          u'Artifact definition already set for name: {0}.'.format(
+          'Artifact definition already set for name: {0}.'.format(
               artifact_definition.name))
 
     self._artifact_definitions[artifact_definition_name] = artifact_definition
@@ -163,7 +165,7 @@ class ArtifactDefinitionsRegistry(object):
                 type indicator.
     """
     if source_type_class.TYPE_INDICATOR in cls._source_type_classes:
-      raise KeyError(u'Source type already set for type: {0}.'.format(
+      raise KeyError('Source type already set for type: {0}.'.format(
           source_type_class.TYPE_INDICATOR))
 
     cls._source_type_classes[source_type_class.TYPE_INDICATOR] = (
@@ -181,7 +183,7 @@ class ArtifactDefinitionsRegistry(object):
     for source_type_class in source_type_classes:
       cls.RegisterSourceType(source_type_class)
 
-  def ReadFromDirectory(self, artifact_reader, path, extension=u'yaml'):
+  def ReadFromDirectory(self, artifact_reader, path, extension='yaml'):
     """Reads artifact definitions into the registry from files in a directory.
 
     This function does not recurse sub directories.
