@@ -3,6 +3,8 @@
 """Report statistics about the artifact collection."""
 
 from __future__ import print_function
+from __future__ import unicode_literals
+
 import time
 
 from artifacts import definitions
@@ -10,7 +12,7 @@ from artifacts import reader
 
 
 class ArtifactStatistics(object):
-  """Generate and print statistics about artifact files."""
+  """Generate and print statistics about artifact definitions."""
 
   def __init__(self):
     """Initializes artifact statistics."""
@@ -33,7 +35,7 @@ class ArtifactStatistics(object):
 
     print('|', end='')
     for key in key_list:
-      print(' {0} |'.format(key), end='')
+      print(' {0:s} |'.format(key), end='')
     print('')
 
     print('|', end='')
@@ -43,7 +45,7 @@ class ArtifactStatistics(object):
 
     print('|', end='')
     for key in key_list:
-      print(' {0} |'.format(src_dict[key]), end='')
+      print(' {0!s} |'.format(src_dict[key]), end='')
     print('\n')
 
   def PrintOSTable(self):
@@ -65,12 +67,12 @@ class ArtifactStatistics(object):
     """Prints a summary table."""
     print("""
 
-As of {0} the repository contains:
+As of {0:s} the repository contains:
 
-| **File paths covered** | **{1}** |
+| **File paths covered** | **{1:s}** |
 | :------------------ | ------: |
-| **Registry keys covered** | **{2}** |
-| **Total artifacts** | **{3}** |
+| **Registry keys covered** | **{2:s}** |
+| **Total artifacts** | **{3:d}** |
 """.format(
     time.strftime('%Y-%m-%d'), self.path_count, self.reg_key_count,
     self.total_count))

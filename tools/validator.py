@@ -4,6 +4,7 @@
 
 from __future__ import print_function
 from __future__ import unicode_literals
+
 import argparse
 import logging
 import os
@@ -43,7 +44,7 @@ class ArtifactDefinitionsValidator(object):
     if key_path.startswith(u'%%CURRENT_CONTROL_SET%%'):
       result = False
       logging.warning((
-          u'Artifact definition: {0} in file: {1} contains Windows '
+          u'Artifact definition: {0:s} in file: {1:s} contains Windows '
           u'Registry key path that starts with '
           u'%%CURRENT_CONTROL_SET%%. Replace %%CURRENT_CONTROL_SET%% with '
           u'HKEY_LOCAL_MACHINE\\System\\CurrentControlSet').format(
@@ -73,8 +74,8 @@ class ArtifactDefinitionsValidator(object):
     if intersection:
       duplicate_key_paths = u'\n'.join(intersection)
       logging.warning((
-          u'Artifact definition: {0} in file: {1} has duplicate '
-          u'Registry key paths:\n{2}').format(
+          u'Artifact definition: {0:s} in file: {1:s} has duplicate '
+          u'Registry key paths:\n{2:s}').format(
               artifact_definition.name, filename, duplicate_key_paths))
       result = True
 
@@ -99,7 +100,7 @@ class ArtifactDefinitionsValidator(object):
           self._artifact_registry.RegisterDefinition(artifact_definition)
         except KeyError:
           logging.warning(
-              u'Duplicate artifact definition: {0} in file: {1}'.format(
+              u'Duplicate artifact definition: {0:s} in file: {1:s}'.format(
                   artifact_definition.name, filename))
           result = False
 
@@ -129,7 +130,7 @@ class ArtifactDefinitionsValidator(object):
 
     except errors.FormatError as exception:
       logging.warning(
-          u'Unable to validate file: {0} with error: {1}'.format(
+          u'Unable to validate file: {0:s} with error: {1!s}'.format(
               filename, exception))
       result = False
 
@@ -172,11 +173,11 @@ def Main():
     return False
 
   if not os.path.isfile(options.filename):
-    print('No such file: {0}'.format(options.filename))
+    print('No such file: {0:s}'.format(options.filename))
     print('')
     return False
 
-  print('Validating: {0}'.format(options.filename))
+  print('Validating: {0:s}'.format(options.filename))
   validator = ArtifactDefinitionsValidator()
   if not validator.CheckFile(options.filename):
     print('FAILURE')
