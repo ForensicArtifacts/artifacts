@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-r"""The source type objects.
+"""The source type objects.
 
 The source type objects define the source of the artifact data. In earlier
 versions of the artifact definitions collector definitions had a similar
@@ -14,10 +14,12 @@ purpose as the source type. Currently the following source types are defined:
 The difference between the file and path source types are that file should
 be used to define file entries that contain data and path, file entries that
 define a location. E.g. on Windows %SystemRoot% could be considered a path
-artifact definition, pointing to a location e.g. C:\Windows. And where
-C:\Windows\System32\winevt\Logs\AppEvent.evt a file artifact definition,
+artifact definition, pointing to a location e.g. C:\\Windows. And where
+C:\\Windows\\System32\\winevt\\Logs\\AppEvent.evt a file artifact definition,
 pointing to the Application Event Log file.
 """
+
+from __future__ import unicode_literals
 
 import abc
 
@@ -26,7 +28,7 @@ from artifacts import errors
 
 
 class SourceType(object):
-  """Class that implements the artifact definition source type interface."""
+  """Artifact definition source type interface."""
 
   TYPE_INDICATOR = None
 
@@ -38,7 +40,7 @@ class SourceType(object):
       NotImplementedError: if the type indicator is not defined.
     """
     if not self.TYPE_INDICATOR:
-      raise NotImplementedError(u'Invalid source type missing type indicator.')
+      raise NotImplementedError('Invalid source type missing type indicator.')
     return self.TYPE_INDICATOR
 
   @abc.abstractmethod
@@ -51,21 +53,21 @@ class SourceType(object):
 
 
 class ArtifactGroupSourceType(SourceType):
-  """Class that implements the artifact group source type."""
+  """Artifact group source type."""
 
   TYPE_INDICATOR = definitions.TYPE_INDICATOR_ARTIFACT_GROUP
 
   def __init__(self, names=None):
-    """Initializes the source type object.
+    """Initializes a source type.
 
     Args:
-      names: optional list of artifact definition names. The default is None.
+      names (Optional[str]): artifact definition names.
 
     Raises:
       FormatError: when artifact names is not set.
     """
     if not names:
-      raise errors.FormatError(u'Missing names value.')
+      raise errors.FormatError('Missing names value.')
 
     super(ArtifactGroupSourceType, self).__init__()
     self.names = names
@@ -76,63 +78,26 @@ class ArtifactGroupSourceType(SourceType):
     Returns:
       dict[str, str]: source type attributes.
     """
-    return {u'names': self.names}
-
-
-class FileSourceType(SourceType):
-  """Class that implements the file source type."""
-
-  TYPE_INDICATOR = definitions.TYPE_INDICATOR_FILE
-
-  def __init__(self, paths=None, separator=u'/'):
-    """Initializes the source type object.
-
-    Args:
-      paths: optional list of paths. The paths are considered relative
-             to the root of the file system. The default is None.
-      separator: optional string containing the path segment separator.
-                 The default is /.
-
-    Raises:
-      FormatError: when paths is not set.
-    """
-    if not paths:
-      raise errors.FormatError(u'Missing paths value.')
-
-    super(FileSourceType, self).__init__()
-    self.paths = paths
-    self.separator = separator
-
-  def AsDict(self):
-    """Represents a source type as a dictionary.
-
-    Returns:
-      dict[str, str]: source type attributes.
-    """
-    source_type_attributes = {u'paths': self.paths}
-    if self.separator != u'/':
-      source_type_attributes[u'separator'] = self.separator
-
-    return source_type_attributes
+    return {'names': self.names}
 
 
 class CommandSourceType(SourceType):
-  """Class that implements the command source type."""
+  """Command source type."""
 
   TYPE_INDICATOR = definitions.TYPE_INDICATOR_COMMAND
 
   def __init__(self, args=None, cmd=None):
-    """Initializes the source type object.
+    """Initializes a source type.
 
     Args:
-      args: list of strings that will be passed as arguments to the command.
-      cmd: string representing the command to run.
+      args (list[str]): arguments to the command to run.
+      cmd (str): command to run.
 
     Raises:
       FormatError: when args or cmd is not set.
     """
     if args is None or cmd is None:
-      raise errors.FormatError(u'Missing args or cmd value.')
+      raise errors.FormatError('Missing args or cmd value.')
 
     super(CommandSourceType, self).__init__()
     self.args = args
@@ -144,65 +109,26 @@ class CommandSourceType(SourceType):
     Returns:
       dict[str, str]: source type attributes.
     """
-    return {u'cmd': self.cmd, u'args': self.args}
-
-
-class PathSourceType(SourceType):
-  """Class that implements the path source type."""
-
-  TYPE_INDICATOR = definitions.TYPE_INDICATOR_PATH
-
-  def __init__(self, paths=None, separator=u'/'):
-    """Initializes the source type object.
-
-    Args:
-      paths: optional list of paths. The paths are considered relative
-             to the root of the file system. The default is None.
-      separator: optional string containing the path segment separator.
-                 The default is /.
-
-    Raises:
-      FormatError: when paths is not set.
-    """
-    if not paths:
-      raise errors.FormatError(u'Missing paths value.')
-
-    super(PathSourceType, self).__init__()
-    self.paths = paths
-    self.separator = separator
-
-  def AsDict(self):
-    """Represents a source type as a dictionary.
-
-    Returns:
-      dict[str, str]: source type attributes.
-    """
-    source_type_attributes = {u'paths': self.paths}
-    if self.separator != u'/':
-      source_type_attributes[u'separator'] = self.separator
-
-    return source_type_attributes
+    return {'cmd': self.cmd, 'args': self.args}
 
 
 class DirectorySourceType(SourceType):
-  """Class that implements the directory source type."""
+  """Directory source type."""
 
   TYPE_INDICATOR = definitions.TYPE_INDICATOR_DIRECTORY
 
-  def __init__(self, paths=None, separator=u'/'):
-    """Initializes the source type object.
+  def __init__(self, paths=None, separator='/'):
+    """Initializes a source type.
 
     Args:
-      paths: optional list of paths. The paths are considered relative
-             to the root of the file system. The default is None.
-      separator: optional string containing the path segment separator.
-                 The default is /.
+      paths (Optional[str]): paths relative to the root of the file system.
+      separator (Optional[str]): path segment separator.
 
     Raises:
       FormatError: when paths is not set.
     """
     if not paths:
-      raise errors.FormatError(u'Missing directory value.')
+      raise errors.FormatError('Missing directory value.')
 
     super(DirectorySourceType, self).__init__()
     self.paths = paths
@@ -214,15 +140,85 @@ class DirectorySourceType(SourceType):
     Returns:
       dict[str, str]: source type attributes.
     """
-    source_type_attributes = {u'paths': self.paths}
-    if self.separator != u'/':
-      source_type_attributes[u'separator'] = self.separator
+    source_type_attributes = {'paths': self.paths}
+    if self.separator != '/':
+      source_type_attributes['separator'] = self.separator
+
+    return source_type_attributes
+
+
+class FileSourceType(SourceType):
+  """File source type."""
+
+  TYPE_INDICATOR = definitions.TYPE_INDICATOR_FILE
+
+  def __init__(self, paths=None, separator='/'):
+    """Initializes a source type.
+
+    Args:
+      paths (Optional[str]): paths relative to the root of the file system.
+      separator (Optional[str]): path segment separator.
+
+    Raises:
+      FormatError: when paths is not set.
+    """
+    if not paths:
+      raise errors.FormatError('Missing paths value.')
+
+    super(FileSourceType, self).__init__()
+    self.paths = paths
+    self.separator = separator
+
+  def AsDict(self):
+    """Represents a source type as a dictionary.
+
+    Returns:
+      dict[str, str]: source type attributes.
+    """
+    source_type_attributes = {'paths': self.paths}
+    if self.separator != '/':
+      source_type_attributes['separator'] = self.separator
+
+    return source_type_attributes
+
+
+class PathSourceType(SourceType):
+  """Path source type."""
+
+  TYPE_INDICATOR = definitions.TYPE_INDICATOR_PATH
+
+  def __init__(self, paths=None, separator='/'):
+    """Initializes a source type.
+
+    Args:
+      paths (Optional[str]): paths relative to the root of the file system.
+      separator (Optional[str]): path segment separator.
+
+    Raises:
+      FormatError: when paths is not set.
+    """
+    if not paths:
+      raise errors.FormatError('Missing paths value.')
+
+    super(PathSourceType, self).__init__()
+    self.paths = paths
+    self.separator = separator
+
+  def AsDict(self):
+    """Represents a source type as a dictionary.
+
+    Returns:
+      dict[str, str]: source type attributes.
+    """
+    source_type_attributes = {'paths': self.paths}
+    if self.separator != '/':
+      source_type_attributes['separator'] = self.separator
 
     return source_type_attributes
 
 
 class WindowsRegistryKeySourceType(SourceType):
-  """Class that implements the Windows Registry key source type."""
+  """Windows Registry key source type."""
 
   TYPE_INDICATOR = definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_KEY
 
@@ -233,20 +229,20 @@ class WindowsRegistryKeySourceType(SourceType):
       r'%%current_control_set%%',]
 
   def __init__(self, keys=None):
-    """Initializes the source type object.
+    """Initializes a source type.
 
     Args:
-      keys: optional list of key paths. The key paths are considered relative
-            to the root of the Windows Registry. The default is None.
+      keys (Optional[list[str]]): key paths relative to the root of
+          the Windows Registry.
 
     Raises:
       FormatError: when keys is not set.
     """
     if not keys:
-      raise errors.FormatError(u'Missing keys value.')
+      raise errors.FormatError('Missing keys value.')
 
     if not isinstance(keys, list):
-      raise errors.FormatError(u'keys must be a list')
+      raise errors.FormatError('keys must be a list')
 
     for key in keys:
       self.ValidateKey(key)
@@ -260,14 +256,14 @@ class WindowsRegistryKeySourceType(SourceType):
     Returns:
       dict[str, str]: source type attributes.
     """
-    return {u'keys': self.keys}
+    return {'keys': self.keys}
 
   @classmethod
   def ValidateKey(cls, key_path):
     """Validates this key against supported key names.
 
     Args:
-      key_path: string containing the path fo the Registry key.
+      key_path (str): path of a Windows Registry key.
 
     Raises:
       FormatError: when key is not supported.
@@ -276,45 +272,48 @@ class WindowsRegistryKeySourceType(SourceType):
       if key_path.startswith(prefix):
         return
 
-    if key_path.startswith(u'HKEY_CURRENT_USER\\'):
+    # TODO: move check to validator.
+    if key_path.startswith('HKEY_CURRENT_USER\\'):
       raise errors.FormatError(
-          u'HKEY_CURRENT_USER\\ is not supported instead use: '
-          u'HKEY_USERS\\%%users.sid%%\\')
+          'HKEY_CURRENT_USER\\ is not supported instead use: '
+          'HKEY_USERS\\%%users.sid%%\\')
 
     raise errors.FormatError(
-        u'Unupported Registry key path: {0}'.format(key_path))
+        'Unupported Registry key path: {0:s}'.format(key_path))
 
 
 class WindowsRegistryValueSourceType(SourceType):
-  """Class that implements the Windows Registry value source type."""
+  """Windows Registry value source type."""
 
   TYPE_INDICATOR = definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_VALUE
 
   def __init__(self, key_value_pairs=None):
-    """Initializes the source type object.
+    """Initializes a source type.
 
     Args:
-      key_value_pairs: optional list of key path and value name pairs.
-                       The key paths are considered relative to the root
-                       of the Windows Registry. The default is None.
+      key_value_pairs (Optional[list[tuple[str, str]]]): key path and value
+          name pairs, where key paths are relative to the root of the Windows
+          Registry.
 
     Raises:
       FormatError: when key value pairs is not set.
     """
     if not key_value_pairs:
-      raise errors.FormatError(u'Missing key value pairs value.')
+      raise errors.FormatError('Missing key value pairs value.')
 
     if not isinstance(key_value_pairs, list):
-      raise errors.FormatError(u'key_value_pairs must be a list')
+      raise errors.FormatError('key_value_pairs must be a list')
 
     for pair in key_value_pairs:
       if not isinstance(pair, dict):
-        raise errors.FormatError(u'key_value_pair must be a dict')
-      if set(pair.keys()) != set([u'key', u'value']):
+        raise errors.FormatError('key_value_pair must be a dict')
+
+      if set(pair.keys()) != set(['key', 'value']):
         error_message = (
-            u'key_value_pair missing "key" and "value" keys, got: {0}'
-        ).format(key_value_pairs)
+            'key_value_pair missing "key" and "value" keys, got: '
+            '{0:s}').format(key_value_pairs)
         raise errors.FormatError(error_message)
+
       WindowsRegistryKeySourceType.ValidateKey(pair['key'])
 
     super(WindowsRegistryValueSourceType, self).__init__()
@@ -326,25 +325,25 @@ class WindowsRegistryValueSourceType(SourceType):
     Returns:
       dict[str, str]: source type attributes.
     """
-    return {u'key_value_pairs': self.key_value_pairs}
+    return {'key_value_pairs': self.key_value_pairs}
 
 
 class WMIQuerySourceType(SourceType):
-  """Class that implements the WMI query source type."""
+  """WMI query source type."""
 
   TYPE_INDICATOR = definitions.TYPE_INDICATOR_WMI_QUERY
 
   def __init__(self, query=None, base_object=None):
-    """Initializes the source type object.
+    """Initializes a source type.
 
     Args:
-      query: optional string containing the WMI query. The default is None.
+      query (Optional[str]): WMI query.
 
     Raises:
       FormatError: when query is not set.
     """
     if not query:
-      raise errors.FormatError(u'Missing query value.')
+      raise errors.FormatError('Missing query value.')
 
     super(WMIQuerySourceType, self).__init__()
     self.base_object = base_object
@@ -356,15 +355,15 @@ class WMIQuerySourceType(SourceType):
     Returns:
       dict[str, str]: source type attributes.
     """
-    source_type_attributes = {u'query': self.query}
+    source_type_attributes = {'query': self.query}
     if self.base_object:
-      source_type_attributes[u'base_object'] = self.base_object
+      source_type_attributes['base_object'] = self.base_object
 
     return source_type_attributes
 
 
 class SourceTypeFactory(object):
-  """Class that implements a source type factory."""
+  """Source type factory."""
 
   _source_type_classes = {
       definitions.TYPE_INDICATOR_ARTIFACT_GROUP:
@@ -386,26 +385,22 @@ class SourceTypeFactory(object):
 
   @classmethod
   def CreateSourceType(cls, type_indicator, attributes):
-    """Creates a source type object.
+    """Creates a source type.
 
     Args:
-      type_indicator: the source type indicator.
-      attributes: a dictionary containing the source attributes.
+      type_indicator (str): source type indicator.
+      attributes (dict[str, object]): source type attributes.
 
     Returns:
-      A source type object (instance of SourceType).
-
-    Raises:
-      The source type object (instance of SourceType) or None if the type
-      indicator is not supported.
+      SourceType: a source type.
 
     Raises:
       FormatError: if the type indicator is not set or unsupported,
-                   or if required attributes are missing.
+          or if required attributes are missing.
     """
     if type_indicator not in cls._source_type_classes:
       raise errors.FormatError(
-          u'Unsupported type indicator: {0}.'.format(type_indicator))
+          'Unsupported type indicator: {0:s}.'.format(type_indicator))
 
     return cls._source_type_classes[type_indicator](**attributes)
 
@@ -413,18 +408,18 @@ class SourceTypeFactory(object):
   def DeregisterSourceType(cls, source_type_class):
     """Deregisters a source type.
 
-    The source types are identified based on their type indicator.
+    Source types are identified based on their type indicator.
 
     Args:
-      source_type_class: the source type (subclass of SourceType).
+      source_type_class (type): source type.
 
     Raises:
       KeyError: if a source type is not set for the corresponding type
-                indicator.
+          indicator.
     """
     if source_type_class.TYPE_INDICATOR not in cls._source_type_classes:
       raise KeyError(
-          u'Source type not set for type: {0}.'.format(
+          'Source type not set for type: {0:s}.'.format(
               source_type_class.TYPE_INDICATOR))
 
     del cls._source_type_classes[source_type_class.TYPE_INDICATOR]
@@ -434,7 +429,7 @@ class SourceTypeFactory(object):
     """Retrieves the source types.
 
     Returns:
-      A list of source types (subclasses of SourceType).
+      list[type]: source types.
     """
     return cls._source_type_classes.values()
 
@@ -443,7 +438,7 @@ class SourceTypeFactory(object):
     """Retrieves the source type indicators.
 
     Returns:
-      A list of source type indicators.
+      list[str]: source type indicators.
     """
     return cls._source_type_classes.keys()
 
@@ -451,18 +446,18 @@ class SourceTypeFactory(object):
   def RegisterSourceType(cls, source_type_class):
     """Registers a source type.
 
-    The source types are identified based on their type indicator.
+    Source types are identified based on their type indicator.
 
     Args:
-      source_type_class: the source type (subclass of SourceType).
+      source_type_class (type): source type.
 
     Raises:
       KeyError: if source types is already set for the corresponding
-                type indicator.
+          type indicator.
     """
     if source_type_class.TYPE_INDICATOR in cls._source_type_classes:
       raise KeyError(
-          u'Source type already set for type: {0}.'.format(
+          'Source type already set for type: {0:s}.'.format(
               source_type_class.TYPE_INDICATOR))
 
     cls._source_type_classes[source_type_class.TYPE_INDICATOR] = (
@@ -472,10 +467,10 @@ class SourceTypeFactory(object):
   def RegisterSourceTypes(cls, source_type_classes):
     """Registers source types.
 
-    The source types are identified based on their type indicator.
+    Source types are identified based on their type indicator.
 
     Args:
-      source_type_classes: a list of source types (instances of SourceType).
+      source_type_classes (list[type]): source types.
     """
     for source_type_class in source_type_classes:
       cls.RegisterSourceType(source_type_class)

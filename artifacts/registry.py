@@ -1,13 +1,15 @@
 # -*- coding: utf-8 -*-
 """The artifact definitions registry."""
 
+from __future__ import unicode_literals
+
 from artifacts import definitions
 from artifacts import errors
 from artifacts import source_type
 
 
 class ArtifactDefinitionsRegistry(object):
-  """Class that implements an artifact definitions registry."""
+  """Artifact definitions registry."""
 
   _source_type_classes = {
       definitions.TYPE_INDICATOR_ARTIFACT_GROUP:
@@ -24,7 +26,7 @@ class ArtifactDefinitionsRegistry(object):
   }
 
   def __init__(self):
-    """Initializes the artifact definitions registry object."""
+    """Initializes an artifact definitions registry."""
     super(ArtifactDefinitionsRegistry, self).__init__()
     self._artifact_definitions = {}
     self._artifact_name_references = set()
@@ -35,34 +37,29 @@ class ArtifactDefinitionsRegistry(object):
     """Creates a source type object.
 
     Args:
-      type_indicator: the source type indicator.
-      attributes: a dictionary containing the source attributes.
+      type_indicator (str): source type indicator.
+      attributes (dict[str, object]): source attributes.
 
     Returns:
-      A source type object (instance of SourceType).
-
-    Raises:
-      The source type object (instance of SourceType) or None if the type
-      indicator is not supported.
+      SourceType: a source type.
 
     Raises:
       FormatError: if the type indicator is not set or unsupported,
-                   or if required attributes are missing.
+          or if required attributes are missing.
     """
     if type_indicator not in cls._source_type_classes:
       raise errors.FormatError(
-          u'Unsupported type indicator: {0}.'.format(type_indicator))
+          'Unsupported type indicator: {0:s}.'.format(type_indicator))
 
     return cls._source_type_classes[type_indicator](**attributes)
 
   def DeregisterDefinition(self, artifact_definition):
     """Deregisters an artifact definition.
 
-    The artifact definitions are identified based on their lower case name.
+    Artifact definitions are identified based on their lower case name.
 
     Args:
-      artifact_definition: the artifact definitions (instance of
-                           ArtifactDefinition).
+      artifact_definition (ArtifactDefinition): an artifact definition.
 
     Raises:
       KeyError: if an artifact definition is not set for the corresponding name.
@@ -70,7 +67,7 @@ class ArtifactDefinitionsRegistry(object):
     artifact_definition_name = artifact_definition.name.lower()
     if artifact_definition_name not in self._artifact_definitions:
       raise KeyError(
-          u'Artifact definition not set for name: {0}.'.format(
+          'Artifact definition not set for name: {0:s}.'.format(
               artifact_definition.name))
 
     del self._artifact_definitions[artifact_definition_name]
@@ -79,17 +76,17 @@ class ArtifactDefinitionsRegistry(object):
   def DeregisterSourceType(cls, source_type_class):
     """Deregisters a source type.
 
-    The source types are identified based on their type indicator.
+    Source types are identified based on their type indicator.
 
     Args:
-      source_type_class: the source type (subclass of SourceType).
+      source_type_class (type): source type.
 
     Raises:
       KeyError: if a source type is not set for the corresponding type
-                indicator.
+          indicator.
     """
     if source_type_class.TYPE_INDICATOR not in cls._source_type_classes:
-      raise KeyError(u'Source type not set for type: {0}.'.format(
+      raise KeyError('Source type not set for type: {0:s}.'.format(
           source_type_class.TYPE_INDICATOR))
 
     del cls._source_type_classes[source_type_class.TYPE_INDICATOR]
@@ -98,11 +95,10 @@ class ArtifactDefinitionsRegistry(object):
     """Retrieves a specific artifact definition by name.
 
     Args:
-      name: the name of the artifact definition.
+      name (str): name of the artifact definition.
 
     Returns:
-      The artifact definition (instance of ArtifactDefinition) or None
-      if not available.
+      ArtifactDefinition: an artifact definition or None if not available.
     """
     if name:
       return self._artifact_definitions.get(name.lower(), None)
@@ -111,7 +107,7 @@ class ArtifactDefinitionsRegistry(object):
     """Retrieves the artifact definitions.
 
     Returns:
-      An array of ArtifactDefinition objects.
+      list[ArtifactDefinition]: artifact definitions.
     """
     return self._artifact_definitions.values()
 
@@ -119,27 +115,26 @@ class ArtifactDefinitionsRegistry(object):
     """Retrieves the names of undefined artifacts used by artifact groups.
 
     Returns:
-      A set of the undefined artifacts names.
+      set[str]: undefined artifacts names.
     """
     return self._artifact_name_references - self._defined_artifact_names
 
   def RegisterDefinition(self, artifact_definition):
     """Registers an artifact definition.
 
-    The artifact definitions are identified based on their lower case name.
+    Artifact definitions are identified based on their lower case name.
 
     Args:
-      artifact_definition: the artifact definitions (instance of
-                           ArtifactDefinition).
+      artifact_definition (ArtifactDefinition): an artifact definition.
 
     Raises:
       KeyError: if artifact definition is already set for the corresponding
-                name.
+          name.
     """
     artifact_definition_name = artifact_definition.name.lower()
     if artifact_definition_name in self._artifact_definitions:
       raise KeyError(
-          u'Artifact definition already set for name: {0}.'.format(
+          'Artifact definition already set for name: {0:s}.'.format(
               artifact_definition.name))
 
     self._artifact_definitions[artifact_definition_name] = artifact_definition
@@ -153,17 +148,17 @@ class ArtifactDefinitionsRegistry(object):
   def RegisterSourceType(cls, source_type_class):
     """Registers a source type.
 
-    The source types are identified based on their type indicator.
+    Source types are identified based on their type indicator.
 
     Args:
-      source_type_class: the source type (subclass of SourceType).
+      source_type_class (type): source type.
 
     Raises:
       KeyError: if source types is already set for the corresponding
-                type indicator.
+          type indicator.
     """
     if source_type_class.TYPE_INDICATOR in cls._source_type_classes:
-      raise KeyError(u'Source type already set for type: {0}.'.format(
+      raise KeyError('Source type already set for type: {0:s}.'.format(
           source_type_class.TYPE_INDICATOR))
 
     cls._source_type_classes[source_type_class.TYPE_INDICATOR] = (
@@ -173,25 +168,23 @@ class ArtifactDefinitionsRegistry(object):
   def RegisterSourceTypes(cls, source_type_classes):
     """Registers source types.
 
-    The source types are identified based on their type indicator.
+    Source types are identified based on their type indicator.
 
     Args:
-      source_type_classes: a list of source types (instances of SourceType).
+      source_type_classes (list[type]): source types.
     """
     for source_type_class in source_type_classes:
       cls.RegisterSourceType(source_type_class)
 
-  def ReadFromDirectory(self, artifact_reader, path, extension=u'yaml'):
+  def ReadFromDirectory(self, artifact_reader, path, extension='yaml'):
     """Reads artifact definitions into the registry from files in a directory.
 
     This function does not recurse sub directories.
 
     Args:
-      artifacts_reader: an artifacts reader object (instance of
-                        ArtifactsReader).
-      path: the path of the directory to read from.
-      extension: optional extension of the filenames to read.
-                 The default is 'yaml'.
+      artifacts_reader (ArtifactsReader): an artifacts reader.
+      path (str): path of the directory to read from.
+      extension (Optional[str]): extension of the filenames to read.
 
     Raises:
       KeyError: if a duplicate artifact definition is encountered.
@@ -204,9 +197,8 @@ class ArtifactDefinitionsRegistry(object):
     """Reads artifact definitions into the registry from a file.
 
     Args:
-      artifacts_reader: an artifacts reader object (instance of
-                        ArtifactsReader).
-      filename: the name of the file to read from.
+      artifacts_reader (ArtifactsReader): an artifacts reader.
+      filename (str): name of the file to read from.
     """
     for artifact_definition in artifact_reader.ReadFile(filename):
       self.RegisterDefinition(artifact_definition)
@@ -215,9 +207,8 @@ class ArtifactDefinitionsRegistry(object):
     """Reads artifact definitions into the registry from a file-like object.
 
     Args:
-      artifacts_reader: an artifacts reader object (instance of
-                        ArtifactsReader).
-      file_object: the file-like object to read from.
+      artifacts_reader (ArtifactsReader): an artifacts reader.
+      file_object (file): file-like object to read from.
     """
     for artifact_definition in artifact_reader.ReadFileObject(file_object):
       self.RegisterDefinition(artifact_definition)
