@@ -244,6 +244,14 @@ labels: [Configuration Files, System]
 supported_os: [Linux]
 urls: ['https://wiki.debian.org/LSBInitScripts']
 ---
+name: LinuxLocalTime
+doc: Local time zone configuation
+sources:
+- type: FILE
+  attributes: {paths: ['/etc/localtime']}
+labels: [System]
+supported_os: [Linux]
+---
 name: LinuxMessagesLogFiles
 doc: Linux messages log files.
 sources:

@@ -309,7 +309,7 @@ labels: [System]
 supported_os: [Darwin]
 ---
 name: MacOSLocalTime
-doc: Current Time Zone
+doc: Local time zone configuation
 sources:
 - type: FILE
   attributes:
