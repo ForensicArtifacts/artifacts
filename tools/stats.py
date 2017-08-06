@@ -69,9 +69,9 @@ class ArtifactStatistics(object):
 
 As of {0:s} the repository contains:
 
-| **File paths covered** | **{1:s}** |
+| **File paths covered** | **{1:d}** |
 | :------------------ | ------: |
-| **Registry keys covered** | **{2:s}** |
+| **Registry keys covered** | **{2:d}** |
 | **Total artifacts** | **{3:d}** |
 """.format(
     time.strftime('%Y-%m-%d'), self.path_count, self.reg_key_count,
