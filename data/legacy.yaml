@@ -113,30 +113,6 @@ provides: [environ_temp]
 supported_os: [Windows]
 urls: ['http://environmentvariables.org/WinDir']
 ---
-name: UserShellFolders
-doc: The Shell Folders information for Windows users.
-sources:
-- type: REGISTRY_KEY
-  attributes:
-    keys:
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\*'
-      - 'HKEY_USERS\%%users.sid%%\Environment\*'
-      - 'HKEY_USERS\%%users.sid%%\Volatile Environment\*'
-provides:
-  - users.cookies
-  - users.appdata
-  - users.personal
-  - users.startup
-  - users.homedir
-  - users.desktop
-  - users.internet_cache
-  - users.localappdata
-  - users.localappdata_low
-  - users.recent
-  - users.userprofile
-  - users.temp
-supported_os: [Windows]
----
 name: WinCodePage
 doc: The codepage of the system.
 sources:
