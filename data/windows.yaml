@@ -423,17 +423,36 @@ provides: [environ_allusersappdata]
 supported_os: [Windows]
 urls: ['http://environmentvariables.org/ProgramData']
 ---
+name: WindowsEnvironmentVariableProfilesDirectory
+doc: Folder that typically contains users' profile directories; default is '%SystemDrive%\Users'
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\ProfileList', value: 'ProfilesDirectory'}
+provides: [environ_profilesdirectory]
+supported_os: [Windows]
+urls:
+- 'https://msdn.microsoft.com/en-us/library/windows/desktop/bb776892(v=vs.85).aspx'
+- 'https://docs.microsoft.com/en-us/windows/deployment/usmt/usmt-recognized-environment-variables'
+- 'http://support.microsoft.com/kb//214653'
+---
 name: WindowsEnvironmentVariableAllUsersProfile
-doc: The %AllUsersProfile% environment variable.
+doc: |
+  The %AllUsersProfile% environment variable
+
+  May or may not depend on registry keys - see urls
 sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
       - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\ProfileList', value: 'AllUsersProfile'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\ProfileList', value: 'ProfilesDirectory'}
 provides: [environ_allusersprofile]
 supported_os: [Windows]
-urls: ['http://support.microsoft.com/kb//214653']
+urls:
+- 'https://www.microsoft.com/en-us/wdsi/help/folder-variables'
+- 'https://github.com/mirror/reactos/blob/c6d2b35ffc91e09f50dfb214ea58237509329d6b/reactos/boot/bootdata/livecd.inf'
+- 'http://support.microsoft.com/kb//214653'
 ---
 name: WindowsEnvironmentVariableAppxProcess
 doc: |
