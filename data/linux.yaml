@@ -79,6 +79,15 @@ sources:
 labels: [Software]
 supported_os: [Linux]
 ---
+name: DebianVersion
+doc: Debian version information.
+sources:
+- type: FILE
+  attributes: {paths: ['/etc/debian_version']}
+provides: [os_release, os_major_version, os_minor_version]
+labels: [Software]
+supported_os: [Linux]
+---
 name: DNSResolvConfFile
 doc: DNS Resolver configuration file.
 sources:
@@ -171,6 +180,20 @@ sources:
 labels: [Logs]
 supported_os: [Linux]
 ---
+name: LinuxDistributionRelease
+doc: Linux distribution release information of non-LSB compliant systems.
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '/etc/enterprise-release'
+      - '/etc/oracle-release'
+      - '/etc/redhat-release'
+      - '/etc/system-release'
+provides: [os_release, os_major_version, os_minor_version]
+labels: [Software]
+supported_os: [Linux]
+---
 name: LinuxDSDTTable
 doc: Linux file containing DSDT table.
 sources:
@@ -252,6 +275,19 @@ sources:
 labels: [System]
 supported_os: [Linux]
 ---
+name: LinuxLSBRelease
+doc: |
+  Linux Standard Base (LSB) release information.
+
+  See: lsb_release(1) man page, or the LSB Specification under the 'Command
+  Behaviour' section.
+sources:
+- type: FILE
+  attributes: {paths: ['/etc/lsb-release']}
+provides: [os_release, os_major_version, os_minor_version]
+labels: [Software]
+supported_os: [Linux]
+---
 name: LinuxMessagesLogFiles
 doc: Linux messages log files.
 sources:
@@ -304,25 +340,6 @@ sources:
 - type: FILE
   attributes: {paths: ['/etc/passwd']}
 labels: [Configuration Files, System]
-supported_os: [Linux]
----
-name: LinuxRelease
-doc: |
-  Linux specific distribution information.
-
-  See: lsb_release(1) man page, or the LSB Specification under the 'Command
-  Behaviour' section.
-sources:
-- type: FILE
-  attributes:
-    paths:
-      - '/etc/enterprise-release'
-      - '/etc/lsb-release'
-      - '/etc/oracle-release'
-      - '/etc/redhat-release'
-      - '/etc/system-release'
-provides: [os_release, os_major_version, os_minor_version]
-labels: [Software]
 supported_os: [Linux]
 ---
 name: LinuxRsyslogConfigs
