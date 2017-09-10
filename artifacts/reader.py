@@ -129,7 +129,7 @@ class ArtifactsReader(BaseArtifactsReader):
     supported_os = definition_values.get('supported_os', [])
     if not isinstance(supported_os, list):
       raise errors.FormatError(
-          'Invalid supported_os type: {0:s}'.format(type(supported_os)))
+          'Invalid supported_os type: {0!s}'.format(type(supported_os)))
 
     undefined_supported_os = set(supported_os).difference(self.supported_os)
     if undefined_supported_os:
@@ -204,7 +204,7 @@ class ArtifactsReader(BaseArtifactsReader):
     different_keys = (
         set(artifact_definition_values) - definitions.TOP_LEVEL_KEYS)
     if different_keys:
-      raise errors.FormatError('Undefined keys: {0:s}'.format(different_keys))
+      raise errors.FormatError('Undefined keys: {0!s}'.format(different_keys))
 
     name = artifact_definition_values.get('name', None)
     if not name:

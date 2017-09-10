@@ -311,7 +311,7 @@ class WindowsRegistryValueSourceType(SourceType):
       if set(pair.keys()) != set(['key', 'value']):
         error_message = (
             'key_value_pair missing "key" and "value" keys, got: '
-            '{0:s}').format(key_value_pairs)
+            '{0!s}').format(key_value_pairs)
         raise errors.FormatError(error_message)
 
       WindowsRegistryKeySourceType.ValidateKey(pair['key'])
