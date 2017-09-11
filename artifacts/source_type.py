@@ -309,9 +309,12 @@ class WindowsRegistryValueSourceType(SourceType):
         raise errors.FormatError('key_value_pair must be a dict')
 
       if set(pair.keys()) != set(['key', 'value']):
+        key_value_pairs = ', '.join([
+            '{0:s}: {1:s}'.format(key, value) for key, value in key_value_pairs
+        ])
         error_message = (
             'key_value_pair missing "key" and "value" keys, got: '
-            '{0!s}').format(key_value_pairs)
+            '{0:s}').format(key_value_pairs)
         raise errors.FormatError(error_message)
 
       WindowsRegistryKeySourceType.ValidateKey(pair['key'])

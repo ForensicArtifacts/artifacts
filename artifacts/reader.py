@@ -204,7 +204,8 @@ class ArtifactsReader(BaseArtifactsReader):
     different_keys = (
         set(artifact_definition_values) - definitions.TOP_LEVEL_KEYS)
     if different_keys:
-      raise errors.FormatError('Undefined keys: {0!s}'.format(different_keys))
+      different_keys = ', '.join(different_keys)
+      raise errors.FormatError('Undefined keys: {0:s}'.format(different_keys))
 
     name = artifact_definition_values.get('name', None)
     if not name:
