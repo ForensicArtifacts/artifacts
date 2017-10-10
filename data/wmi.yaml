@@ -21,6 +21,13 @@ provides: [users.userdomain]
 supported_os: [Windows]
 urls: ['http://msdn.microsoft.com/en-us/library/windows/desktop/aa394507(v=vs.85).aspx']
 ---
+name: WMIAntivirusProduct
+doc: Enumerate the registered antivirus.
+sources:
+- type: WMI
+  attributes: {query: SELECT * FROM AntivirusProduct, base_object: 'winmgmts:\root\SecurityCenter2'}
+  supported_os: [Windows]
+---
 name: WMIComputerSystemProduct
 doc: Computer System Product including Identifiying number queried from WMI.
 sources:
