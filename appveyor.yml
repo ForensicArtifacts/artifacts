@@ -1,20 +1,18 @@
 environment:
   matrix:
-    - PYTHON: "C:\\Python27"
+  - TARGET: python27
+    PYTHON: "C:\\Python27"
+  - TARGET: python36
+    PYTHON: "C:\\Python36"
 
 install:
-  - cmd: '"C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.cmd" /x86 /release'
-  - ps: "[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12"
-  - ps: (new-object net.webclient).DownloadFile('https://bootstrap.pypa.io/get-pip.py', 'C:\Projects\get-pip.py')
-  - ps: (new-object net.webclient).DownloadFile('https://github.com/log2timeline/l2tbinaries/raw/master/win32/pywin32-220.win32-py2.7.exe', 'C:\Projects\pywin32-220.win32-py2.7.exe')
-  - ps: (new-object net.webclient).DownloadFile('https://github.com/log2timeline/l2tbinaries/raw/master/win32/WMI-1.4.9.win32.exe', 'C:\Projects\WMI-1.4.9.win32.exe')
-  - cmd: "%PYTHON%\\python.exe C:\\Projects\\get-pip.py"
-  - cmd: "%PYTHON%\\Scripts\\easy_install.exe C:\\Projects\\pywin32-220.win32-py2.7.exe"
-  - cmd: "%PYTHON%\\Scripts\\easy_install.exe C:\\Projects\\WMI-1.4.9.win32.exe"
-  - cmd: git clone https://github.com/log2timeline/l2tdevtools.git && move l2tdevtools ..\
-  - cmd: mkdir dependencies && set PYTHONPATH=..\l2tdevtools && "%PYTHON%\\python.exe" ..\l2tdevtools\tools\update.py --download-directory dependencies --machine-type x86 --msi-targetdir "%PYTHON%" --track dev PyYAML yapf
+- cmd: '"C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.cmd" /x86 /release'
+- cmd: "%PYTHON%\\Scripts\\pip.exe install --upgrade pip"
+- cmd: "%PYTHON%\\Scripts\\pip.exe install pypiwin32 WMI"
+- cmd: git clone https://github.com/log2timeline/l2tdevtools.git ..\l2tdevtools
+- cmd: mkdir dependencies && set PYTHONPATH=..\l2tdevtools && "%PYTHON%\\python.exe" ..\l2tdevtools\tools\update.py --download-directory dependencies --machine-type x86 --msi-targetdir "%PYTHON%" --track dev PyYAML funcsigs mock pbr six yapf
 
 build: off
 
 test_script:
-  - "%PYTHON%\\python.exe run_tests.py"
+- "%PYTHON%\\python.exe run_tests.py"
