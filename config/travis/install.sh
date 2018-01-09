@@ -10,7 +10,7 @@ L2TBINARIES_TEST_DEPENDENCIES="funcsigs mock pbr six yapf";
 
 PYTHON2_DEPENDENCIES="python-yaml";
 
-PYTHON2_TEST_DEPENDENCIES="python-mock python-tox";
+PYTHON2_TEST_DEPENDENCIES="python-mock python-tox python-yapf";
 
 # Exit on error.
 set -e;
