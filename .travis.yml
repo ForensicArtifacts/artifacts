@@ -10,7 +10,7 @@ matrix:
     sudo: required
     python: 3.4
   - os: osx
-    osx_image: xcode8.1
+    osx_image: xcode8.3
     language: generic
 install:
   - ./config/travis/install.sh
