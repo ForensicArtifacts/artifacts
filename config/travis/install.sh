@@ -6,11 +6,11 @@ COVERALL_DEPENDENCIES="python-coverage python-coveralls python-docopt";
 
 L2TBINARIES_DEPENDENCIES="PyYAML";
 
-L2TBINARIES_TEST_DEPENDENCIES="yapf";
+L2TBINARIES_TEST_DEPENDENCIES="funcsigs mock pbr six yapf";
 
 PYTHON2_DEPENDENCIES="python-yaml";
 
-PYTHON2_TEST_DEPENDENCIES="python-yapf";
+PYTHON2_TEST_DEPENDENCIES="python-mock python-tox python-yapf";
 
 # Exit on error.
 set -e;
@@ -22,10 +22,12 @@ then
 	mv l2tdevtools ../;
 	mkdir dependencies;
 
-	PYTHONPATH=../l2tdevtools ../l2tdevtools/tools/update.py --download-directory=dependencies ${L2TBINARIES_DEPENDENCIES} ${L2TBINARIES_TEST_DEPENDENCIES};
+	PYTHONPATH=../l2tdevtools ../l2tdevtools/tools/update.py --download-directory dependencies --track dev ${L2TBINARIES_DEPENDENCIES} ${L2TBINARIES_TEST_DEPENDENCIES};
 
 elif test ${TRAVIS_OS_NAME} = "linux";
 then
+	sudo rm -f /etc/apt/sources.list.d/travis_ci_zeromq3-source.list;
+
 	sudo add-apt-repository ppa:gift/dev -y;
 	sudo apt-get update -q;
 	# Only install the Python 2 dependencies.
