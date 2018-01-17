@@ -1,9 +1,13 @@
-## ForensicArtifacts.com Artifact Repository
+## Digital Forensics Artifact Repository Artifact Repository
 
-A free, community-sourced, machine-readable knowledge base of forensic artifacts
-that the world can use both as an information source and within other tools.
+A free, community-sourced, machine-readable knowledge base of digital forensic
+artifacts that the world can use both as an information source and within other
+tools.
 
-If you'd like to use the artifacts in your own tools, **all you need to be able to do is read YAML**. That's it.  No other dependencies. The python code in this project is just used to validate all the artifacts to make sure they follow the spec.
+If you'd like to use the artifacts in your own tools, **all you need to be able
+to do is read YAML**. That's it, no other dependencies. The Python code in
+this project is just used to validate all the artifacts to make sure they
+follow the specfication.
 
 ### Project status
 
@@ -59,9 +63,11 @@ and [youtube video](https://www.youtube.com/watch?v=ren6QSvwFvg) from the GRR te
 Please send us your contribution! See [the developers guide](https://github.com/ForensicArtifacts/artifacts/wiki/Developers-guide) for instructions.
 
 ## External links
+
 * [ForensicsArtifacts.com ... the definitive database](http://forensicartifacts.com/)
 * [GRR Artifacts](https://www.blackhat.com/docs/us-14/materials/us-14-Castle-GRR-Find-All-The-Badness-Collect-All-The-Things-WP.pdf), by Greg Castle, Blackhat 2014
 
 ## Contact
 
 [forensicartifacts@googlegroups.com](https://groups.google.com/forum/#!forum/forensicartifacts)
+
