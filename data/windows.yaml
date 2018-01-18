@@ -196,7 +196,6 @@ sources:
   attributes:
     key_value_pairs:
       - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\ComputerName\ComputerName', value: 'ComputerName'}
-provides: [hostname]
 supported_os: [Windows]
 ---
 name: WindowsCommandProcessorAutoRun
