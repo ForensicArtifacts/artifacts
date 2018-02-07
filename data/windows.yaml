@@ -1953,8 +1953,8 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '%%users.appdata%%\Roaming\Microsoft\Office\Recent\*'
-      - '%%users.appdata%%\Roaming\Microsoft\Windows\Recent\*'
+      - '%%users.appdata%%\Microsoft\Office\Recent\*'
+      - '%%users.appdata%%\Microsoft\Windows\Recent\*'
     separator: '\'
 labels: [Users]
 supported_os: [Windows]
