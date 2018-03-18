@@ -7,7 +7,7 @@ environment:
 
 install:
 - cmd: '"C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.cmd" /x86 /release'
-- cmd: "%PYTHON%\\Scripts\\pip.exe install --upgrade pip"
+- cmd: "%PYTHON%\\python.exe -m pip install --upgrade pip"
 - cmd: "%PYTHON%\\Scripts\\pip.exe install pywin32 WMI"
 - cmd: "%PYTHON%\\python.exe %PYTHON%\\Scripts\\pywin32_postinstall.py -install"
 - cmd: git clone https://github.com/log2timeline/l2tdevtools.git ..\l2tdevtools
