@@ -2,16 +2,20 @@
 # -*- coding: utf-8 -*-
 """Script to run the tests."""
 
+from __future__ import print_function
+
 import sys
 import unittest
 
 # Change PYTHONPATH to include dependencies.
-sys.path.insert(0, u'.')
+sys.path.insert(0, '.')
 
 import utils.dependencies  # pylint: disable=wrong-import-position
 
 
 if __name__ == '__main__':
+  print('Using Python version {0!s}'.format(sys.version))
+
   dependency_helper = utils.dependencies.DependencyHelper()
 
   if not dependency_helper.CheckTestDependencies():
