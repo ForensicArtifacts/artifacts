@@ -15,7 +15,7 @@ PYTHON2_TEST_DEPENDENCIES="python-coverage python-mock python-tox python-yapf ya
 
 PYTHON3_DEPENDENCIES="python3-yaml";
 
-PYTHON3_TEST_DEPENDENCIES="python3-mock python3-setuptools python3-tox python3-yapf yapf3";
+PYTHON3_TEST_DEPENDENCIES="python-yapf python3-mock python3-setuptools python3-tox yapf";
 
 # Exit on error.
 set -e;
