@@ -11,11 +11,11 @@ L2TBINARIES_TEST_DEPENDENCIES="funcsigs mock pbr six yapf";
 
 PYTHON2_DEPENDENCIES="python-yaml";
 
-PYTHON2_TEST_DEPENDENCIES="python-coverage python-mock python-tox python-yapf";
+PYTHON2_TEST_DEPENDENCIES="python-coverage python-mock python-tox python-yapf yapf";
 
 PYTHON3_DEPENDENCIES="python3-yaml";
 
-PYTHON3_TEST_DEPENDENCIES="python3-mock python3-setuptools python3-tox python3-yapf";
+PYTHON3_TEST_DEPENDENCIES="python3-mock python3-setuptools python3-tox python3-yapf yapf3";
 
 # Exit on error.
 set -e;
