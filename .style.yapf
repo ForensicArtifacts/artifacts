@@ -1,6 +1,7 @@
 [style]
 based_on_style = chromium
-COALESCE_BRACKETS = True
-SPLIT_BEFORE_FIRST_ARGUMENT = True
-SPLIT_PENALTY_AFTER_OPENING_BRACKET = 0
-SPACES_BEFORE_COMMENT = 2
+allow_split_before_dict_value = False
+coalesce_brackets = True
+join_multiple_lines = True
+split_before_first_argument = True
+split_penalty_after_opening_bracket = 0

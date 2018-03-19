@@ -82,7 +82,8 @@ class ArtifactDefinition(object):
     for source in self.sources:
       source_definition = {
           'type': source.type_indicator,
-          'attributes': source.AsDict()}
+          'attributes': source.AsDict()
+      }
       if source.supported_os:
         source_definition['supported_os'] = source.supported_os
       if source.conditions:
@@ -94,7 +95,8 @@ class ArtifactDefinition(object):
     artifact_definition = {
         'name': self.name,
         'doc': self.description,
-        'sources': sources,}
+        'sources': sources,
+    }
     if self.labels:
       artifact_definition['labels'] = self.labels
     if self.supported_os:

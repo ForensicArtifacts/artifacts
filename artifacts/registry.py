@@ -86,8 +86,9 @@ class ArtifactDefinitionsRegistry(object):
           indicator.
     """
     if source_type_class.TYPE_INDICATOR not in cls._source_type_classes:
-      raise KeyError('Source type not set for type: {0:s}.'.format(
-          source_type_class.TYPE_INDICATOR))
+      raise KeyError(
+          'Source type not set for type: {0:s}.'.format(
+              source_type_class.TYPE_INDICATOR))
 
     del cls._source_type_classes[source_type_class.TYPE_INDICATOR]
 
@@ -158,8 +159,9 @@ class ArtifactDefinitionsRegistry(object):
           type indicator.
     """
     if source_type_class.TYPE_INDICATOR in cls._source_type_classes:
-      raise KeyError('Source type already set for type: {0:s}.'.format(
-          source_type_class.TYPE_INDICATOR))
+      raise KeyError(
+          'Source type already set for type: {0:s}.'.format(
+              source_type_class.TYPE_INDICATOR))
 
     cls._source_type_classes[source_type_class.TYPE_INDICATOR] = (
         source_type_class)
