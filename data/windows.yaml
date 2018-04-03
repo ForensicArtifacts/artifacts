@@ -1298,6 +1298,16 @@ sources:
 supported_os: [Windows]
 urls: ['https://github.com/libyal/winreg-kb/blob/master/documentation/Programs%20Cache%20values.asciidoc']
 ---
+name: WindowsProxyPACAutoConfigURL
+doc: Windows Proxy PAC AutoConfigURL.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+        - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Internet Settings', value: 'AutoConfigURL'}
+labels: [System, Network]
+supported_os: [Windows]
+---
 name: WindowsRecentFileCacheBCF
 doc: The RecentFileCache.bcf file.
 sources:
