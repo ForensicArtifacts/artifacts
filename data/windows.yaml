@@ -657,7 +657,7 @@ sources:
     separator: '\'
 labels: [Logs]
 supported_os: [Windows]
-urls: 
+urls:
 - 'https://docs.microsoft.com/en-us/sysinternals/downloads/sysmon'
 - 'https://blogs.technet.microsoft.com/motiba/2016/10/18/sysinternals-sysmon-unleashed'
 ---
@@ -1307,6 +1307,7 @@ sources:
         - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Internet Settings', value: 'AutoConfigURL'}
 labels: [System, Network]
 supported_os: [Windows]
+urls: ['https://blogs.msdn.microsoft.com/askie/2015/07/17/how-can-i-configure-proxy-autoconfigurl-setting-using-group-policy-preference-gpp/']
 ---
 name: WindowsRecentFileCacheBCF
 doc: The RecentFileCache.bcf file.
