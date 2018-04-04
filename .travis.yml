@@ -37,6 +37,7 @@ matrix:
     language: generic
   allow_failures:
   - env: TARGET="linux-python34"
+  - env: [TARGET="macos-python27", PYTHONPATH="/Library/Python/2.7/site-packages/"]
 install:
 - ./config/travis/install.sh
 script:
