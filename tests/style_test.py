@@ -14,8 +14,8 @@ class StyleTest(test_lib.BaseTestCase):
   def testCodeStyle(self):
     """Check yapf style enforcement runs cleanly."""
     try:
-      subprocess.check_output([
-          'yapf', '--diff', '-r', 'artifacts tools', 'artifacts', 'tests'])
+      subprocess.check_output(
+          ['yapf', '--diff', '-r', 'artifacts tools', 'artifacts', 'tests'])
     except subprocess.CalledProcessError as e:
       if hasattr(e, 'output'):
         raise errors.CodeStyleError(

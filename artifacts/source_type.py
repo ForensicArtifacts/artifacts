@@ -226,7 +226,8 @@ class WindowsRegistryKeySourceType(SourceType):
       r'HKEY_LOCAL_MACHINE',
       r'HKEY_USERS',
       r'HKEY_CLASSES_ROOT',
-      r'%%current_control_set%%',]
+      r'%%current_control_set%%',
+  ]
 
   def __init__(self, keys=None):
     """Initializes a source type.
@@ -369,22 +370,17 @@ class SourceTypeFactory(object):
   """Source type factory."""
 
   _source_type_classes = {
-      definitions.TYPE_INDICATOR_ARTIFACT_GROUP:
-          ArtifactGroupSourceType,
-      definitions.TYPE_INDICATOR_COMMAND:
-          CommandSourceType,
-      definitions.TYPE_INDICATOR_DIRECTORY:
-          DirectorySourceType,
-      definitions.TYPE_INDICATOR_FILE:
-          FileSourceType,
-      definitions.TYPE_INDICATOR_PATH:
-          PathSourceType,
+      definitions.TYPE_INDICATOR_ARTIFACT_GROUP: ArtifactGroupSourceType,
+      definitions.TYPE_INDICATOR_COMMAND: CommandSourceType,
+      definitions.TYPE_INDICATOR_DIRECTORY: DirectorySourceType,
+      definitions.TYPE_INDICATOR_FILE: FileSourceType,
+      definitions.TYPE_INDICATOR_PATH: PathSourceType,
       definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_KEY:
           WindowsRegistryKeySourceType,
       definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_VALUE:
           WindowsRegistryValueSourceType,
-      definitions.TYPE_INDICATOR_WMI_QUERY:
-          WMIQuerySourceType,}
+      definitions.TYPE_INDICATOR_WMI_QUERY: WMIQuerySourceType,
+  }
 
   @classmethod
   def CreateSourceType(cls, type_indicator, attributes):

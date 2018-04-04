@@ -41,7 +41,8 @@ class YamlArtifactsReaderTest(test_lib.BaseTestCase):
         source_type.type_indicator, definitions.TYPE_INDICATOR_FILE)
 
     expected_paths = [
-        '%%environ_systemroot%%\\System32\\winevt\\Logs\\Security.evtx']
+        '%%environ_systemroot%%\\System32\\winevt\\Logs\\Security.evtx'
+    ]
     self.assertEqual(sorted(source_type.paths), sorted(expected_paths))
 
     self.assertEqual(len(artifact_definition.conditions), 1)

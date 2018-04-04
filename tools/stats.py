@@ -1,10 +1,11 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """Report statistics about the artifact collection."""
 
 from __future__ import print_function
 from __future__ import unicode_literals
 
+import sys
 import time
 
 from artifacts import definitions
@@ -119,11 +120,19 @@ As of {0:s} the repository contains:
     self.PrintLabelTable()
 
 
-def main():
-  """The main function."""
+def Main():
+  """The main program function.
+
+  Returns:
+    bool: True if successful or False if not.
+  """
   statsbuilder = ArtifactStatistics()
   statsbuilder.PrintStats()
+  return True
 
 
 if __name__ == '__main__':
-  main()
+  if not Main():
+    sys.exit(1)
+  else:
+    sys.exit(0)

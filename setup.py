@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """Installation and deployment script."""
 
@@ -33,10 +33,10 @@ sys.path.insert(0, '.')
 
 import artifacts  # pylint: disable=wrong-import-position
 
-
 if not bdist_msi:
   BdistMSICommand = None
 else:
+
   class BdistMSICommand(bdist_msi):
     """Custom handler for the bdist_msi command."""
 
@@ -52,6 +52,7 @@ else:
 if not bdist_rpm:
   BdistRPMCommand = None
 else:
+
   class BdistRPMCommand(bdist_rpm):
     """Custom handler for the bdist_rpm command."""
 
@@ -118,8 +119,7 @@ else:
       return python_spec_file
 
 
-artifacts_description = (
-    'ForensicArtifacts.com Artifact Repository.')
+artifacts_description = 'ForensicArtifacts.com Artifact Repository.'
 
 artifacts_long_description = (
     'A free, community-sourced, machine-readable knowledge base of forensic '
@@ -141,15 +141,15 @@ setup(
     ],
     cmdclass={
         'bdist_msi': BdistMSICommand,
-        'bdist_rpm': BdistRPMCommand},
+        'bdist_rpm': BdistRPMCommand
+    },
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Environment :: Console',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
     ],
-    packages=find_packages('.', exclude=[
-        'tests', 'tests.*', 'tools', 'utils']),
+    packages=find_packages('.', exclude=['tests', 'tests.*', 'tools', 'utils']),
     package_dir={'artifacts': 'artifacts'},
     data_files=[
         ('share/artifacts', glob.glob(os.path.join('data', '*'))),
