@@ -532,6 +532,20 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Recent_Items'
 ---
+name: MacOSSafariDownloads
+doc: |
+  Safari Download List
+
+  Safari stores a list of all files that it has been downloaded.
+sources:
+- type: FILE
+  attributes: {paths: ['%%users.homedir%%/Library/Safari/Downloads.plist']}
+labels: [Users, Browser]
+supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Safari'
+---
 name: MacOSSidebarLists
 doc: |
   Sidebar Lists Preferences
