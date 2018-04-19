@@ -23,7 +23,8 @@ sources:
       - 'FirefoxHistory'
       - 'InternetExplorerHistory'
       - 'OperaHistory'
-      - 'SafariHistory'
+      - 'SafariDownloads'
+      - 'SafariHistory'      
 labels: [Browser]
 supported_os: [Darwin,Linux,Windows]
 ---
@@ -482,10 +483,7 @@ labels: [Browser]
 urls: ['http://www.forensicswiki.org/wiki/Apple_Safari']
 ---
 name: SafariDownloads
-doc: |
-  Safari Download List
-
-  Safari stores a list of all files that it has been downloaded.
+doc: Safari downloads history (Downloads.plist).
 sources:
 - type: FILE
   attributes: {paths: ['%%users.homedir%%/Library/Safari/Downloads.plist']}
@@ -505,15 +503,13 @@ urls:
 - 'https://www.forensicswiki.org/wiki/Apple_Safari'
 ---
 name: SafariHistory
-doc: Safari browser and download history (History.plist, Downloads.plist).
+doc: Safari browser history (History.plist).
 sources:
 - type: FILE
   attributes:
     paths:
       - '%%users.localappdata%%\Apple Computer\Safari\History.plist'
       - '%%users.appdata%%\Apple Computer\Safari\History.plist'
-      - '%%users.localappdata%%\Apple Computer\Safari\Downloads.plist'
-      - '%%users.appdata%%\Apple Computer\Safari\Downloads.plist'
     separator: '\'
   supported_os: [Windows]
 - type: FILE
@@ -522,7 +518,6 @@ sources:
       - '%%users.homedir%%/Library/Safari/History.plist'
       - '%%users.homedir%%/Library/Safari/History.db'
       - '%%users.homedir%%/Library/Safari/History.db-wal'
-      - '%%users.homedir%%/Library/Safari/Downloads.plist'
   supported_os: [Darwin]
 supported_os: [Windows, Darwin]
 labels: [Browser]
