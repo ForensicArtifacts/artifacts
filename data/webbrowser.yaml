@@ -24,7 +24,7 @@ sources:
       - 'InternetExplorerHistory'
       - 'OperaHistory'
       - 'SafariDownloads'
-      - 'SafariHistory'      
+      - 'SafariHistory'
 labels: [Browser]
 supported_os: [Darwin,Linux,Windows]
 ---
