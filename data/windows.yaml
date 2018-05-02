@@ -1847,6 +1847,14 @@ sources:
       - '%%environ_systemroot%%\System32\config\SECURITY'
       - '%%environ_systemroot%%\System32\config\SOFTWARE'
       - '%%environ_systemroot%%\System32\config\SYSTEM'
+      - '%%environ_systemroot%%\System32\config\SAM.LOG1'
+      - '%%environ_systemroot%%\System32\config\SAM.LOG2'
+      - '%%environ_systemroot%%\System32\config\SECURITY.LOG1'
+      - '%%environ_systemroot%%\System32\config\SECURITY.LOG2'
+      - '%%environ_systemroot%%\System32\config\SOFTWARE.LOG1'
+      - '%%environ_systemroot%%\System32\config\SOFTWARE.LOG2'
+      - '%%environ_systemroot%%\System32\config\SYSTEM.LOG1'
+      - '%%environ_systemroot%%\System32\config\SYSTEM.LOG2'
       - '\System Volume Information\Syscache.hve'
     separator: '\'
 labels: [System]
@@ -1987,6 +1995,8 @@ sources:
   attributes:
     paths:
       - '%%users.homedir%%\NTUSER.DAT'
+      - '%%users.homedir%%\NTUSER.DAT.LOG1'
+      - '%%users.homedir%%\NTUSER.DAT.LOG2'
       - '%%users.homedir%%\NTUSER.MAN'
       - '%%users.localappdata%%\Microsoft\Windows\UsrClass.dat'
     separator: '\'
