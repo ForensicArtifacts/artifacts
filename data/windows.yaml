@@ -1342,6 +1342,19 @@ provides: [current_control_set]
 supported_os: [Windows]
 urls: ['https://github.com/libyal/winreg-kb/wiki/System-keys']
 ---
+name: WindowsRegistryFilesAndTransactionLogs
+doc: Windows user and system Registry files and transaction logs.
+sources:
+- type: ARTIFACT_GROUP
+  attributes:
+    names:
+      - 'WindowsSystemRegistryFiles'
+      - 'WindowsSystemRegistryTransactionLogFiles'
+      - 'WindowsUserRegistryFiles'
+      - 'WindowsUserRegistryTransactionLogFiles'
+labels: [System,Users]
+supported_os: [Windows]
+---
 name: WindowsRegistryProfiles
 doc: |
   Get SIDs for all users on the system with profiles present in the Registry.
@@ -1853,6 +1866,40 @@ labels: [System]
 supported_os: [Windows]
 urls: ['https://github.com/libyal/winreg-kb/wiki/Registry-files']
 ---
+name: WindowsSystemRegistryTransactionLogFiles
+doc: Windows system Registry transaction log files.
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '%%environ_systemroot%%\System32\config\SAM.LOG'
+      - '%%environ_systemroot%%\System32\config\SAM.LOG1'
+      - '%%environ_systemroot%%\System32\config\SAM.LOG2'
+      - '%%environ_systemroot%%\System32\config\SECURITY.LOG'
+      - '%%environ_systemroot%%\System32\config\SECURITY.LOG1'
+      - '%%environ_systemroot%%\System32\config\SECURITY.LOG2'
+      - '%%environ_systemroot%%\System32\config\SOFTWARE.LOG'
+      - '%%environ_systemroot%%\System32\config\SOFTWARE.LOG1'
+      - '%%environ_systemroot%%\System32\config\SOFTWARE.LOG2'
+      - '%%environ_systemroot%%\System32\config\SYSTEM.LOG'
+      - '%%environ_systemroot%%\System32\config\SYSTEM.LOG1'
+      - '%%environ_systemroot%%\System32\config\SYSTEM.LOG2'
+    separator: '\'
+labels: [System]
+supported_os: [Windows]
+urls: ['https://github.com/msuhanov/regf/blob/master/Windows%20registry%20file%20format%20specification.md#format-of-transaction-log-files']
+---
+name: WindowsSystemRegistryFilesAndTransactionLogs
+doc: Windows system Registry files and transaction logs.
+sources:
+- type: ARTIFACT_GROUP
+  attributes:
+    names:
+      - 'WindowsSystemRegistryFiles'
+      - 'WindowsSystemRegistryTransactionLogFiles'
+labels: [System]
+supported_os: [Windows]
+---
 name: WindowsSystemResourceUsageMonitorDatabaseFile
 doc: Windows System Resource Usage Monitor (SRUM) database file.
 sources:
@@ -1993,6 +2040,34 @@ sources:
 labels: [Users]
 supported_os: [Windows]
 urls: ['https://github.com/libyal/winreg-kb/wiki/Registry-files']
+---
+name: WindowsUserRegistryTransactionLogFiles
+doc: Windows user Registry transaction log files.
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '%%users.homedir%%\NTUSER.DAT.LOG'
+      - '%%users.homedir%%\NTUSER.DAT.LOG1'
+      - '%%users.homedir%%\NTUSER.DAT.LOG2'
+      - '%%users.localappdata%%\Microsoft\Windows\UsrClass.dat.LOG'
+      - '%%users.localappdata%%\Microsoft\Windows\UsrClass.dat.LOG1'
+      - '%%users.localappdata%%\Microsoft\Windows\UsrClass.dat.LOG2'
+    separator: '\'
+labels: [Users]
+supported_os: [Windows]
+urls: ['https://github.com/msuhanov/regf/blob/master/Windows%20registry%20file%20format%20specification.md#format-of-transaction-log-files']
+---
+name: WindowsUserRegistryFilesAndTransactionLogs
+doc: Windows user Registry files and transaction logs.
+sources:
+- type: ARTIFACT_GROUP
+  attributes:
+    names:
+      - 'WindowsUserRegistryFiles'
+      - 'WindowsUserRegistryTransactionLogFiles'
+labels: [Users]
+supported_os: [Windows]
 ---
 name: WindowsUserShellFolders
 doc: The Shell Folders information for Windows users.
