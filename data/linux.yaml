@@ -301,7 +301,7 @@ name: LinuxMessagesLogFiles
 doc: Linux messages log files.
 sources:
 - type: FILE
-  attributes: {paths: ['/var/log/messages.log*']}
+  attributes: {paths: ['/var/log/messages*']}
 labels: [Logs]
 supported_os: [Linux]
 ---
