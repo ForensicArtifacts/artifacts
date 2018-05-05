@@ -20,7 +20,7 @@ doc: Microsoft Office Most Recently Used
 sources:
 - type: FILE
   attributes:
-    paths: 
+    paths:
       - '%%users.homedir%%/Library/Preferences/com.microsoft.office.plist'
       - '%%users.homedir%%/Library/Containers/com.microsoft.*/Data/Library/Preferences/com.microsoft.*.securebookmarks.plist'
     separator: '/'
