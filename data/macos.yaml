@@ -85,8 +85,7 @@ sources:
   attributes: {paths: ['%%users.homedir%%/.bash_sessions/*']}
 labels: [Users, Logs]
 supported_os: [Darwin]
-urls:
-- 'https://www.swiftforensics.com/2018/05/bash-sessions-in-macos.html'
+urls: ['https://www.swiftforensics.com/2018/05/bash-sessions-in-macos.html']
 ---
 name: MacOSBluetoothPlistFile
 doc: Bluetooth preferences and paired device information plist file
