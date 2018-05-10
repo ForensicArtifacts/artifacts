@@ -1850,8 +1850,8 @@ sources:
 supported_os: [Windows]
 urls: ['https://technet.microsoft.com/en-us/library/cc728472(v=ws.10).aspx']
 ---
-name: WindowsSystemRegBackRegistryFiles
-doc: Windows system backup Registry files.
+name: WindowsSystemRegistryFilesBackup
+doc: Backup of Windows system Registry files.
 sources:
 - type: FILE
   attributes:
@@ -1865,8 +1865,8 @@ labels: [System]
 supported_os: [Windows]
 urls: ['https://github.com/msuhanov/regf/blob/master/Windows%20registry%20file%20format%20specification.md#types-of-files']
 ---
-name: WindowsSystemRegBackRegistryTransactionLogFiles
-doc: Windows system backup Registry transaction log files.
+name: WindowsSystemRegistryTransactionLogFilesBackup
+doc: Backup of Windows system Registry transaction log files.
 sources:
 - type: FILE
   attributes:
