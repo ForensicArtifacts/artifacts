@@ -1850,6 +1850,47 @@ sources:
 supported_os: [Windows]
 urls: ['https://technet.microsoft.com/en-us/library/cc728472(v=ws.10).aspx']
 ---
+name: WindowsSystemRegistryFilesBackup
+doc: Backup of Windows system Registry files.
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '%%environ_systemroot%%\System32\config\RegBack\SAM'
+      - '%%environ_systemroot%%\System32\config\RegBack\SECURITY'
+      - '%%environ_systemroot%%\System32\config\RegBack\SOFTWARE'
+      - '%%environ_systemroot%%\System32\config\RegBack\SYSTEM'
+    separator: '\'
+labels: [System]
+supported_os: [Windows]
+urls: ['https://github.com/msuhanov/regf/blob/master/Windows%20registry%20file%20format%20specification.md#types-of-files']
+---
+name: WindowsSystemRegistryTransactionLogFilesBackup
+doc: |
+  Backup of Windows system Registry transaction log files.
+
+  These files have been observed to be typically 0 byte in size.
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '%%environ_systemroot%%\System32\config\RegBack\SAM.LOG'
+      - '%%environ_systemroot%%\System32\config\RegBack\SAM.LOG1'
+      - '%%environ_systemroot%%\System32\config\RegBack\SAM.LOG2'
+      - '%%environ_systemroot%%\System32\config\RegBack\SECURITY.LOG'
+      - '%%environ_systemroot%%\System32\config\RegBack\SECURITY.LOG1'
+      - '%%environ_systemroot%%\System32\config\RegBack\SECURITY.LOG2'
+      - '%%environ_systemroot%%\System32\config\RegBack\SOFTWARE.LOG'
+      - '%%environ_systemroot%%\System32\config\RegBack\SOFTWARE.LOG1'
+      - '%%environ_systemroot%%\System32\config\RegBack\SOFTWARE.LOG2'
+      - '%%environ_systemroot%%\System32\config\RegBack\SYSTEM.LOG'
+      - '%%environ_systemroot%%\System32\config\RegBack\SYSTEM.LOG1'
+      - '%%environ_systemroot%%\System32\config\RegBack\SYSTEM.LOG2'
+    separator: '\'
+labels: [System]
+supported_os: [Windows]
+urls: ['https://github.com/msuhanov/regf/blob/master/Windows%20registry%20file%20format%20specification.md#types-of-files']
+---
 name: WindowsSystemRegistryFiles
 doc: Windows system Registry files.
 sources:
