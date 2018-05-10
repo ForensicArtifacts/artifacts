@@ -1868,7 +1868,7 @@ urls: ['https://github.com/msuhanov/regf/blob/master/Windows%20registry%20file%2
 name: WindowsSystemRegistryTransactionLogFilesBackup
 doc: |
   Backup of Windows system Registry transaction log files.
-  
+
   These files have been observed to be typically 0 byte in size.
 sources:
 - type: FILE
