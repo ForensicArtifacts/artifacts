@@ -15,8 +15,11 @@ urls:
 - 'https://support.microsoft.com/en-us/kb/929200'
 - 'https://en.wikipedia.org/wiki/Active_Desktop'
 ---
-name: WindowsActivityCache
-doc: Windows activity cache SQLite database.
+name: WindowsActivitiesCache
+doc: |
+  Windows activities cache SQLite database.
+
+  This file is available since Windows 10 and version 1803.
 sources:
 - type: FILE
   attributes:
