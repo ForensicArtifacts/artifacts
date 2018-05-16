@@ -30,6 +30,7 @@ supported_os: [Windows]
 urls:
 - 'http://cyberforensicator.com/2018/05/06/windows-10-timeline-forensic-artefacts/'
 - 'https://cclgroupltd.com/windows-10-timeline-forensic-artefacts/'
+- 'https://salt4n6.com/2018/05/03/windows-10-timeline-forensic-artefacts/amp/'
 ---
 name: WindowsAlternateShell
 doc: Alternate Shell to be run via Userinit.
