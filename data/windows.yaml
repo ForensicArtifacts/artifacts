@@ -15,6 +15,22 @@ urls:
 - 'https://support.microsoft.com/en-us/kb/929200'
 - 'https://en.wikipedia.org/wiki/Active_Desktop'
 ---
+name: WindowsActivitiesCache
+doc: |
+  Windows activities cache SQLite database.
+
+  This file is available since Windows 10 and version 1803.
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%\AppData\Local\ConnectedDevicesPlatform\L.%%users.username%%\ActivitiesCache.db']
+    separator: '\'
+labels: [Users]
+supported_os: [Windows]
+urls:
+- 'https://cclgroupltd.com/windows-10-timeline-forensic-artefacts/'
+- 'https://salt4n6.com/2018/05/03/windows-10-timeline-forensic-artefacts/amp/'
+---
 name: WindowsAlternateShell
 doc: Alternate Shell to be run via Userinit.
 sources:
