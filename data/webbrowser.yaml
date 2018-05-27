@@ -305,12 +305,15 @@ doc: |
   Microsoft Internet Explorer (MSIE) browser cache.
 
   * MSIE 4 - 9 Temporary Internet files.
+  * MSIE 10 INetCache files.
 sources:
 - type: FILE
   attributes:
     paths:
       - '%%users.localappdata%%\Microsoft\Windows\Temporary Internet Files\Content.IE5\*\*'
       - '%%users.localappdata%%\Microsoft\Windows\Temporary Internet Files\Low\Content.IE5\*\*'
+      - '%%users.localappdata%%\Microsoft\Windows\INetCache\IE\*\*'
+      - '%%users.localappdata%%\Microsoft\Windows\INetCache\Low\*\*'
     separator: '\'
 labels: [Browser]
 supported_os: [Windows]
