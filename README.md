@@ -11,9 +11,9 @@ follow the specfication.
 
 ### Project status
 
-[Travis-CI](https://travis-ci.org/) | [AppVeyor](https://ci.appveyor.com) | [Coveralls](https://coveralls.io/)
+[Travis-CI](https://travis-ci.org/) | [AppVeyor](https://ci.appveyor.com) | [Codecov](https://codecov.io/)
 --- | --- | --- 
-[![Build Status](https://travis-ci.org/ForensicArtifacts/artifacts.svg?branch=master)](https://travis-ci.org/ForensicArtifacts/artifacts) | [![Build status](https://ci.appveyor.com/api/projects/status/3yark6bipveg55e0?svg=true)](https://ci.appveyor.com/project/joachimmetz/artifacts) | [![Coverage Status](https://img.shields.io/coveralls/ForensicArtifacts/artifacts.svg)](https://coveralls.io/r/ForensicArtifacts/artifacts?branch=master)
+[![Build Status](https://travis-ci.org/ForensicArtifacts/artifacts.svg?branch=master)](https://travis-ci.org/ForensicArtifacts/artifacts) | [![Build status](https://ci.appveyor.com/api/projects/status/3yark6bipveg55e0?svg=true)](https://ci.appveyor.com/project/joachimmetz/artifacts) | [![codecov](https://codecov.io/gh/ForensicArtifacts/artifacts/branch/master/graph/badge.svg)](https://codecov.io/gh/ForensicArtifacts/artifacts)
 
 
 ## Artifact Definitions
