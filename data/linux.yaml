@@ -266,6 +266,14 @@ sources:
 labels: [Logs]
 supported_os: [Linux]
 ---
+name: LinuxLastlogFile
+doc: Linux lastlog file.
+sources:
+- type: FILE
+  attributes: {paths: ['/var/log/lastlog']}
+labels: [Logs, Authentication]
+supported_os: [Linux]
+---
 name: LinuxLSBInit
 doc: Linux LSB-style init scripts.
 sources:
@@ -454,14 +462,28 @@ sources:
 labels: [Configuration Files, System]
 supported_os: [Linux]
 ---
+name: LinuxUtmpFiles
+doc: Linux btmp, utmp and wtmp login record files.
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '/var/log/btmp'
+      - '/var/log/wtmp'
+      - '/var/run/utmp'
+labels: [Logs, Authentication]
+supported_os: [Linux]
+urls: ['https://github.com/libyal/dtformats/blob/master/documentation/Utmp%20login%20records%20format.asciidoc']
+---
 name: LinuxWtmp
-doc: Linux wtmp file.
+doc: Linux wtmp login record file
 sources:
 - type: FILE
   attributes: {paths: ['/var/log/wtmp']}
 labels: [Logs, Authentication]
 provides: [users.username, users.last_logon]
 supported_os: [Linux]
+urls: ['https://github.com/libyal/dtformats/blob/master/documentation/Utmp%20login%20records%20format.asciidoc']
 ---
 name: LinuxXinetd
 doc: Linux xinetd configurations.
