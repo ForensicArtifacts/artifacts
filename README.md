@@ -18,7 +18,7 @@ follow the specfication.
 
 ## Artifact Definitions
 
-The artifact definitions are in the [definitions directory](https://github.com/ForensicArtifacts/artifacts/tree/master/definitions) and the format is described in detail in the [Style Guide](https://github.com/ForensicArtifacts/artifacts/blob/master/docs/Artifacts%20definition%20format%20and%20style%20guide.asciidoc).
+The artifact definitions can be found in the [data directory](https://github.com/ForensicArtifacts/artifacts/tree/master/data) and the format is described in detail in the [Style Guide](https://github.com/ForensicArtifacts/artifacts/blob/master/docs/Artifacts%20definition%20format%20and%20style%20guide.asciidoc).
 
 As of 2015-11-20 the repository contains:
 
