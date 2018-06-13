@@ -107,13 +107,18 @@ class ArtifactDefinitionsValidator(object):
         for source in artifact_definition.sources:
           if source.type_indicator in (
               definitions.TYPE_INDICATOR_FILE, definitions.TYPE_INDICATOR_PATH):
-            if source.supported_os == [definitions.SUPPORTED_OS_WINDOWS]:
-              if source.separator != '\\':
-                logging.warning((
-                    'Missing path separator in artifact definition: {0:s} in '
-                    'file: {1:s}').format(
-                        artifact_definition.name, filename))
-                result = False
+            if definitions.SUPPORTED_OS_WINDOWS in source.supported_os:
+              for path in source.paths:
+                number_of_forward_slashes = path.count('/')
+                number_of_backslashes = path.count('\\')
+                if (number_of_forward_slashes < number_of_backslashes and
+                    source.separator != '\\'):
+                  logging.warning((
+                      'Incorrect path separator: {0:s} in path: {1:s} defined '
+                      'by artifact definition: {2:s} in file: {3:s}').format(
+                          source.separator, path, artifact_definition.name,
+                          filename))
+                  result = False
 
           elif source.type_indicator == (
               definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_KEY):
