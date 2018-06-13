@@ -307,6 +307,14 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Autorun_Locations'
 ---
+name: MacOSLastlogFile
+doc: Mac OS X lastlog file.
+sources:
+- type: FILE
+  attributes: {paths: ['/var/log/lastlog']}
+labels: [Logs, Authentication]
+supported_os: [Darwin]
+---
 name: MacOSLoadedKexts
 doc: MacOS Loaded Kernel Extensions.
 sources:
@@ -690,6 +698,17 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#System_Settings_and_Informations'
 ---
+name: MacOSTimeMachinePlistFile
+doc: Time Machine information plist file
+sources:
+- type: FILE
+  attributes: {paths: ['/Library/Preferences/com.apple.TimeMachine.plist']}
+labels: [System]
+supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#System_Preferences'
+---
 name: MacOSUpdate
 doc: Software Update
 sources:
@@ -870,17 +889,6 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#User.27s_Accounts'
 ---
-name: MacOSTimeMachinePlistFile
-doc: Time Machine information plist file
-sources:
-- type: FILE
-  attributes: {paths: ['/Library/Preferences/com.apple.TimeMachine.plist']}
-labels: [System]
-supported_os: [Darwin]
-urls:
-- 'http://forensicswiki.org/wiki/Mac_OS_X'
-- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#System_Preferences'
----
 name: MacOSUserTrash
 doc: User Trash Folder
 sources:
@@ -891,6 +899,27 @@ supported_os: [Darwin]
 urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Misc.'
+---
+name: MacOSUtmpFile
+doc: Mac OS X utmp and wmtp login record file.
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '/var/log/wtmp'
+      - '/var/run/utmp'
+labels: [Logs, Authentication]
+supported_os: [Darwin]
+urls: ['https://github.com/libyal/dtformats/blob/master/documentation/Utmp%20login%20records%20format.asciidoc']
+---
+name: MacOSUtmpxFile
+doc: Mac OS X 10.5 utmpx login record file.
+sources:
+- type: FILE
+  attributes: {paths: ['/var/run/utmpx']}
+labels: [Logs, Authentication]
+supported_os: [Darwin]
+urls: ['https://github.com/libyal/dtformats/blob/master/documentation/Utmp%20login%20records%20format.asciidoc']
 ---
 name: MacOSWirelessNetworks
 doc: Remembered Wireless Networks
