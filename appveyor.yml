@@ -11,7 +11,14 @@ install:
 - cmd: "%PYTHON%\\Scripts\\pip.exe install pywin32 WMI"
 - cmd: "%PYTHON%\\python.exe %PYTHON%\\Scripts\\pywin32_postinstall.py -install"
 - cmd: git clone https://github.com/log2timeline/l2tdevtools.git ..\l2tdevtools
-- cmd: mkdir dependencies && set PYTHONPATH=..\l2tdevtools && "%PYTHON%\\python.exe" ..\l2tdevtools\tools\update.py --download-directory dependencies --machine-type x86 --msi-targetdir "%PYTHON%" --track dev PyYAML funcsigs mock pbr six yapf
+- cmd: if [%TARGET%]==[python27] (
+    mkdir dependencies &&
+    set PYTHONPATH=..\l2tdevtools &&
+    "%PYTHON%\\python.exe" ..\l2tdevtools\tools\update.py --download-directory dependencies --machine-type x86 --msi-targetdir "%PYTHON%" --track dev PyYAML funcsigs mock pbr six yapf )
+- cmd: if [%TARGET%]==[python36] (
+    mkdir dependencies &&
+    set PYTHONPATH=..\l2tdevtools &&
+    "%PYTHON%\\python.exe" ..\l2tdevtools\tools\update.py --download-directory dependencies --machine-type x86 --msi-targetdir "%PYTHON%" --track dev PyYAML funcsigs mock pbr six yapf )
 
 build: off
 

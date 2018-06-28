@@ -101,8 +101,10 @@ class ArtifactDefinitionsRegistry(object):
     Returns:
       ArtifactDefinition: an artifact definition or None if not available.
     """
-    if name:
-      return self._artifact_definitions.get(name.lower(), None)
+    if not name:
+      return None
+
+    return self._artifact_definitions.get(name.lower(), None)
 
   def GetDefinitions(self):
     """Retrieves the artifact definitions.
