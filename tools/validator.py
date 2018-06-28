@@ -41,13 +41,13 @@ class ArtifactDefinitionsValidator(object):
     result = True
     key_path = key_path.upper()
 
-    if key_path.startswith(u'%%CURRENT_CONTROL_SET%%'):
+    if key_path.startswith('%%CURRENT_CONTROL_SET%%'):
       result = False
       logging.warning((
-          u'Artifact definition: {0:s} in file: {1:s} contains Windows '
-          u'Registry key path that starts with '
-          u'%%CURRENT_CONTROL_SET%%. Replace %%CURRENT_CONTROL_SET%% with '
-          u'HKEY_LOCAL_MACHINE\\System\\CurrentControlSet').format(
+          'Artifact definition: {0:s} in file: {1:s} contains Windows '
+          'Registry key path that starts with '
+          '%%CURRENT_CONTROL_SET%%. Replace %%CURRENT_CONTROL_SET%% with '
+          'HKEY_LOCAL_MACHINE\\System\\CurrentControlSet').format(
               artifact_definition.name, filename))
 
     return result
@@ -72,10 +72,10 @@ class ArtifactDefinitionsValidator(object):
     intersection = self._artifact_registry_key_paths.intersection(
         set(source.keys))
     if intersection:
-      duplicate_key_paths = u'\n'.join(intersection)
+      duplicate_key_paths = '\n'.join(intersection)
       logging.warning((
-          u'Artifact definition: {0:s} in file: {1:s} has duplicate '
-          u'Registry key paths:\n{2:s}').format(
+          'Artifact definition: {0:s} in file: {1:s} has duplicate '
+          'Registry key paths:\n{2:s}').format(
               artifact_definition.name, filename, duplicate_key_paths))
       result = True
 
@@ -100,12 +100,27 @@ class ArtifactDefinitionsValidator(object):
           self._artifact_registry.RegisterDefinition(artifact_definition)
         except KeyError:
           logging.warning(
-              u'Duplicate artifact definition: {0:s} in file: {1:s}'.format(
+              'Duplicate artifact definition: {0:s} in file: {1:s}'.format(
                   artifact_definition.name, filename))
           result = False
 
         for source in artifact_definition.sources:
-          if source.type_indicator == (
+          if source.type_indicator in (
+              definitions.TYPE_INDICATOR_FILE, definitions.TYPE_INDICATOR_PATH):
+            if definitions.SUPPORTED_OS_WINDOWS in source.supported_os:
+              for path in source.paths:
+                number_of_forward_slashes = path.count('/')
+                number_of_backslashes = path.count('\\')
+                if (number_of_forward_slashes < number_of_backslashes and
+                    source.separator != '\\'):
+                  logging.warning((
+                      'Incorrect path separator: {0:s} in path: {1:s} defined '
+                      'by artifact definition: {2:s} in file: {3:s}').format(
+                          source.separator, path, artifact_definition.name,
+                          filename))
+                  result = False
+
+          elif source.type_indicator == (
               definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_KEY):
 
             # Exempt the legacy file from duplicate checking because it has
@@ -125,12 +140,12 @@ class ArtifactDefinitionsValidator(object):
 
             for key_value_pair in source.key_value_pairs:
               if not self._CheckRegistryKeyPath(
-                  filename, artifact_definition, key_value_pair[u'key']):
+                  filename, artifact_definition, key_value_pair['key']):
                 result = False
 
     except errors.FormatError as exception:
       logging.warning(
-          u'Unable to validate file: {0:s} with error: {1!s}'.format(
+          'Unable to validate file: {0:s} with error: {1!s}'.format(
               filename, exception))
       result = False
 

@@ -20,6 +20,7 @@ sources:
     paths:
       - '%%users.appdata%%\Dropbox\*.db*'
       - '%%users.localappdata%%\Dropbox\*.db*'
+    separator: '\'
   supported_os: [Windows]
 - type: FILE
   attributes:
@@ -42,6 +43,7 @@ sources:
       - '%%users.localappdata%%\Google\Drive\user_default\snapshot.db'
       - '%%users.localappdata%%\Google\Drive\user_default\sync_config.db'
       - '%%users.localappdata%%\Google\Drive\user_default\sync_config.log*'
+    separator: '\'
   supported_os: [Windows]
 - type: FILE
   attributes:
@@ -53,7 +55,7 @@ sources:
       - '%%users.homedir%%/Library/Application Support/Google/Drive/user_default/sync_config.db'
       - '%%users.homedir%%/Library/Application Support/Google/Drive/user_default/sync_config.log*'
   supported_os: [Darwin]
-supported_os: [Darwin,Windows]
+supported_os: [Darwin, Windows]
 labels: [Cloud Storage]
 urls: ['http://www.forensicswiki.org/wiki/Google_Drive']
 ---
@@ -71,6 +73,7 @@ sources:
       - '%%users.localappdata%%\Microsoft\SkyDrive\settings\ApplicationSettings.xml'
       - '%%users.localappdata%%\Microsoft\SkyDrive\settings\*.dat'
       - '%%users.localappdata%%\Microsoft\SkyDrive\settings\*.ini'
+    separator: '\'
   supported_os: [Windows]
 supported_os: [Windows]
 labels: [Cloud Storage]
