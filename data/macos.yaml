@@ -98,6 +98,21 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#System_Preferences'
 ---
+name: MacOSCoreAnalyticsFiles
+doc: macOS 10.13 (High Sierra) CoreAnalytics log files.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/Library/Logs/DiagnosticReports/*.core_analytics'
+    - '/private/var/db/analyticsd/aggregates/*'
+labels: [Logs, System]
+supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X#Diagnostic_Reports'
+- 'https://www.crowdstrike.com/blog/i-know-what-you-did-last-month-a-new-artifact-of-execution-on-macos-10-13/'
+---
 name: MacOSCronTabs
 doc: Cron tabs
 sources:
