@@ -257,10 +257,11 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '%%users.homedir%%/.cache/.mozilla/firefox/*.default/Cache/*'
-      - '%%users.homedir%%/.cache/.mozilla/firefox/*.default/cache2/*'
-      - '%%users.homedir%%/.cache/.mozilla/firefox/*.default/cache2/doomed/*'
-      - '%%users.homedir%%/.cache/.mozilla/firefox/*.default/cache2/entries/*'
+      - '%%users.homedir%%/.mozilla/firefox/*.default/Cache/*'
+      - '%%users.homedir%%/.cache/mozilla/firefox/*.default/Cache/*'
+      - '%%users.homedir%%/.cache/mozilla/firefox/*.default/cache2/*'
+      - '%%users.homedir%%/.cache/mozilla/firefox/*.default/cache2/doomed/*'
+      - '%%users.homedir%%/.cache/mozilla/firefox/*.default/cache2/entries/*'
   supported_os: [Linux]
 supported_os: [Windows,Darwin,Linux]
 labels: [Browser]
