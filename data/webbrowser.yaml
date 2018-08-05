@@ -82,6 +82,7 @@ sources:
 - type: FILE
   attributes:
     paths:
+      - '%%users.homedir%%/.cache/google-chrome/Cache/*'
       - '%%users.homedir%%/.cache/google-chrome/*/Cache/*'
       - '%%users.homedir%%/.cache/google-chrome/*/Media Cache/*'
       - '%%users.homedir%%/.cache/google-chrome/PnaclTranslationCache/*'
@@ -89,6 +90,7 @@ sources:
       - '%%users.homedir%%/.config/google-chrome/*/Cache/*'
       - '%%users.homedir%%/.config/google-chrome/*/Media Cache/*'
       - '%%users.homedir%%/.config/google-chrome/*/GPUCache/*'
+      - '%%users.homedir%%/.cache/chromium/Cache/*'
       - '%%users.homedir%%/.cache/chromium/*/Cache/*'
       - '%%users.homedir%%/.cache/chromium/*/Media Cache/*'
       - '%%users.homedir%%/.cache/chromium/PnaclTranslationCache/*'
@@ -99,7 +101,7 @@ sources:
   supported_os: [Linux]
 supported_os: [Windows,Darwin,Linux]
 labels: [Browser]
-urls: ['http://www.forensicswiki.org/wiki/Google_Chrome']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/webbrowser/ChromeCache.md']
 ---
 name: ChromeHistory
 doc: Chrome browser history.
