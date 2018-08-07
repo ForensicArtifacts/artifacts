@@ -157,9 +157,9 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '/%%users.homedir%%/.bash_history'
-      - '/%%users.homedir%%/.sh_history'
-      - '/%%users.homedir%%/.zhistory'
-      - '/%%users.homedir%%/.zsh_history'
+      - '%%users.homedir%%/.bash_history'
+      - '%%users.homedir%%/.sh_history'
+      - '%%users.homedir%%/.zhistory'
+      - '%%users.homedir%%/.zsh_history'
 labels: [History Files]
 supported_os: [Linux, Darwin]
