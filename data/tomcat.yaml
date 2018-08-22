@@ -1,0 +1,73 @@
+# Apache Tomcat artifacts.
+
+name: TomcatFiles
+doc: Key Tomcat files.
+sources:
+- type: ARTIFACT_GROUP
+  attributes:
+    names:
+      - 'TomcatPasswordFile'
+      - 'TomcatLogFile'
+labels: [Software]
+supported_os: [Darwin,Linux,Windows]
+---
+name: TomcatPasswordFile
+doc: |
+  Tomcat password files.
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '%%environ_programfiles%%\Apache Software Foundation\Tomcat*\conf\tomcat-users.xml'
+      - '%%environ_programfiles86%%\Apache Software Foundation\Tomcat*\conf\tomcat-users.xml'
+      - '%%environ_allusersappdata%%\Apache Software Foundation\Tomcat*\conf\tomcat-users.xml'
+    separator: '\'
+  supported_os: [Windows]
+- type: FILE
+  attributes:
+    paths:
+      - '/usr/local/tomcat*/conf/tomcat-users.xml'
+      - '/opt/tomcat*/conf/tomcat-users.xml'
+      - '/usr/share/tomcat*/conf/tomcat-users.xml'
+      - '/var/lib/tomcat*/conf/tomcat-users.xml'
+  supported_os: [Linux]
+- type: FILE
+  attributes:
+    paths:
+      - '/Library/Tomcat/conf/tomcat-users.xml'
+      - '/usr/local/apache-tomcat-*/conf/tomcat-users.xml'
+      - '/usr/local/Cellar/tomcat/*/conf/tomcat-users.xml' # Homebrew
+  supported_os: [Darwin]
+supported_os: [Windows,Linux,Darwin]
+urls: ['https://tomcat.apache.org/tomcat-8.0-doc/manager-howto.html#Configuring_Manager_Application_Access']
+---
+name: TomcatLogFile
+doc: |
+  Tomcat log files.
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '%%environ_programfiles%%\Apache Software Foundation\Tomcat*\logs\**'
+      - '%%environ_programfiles86%%\Apache Software Foundation\Tomcat*\logs\**'
+      - '%%environ_allusersappdata%%\Apache Software Foundation\Tomcat*\logs\**'
+    separator: '\'
+  supported_os: [Windows]
+- type: FILE
+  attributes:
+    paths:
+      - '/usr/local/tomcat*/logs/**'
+      - '/opt/tomcat*/logs/**'
+      - '/usr/share/tomcat*/logs/**'
+      - '/var/lib/tomcat*/logs/**'
+  supported_os: [Linux]
+- type: FILE
+  attributes:
+    paths:
+      - '/Library/Tomcat/logs/**'
+      - '/usr/local/apache-tomcat*/logs/**'
+      - '/usr/local/Cellar/tomcat*/logs/**' # Homebrew
+  supported_os: [Darwin]
+supported_os: [Windows,Linux,Darwin]
+urls: [https://tomcat.apache.org/tomcat-8.0-doc/config/valve.html#Access_Logging,
+       https://tomcat.apache.org/tomcat-8.0-doc/logging.html]
