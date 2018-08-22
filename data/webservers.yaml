@@ -1,0 +1,21 @@
+# Webserver access logs
+
+name:  NginxAccessLogs
+doc: Location where nginx access logs are stored
+sources:
+- type: FILE
+  paths:
+    - '/var/log/nginx/access.log*'
+labels: [Nginx, Logs]
+supported_os: [Linux]
+---
+name:  ApacheAccessLogs
+doc: Location where Apache access logs are stored
+sources:
+- type: FILE
+  paths:
+    - '/var/log/apache/access.log*'
+    - '/var/log/apache2/access.log*'
+    - '/var/log/httpd/access.log'
+labels: [Apache, Logs]
+supported_os: [Linux]
