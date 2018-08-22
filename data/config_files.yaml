@@ -23,3 +23,11 @@ sources:
   attributes: {paths: ['%%users.homedir%%/.ssh/config']}
 labels: [Configuration Files]
 supported_os: [Linux, Darwin]
+---
+name:  WordpressConfigFile
+doc: WordPress configuration file
+sources:
+- type: FILE
+  attributes: {paths: ['/**/wp-config.php']}
+labels: [Configuration Files]
+supported_os: [Linux, Darwin]
