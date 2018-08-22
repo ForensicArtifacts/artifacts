@@ -36,7 +36,8 @@ LABELS = {
     'Rekall': 'Artifacts using the Rekall memory forensics framework.',
     'Software': 'Installed software.',
     'System': 'Core system artifacts.',
-    'Users': 'Information about users.'
+    'Users': 'Information about users.',
+    'Docker': 'Docker artifacts',
 }
 
 SUPPORTED_OS_DARWIN = 'Darwin'
