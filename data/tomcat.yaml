@@ -48,25 +48,55 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '%%environ_programfiles%%\Apache Software Foundation\Tomcat*\logs\**'
-      - '%%environ_programfiles86%%\Apache Software Foundation\Tomcat*\logs\**'
-      - '%%environ_allusersappdata%%\Apache Software Foundation\Tomcat*\logs\**'
+      - '%%environ_programfiles%%\Apache Software Foundation\Tomcat*\logs\catalina.out'
+      - '%%environ_programfiles86%%\Apache Software Foundation\Tomcat*\logs\catalina.out'
+      - '%%environ_allusersappdata%%\Apache Software Foundation\Tomcat*\logs\catalina.out'
+      - '%%environ_programfiles%%\Apache Software Foundation\Tomcat*\logs\**\catalina.out'
+      - '%%environ_programfiles86%%\Apache Software Foundation\Tomcat*\logs\**\catalina.out'
+      - '%%environ_allusersappdata%%\Apache Software Foundation\Tomcat*\logs\**\catalina.out'
+      - '%%environ_programfiles%%\Apache Software Foundation\Tomcat*\logs\access_log*'
+      - '%%environ_programfiles86%%\Apache Software Foundation\Tomcat*\logs\access_log*'
+      - '%%environ_allusersappdata%%\Apache Software Foundation\Tomcat*\logs\access_log*'
+      - '%%environ_programfiles%%\Apache Software Foundation\Tomcat*\logs\**\access_log*'
+      - '%%environ_programfiles86%%\Apache Software Foundation\Tomcat*\logs\**\access_log*'
+      - '%%environ_allusersappdata%%\Apache Software Foundation\Tomcat*\logs\**\access_log*'
     separator: '\'
   supported_os: [Windows]
 - type: FILE
   attributes:
     paths:
-      - '/usr/local/tomcat*/logs/**'
-      - '/opt/tomcat*/logs/**'
-      - '/usr/share/tomcat*/logs/**'
-      - '/var/lib/tomcat*/logs/**'
+      - '/usr/local/tomcat*/logs/catalina.out'
+      - '/opt/tomcat*/logs/catalina.out'
+      - '/usr/share/tomcat*/logs/catalina.out'
+      - '/var/lib/tomcat*/logs/catalina.out'
+      - '/usr/local/tomcat*/logs/access_log*'
+      - '/opt/tomcat*/logs/access_log*'
+      - '/usr/share/tomcat*/logs/access_log*'
+      - '/var/lib/tomcat*/logs/access_log*'
+      - '/usr/local/tomcat*/logs/**/catalina.out'
+      - '/opt/tomcat*/logs/**/catalina.out'
+      - '/usr/share/tomcat*/logs/**/catalina.out'
+      - '/var/lib/tomcat*/logs/**/catalina.out'
+      - '/usr/local/tomcat*/logs/**/access_log*'
+      - '/opt/tomcat*/logs/**/access_log*'
+      - '/usr/share/tomcat*/logs/**/access_log*'
+      - '/var/lib/tomcat*/logs/**/access_log*'
   supported_os: [Linux]
 - type: FILE
   attributes:
     paths:
-      - '/Library/Tomcat/logs/**'
-      - '/usr/local/apache-tomcat*/logs/**'
-      - '/usr/local/Cellar/tomcat*/logs/**' # Homebrew
+      - '/Library/Tomcat/logs/catalina.out'
+      - '/usr/local/apache-tomcat*/logs/catalina.out'
+      - '/usr/local/Cellar/tomcat*/logs/catalina.out' # Homebrew
+      - '/Library/Tomcat/logs/**/catalina.out'
+      - '/usr/local/apache-tomcat*/logs/**/catalina.out'
+      - '/usr/local/Cellar/tomcat*/logs/**/catalina.out' # Homebrew
+      - '/Library/Tomcat/logs/access_log*'
+      - '/usr/local/apache-tomcat*/logs/access_log*'
+      - '/usr/local/Cellar/tomcat*/logs/access_log*' # Homebrew
+      - '/Library/Tomcat/logs/**/access_log*'
+      - '/usr/local/apache-tomcat*/logs/**/access_log*'
+      - '/usr/local/Cellar/tomcat*/logs/**/access_log*' # Homebrew
   supported_os: [Darwin]
 supported_os: [Windows,Linux,Darwin]
 urls: ['https://tomcat.apache.org/tomcat-8.0-doc/config/valve.html#Access_Logging', 'https://tomcat.apache.org/tomcat-8.0-doc/logging.html']
