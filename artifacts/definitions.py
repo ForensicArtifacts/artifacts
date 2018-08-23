@@ -19,6 +19,7 @@ LABELS = {
     'Cloud': 'Cloud applications artifacts.',
     'Cloud Storage': 'Cloud storage artifacts.',
     'Configuration Files': 'Configuration files artifacts.',
+    'Docker': 'Docker artifacts.',
     'Execution': 'Contain execution events.',
     'ExternalAccount': (
         'Information about any user accounts e.g. username, '
@@ -37,7 +38,6 @@ LABELS = {
     'Software': 'Installed software.',
     'System': 'Core system artifacts.',
     'Users': 'Information about users.',
-    'Docker': 'Docker artifacts',
 }
 
 SUPPORTED_OS_DARWIN = 'Darwin'

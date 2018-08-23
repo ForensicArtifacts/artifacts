@@ -1,7 +1,7 @@
 # Docker artifacts
 
 name:  DockerContainerLogs
-doc: Location where stdoutput from containers is logged
+doc: Location where stdout and stderr from containers is logged
 sources:
 - type: FILE
   attributes: {paths: ['/var/lib/docker/containers/*/*-json.log*']}
