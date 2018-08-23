@@ -69,5 +69,4 @@ sources:
       - '/usr/local/Cellar/tomcat*/logs/**' # Homebrew
   supported_os: [Darwin]
 supported_os: [Windows,Linux,Darwin]
-urls: [https://tomcat.apache.org/tomcat-8.0-doc/config/valve.html#Access_Logging,
-       https://tomcat.apache.org/tomcat-8.0-doc/logging.html]
+urls: ['https://tomcat.apache.org/tomcat-8.0-doc/config/valve.html#Access_Logging', 'https://tomcat.apache.org/tomcat-8.0-doc/logging.html']
