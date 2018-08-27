@@ -1,0 +1,9 @@
+# Docker artifacts
+
+name:  DockerContainerLogs
+doc: Location where stdout and stderr from containers is logged
+sources:
+- type: FILE
+  attributes: {paths: ['/var/lib/docker/containers/*/*-json.log*']}
+labels: [Docker, Logs]
+supported_os: [Linux]
