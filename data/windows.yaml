@@ -900,6 +900,16 @@ supported_os: [Windows]
 urls:
 - 'http://www.geoffchappell.com/studies/windows/shell/shell32/classes/printers.htm'
 ---
+name: WindowsFirewallRules
+doc: List Windows Firewall rules.
+sources:
+- type: COMMAND
+  attributes:
+    args: ["advfirewall", "firewall", "show", "rule", "name=all"]
+    cmd: netsh.exe
+labels: [System]
+supported_os: [Windows]
+---
 name: WindowsFileTypeAutorunAssociations
 doc: |
   Registry value for what application class identifier (CLSID) to launch for a file extension.
