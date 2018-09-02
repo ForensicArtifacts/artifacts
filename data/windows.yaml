@@ -910,6 +910,18 @@ sources:
 labels: [System]
 supported_os: [Windows]
 ---
+name: WindowsFirewallLog
+doc: Windows Firewall default logfile
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '%%environ_systemroot%%\System32\logfiles\firewall\pfirewall.log'
+    separator: '\'
+labels: [System]
+supported_os: [Windows]
+urls: ['https://docs.microsoft.com/en-us/windows/access-protection/windows-firewall/configure-the-windows-firewall-log']
+---
 name: WindowsFileTypeAutorunAssociations
 doc: |
   Registry value for what application class identifier (CLSID) to launch for a file extension.
