@@ -931,8 +931,7 @@ doc: Windows Firewall default logfile
 sources:
 - type: FILE
   attributes:
-    paths:
-      - '%%environ_systemroot%%\System32\logfiles\firewall\pfirewall.log'
+    paths: ['%%environ_systemroot%%\System32\logfiles\firewall\pfirewall.log']
     separator: '\'
 labels: [System]
 supported_os: [Windows]
