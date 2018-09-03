@@ -900,6 +900,22 @@ supported_os: [Windows]
 urls:
 - 'http://www.geoffchappell.com/studies/windows/shell/shell32/classes/printers.htm'
 ---
+name: WindowsFileTypeAutorunAssociations
+doc: |
+  Registry value for what application class identifier (CLSID) to launch for a file extension.
+
+  Extension subkeys start with a dot.
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
+      - 'HKEY_LOCAL_MACHINE\Software\Classes\.*'
+      - 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\.*'
+      - 'HKEY_USERS\%%users.sid%%\Software\Classes\.*'
+      - 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\.*'
+supported_os: [Windows]
+urls: ['https://msdn.microsoft.com/en-us/library/windows/desktop/ms678415(v=vs.85).aspx']
+---
 name: WindowsFirewallRules
 doc: List Windows Firewall rules.
 sources:
@@ -921,22 +937,6 @@ sources:
 labels: [System]
 supported_os: [Windows]
 urls: ['https://docs.microsoft.com/en-us/windows/access-protection/windows-firewall/configure-the-windows-firewall-log']
----
-name: WindowsFileTypeAutorunAssociations
-doc: |
-  Registry value for what application class identifier (CLSID) to launch for a file extension.
-
-  Extension subkeys start with a dot.
-sources:
-- type: REGISTRY_KEY
-  attributes:
-    keys:
-      - 'HKEY_LOCAL_MACHINE\Software\Classes\.*'
-      - 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\.*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Classes\.*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\.*'
-supported_os: [Windows]
-urls: ['https://msdn.microsoft.com/en-us/library/windows/desktop/ms678415(v=vs.85).aspx']
 ---
 name: WindowsGroupPolicyScripts
 doc: Windows group policy scripts
