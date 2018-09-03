@@ -917,7 +917,7 @@ supported_os: [Windows]
 urls: ['https://msdn.microsoft.com/en-us/library/windows/desktop/ms678415(v=vs.85).aspx']
 ---
 name: WindowsFirewallRules
-doc: List Windows Firewall rules.
+doc: Command to list Windows Firewall rules.
 sources:
 - type: COMMAND
   attributes:
