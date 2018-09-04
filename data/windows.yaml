@@ -916,6 +916,27 @@ sources:
 supported_os: [Windows]
 urls: ['https://msdn.microsoft.com/en-us/library/windows/desktop/ms678415(v=vs.85).aspx']
 ---
+name: WindowsFirewallLogFile
+doc: Windows Firewall default logfile
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%environ_systemroot%%\System32\logfiles\firewall\pfirewall.log']
+    separator: '\'
+labels: [System]
+supported_os: [Windows]
+urls: ['https://docs.microsoft.com/en-us/windows/access-protection/windows-firewall/configure-the-windows-firewall-log']
+---
+name: WindowsFirewallRules
+doc: Command to list Windows Firewall rules.
+sources:
+- type: COMMAND
+  attributes:
+    args: ["advfirewall", "firewall", "show", "rule", "name=all"]
+    cmd: netsh.exe
+labels: [System]
+supported_os: [Windows]
+---
 name: WindowsGroupPolicyScripts
 doc: Windows group policy scripts
 sources:
