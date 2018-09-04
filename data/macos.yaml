@@ -105,7 +105,7 @@ sources:
   attributes:
     paths:
     - '/Library/Logs/DiagnosticReports/*.core_analytics'
-    - '/private/var/db/analyticsd/aggregates/*'
+    - '/var/db/analyticsd/aggregates/*'
 labels: [Logs, System]
 supported_os: [Darwin]
 urls:
@@ -344,10 +344,7 @@ name: MacOSLocalTime
 doc: Local time zone configuation
 sources:
 - type: FILE
-  attributes:
-    paths:
-      - '/etc/localtime'
-      - '/private/etc/localtime'
+  attributes: {paths: ['/etc/localtime']}
 labels: [System]
 supported_os: [Darwin]
 urls:
@@ -626,10 +623,7 @@ name: MacOSSleepimageFile
 doc: Sleepimage file which contains the content of memory before going to sleep
 sources:
 - type: FILE
-  attributes:
-    paths:
-    - '/private/var/vm/sleepimage'
-    - '/var/vm/sleepimage'
+  attributes: {paths: ['/var/vm/sleepimage']}
 labels: [System]
 supported_os: [Darwin]
 urls:
@@ -838,10 +832,7 @@ name: MacOSUserPasswordHashesPlistFiles
 doc: User password hashes plist files
 sources:
 - type: FILE
-  attributes:
-    paths:
-      - '/var/db/dslocal/nodes/Default/users/*.plist'
-      - '/private/var/db/dslocal/nodes/Default/users/*.plist'
+  attributes: {paths: ['/var/db/dslocal/nodes/Default/users/*.plist']}
 labels: [System, Users, Authentication]
 supported_os: [Darwin]
 urls:
