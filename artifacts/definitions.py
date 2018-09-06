@@ -25,6 +25,7 @@ LABELS = {
         'Information about any user accounts e.g. username, '
         'account ID, etc.'),
     'External Media': 'Contain external media data or events e.g. USB drives.',
+    'Hadoop': 'Hadoop artifacts.',
     'IM': 'Instant Messaging / Chat applications artifacts.',
     'iOS': 'Artifacts related to iOS devices connected to the system.',
     'History Files': 'History files artifacts e.g. .bash_history.',

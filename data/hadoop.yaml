@@ -1,0 +1,9 @@
+# Hadoop artifacts
+
+name: HadoopAppRoot
+doc: Location where Hadoop application files are stored
+sources:
+- type: PATH
+  attributes: {paths: ['/hadoop/yarn/system/rmstore/FSRMStateRoot/RMAppRoot/application_*/application_*']}
+labels: [Hadoop]
+supported_os: [Linux]
