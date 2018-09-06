@@ -927,22 +927,22 @@ labels: [System]
 supported_os: [Windows]
 urls: ['https://docs.microsoft.com/en-us/windows/access-protection/windows-firewall/configure-the-windows-firewall-log']
 ---
-name: WindowsFirewallConfiguredRules
-doc: Command to list the configured Windows Firewall rules.
-sources:
-- type: COMMAND
-  attributes:
-    args: ["advfirewall", "firewall", "show", "rule", "name=all"]
-    cmd: netsh.exe
-labels: [System]
-supported_os: [Windows]
----
 name: WindowsFirewallEnabledRules
 doc: Command to list the enabled Windows Firewall rules.
 sources:
 - type: COMMAND
   attributes:
     args: ["advfirewall", "monitor", "show", "firewall", "rule", "name=all"]
+    cmd: netsh.exe
+labels: [System]
+supported_os: [Windows]
+---
+name: WindowsFirewallRules
+doc: Command to list the configured Windows Firewall rules.
+sources:
+- type: COMMAND
+  attributes:
+    args: ["advfirewall", "firewall", "show", "rule", "name=all"]
     cmd: netsh.exe
 labels: [System]
 supported_os: [Windows]
