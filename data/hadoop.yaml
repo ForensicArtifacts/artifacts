@@ -7,4 +7,3 @@ sources:
   attributes: {paths: ['/hadoop/yarn/system/rmstore/FSRMStateRoot/RMAppRoot/application_*/application_*']}
 labels: [Hadoop]
 supported_os: [Linux]
-
