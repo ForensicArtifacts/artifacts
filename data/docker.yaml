@@ -7,7 +7,7 @@ sources:
   attributes: {paths: ['/var/lib/docker/containers/*/*-json.log*']}
 labels: [Docker, Logs]
 supported_os: [Linux]
-
+---
 name:  DockerContainerConfig
 doc: Docker container configuration files
 sources:
