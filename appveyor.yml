@@ -1,24 +1,32 @@
 environment:
   matrix:
   - TARGET: python27
+    MACHINE_TYPE: "x86"
     PYTHON: "C:\\Python27"
+  - TARGET: python27
+    MACHINE_TYPE: "amd64"
+    PYTHON: "C:\\Python27-x64"
   - TARGET: python36
+    MACHINE_TYPE: "x86"
     PYTHON: "C:\\Python36"
+  - TARGET: python36
+    MACHINE_TYPE: "amd64"
+    PYTHON: "C:\\Python36-x64"
 
 install:
 - cmd: '"C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.cmd" /x86 /release'
 - cmd: "%PYTHON%\\python.exe -m pip install --upgrade pip"
-- cmd: "%PYTHON%\\Scripts\\pip.exe install pywin32 WMI"
+- cmd: "%PYTHON%\\python.exe -m pip install pywin32 WMI"
 - cmd: "%PYTHON%\\python.exe %PYTHON%\\Scripts\\pywin32_postinstall.py -install"
 - cmd: git clone https://github.com/log2timeline/l2tdevtools.git ..\l2tdevtools
 - cmd: if [%TARGET%]==[python27] (
     mkdir dependencies &&
     set PYTHONPATH=..\l2tdevtools &&
-    "%PYTHON%\\python.exe" ..\l2tdevtools\tools\update.py --download-directory dependencies --machine-type x86 --msi-targetdir "%PYTHON%" --track dev PyYAML funcsigs mock pbr six yapf )
+    "%PYTHON%\\python.exe" ..\l2tdevtools\tools\update.py --download-directory dependencies --machine-type %MACHINE_TYPE% --msi-targetdir "%PYTHON%" --track dev PyYAML funcsigs mock pbr six yapf )
 - cmd: if [%TARGET%]==[python36] (
     mkdir dependencies &&
     set PYTHONPATH=..\l2tdevtools &&
-    "%PYTHON%\\python.exe" ..\l2tdevtools\tools\update.py --download-directory dependencies --machine-type x86 --msi-targetdir "%PYTHON%" --track dev PyYAML funcsigs mock pbr six yapf )
+    "%PYTHON%\\python.exe" ..\l2tdevtools\tools\update.py --download-directory dependencies --machine-type %MACHINE_TYPE% --msi-targetdir "%PYTHON%" --track dev PyYAML funcsigs mock pbr six )
 
 build: off
 

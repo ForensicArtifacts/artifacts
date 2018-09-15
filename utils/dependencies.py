@@ -18,6 +18,8 @@ class DependencyDefinition(object):
   Attributes:
     dpkg_name (str): name of the dpkg package that provides the dependency.
     is_optional (bool): True if the dependency is optional.
+    l2tbinaries_macos_name (str): name of the l2tbinaries macos package that
+        provides the dependency.
     l2tbinaries_name (str): name of the l2tbinaries package that provides
         the dependency.
     maximum_version (str): maximum supported version.
@@ -25,6 +27,7 @@ class DependencyDefinition(object):
     name (str): name of (the Python module that provides) the dependency.
     pypi_name (str): name of the PyPI package that provides the dependency.
     python2_only (bool): True if the dependency is only supported by Python 2.
+    python3_only (bool): True if the dependency is only supported by Python 3.
     rpm_name (str): name of the rpm package that provides the dependency.
     version_property (str): name of the version attribute or function.
   """
@@ -38,12 +41,14 @@ class DependencyDefinition(object):
     super(DependencyDefinition, self).__init__()
     self.dpkg_name = None
     self.is_optional = False
+    self.l2tbinaries_macos_name = None
     self.l2tbinaries_name = None
     self.maximum_version = None
     self.minimum_version = None
     self.name = name
     self.pypi_name = None
     self.python2_only = False
+    self.python3_only = False
     self.rpm_name = None
     self.version_property = None
 
@@ -54,11 +59,13 @@ class DependencyDefinitionReader(object):
   _VALUE_NAMES = frozenset([
       'dpkg_name',
       'is_optional',
+      'l2tbinaries_macos_name',
       'l2tbinaries_name',
       'maximum_version',
       'minimum_version',
       'pypi_name',
       'python2_only',
+      'python3_only',
       'rpm_name',
       'version_property'])
 
