@@ -1334,6 +1334,22 @@ sources:
 supported_os: [Windows]
 urls: ['https://github.com/libyal/winreg-kb/blob/master/documentation/System%20keys.asciidoc']
 ---
+name: WindowsReleaseID
+doc: The Windows semi-annual version release indicator
+sources:
+- type: REGISTRY_VALUE
+  attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion', value: 'ReleaseID'}]}
+supported_os: [Windows]
+urls: ['http://techthoughts.info/windows-release-channels-explained']
+---
+name: WindowsUBR
+doc: Windows Kernel Update Build Revision / Monthly Rollup Patch Version
+sources:
+- type: REGISTRY_VALUE
+  attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion', value: 'UBR'}]}
+supported_os: [Windows]
+urls: ['https://social.technet.microsoft.com/Forums/en-US/cadee4de-24d0-403e-9f3e-75868abf8f34']
+---
 name: WindowsProgramsCache
 doc: Windows Programs Cache
 sources:
