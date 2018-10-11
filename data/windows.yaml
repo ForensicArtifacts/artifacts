@@ -1419,7 +1419,7 @@ urls: ['http://msdn.microsoft.com/en-us/library/windows/desktop/bb776892(v=vs.85
 name: WindowsReleaseIdentifier
 doc: |
   The Windows 10 release identifier (or version number).
-  
+
   This Windows Registry value contains the semi-annual Windows 10 version number.
 sources:
 - type: REGISTRY_VALUE
@@ -2090,7 +2090,7 @@ urls: ['https://msdn.microsoft.com/en-us/library/aa372105(v=vs.85).aspx']
 name: WindowsUpdateBuildRevision
 doc: |
   Windows kernel update build revision (UBR).
-  
+
   This Windows Registry value contains the monthly rollup patch version.
 sources:
 - type: REGISTRY_VALUE
