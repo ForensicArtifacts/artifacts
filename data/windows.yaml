@@ -1416,6 +1416,17 @@ provides: [users.sid, users.userprofile, users.homedir, users.username]
 supported_os: [Windows]
 urls: ['http://msdn.microsoft.com/en-us/library/windows/desktop/bb776892(v=vs.85).aspx']
 ---
+name: WindowsReleaseIdentifier
+doc: |
+  The Windows 10 release identifier (or version number).
+
+  This Windows Registry value contains the semi-annual Windows 10 version number.
+sources:
+- type: REGISTRY_VALUE
+  attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion', value: 'ReleaseID'}]}
+supported_os: [Windows]
+urls: ['https://www.microsoft.com/en-us/itpro/windows-10/release-information']
+---
 name: WindowsRoverAutostartDLL
 doc: |
   Windows Rover autostart DLL.
@@ -2075,6 +2086,17 @@ sources:
       - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Uninstall\Userdata\%%users.sid%%\Products\*\InstallProperties'
 supported_os: [Windows]
 urls: ['https://msdn.microsoft.com/en-us/library/aa372105(v=vs.85).aspx']
+---
+name: WindowsUpdateBuildRevision
+doc: |
+  Windows kernel update build revision (UBR).
+
+  This Windows Registry value contains the monthly rollup patch version.
+sources:
+- type: REGISTRY_VALUE
+  attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion', value: 'UBR'}]}
+supported_os: [Windows]
+urls: ['https://social.technet.microsoft.com/Forums/en-US/cadee4de-24d0-403e-9f3e-75868abf8f34']
 ---
 name: WindowsUpdateStatus
 doc: Windows auto update status.
