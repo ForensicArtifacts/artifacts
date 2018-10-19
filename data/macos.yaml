@@ -401,7 +401,7 @@ name: MacOSMailAccounts
 doc: Mail Accounts
 sources:
 - type: FILE
-  attributes: {paths: ['%%users.homedir%%/Library/Mail/V[0-9]/MailData/Accounts  .plist']}
+  attributes: {paths: ['%%users.homedir%%/Library/Mail/V[0-9]/MailData/Accounts.plist']}
 labels: [Users, Software, Mail]
 supported_os: [Darwin]
 urls:
@@ -412,7 +412,7 @@ name: MacOSMailBackupTOC
 doc: Mail BackupTOC
 sources:
 - type: FILE
-  attributes: {paths: ['%%users  .homedir%%/Library/Mail/V[0-9]/MailData/BackupTOC.plist']}
+  attributes: {paths: ['%%users.homedir%%/Library/Mail/V[0-9]/MailData/BackupTOC.plist']}
 labels: [Users, Software, Mail]
 supported_os: [Darwin]
 urls:
@@ -445,7 +445,7 @@ name: MacOSMailEnvelopIndex
 doc: Mail Envelope Index
 sources:
 - type: FILE
-  attributes: {paths: ['%%users.homedir%%/Library/Mail/V[0-9]/MailData/Envelope   Index']}
+  attributes: {paths: ['%%users.homedir%%/Library/Mail/V[0-9]/MailData/Envelope Index']}
 labels: [Users, Software, Mail]
 supported_os: [Darwin]
 urls:
