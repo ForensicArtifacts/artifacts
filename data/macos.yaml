@@ -970,14 +970,6 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#User.27s_Accounts'
 ---
-name: MacOSUsers
-doc: Users directories in /Users
-sources:
-- type: DIRECTORY
-  attributes: {paths: ['/Users/*']}
-labels: [Users]
-supported_os: [Darwin]
----
 name: MacOSUserTrash
 doc: User Trash Folder
 sources:
