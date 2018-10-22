@@ -19,7 +19,7 @@ LABELS = {
     'Cloud': 'Cloud applications artifacts.',
     'Cloud Storage': 'Cloud storage artifacts.',
     'Configuration Files': 'Configuration files artifacts.',
-    'DB': 'Database specific artifact',
+    'DB': 'Database specific artifact.',
     'Docker': 'Docker artifacts.',
     'Execution': 'Contain execution events.',
     'ExternalAccount': (
