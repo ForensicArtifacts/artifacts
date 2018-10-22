@@ -19,6 +19,7 @@ LABELS = {
     'Cloud': 'Cloud applications artifacts.',
     'Cloud Storage': 'Cloud storage artifacts.',
     'Configuration Files': 'Configuration files artifacts.',
+    'DB': 'Database specific artifact',
     'Docker': 'Docker artifacts.',
     'Execution': 'Contain execution events.',
     'ExternalAccount': (
@@ -34,6 +35,8 @@ LABELS = {
     'Mail': 'Mail client applications artifacts.',
     'Memory': 'Artifacts retrieved from memory.',
     'Network': 'Describe networking state.',
+    'Persistence': 'Artifact location potentially used for malware persistence.',
+    'Plist': 'Plist specific artifact.',
     'Processes': 'Describe running processes.',
     'Rekall': 'Artifacts using the Rekall memory forensics framework.',
     'Software': 'Installed software.',
