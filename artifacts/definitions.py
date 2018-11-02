@@ -19,7 +19,6 @@ LABELS = {
     'Cloud': 'Cloud applications artifacts.',
     'Cloud Storage': 'Cloud storage artifacts.',
     'Configuration Files': 'Configuration files artifacts.',
-    'DB': 'Database specific artifact.',
     'Docker': 'Docker artifacts.',
     'Execution': 'Contain execution events.',
     'ExternalAccount': (
@@ -39,6 +38,7 @@ LABELS = {
     'Processes': 'Describe running processes.',
     'Rekall': 'Artifacts using the Rekall memory forensics framework.',
     'Software': 'Installed software.',
+    'SQLiteDB': 'SQLite Database specific artifact.',
     'System': 'Core system artifacts.',
     'Users': 'Information about users.'
 }
