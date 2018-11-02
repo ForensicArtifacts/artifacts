@@ -35,7 +35,6 @@ LABELS = {
     'Mail': 'Mail client applications artifacts.',
     'Memory': 'Artifacts retrieved from memory.',
     'Network': 'Describe networking state.',
-    'Persistence': 'Artifact location potentially used for malware persistence.',
     'Plist': 'Plist specific artifact.',
     'Processes': 'Describe running processes.',
     'Rekall': 'Artifacts using the Rekall memory forensics framework.',
