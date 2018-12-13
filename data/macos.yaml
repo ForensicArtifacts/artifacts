@@ -724,6 +724,20 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#System_Preferences'
 ---
+name: MacOSUnifiedLogFiles
+doc: Apple system log (ASL) files
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/var/db/diagnostics/*'
+    - '/var/db/diagnostics/*/*'
+    - '/var/db/uuidtext/*/*'
+labels: [System, Logs]
+supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+---
 name: MacOSUpdate
 doc: Software Update
 sources:
