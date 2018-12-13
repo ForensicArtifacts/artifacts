@@ -725,7 +725,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#System_Preferences'
 ---
 name: MacOSUnifiedLogFiles
-doc: Apple system log (ASL) files
+doc: Unified logging files
 sources:
 - type: FILE
   attributes:
