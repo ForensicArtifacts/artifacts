@@ -17,12 +17,14 @@ sources:
 - type: FILE
   attributes:
     paths:
-    - '/var/db/diagnostics/Persist/logdata.Persistent.YYYYMMDD THHMMSS.tracev3'
-    - '/var/db/diagnostics/Special/logdata.Persistent.YYYYMMDD THHMMSS.tracev3'
-    - '/var/db/diagnostics/logdata.Persistent.YYYYMMDD THHMMSS.tracev3'
-    - '/var/db/uuidtext/'
+    - '/var/db/diagnostics/*.tracev3'
+    - '/var/db/diagnostics/*/*.tracev3'
+    - '/var/db/uuidtext/*'
 labels: [System, Logs]
 supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'https://github.com/mac4n6/Presentations/blob/master/Logs%20Unite!%20-%20Forensic%20Analysis%20of%20Apple%20Unified%20Logs/LogsUnite.pdf'
 ---
 name: MacOSApplications
 doc: Applications
@@ -313,7 +315,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Kernel_Extension'
 ---
-name: MacOSKnowledgeC
+name: MacOSDuetKnowledgeBase
 doc: KnowledgeC User and Application usage database
 sources:
 - type: FILE
@@ -323,6 +325,8 @@ sources:
     - '/private/var/db/CoreDuet/Knowledge/knowledgeC.db'
 labels: [Users, Logs]
 supported_os: [Darwin]
+urls:
+- 'https://www.mac4n6.com/blog/2018/8/5/knowledge-is-power-using-the-knowledgecdb-database-on-macos-and-ios-to-determine-precise-user-and-application-usage'
 ---
 name: MacOSLaunchAgentsPlistFiles
 doc: Launch Agents plist files
@@ -551,7 +555,7 @@ labels: [System]
 supported_os: [Darwin]
 ---
 name: MacOSNotificationCenter
-doc: macOS NotificationCenter database
+doc: MacOS NotificationCenter database
 sources:
 - type: FILE
   attributes:
@@ -560,14 +564,6 @@ sources:
     - '/private/var/folders/[a-z][0-9]/*/0/com.apple.notificationcenter/db/db'
     - '%%users.homedir%%/Library/Application Support/NotificationCenter/*.db'
 labels: [Users, Logs]
-supported_os: [Darwin]
----
-name: MacOSPasswordHashes
-doc: Users Log In Password Hash Plist
-sources:
-- type: FILE
-  attributes: {paths: ['/var/db/dslocal/nodes/Default/users/*.plist']}
-labels: [System, Users, Authentication]
 supported_os: [Darwin]
 ---
 name: MacOSPeriodicSystemFunctions
@@ -635,58 +631,6 @@ supported_os: [Darwin]
 urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Preferences'
----
-name: MacOSSkypechatsync
-doc: Chat Sync Directory
-sources:
-- type: FILE
-  attributes: {paths: ['%%users.homedir%%/Library/Application Support/Skype/*/chatsync/*']}
-labels: [Users, Software, IM]
-supported_os: [Darwin]
-urls:
-- 'http://forensicswiki.org/wiki/Mac_OS_X'
-- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Skype'
----
-name: MacOSSkypeDb
-doc: Main Skype database
-sources:
-- type: FILE
-  attributes: {paths: ['%%users.homedir%%/Library/Application Support/Skype/*/Main.db']}
-labels: [Users, Software, IM]
-supported_os: [Darwin]
-urls:
-- 'http://forensicswiki.org/wiki/Mac_OS_X'
-- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Skype'
----
-name: MacOSSkypeMainDirectory
-doc: Skype Directory
-sources:
-- type: DIRECTORY
-  attributes: {paths: ['%%users.homedir%%/Library/Application Support/Skype/*']}
-labels: [Users, Software, IM]
-supported_os: [Darwin]
----
-name: MacOSSkypePreferences
-doc: Skype Preferences and Recent Searches
-sources:
-- type: FILE
-  attributes: {paths: ['%%users.homedir%%/Library/Preferences/com.skype.skype.plist']}
-labels: [Users, Software, IM]
-supported_os: [Darwin]
-urls:
-- 'http://forensicswiki.org/wiki/Mac_OS_X'
-- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Skype'
----
-name: MacOSSkypeUserProfile
-doc: Skype User profile
-sources:
-- type: FILE
-  attributes: {paths: ['%%users.homedir%%/Library/Application Support/Skype/*/*']}
-labels: [Users, Software, IM]
-supported_os: [Darwin]
-urls:
-- 'http://forensicswiki.org/wiki/Mac_OS_X'
-- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Skype'
 ---
 name: MacOSSleepimageFile
 doc: Sleepimage file which contains the content of memory before going to sleep
