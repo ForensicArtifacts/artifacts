@@ -23,7 +23,7 @@ class BaseArtifactsReader(object):
   """
 
   # Note that redundant-returns-doc and redundant-yields-doc are broken for
-  # pylint 1.7.x for abstract methods
+  # pylint 1.7.x for abstract methods.
   # pylint: disable=redundant-returns-doc,redundant-yields-doc
 
   def __init__(self):
@@ -91,6 +91,10 @@ class BaseArtifactsReader(object):
 
 class ArtifactsReader(BaseArtifactsReader):
   """Artifacts reader common functionality."""
+
+  # Note that redundant-yields-doc is broken for pylint 1.7.x for
+  # abstract methods.
+  # pylint: disable=redundant-yields-doc
 
   def __init__(self):
     """Initializes an artifacts reader."""
