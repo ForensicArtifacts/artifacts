@@ -5,6 +5,7 @@
 from __future__ import print_function
 
 import glob
+import locale
 import os
 import sys
 
@@ -23,9 +24,21 @@ try:
 except ImportError:
   bdist_rpm = None
 
-if sys.version < '2.7':
+version_tuple = (sys.version_info[0], sys.version_info[1])
+if version_tuple[0] not in (2, 3):
   print('Unsupported Python version: {0:s}.'.format(sys.version))
-  print('Supported Python versions are 2.7 or a later 2.x version.')
+  sys.exit(1)
+
+elif version_tuple[0] == 2 and version_tuple < (2, 7):
+  print((
+      'Unsupported Python 2 version: {0:s}, version 2.7 or higher '
+      'required.').format(sys.version))
+  sys.exit(1)
+
+elif version_tuple[0] == 3 and version_tuple < (3, 4):
+  print((
+      'Unsupported Python 3 version: {0:s}, version 3.4 or higher '
+      'required.').format(sys.version))
   sys.exit(1)
 
 # Change PYTHONPATH to include artifacts so that we can get the version.
@@ -68,7 +81,7 @@ else:
         spec_file = bdist_rpm._make_spec_file(self)
 
       if sys.version_info[0] < 3:
-        python_package = 'python'
+        python_package = 'python2'
       else:
         python_package = 'python3'
 
@@ -82,28 +95,51 @@ else:
           summary = line
 
         elif line.startswith('BuildRequires: '):
-          line = 'BuildRequires: {0:s}-setuptools'.format(python_package)
+          line = 'BuildRequires: {0:s}-setuptools, {0:s}-devel'.format(
+              python_package)
 
         elif line.startswith('Requires: '):
           if python_package == 'python3':
-            line = line.replace('python', 'python3')
+            line = line.replace('python-', 'python3-')
+            line = line.replace('python2-', 'python3-')
 
         elif line.startswith('%description'):
           in_description = True
 
+        elif line.startswith('python setup.py build'):
+          if python_package == 'python3':
+            line = '%py3_build'
+          else:
+            line = '%py2_build'
+
+        elif line.startswith('python setup.py install'):
+          if python_package == 'python3':
+            line = '%py3_install'
+          else:
+            line = '%py2_install'
+
         elif line.startswith('%files'):
-          # Cannot use %{_libdir} here since it can expand to "lib64".
           lines = [
               '%files -n {0:s}-%{{name}}'.format(python_package),
               '%defattr(644,root,root,755)',
-              '%doc ACKNOWLEDGEMENTS AUTHORS LICENSE README',
-              '%{_prefix}/lib/python*/site-packages/**/*.py',
-              '%{_prefix}/lib/python*/site-packages/artifacts*.egg-info/*',
-              '',
-              '%exclude %{_prefix}/share/doc/*',
-              '%exclude %{_prefix}/lib/python*/site-packages/**/*.pyc',
-              '%exclude %{_prefix}/lib/python*/site-packages/**/*.pyo',
-              '%exclude %{_prefix}/lib/python*/site-packages/**/__pycache__/*']
+              '%doc ACKNOWLEDGEMENTS AUTHORS LICENSE README']
+
+          if python_package == 'python3':
+            lines.extend([
+                '%{python3_sitelib}/artifacts/*.py',
+                '%{python3_sitelib}/artifacts*.egg-info/*',
+                '',
+                '%exclude %{_prefix}/share/doc/*',
+                '%exclude %{python3_sitelib}/artifacts/__pycache__/*'])
+
+          else:
+            lines.extend([
+                '%{python2_sitelib}/artifacts/*.py',
+                '%{python2_sitelib}/artifacts*.egg-info/*',
+                '',
+                '%exclude %{_prefix}/share/doc/*',
+                '%exclude %{python2_sitelib}/artifacts/*.pyc',
+                '%exclude %{python2_sitelib}/artifacts/*.pyo'])
 
           python_spec_file.extend(lines)
           break
@@ -113,6 +149,12 @@ else:
 
           python_spec_file.append(
               '%package -n {0:s}-%{{name}}'.format(python_package))
+          if python_package == 'python2':
+            python_spec_file.append(
+                'Obsoletes: python-artifacts < %{version}')
+            python_spec_file.append(
+                'Provides: python-artifacts = %{version}')
+
           python_spec_file.append('{0:s}'.format(summary))
           python_spec_file.append('')
           python_spec_file.append(
@@ -131,12 +173,27 @@ else:
       return python_spec_file
 
 
-artifacts_description = 'ForensicArtifacts.com Artifact Repository.'
+if version_tuple[0] == 2:
+  encoding = sys.stdin.encoding  # pylint: disable=invalid-name
+
+  # Note that sys.stdin.encoding can be None.
+  if not encoding:
+    encoding = locale.getpreferredencoding()
+
+  # Make sure the default encoding is set correctly otherwise on Python 2
+  # setup.py sdist will fail to include filenames with Unicode characters.
+  reload(sys)  # pylint: disable=undefined-variable
+
+  sys.setdefaultencoding(encoding)  # pylint: disable=no-member
+
+
+artifacts_description = (
+    'ForensicArtifacts.com Artifact Repository.')
 
 artifacts_long_description = (
     'A free, community-sourced, machine-readable knowledge base of forensic '
-    'artifacts that the world can use both as an information source and '
-    'within other tools.')
+    'artifacts that the world can use both as an information source and within'
+    ' other tools.')
 
 setup(
     name='artifacts',
@@ -145,28 +202,27 @@ setup(
     long_description=artifacts_long_description,
     license='Apache License, Version 2.0',
     url='https://github.com/ForensicArtifacts/artifacts',
-    maintainer='ForensicArtifacts.com Artifact Repository maintainers',
+    maintainer='Forensic artifacts',
     maintainer_email='forensicartifacts@googlegroups.com',
-    scripts=[
-        os.path.join('tools', 'stats.py'),
-        os.path.join('tools', 'validator.py'),
-    ],
     cmdclass={
         'bdist_msi': BdistMSICommand,
-        'bdist_rpm': BdistRPMCommand
-    },
+        'bdist_rpm': BdistRPMCommand},
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Environment :: Console',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
     ],
-    packages=find_packages('.', exclude=['tests', 'tests.*', 'tools', 'utils']),
-    package_dir={'artifacts': 'artifacts'},
+    packages=find_packages('.', exclude=[
+        'tests', 'tests.*', 'tools', 'utils']),
+    package_dir={
+        'artifacts': 'artifacts'
+    },
+    scripts=glob.glob(os.path.join('tools', '[a-z]*.py')),
     data_files=[
-        ('share/artifacts', glob.glob(os.path.join('data', '*'))),
-    ],
-    install_requires=[
-        'PyYAML >= 3.11',
+        ('share/artifacts/data', glob.glob(
+            os.path.join('data', '*'))),
+        ('share/doc/artifacts', [
+            'ACKNOWLEDGEMENTS', 'AUTHORS', 'LICENSE', 'README']),
     ],
 )
