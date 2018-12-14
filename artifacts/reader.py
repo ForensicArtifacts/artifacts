@@ -22,6 +22,10 @@ class BaseArtifactsReader(object):
     supported_os (set[str]): supported operating systems.
   """
 
+  # Note that redundant-returns-doc and redundant-yields-doc are broken for
+  # pylint 1.7.x for abstract methods
+  # pylint: disable=redundant-returns-doc,redundant-yields-doc
+
   def __init__(self):
     """Initializes an artifacts reader."""
     super(BaseArtifactsReader, self).__init__()
