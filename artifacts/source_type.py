@@ -30,6 +30,10 @@ from artifacts import errors
 class SourceType(object):
   """Artifact definition source type interface."""
 
+  # Note that redundant-returns-doc is broken for pylint 1.7.x for
+  # abstract methods.
+  # pylint: disable=redundant-returns-doc
+
   TYPE_INDICATOR = None
 
   def __init__(self):
