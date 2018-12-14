@@ -101,6 +101,7 @@ class ArtifactsReader(BaseArtifactsReader):
       artifact_definition_values (dict[str, object]): artifact definition
           values.
       artifact_definition (ArtifactDefinition): an artifact definition.
+      name (str): name of the artifact definition.
 
     Raises:
       FormatError: if there are undefined labels.
@@ -115,6 +116,9 @@ class ArtifactsReader(BaseArtifactsReader):
 
     artifact_definition.labels = labels
 
+  # Pylint fails on detecting the type of definition_object based on
+  # the docstring.
+  # pylint: disable=missing-type-doc
   def _ReadSupportedOS(self, definition_values, definition_object, name):
     """Reads the optional artifact or source type supported OS.
 
@@ -147,6 +151,7 @@ class ArtifactsReader(BaseArtifactsReader):
       artifact_definition_values (dict[str, object]): artifact definition
           values.
       artifact_definition (ArtifactDefinition): an artifact definition.
+      name (str): name of the artifact definition.
 
     Raises:
       FormatError: if the type indicator is not set or unsupported,

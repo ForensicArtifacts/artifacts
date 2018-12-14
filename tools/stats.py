@@ -101,10 +101,10 @@ As of {0:s} the repository contains:
 
         if source_type == definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_KEY:
           self.reg_key_count += len(source.keys)
-        if source_type == definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_VALUE:
+        elif source_type == definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_VALUE:
           self.reg_key_count += len(source.key_value_pairs)
-        if (source_type == definitions.TYPE_INDICATOR_FILE or
-            source_type == definitions.TYPE_INDICATOR_DIRECTORY):
+        elif source_type in (definitions.TYPE_INDICATOR_FILE,
+                             definitions.TYPE_INDICATOR_DIRECTORY):
           self.path_count += len(source.paths)
 
         os_list = source.supported_os

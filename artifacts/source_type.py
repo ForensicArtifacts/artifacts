@@ -32,15 +32,20 @@ class SourceType(object):
 
   TYPE_INDICATOR = None
 
-  @property
-  def type_indicator(self):
-    """The type indicator.
+  def __init__(self):
+    """Initializes an artifact definition source type.
 
     Raises:
-      NotImplementedError: if the type indicator is not defined.
+      FormatError: if the indicator is not defined.
     """
+    super(SourceType, self).__init__()
+
     if not self.TYPE_INDICATOR:
-      raise NotImplementedError('Invalid source type missing type indicator.')
+      raise errors.FormatError('Missing type indicator.')
+
+  @property
+  def type_indicator(self):
+    """str: type indicator."""
     return self.TYPE_INDICATOR
 
   @abc.abstractmethod
@@ -333,14 +338,20 @@ class WindowsRegistryValueSourceType(SourceType):
 
 
 class WMIQuerySourceType(SourceType):
-  """WMI query source type."""
+  """WMI query source type.
+
+  Attributes:
+    base_object (str): WMI base object.
+    query (str): WMI query.
+  """
 
   TYPE_INDICATOR = definitions.TYPE_INDICATOR_WMI_QUERY
 
-  def __init__(self, query=None, base_object=None):
+  def __init__(self, base_object=None, query=None):
     """Initializes a source type.
 
     Args:
+      base_object (Optional[str]): WMI base object.
       query (Optional[str]): WMI query.
 
     Raises:

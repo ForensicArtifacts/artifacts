@@ -180,7 +180,7 @@ class ArtifactDefinitionsRegistry(object):
     for source_type_class in source_type_classes:
       cls.RegisterSourceType(source_type_class)
 
-  def ReadFromDirectory(self, artifact_reader, path, extension='yaml'):
+  def ReadFromDirectory(self, artifacts_reader, path, extension='yaml'):
     """Reads artifact definitions into the registry from files in a directory.
 
     This function does not recurse sub directories.
@@ -193,26 +193,26 @@ class ArtifactDefinitionsRegistry(object):
     Raises:
       KeyError: if a duplicate artifact definition is encountered.
     """
-    for artifact_definition in artifact_reader.ReadDirectory(
+    for artifact_definition in artifacts_reader.ReadDirectory(
         path, extension=extension):
       self.RegisterDefinition(artifact_definition)
 
-  def ReadFromFile(self, artifact_reader, filename):
+  def ReadFromFile(self, artifacts_reader, filename):
     """Reads artifact definitions into the registry from a file.
 
     Args:
       artifacts_reader (ArtifactsReader): an artifacts reader.
       filename (str): name of the file to read from.
     """
-    for artifact_definition in artifact_reader.ReadFile(filename):
+    for artifact_definition in artifacts_reader.ReadFile(filename):
       self.RegisterDefinition(artifact_definition)
 
-  def ReadFileObject(self, artifact_reader, file_object):
+  def ReadFileObject(self, artifacts_reader, file_object):
     """Reads artifact definitions into the registry from a file-like object.
 
     Args:
       artifacts_reader (ArtifactsReader): an artifacts reader.
       file_object (file): file-like object to read from.
     """
-    for artifact_definition in artifact_reader.ReadFileObject(file_object):
+    for artifact_definition in artifacts_reader.ReadFileObject(file_object):
       self.RegisterDefinition(artifact_definition)
