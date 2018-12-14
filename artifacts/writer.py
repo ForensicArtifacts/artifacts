@@ -11,6 +11,10 @@ import yaml
 class BaseArtifactsWriter(object):
   """Artifacts writer interface."""
 
+  # Note that redundant-returns-doc is broken for # pylint 1.7.x for
+  # abstract methods.
+  # pylint: disable=redundant-returns-doc
+
   @abc.abstractmethod
   def FormatArtifacts(self, artifacts):
     """Formats artifacts to desired output format.
@@ -34,6 +38,10 @@ class BaseArtifactsWriter(object):
 
 class ArtifactWriter(BaseArtifactsWriter):
   """File artifacts writer."""
+
+  # Note that redundant-returns-doc is broken for # pylint 1.7.x for
+  # abstract methods.
+  # pylint: disable=redundant-returns-doc
 
   @abc.abstractmethod
   def FormatArtifacts(self, artifacts):
