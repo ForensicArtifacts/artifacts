@@ -21,7 +21,7 @@ class TestSourceType(source_type.SourceType):
     """Initializes the source type object.
 
     Args:
-      test: optional test string. The default is None.
+      test (Optional[str]): test string.
 
     Raises:
       FormatError: when test is not set.
