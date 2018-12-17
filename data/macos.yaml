@@ -11,21 +11,6 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#System_Logs'
 ---
-name: MacOSAppleUnifiedLog
-doc: Apple Unified Log
-sources:
-- type: FILE
-  attributes:
-    paths:
-    - '/var/db/diagnostics/*.tracev3'
-    - '/var/db/diagnostics/*/*.tracev3'
-    - '/var/db/uuidtext/*'
-labels: [System, Logs]
-supported_os: [Darwin]
-urls:
-- 'http://forensicswiki.org/wiki/Mac_OS_X'
-- 'https://github.com/mac4n6/Presentations/blob/master/Logs%20Unite!%20-%20Forensic%20Analysis%20of%20Apple%20Unified%20Logs/LogsUnite.pdf'
----
 name: MacOSApplications
 doc: Applications
 sources:
@@ -325,8 +310,7 @@ sources:
     - '/private/var/db/CoreDuet/Knowledge/knowledgeC.db'
 labels: [Users, Logs]
 supported_os: [Darwin]
-urls:
-- 'https://www.mac4n6.com/blog/2018/8/5/knowledge-is-power-using-the-knowledgecdb-database-on-macos-and-ios-to-determine-precise-user-and-application-usage'
+urls: ['https://www.mac4n6.com/blog/2018/8/5/knowledge-is-power-using-the-knowledgecdb-database-on-macos-and-ios-to-determine-precise-user-and-application-usage']
 ---
 name: MacOSLaunchAgentsPlistFiles
 doc: Launch Agents plist files
@@ -402,7 +386,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#System_Preferences'
 ---
 name: MacOSMailAccounts
-doc: Mail Accounts
+doc: Mail Accounts. Until now only V2, V3 and V5 have been observed.
 sources:
 - type: FILE
   attributes: {paths: ['%%users.homedir%%/Library/Mail/V[0-9]/MailData/Accounts.plist']}
@@ -413,7 +397,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Mail'
 ---
 name: MacOSMailBackupTOC
-doc: Mail BackupTOC
+doc: Mail Backup Table of Content. Until now only V2, V3 and V5 have been observed.
 sources:
 - type: FILE
   attributes: {paths: ['%%users.homedir%%/Library/Mail/V[0-9]/MailData/BackupTOC.plist']}
@@ -424,7 +408,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Mail'
 ---
 name: MacOSMailboxes
-doc: Mail Mailbox Directory
+doc: Mail Mailbox Directory. Until now only V2, V3 and V5 have been observed.
 sources:
 - type: FILE
   attributes: {paths: ['%%users.homedir%%/Library/Mail/V[0-9]/Mailboxes/*']}
@@ -446,7 +430,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Mail'
 ---
 name: MacOSMailEnvelopIndex
-doc: Mail Envelope Index
+doc: Mail Envelope Index. Until now only V2, V3 and V5 have been observed.
 sources:
 - type: FILE
   attributes: {paths: ['%%users.homedir%%/Library/Mail/V[0-9]/MailData/Envelope Index']}
@@ -457,7 +441,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Mail'
 ---
 name: MacOSMailIMAP
-doc: Mail IMAP Synched Mailboxes
+doc: Mail IMAP Synched Mailboxes. Until now only V2, V3 and V5 have been observed.
 sources:
 - type: FILE
   attributes: {paths: ['%%users.homedir%%/Library/Mail/V[0-9]/IMAP-*/*']}
@@ -468,7 +452,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Mail'
 ---
 name: MacOSMailMainDirectory
-doc: Mail Main Folder
+doc: Mail Main Folder. Until now only V2, V3 and V5 have been observed.
 sources:
 - type: FILE
   attributes: {paths: ['%%users.homedir%%/Library/Mail/V[0-9]/*']}
@@ -490,7 +474,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Mail'
 ---
 name: MacOSMailPOP
-doc: Mail POP Synched Mailboxes
+doc: Mail POP Synched Mailboxes. Until now only V2, V3 and V5 have been observed.
 sources:
 - type: FILE
   attributes: {paths: ['%%users.homedir%%/Library/Mail/V[0-9]/POP-*/*']}
@@ -523,7 +507,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Mail'
 ---
 name: MacOSMailSignatures
-doc: Mail Signatures by Account
+doc: Mail Signatures by Account. Until now only V2, V3 and V5 have been observed.
 sources:
 - type: FILE
   attributes: {paths: ['%%users.homedir%%/Library/Mail/V[0-9]/MailData/Signatures/*']}
@@ -733,6 +717,21 @@ supported_os: [Darwin]
 urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#System_Preferences'
+---
+name: MacOSUnifiedLogging
+doc: Apple Unified Logging and Activity Tracing
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/var/db/diagnostics/*.tracev3'
+    - '/var/db/diagnostics/*/*.tracev3'
+    - '/var/db/uuidtext/*/*'
+labels: [System, Logs]
+supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'https://github.com/mac4n6/Presentations/blob/master/Logs%20Unite!%20-%20Forensic%20Analysis%20of%20Apple%20Unified%20Logs/LogsUnite.pdf'
 ---
 name: MacOSUpdate
 doc: Software Update
