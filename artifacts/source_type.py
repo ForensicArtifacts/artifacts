@@ -30,17 +30,26 @@ from artifacts import errors
 class SourceType(object):
   """Artifact definition source type interface."""
 
+  # Note that redundant-returns-doc is broken for pylint 1.7.x for
+  # abstract methods.
+  # pylint: disable=redundant-returns-doc
+
   TYPE_INDICATOR = None
+
+  def __init__(self):
+    """Initializes an artifact definition source type.
+
+    Raises:
+      FormatError: if the indicator is not defined.
+    """
+    super(SourceType, self).__init__()
+
+    if not self.TYPE_INDICATOR:
+      raise errors.FormatError('Missing type indicator.')
 
   @property
   def type_indicator(self):
-    """The type indicator.
-
-    Raises:
-      NotImplementedError: if the type indicator is not defined.
-    """
-    if not self.TYPE_INDICATOR:
-      raise NotImplementedError('Invalid source type missing type indicator.')
+    """str: type indicator."""
     return self.TYPE_INDICATOR
 
   @abc.abstractmethod
@@ -333,14 +342,20 @@ class WindowsRegistryValueSourceType(SourceType):
 
 
 class WMIQuerySourceType(SourceType):
-  """WMI query source type."""
+  """WMI query source type.
+
+  Attributes:
+    base_object (str): WMI base object.
+    query (str): WMI query.
+  """
 
   TYPE_INDICATOR = definitions.TYPE_INDICATOR_WMI_QUERY
 
-  def __init__(self, query=None, base_object=None):
+  def __init__(self, base_object=None, query=None):
     """Initializes a source type.
 
     Args:
+      base_object (Optional[str]): WMI base object.
       query (Optional[str]): WMI query.
 
     Raises:

@@ -13,4 +13,5 @@ import utils.dependencies  # pylint: disable=wrong-import-position
 if __name__ == '__main__':
   dependency_helper = utils.dependencies.DependencyHelper()
 
-  dependency_helper.CheckDependencies()
+  if not dependency_helper.CheckDependencies():
+    sys.exit(1)

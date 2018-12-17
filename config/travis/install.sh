@@ -11,11 +11,11 @@ L2TBINARIES_TEST_DEPENDENCIES="funcsigs mock pbr six yapf";
 
 PYTHON2_DEPENDENCIES="python-yaml";
 
-PYTHON2_TEST_DEPENDENCIES="python-coverage python-mock python-tox python-yapf yapf";
+PYTHON2_TEST_DEPENDENCIES="python-coverage python-funcsigs python-mock python-pbr python-six python-tox python-yapf yapf";
 
 PYTHON3_DEPENDENCIES="python3-yaml";
 
-PYTHON3_TEST_DEPENDENCIES="python-yapf python3-mock python3-setuptools python3-tox yapf";
+PYTHON3_TEST_DEPENDENCIES="python-yapf python3-mock python3-pbr python3-setuptools python3-six python3-tox yapf";
 
 # Exit on error.
 set -e;
@@ -45,6 +45,14 @@ then
 elif test ${TRAVIS_OS_NAME} = "linux" && test ${TARGET} != "jenkins";
 then
 	sudo rm -f /etc/apt/sources.list.d/travis_ci_zeromq3-source.list;
+
+	if test ${TARGET} = "pylint";
+	then
+		if test ${TRAVIS_PYTHON_VERSION} = "2.7";
+		then
+			sudo add-apt-repository ppa:gift/pylint2 -y;
+		fi
+	fi
 
 	sudo add-apt-repository ppa:gift/dev -y;
 	sudo apt-get update -q;

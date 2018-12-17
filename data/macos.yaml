@@ -160,6 +160,14 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Networking'
 ---
+name: MacOSiCloudAccounts
+doc: iCloud Accounts
+sources:
+- type: FILE
+  attributes: {paths: ['%%users.homedir%%/Library/Application Support/iCloud/Accounts/*']}
+labels: [Users, Software, Cloud, ExternalAccount]
+supported_os: [Darwin]
+---
 name: MacOSiCloudPreferences
 doc: iCloud user preferences
 sources:
@@ -292,6 +300,18 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Kernel_Extension'
 ---
+name: MacOSDuetKnowledgeBase
+doc: KnowledgeC User and Application usage database
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/Library/Application Support/Knowledge/knowledgeC.db'
+    - '/private/var/db/CoreDuet/Knowledge/knowledgeC.db'
+labels: [Users, Logs]
+supported_os: [Darwin]
+urls: ['https://www.mac4n6.com/blog/2018/8/5/knowledge-is-power-using-the-knowledgecdb-database-on-macos-and-ios-to-determine-precise-user-and-application-usage']
+---
 name: MacOSLaunchAgentsPlistFiles
 doc: Launch Agents plist files
 sources:
@@ -366,10 +386,10 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#System_Preferences'
 ---
 name: MacOSMailAccounts
-doc: Mail Accounts
+doc: Mail Accounts. Until now only V2, V3 and V5 have been observed.
 sources:
 - type: FILE
-  attributes: {paths: ['%%users.homedir%%/Library/Mail/V2/MailData/Accounts.plist']}
+  attributes: {paths: ['%%users.homedir%%/Library/Mail/V[0-9]/MailData/Accounts.plist']}
 labels: [Users, Software, Mail]
 supported_os: [Darwin]
 urls:
@@ -377,10 +397,10 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Mail'
 ---
 name: MacOSMailBackupTOC
-doc: Mail BackupTOC
+doc: Mail Backup Table of Content. Until now only V2, V3 and V5 have been observed.
 sources:
 - type: FILE
-  attributes: {paths: ['%%users.homedir%%/Library/Mail/V2/MailData/BackupTOC.plist']}
+  attributes: {paths: ['%%users.homedir%%/Library/Mail/V[0-9]/MailData/BackupTOC.plist']}
 labels: [Users, Software, Mail]
 supported_os: [Darwin]
 urls:
@@ -388,10 +408,10 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Mail'
 ---
 name: MacOSMailboxes
-doc: Mail Mailbox Directory
+doc: Mail Mailbox Directory. Until now only V2, V3 and V5 have been observed.
 sources:
 - type: FILE
-  attributes: {paths: ['%%users.homedir%%/Library/Mail/V2/Mailboxes/*']}
+  attributes: {paths: ['%%users.homedir%%/Library/Mail/V[0-9]/Mailboxes/*']}
 labels: [Users, Software, Mail]
 supported_os: [Darwin]
 urls:
@@ -410,10 +430,10 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Mail'
 ---
 name: MacOSMailEnvelopIndex
-doc: Mail Envelope Index
+doc: Mail Envelope Index. Until now only V2, V3 and V5 have been observed.
 sources:
 - type: FILE
-  attributes: {paths: ['%%users.homedir%%/Library/Mail/V2/MailData/Envelope Index']}
+  attributes: {paths: ['%%users.homedir%%/Library/Mail/V[0-9]/MailData/Envelope Index']}
 labels: [Users, Software, Mail]
 supported_os: [Darwin]
 urls:
@@ -421,10 +441,10 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Mail'
 ---
 name: MacOSMailIMAP
-doc: Mail IMAP Synched Mailboxes
+doc: Mail IMAP Synched Mailboxes. Until now only V2, V3 and V5 have been observed.
 sources:
 - type: FILE
-  attributes: {paths: ['%%users.homedir%%/Library/Mail/V2/IMAP-*/*']}
+  attributes: {paths: ['%%users.homedir%%/Library/Mail/V[0-9]/IMAP-*/*']}
 labels: [Users, Software, Mail]
 supported_os: [Darwin]
 urls:
@@ -432,10 +452,10 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Mail'
 ---
 name: MacOSMailMainDirectory
-doc: Mail Main Folder
+doc: Mail Main Folder. Until now only V2, V3 and V5 have been observed.
 sources:
 - type: FILE
-  attributes: {paths: ['%%users.homedir%%/Library/Mail/V2/*']}
+  attributes: {paths: ['%%users.homedir%%/Library/Mail/V[0-9]/*']}
 labels: [Users, Software, Mail]
 supported_os: [Darwin]
 urls:
@@ -446,7 +466,7 @@ name: MacOSMailOpenedAttachments
 doc: Mail Opened Attachments
 sources:
 - type: FILE
-  attributes: {paths: ['%%users.homedir%%/Library/Mail/V2/MailData/OpenedAttachmentsV2.plist']}
+  attributes: {paths: ['%%users.homedir%%/Library/Mail/V[0-9]/MailData/OpenedAttachmentsV2.plist']}
 labels: [Users, Software, Mail]
 supported_os: [Darwin]
 urls:
@@ -454,10 +474,10 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Mail'
 ---
 name: MacOSMailPOP
-doc: Mail POP Synched Mailboxes
+doc: Mail POP Synched Mailboxes. Until now only V2, V3 and V5 have been observed.
 sources:
 - type: FILE
-  attributes: {paths: ['%%users.homedir%%/Library/Mail/V2/POP-*/*']}
+  attributes: {paths: ['%%users.homedir%%/Library/Mail/V[0-9]/POP-*/*']}
 labels: [Users, Software, Mail]
 supported_os: [Darwin]
 urls:
@@ -487,10 +507,10 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Mail'
 ---
 name: MacOSMailSignatures
-doc: Mail Signatures by Account
+doc: Mail Signatures by Account. Until now only V2, V3 and V5 have been observed.
 sources:
 - type: FILE
-  attributes: {paths: ['%%users.homedir%%/Library/Mail/V2/MailData/Signatures/*']}
+  attributes: {paths: ['%%users.homedir%%/Library/Mail/V[0-9]/MailData/Signatures/*']}
 labels: [Users, Software, Mail]
 supported_os: [Darwin]
 urls:
@@ -518,6 +538,18 @@ sources:
 labels: [System]
 supported_os: [Darwin]
 ---
+name: MacOSNotificationCenter
+doc: MacOS NotificationCenter database
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/private/var/folders/[a-z][0-9]/*/0/com.apple.notificationcenter/db2/db'
+    - '/private/var/folders/[a-z][0-9]/*/0/com.apple.notificationcenter/db/db'
+    - '%%users.homedir%%/Library/Application Support/NotificationCenter/*.db'
+labels: [Users, Logs]
+supported_os: [Darwin]
+---
 name: MacOSPeriodicSystemFunctions
 doc: Periodic system functions scripts and configuration
 sources:
@@ -532,6 +564,9 @@ sources:
       - '/etc/daily.local/*'
       - '/etc/weekly.local/*'
       - '/etc/monthly.local/*'
+      - '/etc/periodic/daily/*'
+      - '/etc/periodic/weekly/*'
+      - '/etc/periodic/monthly/*'
 labels: [System]
 supported_os: [Darwin]
 urls:
@@ -571,56 +606,15 @@ doc: |
   This plist contains the names of volumes mounted on the desktop that have appeared in the sidebar list.
 sources:
 - type: FILE
-  attributes: {paths: ['%%users.homedir%%/Library/Preferences/com.apple.sidebarlists.plist']}
+  attributes:
+    paths:
+    - '%%users.homedir%%/Library/Preferences/com.apple.sidebarlists.plist'
+    - '%%users.homedir%%/Preferences/com.apple.sidebarlists.plist'
 labels: [Users, External Media]
 supported_os: [Darwin]
 urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Preferences'
----
-name: MacOSSkypechatsync
-doc: Chat Sync Directory
-sources:
-- type: FILE
-  attributes: {paths: ['%%users.homedir%%/Library/Application Support/Skype/*/chatsync/*']}
-labels: [Users, Software, IM]
-supported_os: [Darwin]
-urls:
-- 'http://forensicswiki.org/wiki/Mac_OS_X'
-- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Skype'
----
-name: MacOSSkypeDb
-doc: Main Skype database
-sources:
-- type: FILE
-  attributes: {paths: ['%%users.homedir%%/Library/Application Support/Skype/*/Main.db']}
-labels: [Users, Software, IM]
-supported_os: [Darwin]
-urls:
-- 'http://forensicswiki.org/wiki/Mac_OS_X'
-- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Skype'
----
-name: MacOSSkypePreferences
-doc: Skype Preferences and Recent Searches
-sources:
-- type: FILE
-  attributes: {paths: ['%%users.homedir%%/Library/Preferences/com.skype.skype.plist']}
-labels: [Users, Software, IM]
-supported_os: [Darwin]
-urls:
-- 'http://forensicswiki.org/wiki/Mac_OS_X'
-- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Skype'
----
-name: MacOSSkypeUserProfile
-doc: Skype User profile
-sources:
-- type: FILE
-  attributes: {paths: ['%%users.homedir%%/Library/Application Support/Skype/*/*']}
-labels: [Users, Software, IM]
-supported_os: [Darwin]
-urls:
-- 'http://forensicswiki.org/wiki/Mac_OS_X'
-- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Skype'
 ---
 name: MacOSSleepimageFile
 doc: Sleepimage file which contains the content of memory before going to sleep
@@ -723,6 +717,21 @@ supported_os: [Darwin]
 urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#System_Preferences'
+---
+name: MacOSUnifiedLogging
+doc: Apple Unified Logging and Activity Tracing
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/var/db/diagnostics/*.tracev3'
+    - '/var/db/diagnostics/*/*.tracev3'
+    - '/var/db/uuidtext/*/*'
+labels: [System, Logs]
+supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'https://github.com/mac4n6/Presentations/blob/master/Logs%20Unite!%20-%20Forensic%20Analysis%20of%20Apple%20Unified%20Logs/LogsUnite.pdf'
 ---
 name: MacOSUpdate
 doc: Software Update

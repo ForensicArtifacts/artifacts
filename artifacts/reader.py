@@ -22,6 +22,10 @@ class BaseArtifactsReader(object):
     supported_os (set[str]): supported operating systems.
   """
 
+  # Note that redundant-returns-doc and redundant-yields-doc are broken for
+  # pylint 1.7.x for abstract methods.
+  # pylint: disable=redundant-returns-doc,redundant-yields-doc
+
   def __init__(self):
     """Initializes an artifacts reader."""
     super(BaseArtifactsReader, self).__init__()
@@ -88,6 +92,10 @@ class BaseArtifactsReader(object):
 class ArtifactsReader(BaseArtifactsReader):
   """Artifacts reader common functionality."""
 
+  # Note that redundant-yields-doc is broken for pylint 1.7.x for
+  # abstract methods.
+  # pylint: disable=redundant-yields-doc
+
   def __init__(self):
     """Initializes an artifacts reader."""
     super(ArtifactsReader, self).__init__()
@@ -101,6 +109,7 @@ class ArtifactsReader(BaseArtifactsReader):
       artifact_definition_values (dict[str, object]): artifact definition
           values.
       artifact_definition (ArtifactDefinition): an artifact definition.
+      name (str): name of the artifact definition.
 
     Raises:
       FormatError: if there are undefined labels.
@@ -115,6 +124,9 @@ class ArtifactsReader(BaseArtifactsReader):
 
     artifact_definition.labels = labels
 
+  # Pylint fails on detecting the type of definition_object based on
+  # the docstring.
+  # pylint: disable=missing-type-doc
   def _ReadSupportedOS(self, definition_values, definition_object, name):
     """Reads the optional artifact or source type supported OS.
 
@@ -147,6 +159,7 @@ class ArtifactsReader(BaseArtifactsReader):
       artifact_definition_values (dict[str, object]): artifact definition
           values.
       artifact_definition (ArtifactDefinition): an artifact definition.
+      name (str): name of the artifact definition.
 
     Raises:
       FormatError: if the type indicator is not set or unsupported,
