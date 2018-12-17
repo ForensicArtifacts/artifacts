@@ -24,7 +24,7 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Skype'
 ---
-name: MacOSSkypeMainDirectory
+name: SkypeMainDirectory
 doc: Skype Directory
 sources:
 - type: DIRECTORY
@@ -56,4 +56,3 @@ supported_os: [Darwin]
 urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Skype'
----
