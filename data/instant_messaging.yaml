@@ -7,6 +7,7 @@ sources:
   attributes:
     paths: ['%%users.homedir%%/Library/Application Support/Skype/*/chatsync/*']
   supported_os: [Darwin]
+supported_os: [Darwin]
 urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Skype'
@@ -18,6 +19,7 @@ sources:
   attributes:
     paths: ['%%users.homedir%%/Library/Application Support/Skype/*/Main.db']
   supported_os: [Darwin]
+supported_os: [Darwin]
 urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Skype'
@@ -29,6 +31,7 @@ sources:
   attributes:
     paths: ['%%users.homedir%%/Library/Application Support/Skype/*']
   supported_os: [Darwin]
+supported_os: [Darwin]
 ---
 name: SkypePreferences
 doc: Skype Preferences and Recent Searches
@@ -37,6 +40,7 @@ sources:
   attributes:
     paths: ['%%users.homedir%%/Library/Preferences/com.skype.skype.plist']
   supported_os: [Darwin]
+supported_os: [Darwin]
 urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Skype'
@@ -48,6 +52,7 @@ sources:
   attributes:
     paths: ['%%users.homedir%%/Library/Application Support/Skype/*/*']
   supported_os: [Darwin]
+supported_os: [Darwin]
 urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Skype'
