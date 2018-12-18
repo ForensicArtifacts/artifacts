@@ -13,7 +13,7 @@ follow the specfication.
 
 [Travis-CI](https://travis-ci.org/) | [AppVeyor](https://ci.appveyor.com) | [Codecov](https://codecov.io/)
 --- | --- | --- 
-[![Build Status](https://travis-ci.org/ForensicArtifacts/artifacts.svg?branch=master)](https://travis-ci.org/ForensicArtifacts/artifacts) | [![Build status](https://ci.appveyor.com/api/projects/status/3yark6bipveg55e0?svg=true)](https://ci.appveyor.com/project/joachimmetz/artifacts) | [![codecov](https://codecov.io/gh/ForensicArtifacts/artifacts/branch/master/graph/badge.svg)](https://codecov.io/gh/ForensicArtifacts/artifacts)
+[![Build Status](https://travis-ci.org/ForensicArtifacts/artifacts.svg?branch=master)](https://travis-ci.org/ForensicArtifacts/artifacts) | [![Build status](https://ci.appveyor.com/api/projects/status/7gv9fwr269527cj1?svg=true)](https://ci.appveyor.com/project/forensicartifacts/artifacts) | [![codecov](https://codecov.io/gh/ForensicArtifacts/artifacts/branch/master/graph/badge.svg)](https://codecov.io/gh/ForensicArtifacts/artifacts)
 
 
 ## Artifact Definitions
