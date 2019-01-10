@@ -18,16 +18,16 @@ sources:
   attributes:
     paths:
       - '%%environ_programfiles%%\Apache Software Foundation\Tomcat*\logs\catalina.out'
-      - '%%environ_programfiles86%%\Apache Software Foundation\Tomcat*\logs\catalina.out'
+      - '%%environ_programfilesx86%%\Apache Software Foundation\Tomcat*\logs\catalina.out'
       - '%%environ_allusersappdata%%\Apache Software Foundation\Tomcat*\logs\catalina.out'
       - '%%environ_programfiles%%\Apache Software Foundation\Tomcat*\logs\**\catalina.out'
-      - '%%environ_programfiles86%%\Apache Software Foundation\Tomcat*\logs\**\catalina.out'
+      - '%%environ_programfilesx86%%\Apache Software Foundation\Tomcat*\logs\**\catalina.out'
       - '%%environ_allusersappdata%%\Apache Software Foundation\Tomcat*\logs\**\catalina.out'
       - '%%environ_programfiles%%\Apache Software Foundation\Tomcat*\logs\access_log*'
-      - '%%environ_programfiles86%%\Apache Software Foundation\Tomcat*\logs\access_log*'
+      - '%%environ_programfilesx86%%\Apache Software Foundation\Tomcat*\logs\access_log*'
       - '%%environ_allusersappdata%%\Apache Software Foundation\Tomcat*\logs\access_log*'
       - '%%environ_programfiles%%\Apache Software Foundation\Tomcat*\logs\**\access_log*'
-      - '%%environ_programfiles86%%\Apache Software Foundation\Tomcat*\logs\**\access_log*'
+      - '%%environ_programfilesx86%%\Apache Software Foundation\Tomcat*\logs\**\access_log*'
       - '%%environ_allusersappdata%%\Apache Software Foundation\Tomcat*\logs\**\access_log*'
     separator: '\'
   supported_os: [Windows]
@@ -79,7 +79,7 @@ sources:
   attributes:
     paths:
       - '%%environ_programfiles%%\Apache Software Foundation\Tomcat*\conf\tomcat-users.xml'
-      - '%%environ_programfiles86%%\Apache Software Foundation\Tomcat*\conf\tomcat-users.xml'
+      - '%%environ_programfilesx86%%\Apache Software Foundation\Tomcat*\conf\tomcat-users.xml'
       - '%%environ_allusersappdata%%\Apache Software Foundation\Tomcat*\conf\tomcat-users.xml'
     separator: '\'
   supported_os: [Windows]
