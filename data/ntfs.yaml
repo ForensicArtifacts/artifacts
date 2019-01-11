@@ -16,12 +16,10 @@ sources:
     separator: '\'
 labels: [System]
 supported_os: [Windows]
-
+---
 name: NTFS$LogFile
 doc: |
   The NTFS $LogFile file system metadata file.
-
-  Reference: ntfsdoc-0.6/files/logfile.html from https://sourceforge.net/projects/linux-ntfs/
 
   GRR collection note: you currently need to specify 'use tsk' and
   'ignore download size limits' for this artifact to work. This will go away in
@@ -32,14 +30,13 @@ sources:
     paths:
       - '%%environ_systemdrive%%\$LogFile'
     separator: '\'
+urls: https://sourceforge.net/projects/linux-ntfs/
 labels: [System]
 supported_os: [Windows]
-
+---
 name: USNJournal
 doc: |
-  The Update Sequence Number (USN) Journal NTFS file system metadata file
-  
-  Reference: https://plaso.readthedocs.io/en/latest/_modules/plaso/parsers/ntfs.html#NTFSUsnJrnlParser
+  The Update Sequence Number (USN) Journal NTFS file system metadata file 
   
   GRR collection note: you currently need to specify 'use tsk' and
   'ignore download size limits' for this artifact to work. This will go away in
@@ -50,5 +47,6 @@ sources:
     paths:
       - '%%environ_systemdrive%%\$Extend\$UsnJrnl:$J'
     separator: '\'
+urls: https://plaso.readthedocs.io/en/latest/_modules/plaso/parsers/ntfs.html#NTFSUsnJrnlParser
 labels: [System]
 supported_os: [Windows]
