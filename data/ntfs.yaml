@@ -17,7 +17,7 @@ sources:
 labels: [System]
 supported_os: [Windows]
 ---
-name: NTFS$LogFile
+name: NTFSLogFile
 doc: |
   The NTFS $LogFile file system metadata file.
 
