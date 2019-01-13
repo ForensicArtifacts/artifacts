@@ -139,7 +139,8 @@ else:
                 '%{python3_sitelib}/artifacts*.egg-info/*',
                 '',
                 '%exclude %{_prefix}/share/doc/*',
-                '%exclude %{python3_sitelib}/artifacts/__pycache__/*'])
+                '%exclude %{python3_sitelib}/artifacts/__pycache__/*',
+                '%exclude %{_bindir}/*.py'])
 
           else:
             lines.extend([
@@ -148,9 +149,8 @@ else:
                 '',
                 '%exclude %{_prefix}/share/doc/*',
                 '%exclude %{python2_sitelib}/artifacts/*.pyc',
-                '%exclude %{python2_sitelib}/artifacts/*.pyo'])
-
-          lines.append('%exclude %{_bindir}/*.py')
+                '%exclude %{python2_sitelib}/artifacts/*.pyo',
+                '%exclude %{_bindir}/*.py'])
 
           python_spec_file.extend(lines)
           break
@@ -240,7 +240,8 @@ setup(
     },
     scripts=glob.glob(os.path.join('tools', '[a-z]*.py')),
     data_files=[
-        ('share/artifacts', glob.glob(os.path.join('data', '*'))),
+        ('share/artifacts', glob.glob(
+            os.path.join('data', '*'))),
         ('share/doc/artifacts', [
             'ACKNOWLEDGEMENTS', 'AUTHORS', 'LICENSE', 'README']),
     ],
