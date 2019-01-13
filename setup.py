@@ -123,9 +123,16 @@ else:
 
         elif line.startswith('%files'):
           lines = [
+              '%files -n %{name}-data',
+              '%defattr(644,root,root,755)',
+              '%license LICENSE', 
+              '%doc ACKNOWLEDGEMENTS AUTHORS README',
+              '%{_datadir}/%{name}/*',
+              '',
               '%files -n {0:s}-%{{name}}'.format(python_package),
               '%defattr(644,root,root,755)',
-              '%doc ACKNOWLEDGEMENTS AUTHORS LICENSE README']
+              '%license LICENSE', 
+              '%doc ACKNOWLEDGEMENTS AUTHORS README']
 
           if python_package == 'python3':
             lines.extend([
@@ -143,6 +150,8 @@ else:
                 '%exclude %{_prefix}/share/doc/*',
                 '%exclude %{python2_sitelib}/artifacts/*.pyc',
                 '%exclude %{python2_sitelib}/artifacts/*.pyo'])
+
+          lines.append('%exclude %{_bindir}/*.py')
 
           python_spec_file.extend(lines)
           break
