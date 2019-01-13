@@ -240,8 +240,7 @@ setup(
     },
     scripts=glob.glob(os.path.join('tools', '[a-z]*.py')),
     data_files=[
-        ('share/artifacts/data', glob.glob(
-            os.path.join('data', '*'))),
+        ('share/artifacts', glob.glob(os.path.join('data', '*'))),
         ('share/doc/artifacts', [
             'ACKNOWLEDGEMENTS', 'AUTHORS', 'LICENSE', 'README']),
     ],
