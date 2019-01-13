@@ -86,6 +86,7 @@ else:
         python_package = 'python3'
 
       description = []
+      requires = ''
       summary = ''
       in_description = False
 
@@ -99,9 +100,11 @@ else:
               python_package)
 
         elif line.startswith('Requires: '):
+          requires = line[10:]
           if python_package == 'python3':
-            line = line.replace('python-', 'python3-')
-            line = line.replace('python2-', 'python3-')
+            requires = line.replace('python-', 'python3-')
+            requires = line.replace('python2-', 'python3-')
+          continue
 
         elif line.startswith('%description'):
           in_description = True
@@ -147,18 +150,27 @@ else:
         elif line.startswith('%prep'):
           in_description = False
 
+          python_spec_file.extend([
+              '%package -n %{name}-data',
+              'Summary: Data files for {0:s}'.format(summary),
+              '',
+              '%description -n %{name}-data'])
+
+          python_spec_file.extend(description)
+
           python_spec_file.append(
               '%package -n {0:s}-%{{name}}'.format(python_package))
           if python_package == 'python2':
-            python_spec_file.append(
-                'Obsoletes: python-artifacts < %{version}')
-            python_spec_file.append(
-                'Provides: python-artifacts = %{version}')
+            python_spec_file.extend([
+                'Obsoletes: python-artifacts < %{version}',
+                'Provides: python-artifacts = %{version}'])
 
-          python_spec_file.append('{0:s}'.format(summary))
-          python_spec_file.append('')
-          python_spec_file.append(
-              '%description -n {0:s}-%{{name}}'.format(python_package))
+          python_spec_file.extend([
+              'Requires: %{{name}}-data, {0:s}'.format(requires),
+              '{0:s}'.format(summary),
+              '',
+              '%description -n {0:s}-%{{name}}'.format(python_package)])
+
           python_spec_file.extend(description)
 
         elif in_description:
@@ -214,7 +226,7 @@ setup(
         'Programming Language :: Python',
     ],
     packages=find_packages('.', exclude=[
-        'tests', 'tests.*', 'tools', 'utils']),
+        'docs', 'tests', 'tests.*', 'tools', 'utils']),
     package_dir={
         'artifacts': 'artifacts'
     },
