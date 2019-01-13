@@ -102,9 +102,8 @@ else:
         elif line.startswith('Requires: '):
           requires = line[10:]
           if python_package == 'python3':
-            requires = line.replace('python-', 'python3-')
-            requires = line.replace('python2-', 'python3-')
-          continue
+            requires = requires.replace('python-', 'python3-')
+            requires = requires.replace('python2-', 'python3-')
 
         elif line.startswith('%description'):
           in_description = True
