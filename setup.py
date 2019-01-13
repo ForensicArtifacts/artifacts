@@ -125,13 +125,13 @@ else:
           lines = [
               '%files -n %{name}-data',
               '%defattr(644,root,root,755)',
-              '%license LICENSE', 
+              '%license LICENSE',
               '%doc ACKNOWLEDGEMENTS AUTHORS README',
               '%{_datadir}/%{name}/*',
               '',
               '%files -n {0:s}-%{{name}}'.format(python_package),
               '%defattr(644,root,root,755)',
-              '%license LICENSE', 
+              '%license LICENSE',
               '%doc ACKNOWLEDGEMENTS AUTHORS README']
 
           if python_package == 'python3':
