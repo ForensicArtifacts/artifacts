@@ -93,7 +93,7 @@ else:
       python_spec_file = []
       for line in iter(spec_file):
         if line.startswith('Summary: '):
-          summary = line
+          summary = line[9:]
 
         elif line.startswith('BuildRequires: '):
           line = 'BuildRequires: {0:s}-setuptools, {0:s}-devel'.format(
@@ -104,6 +104,7 @@ else:
           if python_package == 'python3':
             requires = requires.replace('python-', 'python3-')
             requires = requires.replace('python2-', 'python3-')
+          continue
 
         elif line.startswith('%description'):
           in_description = True
@@ -121,6 +122,14 @@ else:
             line = '%py2_install'
 
         elif line.startswith('%files'):
+          python_spec_file.extend([
+              '%package -n %{name}-tools',
+              'Summary: Tools for {0:s}'.format(summary),
+              '',
+              '%description -n %{name}-tools'])
+
+          python_spec_file.extend(description)
+
           lines = [
               '%files -n %{name}-data',
               '%defattr(644,root,root,755)',
@@ -172,10 +181,13 @@ else:
             python_spec_file.extend([
                 'Obsoletes: python-artifacts < %{version}',
                 'Provides: python-artifacts = %{version}'])
+            python_summary = 'Python 2 module of {0:s}'.format(summary)
+          else:
+            python_summary = 'Python 3 module of {0:s}'.format(summary)
 
           python_spec_file.extend([
-              'Requires: %{{name}}-data, {0:s}'.format(requires),
-              '{0:s}'.format(summary),
+              'Requires: artifacts-data {0:s}'.format(requires),
+              'Summary: {0:s}'.format(python_summary),
               '',
               '%description -n {0:s}-%{{name}}'.format(python_package)])
 
@@ -189,6 +201,11 @@ else:
           description.append(line)
 
         python_spec_file.append(line)
+
+      python_spec_file.extend([
+          '',
+          '%files -n %{name}-tools',
+          '%{_bindir}/*.py'])
 
       return python_spec_file
 
