@@ -7,15 +7,15 @@
 
 L2TBINARIES_DEPENDENCIES="PyYAML";
 
-L2TBINARIES_TEST_DEPENDENCIES="funcsigs mock pbr six yapf";
+L2TBINARIES_TEST_DEPENDENCIES="funcsigs mock pbr six";
 
 PYTHON2_DEPENDENCIES="python-yaml";
 
-PYTHON2_TEST_DEPENDENCIES="python-coverage python-funcsigs python-mock python-pbr python-six python-tox python-yapf yapf";
+PYTHON2_TEST_DEPENDENCIES="python-coverage python-funcsigs python-mock python-pbr python-six python-tox";
 
 PYTHON3_DEPENDENCIES="python3-yaml";
 
-PYTHON3_TEST_DEPENDENCIES="python-yapf python3-mock python3-pbr python3-setuptools python3-six python3-tox yapf";
+PYTHON3_TEST_DEPENDENCIES="python3-mock python3-pbr python3-setuptools python3-six python3-tox";
 
 # Exit on error.
 set -e;
