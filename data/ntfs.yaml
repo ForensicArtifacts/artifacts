@@ -27,8 +27,7 @@ doc: |
 sources:
 - type: FILE
   attributes:
-    paths:
-      - '%%environ_systemdrive%%\$LogFile'
+    paths: ['%%environ_systemdrive%%\$LogFile']
     separator: '\'
 urls: https://sourceforge.net/projects/linux-ntfs/
 labels: [System]
