@@ -22,7 +22,7 @@ install:
 - cmd: if [%TARGET%]==[windows_python27] (
     mkdir dependencies &&
     set PYTHONPATH=..\l2tdevtools &&
-    "%PYTHON%\\python.exe" ..\l2tdevtools\tools\update.py --download-directory dependencies --machine-type %MACHINE_TYPE% --msi-targetdir "%PYTHON%" --track dev PyYAML funcsigs mock pbr six yapf )
+    "%PYTHON%\\python.exe" ..\l2tdevtools\tools\update.py --download-directory dependencies --machine-type %MACHINE_TYPE% --msi-targetdir "%PYTHON%" --track dev PyYAML funcsigs mock pbr six )
 - cmd: if [%TARGET%]==[windows_python36] (
     mkdir dependencies &&
     set PYTHONPATH=..\l2tdevtools &&

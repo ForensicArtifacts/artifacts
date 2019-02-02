@@ -45,7 +45,6 @@ SUPPORTED_OS_DARWIN = 'Darwin'
 SUPPORTED_OS_LINUX = 'Linux'
 SUPPORTED_OS_WINDOWS = 'Windows'
 
-# yapf: disable
 SUPPORTED_OS = frozenset([
     SUPPORTED_OS_DARWIN,
     SUPPORTED_OS_LINUX,
@@ -60,4 +59,3 @@ TOP_LEVEL_KEYS = frozenset([
     'sources',
     'supported_os',
     'urls'])
-# yapf: enable
