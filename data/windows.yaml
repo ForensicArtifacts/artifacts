@@ -1077,7 +1077,7 @@ name: WindowsMetroApplicationHistory
 doc: Windows Metro application history.
 sources:
 - type: FILE
-  attributes: 
+  attributes:
     paths: ['%%users.localappdata%%\Packages\*\AC\INetHistory']
     separator: '\'
 supported_os: [Windows]
@@ -1446,7 +1446,7 @@ doc: |
   userinit.exe will load this file and call its RunMonitor export.
 sources:
 - type: FILE
-  attributes: 
+  attributes:
     paths: ['%%environ_systemroot%%\System32\rover.dll']
     separator: '\'
 supported_os: [Windows]
@@ -1801,7 +1801,7 @@ name: WindowsSetupApiLogs
 doc: Windows setup API logs.
 sources:
 - type: FILE
-  attributes: 
+  attributes:
     paths: ['%%environ_systemroot%%\setupapi.log']
     separator: '\'
   conditions: [os_major_version < 6]
