@@ -52,6 +52,69 @@ class ArtifactDefinitionsValidator(object):
 
     return result
 
+  def _CheckWindowsPath(self, filename, artifact_definition, source, path):
+    """Checks if a path is a valid Windows path.
+
+    Args:
+      filename (str): name of the artifacts definition file.
+      artifact_definition (ArtifactDefinition): artifact definition.
+      source (SourceType): source definition.
+      path (str): path to validate.
+
+    Returns:
+      bool: True if the Windows path is valid.
+    """
+    result = True
+
+    number_of_forward_slashes = path.count('/')
+    number_of_backslashes = path.count('\\')
+    if (number_of_forward_slashes < number_of_backslashes and
+        source.separator != '\\'):
+      logging.warning((
+          'Incorrect path separator: {0:s} in path: {1:s} defined '
+          'by artifact definition: {2:s} in file: {3:s}').format(
+              source.separator, path, artifact_definition.name,
+              filename))
+      result = False
+
+    if source.separator == '\\':
+      path_lower = path.lower()
+      path_segments = path_lower.split(source.separator)
+
+      if path_segments[0].startswith('%%users.') and path_segments[0] not in (
+          '%%users.appdata%%', '%%users.homedir%%', '%%users.localappdata%%',
+          '%%users.temp%%', '%%users.username%%', '%%users.userprofile%%'):
+        logging.warning((
+            'Unsupported "{0:s}" in path: {1:s} defined by artifact '
+            'definition: {2:s} in file: {3:s}').format(
+                path_segments[0], path, artifact_definition.name, filename))
+        result = False
+
+      elif path_segments[0] == '%%users.homedir%%':
+        logging.warning((
+            'Replace "%%users.homedir%%" by "%%users.userprofile%%" in path: '
+            '{0:s} defined by artifact definition: {1:s} in file: '
+            '{2:s}').format(path, artifact_definition.name, filename))
+        result = False
+
+      elif path_lower.startswith('%%users.userprofile%%\\appdata\\local\\'):
+        logging.warning((
+            'Replace "%%users.userprofile%%\\AppData\\Local" by '
+            '"%%users.localappdata%%" in path: {0:s} defined by artifact '
+            'definition: {1:s} in file: {2:s}').format(
+                path, artifact_definition.name, filename))
+        result = False
+
+      elif path_lower.startswith('%%users.userprofile%%\\appdata\\roaming\\'):
+        logging.warning((
+            'Replace "%%users.userprofile%%\\AppData\\Roaming" by '
+            '"%%users.appdata%%" in path: {0:s} defined by artifact '
+            'definition: {1:s} in file: {2:s}').format(
+                path, artifact_definition.name, filename))
+        result = False
+
+    return result
+
   def _HasDuplicateRegistryKeyPaths(
       self, filename, artifact_definition, source):
     """Checks if Registry key paths are not already defined by other artifacts.
@@ -104,20 +167,18 @@ class ArtifactDefinitionsValidator(object):
                   artifact_definition.name, filename))
           result = False
 
+        artifact_definition_supports_windows = (
+            definitions.SUPPORTED_OS_WINDOWS in (
+                artifact_definition.supported_os))
+
         for source in artifact_definition.sources:
           if source.type_indicator in (
               definitions.TYPE_INDICATOR_FILE, definitions.TYPE_INDICATOR_PATH):
-            if definitions.SUPPORTED_OS_WINDOWS in source.supported_os:
+            if (artifact_definition_supports_windows or
+                definitions.SUPPORTED_OS_WINDOWS in source.supported_os):
               for path in source.paths:
-                number_of_forward_slashes = path.count('/')
-                number_of_backslashes = path.count('\\')
-                if (number_of_forward_slashes < number_of_backslashes and
-                    source.separator != '\\'):
-                  logging.warning((
-                      'Incorrect path separator: {0:s} in path: {1:s} defined '
-                      'by artifact definition: {2:s} in file: {3:s}').format(
-                          source.separator, path, artifact_definition.name,
-                          filename))
+                if not self._CheckWindowsPath(
+                    filename, artifact_definition, source, path):
                   result = False
 
           elif source.type_indicator == (

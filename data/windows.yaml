@@ -23,7 +23,7 @@ doc: |
 sources:
 - type: FILE
   attributes:
-    paths: ['%%users.homedir%%\AppData\Local\ConnectedDevicesPlatform\L.%%users.username%%\ActivitiesCache.db']
+    paths: ['%%users.localappdata%%\ConnectedDevicesPlatform\L.%%users.username%%\ActivitiesCache.db']
     separator: '\'
 labels: [Users]
 supported_os: [Windows]
@@ -119,6 +119,7 @@ sources:
     - '%%environ_systemroot%%\WinAppXRT.dll'
     - '%%environ_systemroot%%\System32\Wbem\WinAppXRT.dll'
     - '%%environ_systemroot%%\System32\WindowsPowerShell\v1.0\WinAppXRT.dll'
+    separator: '\'
 supported_os: [Windows]
 conditions: [os_major_version >= 6 AND os_minor_version >= 2]
 urls: ['http://www.hexacorn.com/blog/2014/08/31/beyond-good-ol-run-key-part-17/']
@@ -177,8 +178,8 @@ doc: Databases that contain the Windows BITS jobs definition and state.
 sources:
 - type: FILE
   attributes:
-    paths:
-      - '%%environ_allusersprofile%%\Microsoft\Network\Downloader\qmgr*.dat'
+    paths: ['%%environ_allusersprofile%%\Microsoft\Network\Downloader\qmgr*.dat']
+    separator: '\'
 supported_os: [Windows]
 urls: ['http://dfrws.org/2015/proceedings/presentations/DFRWS2015-pres3.pdf']
 ---
@@ -1054,7 +1055,9 @@ name: WindowsMetroApplicationCache
 doc: Windows Metro application cache.
 sources:
 - type: FILE
-  attributes: {paths: ['%%users.homedir%%\AppData\Local\Packages\*\AC\INetCache']}
+  attributes:
+    paths: ['%%users.localappdata%%\Packages\*\AC\INetCache']
+    separator: '\'
 supported_os: [Windows]
 urls:
 - 'http://www.forensicmag.com/article/2012/09/microsoft-windows-8-forensic-first-look'
@@ -1063,7 +1066,9 @@ name: WindowsMetroApplicationCookies
 doc: Windows Metro application cookies.
 sources:
 - type: FILE
-  attributes: {paths: ['%%users.homedir%%\AppData\Local\Packages\*\AC\INetCookies']}
+  attributes:
+    paths: ['%%users.localappdata%%\Packages\*\AC\INetCookies']
+    separator: '\'
 supported_os: [Windows]
 urls:
 - 'http://www.forensicmag.com/article/2012/09/microsoft-windows-8-forensic-first-look'
@@ -1072,7 +1077,9 @@ name: WindowsMetroApplicationHistory
 doc: Windows Metro application history.
 sources:
 - type: FILE
-  attributes: {paths: ['%%users.homedir%%\AppData\Local\Packages\*\AC\INetHistory']}
+  attributes: 
+    paths: ['%%users.localappdata%%\Packages\*\AC\INetHistory']
+    separator: '\'
 supported_os: [Windows]
 urls:
 - 'http://www.forensicmag.com/article/2012/09/microsoft-windows-8-forensic-first-look'
@@ -1081,7 +1088,9 @@ name: WindowsMetroUserPinnedFavoriteTiles
 doc: Windows Metro user-pinned favorite tiles.
 sources:
 - type: FILE
-  attributes: {paths: ['%%users.homedir%%\AppData\Local\Microsoft\Windows\RoamingTiles']}
+  attributes:
+    paths: ['%%users.localappdata%%\Microsoft\Windows\RoamingTiles']
+    separator: '\'
 supported_os: [Windows]
 urls:
 - 'http://www.forensicmag.com/article/2012/09/microsoft-windows-8-forensic-first-look'
@@ -1271,8 +1280,9 @@ sources:
     paths:
       - '%%environ_systemroot%%\system32\Windows­PowerShell\v1.0\profile.ps1'
       - '%%environ_systemroot%%\system32\Windows­PowerShell\v1.0\Microsoft.PowerShell_profile.ps1'
-      - '%%users.homedir%%\Documents\WindowsPowerShell\profile.ps1'
-      - '%%users.homedir%%\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1'
+      - '%%users.userprofile%%\Documents\WindowsPowerShell\profile.ps1'
+      - '%%users.userprofile%%\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1'
+    separator: '\'
 supported_os: [Windows]
 urls:
 - 'https://technet.microsoft.com/en-us/magazine/2008.10.windowspowershell.aspx#id0190010'
@@ -1436,7 +1446,9 @@ doc: |
   userinit.exe will load this file and call its RunMonitor export.
 sources:
 - type: FILE
-  attributes: {paths: ['%%environ_systemroot%%\System32\rover.dll']}
+  attributes: 
+    paths: ['%%environ_systemroot%%\System32\rover.dll']
+    separator: '\'
 supported_os: [Windows]
 urls: ['http://www.hexacorn.com/blog/2014/05/21/beyond-good-ol-run-key-part-12/']
 ---
@@ -1789,7 +1801,9 @@ name: WindowsSetupApiLogs
 doc: Windows setup API logs.
 sources:
 - type: FILE
-  attributes: {paths: ['%%environ_systemroot%%\setupapi.log']}
+  attributes: 
+    paths: ['%%environ_systemroot%%\setupapi.log']
+    separator: '\'
   conditions: [os_major_version < 6]
 - type: FILE
   attributes:
@@ -1843,10 +1857,10 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '%%users.homedir%%\Start Menu\Programs\Startup\*'
-      - '%%environ_allusersprofile%%\Start Menu\Programs\Startup\*'
-      - '%%users.homedir%%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\*'
       - '%%environ_allusersprofile%%\Microsoft\Windows\Start Menu\Programs\Startup\*'
+      - '%%environ_allusersprofile%%\Start Menu\Programs\Startup\*'
+      - '%%users.appdata%%\Microsoft\Windows\Start Menu\Programs\Startup\*'
+      - '%%users.userprofile%%\Start Menu\Programs\Startup\*'
     separator: '\'
 supported_os: [Windows]
 ---
@@ -2120,7 +2134,7 @@ doc: User downloads directory
 sources:
 - type: DIRECTORY
   attributes:
-    paths: ['%%users.homedir%%\Downloads\*']
+    paths: ['%%users.userprofile%%\Downloads\*']
     separator: '\'
 labels: [Users]
 supported_os: [Windows]
@@ -2143,8 +2157,8 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '%%users.homedir%%\NTUSER.DAT'
-      - '%%users.homedir%%\NTUSER.MAN'
+      - '%%users.userprofile%%\NTUSER.DAT'
+      - '%%users.userprofile%%\NTUSER.MAN'
       - '%%users.localappdata%%\Microsoft\Windows\UsrClass.dat'
     separator: '\'
 labels: [Users]
@@ -2157,9 +2171,9 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '%%users.homedir%%\NTUSER.DAT.LOG'
-      - '%%users.homedir%%\NTUSER.DAT.LOG1'
-      - '%%users.homedir%%\NTUSER.DAT.LOG2'
+      - '%%users.userprofile%%\NTUSER.DAT.LOG'
+      - '%%users.userprofile%%\NTUSER.DAT.LOG1'
+      - '%%users.userprofile%%\NTUSER.DAT.LOG2'
       - '%%users.localappdata%%\Microsoft\Windows\UsrClass.dat.LOG'
       - '%%users.localappdata%%\Microsoft\Windows\UsrClass.dat.LOG1'
       - '%%users.localappdata%%\Microsoft\Windows\UsrClass.dat.LOG2'
