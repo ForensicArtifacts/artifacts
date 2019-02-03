@@ -42,7 +42,7 @@ elif test -n "${FEDORA_VERSION}";
 then
 	CONTAINER_NAME="fedora${FEDORA_VERSION}";
 
-	docker exec "${CONTAINER_NAME}" sh -c "git clone None";
+	docker exec "${CONTAINER_NAME}" sh -c "git clone https://github.com/ForensicArtifacts/artifacts.git";
 
 	if test ${TRAVIS_PYTHON_VERSION} = "2.7";
 	then
