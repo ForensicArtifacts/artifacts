@@ -77,58 +77,60 @@ class ArtifactDefinitionsValidator(object):
               filename))
       result = False
 
-    if source.separator == '\\':
-      path_lower = path.lower()
-      path_segments = path_lower.split(source.separator)
+    if source.separator != '\\':
+      return result
 
-      if path_segments[0].startswith('%%users.') and path_segments[0] not in (
-          '%%users.appdata%%', '%%users.homedir%%', '%%users.localappdata%%',
-          '%%users.temp%%', '%%users.username%%', '%%users.userprofile%%'):
-        logging.warning((
-            'Unsupported "{0:s}" in path: {1:s} defined by artifact '
-            'definition: {2:s} in file: {3:s}').format(
-                path_segments[0], path, artifact_definition.name, filename))
-        result = False
+    path_lower = path.lower()
+    path_segments = path_lower.split(source.separator)
 
-      elif path_segments[0] == '%%users.homedir%%':
-        logging.warning((
-            'Replace "%%users.homedir%%" by "%%users.userprofile%%" in path: '
-            '{0:s} defined by artifact definition: {1:s} in file: '
-            '{2:s}').format(path, artifact_definition.name, filename))
-        result = False
+    if path_segments[0].startswith('%%users.') and path_segments[0] not in (
+        '%%users.appdata%%', '%%users.homedir%%', '%%users.localappdata%%',
+        '%%users.temp%%', '%%users.username%%', '%%users.userprofile%%'):
+      logging.warning((
+          'Unsupported "{0:s}" in path: {1:s} defined by artifact '
+          'definition: {2:s} in file: {3:s}').format(
+              path_segments[0], path, artifact_definition.name, filename))
+      result = False
 
-      elif path_lower.startswith('%%users.userprofile%%\\appdata\\local\\'):
-        logging.warning((
-            'Replace "%%users.userprofile%%\\AppData\\Local" by '
-            '"%%users.localappdata%%" in path: {0:s} defined by artifact '
-            'definition: {1:s} in file: {2:s}').format(
-                path, artifact_definition.name, filename))
-        result = False
+    elif path_segments[0] == '%%users.homedir%%':
+      logging.warning((
+          'Replace "%%users.homedir%%" by "%%users.userprofile%%" in path: '
+          '{0:s} defined by artifact definition: {1:s} in file: '
+          '{2:s}').format(path, artifact_definition.name, filename))
+      result = False
 
-      elif path_lower.startswith('%%users.userprofile%%\\appdata\\roaming\\'):
-        logging.warning((
-            'Replace "%%users.userprofile%%\\AppData\\Roaming" by '
-            '"%%users.appdata%%" in path: {0:s} defined by artifact '
-            'definition: {1:s} in file: {2:s}').format(
-                path, artifact_definition.name, filename))
-        result = False
+    elif path_lower.startswith('%%users.userprofile%%\\appdata\\local\\'):
+      logging.warning((
+          'Replace "%%users.userprofile%%\\AppData\\Local" by '
+          '"%%users.localappdata%%" in path: {0:s} defined by artifact '
+          'definition: {1:s} in file: {2:s}').format(
+              path, artifact_definition.name, filename))
+      result = False
 
-      elif path_lower.startswith('%%users.userprofile%%\\application data\\'):
-        logging.warning((
-            'Replace "%%users.userprofile%%\\Application Data" by '
-            '"%%users.appdata%%" in path: {0:s} defined by artifact '
-            'definition: {1:s} in file: {2:s}').format(
-                path, artifact_definition.name, filename))
-        result = False
+    elif path_lower.startswith('%%users.userprofile%%\\appdata\\roaming\\'):
+      logging.warning((
+          'Replace "%%users.userprofile%%\\AppData\\Roaming" by '
+          '"%%users.appdata%%" in path: {0:s} defined by artifact '
+          'definition: {1:s} in file: {2:s}').format(
+              path, artifact_definition.name, filename))
+      result = False
 
-      elif path_lower.startswith(
-          '%%users.userprofile%%\\local settings\\application data\\'):
-        logging.warning((
-            'Replace "%%users.userprofile%%\\Local Settings\\Application Data" '
-            'by "%%users.localappdata%%" in path: {0:s} defined by artifact '
-            'definition: {1:s} in file: {2:s}').format(
-                path, artifact_definition.name, filename))
-        result = False
+    elif path_lower.startswith('%%users.userprofile%%\\application data\\'):
+      logging.warning((
+          'Replace "%%users.userprofile%%\\Application Data" by '
+          '"%%users.appdata%%" in path: {0:s} defined by artifact '
+          'definition: {1:s} in file: {2:s}').format(
+              path, artifact_definition.name, filename))
+      result = False
+
+    elif path_lower.startswith(
+        '%%users.userprofile%%\\local settings\\application data\\'):
+      logging.warning((
+          'Replace "%%users.userprofile%%\\Local Settings\\Application Data" '
+          'by "%%users.localappdata%%" in path: {0:s} defined by artifact '
+          'definition: {1:s} in file: {2:s}').format(
+              path, artifact_definition.name, filename))
+      result = False
 
     return result
 
