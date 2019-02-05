@@ -82,6 +82,7 @@ sources:
       - '%%users.appdata%%\microsoft\c_27803.nls'
       - '%%users.appdata%%\microsoft\objframe.dll'
       - '%%users.appdata%%\microsoft\shmgr.dll'
+    separator: '\'
 supported_os: [Windows]
 urls: ['http://www.securelist.com/en/downloads/vlpdfs/unveilingthemask_v1.0.pdf']
 ---
