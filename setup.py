@@ -124,7 +124,7 @@ else:
         elif line.startswith('%files'):
           python_spec_file.extend([
               '%package -n %{name}-tools',
-              'Requires: python-artifacts',
+              'Requires: {0:s}-artifacts'.format(python_package),
               'Summary: Tools for {0:s}'.format(summary),
               '',
               '%description -n %{name}-tools'])
