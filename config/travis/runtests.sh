@@ -50,7 +50,7 @@ then
 	then
 		docker exec ${CONTAINER_NAME} sh -c "export LANG=en_US.UTF-8; cd artifacts && python2 run_tests.py";
 	else
-		docker exec ${CONTAINER_NAME} sh -c "cd artifacts && python3 run_tests.py";
+		docker exec ${CONTAINER_NAME} sh -c "export LANG=en_US.UTF-8; cd artifacts && python3 run_tests.py";
 	fi
 
 elif test -n "${UBUNTU_VERSION}";
@@ -65,7 +65,7 @@ then
 	then
 		docker exec ${CONTAINER_NAME} sh -c "export LANG=en_US.UTF-8; cd artifacts && python2 run_tests.py";
 	else
-		docker exec ${CONTAINER_NAME} sh -c "cd artifacts && python3 run_tests.py";
+		docker exec ${CONTAINER_NAME} sh -c "export LANG=en_US.UTF-8; cd artifacts && python3 run_tests.py";
 	fi
 
 elif test "${TRAVIS_OS_NAME}" = "linux";
