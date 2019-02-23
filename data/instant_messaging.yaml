@@ -1,0 +1,58 @@
+# Instant Messaging applications specific artifacts.
+
+name: SkypeChatSync
+doc: Chat Sync Directory
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Application Support/Skype/*/chatsync/*']
+  supported_os: [Darwin]
+supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Skype'
+---
+name: SkypeDb
+doc: Main Skype database
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Application Support/Skype/*/Main.db']
+  supported_os: [Darwin]
+supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Skype'
+---
+name: SkypeMainDirectory
+doc: Skype Directory
+sources:
+- type: DIRECTORY
+  attributes:
+    paths: ['%%users.homedir%%/Library/Application Support/Skype/*']
+  supported_os: [Darwin]
+supported_os: [Darwin]
+---
+name: SkypePreferences
+doc: Skype Preferences and Recent Searches
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Preferences/com.skype.skype.plist']
+  supported_os: [Darwin]
+supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Skype'
+---
+name: SkypeUserProfile
+doc: Skype User profile
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.homedir%%/Library/Application Support/Skype/*/*']
+  supported_os: [Darwin]
+supported_os: [Darwin]
+urls:
+- 'http://forensicswiki.org/wiki/Mac_OS_X'
+- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Skype'
