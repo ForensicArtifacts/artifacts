@@ -34,11 +34,11 @@ LABELS = {
     'Mail': 'Mail client applications artifacts.',
     'Memory': 'Artifacts retrieved from memory.',
     'Network': 'Describe networking state.',
-    'Plist': 'Plist artifact.',
+    'Plist': 'Artifact that is a plist.',
     'Processes': 'Describe running processes.',
     'Rekall': 'Artifacts using the Rekall memory forensics framework.',
     'Software': 'Installed software.',
-    'SQLiteDB': 'SQLite database artifact.',
+    'SQLiteDB': 'Artifact that is a SQLite database.',
     'System': 'Core system artifacts.',
     'Users': 'Information about users.'
 }
