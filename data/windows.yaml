@@ -205,6 +205,8 @@ sources:
 - type: FILE
   attributes:
     paths:
+      # Windows 95 OSR 2.5, 98, Millennium Edition (Me)
+      - '%%environ_windir%%\System\Wbem\Repository\cim.rep'
       # Windows NT4 and 2000
       - '%%environ_systemroot%%\System32\wbem\Repository\CIM.REC'
       - '%%environ_systemroot%%\System32\wbem\Repository\CIM.REP'
