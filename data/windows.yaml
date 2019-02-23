@@ -201,6 +201,8 @@ doc: |
 
   Persistent database that holds the schema, also called the object repository or class store,
   that models the managed environment and defines every piece of data exposed by WMI.
+
+  This definition does not specify the copies of the CIM repository that are stored in system restore points.
 sources:
 - type: FILE
   attributes:
