@@ -5,6 +5,7 @@ from __future__ import unicode_literals
 
 import abc
 import glob
+import io
 import os
 import json
 import yaml
@@ -281,7 +282,7 @@ class ArtifactsReader(BaseArtifactsReader):
     Yields:
       ArtifactDefinition: an artifact definition.
     """
-    with open(filename, 'r') as file_object:
+    with io.open(filename, 'r', encoding='utf-8') as file_object:
       for artifact_definition in self.ReadFileObject(file_object):
         yield artifact_definition
 

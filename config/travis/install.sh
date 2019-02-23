@@ -11,11 +11,11 @@ L2TBINARIES_TEST_DEPENDENCIES="funcsigs mock pbr six";
 
 DPKG_PYTHON2_DEPENDENCIES="python-yaml";
 
-DPKG_PYTHON2_TEST_DEPENDENCIES="python-coverage python-funcsigs python-mock python-pbr python-six python-tox";
+DPKG_PYTHON2_TEST_DEPENDENCIES="python-coverage python-funcsigs python-mock python-pbr python-six";
 
 DPKG_PYTHON3_DEPENDENCIES="python3-yaml";
 
-DPKG_PYTHON3_TEST_DEPENDENCIES="python3-mock python3-pbr python3-setuptools python3-six python3-tox";
+DPKG_PYTHON3_TEST_DEPENDENCIES="python3-mock python3-pbr python3-setuptools python3-six";
 
 RPM_PYTHON2_DEPENDENCIES="python2-pyyaml";
 
@@ -62,12 +62,49 @@ then
 
 	docker exec ${CONTAINER_NAME} dnf copr -y enable @gift/dev;
 
-	if test ${TRAVIS_PYTHON_VERSION} = "2.7";
+	if test -n "${TOXENV}";
+	then
+		docker exec ${CONTAINER_NAME} dnf install -y python3-tox;
+
+	elif test ${TRAVIS_PYTHON_VERSION} = "2.7";
 	then
 		docker exec ${CONTAINER_NAME} dnf install -y git python2 ${RPM_PYTHON2_DEPENDENCIES} ${RPM_PYTHON2_TEST_DEPENDENCIES};
 	else
 		docker exec ${CONTAINER_NAME} dnf install -y git python3 ${RPM_PYTHON3_DEPENDENCIES} ${RPM_PYTHON3_TEST_DEPENDENCIES};
 	fi
+
+	docker cp ../artifacts ${CONTAINER_NAME}:/
+
+elif test -n "${UBUNTU_VERSION}";
+then
+	CONTAINER_NAME="ubuntu${UBUNTU_VERSION}";
+
+	docker pull ubuntu:${UBUNTU_VERSION};
+
+	docker run --name=${CONTAINER_NAME} --detach -i ubuntu:${UBUNTU_VERSION};
+
+	docker exec ${CONTAINER_NAME} apt-get update -q;
+	docker exec ${CONTAINER_NAME} sh -c "DEBIAN_FRONTEND=noninteractive apt-get install -y software-properties-common";
+
+	docker exec ${CONTAINER_NAME} add-apt-repository ppa:gift/dev -y;
+
+	if test -n "${TOXENV}";
+	then
+		docker exec ${CONTAINER_NAME} add-apt-repository universe;
+		docker exec ${CONTAINER_NAME} add-apt-repository ppa:deadsnakes/ppa -y;
+
+		DPKG_PYTHON="python${TRAVIS_PYTHON_VERSION}";
+
+		docker exec ${CONTAINER_NAME} sh -c "DEBIAN_FRONTEND=noninteractive apt-get install -y ${DPKG_PYTHON} tox";
+
+	elif test ${TRAVIS_PYTHON_VERSION} = "2.7";
+	then
+		docker exec ${CONTAINER_NAME} sh -c "DEBIAN_FRONTEND=noninteractive apt-get install -y git python ${DPKG_PYTHON2_DEPENDENCIES} ${DPKG_PYTHON2_TEST_DEPENDENCIES}";
+	else
+		docker exec ${CONTAINER_NAME} sh -c "DEBIAN_FRONTEND=noninteractive apt-get install -y git python3 ${DPKG_PYTHON3_DEPENDENCIES} ${DPKG_PYTHON3_TEST_DEPENDENCIES}";
+	fi
+
+	docker cp ../artifacts ${CONTAINER_NAME}:/
 
 elif test ${TRAVIS_OS_NAME} = "linux" && test ${TARGET} != "jenkins";
 then
