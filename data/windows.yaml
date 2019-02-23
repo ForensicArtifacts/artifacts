@@ -195,6 +195,25 @@ urls:
 - 'https://technet.microsoft.com/en-us/library/cc786702(WS.10).aspx'
 - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
 ---
+name: WindowsCIMRepositoryFiles
+doc: Persistent database maintaining definitions of all manageable objects, how they are related and who provides their instances.
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '%%environ_systemroot%%\System32\wbem\Repository\INDEX.BTR'
+      - '%%environ_systemroot%%\System32\wbem\Repository\MAPPING*.MAP'
+      - '%%environ_systemroot%%\System32\wbem\Repository\OBJECTS.DATA'
+      - '%%environ_systemroot%%\System32\wbem\Repository\FS\INDEX.BTR'
+      - '%%environ_systemroot%%\System32\wbem\Repository\FS\INDEX.MAP'
+      - '%%environ_systemroot%%\System32\wbem\Repository\FS\MAPPING.VER'
+      - '%%environ_systemroot%%\System32\wbem\Repository\FS\MAPPING*.MAP'
+      - '%%environ_systemroot%%\System32\wbem\Repository\FS\OBJECTS.DATA'
+      - '%%environ_systemroot%%\System32\wbem\Repository\FS\OBJECTS.MAP'
+    separator: '\'
+supported_os: [Windows]
+urls: ['https://www.fireeye.com/content/dam/fireeye-www/global/en/current-threats/pdfs/wp-windows-management-instrumentation.pdf']
+---
 name: WindowsCodePage
 doc: The code page of the system.
 sources:
