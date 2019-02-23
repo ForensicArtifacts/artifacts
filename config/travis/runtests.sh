@@ -44,7 +44,7 @@ then
 
 	if test -n "${TOXENV}";
 	then
-		docker exec ${CONTAINER_NAME} sh -c "cd artifacts && tox -e ${TOXENV}";
+		docker exec ${CONTAINER_NAME} sh -c "export LANG=en_US.UTF-8; cd artifacts && tox -e ${TOXENV}";
 
 	elif test ${TRAVIS_PYTHON_VERSION} = "2.7";
 	then
@@ -59,7 +59,7 @@ then
 
 	if test -n "${TOXENV}";
 	then
-		docker exec ${CONTAINER_NAME} sh -c "cd artifacts && tox -e ${TOXENV}";
+		docker exec ${CONTAINER_NAME} sh -c "export LANG=en_US.UTF-8; cd artifacts && tox -e ${TOXENV}";
 
 	elif test ${TRAVIS_PYTHON_VERSION} = "2.7";
 	then
