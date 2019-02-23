@@ -195,6 +195,43 @@ urls:
 - 'https://technet.microsoft.com/en-us/library/cc786702(WS.10).aspx'
 - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
 ---
+name: WindowsCIMRepositoryFiles
+doc: |
+  Windows Common Information Model (CIM) repository.
+
+  Persistent database that holds the schema, also called the object repository or class store,
+  that models the managed environment and defines every piece of data exposed by WMI.
+
+  This definition does not specify the copies of the CIM repository that are stored in system restore points.
+sources:
+- type: FILE
+  attributes:
+    paths:
+      # Windows 95 OSR 2.5, 98, Millennium Edition (Me)
+      - '%%environ_windir%%\System\Wbem\Repository\cim.rep'
+      # Windows NT4 and 2000
+      - '%%environ_systemroot%%\System32\wbem\Repository\CIM.REC'
+      - '%%environ_systemroot%%\System32\wbem\Repository\CIM.REP'
+      # Windows Vista and later
+      - '%%environ_systemroot%%\System32\wbem\Repository\INDEX.BTR'
+      - '%%environ_systemroot%%\System32\wbem\Repository\INDEX.MAP'
+      - '%%environ_systemroot%%\System32\wbem\Repository\MAPPING.VER'
+      - '%%environ_systemroot%%\System32\wbem\Repository\MAPPING[1-3].MAP'
+      - '%%environ_systemroot%%\System32\wbem\Repository\OBJECTS.DATA'
+      - '%%environ_systemroot%%\System32\wbem\Repository\OBJECTS.MAP'
+      # Windows XP and Windows 2003
+      - '%%environ_systemroot%%\System32\wbem\Repository\FS\INDEX.BTR'
+      - '%%environ_systemroot%%\System32\wbem\Repository\FS\INDEX.MAP'
+      - '%%environ_systemroot%%\System32\wbem\Repository\FS\MAPPING.VER'
+      - '%%environ_systemroot%%\System32\wbem\Repository\FS\MAPPING[1-2].MAP'
+      - '%%environ_systemroot%%\System32\wbem\Repository\FS\OBJECTS.DATA'
+      - '%%environ_systemroot%%\System32\wbem\Repository\FS\OBJECTS.MAP'
+    separator: '\'
+supported_os: [Windows]
+urls:
+- 'https://www.fireeye.com/content/dam/fireeye-www/global/en/current-threats/pdfs/wp-windows-management-instrumentation.pdf'
+- 'https://github.com/libyal/dtformats/blob/master/documentation/WMI%20repository%20file%20format.asciidoc'
+---
 name: WindowsCodePage
 doc: The code page of the system.
 sources:
