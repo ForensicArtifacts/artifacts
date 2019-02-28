@@ -189,14 +189,18 @@ class ArtifactsReader(BaseArtifactsReader):
 
       # TODO: deprecate these left overs from the collector definition.
       if source_type:
+        if source.get('returned_types', None):
+          raise errors.FormatError((
+               'Invalid artifact definition: {0:s} returned_types no longer '
+               'supported.').format(name))
+
         source_type.conditions = source.get('conditions', [])
-        source_type.returned_types = source.get('returned_types', [])
         self._ReadSupportedOS(source, source_type, name)
         if set(source_type.supported_os) - set(
             artifact_definition.supported_os):
-          raise errors.FormatError(
-              ('Invalid artifact definition: {0:s} missing '
-               'supported_os.').format(name))
+          raise errors.FormatError((
+              'Invalid artifact definition: {0:s} missing '
+              'supported_os.').format(name))
 
   def ReadArtifactDefinitionValues(self, artifact_definition_values):
     """Reads an artifact definition from a dictionary.

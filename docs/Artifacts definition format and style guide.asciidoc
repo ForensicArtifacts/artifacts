@@ -7,6 +7,7 @@
 :numbered!:
 [abstract]
 == Summary
+
 This guide contains a description of the forensics artifacts definitions.
 The artifacts definitions are
 link:http://www.yaml.org/spec/1.2/spec.html[YAML]-based. The format is
@@ -16,6 +17,7 @@ artifacts definitions.
 
 [preface]
 == Revision history
+
 [cols="1,1,1,5",options="header"]
 |===
 | Version | Author | Date | Comments
@@ -24,10 +26,12 @@ artifacts definitions.
 | 0.0.3 | J.B. Metz | April 2015 | Merged style guide and artifact definitions wiki page.
 | 0.0.3 | J.B. Metz | September 2015 | Additional label.
 | 0.0.4 | J.B. Metz | July 2016 | Added information about a naming convention.
+| 0.0.5 | J.B. Metz | February 2019 | Removed returned_types as keyword and format changes.
 |===
 
 :numbered:
 == Background
+
 The first version of the artifact definitions originated from the
 https://github.com/google/grr[GRR project], where it is used to describe and
 quickly collect data of interest, e.g. specific files or Windows Registry keys.
@@ -44,9 +48,15 @@ IOC-like logic, or describing how the data should be collected since this
 various between tools.
 
 === Terminology
-The term artifact (or artefact) is widely used within computer (or digital) forensics, though there is no official definition of this term.
 
-The definition closest to the meaning of the word within computer forensics is that of the word artifact within http://en.wikipedia.org/wiki/Artifact_(archaeology)[archaeology]. The term should not be confused with the word artifact used within http://en.wikipedia.org/wiki/Artifact_(software_development)[software development].
+The term artifact (or artefact) is widely used within computer (or digital)
+forensics, though there is no official definition of this term.
+
+The definition closest to the meaning of the word within computer forensics is
+that of the word artifact within
+http://en.wikipedia.org/wiki/Artifact_(archaeology)[archaeology]. The term
+should not be confused with the word artifact used within
+http://en.wikipedia.org/wiki/Artifact_(software_development)[software development].
 
 If archaeology defines an artifact as:
 ```
@@ -59,9 +69,11 @@ The definition of artifact within computer forensics could be:
 An object of digital archaeological interest.
 ```
 
-Where digital archaeology roughly refers to computer forensics without the forensic (legal) context.
+Where digital archaeology roughly refers to computer forensics without the
+forensic (legal) context.
 
 == The artifact definition
+
 The best way to show what an artifact definition is, is by example. The
 following example is the artifact definition for the Windows EVTX System Event
 Logs.
@@ -103,6 +115,7 @@ Ideally the artifact definition links to an article that discusses the artificat
 |===
 
 === [[artifact_name]]Name
+
 *Style note*: The name of an artifact defintion should be in CamelCase name without spaces.
 
 As of July 2016 we are migrating to the following naming convention:
@@ -116,6 +129,7 @@ As of July 2016 we are migrating to the following naming convention:
 files use "BrowserHistoryFiles" instead of "BrowserHistory" to reduce ambiguity.
 
 === [[artifact_long_docs]]Long docs form
+
 Multi-line documentation should use the YAML Literal Style as indicated by the |
 character.
 
@@ -134,6 +148,7 @@ separated by an empty line.
 *Style note*: explicit newlines (\n) should not be used.
 
 == [[sources]]Sources
+
 Every source definition starts with a `type` followed by arguments e.g.
 
 [source,yaml]
@@ -179,12 +194,12 @@ form should be used to save on line breaks as below:
 | type | The source type.
 | conditions | Optional list of conditions to when the artifact definition should apply. +
 See section: <<conditions,Conditions>>.
-| returned_types | Optional list of returned artifact definition types.
 | supported_os | Optional list that indicates which operating systems the artifact definition applies to. +
 See section: <<supported_os,Supported operating system>>.
 |===
 
 === Source types
+
 Currently the following different source types are defined:
 
 [cols="1,5",options="header"]
@@ -204,6 +219,7 @@ link:https://github.com/ForensicArtifacts/artifacts/blob/master/artifacts/defini
 as TYPE_INDICATOR constants.
 
 === Artifact group source
+
 The artifact group source is a source that consists of a group of other artifacts e.g.
 
 [source,yaml]
@@ -211,7 +227,6 @@ The artifact group source is a source that consists of a group of other artifact
 - type: ARTIFACT_GROUP
   attributes:
     names: [WindowsRunKeys, WindowsServices]
-  returned_types: [PersistenceFile]
 ----
 
 Where `attributes` can contain the following values:
@@ -224,6 +239,7 @@ This can also be used to group multiple artifact definitions into one for conven
 |===
 
 === Command source
+
 The command source is a source that consists of the output of a command e.g.
 
 [source,yaml]
@@ -244,6 +260,7 @@ Where `attributes` can contain the following values:
 |===
 
 === File source
+
 The file source is a source that consists of the contents of files e.g.
 
 [source,yaml]
@@ -264,6 +281,7 @@ See section: <<parameter_expansion,Parameter expansion and globs>>
 |===
 
 === Path source
+
 The path source is a source that consists of the contents of paths e.g.
 
 [source,yaml]
@@ -285,6 +303,7 @@ See section: <<parameter_expansion,Parameter expansion and globs>>
 |===
 
 === Windows Registry key source
+
 The Windows Registry key source is a source that consists of the contents of
 Windows Registry keys e.g.
 
@@ -308,6 +327,7 @@ See section: <<parameter_expansion,Parameter expansion and globs>>
 |===
 
 === Windows Registry value source
+
 The Windows Registry value source is a source that consists of the contents of
 Windows Registry values e.g.
 
@@ -330,6 +350,7 @@ See section: <<parameter_expansion,Parameter expansion and globs>>
 |===
 
 === Windows Management Instrumentation (WMI) query source
+
 The  Windows Management Instrumentation (WMI) query source is a source that
 consists of the output of Windows Management Instrumentation (WMI) queries e.g.
 
@@ -351,6 +372,7 @@ See section: <<parameter_expansion,Parameter expansion and globs>>
 |===
 
 == [[conditions]]Conditions
+
 *TODO: work is in progress to move this out of GRR into something more portable.*
 
 Artifact conditions are currently implemented using the
@@ -367,6 +389,7 @@ conditions: [os_major_version >= 6 and time_zone == 'America/Los_Angeles']
 ----
 
 === [[supported_os]]Supported operating system
+
 Since operating system (OS) conditions are a very common constraint, this has
 been provided as a separate option "supported_os" to simplify syntax. For
 supported_os no quotes are required. The currently supported operating systems
@@ -389,6 +412,7 @@ This can be translated to objectfilter as:
 ----
 
 == [[labels]]Labels
+
 Currently the following different labels are defined:
 
 [cols="1,5",options="header"]
@@ -416,7 +440,9 @@ The labes are defined in
 link:https://github.com/ForensicArtifacts/artifacts/blob/master/artifacts/definitions.py[definitions.py].
 
 == Style notes
+
 === Artifact definition YAML files
+
 Artifact definition YAML filenames should be of the form:
 ....
 $FILENAME.yaml
@@ -434,6 +460,7 @@ file e.g.
 ----
 
 === Lists
+
 Generally use the short [] format for single-item lists that fit inside 80
 characters to save on unnecessary line breaks:
 
@@ -457,6 +484,7 @@ paths:
 ----
 
 === Quotes
+
 Quotes should not be used for doc strings, artifact names, and simple lists
 like labels and supported_os.
 
@@ -477,6 +505,7 @@ content_regex_list: ["^%%users.username%%:[^:]*\n"]
 ----
 
 === Minimize the number of definitions by using multiple sources
+
 To minimize the number of artifacts in the list, combine them using the
 supported_os and conditions attributes where it makes sense. e.g. rather than
 having FirefoxHistoryWindows, FirefoxHistoryLinux, FirefoxHistoryDarwin, do:
@@ -505,5 +534,6 @@ supported_os: [Windows, Linux, Darwin]
 ----
 
 == [[parameter_expansion]]Parameter expansion and globs
+
 *TODO*
 

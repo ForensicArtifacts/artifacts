@@ -88,8 +88,6 @@ class ArtifactDefinition(object):
         source_definition['supported_os'] = source.supported_os
       if source.conditions:
         source_definition['conditions'] = source.conditions
-      if source.returned_types:
-        source_definition['returned_types'] = source.returned_types
       sources.append(source_definition)
 
     artifact_definition = {
