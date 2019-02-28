@@ -1221,7 +1221,6 @@ sources:
       - WindowsPersistenceRegistryKeys
       - WindowsPowerShellDefaultProfiles
       - WindowsServices
-  returned_types: [PersistenceFile]
 labels: [Software]
 supported_os: [Windows]
 ---
