@@ -29,6 +29,6 @@ sources:
   attributes:
     paths: ['%%environ_systemdrive%%\$LogFile']
     separator: '\'
-urls: https://sourceforge.net/projects/linux-ntfs/
+urls: ['https://sourceforge.net/projects/linux-ntfs/']
 labels: [System]
 supported_os: [Windows]
