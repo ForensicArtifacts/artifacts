@@ -80,11 +80,14 @@ class ArtifactDefinitionsValidator(object):
             '{1:s}').format(artifact_definition.name, filename))
         result = False
 
-      elif path_segments[0] in self._MACOS_PRIVATE_SUB_PATHS:
+      elif len(path_segments) == 1:
+        continue
+
+      elif path_segments[1] in self._MACOS_PRIVATE_SUB_PATHS:
         paths_with_symbolic_links_to_private.append(path)
 
-      elif path_segments[0] == 'private':
-        if path_segments[1] in self._MACOS_PRIVATE_SUB_PATHS:
+      elif path_segments[1] == 'private' and len(path_segments) >=2:
+        if path_segments[2] in self._MACOS_PRIVATE_SUB_PATHS:
           paths_with_private.append(path)
 
         else:
@@ -264,8 +267,9 @@ class ArtifactDefinitionsValidator(object):
           if source.type_indicator in (
               definitions.TYPE_INDICATOR_FILE, definitions.TYPE_INDICATOR_PATH):
 
-            if (artifact_definition_supports_macos or
-                definitions.SUPPORTED_OS_DARWIN in source.supported_os):
+            if (definitions.SUPPORTED_OS_DARWIN in source.supported_os or (
+                artifact_definition_supports_macos and
+                not source.supported_os)):
               if not self._CheckMacOSPaths(
                   filename, artifact_definition, source, source.paths):
                 result = False
