@@ -66,8 +66,8 @@ urls: 'http://example.com'
 """
 
   _DEFINITION_WITH_EXTRA_KEY = """\
-name: BadKey
-doc: bad extra key.
+name: WithExtraKey
+doc: definition with extra_key
 sources:
 - type: ARTIFACT_GROUP
   attributes:
@@ -76,6 +76,16 @@ sources:
 extra_key: 'wrong'
 labels: [Logs]
 supported_os: [Windows]
+"""
+
+  _DEFINITION_WITH_RETURN_TYPES = """\
+name: WithReturnTypes
+doc: definition with return_types
+sources:
+- type: ARTIFACT_GROUP
+  attributes:
+    names: [WindowsRunKeys, WindowsServices]
+  returned_types: [PersistenceFile]
 """
 
   _DEFINITION_WITHOUT_DOC = """\
@@ -270,6 +280,14 @@ supported_os: [Windows]
     artifact_reader = reader.YamlArtifactsReader()
 
     file_object = io.StringIO(initial_value=self._DEFINITION_WITH_EXTRA_KEY)
+    with self.assertRaises(errors.FormatError):
+      _ = list(artifact_reader.ReadFileObject(file_object))
+
+  def testReadFileObjectWithReturnTypes(self):
+    """Tests the ReadFileObject function on a definition with return types."""
+    artifact_reader = reader.YamlArtifactsReader()
+
+    file_object = io.StringIO(initial_value=self._DEFINITION_WITH_RETURN_TYPES)
     with self.assertRaises(errors.FormatError):
       _ = list(artifact_reader.ReadFileObject(file_object))
 
