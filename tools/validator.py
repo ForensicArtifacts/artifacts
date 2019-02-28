@@ -21,6 +21,8 @@ class ArtifactDefinitionsValidator(object):
 
   LEGACY_PATH = os.path.join('data', 'legacy.yaml')
 
+  _MACOS_PRIVATE_SUB_PATHS = ('etc', 'tftpboot', 'tmp', 'var')
+
   def __init__(self):
     """Initializes an artifact definitions validator."""
     super(ArtifactDefinitionsValidator, self).__init__()
@@ -49,6 +51,66 @@ class ArtifactDefinitionsValidator(object):
           '%%CURRENT_CONTROL_SET%%. Replace %%CURRENT_CONTROL_SET%% with '
           'HKEY_LOCAL_MACHINE\\System\\CurrentControlSet').format(
               artifact_definition.name, filename))
+
+    return result
+
+  def _CheckMacOSPaths(self, filename, artifact_definition, source, paths):
+    """Checks if the paths are valid MacOS paths.
+
+    Args:
+      filename (str): name of the artifacts definition file.
+      artifact_definition (ArtifactDefinition): artifact definition.
+      source (SourceType): source definition.
+      paths (list[str]): paths to validate.
+
+    Returns:
+      bool: True if the MacOS paths is valid.
+    """
+    result = True
+
+    paths_with_private = []
+    paths_with_symbolic_links_to_private = []
+
+    for path in paths:
+      path_lower = path.lower()
+      path_segments = path_lower.split(source.separator)
+      if not path_segments:
+        logging.warning((
+            'Empty path defined by artifact definition: {0:s} in file: '
+            '{1:s}').format(artifact_definition.name, filename))
+        result = False
+
+      elif path_segments[0] in self._MACOS_PRIVATE_SUB_PATHS:
+        paths_with_symbolic_links_to_private.append(path)
+
+      elif path_segments[0] == 'private':
+        if path_segments[1] in self._MACOS_PRIVATE_SUB_PATHS:
+          paths_with_private.append(path)
+
+        else:
+          logging.warning((
+              'Unsupported private path: {0:s} defined by artifact definition: '
+              '{1:s} in file: {2:s}').format(
+                  path, artifact_definition.name, filename))
+          result = False
+
+    for private_path in paths_with_private:
+      if private_path[8:] not in paths_with_symbolic_links_to_private:
+        logging.warning((
+            'Missing symbolic link: {0:s} for path: {1:s} defined by artifact '
+            'definition: {2:s} in file: {3:s}').format(
+                private_path[8:], private_path, artifact_definition.name,
+                filename))
+        result = False
+
+    for path in paths_with_symbolic_links_to_private:
+      private_path = '/private{0:s}'.format(path)
+      if private_path not in paths_with_private:
+        logging.warning((
+            'Missing path: {0:s} for symbolic link: {1:s} defined by artifact '
+            'definition: {2:s} in file: {3:s}').format(
+                private_path, path, artifact_definition.name, filename))
+        result = False
 
     return result
 
@@ -82,8 +144,13 @@ class ArtifactDefinitionsValidator(object):
 
     path_lower = path.lower()
     path_segments = path_lower.split(source.separator)
+    if not path_segments:
+      logging.warning((
+          'Empty path defined by artifact definition: {0:s} in file: '
+          '{1:s}').format(artifact_definition.name, filename))
+      result = False
 
-    if path_segments[0].startswith('%%users.') and path_segments[0] not in (
+    elif path_segments[0].startswith('%%users.') and path_segments[0] not in (
         '%%users.appdata%%', '%%users.homedir%%', '%%users.localappdata%%',
         '%%users.temp%%', '%%users.username%%', '%%users.userprofile%%'):
       logging.warning((
@@ -186,6 +253,9 @@ class ArtifactDefinitionsValidator(object):
                   artifact_definition.name, filename))
           result = False
 
+        artifact_definition_supports_macos = (
+            definitions.SUPPORTED_OS_DARWIN in (
+                artifact_definition.supported_os))
         artifact_definition_supports_windows = (
             definitions.SUPPORTED_OS_WINDOWS in (
                 artifact_definition.supported_os))
@@ -193,8 +263,15 @@ class ArtifactDefinitionsValidator(object):
         for source in artifact_definition.sources:
           if source.type_indicator in (
               definitions.TYPE_INDICATOR_FILE, definitions.TYPE_INDICATOR_PATH):
-            if (artifact_definition_supports_windows or
-                definitions.SUPPORTED_OS_WINDOWS in source.supported_os):
+
+            if (artifact_definition_supports_macos or
+                definitions.SUPPORTED_OS_DARWIN in source.supported_os):
+              if not self._CheckMacOSPaths(
+                  filename, artifact_definition, source, source.paths):
+                result = False
+
+            elif (artifact_definition_supports_windows or
+                  definitions.SUPPORTED_OS_WINDOWS in source.supported_os):
               for path in source.paths:
                 if not self._CheckWindowsPath(
                     filename, artifact_definition, source, path):
