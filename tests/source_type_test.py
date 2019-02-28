@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 """Tests for the source type objects."""
 
+from __future__ import unicode_literals
+
 import unittest
 
 from artifacts import errors
@@ -12,7 +14,7 @@ from tests import test_lib
 class TestSourceType(source_type.SourceType):
   """Class that implements a test source type."""
 
-  TYPE_INDICATOR = u'test'
+  TYPE_INDICATOR = 'test'
 
   def __init__(self, test=None):
     """Initializes the source type object.
@@ -24,7 +26,7 @@ class TestSourceType(source_type.SourceType):
       FormatError: when test is not set.
     """
     if not test:
-      raise errors.FormatError(u'Missing test value.')
+      raise errors.FormatError('Missing test value.')
 
     super(TestSourceType, self).__init__()
     self.test = test
@@ -35,7 +37,7 @@ class TestSourceType(source_type.SourceType):
     Returns:
       dict[str, str]: source type attributes.
     """
-    return {u'test': self.test}
+    return {'test': self.test}
 
 
 class SourceTypeTest(test_lib.BaseTestCase):
@@ -47,7 +49,7 @@ class ArtifactGroupSourceTypeTest(test_lib.BaseTestCase):
 
   def testInitialize(self):
     """Tests the __init__ function."""
-    source_type.ArtifactGroupSourceType(names=[u'test'])
+    source_type.ArtifactGroupSourceType(names=['test'])
 
 
 class FileSourceTypeTest(test_lib.BaseTestCase):
@@ -55,8 +57,8 @@ class FileSourceTypeTest(test_lib.BaseTestCase):
 
   def testInitialize(self):
     """Tests the __init__ function."""
-    source_type.FileSourceType(paths=[u'test'])
-    source_type.FileSourceType(paths=[u'test'], separator=u'\\')
+    source_type.FileSourceType(paths=['test'])
+    source_type.FileSourceType(paths=['test'], separator='\\')
 
 
 class PathSourceTypeTest(test_lib.BaseTestCase):
@@ -64,8 +66,8 @@ class PathSourceTypeTest(test_lib.BaseTestCase):
 
   def testInitialize(self):
     """Tests the __init__ function."""
-    source_type.PathSourceType(paths=[u'test'])
-    source_type.PathSourceType(paths=[u'test'], separator=u'\\')
+    source_type.PathSourceType(paths=['test'])
+    source_type.PathSourceType(paths=['test'], separator='\\')
 
 
 class WindowsRegistryKeySourceTypeTest(test_lib.BaseTestCase):
@@ -73,10 +75,10 @@ class WindowsRegistryKeySourceTypeTest(test_lib.BaseTestCase):
 
   def testInitialize(self):
     """Tests the __init__ function."""
-    source_type.WindowsRegistryKeySourceType(keys=[u'HKEY_LOCAL_MACHINE\\test'])
+    source_type.WindowsRegistryKeySourceType(keys=['HKEY_LOCAL_MACHINE\\test'])
 
     with self.assertRaises(errors.FormatError):
-      source_type.WindowsRegistryKeySourceType(keys=u'HKEY_LOCAL_MACHINE\\test')
+      source_type.WindowsRegistryKeySourceType(keys='HKEY_LOCAL_MACHINE\\test')
 
 
 class WindowsRegistryValueSourceTypeTest(test_lib.BaseTestCase):
@@ -84,10 +86,10 @@ class WindowsRegistryValueSourceTypeTest(test_lib.BaseTestCase):
 
   def testInitialize(self):
     """Tests the __init__ function."""
-    key_value_pair = {'key': u'HKEY_LOCAL_MACHINE\\test', 'value': u'test'}
+    key_value_pair = {'key': 'HKEY_LOCAL_MACHINE\\test', 'value': 'test'}
     source_type.WindowsRegistryValueSourceType(key_value_pairs=[key_value_pair])
 
-    key_value_pair = {'bad': u'test', 'value': u'test'}
+    key_value_pair = {'bad': 'test', 'value': 'test'}
     with self.assertRaises(errors.FormatError):
       source_type.WindowsRegistryValueSourceType(
           key_value_pairs=[key_value_pair])
@@ -101,7 +103,7 @@ class WMIQuerySourceTypeTest(test_lib.BaseTestCase):
 
   def testInitialize(self):
     """Tests the __init__ function."""
-    source_type.WMIQuerySourceType(query=u'test')
+    source_type.WMIQuerySourceType(query='test')
 
 
 class SourceTypeFactoryTest(test_lib.BaseTestCase):
@@ -115,18 +117,18 @@ class SourceTypeFactoryTest(test_lib.BaseTestCase):
       source_type.SourceTypeFactory.RegisterSourceTypes([TestSourceType])
 
     source_object = source_type.SourceTypeFactory.CreateSourceType(
-        u'test', {u'test': u'test123'})
+        'test', {'test': 'test123'})
 
     self.assertIsNotNone(source_object)
-    self.assertEqual(source_object.test, u'test123')
+    self.assertEqual(source_object.test, 'test123')
 
     with self.assertRaises(errors.FormatError):
       source_object = source_type.SourceTypeFactory.CreateSourceType(
-          u'test', {})
+          'test', {})
 
     with self.assertRaises(errors.FormatError):
       source_object = source_type.SourceTypeFactory.CreateSourceType(
-          u'bogus', {})
+          'bogus', {})
 
     source_type.SourceTypeFactory.DeregisterSourceType(TestSourceType)
 

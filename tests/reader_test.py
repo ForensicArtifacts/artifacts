@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 """Tests for the artifact definitions readers."""
 
+from __future__ import unicode_literals
+
 import io
 import unittest
 import yaml
@@ -14,6 +16,92 @@ from tests import test_lib
 
 class YamlArtifactsReaderTest(test_lib.BaseTestCase):
   """YAML artifacts reader tests."""
+
+  _DEFINITION_INVALID_LABELS = """\
+name: BadLabel
+doc: badlabel.
+sources:
+- type: ARTIFACT_GROUP
+  attributes:
+    names:
+      - 'SystemEventLogEvtx'
+labels: Logs
+supported_os: [Windows]
+"""
+
+  _DEFINITION_INVALID_SUPPORTED_OS_1 = """\
+name: BadSupportedOS
+doc: supported_os should be an array of strings.
+sources:
+- type: ARTIFACT_GROUP
+  attributes:
+    names:
+      - 'SystemEventLogEvtx'
+labels: [Logs]
+supported_os: Windows
+"""
+
+  _DEFINITION_INVALID_SUPPORTED_OS_2 = """\
+name: BadTopSupportedOS
+doc: Top supported_os should match supported_os from sources.
+sources:
+- type: ARTIFACT_GROUP
+  attributes:
+    names:
+      - 'SystemEventLogEvtx'
+  supported_os: [Windows]
+labels: [Logs]
+"""
+
+  _DEFINITION_INVALID_URLS = """\
+name: BadUrls
+doc: badurls.
+sources:
+- type: ARTIFACT_GROUP
+  attributes:
+    names:
+      - 'SystemEventLogEvtx'
+supported_os: [Windows]
+urls: 'http://example.com'
+"""
+
+  _DEFINITION_WITH_EXTRA_KEY = """\
+name: BadKey
+doc: bad extra key.
+sources:
+- type: ARTIFACT_GROUP
+  attributes:
+    names:
+      - 'SystemEventLogEvtx'
+extra_key: 'wrong'
+labels: [Logs]
+supported_os: [Windows]
+"""
+
+  _DEFINITION_WITHOUT_DOC = """\
+name: NoDoc
+sources:
+- type: ARTIFACT_GROUP
+  attributes:
+    names:
+      - 'SystemEventLogEvtx'
+"""
+
+  _DEFINITION_WITHOUT_NAME = """\
+name: NoNames
+doc: Missing names attr.
+sources:
+- type: ARTIFACT_GROUP
+  attributes:
+    - 'SystemEventLogEvtx'
+"""
+
+  _DEFINITION_WITHOUT_SOURCES = """\
+name: BadSources
+doc: must have one sources.
+labels: [Logs]
+supported_os: [Windows]
+"""
 
   @test_lib.skipUnlessHasTestFile(['definitions.yaml'])
   def testReadFileObject(self):
@@ -147,119 +235,65 @@ class YamlArtifactsReaderTest(test_lib.BaseTestCase):
     self.assertEqual(
         collector_definition.type_indicator, definitions.TYPE_INDICATOR_COMMAND)
 
-  def testBadKey(self):
-    """Tests if top level keys are correct."""
+  def testReadFileObjectInvalidLabels(self):
+    """Tests the ReadFileObject function on an invalid labels."""
     artifact_reader = reader.YamlArtifactsReader()
-    file_object = io.StringIO(
-        initial_value=u"""name: BadKey
-doc: bad extra key.
-sources:
-- type: ARTIFACT_GROUP
-  attributes:
-    names:
-      - 'SystemEventLogEvtx'
-extra_key: 'wrong'
-labels: [Logs]
-supported_os: [Windows]
-""")
 
+    file_object = io.StringIO(initial_value=self._DEFINITION_INVALID_LABELS)
     with self.assertRaises(errors.FormatError):
       _ = list(artifact_reader.ReadFileObject(file_object))
 
-  def testMissingSources(self):
-    """Tests if sources is present."""
+  def testReadFileObjectInvalidSupportedOS(self):
+    """Tests the ReadFileObject function on an invalid supported_os."""
     artifact_reader = reader.YamlArtifactsReader()
-    file_object = io.StringIO(
-        initial_value=u"""name: BadSources
-doc: must have one sources.
-labels: [Logs]
-supported_os: [Windows]
-""")
 
+    file_object = io.StringIO(
+        initial_value=self._DEFINITION_INVALID_SUPPORTED_OS_1)
     with self.assertRaises(errors.FormatError):
       _ = list(artifact_reader.ReadFileObject(file_object))
 
-  def testBadSupportedOS(self):
-    """Tests if supported_os is checked correctly."""
-    artifact_reader = reader.YamlArtifactsReader()
     file_object = io.StringIO(
-        initial_value=u"""name: BadSupportedOS
-doc: supported_os should be an array of strings.
-sources:
-- type: ARTIFACT_GROUP
-  attributes:
-    names:
-      - 'SystemEventLogEvtx'
-labels: [Logs]
-supported_os: Windows
-""")
-
+        initial_value=self._DEFINITION_INVALID_SUPPORTED_OS_2)
     with self.assertRaises(errors.FormatError):
       _ = list(artifact_reader.ReadFileObject(file_object))
 
-  def testBadTopSupportedOS(self):
-    """Tests if top level supported_os is checked correctly."""
+  def testReadFileObjectInvalidURLs(self):
+    """Tests the ReadFileObject function on an invalid urls."""
     artifact_reader = reader.YamlArtifactsReader()
-    file_object = io.StringIO(
-        initial_value=u"""name: BadTopSupportedOS
-doc: Top supported_os should match supported_os from sources.
-sources:
-- type: ARTIFACT_GROUP
-  attributes:
-    names:
-      - 'SystemEventLogEvtx'
-  supported_os: [Windows]
-labels: [Logs]
-""")
 
+    file_object = io.StringIO(initial_value=self._DEFINITION_INVALID_URLS)
     with self.assertRaises(errors.FormatError):
       _ = list(artifact_reader.ReadFileObject(file_object))
 
-  def testBadLabels(self):
-    """Tests if labels is checked correctly."""
+  def testReadFileObjectWithExtraKey(self):
+    """Tests the ReadFileObject function on a definition with extra key."""
     artifact_reader = reader.YamlArtifactsReader()
-    file_object = io.StringIO(
-        initial_value=u"""name: BadLabel
-doc: badlabel.
-sources:
-- type: ARTIFACT_GROUP
-  attributes:
-    names:
-      - 'SystemEventLogEvtx'
-labels: Logs
-supported_os: [Windows]
-""")
 
+    file_object = io.StringIO(initial_value=self._DEFINITION_WITH_EXTRA_KEY)
     with self.assertRaises(errors.FormatError):
       _ = list(artifact_reader.ReadFileObject(file_object))
 
-  def testMissingDoc(self):
-    """Tests if doc is required."""
+  def testReadFileObjectWithoutDoc(self):
+    """Tests the ReadFileObject function on a definition without doc."""
     artifact_reader = reader.YamlArtifactsReader()
-    file_object = io.StringIO(
-        initial_value=u"""name: NoDoc
-sources:
-- type: ARTIFACT_GROUP
-  attributes:
-    names:
-      - 'SystemEventLogEvtx'
-""")
 
+    file_object = io.StringIO(initial_value=self._DEFINITION_WITHOUT_DOC)
     with self.assertRaises(errors.FormatError):
       _ = list(artifact_reader.ReadFileObject(file_object))
 
-  def testMissingNamesAttribute(self):
-    """Tests if missing attribute names are checked correctly."""
+  def testReadFileObjectWithoutName(self):
+    """Tests the ReadFileObject function on a definition without name."""
     artifact_reader = reader.YamlArtifactsReader()
-    file_object = io.StringIO(
-        initial_value=u"""name: NoNames
-doc: Missing names attr.
-sources:
-- type: ARTIFACT_GROUP
-  attributes:
-    - 'SystemEventLogEvtx'
-""")
 
+    file_object = io.StringIO(initial_value=self._DEFINITION_WITHOUT_NAME)
+    with self.assertRaises(errors.FormatError):
+      _ = list(artifact_reader.ReadFileObject(file_object))
+
+  def testReadFileObjectWithoutSources(self):
+    """Tests the ReadFileObject function on a definition without sources."""
+    artifact_reader = reader.YamlArtifactsReader()
+
+    file_object = io.StringIO(initial_value=self._DEFINITION_WITHOUT_SOURCES)
     with self.assertRaises(errors.FormatError):
       _ = list(artifact_reader.ReadFileObject(file_object))
 
@@ -270,7 +304,6 @@ sources:
     test_file = self._GetTestFilePath(['definitions.yaml'])
 
     artifact_definitions = list(artifact_reader.ReadFile(test_file))
-
     self.assertEqual(len(artifact_definitions), 7)
 
   def testReadDirectory(self):
@@ -279,7 +312,6 @@ sources:
     test_file = self._GetTestFilePath(['.'])
 
     artifact_definitions = list(artifact_reader.ReadDirectory(test_file))
-
     self.assertEqual(len(artifact_definitions), 7)
 
   @test_lib.skipUnlessHasTestFile(['definitions.yaml'])
@@ -305,10 +337,10 @@ sources:
       try:
         artifact_definition = artifact.AsDict()
       except errors.FormatError:
-        error_location = u'At start'
+        error_location = 'At start'
         if last_artifact_definition:
-          error_location = u'After: {0}'.format(last_artifact_definition.name)
-        self.fail(u'{0} failed to convert to dict'.format(error_location))
+          error_location = 'After: {0}'.format(last_artifact_definition.name)
+        self.fail('{0} failed to convert to dict'.format(error_location))
       last_artifact_definition = artifact_definition
 
 

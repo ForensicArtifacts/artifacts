@@ -240,6 +240,12 @@ class ArtifactsReader(BaseArtifactsReader):
           'Invalid artifact definition: {0:s} still uses collectors.'.format(
               name))
 
+    urls = artifact_definition_values.get('urls', [])
+    if not isinstance(urls, list):
+      raise errors.FormatError(
+          'Invalid artifact definition: {0:s} urls is not a list.'.format(
+              name))
+
     # TODO: check conditions.
     artifact_definition.conditions = artifact_definition_values.get(
         'conditions', [])
@@ -247,7 +253,7 @@ class ArtifactsReader(BaseArtifactsReader):
         'provides', [])
     self._ReadLabels(artifact_definition_values, artifact_definition, name)
     self._ReadSupportedOS(artifact_definition_values, artifact_definition, name)
-    artifact_definition.urls = artifact_definition_values.get('urls', [])
+    artifact_definition.urls = urls
     self._ReadSources(artifact_definition_values, artifact_definition, name)
 
     return artifact_definition
