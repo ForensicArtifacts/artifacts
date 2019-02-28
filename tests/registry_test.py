@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 """Tests for the artifact definitions registry."""
 
+from __future__ import unicode_literals
+
 import io
 import unittest
 
@@ -15,7 +17,7 @@ from tests import test_lib
 class TestSourceType(source_type.SourceType):
   """Class that implements a test source type."""
 
-  TYPE_INDICATOR = u'test'
+  TYPE_INDICATOR = 'test'
 
   def __init__(self, test=None):
     """Initializes the source type object.
@@ -27,7 +29,7 @@ class TestSourceType(source_type.SourceType):
       FormatError: when test is not set.
     """
     if not test:
-      raise errors.FormatError(u'Missing test value.')
+      raise errors.FormatError('Missing test value.')
 
     super(TestSourceType, self).__init__()
     self.test = test
@@ -38,7 +40,7 @@ class TestSourceType(source_type.SourceType):
     Returns:
       dict[str, str]: source type attributes.
     """
-    return {u'test': self.test}
+    return {'test': self.test}
 
 
 class ArtifactDefinitionsRegistryTest(test_lib.BaseTestCase):
@@ -60,7 +62,7 @@ class ArtifactDefinitionsRegistryTest(test_lib.BaseTestCase):
     # Make sure the test file got turned into artifacts.
     self.assertEqual(len(artifact_registry.GetDefinitions()), 7)
 
-    artifact_definition = artifact_registry.GetDefinitionByName(u'EventLogs')
+    artifact_definition = artifact_registry.GetDefinitionByName('EventLogs')
     self.assertIsNotNone(artifact_definition)
 
     # Try to register something already registered
@@ -77,13 +79,13 @@ class ArtifactDefinitionsRegistryTest(test_lib.BaseTestCase):
     self.assertEqual(len(artifact_registry.GetDefinitions()), 6)
 
     test_artifact_definition = artifact_registry.GetDefinitionByName(
-        u'SecurityEventLogEvtx')
+        'SecurityEventLogEvtx')
     self.assertIsNotNone(test_artifact_definition)
 
-    self.assertEqual(test_artifact_definition.name, u'SecurityEventLogEvtx')
+    self.assertEqual(test_artifact_definition.name, 'SecurityEventLogEvtx')
 
     expected_description = (
-        u'Windows Security Event log for Vista or later systems.')
+        'Windows Security Event log for Vista or later systems.')
     self.assertEqual(test_artifact_definition.description, expected_description)
 
     bad_args = io.BytesIO(
@@ -133,18 +135,18 @@ class ArtifactDefinitionsRegistryTest(test_lib.BaseTestCase):
       registry.ArtifactDefinitionsRegistry.RegisterSourceTypes([TestSourceType])
 
     source_object = registry.ArtifactDefinitionsRegistry.CreateSourceType(
-        u'test', {u'test': u'test123'})
+        'test', {'test': 'test123'})
 
     self.assertIsNotNone(source_object)
-    self.assertEqual(source_object.test, u'test123')
+    self.assertEqual(source_object.test, 'test123')
 
     with self.assertRaises(errors.FormatError):
       source_object = registry.ArtifactDefinitionsRegistry.CreateSourceType(
-          u'test', {})
+          'test', {})
 
     with self.assertRaises(errors.FormatError):
       source_object = registry.ArtifactDefinitionsRegistry.CreateSourceType(
-          u'bogus', {})
+          'bogus', {})
 
     registry.ArtifactDefinitionsRegistry.DeregisterSourceType(TestSourceType)
 
