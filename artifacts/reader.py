@@ -191,8 +191,8 @@ class ArtifactsReader(BaseArtifactsReader):
       if source_type:
         if source.get('returned_types', None):
           raise errors.FormatError((
-               'Invalid artifact definition: {0:s} returned_types no longer '
-               'supported.').format(name))
+              'Invalid artifact definition: {0:s} returned_types no longer '
+              'supported.').format(name))
 
         source_type.conditions = source.get('conditions', [])
         self._ReadSupportedOS(source, source_type, name)
