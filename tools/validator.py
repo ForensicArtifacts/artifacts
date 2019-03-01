@@ -69,7 +69,7 @@ class ArtifactDefinitionsValidator(object):
     result = True
 
     paths_with_private = []
-    paths_with_symbolic_links_to_private = []
+    paths_with_symbolic_link_to_private = []
 
     for path in paths:
       path_lower = path.lower()
@@ -84,7 +84,7 @@ class ArtifactDefinitionsValidator(object):
         continue
 
       elif path_segments[1] in self._MACOS_PRIVATE_SUB_PATHS:
-        paths_with_symbolic_links_to_private.append(path)
+        paths_with_symbolic_link_to_private.append(path)
 
       elif path_segments[1] == 'private' and len(path_segments) >=2:
         if path_segments[2] in self._MACOS_PRIVATE_SUB_PATHS:
@@ -98,7 +98,7 @@ class ArtifactDefinitionsValidator(object):
           result = False
 
     for private_path in paths_with_private:
-      if private_path[8:] not in paths_with_symbolic_links_to_private:
+      if private_path[8:] not in paths_with_symbolic_link_to_private:
         logging.warning((
             'Missing symbolic link: {0:s} for path: {1:s} defined by artifact '
             'definition: {2:s} in file: {3:s}').format(
@@ -106,7 +106,7 @@ class ArtifactDefinitionsValidator(object):
                 filename))
         result = False
 
-    for path in paths_with_symbolic_links_to_private:
+    for path in paths_with_symbolic_link_to_private:
       private_path = '/private{0:s}'.format(path)
       if private_path not in paths_with_private:
         logging.warning((
