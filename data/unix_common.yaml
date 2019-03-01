@@ -6,9 +6,9 @@ sources:
 - type: ARTIFACT_GROUP
   attributes:
     names:
-    - GlobalShellConfigs
-    - UsersShellConfigs
-    - RootUserShellConfigs
+    - 'GlobalShellConfigs'
+    - 'RootUserShellConfigs'
+    - 'UsersShellConfigs'
 labels: [Configuration Files]
 supported_os: [Linux, Darwin]
 ---
@@ -18,8 +18,8 @@ sources:
 - type: ARTIFACT_GROUP
   attributes:
     names:
-    - UsersShellHistory
-    - RootUserShellHistory
+    - 'RootUserShellHistory'
+    - 'UsersShellHistory'
 labels: [History Files]
 supported_os: [Linux, Darwin]
 ---
@@ -193,9 +193,9 @@ sources:
 - type: ARTIFACT_GROUP
   attributes:
     names:
+    - 'UnixGroups'
     - 'UnixPasswd'
     - 'UnixShadowFile'
-    - 'UnixGroups'
 labels: [Authentication]
 supported_os: [Linux, Darwin]
 ---
