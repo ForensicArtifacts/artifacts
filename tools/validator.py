@@ -86,7 +86,7 @@ class ArtifactDefinitionsValidator(object):
       elif path_segments[1] in self._MACOS_PRIVATE_SUB_PATHS:
         paths_with_symbolic_link_to_private.append(path)
 
-      elif path_segments[1] == 'private' and len(path_segments) >=2:
+      elif path_segments[1] == 'private' and len(path_segments) >= 2:
         if path_segments[2] in self._MACOS_PRIVATE_SUB_PATHS:
           paths_with_private.append(path)
 
