@@ -680,8 +680,8 @@ sources:
 - type: FILE
   attributes:
     paths:
-    - '/private/var/vm/swapfile#'
-    - '/var/vm/swapfile#'
+    - '/private/var/vm/swapfile[0-9]'
+    - '/var/vm/swapfile[0-9]'
 labels: [System]
 supported_os: [Darwin]
 urls:
