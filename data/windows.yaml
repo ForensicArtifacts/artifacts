@@ -465,31 +465,6 @@ urls:
 - 'http://www.hexacorn.com/blog/2014/11/14/beyond-good-ol-run-key-part-18/'
 - 'https://social.msdn.microsoft.com/Forums/windowsdesktop/en-US/cb6f1d6f-60a6-4369-803e-ec03d902e638/gina-how-to-run-domain-scripts-after-logon'
 ---
-name: WindowsEnvironmentVariableAllUsersAppData
-doc: The %ProgramData% environment variable.
-sources:
-- type: REGISTRY_VALUE
-  attributes:
-    key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\ProfileList', value: 'ProgramData'}
-provides: [environ_allusersappdata]
-supported_os: [Windows]
-urls: ['http://environmentvariables.org/ProgramData']
----
-name: WindowsEnvironmentVariableProfilesDirectory
-doc: Folder that typically contains users' profile directories; default is '%SystemDrive%\Users'
-sources:
-- type: REGISTRY_VALUE
-  attributes:
-    key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\ProfileList', value: 'ProfilesDirectory'}
-provides: [environ_profilesdirectory]
-supported_os: [Windows]
-urls:
-- 'https://msdn.microsoft.com/en-us/library/windows/desktop/bb776892(v=vs.85).aspx'
-- 'https://docs.microsoft.com/en-us/windows/deployment/usmt/usmt-recognized-environment-variables'
-- 'http://support.microsoft.com/kb//214653'
----
 name: WindowsEnvironmentVariableAllUsersProfile
 doc: |
   The %AllUsersProfile% environment variable
@@ -532,6 +507,31 @@ sources:
 provides: [environ_path]
 supported_os: [Windows]
 urls: ['http://environmentvariables.org/Path']
+---
+name: WindowsEnvironmentVariableProfilesDirectory
+doc: Folder that typically contains users' profile directories; default is '%SystemDrive%\Users'
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\ProfileList', value: 'ProfilesDirectory'}
+provides: [environ_profilesdirectory]
+supported_os: [Windows]
+urls:
+- 'https://msdn.microsoft.com/en-us/library/windows/desktop/bb776892(v=vs.85).aspx'
+- 'https://docs.microsoft.com/en-us/windows/deployment/usmt/usmt-recognized-environment-variables'
+- 'http://support.microsoft.com/kb//214653'
+---
+name: WindowsEnvironmentVariableProgramData
+doc: The %ProgramData% environment variable.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\ProfileList', value: 'ProgramData'}
+provides: [environ_programdata]
+supported_os: [Windows]
+urls: ['http://environmentvariables.org/ProgramData']
 ---
 name: WindowsEnvironmentVariableProgramFiles
 doc: The %ProgramFiles% environment variable.
