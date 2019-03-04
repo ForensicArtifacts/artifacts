@@ -16,10 +16,14 @@ sources:
 - type: FILE
   attributes:
     paths:
-    - '%%environ_allusersappdata%%\Apache Software Foundation\Tomcat*\logs\**\access_log*'
-    - '%%environ_allusersappdata%%\Apache Software Foundation\Tomcat*\logs\access_log*'
-    - '%%environ_allusersappdata%%\Apache Software Foundation\Tomcat*\logs\**\catalina.out'
-    - '%%environ_allusersappdata%%\Apache Software Foundation\Tomcat*\logs\catalina.out'
+    - '%%environ_allusersprofile%%\Application Data\Apache Software Foundation\Tomcat*\logs\**\access_log*'
+    - '%%environ_allusersprofile%%\Application Data\Apache Software Foundation\Tomcat*\logs\access_log*'
+    - '%%environ_allusersprofile%%\Application Data\Apache Software Foundation\Tomcat*\logs\**\catalina.out'
+    - '%%environ_allusersprofile%%\Application Data\Apache Software Foundation\Tomcat*\logs\catalina.out'
+    - '%%environ_programdata%%\Apache Software Foundation\Tomcat*\logs\**\access_log*'
+    - '%%environ_programdata%%\Apache Software Foundation\Tomcat*\logs\access_log*'
+    - '%%environ_programdata%%\Apache Software Foundation\Tomcat*\logs\**\catalina.out'
+    - '%%environ_programdata%%\Apache Software Foundation\Tomcat*\logs\catalina.out'
     - '%%environ_programfiles%%\Apache Software Foundation\Tomcat*\logs\**\access_log*'
     - '%%environ_programfiles%%\Apache Software Foundation\Tomcat*\logs\access_log*'
     - '%%environ_programfiles%%\Apache Software Foundation\Tomcat*\logs\**\catalina.out'
@@ -78,7 +82,8 @@ sources:
 - type: FILE
   attributes:
     paths:
-    - '%%environ_allusersappdata%%\Apache Software Foundation\Tomcat*\conf\tomcat-users.xml'
+    - '%%environ_allusersprofile%%\Application Data\Apache Software Foundation\Tomcat*\conf\tomcat-users.xml'
+    - '%%environ_programdata%%\Apache Software Foundation\Tomcat*\conf\tomcat-users.xml'
     - '%%environ_programfiles%%\Apache Software Foundation\Tomcat*\conf\tomcat-users.xml'
     - '%%environ_programfilesx86%%\Apache Software Foundation\Tomcat*\conf\tomcat-users.xml'
     separator: '\'
