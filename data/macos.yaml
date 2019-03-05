@@ -4,7 +4,10 @@ name: MacOSAppleSystemLogFiles
 doc: Apple system log (ASL) files
 sources:
 - type: FILE
-  attributes: {paths: ['/var/log/asl/*']}
+  attributes:
+    paths:
+    - '/private/var/log/asl/*'
+    - '/var/log/asl/*'
 labels: [System, Logs]
 supported_os: [Darwin]
 urls:
@@ -60,7 +63,10 @@ name: MacOSAuditLogFiles
 doc: Audit log files
 sources:
 - type: FILE
-  attributes: {paths: ['/var/audit/*']}
+  attributes:
+    paths:
+    - '/private/var/audit/*'
+    - '/var/audit/*'
 labels: [System, Logs]
 supported_os: [Darwin]
 urls:
@@ -106,6 +112,7 @@ sources:
     paths:
     - '/Library/Logs/DiagnosticReports/*.core_analytics'
     - '/private/var/db/analyticsd/aggregates/*'
+    - '/var/db/analyticsd/aggregates/*'
 labels: [Logs, System]
 supported_os: [Darwin]
 urls:
@@ -120,6 +127,7 @@ sources:
   attributes:
     paths:
       - '/etc/crontab'
+      - '/private/etc/crontab'
       - '/usr/lib/cron/tabs/*'
 labels: [System]
 supported_os: [Darwin]
@@ -153,7 +161,10 @@ name: MacOSHostsFile
 doc: Hosts file
 sources:
 - type: FILE
-  attributes: {paths: ['/etc/hosts']}
+  attributes:
+    paths:
+    - '/etc/hosts'
+    - '/private/etc/hosts'
 labels: [System, Network]
 supported_os: [Darwin]
 urls:
@@ -205,7 +216,10 @@ name: MacOSInstallationLogFile
 doc: Installation log file
 sources:
 - type: FILE
-  attributes: {paths: ['/var/log/install.log']}
+  attributes:
+    paths:
+    - '/private/var/log/install.log'
+    - '/var/log/install.log'
 labels: [System, Logs]
 supported_os: [Darwin]
 urls:
@@ -308,6 +322,7 @@ sources:
     paths:
     - '%%users.homedir%%/Library/Application Support/Knowledge/knowledgeC.db'
     - '/private/var/db/CoreDuet/Knowledge/knowledgeC.db'
+    - '/var/db/CoreDuet/Knowledge/knowledgeC.db'
 labels: [Users, Logs]
 supported_os: [Darwin]
 urls: ['https://www.mac4n6.com/blog/2018/8/5/knowledge-is-power-using-the-knowledgecdb-database-on-macos-and-ios-to-determine-precise-user-and-application-usage']
@@ -346,7 +361,10 @@ name: MacOSLastlogFile
 doc: Mac OS X lastlog file.
 sources:
 - type: FILE
-  attributes: {paths: ['/var/log/lastlog']}
+  attributes:
+    paths:
+    - '/private/var/log/lastlog'
+    - '/var/log/lastlog'
 labels: [Logs, Authentication]
 supported_os: [Darwin]
 ---
@@ -544,9 +562,11 @@ sources:
 - type: FILE
   attributes:
     paths:
-    - '/private/var/folders/[a-z][0-9]/*/0/com.apple.notificationcenter/db2/db'
-    - '/private/var/folders/[a-z][0-9]/*/0/com.apple.notificationcenter/db/db'
     - '%%users.homedir%%/Library/Application Support/NotificationCenter/*.db'
+    - '/private/var/folders/[a-z][0-9]/*/0/com.apple.notificationcenter/db/db'
+    - '/private/var/folders/[a-z][0-9]/*/0/com.apple.notificationcenter/db2/db'
+    - '/var/folders/[a-z][0-9]/*/0/com.apple.notificationcenter/db/db'
+    - '/var/folders/[a-z][0-9]/*/0/com.apple.notificationcenter/db2/db'
 labels: [Users, Logs]
 supported_os: [Darwin]
 ---
@@ -556,17 +576,27 @@ sources:
 - type: FILE
   attributes:
     paths:
+      - '/etc/daily.local/*'
       - '/etc/defaults/periodic.conf'
+      - '/etc/monthly.local/*'
+      - '/etc/periodic/**2'
       - '/etc/periodic.conf'
       - '/etc/periodic.conf.local'
-      - '/etc/periodic/**2'
-      - '/usr/local/etc/periodic/**2'
-      - '/etc/daily.local/*'
-      - '/etc/weekly.local/*'
-      - '/etc/monthly.local/*'
       - '/etc/periodic/daily/*'
-      - '/etc/periodic/weekly/*'
       - '/etc/periodic/monthly/*'
+      - '/etc/periodic/weekly/*'
+      - '/etc/weekly.local/*'
+      - '/private/etc/daily.local/*'
+      - '/private/etc/defaults/periodic.conf'
+      - '/private/etc/monthly.local/*'
+      - '/private/etc/periodic/**2'
+      - '/private/etc/periodic.conf'
+      - '/private/etc/periodic.conf.local'
+      - '/private/etc/periodic/daily/*'
+      - '/private/etc/periodic/monthly/*'
+      - '/private/etc/periodic/weekly/*'
+      - '/private/etc/weekly.local/*'
+      - '/usr/local/etc/periodic/**2'
 labels: [System]
 supported_os: [Darwin]
 urls:
@@ -648,7 +678,10 @@ name: MacOSSwapFiles
 doc: Swap files
 sources:
 - type: FILE
-  attributes: {paths: ['/var/vm/swapfile#']}
+  attributes:
+    paths:
+    - '/private/var/vm/swapfile[0-9]'
+    - '/var/vm/swapfile[0-9]'
 labels: [System]
 supported_os: [Darwin]
 urls:
@@ -667,7 +700,10 @@ name: MacOSSystemInstallationTime
 doc: System installation time
 sources:
 - type: FILE
-  attributes: {paths: ['/var/db/.AppleSetupDone']}
+  attributes:
+    paths:
+    - '/private/var/db/.AppleSetupDone'
+    - '/var/db/.AppleSetupDone'
 labels: [System]
 supported_os: [Darwin]
 urls:
@@ -678,7 +714,10 @@ name: MacOSSystemLogFiles
 doc: System log files
 sources:
 - type: FILE
-  attributes: {paths: ['/var/log/*']}
+  attributes:
+    paths:
+    - '/private/var/log/*'
+    - '/var/log/*'
 labels: [System, Logs]
 supported_os: [Darwin]
 urls:
@@ -724,6 +763,9 @@ sources:
 - type: FILE
   attributes:
     paths:
+    - '/private/var/db/diagnostics/*.tracev3'
+    - '/private/var/db/diagnostics/*/*.tracev3'
+    - '/private/var/db/uuidtext/*/*'
     - '/var/db/diagnostics/*.tracev3'
     - '/var/db/diagnostics/*/*.tracev3'
     - '/var/db/uuidtext/*/*'
@@ -849,8 +891,8 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '/var/db/dslocal/nodes/Default/users/*.plist'
       - '/private/var/db/dslocal/nodes/Default/users/*.plist'
+      - '/var/db/dslocal/nodes/Default/users/*.plist'
 labels: [System, Users, Authentication]
 supported_os: [Darwin]
 urls:
@@ -930,8 +972,10 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '/var/log/wtmp'
+      - '/private/var/run/utmp'
+      - '/private/var/log/wtmp'
       - '/var/run/utmp'
+      - '/var/log/wtmp'
 labels: [Logs, Authentication]
 supported_os: [Darwin]
 urls: ['https://github.com/libyal/dtformats/blob/master/documentation/Utmp%20login%20records%20format.asciidoc']
@@ -940,7 +984,10 @@ name: MacOSUtmpxFile
 doc: Mac OS X 10.5 utmpx login record file.
 sources:
 - type: FILE
-  attributes: {paths: ['/var/run/utmpx']}
+  attributes:
+    paths:
+    - '/private/var/run/utmpx'
+    - '/var/run/utmpx'
 labels: [Logs, Authentication]
 supported_os: [Darwin]
 urls: ['https://github.com/libyal/dtformats/blob/master/documentation/Utmp%20login%20records%20format.asciidoc']

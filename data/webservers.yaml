@@ -6,7 +6,7 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '/var/log/nginx/access.log*'
+    - '/var/log/nginx/access.log*'
 labels: [Software, Logs]
 supported_os: [Linux]
 ---
@@ -16,9 +16,9 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '/var/log/apache/access.log*'
-      - '/var/log/apache2/access.log*'
-      - '/var/log/httpd/access.log'
+    - '/var/log/apache/access.log*'
+    - '/var/log/apache2/access.log*'
+    - '/var/log/httpd/access.log'
 labels: [Software, Logs]
 supported_os: [Linux]
 ---
@@ -28,8 +28,10 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '/wp/wp-config.php'
-      - '/var/www/wp-config.php'
-      - '/var/www/**/wp-config.php'
+    - '/private/var/www/**/wp-config.php'
+    - '/private/var/www/wp-config.php'
+    - '/var/www/**/wp-config.php'
+    - '/var/www/wp-config.php'
+    - '/wp/wp-config.php'
 labels: [Configuration Files]
 supported_os: [Linux, Darwin]
