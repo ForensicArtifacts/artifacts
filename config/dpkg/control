@@ -17,21 +17,21 @@ Description: Data files for ForensicArtifacts.com Artifact Repository
 
 Package: python-artifacts
 Architecture: all
-Depends: artifacts-data, python-yaml (>= 3.10), ${python:Depends}, ${misc:Depends}
+Depends: artifacts-data (>= ${binary:Version}), python-yaml (>= 3.10), ${python:Depends}, ${misc:Depends}
 Description: Python 2 module of ForensicArtifacts.com Artifact Repository
  A free, community-sourced, machine-readable knowledge base of forensic
  artifacts that the world can use both as an information source and within other tools.
 
 Package: python3-artifacts
 Architecture: all
-Depends: artifacts-data, python3-yaml (>= 3.10), ${python3:Depends}, ${misc:Depends}
+Depends: artifacts-data (>= ${binary:Version}), python3-yaml (>= 3.10), ${python3:Depends}, ${misc:Depends}
 Description: Python 3 module of ForensicArtifacts.com Artifact Repository
  A free, community-sourced, machine-readable knowledge base of forensic
  artifacts that the world can use both as an information source and within other tools.
 
 Package: artifacts-tools
 Architecture: all
-Depends: python-artifacts, ${python:Depends}, ${misc:Depends}
+Depends: python-artifacts (>= ${binary:Version}), ${python:Depends}, ${misc:Depends}
 Description: Tools of ForensicArtifacts.com Artifact Repository
  A free, community-sourced, machine-readable knowledge base of forensic
  artifacts that the world can use both as an information source and within other tools.
