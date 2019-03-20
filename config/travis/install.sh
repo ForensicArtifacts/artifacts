@@ -84,18 +84,20 @@ then
 	docker run --name=${CONTAINER_NAME} --detach -i ubuntu:${UBUNTU_VERSION};
 
 	docker exec ${CONTAINER_NAME} apt-get update -q;
-	docker exec ${CONTAINER_NAME} sh -c "DEBIAN_FRONTEND=noninteractive apt-get install -y software-properties-common";
+	docker exec ${CONTAINER_NAME} sh -c "DEBIAN_FRONTEND=noninteractive apt-get install -y locales software-properties-common";
 
 	docker exec ${CONTAINER_NAME} add-apt-repository ppa:gift/dev -y;
+
+	docker exec ${CONTAINER_NAME} locale-gen en_US.UTF-8;
 
 	if test -n "${TOXENV}";
 	then
 		docker exec ${CONTAINER_NAME} add-apt-repository universe;
 		docker exec ${CONTAINER_NAME} add-apt-repository ppa:deadsnakes/ppa -y;
 
-		DPKG_PYTHON="python${TRAVIS_PYTHON_VERSION}";
+		DPKG_PYTHON="python${TRAVIS_PYTHON_VERSION} python${TRAVIS_PYTHON_VERSION}-dev";
 
-		docker exec ${CONTAINER_NAME} sh -c "DEBIAN_FRONTEND=noninteractive apt-get install -y ${DPKG_PYTHON} tox";
+		docker exec ${CONTAINER_NAME} sh -c "DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential ${DPKG_PYTHON} tox";
 
 	elif test ${TRAVIS_PYTHON_VERSION} = "2.7";
 	then
