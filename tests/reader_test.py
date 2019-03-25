@@ -4,6 +4,7 @@
 from __future__ import unicode_literals
 
 import io
+import os
 import unittest
 import yaml
 
@@ -113,11 +114,13 @@ labels: [Logs]
 supported_os: [Windows]
 """
 
-  @test_lib.skipUnlessHasTestFile(['definitions.yaml'])
   def testReadFileObject(self):
     """Tests the ReadFileObject function."""
-    artifact_reader = reader.YamlArtifactsReader()
     test_file = self._GetTestFilePath(['definitions.yaml'])
+    if not os.path.exists(test_file):
+      raise unittest.SkipTest('missing test file: definitions.yaml')
+
+    artifact_reader = reader.YamlArtifactsReader()
 
     with open(test_file, 'rb') as file_object:
       artifact_definitions = list(artifact_reader.ReadFileObject(file_object))
@@ -315,11 +318,13 @@ supported_os: [Windows]
     with self.assertRaises(errors.FormatError):
       _ = list(artifact_reader.ReadFileObject(file_object))
 
-  @test_lib.skipUnlessHasTestFile(['definitions.yaml'])
   def testReadYamlFile(self):
     """Tests the ReadFile function."""
-    artifact_reader = reader.YamlArtifactsReader()
     test_file = self._GetTestFilePath(['definitions.yaml'])
+    if not os.path.exists(test_file):
+      raise unittest.SkipTest('missing test file: definitions.yaml')
+
+    artifact_reader = reader.YamlArtifactsReader()
 
     artifact_definitions = list(artifact_reader.ReadFile(test_file))
     self.assertEqual(len(artifact_definitions), 7)
@@ -332,11 +337,13 @@ supported_os: [Windows]
     artifact_definitions = list(artifact_reader.ReadDirectory(test_file))
     self.assertEqual(len(artifact_definitions), 7)
 
-  @test_lib.skipUnlessHasTestFile(['definitions.yaml'])
   def testArtifactAsDict(self):
     """Tests the AsDict function."""
-    artifact_reader = reader.YamlArtifactsReader()
     test_file = self._GetTestFilePath(['definitions.yaml'])
+    if not os.path.exists(test_file):
+      raise unittest.SkipTest('missing test file: definitions.yaml')
+
+    artifact_reader = reader.YamlArtifactsReader()
 
     with open(test_file, 'r') as file_object:
       for artifact_definition in yaml.safe_load_all(file_object):
@@ -365,11 +372,13 @@ supported_os: [Windows]
 class JsonArtifactsReaderTest(test_lib.BaseTestCase):
   """JSON artifacts reader tests."""
 
-  @test_lib.skipUnlessHasTestFile(['definitions.json'])
   def testReadJsonFile(self):
     """Tests the ReadFile function."""
-    artifact_reader = reader.JsonArtifactsReader()
     test_file = self._GetTestFilePath(['definitions.json'])
+    if not os.path.exists(test_file):
+      raise unittest.SkipTest('missing test file: definitions.json')
+
+    artifact_reader = reader.JsonArtifactsReader()
 
     artifact_definitions = list(artifact_reader.ReadFile(test_file))
 

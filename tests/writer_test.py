@@ -25,6 +25,9 @@ class ArtifactsWriterTest(test_lib.BaseTestCase):
       filename (str): name of the file to convert.
     """
     test_file = self._GetTestFilePath([filename])
+    if not os.path.exists(test_file):
+      raise unittest.SkipTest('missing test file: {0:s}'.format(filename))
+
     artifact_definitions = list(artifact_reader.ReadFile(test_file))
 
     with test_lib.TempDirectory() as temporary_directory:
@@ -39,7 +42,6 @@ class ArtifactsWriterTest(test_lib.BaseTestCase):
         [artifact.AsDict() for artifact in artifact_definitions],
         [artifact.AsDict() for artifact in converted_artifact_definitions])
 
-  @test_lib.skipUnlessHasTestFile(['definitions.json'])
   def testJsonWriter(self):
     """Tests conversion with the JsonArtifactsWriter."""
     artifact_reader = reader.JsonArtifactsReader()
@@ -47,7 +49,6 @@ class ArtifactsWriterTest(test_lib.BaseTestCase):
     self._TestArtifactsConversion(
         artifact_reader, artifact_writer, 'definitions.json')
 
-  @test_lib.skipUnlessHasTestFile(['definitions.yaml'])
   def testYamlWriter(self):
     """Tests conversion with the YamlArtifactsWriter."""
     artifact_reader = reader.YamlArtifactsReader()
