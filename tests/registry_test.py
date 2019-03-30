@@ -4,6 +4,7 @@
 from __future__ import unicode_literals
 
 import io
+import os
 import unittest
 
 from artifacts import errors
@@ -48,13 +49,15 @@ class ArtifactDefinitionsRegistryTest(test_lib.BaseTestCase):
 
   # pylint: disable=protected-access
 
-  @test_lib.skipUnlessHasTestFile(['definitions.yaml'])
   def testArtifactDefinitionsRegistry(self):
     """Tests the ArtifactDefinitionsRegistry functions."""
+    test_file = self._GetTestFilePath(['definitions.yaml'])
+    if not os.path.exists(test_file):
+      raise unittest.SkipTest('missing test file: definitions.yaml')
+
     artifact_registry = registry.ArtifactDefinitionsRegistry()
 
     artifact_reader = reader.YamlArtifactsReader()
-    test_file = self._GetTestFilePath(['definitions.yaml'])
 
     for artifact_definition in artifact_reader.ReadFile(test_file):
       artifact_registry.RegisterDefinition(artifact_definition)
