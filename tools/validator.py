@@ -23,36 +23,29 @@ class ArtifactDefinitionsValidator(object):
 
   _MACOS_PRIVATE_SUB_PATHS = ('etc', 'tftpboot', 'tmp', 'var')
 
+  _SUPPORTED_ENVIRONMENT_VARIABLES = [
+      '%%environ_allusersappdata%%',
+      '%%environ_allusersprofile%%',
+      '%%environ_programfiles%%',
+      '%%environ_programfilesx86%%',
+      '%%environ_systemdrive%%',
+      '%%environ_systemroot%%',
+      '%%environ_windir%%']
+
+  _SUPPORTED_USER_VARIABLES = [
+      '%%users.appdata%%',
+      '%%users.homedir%%',
+      '%%users.localappdata%%',
+      '%%users.sid%%',
+      '%%users.temp%%',
+      '%%users.username%%',
+      '%%users.userprofile%%']
+
   def __init__(self):
     """Initializes an artifact definitions validator."""
     super(ArtifactDefinitionsValidator, self).__init__()
     self._artifact_registry = registry.ArtifactDefinitionsRegistry()
     self._artifact_registry_key_paths = set()
-
-  def _CheckRegistryKeyPath(self, filename, artifact_definition, key_path):
-    """Checks a Windows Registry key path.
-
-    Args:
-      filename (str): name of the artifacts definition file.
-      artifact_definition (ArtifactDefinition): artifact definition.
-      key_path (str): key path.
-
-    Returns:
-      bool: True if the Registry key path is valid.
-    """
-    result = True
-    key_path = key_path.upper()
-
-    if key_path.startswith('%%CURRENT_CONTROL_SET%%'):
-      result = False
-      logging.warning((
-          'Artifact definition: {0:s} in file: {1:s} contains Windows '
-          'Registry key path that starts with '
-          '%%CURRENT_CONTROL_SET%%. Replace %%CURRENT_CONTROL_SET%% with '
-          'HKEY_LOCAL_MACHINE\\System\\CurrentControlSet').format(
-              artifact_definition.name, filename))
-
-    return result
 
   def _CheckMacOSPaths(self, filename, artifact_definition, source, paths):
     """Checks if the paths are valid MacOS paths.
@@ -204,6 +197,57 @@ class ArtifactDefinitionsValidator(object):
 
     return result
 
+  def _CheckWindowsRegistryKeyPath(
+      self, filename, artifact_definition, key_path):
+    """Checks if a path is a valid Windows Registry key path.
+
+    Args:
+      filename (str): name of the artifacts definition file.
+      artifact_definition (ArtifactDefinition): artifact definition.
+      key_path (str): Windows Registry key path to validate.
+
+    Returns:
+      bool: True if the Windows Registry key path is valid.
+    """
+    result = True
+    key_path_segments = key_path.lower().split('\\')
+
+    if key_path_segments[0] == '%%current_control_set%%':
+      result = False
+      logging.warning((
+          'Artifact definition: {0:s} in file: {1:s} contains Windows '
+          'Registry key path that starts with '
+          '%%CURRENT_CONTROL_SET%%. Replace %%CURRENT_CONTROL_SET%% with '
+          'HKEY_LOCAL_MACHINE\\System\\CurrentControlSet').format(
+              artifact_definition.name, filename))
+
+    for segment_index, key_path_segment in enumerate(key_path_segments):
+      if key_path_segment.startswith('%%') and key_path_segment.endswith('%%'):
+        if (segment_index == 1 and key_path_segment == '%%users.sid%%' and
+            key_path_segments[0] == 'hkey_users'):
+          continue
+
+        if key_path_segment in self._SUPPORTED_ENVIRONMENT_VARIABLES:
+          result = False
+          logging.warning((
+              'Artifact definition: {0:s} in file: {1:s} contains Windows '
+              'Registry key path that contains an environment variable: '
+              '"{2:s}". Usage of environment variables in key paths is not '
+              'encouraged at this time.').format(
+                  artifact_definition.name, filename, key_path_segment))
+
+        if key_path_segment in self._SUPPORTED_USER_VARIABLES:
+          result = False
+          logging.warning((
+              'Artifact definition: {0:s} in file: {1:s} contains Windows '
+              'Registry key path that contains a users variable: "{2:s}". '
+              'Usage of users variables in key paths, except for '
+              '"HKEY_USERS\\%%users.sid%%", is not encouraged at this '
+              'time.').format(
+                  artifact_definition.name, filename, key_path_segment))
+
+    return result
+
   def _HasDuplicateRegistryKeyPaths(
       self, filename, artifact_definition, source):
     """Checks if Registry key paths are not already defined by other artifacts.
@@ -292,7 +336,7 @@ class ArtifactDefinitionsValidator(object):
               result = False
 
             for key_path in source.keys:
-              if not self._CheckRegistryKeyPath(
+              if not self._CheckWindowsRegistryKeyPath(
                   filename, artifact_definition, key_path):
                 result = False
 
@@ -300,7 +344,7 @@ class ArtifactDefinitionsValidator(object):
               definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_VALUE):
 
             for key_value_pair in source.key_value_pairs:
-              if not self._CheckRegistryKeyPath(
+              if not self._CheckWindowsRegistryKeyPath(
                   filename, artifact_definition, key_value_pair['key']):
                 result = False
 
