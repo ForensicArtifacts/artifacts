@@ -2130,10 +2130,7 @@ name: WindowsUninstallKeys
 doc: Uninstall Registry keys
 sources:
 - type: REGISTRY_KEY
-  attributes:
-    keys:
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Uninstall\*'
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Uninstall\Userdata\%%users.sid%%\Products\*\InstallProperties'
+  attributes: {keys: ['HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Uninstall\*']}
 supported_os: [Windows]
 urls: ['https://msdn.microsoft.com/en-us/library/aa372105(v=vs.85).aspx']
 ---
