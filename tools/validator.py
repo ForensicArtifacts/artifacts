@@ -23,7 +23,10 @@ class ArtifactDefinitionsValidator(object):
 
   _MACOS_PRIVATE_SUB_PATHS = ('etc', 'tftpboot', 'tmp', 'var')
 
-  _SUPPORTED_ENVIRONMENT_VARIABLES = [
+  _SUPPORTED_POSIX_USERS_VARIABLES = [
+      '%%users.homedir%%']
+
+  _SUPPORTED_WINDOWS_ENVIRONMENT_VARIABLES = [
       '%%environ_allusersappdata%%',
       '%%environ_allusersprofile%%',
       '%%environ_programfiles%%',
@@ -32,9 +35,8 @@ class ArtifactDefinitionsValidator(object):
       '%%environ_systemroot%%',
       '%%environ_windir%%']
 
-  _SUPPORTED_USER_VARIABLES = [
+  _SUPPORTED_WINDOWS_USERS_VARIABLES = [
       '%%users.appdata%%',
-      '%%users.homedir%%',
       '%%users.localappdata%%',
       '%%users.sid%%',
       '%%users.temp%%',
@@ -195,6 +197,26 @@ class ArtifactDefinitionsValidator(object):
               path, artifact_definition.name, filename))
       result = False
 
+    for path_segment in path_segments:
+      if path_segment.startswith('%%') and path_segment.endswith('%%'):
+        if (path_segment.startswith('%%environ_') and
+            path_segment not in self._SUPPORTED_WINDOWS_ENVIRONMENT_VARIABLES):
+          result = False
+          logging.warning((
+              'Artifact definition: {0:s} in file: {1:s} contains Windows '
+              'path that contains an unuspported environment variable: '
+              '"{2:s}".').format(
+                  artifact_definition.name, filename, path_segment))
+
+        elif (path_segment.startswith('%%users.') and
+              path_segment not in self._SUPPORTED_WINDOWS_USERS_VARIABLES):
+          result = False
+          logging.warning((
+              'Artifact definition: {0:s} in file: {1:s} contains Windows '
+              'path that contains an unsupported users variable: '
+              '"{2:s}". ').format(
+                  artifact_definition.name, filename, path_segment))
+
     return result
 
   def _CheckWindowsRegistryKeyPath(
@@ -227,7 +249,7 @@ class ArtifactDefinitionsValidator(object):
             key_path_segments[0] == 'hkey_users'):
           continue
 
-        if key_path_segment in self._SUPPORTED_ENVIRONMENT_VARIABLES:
+        if key_path_segment.startswith('%%environ_'):
           result = False
           logging.warning((
               'Artifact definition: {0:s} in file: {1:s} contains Windows '
@@ -236,7 +258,7 @@ class ArtifactDefinitionsValidator(object):
               'encouraged at this time.').format(
                   artifact_definition.name, filename, key_path_segment))
 
-        if key_path_segment in self._SUPPORTED_USER_VARIABLES:
+        elif key_path_segment.startswith('%%users.'):
           result = False
           logging.warning((
               'Artifact definition: {0:s} in file: {1:s} contains Windows '
