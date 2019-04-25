@@ -459,7 +459,7 @@ sources:
     key_value_pairs:
       - {key: 'HKEY_USERS\%%users.sid%%\Environment', value: 'UserInitLogonServer'}
       - {key: 'HKEY_USERS\%%users.sid%%\Environment', value: 'UserInitLogonScript'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Environment', value: 'UserMprLogonScript'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Environment', value: 'UserInitMprLogonScript'}
 supported_os: [Windows]
 urls:
 - 'http://www.hexacorn.com/blog/2014/11/14/beyond-good-ol-run-key-part-18/'
@@ -1314,8 +1314,8 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '%%environ_systemroot%%\system32\Windows­PowerShell\v1.0\profile.ps1'
-      - '%%environ_systemroot%%\system32\Windows­PowerShell\v1.0\Microsoft.PowerShell_profile.ps1'
+      - '%%environ_systemroot%%\system32\WindowsPowerShell\v1.0\profile.ps1'
+      - '%%environ_systemroot%%\system32\WindowsPowerShell\v1.0\Microsoft.PowerShell_profile.ps1'
       - '%%users.userprofile%%\Documents\WindowsPowerShell\profile.ps1'
       - '%%users.userprofile%%\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1'
     separator: '\'
