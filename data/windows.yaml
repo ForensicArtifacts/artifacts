@@ -1818,15 +1818,24 @@ supported_os: [Windows]
 urls: ['https://support.microsoft.com/en-us/kb/103865']
 ---
 name: WindowsShellOpenCommand
-doc: Executed every time this file type is opened, should be "%1 %*".
+doc: Executed every time this file type is opened. For most file types, the value should be '"%1" %*'.
 sources:
-- type: REGISTRY_KEY
+- type: REGISTRY_VALUE
   attributes:
-    keys:
-      - 'HKEY_LOCAL_MACHINE\Software\Classes\*\shell\open\command'
-      - 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\*\shell\open\command'
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\*\shell\open\command', value: ''}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\*\shell\open\command', value: 'IsolatedCommand'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\*\shell\open\command', value: ''}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\*\shell\open\command', value: 'IsolatedCommand'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\*\shell\open\command', value: ''}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\*\shell\open\command', value: 'IsolatedCommand'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\*\shell\open\command', value: ''}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\*\shell\open\command', value: 'IsolatedCommand'}
 supported_os: [Windows]
-urls: ['http://gladiator-antivirus.com/forum/index.php?showtopic=24610']
+urls:
+ - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
+ - 'https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2'
+ - 'https://pentestlab.blog/2017/06/09/uac-bypass-sdclt/'
 ---
 name: WindowsShellServiceObjects
 doc: Windows Shell (explorer.exe) service objects delayed load.
