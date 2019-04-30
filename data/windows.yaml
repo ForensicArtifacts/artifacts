@@ -1561,8 +1561,14 @@ sources:
       - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunServices\*'
       - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunServicesOnce\*'
       - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunServices\*'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\RunServicesOnce\*'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\RunServices\*'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunServicesOnce\*'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunServices\*'
 supported_os: [Windows]
-urls: ['https://support.microsoft.com/en-us/kb/179365']
+urls:
+- 'https://support.microsoft.com/en-us/kb/179365'
+- 'https://threatvector.cylance.com/en_us/home/windows-registry-persistence-part-2-the-run-keys-and-search-order.html'
 ---
 name: WindowsScheduledTasks
 doc: Windows Scheduled Tasks.
