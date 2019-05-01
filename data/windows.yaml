@@ -2411,24 +2411,29 @@ doc: Used to filter TCP/IP traffic through WinSock2.
 sources:
 - type: REGISTRY_KEY
   attributes:
-    keys: ['HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\WinSock2\Parameters\Protocol_Catalog9\Catalog_Entries\*']
+    keys:
+      - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\WinSock2\Parameters\Protocol_Catalog9\Catalog_Entries\*'
+      - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\WinSock2\Parameters\Protocol_Catalog9\Catalog_Entries64\*'
 supported_os: [Windows]
 urls:
 - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
 - 'https://en.wikipedia.org/wiki/Layered_Service_Provider'
+- 'https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2'
 ---
 name: WinSock2NamespaceProviders
-doc: WinSock2NamespaceProviders
+doc: Used to provide name-resolution services through WinSock2
 sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\WinSock2\Parameters\namespace_catalog5\catalog_entries\*', value: 'LibraryPath'}
+      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\WinSock2\Parameters\NameSpace_Catalog5\Catalog_Entries\*', value: 'LibraryPath'}
+      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\WinSock2\Parameters\NameSpace_Catalog5\Catalog_Entries64\*', value: 'LibraryPath'}
 supported_os: [Windows]
 urls:
 - 'https://www.symantec.com/security_response/writeup.jsp?docid=2012-020609-4221-99&tabid=2'
 - 'http://www.nirsoft.net/utils/winsock_service_providers.html'
 - 'https://msdn.microsoft.com/en-us/library/windows/desktop/ms739923(v=vs.85).aspx'
+- 'https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2'
 ---
 name: WindowsDNSSettings
 doc: Windows Registry Keys that contain DNS and DHCP settings.
