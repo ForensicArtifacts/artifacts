@@ -1239,6 +1239,7 @@ sources:
     names:
       - InternetExplorerBrowserHelperObjects
       - WindowsActiveDesktop
+      - WindowsActiveSyncAutoStart
       - WindowsAlternateShell
       - WindowsAppCertDLLs
       - WindowsAppInitDLLs
@@ -2187,6 +2188,19 @@ sources:
   attributes:
     key_value_pairs:
       - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp', value: 'InitialProgram'}
+supported_os: [Windows]
+urls: ['https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2']
+---
+name: WindowsActiveSyncAutoStart
+doc: Windows ActiveSync AutoStart entries
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows CE Services\AutoStartOnConnect\*'
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows CE Services\AutoStartOnDisconnect\*'
+      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows CE Services\AutoStartOnConnect\*'
+      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows CE Services\AutoStartOnDisconnect\*'
 supported_os: [Windows]
 urls: ['https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2']
 ---
