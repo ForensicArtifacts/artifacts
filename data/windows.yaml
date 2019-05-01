@@ -1268,6 +1268,7 @@ sources:
       - WindowsShellIconOverlayIdentifiers
       - WindowsShellLoadAndRun
       - WindowsShellOpenCommand
+      - WindowsShellRunasCommand
       - WindowsShellServiceObjects
       - WindowsStubPaths
       - WindowsSystemPolicyShell
@@ -1836,6 +1837,32 @@ urls:
  - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
  - 'https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2'
  - 'https://pentestlab.blog/2017/06/09/uac-bypass-sdclt/'
+---
+name: WindowsShellRunasCommand
+doc: |
+  Executed every time an executable or script file type is run as administrator.
+
+  For most file types, the value should be '"%1" %*' or something similar.
+  Example file type subkeys include 'exefile', 'batfile', and 'cmdfile'. These
+  keys can be modified by malware as a way to be periodically executed or to
+  bypass UAC.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\*\shell\runas\command', value: ''}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\*\shell\runas\command', value: 'IsolatedCommand'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\*\shell\runas\command', value: ''}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\*\shell\runas\command', value: 'IsolatedCommand'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\*\shell\runas\command', value: ''}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\*\shell\runas\command', value: 'IsolatedCommand'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\*\shell\runas\command', value: ''}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\*\shell\runas\command', value: 'IsolatedCommand'}
+supported_os: [Windows]
+urls:
+ - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
+ - 'https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2'
+ - 'https://enigma0x3.net/2017/03/17/fileless-uac-bypass-using-sdclt-exe/'
 ---
 name: WindowsShellServiceObjects
 doc: Windows Shell (explorer.exe) service objects delayed load.
