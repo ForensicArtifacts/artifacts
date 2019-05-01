@@ -1243,6 +1243,7 @@ sources:
       - WindowsEnvironmentUserLoginScripts
       - WindowsExplorerAutoplayHandlers
       - WindowsFileTypeAutorunAssociations
+      - WindowsIconServiceLib
       - WindowsLSAAuthenticationPackages
       - WindowsLSANotificationPackages
       - WindowsLSASecurityPackages
@@ -1818,6 +1819,19 @@ sources:
       - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows NT\CurrentVersion\Windows', value: 'Run'}
 supported_os: [Windows]
 urls: ['https://support.microsoft.com/en-us/kb/103865']
+---
+name: WindowsIconServiceLib
+doc: |
+  Windows Icon Service Library Name
+
+  The value should default to 'IconCodecService.dll'
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Windows', value: 'IconServiceLib'}
+supported_os: [Windows]
+urls: ['https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2']
 ---
 name: WindowsShellOpenCommand
 doc: Executed every time this file type is opened. For most file types, the value should be '"%1" %*'.
