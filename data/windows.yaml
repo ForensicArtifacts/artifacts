@@ -991,7 +991,14 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '%%environ_systemroot%%\GroupPolicy\User\Scripts\scripts.ini'
+      - '%%environ_systemroot%%\System32\GroupPolicy\User\Scripts\psscripts.ini'
+      - '%%environ_systemroot%%\System32\GroupPolicy\User\Scripts\scripts.ini'
+      - '%%environ_systemroot%%\System32\GroupPolicy\User\Scripts\Logoff\*'
+      - '%%environ_systemroot%%\System32\GroupPolicy\User\Scripts\Logon\*'
+      - '%%environ_systemroot%%\System32\GroupPolicy\Machine\Scripts\psscripts.ini'
+      - '%%environ_systemroot%%\System32\GroupPolicy\Machine\Scripts\scripts.ini'
+      - '%%environ_systemroot%%\System32\GroupPolicy\Machine\Scripts\Shutdown\*'
+      - '%%environ_systemroot%%\System32\GroupPolicy\Machine\Scripts\Startup\*'
     separator: '\'
 supported_os: [Windows]
 ---
