@@ -1972,8 +1972,14 @@ sources:
   attributes:
     key_value_pairs:
       - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\System\Scripts', value: 'Startup'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Group Policy\Scripts\Startup\*\*', value: 'Script'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Group Policy\Scripts\Startup\*\*', value: 'Parameters'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Group Policy\State\Machine\Scripts\Startup\*\*', value: 'Script'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Group Policy\State\Machine\Scripts\Startup\*\*', value: 'Parameters'}
 supported_os: [Windows]
-urls: ['https://technet.microsoft.com/en-us/library/ff404236.aspx']
+urls:
+- 'https://technet.microsoft.com/en-us/library/ff404236.aspx'
+- 'https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2'
 ---
 name: WindowsStubPaths
 doc: Windows StubPath persistence.
