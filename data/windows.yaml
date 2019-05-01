@@ -1273,6 +1273,7 @@ sources:
       - WindowsShellServiceObjects
       - WindowsStubPaths
       - WindowsSystemPolicyShell
+      - WindowsTerminalServerInitialProgram
       - WindowsTerminalServerRunKeys
       - WindowsTerminalServerStartupPrograms
       - WindowsToolPaths
@@ -2159,6 +2160,16 @@ sources:
       - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Terminal Server\Wds\rdpwd', value: 'StartupPrograms'}
 supported_os: [Windows]
 urls: ['http://forum.sysinternals.com/rdpclip_topic4729.html']
+---
+name: WindowsTerminalServerInitialProgram
+doc: Windows Terminal Server Initial Program
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp', value: 'InitialProgram'}
+supported_os: [Windows]
+urls: ['https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2']
 ---
 name: WindowsTimezone
 doc: The timezone of the system in Olson format.
