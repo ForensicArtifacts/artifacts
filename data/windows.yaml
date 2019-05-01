@@ -1277,6 +1277,7 @@ sources:
       - WindowsTerminalServerStartupPrograms
       - WindowsToolPaths
       - WindowsWinlogonAppSetup
+      - WindowsWinlogonAvailableShells
       - WindowsWinlogonGinaDLL
       - WindowsWinlogonNotify
       - WindowsWinlogonShell
@@ -2388,6 +2389,24 @@ sources:
       - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'Userinit'}
 supported_os: [Windows]
 urls: ['https://technet.microsoft.com/en-us/library/cc939862.aspx']
+---
+name: WindowsWinlogonAvailableShells
+doc: |
+  Windows Server Winlogon Available Shells
+
+  Used to specify an alternate shell application to be launched when
+  logging into Windows Server 2012 and later. Legitimate keys under
+  AvailableShells should just cause cmd.exe or explorer.exe to be executed,
+  whereas malicious programs may create keys that cause malware to be run
+  when a user logs in.
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys: ['HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\AlternateShells\AvailableShells\*']
+supported_os: [Windows]
+urls:
+- https://andymorgan.wordpress.com/2012/03/30/changing-the-default-shell-of-windows-server-8-core/
+- https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2
 ---
 name: WindowsWinlogonVMApplet
 doc: Windows VMApplet replacement.
