@@ -1275,6 +1275,7 @@ sources:
       - WindowsTerminalServerRunKeys
       - WindowsTerminalServerStartupPrograms
       - WindowsToolPaths
+      - WindowsWinlogonAppSetup
       - WindowsWinlogonGinaDLL
       - WindowsWinlogonNotify
       - WindowsWinlogonShell
