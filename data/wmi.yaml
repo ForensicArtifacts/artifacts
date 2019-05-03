@@ -125,6 +125,26 @@ conditions: [os_major_version >= 6]
 labels: [Software]
 supported_os: [Windows]
 ---
+name: WMINetTCPConnections
+doc: TCP connections via Windows Management Instrumentation (WMI).
+sources:
+- type: WMI
+  attributes: {query: SELECT * from MSFT_NetTCPConnection, base_object: 'winmgmts:\root\StandardCimv2'}
+conditions: [os_major_version >= 6 AND os_minor_version >= 2]
+labels: [Network]
+supported_os: [Windows]
+urls: ['https://docs.microsoft.com/en-us/previous-versions/windows/desktop/nettcpipprov/msft-nettcpconnection']
+---
+name: WMINetUDPEndpoints
+doc: UDP endpoints via Windows Management Instrumentation (WMI).
+sources:
+- type: WMI
+  attributes: {query: SELECT * from MSFT_NetUDPEndpoint, base_object: 'winmgmts:\root\StandardCimv2'}
+conditions: [os_major_version >= 6 AND os_minor_version >= 2]
+labels: [Network]
+supported_os: [Windows]
+urls: ['https://docs.microsoft.com/en-us/previous-versions/windows/desktop/nettcpipprov/msft-netudpendpoint']
+---
 name: WMIPhysicalMemory
 doc: Physical memory information via Windows Management Instrumentation (WMI).
 sources:
