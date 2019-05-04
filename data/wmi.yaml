@@ -37,6 +37,16 @@ labels: [System]
 supported_os: [Windows]
 urls: ['http://msdn.microsoft.com/en-us/library/aa394105(v=vs.85).aspx']
 ---
+name: WMIDNSClientCache
+doc: DNS client cache via Windows Management Instrumentation (WMI).
+sources:
+- type: WMI
+  attributes: {query: SELECT * from MSFT_DNSClientCache, base_object: 'winmgmts:\root\StandardCimv2'}
+conditions: [os_major_version >= 6 AND os_minor_version >= 2]
+labels: [Network]
+supported_os: [Windows]
+urls: ['https://docs.microsoft.com/en-us/previous-versions/windows/desktop/dnsclientcimprov/msft-dnsclientcache']
+---
 name: WMIDrivers
 doc: Installed drivers via Windows Management Instrumentation (WMI).
 sources:
@@ -124,6 +134,16 @@ sources:
 conditions: [os_major_version >= 6]
 labels: [Software]
 supported_os: [Windows]
+---
+name: WMINetNeighbors
+doc: TCP/IP neighbors via Windows Management Instrumentation (WMI).
+sources:
+- type: WMI
+  attributes: {query: SELECT * from MSFT_NetNeighbor, base_object: 'winmgmts:\root\StandardCimv2'}
+conditions: [os_major_version >= 6 AND os_minor_version >= 2]
+labels: [Network]
+supported_os: [Windows]
+urls: ['https://docs.microsoft.com/en-us/previous-versions/windows/desktop/nettcpipprov/msft-netneighbor']
 ---
 name: WMINetTCPConnections
 doc: TCP connections via Windows Management Instrumentation (WMI).
