@@ -4,7 +4,6 @@
 from __future__ import unicode_literals
 
 import io
-import os
 import unittest
 
 from artifacts import errors
@@ -52,8 +51,7 @@ class ArtifactDefinitionsRegistryTest(test_lib.BaseTestCase):
   def testArtifactDefinitionsRegistry(self):
     """Tests the ArtifactDefinitionsRegistry functions."""
     test_file = self._GetTestFilePath(['definitions.yaml'])
-    if not os.path.exists(test_file):
-      raise unittest.SkipTest('missing test file: definitions.yaml')
+    self._SkipIfPathNotExists(test_file)
 
     artifact_registry = registry.ArtifactDefinitionsRegistry()
 

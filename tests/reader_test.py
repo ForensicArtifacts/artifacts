@@ -4,7 +4,6 @@
 from __future__ import unicode_literals
 
 import io
-import os
 import unittest
 import yaml
 
@@ -117,8 +116,7 @@ supported_os: [Windows]
   def testReadFileObject(self):
     """Tests the ReadFileObject function."""
     test_file = self._GetTestFilePath(['definitions.yaml'])
-    if not os.path.exists(test_file):
-      raise unittest.SkipTest('missing test file: definitions.yaml')
+    self._SkipIfPathNotExists(test_file)
 
     artifact_reader = reader.YamlArtifactsReader()
 
@@ -321,8 +319,7 @@ supported_os: [Windows]
   def testReadYamlFile(self):
     """Tests the ReadFile function."""
     test_file = self._GetTestFilePath(['definitions.yaml'])
-    if not os.path.exists(test_file):
-      raise unittest.SkipTest('missing test file: definitions.yaml')
+    self._SkipIfPathNotExists(test_file)
 
     artifact_reader = reader.YamlArtifactsReader()
 
@@ -340,8 +337,7 @@ supported_os: [Windows]
   def testArtifactAsDict(self):
     """Tests the AsDict function."""
     test_file = self._GetTestFilePath(['definitions.yaml'])
-    if not os.path.exists(test_file):
-      raise unittest.SkipTest('missing test file: definitions.yaml')
+    self._SkipIfPathNotExists(test_file)
 
     artifact_reader = reader.YamlArtifactsReader()
 
@@ -375,8 +371,7 @@ class JsonArtifactsReaderTest(test_lib.BaseTestCase):
   def testReadJsonFile(self):
     """Tests the ReadFile function."""
     test_file = self._GetTestFilePath(['definitions.json'])
-    if not os.path.exists(test_file):
-      raise unittest.SkipTest('missing test file: definitions.json')
+    self._SkipIfPathNotExists(test_file)
 
     artifact_reader = reader.JsonArtifactsReader()
 
