@@ -60,7 +60,7 @@ then
 		curl -o codecov_env.sh -s https://codecov.io/env;
 
 		# Generates a series of -e options.
-		CODECOV_ENV=`/bin/bash ./codecov_env.sh`;
+		CODECOV_ENV=$(/bin/bash ./codecov_env.sh);
 
 		CONTAINER_OPTIONS="${CODECOV_ENV} ${CONTAINER_OPTIONS}";
 
