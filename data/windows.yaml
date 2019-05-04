@@ -459,7 +459,7 @@ sources:
     key_value_pairs:
       - {key: 'HKEY_USERS\%%users.sid%%\Environment', value: 'UserInitLogonServer'}
       - {key: 'HKEY_USERS\%%users.sid%%\Environment', value: 'UserInitLogonScript'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Environment', value: 'UserMprLogonScript'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Environment', value: 'UserInitMprLogonScript'}
 supported_os: [Windows]
 urls:
 - 'http://www.hexacorn.com/blog/2014/11/14/beyond-good-ol-run-key-part-18/'
@@ -991,7 +991,14 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '%%environ_systemroot%%\GroupPolicy\User\Scripts\scripts.ini'
+      - '%%environ_systemroot%%\System32\GroupPolicy\User\Scripts\psscripts.ini'
+      - '%%environ_systemroot%%\System32\GroupPolicy\User\Scripts\scripts.ini'
+      - '%%environ_systemroot%%\System32\GroupPolicy\User\Scripts\Logoff\*'
+      - '%%environ_systemroot%%\System32\GroupPolicy\User\Scripts\Logon\*'
+      - '%%environ_systemroot%%\System32\GroupPolicy\Machine\Scripts\psscripts.ini'
+      - '%%environ_systemroot%%\System32\GroupPolicy\Machine\Scripts\scripts.ini'
+      - '%%environ_systemroot%%\System32\GroupPolicy\Machine\Scripts\Shutdown\*'
+      - '%%environ_systemroot%%\System32\GroupPolicy\Machine\Scripts\Startup\*'
     separator: '\'
 supported_os: [Windows]
 ---
@@ -1232,6 +1239,7 @@ sources:
     names:
       - InternetExplorerBrowserHelperObjects
       - WindowsActiveDesktop
+      - WindowsActiveSyncAutoStart
       - WindowsAlternateShell
       - WindowsAppCertDLLs
       - WindowsAppInitDLLs
@@ -1243,6 +1251,7 @@ sources:
       - WindowsEnvironmentUserLoginScripts
       - WindowsExplorerAutoplayHandlers
       - WindowsFileTypeAutorunAssociations
+      - WindowsIconServiceLib
       - WindowsLSAAuthenticationPackages
       - WindowsLSANotificationPackages
       - WindowsLSASecurityPackages
@@ -1268,12 +1277,16 @@ sources:
       - WindowsShellIconOverlayIdentifiers
       - WindowsShellLoadAndRun
       - WindowsShellOpenCommand
+      - WindowsShellRunasCommand
       - WindowsShellServiceObjects
       - WindowsStubPaths
       - WindowsSystemPolicyShell
+      - WindowsTerminalServerInitialProgram
       - WindowsTerminalServerRunKeys
       - WindowsTerminalServerStartupPrograms
       - WindowsToolPaths
+      - WindowsWinlogonAppSetup
+      - WindowsWinlogonAvailableShells
       - WindowsWinlogonGinaDLL
       - WindowsWinlogonNotify
       - WindowsWinlogonShell
@@ -1314,8 +1327,8 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '%%environ_systemroot%%\system32\Windows­PowerShell\v1.0\profile.ps1'
-      - '%%environ_systemroot%%\system32\Windows­PowerShell\v1.0\Microsoft.PowerShell_profile.ps1'
+      - '%%environ_systemroot%%\system32\WindowsPowerShell\v1.0\profile.ps1'
+      - '%%environ_systemroot%%\system32\WindowsPowerShell\v1.0\Microsoft.PowerShell_profile.ps1'
       - '%%users.userprofile%%\Documents\WindowsPowerShell\profile.ps1'
       - '%%users.userprofile%%\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1'
     separator: '\'
@@ -1561,8 +1574,14 @@ sources:
       - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunServices\*'
       - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunServicesOnce\*'
       - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunServices\*'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\RunServicesOnce\*'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\RunServices\*'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunServicesOnce\*'
+      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunServices\*'
 supported_os: [Windows]
-urls: ['https://support.microsoft.com/en-us/kb/179365']
+urls:
+- 'https://support.microsoft.com/en-us/kb/179365'
+- 'https://threatvector.cylance.com/en_us/home/windows-registry-persistence-part-2-the-run-keys-and-search-order.html'
 ---
 name: WindowsScheduledTasks
 doc: Windows Scheduled Tasks.
@@ -1811,16 +1830,64 @@ sources:
 supported_os: [Windows]
 urls: ['https://support.microsoft.com/en-us/kb/103865']
 ---
-name: WindowsShellOpenCommand
-doc: Executed every time this file type is opened, should be "%1 %*".
+name: WindowsIconServiceLib
+doc: |
+  Windows Icon Service Library Name
+
+  The value should default to 'IconCodecService.dll'
 sources:
-- type: REGISTRY_KEY
+- type: REGISTRY_VALUE
   attributes:
-    keys:
-      - 'HKEY_LOCAL_MACHINE\Software\Classes\*\shell\open\command'
-      - 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\*\shell\open\command'
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Windows', value: 'IconServiceLib'}
 supported_os: [Windows]
-urls: ['http://gladiator-antivirus.com/forum/index.php?showtopic=24610']
+urls: ['https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2']
+---
+name: WindowsShellOpenCommand
+doc: Executed every time this file type is opened. For most file types, the value should be '"%1" %*'.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\*\shell\open\command', value: ''}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\*\shell\open\command', value: 'IsolatedCommand'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\*\shell\open\command', value: ''}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\*\shell\open\command', value: 'IsolatedCommand'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\*\shell\open\command', value: ''}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\*\shell\open\command', value: 'IsolatedCommand'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\*\shell\open\command', value: ''}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\*\shell\open\command', value: 'IsolatedCommand'}
+supported_os: [Windows]
+urls:
+ - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
+ - 'https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2'
+ - 'https://pentestlab.blog/2017/06/09/uac-bypass-sdclt/'
+---
+name: WindowsShellRunasCommand
+doc: |
+  Executed every time an executable or script file type is run as administrator.
+
+  For most file types, the value should be '"%1" %*' or something similar.
+  Example file type subkeys include 'exefile', 'batfile', and 'cmdfile'. These
+  keys can be modified by malware as a way to be periodically executed or to
+  bypass UAC.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\*\shell\runas\command', value: ''}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\*\shell\runas\command', value: 'IsolatedCommand'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\*\shell\runas\command', value: ''}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\*\shell\runas\command', value: 'IsolatedCommand'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\*\shell\runas\command', value: ''}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\*\shell\runas\command', value: 'IsolatedCommand'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\*\shell\runas\command', value: ''}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\*\shell\runas\command', value: 'IsolatedCommand'}
+supported_os: [Windows]
+urls:
+ - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
+ - 'https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2'
+ - 'https://enigma0x3.net/2017/03/17/fileless-uac-bypass-using-sdclt-exe/'
 ---
 name: WindowsShellServiceObjects
 doc: Windows Shell (explorer.exe) service objects delayed load.
@@ -1860,8 +1927,14 @@ sources:
   attributes:
     key_value_pairs:
       - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\System\Scripts', value: 'Shutdown'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Group Policy\Scripts\Shutdown\*\*', value: 'Script'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Group Policy\Scripts\Shutdown\*\*', value: 'Parameters'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Group Policy\State\Machine\Scripts\Shutdown\*\*', value: 'Script'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Group Policy\State\Machine\Scripts\Shutdown\*\*', value: 'Parameters'}
 supported_os: [Windows]
-urls: ['https://technet.microsoft.com/en-us/library/ff404236.aspx']
+urls:
+- 'https://technet.microsoft.com/en-us/library/ff404236.aspx'
+- 'https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2'
 ---
 name: WindowsStartupFolderModification
 doc: Windows startup folder Registry values.
@@ -1907,8 +1980,14 @@ sources:
   attributes:
     key_value_pairs:
       - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\System\Scripts', value: 'Startup'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Group Policy\Scripts\Startup\*\*', value: 'Script'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Group Policy\Scripts\Startup\*\*', value: 'Parameters'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Group Policy\State\Machine\Scripts\Startup\*\*', value: 'Script'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Group Policy\State\Machine\Scripts\Startup\*\*', value: 'Parameters'}
 supported_os: [Windows]
-urls: ['https://technet.microsoft.com/en-us/library/ff404236.aspx']
+urls:
+- 'https://technet.microsoft.com/en-us/library/ff404236.aspx'
+- 'https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2'
 ---
 name: WindowsStubPaths
 doc: Windows StubPath persistence.
@@ -2101,6 +2180,29 @@ sources:
       - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Terminal Server\Wds\rdpwd', value: 'StartupPrograms'}
 supported_os: [Windows]
 urls: ['http://forum.sysinternals.com/rdpclip_topic4729.html']
+---
+name: WindowsTerminalServerInitialProgram
+doc: Windows Terminal Server Initial Program
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp', value: 'InitialProgram'}
+supported_os: [Windows]
+urls: ['https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2']
+---
+name: WindowsActiveSyncAutoStart
+doc: Windows ActiveSync AutoStart entries
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows CE Services\AutoStartOnConnect\*'
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows CE Services\AutoStartOnDisconnect\*'
+      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows CE Services\AutoStartOnConnect\*'
+      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows CE Services\AutoStartOnDisconnect\*'
+supported_os: [Windows]
+urls: ['https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2']
 ---
 name: WindowsTimezone
 doc: The timezone of the system in Olson format.
@@ -2332,6 +2434,24 @@ sources:
 supported_os: [Windows]
 urls: ['https://technet.microsoft.com/en-us/library/cc939862.aspx']
 ---
+name: WindowsWinlogonAvailableShells
+doc: |
+  Windows Server Winlogon Available Shells
+
+  Used to specify an alternate shell application to be launched when
+  logging into Windows Server 2012 and later. Legitimate keys under
+  AvailableShells should just cause cmd.exe or explorer.exe to be executed,
+  whereas malicious programs may create keys that cause malware to be run
+  when a user logs in.
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys: ['HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\AlternateShells\AvailableShells\*']
+supported_os: [Windows]
+urls:
+- https://andymorgan.wordpress.com/2012/03/30/changing-the-default-shell-of-windows-server-8-core/
+- https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2
+---
 name: WindowsWinlogonVMApplet
 doc: Windows VMApplet replacement.
 sources:
@@ -2369,24 +2489,29 @@ doc: Used to filter TCP/IP traffic through WinSock2.
 sources:
 - type: REGISTRY_KEY
   attributes:
-    keys: ['HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\WinSock2\Parameters\Protocol_Catalog9\Catalog_Entries\*']
+    keys:
+      - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\WinSock2\Parameters\Protocol_Catalog9\Catalog_Entries\*'
+      - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\WinSock2\Parameters\Protocol_Catalog9\Catalog_Entries64\*'
 supported_os: [Windows]
 urls:
 - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
 - 'https://en.wikipedia.org/wiki/Layered_Service_Provider'
+- 'https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2'
 ---
 name: WinSock2NamespaceProviders
-doc: WinSock2NamespaceProviders
+doc: Used to provide name-resolution services through WinSock2
 sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\WinSock2\Parameters\namespace_catalog5\catalog_entries\*', value: 'LibraryPath'}
+      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\WinSock2\Parameters\NameSpace_Catalog5\Catalog_Entries\*', value: 'LibraryPath'}
+      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\WinSock2\Parameters\NameSpace_Catalog5\Catalog_Entries64\*', value: 'LibraryPath'}
 supported_os: [Windows]
 urls:
 - 'https://www.symantec.com/security_response/writeup.jsp?docid=2012-020609-4221-99&tabid=2'
 - 'http://www.nirsoft.net/utils/winsock_service_providers.html'
 - 'https://msdn.microsoft.com/en-us/library/windows/desktop/ms739923(v=vs.85).aspx'
+- 'https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2'
 ---
 name: WindowsDNSSettings
 doc: Windows Registry Keys that contain DNS and DHCP settings.
