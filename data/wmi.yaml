@@ -165,6 +165,16 @@ labels: [Network]
 supported_os: [Windows]
 urls: ['https://docs.microsoft.com/en-us/previous-versions/windows/desktop/nettcpipprov/msft-netudpendpoint']
 ---
+name: WMIOperatingSystem
+doc: Operating system installed on the computer via Windows Management Instrumentation (WMI).
+sources:
+- type: WMI
+  attributes: {query: SELECT * from Win32_OperatingSystem}
+conditions: [os_major_version >= 6]
+labels: [System]
+supported_os: [Windows]
+urls: ['https://docs.microsoft.com/en-us/windows/desktop/cimwin32prov/win32-operatingsystem']
+---
 name: WMIPhysicalMemory
 doc: Physical memory information via Windows Management Instrumentation (WMI).
 sources:
@@ -199,12 +209,32 @@ provides: [users.homedir]
 supported_os: [Windows]
 urls: ['http://msdn.microsoft.com/en-us/library/windows/desktop/ee886409(v=vs.85).aspx']
 ---
+name: WMIScheduledTasks
+doc: Scheduled tasks that are registered on the computer via Windows Management Instrumentation (WMI).
+sources:
+- type: WMI
+  attributes: {query: SELECT * from MSFT_ScheduledTask, base_object: 'winmgmts:\root\Microsoft\Windows\TaskScheduler'}
+conditions: [os_major_version >= 6 AND os_minor_version >= 2]
+labels: [System]
+supported_os: [Windows]
+urls: ['https://wutils.com/wmi/root/microsoft/windows/taskscheduler/msft_scheduledtask/']
+---
 name: WMIServices
 doc: Services queried from WMI.
 sources:
 - type: WMI
   attributes: {query: SELECT * FROM Win32_Service}
 supported_os: [Windows]
+---
+name: WMIStartupCommands
+doc: Commands that run automatically when a user logs onto the computer system via Windows Management Instrumentation (WMI).
+sources:
+- type: WMI
+  attributes: {query: SELECT * from Win32_StartupCommand}
+conditions: [os_major_version >= 6]
+labels: [System]
+supported_os: [Windows]
+urls: ['https://docs.microsoft.com/en-us/windows/desktop/cimwin32prov/win32-startupcommand']
 ---
 name: WMIUsers
 doc: |
