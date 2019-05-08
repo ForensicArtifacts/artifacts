@@ -345,6 +345,44 @@ sources:
 supported_os: [Windows]
 urls: ['https://github.com/libyal/winreg-kb/blob/master/documentation/Component%20Object%20Model%20keys.asciidoc#type-libraries-key']
 ---
+name: WindowsSearchFilterHandlers
+doc: |
+  Windows Search filter handlers configured for file types and applications
+
+  Windows Search loads DLLs that implement the IFilter interface in order to
+  scan files for text and extract certain types of information. Malware can
+  replace the filter handler for a given file type or CLSID with itself to gain
+  execution when a search operation is performed on that file. Search
+  operations can be performed indirectly in a number of cases; for instance,
+  the .txt, .html, and .rtf filter handlers are invoked when indexing email
+  message bodies.
+
+  The filter handler to use is specified indirectly via a persistent handler.
+  The persistent handler GUID is indicated via the PersistentHandler subkey for
+  a file type or application GUID.  The filter handler CLSID is indicated via
+  the PersistentAddinsRegistered\{89BCB740-6119-101A-BCB7-00DD010655AF} subkey
+  under the persistent handler GUID key path. This artifact inspects both of
+  these paths.
+
+  NOTE: Only HKEY_LOCAL_MACHINE need be checked, because these are the only
+  keys used. SearchFilterHost.exe runs under the SYSTEM account, which does
+  not have access to HKEY_CURRENT_USER
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\*\PersistentHandler', value: ''}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\*\PersistentHandler', value: ''}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\CLSID\*\PersistentHandler', value: ''}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\CLSID\*\PersistentHandler', value: ''}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\CLSID\*\PersistentAddinsRegistered\{89BCB740-6119-101A-BCB7-00DD010655AF}', value: ''}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\CLSID\*\PersistentAddinsRegistered\{89BCB740-6119-101A-BCB7-00DD010655AF}', value: ''}
+supported_os: [Windows]
+urls:
+- 'https://docs.microsoft.com/en-us/windows/desktop/search/-search-ifilter-about'
+- 'https://docs.microsoft.com/en-us/windows/desktop/search/-search-ifilter-implementations'
+- 'https://docs.microsoft.com/en-us/windows/desktop/search/-search-ifilter-registering-filters'
+---
 name: WindowsConfigSys
 doc: Windows config.sys file
 sources:
@@ -942,17 +980,22 @@ name: WindowsFileTypeAutorunAssociations
 doc: |
   Registry value for what application class identifier (CLSID) to launch for a file extension.
 
-  Extension subkeys start with a dot.
+  Extension subkeys start with a dot. The '(Default)' value will be a ProgID,
+  which points to another entry in HKCR specifying the command to run to open
+  a file of the given type. The WindowsShellOpenCommand artifact is associated
+  with these ProgID command invocations.
 sources:
-- type: REGISTRY_KEY
+- type: REGISTRY_VALUE
   attributes:
-    keys:
-      - 'HKEY_LOCAL_MACHINE\Software\Classes\.*'
-      - 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\.*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Classes\.*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\.*'
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\.*', value: ''}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\.*', value: ''}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\.*', value: ''}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\.*', value: ''}
 supported_os: [Windows]
-urls: ['https://msdn.microsoft.com/en-us/library/windows/desktop/ms678415(v=vs.85).aspx']
+urls:
+- 'https://msdn.microsoft.com/en-us/library/windows/desktop/ms678415(v=vs.85).aspx'
+- 'https://docs.microsoft.com/en-us/windows/desktop/shell/fa-file-types'
 ---
 name: WindowsFirewallLogFile
 doc: Windows Firewall default logfile
@@ -1168,11 +1211,16 @@ doc: Configured drivers for different multimedia filetypes.
 sources:
 - type: REGISTRY_KEY
   attributes:
-    keys: ['HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Drivers32\*']
+    keys:
+      - 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Drivers32\*'
+      - 'HKEY_USERS\%%users.sid%%\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Drivers32\*'
+      - 'HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows NT\CurrentVersion\Drivers32\*'
+      - 'HKEY_USERS\%%users.sid%%\SOFTWARE\Wow6432Node\Microsoft\Windows NT\CurrentVersion\Drivers32\*'
 supported_os: [Windows]
 urls:
 - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
 - 'https://support.microsoft.com/en-us/kb/126054'
+- 'https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2'
 ---
 name: WindowsNetworkShellHelpers
 doc: Windows Network Shell (netsh) helpers are loaded on boot
@@ -1251,6 +1299,7 @@ sources:
       - WindowsEnvironmentUserLoginScripts
       - WindowsExplorerAutoplayHandlers
       - WindowsFileTypeAutorunAssociations
+      - WindowsFontDrivers
       - WindowsIconServiceLib
       - WindowsLSAAuthenticationPackages
       - WindowsLSANotificationPackages
@@ -1264,13 +1313,16 @@ sources:
       - WindowsRunKeys
       - WindowsRunServices
       - WindowsScreenSaverExecutable
+      - WindowsSearchFilterHandlers
       - WindowsSecurityProviders
       - WindowsServiceControlManagerExtension
       - WindowsSessionManagerBootExecute
       - WindowsSessionManagerExecute
+      - WindowsSessionManagerS0InitialCommand
       - WindowsSessionManagerSetupExecute
       - WindowsSessionManagerSubSystems
       - WindowsSessionManagerWOWCommandLine
+      - WindowsSetupCommandLine
       - WindowsSharedTaskScheduler
       - WindowsShellExecuteHooks
       - WindowsShellExtensions
@@ -1288,6 +1340,7 @@ sources:
       - WindowsWinlogonAppSetup
       - WindowsWinlogonAvailableShells
       - WindowsWinlogonGinaDLL
+      - WindowsWinlogonGPExtensions
       - WindowsWinlogonNotify
       - WindowsWinlogonShell
       - WindowsWinlogonSystem
@@ -1660,6 +1713,18 @@ urls:
 - 'http://support.microsoft.com/kb/103000'
 - 'https://github.com/libyal/winreg-kb/wiki/System-keys'
 ---
+name: WindowsFontDrivers
+doc: Windows font drivers from the Registry.
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Font Drivers\*'
+labels: [Software]
+supported_os: [Windows]
+urls:
+- 'https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2'
+---
 name: WindowsSessionManagerBootExecute
 doc: Windows Session Manager BootExecute persistence.
 sources:
@@ -1670,22 +1735,46 @@ supported_os: [Windows]
 urls: ['https://technet.microsoft.com/en-us/library/cc963230.aspx']
 ---
 name: WindowsSessionManagerExecute
-doc: Windows Session Manager Execute persistence
+doc: |
+  Windows Session Manager Execute persistence
+
+  This entry shouldn't be populated after Windows has been installed
 sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager', value: 'Execute'}]
 supported_os: [Windows]
-urls: ['https://technet.microsoft.com/en-us/library/cc976130.aspx']
+urls:
+- 'https://technet.microsoft.com/en-us/library/cc976130.aspx'
+- 'https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2'
+---
+name: WindowsSessionManagerS0InitialCommand
+doc: |
+  Windows Session Manager S0InitialCommand persistence
+
+  This entry shouldn't be populated after Windows has been installed
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager', value: 'S0InitialCommand'}]
+supported_os: [Windows]
+urls:
+- 'https://msdn.microsoft.com/en-us/library/windows/desktop/dd392286%28v=vs.85%29.aspx'
+- 'https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2'
 ---
 name: WindowsSessionManagerSetupExecute
-doc: Windows Session Manager SetupExecute persistence
+doc: |
+  Windows Session Manager SetupExecute persistence
+
+  This entry shouldn't be populated after Windows has been installed
 sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager', value: 'SetupExecute'}]
 supported_os: [Windows]
-urls: ['https://msdn.microsoft.com/en-us/library/windows/desktop/dd392286%28v=vs.85%29.aspx']
+urls:
+- 'https://msdn.microsoft.com/en-us/library/windows/desktop/dd392286%28v=vs.85%29.aspx'
+- 'https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2'
 ---
 name: WindowsSessionManagerSubSystems
 doc: Windows Session Manager SubSystems persistence
@@ -1708,6 +1797,16 @@ sources:
       - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\WOW', value: 'wowcmdline'}
 supported_os: [Windows]
 urls: ['https://support.microsoft.com/en-us/kb/102986']
+---
+name: WindowsSetupCommandLine
+doc: Command line invocation used for custom setup and deployment tasks
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\System\Setup', value: 'CmdLine'}
+supported_os: [Windows]
+urls: ['https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2']
 ---
 name: WindowsSharedTaskScheduler
 doc: Runs on windows boot.
@@ -2483,6 +2582,23 @@ sources:
       - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'AppSetup'}
 supported_os: [Windows]
 urls: ['https://technet.microsoft.com/en-us/library/cc939701.aspx']
+---
+name: WindowsWinlogonGPExtensions
+doc: |
+  Windows Winlogon Group Policy Extensions
+
+  These keys specifiy DLLs that should be loaded when the group policy
+  engine loads, and can act as a persistence mechanism for malware.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\GPExtensions\*', value: ''}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\GPExtensions\*', value: 'DllName'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows NT\CurrentVersion\Winlogon\GPExtensions\*', value: ''}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows NT\CurrentVersion\Winlogon\GPExtensions\*', value: 'DllName'}
+supported_os: [Windows]
+urls: ['https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2']
 ---
 name: WinSock2LayeredServiceProviders
 doc: Used to filter TCP/IP traffic through WinSock2.

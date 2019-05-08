@@ -20,6 +20,21 @@ sources:
 supported_os: [Windows]
 labels: [Antivirus]
 ---
+name: WindowsDefenderExclusionList
+doc: |
+  Directories configured not to be scanned by Windows Defender
+
+  Certain malware families (for example, Tofsee) are known to add
+  directories to this list in order to avoid being detected by
+  Windows Defender.
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys: ['HKEY_LOCAL_MACHINE\Software\Microsoft\Windows Defender\Exclusions\Paths\*']
+supported_os: [Windows]
+urls:
+- 'https://blog.talosintelligence.com/2019/05/threat-roundup-0503-0510.html'
+---
 name: SophosAVLogs
 doc: Sophos Anti-Virus log files.
 sources:
