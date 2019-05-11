@@ -12,7 +12,7 @@ follow the specfication.
 ### Project status
 
 [Travis-CI](https://travis-ci.org/) | [AppVeyor](https://ci.appveyor.com) | [Codecov](https://codecov.io/)
---- | --- | --- 
+--- | --- | ---
 [![Build Status](https://travis-ci.org/ForensicArtifacts/artifacts.svg?branch=master)](https://travis-ci.org/ForensicArtifacts/artifacts) | [![Build status](https://ci.appveyor.com/api/projects/status/7gv9fwr269527cj1?svg=true)](https://ci.appveyor.com/project/forensicartifacts/artifacts) | [![codecov](https://codecov.io/gh/ForensicArtifacts/artifacts/branch/master/graph/badge.svg)](https://codecov.io/gh/ForensicArtifacts/artifacts)
 
 
@@ -20,30 +20,30 @@ follow the specfication.
 
 The artifact definitions can be found in the [data directory](https://github.com/ForensicArtifacts/artifacts/tree/master/data) and the format is described in detail in the [Style Guide](https://github.com/ForensicArtifacts/artifacts/blob/master/docs/Artifacts%20definition%20format%20and%20style%20guide.asciidoc).
 
-As of 2015-11-20 the repository contains:
+As of 2019-05-11 the repository contains:
 
-| **File paths covered** | **487** |
+| **File paths covered** | **1013** |
 | :------------------ | ------: |
-| **Registry keys covered** | **289** |
-| **Total artifacts** | **345** |
+| **Registry keys covered** | **476** |
+| **Total artifacts** | **505** |
 
 **Artifacts by type**
 
-|  ARTIFACT | COMMAND | DIRECTORY | FILE | PATH | REGISTRY_KEY | REGISTRY_VALUE | WMI | 
-|  :---: |  :---: |  :---: |  :---: |  :---: |  :---: |  :---: |  :---: | 
-|  14 | 6 | 11 | 191 | 4 | 38 | 65 | 16 | 
+| ARTIFACT_GROUP | COMMAND | DIRECTORY | FILE | PATH | REGISTRY_KEY | REGISTRY_VALUE | WMI |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| 21 | 9 | 14 | 283 | 8 | 46 | 98 | 26 |
 
 **Artifacts by OS**
 
-|  Darwin | Linux | Windows | 
-|  :---: |  :---: |  :---: | 
-|  106 | 75 | 177 | 
+| Darwin | Linux | Windows |
+| :---: | :---: | :---: |
+| 33 | 25 | 23 |
 
 **Artifacts by label**
 
-|  Antivirus | Authentication | Browser | Cloud | Cloud Storage | Configuration Files | External Media | ExternalAccount | IM | Logs | Mail | Network | Software | System | Users | iOS | 
-|  :---: |  :---: |  :---: |  :---: |  :---: |  :---: |  :---: |  :---: |  :---: |  :---: |  :---: |  :---: |  :---: |  :---: |  :---: |  :---: | 
-|  6 | 12 | 18 | 2 | 3 | 34 | 2 | 3 | 4 | 27 | 12 | 7 | 35 | 62 | 59 | 5 | 
+| Antivirus | Authentication | Browser | Cloud | Cloud Storage | Configuration Files | Docker | External Media | ExternalAccount | Hadoop | History Files | Logs | Mail | Network | Software | System | Users | iOS |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| 6 | 18 | 21 | 2 | 4 | 41 | 2 | 2 | 3 | 1 | 3 | 46 | 15 | 14 | 43 | 91 | 68 | 5 |
 
 ## Background/History
 
@@ -64,10 +64,8 @@ Please send us your contribution! See [the developers guide](https://github.com/
 
 ## External links
 
-* [ForensicsArtifacts.com ... the definitive database](http://forensicartifacts.com/)
 * [GRR Artifacts](https://www.blackhat.com/docs/us-14/materials/us-14-Castle-GRR-Find-All-The-Badness-Collect-All-The-Things-WP.pdf), by Greg Castle, Blackhat 2014
 
 ## Contact
 
-[forensicartifacts@googlegroups.com](https://groups.google.com/forum/#!forum/forensicartifacts)
-
+[slack](https://open-source-dfir.slack.com/messages/CBSJ9TDR9)

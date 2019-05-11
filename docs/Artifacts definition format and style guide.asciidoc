@@ -27,6 +27,8 @@ artifacts definitions.
 | 0.0.3 | J.B. Metz | September 2015 | Additional label.
 | 0.0.4 | J.B. Metz | July 2016 | Added information about a naming convention.
 | 0.0.5 | J.B. Metz | February 2019 | Removed returned_types as keyword and format changes.
+| 0.0.6 | J. Plum | May 2019 | Add information about the knowledge base, directory sources,
+expansion and globbing
 |===
 
 :numbered:
@@ -72,6 +74,12 @@ An object of digital archaeological interest.
 Where digital archaeology roughly refers to computer forensics without the
 forensic (legal) context.
 
+=== [[knowledge_base]]Knowledge Base
+
+The knowledge base is a key value store that is used for storing entries about the host and users.
+It is filled via the `provides` attribute of artifacts and can be used in artifact
+<<conditions,conditions>> and in <<parameter_expansion,parameter expansion>>.
+
 == The artifact definition
 
 The best way to show what an artifact definition is, is by example. The
@@ -107,7 +115,8 @@ See section: <<sources,Sources>>.
 See section: <<conditions,Conditions>>.
 | labels | Optional list of predefined labels.
 See section: <<labels,Labels>>.
-| provides | Optional list of *TODO*
+| provides | Optional list of of strings that describe knowledge base entries that this artifact
+# can supply.
 | supported_os | Optional list that indicates which operating systems the artifact definition applies to.
 See section: <<supported_os,Supported operating system>>.
 | urls | Optional list of URLs with more contextual information. +
@@ -207,6 +216,7 @@ Currently the following different source types are defined:
 | Value | Description
 | ARTIFACT_GROUP | A source that consists of a group of other artifacts.
 | COMMAND | A source that consists of the output of a command.
+| DIRECTORY | A source that consists of the contents of directories.
 | FILE | A source that consists of the contents of files.
 | PATH | A source that consists of the contents of paths.
 | REGISTRY_KEY | A source that consists of the contents of Windows Registry keys.
@@ -259,6 +269,29 @@ Where `attributes` can contain the following values:
 | cmd | The path of the command.
 |===
 
+=== Directory source
+
+The directory source is a source that consists of the contents of directories e.g.
+
+[source,yaml]
+----
+- type: DIRECTORY
+  attributes:
+    paths: ['%%users.userprofile%%\Downloads\*']
+    separator: '\'
+----
+
+Where `attributes` can contain the following values:
+
+[cols="1,5",options="header"]
+|===
+| Value | Description
+| paths | A list of file paths that can potentially be collected. +
+The paths can use parameter expansion e.g. `%%environ_systemroot%%`. +
+See section: <<parameter_expansion,Parameter expansion and globs>>
+| separator | Optional path seperator e.g. '\' for Windows systems.
+|===
+
 === File source
 
 The file source is a source that consists of the contents of files e.g.
@@ -278,6 +311,7 @@ Where `attributes` can contain the following values:
 | paths | A list of file paths that can potentially be collected. +
 The paths can use parameter expansion e.g. `%%environ_systemroot%%`. +
 See section: <<parameter_expansion,Parameter expansion and globs>>
+| separator | Optional path seperator e.g. '\' for Windows systems.
 |===
 
 === Path source
@@ -300,6 +334,7 @@ Where `attributes` can contain the following values:
 | paths | A list of file paths that can potentially be collected. +
 The paths can use parameter expansion e.g. `%%environ_systemroot%%`. +
 See section: <<parameter_expansion,Parameter expansion and globs>>
+| separator | Optional path seperator e.g. '\' for Windows systems.
 |===
 
 === Windows Registry key source
@@ -369,6 +404,7 @@ Where `attributes` can contain the following values:
 | query | The Windows Management Instrumentation (WMI) query. +
 The query can use parameter expansion e.g. `%%users.username%%`. +
 See section: <<parameter_expansion,Parameter expansion and globs>>
+| base_object | Optional WMI base object e.g. `winmgmts:\root\SecurityCenter2`
 |===
 
 == [[conditions]]Conditions
@@ -535,5 +571,16 @@ supported_os: [Windows, Linux, Darwin]
 
 == [[parameter_expansion]]Parameter expansion and globs
 
-*TODO*
+Path, keys, key and query attributes can contain parameter expansion and globing. This allows
+for flexible creation of artifact locations.
 
+Parameter expansions values are enclosed by double percent symbols e.g. `%%environ_systemroot%%`.
+The parameter expansion value can be replaced by the corresponding value from the
+<<knowledge_base,knowledge base>>.
+
+Parameter can also contain regular glob elements (such as `**`, `*`, `?`, `[a-z]`). For
+example, having files `foo`, `bar`, `baz` glob expansion of `ba?` will yield
+`bar` and `baz`. Group expansion allows defining lists of possible artifact locations for example,
+given path `foo/{bar,baz}/{quux,norf}` the locations `foo/bar/quux`, `foo/bar/norf`, `foo/baz/quux`
+and `foo/baz/norf` are defined. A recursive component (specified as `**`) matches any directory
+tree up to some specified depth (3 by default). ** does not match the current directory.
