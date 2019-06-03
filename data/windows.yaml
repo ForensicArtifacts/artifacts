@@ -1267,6 +1267,21 @@ sources:
 supported_os: [Windows]
 urls: ['https://technet.microsoft.com/en-us/library/cc960241.aspx']
 ---
+name: WindowsPendingGPOs
+doc: |
+  Windows Pending GPOs registry settings.
+
+  This is a persistence mechanism known to be used by the Gootkit
+  malware family.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\IEAK\GroupPolicy\PendingGPOs', value: 'Path1'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\IEAK\GroupPolicy\PendingGPOs', value: 'Path1'}
+supported_os: [Windows]
+urls: ['https://www.certego.net/en/news/malware-tales-gootkit/']
+---
 name: WindowsPersistenceMechanisms
 doc: Persistence mechanisms in Windows.
 sources:
@@ -1307,6 +1322,7 @@ sources:
       - WindowsMSDTCDLLs
       - WindowsMultiMediaDrivers
       - WindowsNetworkShellHelpers
+      - WindowsPendingGPOs
       - WindowsPLAPProviders
       - WindowsPrintMonitors
       - WindowsRunGrpConv
@@ -1700,18 +1716,193 @@ urls:
 - 'http://www.silentrunners.org/Silent%20Runners.vbs'
 ---
 name: WindowsServices
-doc: Windows services from the Registry.
+doc: |
+  Windows services from the Registry.
+
+  Malware can add new services to gain persistence, or modify
+  existing ones to avoid detection. For example, the ZeroAccess
+  rootkit will make the following changes to the WSCSVC (Windows
+  Security Service Center), WINDEFEND (Windows Defender),
+  and MPSSVC (Windows Firewall) services, among others
+
+  - Set 'Start' to 4, indicating that the service should be disabled
+  - Set 'DeleteFlag' to 1, indicating that the service should be removed
+  - Set 'ErrorControl' to 0 and 'Type' to 32, causing it to fail to be
+    started by the Service Controller and no error messages generated
 sources:
 - type: REGISTRY_KEY
   attributes:
     keys:
-      - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\services\*\*'
-      - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\services\*\Parameters\*'
+      - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\*\*'
+      - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\*\Parameters\*'
 labels: [Software]
 supported_os: [Windows]
 urls:
 - 'http://support.microsoft.com/kb/103000'
 - 'https://github.com/libyal/winreg-kb/wiki/System-keys'
+---
+name: WindowsActionCenterSettings
+doc: |
+  Windows 7 Action Center Settings
+
+  Malware can modify these keys to disable notifications that occur
+  when various security features are disabled.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Action Center\Checks\{e8433b72-5842-4d43-8645-bc2c35960837}.check.*', value: 'CheckSetting'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Action Center\Checks\{e8433b72-5842-4d43-8645-bc2c35960837}.check.*', value: 'CheckSetting'}
+labels: [Software]
+supported_os: [Windows]
+urls:
+- 'https://winaero.com/blog/registry-tweak-to-disable-action-center-notifications-in-windows-7/'
+- 'https://blog.talosintelligence.com/2019/05/threat-roundup-0517-0524.html'
+---
+name: WindowsFirewallAuthorizedApplications
+doc: |
+  Windows Firewall Authorized Applications
+
+  Malware can add paths to this list to more easily communicate
+  over the network on an infected machine. For instance, Emotet
+  modifies some these settings after gaining execution.
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
+      - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile\AuthorizedApplications\List\*'
+      - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile\AuthorizedApplications\List\*'
+      - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\AuthorizedApplications\List\*'
+labels: [Software]
+supported_os: [Windows]
+urls:
+ - 'https://threatvector.cylance.com/en_us/home/threat-spotlight-eyepyramid-malware.html'
+ - 'https://blog.talosintelligence.com/2019/05/threat-roundup-0524-0531.html'
+---
+name: WindowsFirewallPolicySettings
+doc: |
+  Windows Firewall Policy Settings
+
+  Malware can modify these settings to more easily communicate
+  over the network on an infected machine. For instance, Emotet
+  modifies some these settings after gaining execution.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile', value: 'EnableFirewall'}
+      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile', value: 'DisableNotifications'}
+      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile', value: 'DoNotAllowExceptions'}
+      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile', value: 'EnableFirewall'}
+      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile', value: 'DisableNotifications'}
+      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile', value: 'DoNotAllowExceptions'}
+      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile', value: 'EnableFirewall'}
+      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile', value: 'DisableNotifications'}
+      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile', value: 'DoNotAllowExceptions'}
+labels: [Software]
+supported_os: [Windows]
+urls:
+- 'https://docs.microsoft.com/en-us/windows-hardware/customize/desktop/unattend/networking-mpssvc-svc-privateprofile-enablefirewall'
+- 'https://docs.microsoft.com/en-us/windows-hardware/customize/desktop/unattend/networking-mpssvc-svc-privateprofile-disablenotifications'
+- 'https://blog.talosintelligence.com/2019/05/threat-roundup-0503-0510.html'
+---
+name: WindowsSecurityCenterSettings
+doc: |
+  Windows Security Center Settings
+
+  Malware can modify these settings to avoid detection on
+  an infected machine. For instance, Emotet modifies some of
+  these settings after gaining execution.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Security Center', value: 'AntiSpyWareDisableNotify'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Security Center', value: 'AntiSpyWareDisableNotify'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Security Center', value: 'AntiVirusDisableNotify'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Security Center', value: 'AntiVirusDisableNotify'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Security Center', value: 'AntiVirusOverride'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Security Center', value: 'AntiVirusOverride'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Security Center', value: 'AutoUpdateDisableNotify'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Security Center', value: 'AutoUpdateDisableNotify'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Security Center', value: 'FirewallDisableNotify'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Security Center', value: 'FirewallDisableNotify'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Security Center', value: 'FirewallOverride'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Security Center', value: 'FirewallOverride'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Security Center', value: 'UpdatesDisableNotify'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Security Center', value: 'UpdatesDisableNotify'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Security Center', value: 'UpdatesOverride'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Security Center', value: 'UpdatesOverride'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Security Center', value: 'UacDisableNotify'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Security Center', value: 'UacDisableNotify'}
+labels: [Software]
+supported_os: [Windows]
+urls:
+- 'https://blog.talosintelligence.com/2019/05/threat-roundup-0503-0510.html'
+- 'https://blog.appriver.com/phorphiex/trik-botnet-campaign-leads-to-multiple-infections-ransomware-banking-trojan-cryptojacking'
+- 'https://ccm.net/faq/1446-disabling-security-alerts-under-vista'
+---
+name: WindowsSystemRestoreSettings
+doc: |
+  Windows System Restore Settings
+
+  Some malware, especially ransomware, will disable system restore
+  to make system recovery more difficult.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\SystemRestore', value: 'DisableConfig'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows NT\CurrentVersion\SystemRestore', value: 'DisableConfig'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\SystemRestore', value: 'DisableSR'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows NT\CurrentVersion\SystemRestore', value: 'DisableSR'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows NT\SystemRestore', value: 'DisableConfig'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Policies\Microsoft\Windows NT\SystemRestore', value: 'DisableConfig'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows NT\SystemRestore', value: 'DisableSR'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Policies\Microsoft\Windows NT\SystemRestore', value: 'DisableSR'}
+labels: [Software]
+supported_os: [Windows]
+urls:
+- 'https://blog.talosintelligence.com/2019/05/threat-roundup-0503-0510.html'
+- 'https://www.windows-commandline.com/enable-disable-system-restore-service/'
+---
+name: WindowsUserAccountControlSettings
+doc: |
+  Windows User Account Control Settings
+
+  Malware sometimes disables UAC to make it easier to perform
+  actions on an infected machine.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System', value: 'EnableLUA'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\System', value: 'EnableLUA'}
+labels: [Software]
+supported_os: [Windows]
+urls:
+- 'https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-gpsb/958053ae-5397-4f96-977f-b7700ee461ec'
+- 'https://blog.talosintelligence.com/2019/05/threat-roundup-0503-0510.html'
+---
+name: WindowsUpgradeSettings
+doc: |
+  Windows Upgrade Settings
+
+  Malware sometimes disables a machine ability to upgrade from
+  previous versions of Windows to Windows 10.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\WindowsUpdate', value: 'DisableOSUpgrade'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Policies\Microsoft\Windows\WindowsUpdate', value: 'DisableOSUpgrade'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\WindowsUpdate\OSUpgrade', value: 'ReservationsAllowed'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Policies\Microsoft\Windows\WindowsUpdate\OSUpgrade', value: 'ReservationsAllowed'}
+labels: [Software]
+supported_os: [Windows]
+urls:
+- 'https://www.ghacks.net/2016/01/08/disableosupgrade-prevents-the-upgrade-to-windows-10/'
+- 'https://blog.talosintelligence.com/2019/05/threat-roundup-0517-0524.html'
 ---
 name: WindowsFontDrivers
 doc: Windows font drivers from the Registry.
@@ -2089,16 +2280,28 @@ urls:
 - 'https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2'
 ---
 name: WindowsStubPaths
-doc: Windows StubPath persistence.
+doc: |
+  Windows StubPath persistence.
+
+  Each time a user logs in, the Active Setup Installed Components in HKLM
+  are compared ot the ones in HKCU, and if any are missing, or if the
+  associated version is less, the program is executed.
 sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
       - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Active Setup\Installed Components\*', value: 'StubPath'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Active Setup\Installed Components\*', value: 'Version'}
       - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Active Setup\Installed Components\*', value: 'StubPath'}
+      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Active Setup\Installed Components\*', value: 'Version'}
       - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Active Setup\Installed Components\*', value: 'StubPath'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Active Setup\Installed Components\*', value: 'Version'}
       - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Active Setup\Installed Components\*', value: 'StubPath'}
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Active Setup\Installed Components\*', value: 'Version'}
 supported_os: [Windows]
+urls:
+- 'https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2'
+- 'http://bonemanblog.blogspot.com/2004/12/active-setup-registry-keys-and-their.html'
 ---
 name: WindowsSuperFetchFiles
 doc: Windows SuperFetch files.
