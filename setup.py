@@ -122,16 +122,6 @@ else:
             line = '%py2_install'
 
         elif line.startswith('%files'):
-          python_spec_file.extend([
-              '%package -n %{name}-tools',
-              'Requires: {0:s}-artifacts >= %{{version}}'.format(
-                  python_package),
-              'Summary: Tools for {0:s}'.format(summary),
-              '',
-              '%description -n %{name}-tools'])
-
-          python_spec_file.extend(description)
-
           lines = [
               '%files -n %{name}-data',
               '%defattr(644,root,root,755)',
@@ -191,6 +181,16 @@ else:
               'Summary: {0:s}'.format(python_summary),
               '',
               '%description -n {0:s}-%{{name}}'.format(python_package)])
+
+          python_spec_file.extend(description)
+
+          python_spec_file.extend([
+              '%package -n %{name}-tools',
+              'Requires: {0:s}-artifacts >= %{{version}}'.format(
+                  python_package),
+              'Summary: Tools for {0:s}'.format(summary),
+              '',
+              '%description -n %{name}-tools'])
 
           python_spec_file.extend(description)
 

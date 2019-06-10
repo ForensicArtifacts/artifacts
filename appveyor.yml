@@ -6,12 +6,12 @@ environment:
   - TARGET: windows_python27
     MACHINE_TYPE: "amd64"
     PYTHON: "C:\\Python27-x64"
-  - TARGET: windows_python36
+  - TARGET: windows_python37
     MACHINE_TYPE: "x86"
-    PYTHON: "C:\\Python36"
-  - TARGET: windows_python36
+    PYTHON: "C:\\Python37"
+  - TARGET: windows_python37
     MACHINE_TYPE: "amd64"
-    PYTHON: "C:\\Python36-x64"
+    PYTHON: "C:\\Python37-x64"
 
 install:
 - cmd: '"C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.cmd" /x86 /release'
@@ -23,7 +23,7 @@ install:
     mkdir dependencies &&
     set PYTHONPATH=..\l2tdevtools &&
     "%PYTHON%\\python.exe" ..\l2tdevtools\tools\update.py --download-directory dependencies --machine-type %MACHINE_TYPE% --msi-targetdir "%PYTHON%" --track dev PyYAML funcsigs mock pbr six )
-- cmd: if [%TARGET%]==[windows_python36] (
+- cmd: if [%TARGET%]==[windows_python37] (
     mkdir dependencies &&
     set PYTHONPATH=..\l2tdevtools &&
     "%PYTHON%\\python.exe" ..\l2tdevtools\tools\update.py --download-directory dependencies --machine-type %MACHINE_TYPE% --msi-targetdir "%PYTHON%" --track dev PyYAML mock pbr six )
