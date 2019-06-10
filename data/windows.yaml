@@ -1271,14 +1271,13 @@ name: WindowsPendingGPOs
 doc: |
   Windows Pending GPOs registry settings.
 
-  This is a persistence mechanism known to be used by the Gootkit
-  malware family.
+  This is a persistence mechanism known to be used by the Gootkit malware family.
 sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\IEAK\GroupPolicy\PendingGPOs', value: 'Path1'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\IEAK\GroupPolicy\PendingGPOs', value: 'Path1'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\IEAK\GroupPolicy\PendingGPOs', value: 'Path1'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\IEAK\GroupPolicy\PendingGPOs', value: 'Path1'}
 supported_os: [Windows]
 urls: ['https://www.certego.net/en/news/malware-tales-gootkit/']
 ---
