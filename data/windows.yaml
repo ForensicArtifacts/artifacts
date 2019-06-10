@@ -347,7 +347,7 @@ urls: ['https://github.com/libyal/winreg-kb/blob/master/documentation/Component%
 ---
 name: WindowsSearchFilterHandlers
 doc: |
-  Windows Search filter handlers configured for file types and applications
+  Windows Search filter handlers configured for file types and applications.
 
   Windows Search loads DLLs that implement the IFilter interface in order to
   scan files for text and extract certain types of information. Malware can
@@ -364,19 +364,19 @@ doc: |
   under the persistent handler GUID key path. This artifact inspects both of
   these paths.
 
-  NOTE: Only HKEY_LOCAL_MACHINE need be checked, because these are the only
-  keys used. SearchFilterHost.exe runs under the SYSTEM account, which does
-  not have access to HKEY_CURRENT_USER
+  NOTE: Only the HKEY_LOCAL_MACHINE root key needs be checked, because these
+  are the only keys used. SearchFilterHost.exe runs under the SYSTEM account,
+  which does not have access to HKEY_CURRENT_USER.
 sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\*\PersistentHandler', value: ''}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\*\PersistentHandler', value: ''}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\CLSID\*\PersistentHandler', value: ''}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\CLSID\*\PersistentHandler', value: ''}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\CLSID\*\PersistentAddinsRegistered\{89BCB740-6119-101A-BCB7-00DD010655AF}', value: ''}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\CLSID\*\PersistentAddinsRegistered\{89BCB740-6119-101A-BCB7-00DD010655AF}', value: ''}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\*\PersistentHandler', value: ''}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\*\PersistentHandler', value: ''}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\CLSID\*\PersistentHandler', value: ''}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\CLSID\*\PersistentHandler', value: ''}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\CLSID\*\PersistentAddinsRegistered\{89BCB740-6119-101A-BCB7-00DD010655AF}', value: ''}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\CLSID\*\PersistentAddinsRegistered\{89BCB740-6119-101A-BCB7-00DD010655AF}', value: ''}
 supported_os: [Windows]
 urls:
 - 'https://docs.microsoft.com/en-us/windows/desktop/search/-search-ifilter-about'
