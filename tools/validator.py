@@ -49,6 +49,45 @@ class ArtifactDefinitionsValidator(object):
     self._artifact_registry = registry.ArtifactDefinitionsRegistry()
     self._artifact_registry_key_paths = set()
 
+  def _CheckGlobstarInPathSegment(
+      self, filename, artifact_definition, path, path_segment):
+    """Checks if a globstar in a path segment is valid.
+
+    Args:
+      filename (str): name of the artifacts definition file.
+      artifact_definition (ArtifactDefinition): artifact definition.
+      path (str): path of which the path segment originated.
+      path_segment (str): path segment to validate.
+
+    Returns:
+      bool: True if the globstar is valid.
+    """
+    if not path_segment.startswith('**'):
+      logging.warning((
+          'Unuspported globstar with prefix: {0:s} for path: {1:s} defined by '
+          'artifact definition: {2:s} in file: {3:s}').format(
+              path_segment, path, artifact_definition.name, filename))
+      return False
+
+    if len(path_segment) > 2:
+      try:
+        recursion_depth = int(path_segment[2:], 10)
+      except (TypeError, ValueError):
+        logging.warning((
+            'Unuspported globstar with suffix: {0:s} for path: {1:s} defined '
+            'by artifact definition: {2:s} in file: {3:s}').format(
+                path_segment, path, artifact_definition.name, filename))
+        return False
+
+      if recursion_depth <= 0 or recursion_depth > 10:
+        logging.warning((
+            'Globstar with unsupported recursion depth: {0:s} for path: {1:s} '
+            'defined by artifact definition: {2:s} in file: {3:s}').format(
+                path_segment, path, artifact_definition.name, filename))
+        return False
+
+    return True
+
   def _CheckMacOSPaths(self, filename, artifact_definition, source, paths):
     """Checks if the paths are valid MacOS paths.
 
@@ -92,6 +131,29 @@ class ArtifactDefinitionsValidator(object):
                   path, artifact_definition.name, filename))
           result = False
 
+      has_globstar = False
+      for path_segment in path_segments:
+        if '**' in path_segment:
+          if has_globstar:
+            logging.warning((
+                'Unsupported path: {0:s} with multiple globstars defined by '
+                'artifact definition: {1:s} in file: {2:s}').format(
+                    path, artifact_definition.name, filename))
+            result = False
+            break
+
+          has_globstar = True
+          if not self._CheckGlobstarInPathSegment(
+              filename, artifact_definition, path, path_segment):
+            result = False
+
+      if has_globstar and path.endswith(source.separator):
+        logging.warning((
+            'Unsupported path: {0:s} with globstar and trailing path '
+            'separator defined by artifact definition: {1:s} in file: '
+            '{2:s}').format(path, artifact_definition.name, filename))
+        result = False
+
     for private_path in paths_with_private:
       if private_path[8:] not in paths_with_symbolic_link_to_private:
         logging.warning((
@@ -109,6 +171,47 @@ class ArtifactDefinitionsValidator(object):
             'definition: {2:s} in file: {3:s}').format(
                 private_path, path, artifact_definition.name, filename))
         result = False
+
+    return result
+
+  def _CheckPath(self, filename, artifact_definition, source, path):
+    """Checks if a path is valid.
+
+    Args:
+      filename (str): name of the artifacts definition file.
+      artifact_definition (ArtifactDefinition): artifact definition.
+      source (SourceType): source definition.
+      path (str): path to validate.
+
+    Returns:
+      bool: True if the path is valid.
+    """
+    result = True
+
+    path_segments = path.split(source.separator)
+
+    has_globstar = False
+    for path_segment in path_segments:
+      if '**' in path_segment:
+        if has_globstar:
+          logging.warning((
+              'Unsupported path: {0:s} with multiple globstars defined by '
+              'artifact definition: {1:s} in file: {2:s}').format(
+                  path, artifact_definition.name, filename))
+          result = False
+          break
+
+        has_globstar = True
+        if not self._CheckGlobstarInPathSegment(
+            filename, artifact_definition, path, path_segment):
+          result = False
+
+    if has_globstar and path.endswith(source.separator):
+      logging.warning((
+          'Unsupported path: {0:s} with globstar and trailing path '
+          'separator defined by artifact definition: {1:s} in file: '
+          '{2:s}').format(path, artifact_definition.name, filename))
+      result = False
 
     return result
 
@@ -197,6 +300,7 @@ class ArtifactDefinitionsValidator(object):
               path, artifact_definition.name, filename))
       result = False
 
+    has_globstar = False
     for path_segment in path_segments:
       if path_segment.startswith('%%') and path_segment.endswith('%%'):
         if (path_segment.startswith('%%environ_') and
@@ -216,6 +320,27 @@ class ArtifactDefinitionsValidator(object):
               'path that contains an unsupported users variable: '
               '"{2:s}". ').format(
                   artifact_definition.name, filename, path_segment))
+
+      elif '**' in path_segment:
+        if has_globstar:
+          logging.warning((
+              'Unsupported path: {0:s} with multiple globstars defined by '
+              'artifact definition: {1:s} in file: {2:s}').format(
+                  path, artifact_definition.name, filename))
+          result = False
+          break
+
+        has_globstar = True
+        if not self._CheckGlobstarInPathSegment(
+            filename, artifact_definition, path, path_segment):
+          result = False
+
+    if has_globstar and path.endswith(source.separator):
+      logging.warning((
+          'Unsupported path: {0:s} with globstar and trailing path '
+          'separator defined by artifact definition: {1:s} in file: '
+          '{2:s}').format(path, artifact_definition.name, filename))
+      result = False
 
     return result
 
@@ -344,6 +469,12 @@ class ArtifactDefinitionsValidator(object):
                   definitions.SUPPORTED_OS_WINDOWS in source.supported_os):
               for path in source.paths:
                 if not self._CheckWindowsPath(
+                    filename, artifact_definition, source, path):
+                  result = False
+
+            else:
+              for path in source.paths:
+                if not self._CheckPath(
                     filename, artifact_definition, source, path):
                   result = False
 

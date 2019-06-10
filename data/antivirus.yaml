@@ -87,7 +87,7 @@ doc: Symantec Anti-Virus Quarantine (Infected) files.
 sources:
 - type: FILE
   attributes:
-    paths: ['%%environ_allusersappdata%%\Symantec\Symantec Endpoint Protection\**5.vbn']
+    paths: ['%%environ_allusersappdata%%\Symantec\Symantec Endpoint Protection\**5\*.vbn']
     separator: '\'
   supported_os: [Windows]
 supported_os: [Windows]
