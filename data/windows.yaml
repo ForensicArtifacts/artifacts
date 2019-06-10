@@ -479,6 +479,15 @@ sources:
 supported_os: [Windows]
 urls: ['https://msdn.microsoft.com/en-us/library/a329t4ed%28VS.71%29.aspx']
 ---
+name: WindowsDomainCachedCredentials
+doc: Windows domain cached credentials
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\Security\Cache', value: 'NL$*'}]
+supported_os: [Windows]
+urls: ['http://juggernaut.wikidot.com/cached-credentials']
+---
 name: WindowsDomainName
 doc: The domain the system is connected to.
 sources:
