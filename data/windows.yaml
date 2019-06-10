@@ -1385,14 +1385,13 @@ sources:
 - type: REGISTRY_KEY
   attributes:
     keys:
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\DisallowRun\*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer\DisallowRun\*'
+    - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\DisallowRun\*'
+    - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer\DisallowRun\*'
 labels: [System]
 supported_os: [Windows]
 urls:
 - 'https://support.microsoft.com/en-us/kb/323525'
 - 'https://blog.malwarebytes.com/detections/pum-optional-disallowrun/'
-
 ---
 name: WindowsPowerShellDefaultProfiles
 doc: Default PowerShell Profile files. These files are executed by default when PowerShell starts up.
