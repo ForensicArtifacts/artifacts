@@ -22,8 +22,7 @@ labels: [Antivirus]
 ---
 name: WindowsDefenderExclusions
 doc: |
-  Directories, processes, and extensions configured not
-  to be scanned by Windows Defender
+  Directories, processes, and extensions configured not to be scanned by Windows Defender.
 
   Certain malware families (for example, Tofsee) are known to add
   directories to the Paths list in order to avoid being detected by
@@ -32,10 +31,10 @@ sources:
 - type: REGISTRY_KEY
   attributes:
     keys:
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows Defender\Exclusions\Paths\*'
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows Defender\Exclusions\Processes\*'
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows Defender\Exclusions\Extensions\*'
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows Defender\Exclusions\TemporaryPaths\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows Defender\Exclusions\Paths\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows Defender\Exclusions\Processes\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows Defender\Exclusions\Extensions\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows Defender\Exclusions\TemporaryPaths\*'
 supported_os: [Windows]
 urls:
 - 'https://blog.malwarebytes.com/detections/pum-optional-msexclusion/'
