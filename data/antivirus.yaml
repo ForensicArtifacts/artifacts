@@ -20,6 +20,27 @@ sources:
 supported_os: [Windows]
 labels: [Antivirus]
 ---
+name: WindowsDefenderExclusions
+doc: |
+  Directories, processes, and extensions configured not to be scanned by Windows Defender.
+
+  Certain malware families (for example, Tofsee) are known to add
+  directories to the Paths list in order to avoid being detected by
+  Windows Defender.
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
+    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows Defender\Exclusions\Paths\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows Defender\Exclusions\Processes\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows Defender\Exclusions\Extensions\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows Defender\Exclusions\TemporaryPaths\*'
+supported_os: [Windows]
+urls:
+- 'https://blog.malwarebytes.com/detections/pum-optional-msexclusion/'
+- 'https://answers.microsoft.com/en-us/protect/forum/all/windows-defender-how-to-remove-exclusions/2a0cc465-97b2-46ea-ae77-b87075ed124e'
+- 'https://blog.talosintelligence.com/2019/05/threat-roundup-0503-0510.html'
+---
 name: SophosAVLogs
 doc: Sophos Anti-Virus log files.
 sources:
