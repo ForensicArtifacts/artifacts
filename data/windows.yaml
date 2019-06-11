@@ -3032,7 +3032,7 @@ sources:
     key_value_pairs:
       - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\Tcpip\Parameters', value: 'NameServer'}
       - {key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\*', value: 'NameServer'}
-      - {key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrenControlSet\Services\Dnscache\Parameters', value: 'NameServer'}
+      - {key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Dnscache\Parameters', value: 'NameServer'}
       - {key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\Tcpip\Parameters\Interfaces\*', value: 'DhcpNameServer'}
       - {key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\Tcpip\Parameters\Interfaces\*', value: 'DhcpServer'}
 labels: [System, Network]
