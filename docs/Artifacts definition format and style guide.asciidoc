@@ -278,6 +278,8 @@ Where `attributes` can contain the following values:
 | paths | A list of file paths that can potentially be collected. +
 The paths can use parameter expansion e.g. `%%environ_systemroot%%`. +
 See section: <<parameter_expansion,Parameter expansion and globs>>
+| separator | Optional path segment seperator e.g. '\' for Windows systems. +
+When not specified the default path segment separator is '/'.
 |===
 
 === Path source
@@ -300,6 +302,8 @@ Where `attributes` can contain the following values:
 | paths | A list of file paths that can potentially be collected. +
 The paths can use parameter expansion e.g. `%%environ_systemroot%%`. +
 See section: <<parameter_expansion,Parameter expansion and globs>>
+| separator | Optional path segment seperator e.g. '\' for Windows systems. +
+When not specified the default path segment separator is '/'.
 |===
 
 === Windows Registry key source
@@ -366,6 +370,7 @@ Where `attributes` can contain the following values:
 [cols="1,5",options="header"]
 |===
 | Value | Description
+| base_object | Optional WMI base object e.g. `winmgmts:\root\SecurityCenter2`
 | query | The Windows Management Instrumentation (WMI) query. +
 The query can use parameter expansion e.g. `%%users.username%%`. +
 See section: <<parameter_expansion,Parameter expansion and globs>>
