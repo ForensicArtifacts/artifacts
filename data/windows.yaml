@@ -2763,10 +2763,8 @@ doc: Windows user AutomaticDestinations Jump Lists.
 sources:
 - type: FILE
   attributes:
-    paths:
-      - '%%users.appdata%%\Microsoft\Windows\Recent\AutomaticDestinations\*.automaticDestinations-ms'
+    paths: ['%%users.appdata%%\Microsoft\Windows\Recent\AutomaticDestinations\*.automaticDestinations-ms']
     separator: '\'
-conditions: [os_major_version >= 6 AND os_minor_version >= 1]
 labels: [Users]
 supported_os: [Windows]
 urls: ['https://www.forensicswiki.org/wiki/Jump_Lists']
@@ -2776,10 +2774,8 @@ doc: Windows user CustomDestinations Jump Lists.
 sources:
 - type: FILE
   attributes:
-    paths:
-      - '%%users.appdata%%\Microsoft\Windows\Recent\CustomDestinations\*.customDestinations-ms'
+    paths: ['%%users.appdata%%\Microsoft\Windows\Recent\CustomDestinations\*.customDestinations-ms']
     separator: '\'
-conditions: [os_major_version >= 6 AND os_minor_version >= 1]
 labels: [Users]
 supported_os: [Windows]
 urls: ['https://www.forensicswiki.org/wiki/Jump_Lists']
@@ -2800,9 +2796,8 @@ sources:
 - type: ARTIFACT_GROUP
   attributes:
     names:
-      - 'WindowsUserAutomaticDestinationsJumpLists'
-      - 'WindowsUserCustomDestinationsJumpLists'
-conditions: [os_major_version >= 6 AND os_minor_version >= 1]
+    - 'WindowsUserAutomaticDestinationsJumpLists'
+    - 'WindowsUserCustomDestinationsJumpLists'
 labels: [Users]
 supported_os: [Windows]
 urls: ['https://www.forensicswiki.org/wiki/Jump_Lists']
