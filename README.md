@@ -7,7 +7,7 @@ tools.
 If you'd like to use the artifacts in your own tools, **all you need to be able
 to do is read YAML**. That is it, no other dependencies. The Python code in
 this project is just used to validate all the artifacts to make sure they
-follow the specfication.
+follow the specification.
 
 ### Project status
 
