@@ -274,6 +274,15 @@ sources:
 labels: [Logs, Authentication]
 supported_os: [Linux]
 ---
+name: LinuxLoaderSystemPreloadFile
+doc: Linux dynamic linker/loader system-wide preload file (ld.so.preload).
+sources:
+- type: FILE
+  attributes: {paths: ['/etc/ld.so.preload']}
+labels: [Configuration Files]
+supported_os: [Linux]
+urls: ['http://man7.org/linux/man-pages/man8/ld.so.8.html']
+---
 name: LinuxLSBInit
 doc: Linux LSB-style init scripts.
 sources:
