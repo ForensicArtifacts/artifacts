@@ -274,8 +274,8 @@ sources:
 labels: [Logs, Authentication]
 supported_os: [Linux]
 ---
-name: LinuxLdSoPreloadFile
-doc: Linux ld.so.preload file.
+name: LinuxLoaderSystemPreloadFile
+doc: Linux dynamic linker/loader system-wide preload file (ld.so.preload).
 sources:
 - type: FILE
   attributes: {paths: ['/etc/ld.so.preload']}
