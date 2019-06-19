@@ -171,7 +171,7 @@ sources:
 - type: REGISTRY_KEY
   attributes: {keys: ['HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Time Zones\*\*']}
 supported_os: [Windows]
-urls: ['https://github.com/libyal/winreg-kb/wiki/Time-zone-keys']
+urls: ['https://github.com/libyal/winreg-kb/blob/master/documentation/Time%20zone%20keys.asciidoc']
 ---
 name: WindowsBITSQueueManagerDatabases
 doc: Databases that contain the Windows BITS jobs definition and state.
@@ -1560,7 +1560,7 @@ sources:
   attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\System\Select', value: 'Current'}]}
 provides: [current_control_set]
 supported_os: [Windows]
-urls: ['https://github.com/libyal/winreg-kb/wiki/System-keys']
+urls: ['https://github.com/libyal/winreg-kb/blob/master/documentation/System%20keys.asciidoc']
 ---
 name: WindowsRegistryFilesAndTransactionLogs
 doc: Windows user and system Registry files and transaction logs.
@@ -1784,7 +1784,7 @@ labels: [Software]
 supported_os: [Windows]
 urls:
 - 'http://support.microsoft.com/kb/103000'
-- 'https://github.com/libyal/winreg-kb/wiki/System-keys'
+- 'https://github.com/libyal/winreg-kb/blob/master/documentation/System%20keys.asciidoc'
 ---
 name: WindowsActionCenterSettings
 doc: |
@@ -2593,7 +2593,7 @@ sources:
     separator: '\'
 labels: [System]
 supported_os: [Windows]
-urls: ['https://github.com/libyal/winreg-kb/wiki/Registry-files']
+urls: ['https://github.com/libyal/winreg-kb/blob/master/documentation/Registry%20files.asciidoc']
 ---
 name: WindowsSystemRegistryTransactionLogFiles
 doc: Windows system Registry transaction log files.
@@ -2716,7 +2716,7 @@ sources:
   attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\TimeZoneInformation', value: 'StandardName'}]}
 provides: [time_zone]
 supported_os: [Windows]
-urls: ['https://github.com/libyal/winreg-kb/wiki/Time-zone-keys']
+urls: ['https://github.com/libyal/winreg-kb/blob/master/documentation/Time%20zone%20keys.asciidoc']
 ---
 name: WindowsToolPaths
 doc: Paths to windows tools such as defrag, chkdsk.
@@ -2838,7 +2838,7 @@ sources:
     separator: '\'
 labels: [Users]
 supported_os: [Windows]
-urls: ['https://github.com/libyal/winreg-kb/wiki/Registry-files']
+urls: ['https://github.com/libyal/winreg-kb/blob/master/documentation/Registry%20files.asciidoc']
 ---
 name: WindowsUserRegistryTransactionLogFiles
 doc: Windows user Registry transaction log files.

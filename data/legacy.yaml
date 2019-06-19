@@ -32,7 +32,7 @@ sources:
   attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\SYSTEM\Select', value: 'Current'}]}
 provides: [current_control_set]
 supported_os: [Windows]
-urls: ['https://github.com/libyal/winreg-kb/wiki/System-keys']
+urls: ['https://github.com/libyal/winreg-kb/blob/master/documentation/System%20keys.asciidoc']
 ---
 name: LinuxRelease
 doc: |
@@ -193,4 +193,4 @@ sources:
   attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\TimeZoneInformation', value: 'StandardName'}]}
 provides: [time_zone]
 supported_os: [Windows]
-urls: ['https://github.com/libyal/winreg-kb/wiki/Time-zone-keys']
+urls: ['https://github.com/libyal/winreg-kb/blob/master/documentation/Time%20zone%20keys.asciidoc']
