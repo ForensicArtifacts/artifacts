@@ -11,8 +11,8 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '%%environ_systemdrive%%\$MFT'
-      - '%%environ_systemdrive%%\$MFTMirr'
+    - '%%environ_systemdrive%%\$MFT'
+    - '%%environ_systemdrive%%\$MFTMirr'
     separator: '\'
 labels: [System]
 supported_os: [Windows]

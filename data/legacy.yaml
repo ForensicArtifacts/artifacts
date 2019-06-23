@@ -19,8 +19,8 @@ sources:
 - type: REGISTRY_KEY
   attributes:
     keys:
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\ProfileList\ProfilesDirectory'
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\ProfileList\AllUsersProfile'
+    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\ProfileList\ProfilesDirectory'
+    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\ProfileList\AllUsersProfile'
 provides: [environ_allusersprofile]
 supported_os: [Windows]
 urls: ['http://support.microsoft.com/kb//214653']
@@ -44,11 +44,11 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '/etc/enterprise-release'
-      - '/etc/lsb-release'
-      - '/etc/oracle-release'
-      - '/etc/redhat-release'
-      - '/etc/system-release'
+    - '/etc/enterprise-release'
+    - '/etc/lsb-release'
+    - '/etc/oracle-release'
+    - '/etc/redhat-release'
+    - '/etc/system-release'
 provides: [os_release, os_major_version, os_minor_version]
 labels: [Software]
 supported_os: [Linux]
@@ -112,10 +112,10 @@ sources:
 - type: PATH
   attributes:
     paths:
-      - '\Windows'
-      - '\WinNT'
-      - '\WINNT35'
-      - '\WTSRV'
+    - '\Windows'
+    - '\WinNT'
+    - '\WINNT35'
+    - '\WTSRV'
     separator: '\'
 - type: REGISTRY_VALUE
   attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion', value: 'SystemRoot'}]}
@@ -147,10 +147,10 @@ sources:
 - type: PATH
   attributes:
     paths:
-      - '\Windows'
-      - '\WinNT'
-      - '\WINNT35'
-      - '\WTSRV'
+    - '\Windows'
+    - '\WinNT'
+    - '\WINNT35'
+    - '\WTSRV'
     separator: '\'
 - type: REGISTRY_VALUE
   attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment', value: 'windir'}]}
@@ -172,7 +172,7 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\ProfileList', value: 'ProgramData'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\ProfileList', value: 'ProgramData'}
 provides: [environ_allusersappdata]
 supported_os: [Windows]
 urls: ['http://environmentvariables.org/ProgramData']

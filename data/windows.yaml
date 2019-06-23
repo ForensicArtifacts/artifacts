@@ -6,8 +6,8 @@ sources:
 - type: REGISTRY_KEY
   attributes:
     keys:
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Internet Explorer\Desktop\Components\*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Internet Explorer\Desktop\General'
+    - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Internet Explorer\Desktop\Components\*'
+    - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Internet Explorer\Desktop\General'
 conditions: [os_major_version < 6]
 supported_os: [Windows]
 urls:
@@ -37,8 +37,8 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\SafeBoot', value: 'AlternateShell'}
-      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\SafeBoot\Option', value: 'UseAlternateShell'}
+    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\SafeBoot', value: 'AlternateShell'}
+    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\SafeBoot\Option', value: 'UseAlternateShell'}
 supported_os: [Windows]
 urls:
 - 'https://www.microsoftpressstore.com/articles/article.aspx'
@@ -71,8 +71,8 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\AppCompatibility', value: 'AppCompatCache'}
-      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\AppCompatCache', value: 'AppCompatCache'}
+    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\AppCompatibility', value: 'AppCompatCache'}
+    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\AppCompatCache', value: 'AppCompatCache'}
 supported_os: [Windows]
 urls: ['https://github.com/libyal/winreg-kb/blob/master/documentation/Application%20Compatibility%20Cache%20key.asciidoc']
 ---
@@ -86,10 +86,10 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Windows', value: 'AppInit_DLLs'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows NT\CurrentVersion\Windows', value: 'AppInit_DLLs'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Windows', value: 'AppInit_DLLs'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows NT\CurrentVersion\Windows', value: 'AppInit_DLLs'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Windows', value: 'AppInit_DLLs'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows NT\CurrentVersion\Windows', value: 'AppInit_DLLs'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Windows', value: 'AppInit_DLLs'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows NT\CurrentVersion\Windows', value: 'AppInit_DLLs'}
 supported_os: [Windows]
 urls:
 - 'https://msdn.microsoft.com/en-us/library/windows/desktop/dd744762(v=vs.85).aspx'
@@ -130,8 +130,8 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '%%environ_systemdrive%%\autoexec.bat'
-      - '%%environ_windir%%\autoexec.nt'
+    - '%%environ_systemdrive%%\autoexec.bat'
+    - '%%environ_windir%%\autoexec.nt'
     separator: '\'
 supported_os: [Windows]
 ---
@@ -141,7 +141,7 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\AeDebug', value: 'Debugger'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\AeDebug', value: 'Debugger'}
 supported_os: [Windows]
 urls:
 - 'https://msdn.microsoft.com/en-us/library/windows/desktop/bb204634(v=vs.85).aspx'
@@ -169,7 +169,7 @@ name: WindowsAvailableTimeZones
 doc: Timezones available on a Windows system.
 sources:
 - type: REGISTRY_KEY
-  attributes: {keys: ['HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Time Zones\*\*']}
+  attributes: {keys: ['HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Time Zones\*']}
 supported_os: [Windows]
 urls: ['https://github.com/libyal/winreg-kb/blob/master/documentation/Time%20zone%20keys.asciidoc']
 ---
@@ -188,8 +188,7 @@ doc: Path to custom startup verification program.
 sources:
 - type: REGISTRY_VALUE
   attributes:
-    key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\BootVerificationProgram', value: 'ImagePath'}
+    key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\BootVerificationProgram', value: 'ImagePath'}]
 supported_os: [Windows]
 urls:
 - 'https://technet.microsoft.com/en-us/library/cc786702(WS.10).aspx'
@@ -207,25 +206,25 @@ sources:
 - type: FILE
   attributes:
     paths:
-      # Windows 95 OSR 2.5, 98, Millennium Edition (Me)
-      - '%%environ_windir%%\System\Wbem\Repository\cim.rep'
-      # Windows NT4 and 2000
-      - '%%environ_systemroot%%\System32\wbem\Repository\CIM.REC'
-      - '%%environ_systemroot%%\System32\wbem\Repository\CIM.REP'
-      # Windows Vista and later
-      - '%%environ_systemroot%%\System32\wbem\Repository\INDEX.BTR'
-      - '%%environ_systemroot%%\System32\wbem\Repository\INDEX.MAP'
-      - '%%environ_systemroot%%\System32\wbem\Repository\MAPPING.VER'
-      - '%%environ_systemroot%%\System32\wbem\Repository\MAPPING[1-3].MAP'
-      - '%%environ_systemroot%%\System32\wbem\Repository\OBJECTS.DATA'
-      - '%%environ_systemroot%%\System32\wbem\Repository\OBJECTS.MAP'
-      # Windows XP and Windows 2003
-      - '%%environ_systemroot%%\System32\wbem\Repository\FS\INDEX.BTR'
-      - '%%environ_systemroot%%\System32\wbem\Repository\FS\INDEX.MAP'
-      - '%%environ_systemroot%%\System32\wbem\Repository\FS\MAPPING.VER'
-      - '%%environ_systemroot%%\System32\wbem\Repository\FS\MAPPING[1-2].MAP'
-      - '%%environ_systemroot%%\System32\wbem\Repository\FS\OBJECTS.DATA'
-      - '%%environ_systemroot%%\System32\wbem\Repository\FS\OBJECTS.MAP'
+    # Windows 95 OSR 2.5, 98, Millennium Edition (Me)
+    - '%%environ_windir%%\System\Wbem\Repository\cim.rep'
+    # Windows NT4 and 2000
+    - '%%environ_systemroot%%\System32\wbem\Repository\CIM.REC'
+    - '%%environ_systemroot%%\System32\wbem\Repository\CIM.REP'
+    # Windows Vista and later
+    - '%%environ_systemroot%%\System32\wbem\Repository\INDEX.BTR'
+    - '%%environ_systemroot%%\System32\wbem\Repository\INDEX.MAP'
+    - '%%environ_systemroot%%\System32\wbem\Repository\MAPPING.VER'
+    - '%%environ_systemroot%%\System32\wbem\Repository\MAPPING[1-3].MAP'
+    - '%%environ_systemroot%%\System32\wbem\Repository\OBJECTS.DATA'
+    - '%%environ_systemroot%%\System32\wbem\Repository\OBJECTS.MAP'
+    # Windows XP and Windows 2003
+    - '%%environ_systemroot%%\System32\wbem\Repository\FS\INDEX.BTR'
+    - '%%environ_systemroot%%\System32\wbem\Repository\FS\INDEX.MAP'
+    - '%%environ_systemroot%%\System32\wbem\Repository\FS\MAPPING.VER'
+    - '%%environ_systemroot%%\System32\wbem\Repository\FS\MAPPING[1-2].MAP'
+    - '%%environ_systemroot%%\System32\wbem\Repository\FS\OBJECTS.DATA'
+    - '%%environ_systemroot%%\System32\wbem\Repository\FS\OBJECTS.MAP'
     separator: '\'
 supported_os: [Windows]
 urls:
@@ -238,7 +237,7 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Nls\CodePage', value: 'ACP'}
+    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Nls\CodePage', value: 'ACP'}
 provides: [code_page]
 supported_os: [Windows]
 urls: ['http://en.wikipedia.org/wiki/Windows_code_page']
@@ -249,7 +248,7 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\ComputerName\ComputerName', value: 'ComputerName'}
+    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\ComputerName\ComputerName', value: 'ComputerName'}
 supported_os: [Windows]
 ---
 name: WindowsCommandProcessorAutoRun
@@ -258,10 +257,10 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Command Processor', value: 'AutoRun'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Command Processor', value: 'AutoRun'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Command Processor', value: 'AutoRun'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Command Processor', value: 'AutoRun'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Command Processor', value: 'AutoRun'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Command Processor', value: 'AutoRun'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Command Processor', value: 'AutoRun'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Command Processor', value: 'AutoRun'}
 supported_os: [Windows]
 urls:
 - 'https://technet.microsoft.com/en-us/library/cc779439(v=ws.10).aspx'
@@ -275,14 +274,14 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\CLSID\*', value: 'InprocHandler'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\CLSID\*', value: 'InprocHandler32'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\CLSID\*', value: 'InprocHandler'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\CLSID\*', value: 'InprocHandler32'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\CLSID\*', value: 'InprocHandler'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\CLSID\*', value: 'InprocHandler32'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\CLSID\*', value: 'InprocHandler'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\CLSID\*', value: 'InprocHandler32'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\CLSID\*', value: 'InprocHandler'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\CLSID\*', value: 'InprocHandler32'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\CLSID\*', value: 'InprocHandler'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\CLSID\*', value: 'InprocHandler32'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\CLSID\*', value: 'InprocHandler'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\CLSID\*', value: 'InprocHandler32'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\CLSID\*', value: 'InprocHandler'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\CLSID\*', value: 'InprocHandler32'}
 supported_os: [Windows]
 urls:
 - 'https://msdn.microsoft.com/en-us/library/windows/desktop/ms694515(v=vs.85).aspx'
@@ -295,14 +294,14 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\CLSID\*\InprocServer', value: ''}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\CLSID\*\InprocServer32', value: ''}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\CLSID\*\InprocServer', value: ''}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\CLSID\*\InprocServer32', value: ''}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\CLSID\*\InprocServer', value: ''}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\CLSID\*\InprocServer32', value: ''}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\CLSID\*\InprocServer', value: ''}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\CLSID\*\InprocServer32', value: ''}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\CLSID\*\InprocServer', value: ''}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\CLSID\*\InprocServer32', value: ''}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\CLSID\*\InprocServer', value: ''}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\CLSID\*\InprocServer32', value: ''}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\CLSID\*\InprocServer', value: ''}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\CLSID\*\InprocServer32', value: ''}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\CLSID\*\InprocServer', value: ''}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\CLSID\*\InprocServer32', value: ''}
 supported_os: [Windows]
 urls:
 - 'https://msdn.microsoft.com/en-us/library/windows/desktop/ms694515(v=vs.85).aspx'
@@ -315,18 +314,18 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\CLSID\*', value: 'LocalServer'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\CLSID\*\LocalServer32', value: ''}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\CLSID\*\LocalServer32', value: 'ServerExecutable'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\CLSID\*', value: 'LocalServer'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\CLSID\*\LocalServer32', value: ''}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\CLSID\*\LocalServer32', value: 'ServerExecutable'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\CLSID\*', value: 'LocalServer'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\CLSID\*\LocalServer32', value: ''}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\CLSID\*\LocalServer32', value: 'ServerExecutable'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\CLSID\*', value: 'LocalServer'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\CLSID\*\LocalServer32', value: ''}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\CLSID\*\LocalServer32', value: 'ServerExecutable'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\CLSID\*', value: 'LocalServer'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\CLSID\*\LocalServer32', value: ''}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\CLSID\*\LocalServer32', value: 'ServerExecutable'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\CLSID\*', value: 'LocalServer'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\CLSID\*\LocalServer32', value: ''}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\CLSID\*\LocalServer32', value: 'ServerExecutable'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\CLSID\*', value: 'LocalServer'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\CLSID\*\LocalServer32', value: ''}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\CLSID\*\LocalServer32', value: 'ServerExecutable'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\CLSID\*', value: 'LocalServer'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\CLSID\*\LocalServer32', value: ''}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\CLSID\*\LocalServer32', value: 'ServerExecutable'}
 supported_os: [Windows]
 urls:
 - 'https://msdn.microsoft.com/en-us/library/windows/desktop/ms694515(v=vs.85).aspx'
@@ -338,10 +337,10 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Typelib\*\*\*\*', value: ''}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\Typelib\*\*\*\*', value: ''}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\Typelib\*\*\*\*', value: ''}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\Typelib\*\*\*\*', value: ''}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Typelib\*\*\*\*', value: ''}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\Typelib\*\*\*\*', value: ''}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\Typelib\*\*\*\*', value: ''}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\Typelib\*\*\*\*', value: ''}
 supported_os: [Windows]
 urls: ['https://github.com/libyal/winreg-kb/blob/master/documentation/Component%20Object%20Model%20keys.asciidoc#type-libraries-key']
 ---
@@ -389,8 +388,8 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '%%environ_systemdrive%%\config.sys'
-      - '%%environ_windir%%\config.nt'
+    - '%%environ_systemdrive%%\config.sys'
+    - '%%environ_windir%%\config.nt'
     separator: '\'
 supported_os: [Windows]
 ---
@@ -400,10 +399,10 @@ sources:
 - type: REGISTRY_KEY
   attributes:
     keys:
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Control Panel\CPLs'
-      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Control Panel\CPLs'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Control Panel\CPLs'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Control Panel\CPLs'
+    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Control Panel\CPLs'
+    - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Control Panel\CPLs'
+    - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Control Panel\CPLs'
+    - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Control Panel\CPLs'
 supported_os: [Windows]
 urls:
 - 'https://msdn.microsoft.com/en-us/library/windows/desktop/hh127454(v=vs.85).aspx'
@@ -416,8 +415,8 @@ sources:
 - type: REGISTRY_KEY
   attributes:
     keys:
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Authentication\Credential Provider Filters\*'
-      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Authentication\Credential Provider Filters\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Authentication\Credential Provider Filters\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Authentication\Credential Provider Filters\*'
 supported_os: [Windows]
 urls: ['http://blog.leetsys.com/2012/01/02/capturing-windows-7-credentials-at-logon-using-custom-credential-provider/']
 ---
@@ -427,8 +426,8 @@ sources:
 - type: REGISTRY_KEY
   attributes:
     keys:
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Authentication\Credential Providers\*'
-      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Authentication\Credential Providers\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Authentication\Credential Providers\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Authentication\Credential Providers\*'
 supported_os: [Windows]
 urls:
 - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
@@ -442,16 +441,16 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '%%environ_programfiles%%\Internet Explorer\sxs.dll'
-      - '%%environ_programfilesx86%%\Internet Explorer\sxs.dll'
-      - '%%environ_systemdrive%%\explorer.exe'
-      - '%%environ_systemdrive%%\program.exe'
-      - '%%environ_systemroot%%\linkinfo.dll'
-      - '%%environ_systemroot%%\ntshrui.dll'
-      - '%%environ_systemroot%%\System32\oci.dll'
-      - '%%environ_systemroot%%\System32\sysprep\cryptbase.dll'
-      - '%%environ_systemroot%%\SysWOW64\oci.dll'
-      - '%%environ_systemroot%%\SysWOW64\sysprep\cryptbase.dll'
+    - '%%environ_programfiles%%\Internet Explorer\sxs.dll'
+    - '%%environ_programfilesx86%%\Internet Explorer\sxs.dll'
+    - '%%environ_systemdrive%%\explorer.exe'
+    - '%%environ_systemdrive%%\program.exe'
+    - '%%environ_systemroot%%\linkinfo.dll'
+    - '%%environ_systemroot%%\ntshrui.dll'
+    - '%%environ_systemroot%%\System32\oci.dll'
+    - '%%environ_systemroot%%\System32\sysprep\cryptbase.dll'
+    - '%%environ_systemroot%%\SysWOW64\oci.dll'
+    - '%%environ_systemroot%%\SysWOW64\sysprep\cryptbase.dll'
     separator: '\'
 supported_os: [Windows]
 urls:
@@ -472,10 +471,10 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\*', value: 'Debugger'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\*', value: 'Debugger'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\*', value: 'Debugger'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\*', value: 'Debugger'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\*', value: 'Debugger'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\*', value: 'Debugger'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\*', value: 'Debugger'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\*', value: 'Debugger'}
 supported_os: [Windows]
 urls: ['https://msdn.microsoft.com/en-us/library/a329t4ed%28VS.71%29.aspx']
 ---
@@ -494,7 +493,7 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\Tcpip\Parameters', value: 'Domain'}
+    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\Tcpip\Parameters', value: 'Domain'}
 provides: [domain]
 supported_os: [Windows]
 ---
@@ -504,9 +503,9 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_USERS\%%users.sid%%\Environment', value: 'UserInitLogonServer'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Environment', value: 'UserInitLogonScript'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Environment', value: 'UserInitMprLogonScript'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Environment', value: 'UserInitLogonServer'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Environment', value: 'UserInitLogonScript'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Environment', value: 'UserInitMprLogonScript'}
 supported_os: [Windows]
 urls:
 - 'http://www.hexacorn.com/blog/2014/11/14/beyond-good-ol-run-key-part-18/'
@@ -521,7 +520,7 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\ProfileList', value: 'AllUsersProfile'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\ProfileList', value: 'AllUsersProfile'}
 provides: [environ_allusersprofile]
 supported_os: [Windows]
 urls:
@@ -539,7 +538,7 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_USERS\%%users.sid%%\Environment', value: 'APPX_PROCESS'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Environment', value: 'APPX_PROCESS'}
 supported_os: [Windows]
 conditions: [os_major_version >= 6 AND os_minor_version >= 2]
 urls: ['http://www.hexacorn.com/blog/2014/08/31/beyond-good-ol-run-key-part-17/']
@@ -550,7 +549,7 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment', value: 'Path'}
+    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment', value: 'Path'}
 provides: [environ_path]
 supported_os: [Windows]
 urls: ['http://environmentvariables.org/Path']
@@ -561,7 +560,7 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\ProfileList', value: 'ProfilesDirectory'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\ProfileList', value: 'ProfilesDirectory'}
 provides: [environ_profilesdirectory]
 supported_os: [Windows]
 urls:
@@ -575,7 +574,7 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\ProfileList', value: 'ProgramData'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\ProfileList', value: 'ProgramData'}
 provides: [environ_programdata]
 supported_os: [Windows]
 urls: ['http://environmentvariables.org/ProgramData']
@@ -590,7 +589,7 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion', value: 'ProgramFilesDir'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion', value: 'ProgramFilesDir'}
 provides: [environ_programfiles]
 supported_os: [Windows]
 urls: ['http://environmentvariables.org/ProgramFiles']
@@ -605,7 +604,7 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion', value: 'ProgramFilesDir (x86)'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion', value: 'ProgramFilesDir (x86)'}
 provides: [environ_programfilesx86]
 supported_os: [Windows]
 urls: ['http://environmentvariables.org/ProgramFiles']
@@ -631,15 +630,15 @@ sources:
 - type: PATH
   attributes:
     paths:
-      - '\Windows'
-      - '\WinNT'
-      - '\WINNT35'
-      - '\WTSRV'
+    - '\Windows'
+    - '\WinNT'
+    - '\WINNT35'
+    - '\WTSRV'
     separator: '\'
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion', value: 'SystemRoot'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion', value: 'SystemRoot'}
 provides: [environ_systemroot]
 supported_os: [Windows]
 urls: ['http://environmentvariables.org/SystemRoot']
@@ -650,7 +649,7 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment', value: 'TEMP'}
+    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment', value: 'TEMP'}
 provides: [environ_temp]
 supported_os: [Windows]
 urls: ['http://environmentvariables.org/Temp']
@@ -661,15 +660,15 @@ sources:
 - type: PATH
   attributes:
     paths:
-      - '\Windows'
-      - '\WinNT'
-      - '\WINNT35'
-      - '\WTSRV'
+    - '\Windows'
+    - '\WinNT'
+    - '\WINNT35'
+    - '\WTSRV'
     separator: '\'
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment', value: 'windir'}
+    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment', value: 'windir'}
 provides: [environ_windir]
 supported_os: [Windows]
 urls: ['http://environmentvariables.org/WinDir']
@@ -680,12 +679,12 @@ sources:
 - type: ARTIFACT_GROUP
   attributes:
     names:
-      - 'WindowsEventLogApplication'
-      - 'WindowsEventLogSecurity'
-      - 'WindowsEventLogSystem'
-      - 'WindowsXMLEventLogApplication'
-      - 'WindowsXMLEventLogSecurity'
-      - 'WindowsXMLEventLogSystem'
+    - 'WindowsEventLogApplication'
+    - 'WindowsEventLogSecurity'
+    - 'WindowsEventLogSystem'
+    - 'WindowsXMLEventLogApplication'
+    - 'WindowsXMLEventLogSecurity'
+    - 'WindowsXMLEventLogSystem'
 labels: [Logs]
 supported_os: [Windows]
 ---
@@ -801,7 +800,7 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\AppKey\*', value: 'ShellExecute'}
+    - {key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\AppKey\*', value: 'ShellExecute'}
 supported_os: [Windows]
 urls:
 - 'http://answers.microsoft.com/en-us/windows/forum/windows_vista-hardware/assigning-the-special-keys-at-the-top-of-the/d1ab2e13-5297-457d-a8e8-bc2c883d8b58?db=5'
@@ -824,10 +823,10 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-        - {key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\*', value: 'CommandStateHandler'}
-        - {key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\*', value: 'ExplorerCommandHandler'}
-        - {key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\*', value: 'command'}
-        - {key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\*\command', value: 'DelegateExecute'}
+    - {key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\*', value: 'CommandStateHandler'}
+    - {key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\*', value: 'ExplorerCommandHandler'}
+    - {key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\*', value: 'command'}
+    - {key: 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\*\command', value: 'DelegateExecute'}
 supported_os: [Windows]
 urls:
 - 'https://msdn.microsoft.com/en-us/library/windows/desktop/hh127467(v=vs.85).aspx'
@@ -841,18 +840,18 @@ sources:
 - type: REGISTRY_KEY
   attributes:
     keys:
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\CommonPlaces\NameSpace'
-      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\CommonPlaces\NameSpace'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\CommonPlaces\NameSpace'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\CommonPlaces\NameSpace'
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\CommonPlaces\NameSpace\DelegateFolders'
-      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\CommonPlaces\NameSpace\DelegateFolders'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\CommonPlaces\NameSpace\DelegateFolders'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\CommonPlaces\NameSpace\DelegateFolders'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\CommonPlaces\NameSpace'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\CommonPlaces\NameSpace'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\CommonPlaces\NameSpace\DelegateFolders'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\CommonPlaces\NameSpace\DelegateFolders'
+    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\CommonPlaces\NameSpace'
+    - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\CommonPlaces\NameSpace'
+    - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\CommonPlaces\NameSpace'
+    - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\CommonPlaces\NameSpace'
+    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\CommonPlaces\NameSpace\DelegateFolders'
+    - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\CommonPlaces\NameSpace\DelegateFolders'
+    - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\CommonPlaces\NameSpace\DelegateFolders'
+    - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\CommonPlaces\NameSpace\DelegateFolders'
+    - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\CommonPlaces\NameSpace'
+    - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\CommonPlaces\NameSpace'
+    - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\CommonPlaces\NameSpace\DelegateFolders'
+    - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\CommonPlaces\NameSpace\DelegateFolders'
 supported_os: [Windows]
 urls:
 - 'https://msdn.microsoft.com/en-us/library/windows/desktop/hh127450(v=vs.85).aspx'
@@ -865,26 +864,26 @@ sources:
 - type: REGISTRY_KEY
   attributes:
     keys:
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpace'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpace'
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpace\DelegateFolders'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpace\DelegateFolders'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\ControlPanel\NameSpace'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\ControlPanel\NameSpace\DelegateFolders'
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanelWOW64\NameSpace'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanelWOW64\NameSpace'
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpaceWOW64\DelegateFolders'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanelWOW64\NameSpace\DelegateFolders'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\ControlPanelWOW64\NameSpace'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\ControlPanelWOW64\NameSpace\DelegateFolders'
-      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpace'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpace'
-      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpace\DelegateFolders'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpace\DelegateFolders'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\ControlPanel\NameSpace'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\ControlPanel\NameSpace\DelegateFolders'
-      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\ControlPanelWOW64\NameSpace'
-      - 'HKEY_USERS\%%users.sid%%\Wow6432Node\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\ControlPanelWOW64\NameSpace\DelegateFolders'
+    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpace'
+    - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpace'
+    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpace\DelegateFolders'
+    - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpace\DelegateFolders'
+    - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\ControlPanel\NameSpace'
+    - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\ControlPanel\NameSpace\DelegateFolders'
+    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanelWOW64\NameSpace'
+    - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanelWOW64\NameSpace'
+    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpaceWOW64\DelegateFolders'
+    - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanelWOW64\NameSpace\DelegateFolders'
+    - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\ControlPanelWOW64\NameSpace'
+    - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\ControlPanelWOW64\NameSpace\DelegateFolders'
+    - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpace'
+    - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpace'
+    - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpace\DelegateFolders'
+    - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel\NameSpace\DelegateFolders'
+    - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\ControlPanel\NameSpace'
+    - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\ControlPanel\NameSpace\DelegateFolders'
+    - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\ControlPanelWOW64\NameSpace'
+    - 'HKEY_USERS\%%users.sid%%\Wow6432Node\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\ControlPanelWOW64\NameSpace\DelegateFolders'
 supported_os: [Windows]
 urls:
 - 'https://msdn.microsoft.com/en-us/library/windows/desktop/hh127450(v=vs.85).aspx'
@@ -896,18 +895,18 @@ sources:
 - type: REGISTRY_KEY
   attributes:
     keys:
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace'
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace\DelegateFolders'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace\DelegateFolders'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\Desktop\NameSpace'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\Desktop\NameSpace\DelegateFolders'
-      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace'
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Wow6432Node\Windows\CurrentVersion\Explorer\Desktop\NameSpace\DelegateFolders'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace\DelegateFolders'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\Desktop\NameSpace'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\Desktop\NameSpace\DelegateFolders'
+    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace'
+    - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace'
+    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace\DelegateFolders'
+    - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace\DelegateFolders'
+    - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\Desktop\NameSpace'
+    - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\Desktop\NameSpace\DelegateFolders'
+    - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace'
+    - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace'
+    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Wow6432Node\Windows\CurrentVersion\Explorer\Desktop\NameSpace\DelegateFolders'
+    - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace\DelegateFolders'
+    - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\Desktop\NameSpace'
+    - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\Desktop\NameSpace\DelegateFolders'
 supported_os: [Windows]
 urls:
 - 'https://social.technet.microsoft.com/Forums/windowsserver/en-US/2760309c-89d1-414c-a04c-ce4178e90787/hide-libraries-icon-from-desktop'
@@ -921,18 +920,18 @@ sources:
 - type: REGISTRY_KEY
   attributes:
     keys:
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace'
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\DelegateFolders'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\DelegateFolders'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\MyComputer\NameSpace'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\MyComputer\NameSpace\DelegateFolders'
-      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace'
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Wow6432Node\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\DelegateFolders'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\DelegateFolders'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\MyComputer\NameSpace'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\MyComputer\NameSpace\DelegateFolders'
+    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace'
+    - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace'
+    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\DelegateFolders'
+    - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\DelegateFolders'
+    - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\MyComputer\NameSpace'
+    - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\MyComputer\NameSpace\DelegateFolders'
+    - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace'
+    - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace'
+    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Wow6432Node\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\DelegateFolders'
+    - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\DelegateFolders'
+    - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\MyComputer\NameSpace'
+    - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\MyComputer\NameSpace\DelegateFolders'
 supported_os: [Windows]
 urls:
 - 'http://www.geoffchappell.com/studies/windows/shell/shell32/classes/mycomputer.htm'
@@ -945,18 +944,18 @@ sources:
 - type: REGISTRY_KEY
   attributes:
     keys:
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\NetworkNeighborhood\NameSpace'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\NetworkNeighborhood\NameSpace'
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\NetworkNeighborhood\NameSpace\DelegateFolders'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\NetworkNeighborhood\NameSpace\DelegateFolders'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\NetworkNeighborhood\NameSpace'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\NetworkNeighborhood\NameSpace\DelegateFolders'
-      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\NetworkNeighborhood\NameSpace'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\NetworkNeighborhood\NameSpace'
-      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\NetworkNeighborhood\NameSpace\DelegateFolders'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\NetworkNeighborhood\NameSpace\DelegateFolders'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\NetworkNeighborhood\NameSpace'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\NetworkNeighborhood\NameSpace\DelegateFolders'
+    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\NetworkNeighborhood\NameSpace'
+    - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\NetworkNeighborhood\NameSpace'
+    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\NetworkNeighborhood\NameSpace\DelegateFolders'
+    - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\NetworkNeighborhood\NameSpace\DelegateFolders'
+    - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\NetworkNeighborhood\NameSpace'
+    - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\NetworkNeighborhood\NameSpace\DelegateFolders'
+    - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\NetworkNeighborhood\NameSpace'
+    - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\NetworkNeighborhood\NameSpace'
+    - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\NetworkNeighborhood\NameSpace\DelegateFolders'
+    - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\NetworkNeighborhood\NameSpace\DelegateFolders'
+    - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\NetworkNeighborhood\NameSpace'
+    - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\NetworkNeighborhood\NameSpace\DelegateFolders'
 supported_os: [Windows]
 urls:
 - 'http://www.geoffchappell.com/studies/windows/shell/shell32/classes/regfolder.htm'
@@ -969,18 +968,18 @@ sources:
 - type: REGISTRY_KEY
   attributes:
     keys:
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\PrintersAndFaxes\NameSpace'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\PrintersAndFaxes\NameSpace'
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\PrintersAndFaxes\NameSpace\DelegateFolders'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\PrintersAndFaxes\NameSpace\DelegateFolders'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\PrintersAndFaxes\NameSpace'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\PrintersAndFaxes\NameSpace\DelegateFolders'
-      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\PrintersAndFaxes\NameSpace'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\PrintersAndFaxes\NameSpace'
-      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\PrintersAndFaxes\NameSpace\DelegateFolders'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\PrintersAndFaxes\NameSpace\DelegateFolders'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\PrintersAndFaxes\NameSpace'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\PrintersAndFaxes\NameSpace\DelegateFolders'
+    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\PrintersAndFaxes\NameSpace'
+    - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\PrintersAndFaxes\NameSpace'
+    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\PrintersAndFaxes\NameSpace\DelegateFolders'
+    - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\PrintersAndFaxes\NameSpace\DelegateFolders'
+    - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\PrintersAndFaxes\NameSpace'
+    - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\PrintersAndFaxes\NameSpace\DelegateFolders'
+    - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\PrintersAndFaxes\NameSpace'
+    - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\PrintersAndFaxes\NameSpace'
+    - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\PrintersAndFaxes\NameSpace\DelegateFolders'
+    - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\PrintersAndFaxes\NameSpace\DelegateFolders'
+    - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\PrintersAndFaxes\NameSpace'
+    - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\SessionInfo\*\PrintersAndFaxes\NameSpace\DelegateFolders'
 supported_os: [Windows]
 urls:
 - 'http://www.geoffchappell.com/studies/windows/shell/shell32/classes/printers.htm'
@@ -997,10 +996,10 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\.*', value: ''}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\.*', value: ''}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\.*', value: ''}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\.*', value: ''}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\.*', value: ''}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\.*', value: ''}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\.*', value: ''}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\.*', value: ''}
 supported_os: [Windows]
 urls:
 - 'https://msdn.microsoft.com/en-us/library/windows/desktop/ms678415(v=vs.85).aspx'
@@ -1043,14 +1042,14 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '%%environ_systemroot%%\System32\GroupPolicy\User\Scripts\psscripts.ini'
-      - '%%environ_systemroot%%\System32\GroupPolicy\User\Scripts\scripts.ini'
-      - '%%environ_systemroot%%\System32\GroupPolicy\User\Scripts\Logoff\*'
-      - '%%environ_systemroot%%\System32\GroupPolicy\User\Scripts\Logon\*'
-      - '%%environ_systemroot%%\System32\GroupPolicy\Machine\Scripts\psscripts.ini'
-      - '%%environ_systemroot%%\System32\GroupPolicy\Machine\Scripts\scripts.ini'
-      - '%%environ_systemroot%%\System32\GroupPolicy\Machine\Scripts\Shutdown\*'
-      - '%%environ_systemroot%%\System32\GroupPolicy\Machine\Scripts\Startup\*'
+    - '%%environ_systemroot%%\System32\GroupPolicy\User\Scripts\psscripts.ini'
+    - '%%environ_systemroot%%\System32\GroupPolicy\User\Scripts\scripts.ini'
+    - '%%environ_systemroot%%\System32\GroupPolicy\User\Scripts\Logoff\*'
+    - '%%environ_systemroot%%\System32\GroupPolicy\User\Scripts\Logon\*'
+    - '%%environ_systemroot%%\System32\GroupPolicy\Machine\Scripts\psscripts.ini'
+    - '%%environ_systemroot%%\System32\GroupPolicy\Machine\Scripts\scripts.ini'
+    - '%%environ_systemroot%%\System32\GroupPolicy\Machine\Scripts\Shutdown\*'
+    - '%%environ_systemroot%%\System32\GroupPolicy\Machine\Scripts\Startup\*'
     separator: '\'
 supported_os: [Windows]
 ---
@@ -1060,8 +1059,8 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '%%environ_systemroot%%\System32\Drivers\etc\Lmhosts'
-      - '%%environ_systemroot%%\System32\Drivers\etc\hosts'
+    - '%%environ_systemroot%%\System32\Drivers\etc\Lmhosts'
+    - '%%environ_systemroot%%\System32\Drivers\etc\hosts'
     separator: '\'
 supported_os: [Windows]
 ---
@@ -1071,9 +1070,9 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '%%environ_systemroot%%\System32\magnifier.exe'
-      - '%%environ_systemroot%%\System32\sethc.exe'
-      - '%%environ_systemroot%%\System32\utilman.exe'
+    - '%%environ_systemroot%%\System32\magnifier.exe'
+    - '%%environ_systemroot%%\System32\sethc.exe'
+    - '%%environ_systemroot%%\System32\utilman.exe'
     separator: '\'
 supported_os: [Windows]
 ---
@@ -1083,7 +1082,7 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion', value: 'InstallDate'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion', value: 'InstallDate'}
 supported_os: [Windows]
 ---
 name: WindowsLogoffScript
@@ -1092,8 +1091,8 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Policies\Microsoft\Windows\System\Scripts', value: 'Logoff'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\System\Scripts', value: 'Logoff'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Policies\Microsoft\Windows\System\Scripts', value: 'Logoff'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\System\Scripts', value: 'Logoff'}
 supported_os: [Windows]
 urls: ['https://technet.microsoft.com/en-us/library/ff404236.aspx']
 ---
@@ -1103,8 +1102,8 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Policies\Microsoft\Windows\System\Scripts', value: 'Logon'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\System\Scripts', value: 'Logon'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Policies\Microsoft\Windows\System\Scripts', value: 'Logon'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\System\Scripts', value: 'Logon'}
 supported_os: [Windows]
 urls: ['https://technet.microsoft.com/en-us/library/ff404236.aspx']
 ---
@@ -1114,8 +1113,8 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Lsa', value: 'Authentication Packages'}
-      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Lsa\OSConfig', value: 'Authentication Packages'}
+    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Lsa', value: 'Authentication Packages'}
+    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Lsa\OSConfig', value: 'Authentication Packages'}
 supported_os: [Windows]
 urls:
 - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
@@ -1127,8 +1126,8 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Lsa', value: 'Notification Packages'}
-      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Lsa\OSConfig', value: 'Notification Packages'}
+    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Lsa', value: 'Notification Packages'}
+    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Lsa\OSConfig', value: 'Notification Packages'}
 supported_os: [Windows]
 urls:
 - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
@@ -1140,8 +1139,8 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Lsa', value: 'Security Packages'}
-      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Lsa\OSConfig', value: 'Security Packages'}
+    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Lsa', value: 'Security Packages'}
+    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Lsa\OSConfig', value: 'Security Packages'}
 supported_os: [Windows]
 urls:
 - 'https://msdn.microsoft.com/en-us/library/windows/desktop/aa379392(v=vs.85).aspx'
@@ -1197,8 +1196,8 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\*\MostRecentApplication', value: 'Name'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\*\MostRecentApplication', value: 'Name'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\*\MostRecentApplication', value: 'Name'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\*\MostRecentApplication', value: 'Name'}
 supported_os: [Windows]
 urls:
 - 'http://www.trendmicro.com/vinfo/us/threat-encyclopedia/malware/troj_ransom.smc7'
@@ -1210,8 +1209,8 @@ sources:
 - type: REGISTRY_KEY
   attributes:
     keys:
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\MSDTC\MTxOCI\*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\MSDTC\MTxOCI\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\MSDTC\MTxOCI\*'
+    - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\MSDTC\MTxOCI\*'
 supported_os: [Windows]
 urls: ['https://www.mandiant.com/blog/hikit-rootkit-advanced-persistent-attack-techniques-part-1-2/']
 ---
@@ -1221,10 +1220,10 @@ sources:
 - type: REGISTRY_KEY
   attributes:
     keys:
-      - 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Drivers32\*'
-      - 'HKEY_USERS\%%users.sid%%\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Drivers32\*'
-      - 'HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows NT\CurrentVersion\Drivers32\*'
-      - 'HKEY_USERS\%%users.sid%%\SOFTWARE\Wow6432Node\Microsoft\Windows NT\CurrentVersion\Drivers32\*'
+    - 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Drivers32\*'
+    - 'HKEY_USERS\%%users.sid%%\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Drivers32\*'
+    - 'HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows NT\CurrentVersion\Drivers32\*'
+    - 'HKEY_USERS\%%users.sid%%\SOFTWARE\Wow6432Node\Microsoft\Windows NT\CurrentVersion\Drivers32\*'
 supported_os: [Windows]
 urls:
 - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
@@ -1237,8 +1236,8 @@ sources:
 - type: REGISTRY_KEY
   attributes:
     keys:
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Netsh'
-      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Netsh'
+    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Netsh'
+    - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Netsh'
 supported_os: [Windows]
 urls: ['https://support.microsoft.com/en-us/kb/242468']
 ---
@@ -1272,7 +1271,7 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager', value: 'PendingFileRenameOperations'}
+    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager', value: 'PendingFileRenameOperations'}
 supported_os: [Windows]
 urls: ['https://technet.microsoft.com/en-us/library/cc960241.aspx']
 ---
@@ -1296,9 +1295,9 @@ sources:
 - type: ARTIFACT_GROUP
   attributes:
     names:
-      - WindowsPersistenceRegistryKeys
-      - WindowsPowerShellDefaultProfiles
-      - WindowsServices
+    - WindowsPersistenceRegistryKeys
+    - WindowsPowerShellDefaultProfiles
+    - WindowsServices
 labels: [Software]
 supported_os: [Windows]
 ---
@@ -1308,72 +1307,72 @@ sources:
 - type: ARTIFACT_GROUP
   attributes:
     names:
-      - InternetExplorerBrowserHelperObjects
-      - WindowsActiveDesktop
-      - WindowsActiveSyncAutoStart
-      - WindowsAlternateShell
-      - WindowsAppCertDLLs
-      - WindowsAppInitDLLs
-      - WindowsBootVerificationProgram
-      - WindowsCommandProcessorAutoRun
-      - WindowsCredentialProviderFilters
-      - WindowsCredentialProviders
-      - WindowsDebugger
-      - WindowsEnvironmentUserLoginScripts
-      - WindowsExplorerAutoplayHandlers
-      - WindowsFileTypeAutorunAssociations
-      - WindowsFontDrivers
-      - WindowsIconServiceLib
-      - WindowsLSAAuthenticationPackages
-      - WindowsLSANotificationPackages
-      - WindowsLSASecurityPackages
-      - WindowsMSDTCDLLs
-      - WindowsMultiMediaDrivers
-      - WindowsNetworkShellHelpers
-      - WindowsPendingGPOs
-      - WindowsPLAPProviders
-      - WindowsPrintMonitors
-      - WindowsRunGrpConv
-      - WindowsRunKeys
-      - WindowsRunServices
-      - WindowsScreenSaverExecutable
-      - WindowsSearchFilterHandlers
-      - WindowsSecurityProviders
-      - WindowsServiceControlManagerExtension
-      - WindowsSessionManagerBootExecute
-      - WindowsSessionManagerExecute
-      - WindowsSessionManagerS0InitialCommand
-      - WindowsSessionManagerSetupExecute
-      - WindowsSessionManagerSubSystems
-      - WindowsSessionManagerWOWCommandLine
-      - WindowsSetupCommandLine
-      - WindowsSharedTaskScheduler
-      - WindowsShellExecuteHooks
-      - WindowsShellExtensions
-      - WindowsShellIconOverlayIdentifiers
-      - WindowsShellLoadAndRun
-      - WindowsShellOpenCommand
-      - WindowsShellRunasCommand
-      - WindowsShellServiceObjects
-      - WindowsStubPaths
-      - WindowsSystemPolicyShell
-      - WindowsTerminalServerInitialProgram
-      - WindowsTerminalServerRunKeys
-      - WindowsTerminalServerStartupPrograms
-      - WindowsToolPaths
-      - WindowsWinlogonAppSetup
-      - WindowsWinlogonAvailableShells
-      - WindowsWinlogonGinaDLL
-      - WindowsWinlogonGPExtensions
-      - WindowsWinlogonNotify
-      - WindowsWinlogonShell
-      - WindowsWinlogonSystem
-      - WindowsWinlogonTaskman
-      - WindowsWinlogonUiHost
-      - WindowsWinlogonUserinit
-      - WindowsWinlogonVMApplet
-      - WinSock2LayeredServiceProviders
-      - WinSock2NamespaceProviders
+    - InternetExplorerBrowserHelperObjects
+    - WindowsActiveDesktop
+    - WindowsActiveSyncAutoStart
+    - WindowsAlternateShell
+    - WindowsAppCertDLLs
+    - WindowsAppInitDLLs
+    - WindowsBootVerificationProgram
+    - WindowsCommandProcessorAutoRun
+    - WindowsCredentialProviderFilters
+    - WindowsCredentialProviders
+    - WindowsDebugger
+    - WindowsEnvironmentUserLoginScripts
+    - WindowsExplorerAutoplayHandlers
+    - WindowsFileTypeAutorunAssociations
+    - WindowsFontDrivers
+    - WindowsIconServiceLib
+    - WindowsLSAAuthenticationPackages
+    - WindowsLSANotificationPackages
+    - WindowsLSASecurityPackages
+    - WindowsMSDTCDLLs
+    - WindowsMultiMediaDrivers
+    - WindowsNetworkShellHelpers
+    - WindowsPendingGPOs
+    - WindowsPLAPProviders
+    - WindowsPrintMonitors
+    - WindowsRunGrpConv
+    - WindowsRunKeys
+    - WindowsRunServices
+    - WindowsScreenSaverExecutable
+    - WindowsSearchFilterHandlers
+    - WindowsSecurityProviders
+    - WindowsServiceControlManagerExtension
+    - WindowsSessionManagerBootExecute
+    - WindowsSessionManagerExecute
+    - WindowsSessionManagerS0InitialCommand
+    - WindowsSessionManagerSetupExecute
+    - WindowsSessionManagerSubSystems
+    - WindowsSessionManagerWOWCommandLine
+    - WindowsSetupCommandLine
+    - WindowsSharedTaskScheduler
+    - WindowsShellExecuteHooks
+    - WindowsShellExtensions
+    - WindowsShellIconOverlayIdentifiers
+    - WindowsShellLoadAndRun
+    - WindowsShellOpenCommand
+    - WindowsShellRunasCommand
+    - WindowsShellServiceObjects
+    - WindowsStubPaths
+    - WindowsSystemPolicyShell
+    - WindowsTerminalServerInitialProgram
+    - WindowsTerminalServerRunKeys
+    - WindowsTerminalServerStartupPrograms
+    - WindowsToolPaths
+    - WindowsWinlogonAppSetup
+    - WindowsWinlogonAvailableShells
+    - WindowsWinlogonGinaDLL
+    - WindowsWinlogonGPExtensions
+    - WindowsWinlogonNotify
+    - WindowsWinlogonShell
+    - WindowsWinlogonSystem
+    - WindowsWinlogonTaskman
+    - WindowsWinlogonUiHost
+    - WindowsWinlogonUserinit
+    - WindowsWinlogonVMApplet
+    - WinSock2LayeredServiceProviders
+    - WinSock2NamespaceProviders
 labels: [Software]
 supported_os: [Windows]
 ---
@@ -1383,8 +1382,8 @@ sources:
 - type: REGISTRY_KEY
   attributes:
     keys:
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Authentication\PLAP Providers\*'
-      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Authentication\PLAP Providers\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Authentication\PLAP Providers\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Authentication\PLAP Providers\*'
 supported_os: [Windows]
 urls: ['https://msdn.microsoft.com/en-us/library/windows/desktop/bb530584(v=vs.85).aspx']
 ---
@@ -1408,10 +1407,10 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '%%environ_systemroot%%\system32\WindowsPowerShell\v1.0\profile.ps1'
-      - '%%environ_systemroot%%\system32\WindowsPowerShell\v1.0\Microsoft.PowerShell_profile.ps1'
-      - '%%users.userprofile%%\Documents\WindowsPowerShell\profile.ps1'
-      - '%%users.userprofile%%\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1'
+    - '%%environ_systemroot%%\system32\WindowsPowerShell\v1.0\profile.ps1'
+    - '%%environ_systemroot%%\system32\WindowsPowerShell\v1.0\Microsoft.PowerShell_profile.ps1'
+    - '%%users.userprofile%%\Documents\WindowsPowerShell\profile.ps1'
+    - '%%users.userprofile%%\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1'
     separator: '\'
 supported_os: [Windows]
 urls:
@@ -1424,8 +1423,8 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Policies\Microsoft\Windows\PowerShell', value: 'EnableScripts'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\PowerShell', value: 'EnableScripts'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Policies\Microsoft\Windows\PowerShell', value: 'EnableScripts'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\PowerShell', value: 'EnableScripts'}
 supported_os: [Windows]
 urls:
 - 'https://technet.microsoft.com/library/hh847748.aspx'
@@ -1437,8 +1436,8 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Policies\Microsoft\Windows\PowerShell', value: 'ExecutionPolicy'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\PowerShell', value: 'ExecutionPolicy'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Policies\Microsoft\Windows\PowerShell', value: 'ExecutionPolicy'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\PowerShell', value: 'ExecutionPolicy'}
 supported_os: [Windows]
 urls:
 - 'https://technet.microsoft.com/library/hh847748.aspx'
@@ -1480,8 +1479,8 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\StartPage', value: 'ProgramsCache'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\StartPage2', value: 'ProgramsCache'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\StartPage', value: 'ProgramsCache'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\StartPage2', value: 'ProgramsCache'}
 supported_os: [Windows]
 urls: ['https://github.com/libyal/winreg-kb/blob/master/documentation/Programs%20Cache%20values.asciidoc']
 ---
@@ -1491,8 +1490,8 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\StartPage2', value: 'ProgramsCacheSMP'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\StartPage2', value: 'ProgramsCacheTBP'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\StartPage2', value: 'ProgramsCacheSMP'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\StartPage2', value: 'ProgramsCacheTBP'}
 supported_os: [Windows]
 urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/JumpLists.md']
 ---
@@ -1502,7 +1501,7 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-        - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Internet Settings', value: 'AutoConfigURL'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Internet Settings', value: 'AutoConfigURL'}
 labels: [System, Network]
 supported_os: [Windows]
 urls: ['https://blogs.msdn.microsoft.com/askie/2015/07/17/how-can-i-configure-proxy-autoconfigurl-setting-using-group-policy-preference-gpp/']
@@ -1519,12 +1518,12 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Internet Settings', value: 'ProxyServer'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Internet Settings', value: 'ProxyServer'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Internet Settings', value: 'ProxyServer'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Internet Settings', value: 'ProxyServer'}
-      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\NlaSvc\Parameters\Internet\ManualProxies', value: 'ProxyServer'}
-      - {key: 'HKEY_USERS\%%users.sid%%\System\CurrentControlSet\Services\NlaSvc\Parameters\Internet\ManualProxies', value: 'ProxyServer'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Internet Settings', value: 'ProxyServer'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Internet Settings', value: 'ProxyServer'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Internet Settings', value: 'ProxyServer'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Internet Settings', value: 'ProxyServer'}
+    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\NlaSvc\Parameters\Internet\ManualProxies', value: 'ProxyServer'}
+    - {key: 'HKEY_USERS\%%users.sid%%\System\CurrentControlSet\Services\NlaSvc\Parameters\Internet\ManualProxies', value: 'ProxyServer'}
 labels: [System, Network]
 supported_os: [Windows]
 urls: ['https://blog.malwarebytes.com/detections/pum-optional-proxyhijacker/']
@@ -1546,8 +1545,8 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '\$Recycle.Bin\**'
-      - '\Recycler\**'
+    - '\$Recycle.Bin\**'
+    - '\Recycler\**'
     separator: '\'
 labels: [Users]
 supported_os: [Windows]
@@ -1568,10 +1567,10 @@ sources:
 - type: ARTIFACT_GROUP
   attributes:
     names:
-      - 'WindowsSystemRegistryFiles'
-      - 'WindowsSystemRegistryTransactionLogFiles'
-      - 'WindowsUserRegistryFiles'
-      - 'WindowsUserRegistryTransactionLogFiles'
+    - 'WindowsSystemRegistryFiles'
+    - 'WindowsSystemRegistryTransactionLogFiles'
+    - 'WindowsUserRegistryFiles'
+    - 'WindowsUserRegistryTransactionLogFiles'
 labels: [System,Users]
 supported_os: [Windows]
 ---
@@ -1650,26 +1649,26 @@ sources:
 - type: REGISTRY_KEY
   attributes:
     keys:
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\Run\*'
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run\*'
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunOnce\*'
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunOnce\Setup\*'
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunOnceEx\*'
-      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Run\*'
-      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunOnce\*'
-      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunOnce\Setup\*'
-      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunOnceEx\*'
-      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer\Run\*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\Run\*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Run\*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\RunOnce\*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\RunOnce\Setup\*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\RunOnceEx\*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer\Run\*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Run\*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunOnce\*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunOnce\Setup\*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunOnceEx\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\Run\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunOnce\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunOnce\Setup\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunOnceEx\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Run\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunOnce\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunOnce\Setup\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunOnceEx\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer\Run\*'
+    - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\Run\*'
+    - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Run\*'
+    - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\RunOnce\*'
+    - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\RunOnce\Setup\*'
+    - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\RunOnceEx\*'
+    - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer\Run\*'
+    - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Run\*'
+    - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunOnce\*'
+    - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunOnce\Setup\*'
+    - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunOnceEx\*'
 labels: [Software]
 supported_os: [Windows]
 urls:
@@ -1684,14 +1683,14 @@ sources:
 - type: REGISTRY_KEY
   attributes:
     keys:
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunServicesOnce\*'
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunServices\*'
-      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunServicesOnce\*'
-      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunServices\*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\RunServicesOnce\*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\RunServices\*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunServicesOnce\*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunServices\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunServicesOnce\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\RunServices\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunServicesOnce\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunServices\*'
+    - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\RunServicesOnce\*'
+    - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\RunServices\*'
+    - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunServicesOnce\*'
+    - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunServices\*'
 supported_os: [Windows]
 urls:
 - 'https://support.microsoft.com/en-us/kb/179365'
@@ -1703,9 +1702,9 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '%%environ_systemroot%%\Tasks\**10'
-      - '%%environ_systemroot%%\System32\Tasks\**10'
-      - '%%environ_systemroot%%\SysWow64\Tasks\**10'
+    - '%%environ_systemroot%%\Tasks\**10'
+    - '%%environ_systemroot%%\System32\Tasks\**10'
+    - '%%environ_systemroot%%\SysWow64\Tasks\**10'
     separator: '\'
 supported_os: [Windows]
 urls: ['http://forensicswiki.org/wiki/Windows#Scheduled_Tasks']
@@ -1716,8 +1715,8 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Policies\Microsoft\Windows\Control Panel\Desktop', value: 'scrnsave.exe'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Control Panel\Desktop', value: 'scrnsave.exe'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Policies\Microsoft\Windows\Control Panel\Desktop', value: 'scrnsave.exe'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Control Panel\Desktop', value: 'scrnsave.exe'}
 supported_os: [Windows]
 urls:
 - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
@@ -1770,16 +1769,16 @@ doc: |
   Security Service Center), WINDEFEND (Windows Defender),
   and MPSSVC (Windows Firewall) services, among others
 
-  - Set 'Start' to 4, indicating that the service should be disabled
-  - Set 'DeleteFlag' to 1, indicating that the service should be removed
-  - Set 'ErrorControl' to 0 and 'Type' to 32, causing it to fail to be
+  * Set 'Start' to 4, indicating that the service should be disabled
+  * Set 'DeleteFlag' to 1, indicating that the service should be removed
+  * Set 'ErrorControl' to 0 and 'Type' to 32, causing it to fail to be
     started by the Service Controller and no error messages generated
 sources:
 - type: REGISTRY_KEY
   attributes:
     keys:
-      - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\*\*'
-      - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\*\Parameters\*'
+    - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\*\*'
+    - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\*\Parameters\*'
 labels: [Software]
 supported_os: [Windows]
 urls:
@@ -1797,10 +1796,10 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Action Center\Checks\{e8433b72-5842-4d43-8645-bc2c35960837}.check.*', value: 'CheckSetting'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Action Center\Checks\{e8433b72-5842-4d43-8645-bc2c35960837}.check.*', value: 'CheckSetting'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Notifications\Settings\Windows.SystemToast.SecurityAndMaintenance', value: 'Enabled'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Notifications\Settings\Windows.SystemToast.SecurityAndMaintenance', value: 'Enabled'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Action Center\Checks\{e8433b72-5842-4d43-8645-bc2c35960837}.check.*', value: 'CheckSetting'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Action Center\Checks\{e8433b72-5842-4d43-8645-bc2c35960837}.check.*', value: 'CheckSetting'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Notifications\Settings\Windows.SystemToast.SecurityAndMaintenance', value: 'Enabled'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Notifications\Settings\Windows.SystemToast.SecurityAndMaintenance', value: 'Enabled'}
 labels: [System]
 supported_os: [Windows]
 urls:
@@ -1819,10 +1818,10 @@ sources:
 - type: REGISTRY_KEY
   attributes:
     keys:
-      - 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\SystemCertificates\Disallowed\Certificates\*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Policies\Microsoft\SystemCertificates\Disallowed\Certificates\*'
-      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Policies\Microsoft\SystemCertificates\Disallowed\Certificates\*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Policies\Microsoft\SystemCertificates\Disallowed\Certificates\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\SystemCertificates\Disallowed\Certificates\*'
+    - 'HKEY_USERS\%%users.sid%%\Software\Policies\Microsoft\SystemCertificates\Disallowed\Certificates\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Policies\Microsoft\SystemCertificates\Disallowed\Certificates\*'
+    - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Policies\Microsoft\SystemCertificates\Disallowed\Certificates\*'
 labels: [System]
 supported_os: [Windows]
 urls:
@@ -1838,42 +1837,42 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'Hidden'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'Hidden'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'Hidden'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'Hidden'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'ShowSuperHidden'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'ShowSuperHidden'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'ShowSuperHidden'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'ShowSuperHidden'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'HideSCAHealth'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'HideSCAHealth'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'HideSCAHealth'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'HideSCAHealth'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoControlPanel'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoControlPanel'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoControlPanel'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoControlPanel'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoFolderOptions'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoFolderOptions'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoFolderOptions'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoFolderOptions'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoRun'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoRun'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoRun'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoRun'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoViewContextMenu'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoViewContextMenu'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoViewContextMenu'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoViewContextMenu'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'ShowControlPanel'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'ShowControlPanel'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'ShowControlPanel'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'ShowControlPanel'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'TaskbarNoNotification'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'TaskbarNoNotification'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'TaskbarNoNotification'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'TaskbarNoNotification'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'Hidden'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'Hidden'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'Hidden'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'Hidden'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'ShowSuperHidden'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'ShowSuperHidden'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'ShowSuperHidden'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'ShowSuperHidden'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'HideSCAHealth'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'HideSCAHealth'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'HideSCAHealth'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'HideSCAHealth'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoControlPanel'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoControlPanel'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoControlPanel'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoControlPanel'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoFolderOptions'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoFolderOptions'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoFolderOptions'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoFolderOptions'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoRun'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoRun'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoRun'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoRun'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoViewContextMenu'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoViewContextMenu'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoViewContextMenu'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoViewContextMenu'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'ShowControlPanel'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'ShowControlPanel'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'ShowControlPanel'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'ShowControlPanel'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'TaskbarNoNotification'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'TaskbarNoNotification'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'TaskbarNoNotification'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'TaskbarNoNotification'}
 labels: [System]
 supported_os: [Windows]
 urls:
@@ -1892,26 +1891,26 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System', value: 'DisableCAD'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Policies\System', value: 'DisableCAD'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\System', value: 'DisableCAD'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\System', value: 'DisableCAD'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System', value: 'DisableRegistryTools'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Policies\System', value: 'DisableRegistryTools'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\System', value: 'DisableRegistryTools'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\System', value: 'DisableRegistryTools'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System', value: 'DisableTaskMgr'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Policies\System', value: 'DisableTaskMgr'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\System', value: 'DisableTaskMgr'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\System', value: 'DisableTaskMgr'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System', value: 'NoDispCPL'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Policies\System', value: 'NoDispCPL'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\System', value: 'NoDispCPL'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\System', value: 'NoDispCPL'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\System', value: 'DisableCMD'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Policies\Microsoft\Windows\System', value: 'DisableCMD'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Policies\Microsoft\Windows\System', value: 'DisableCMD'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Policies\Microsoft\Windows\System', value: 'DisableCMD'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System', value: 'DisableCAD'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Policies\System', value: 'DisableCAD'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\System', value: 'DisableCAD'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\System', value: 'DisableCAD'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System', value: 'DisableRegistryTools'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Policies\System', value: 'DisableRegistryTools'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\System', value: 'DisableRegistryTools'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\System', value: 'DisableRegistryTools'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System', value: 'DisableTaskMgr'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Policies\System', value: 'DisableTaskMgr'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\System', value: 'DisableTaskMgr'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\System', value: 'DisableTaskMgr'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System', value: 'NoDispCPL'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Policies\System', value: 'NoDispCPL'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\System', value: 'NoDispCPL'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\System', value: 'NoDispCPL'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\System', value: 'DisableCMD'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Policies\Microsoft\Windows\System', value: 'DisableCMD'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Policies\Microsoft\Windows\System', value: 'DisableCMD'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Policies\Microsoft\Windows\System', value: 'DisableCMD'}
 labels: [System]
 supported_os: [Windows]
 urls:
@@ -1934,13 +1933,13 @@ sources:
 - type: REGISTRY_KEY
   attributes:
     keys:
-      # Windows XP and 2003
-      - 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\WindowsFirewall\DomainProfile\AuthorizedApplications\List\*'
-      - 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\WindowsFirewall\StandardProfile\AuthorizedApplications\List\*'
-      # Windows Vista and later
-      - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile\AuthorizedApplications\List\*'
-      - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile\AuthorizedApplications\List\*'
-      - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\AuthorizedApplications\List\*'
+    # Windows XP and 2003
+    - 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\WindowsFirewall\DomainProfile\AuthorizedApplications\List\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\WindowsFirewall\StandardProfile\AuthorizedApplications\List\*'
+    # Windows Vista and later
+    - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile\AuthorizedApplications\List\*'
+    - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile\AuthorizedApplications\List\*'
+    - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\AuthorizedApplications\List\*'
 labels: [System]
 supported_os: [Windows]
 urls:
@@ -1958,13 +1957,13 @@ sources:
 - type: REGISTRY_KEY
   attributes:
     keys:
-      # Windows XP and 2003
-      - 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\WindowsFirewall\DomainProfile\GloballyOpenPorts\List\*'
-      - 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\WindowsFirewall\StandardProfile\GloballyOpenPorts\List\*'
-      # Windows Vista and later
-      - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile\GloballyOpenPorts\List\*'
-      - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile\GloballyOpenPorts\List\*'
-      - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\GloballyOpenPorts\List\*'
+    # Windows XP and 2003
+    - 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\WindowsFirewall\DomainProfile\GloballyOpenPorts\List\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\WindowsFirewall\StandardProfile\GloballyOpenPorts\List\*'
+    # Windows Vista and later
+    - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile\GloballyOpenPorts\List\*'
+    - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile\GloballyOpenPorts\List\*'
+    - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\GloballyOpenPorts\List\*'
 labels: [System]
 supported_os: [Windows]
 urls:
@@ -1982,21 +1981,21 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile', value: 'EnableFirewall'}
-      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile', value: 'DisableNotifications'}
-      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile', value: 'DoNotAllowExceptions'}
-      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile', value: 'DefaultInboundAction'}
-      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile', value: 'DefaultOutboundAction'}
-      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile', value: 'EnableFirewall'}
-      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile', value: 'DisableNotifications'}
-      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile', value: 'DoNotAllowExceptions'}
-      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile', value: 'DefaultInboundAction'}
-      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile', value: 'DefaultOutboundAction'}
-      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile', value: 'EnableFirewall'}
-      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile', value: 'DisableNotifications'}
-      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile', value: 'DoNotAllowExceptions'}
-      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile', value: 'DefaultInboundAction'}
-      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile', value: 'DefaultOutboundAction'}
+    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile', value: 'EnableFirewall'}
+    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile', value: 'DisableNotifications'}
+    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile', value: 'DoNotAllowExceptions'}
+    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile', value: 'DefaultInboundAction'}
+    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile', value: 'DefaultOutboundAction'}
+    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile', value: 'EnableFirewall'}
+    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile', value: 'DisableNotifications'}
+    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile', value: 'DoNotAllowExceptions'}
+    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile', value: 'DefaultInboundAction'}
+    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile', value: 'DefaultOutboundAction'}
+    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile', value: 'EnableFirewall'}
+    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile', value: 'DisableNotifications'}
+    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile', value: 'DoNotAllowExceptions'}
+    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile', value: 'DefaultInboundAction'}
+    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile', value: 'DefaultOutboundAction'}
 labels: [System]
 supported_os: [Windows]
 urls:
@@ -2015,24 +2014,24 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Security Center', value: 'AntiSpyWareDisableNotify'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Security Center', value: 'AntiSpyWareDisableNotify'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Security Center', value: 'AntiVirusDisableNotify'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Security Center', value: 'AntiVirusDisableNotify'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Security Center', value: 'AntiVirusOverride'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Security Center', value: 'AntiVirusOverride'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Security Center', value: 'AutoUpdateDisableNotify'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Security Center', value: 'AutoUpdateDisableNotify'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Security Center', value: 'FirewallDisableNotify'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Security Center', value: 'FirewallDisableNotify'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Security Center', value: 'FirewallOverride'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Security Center', value: 'FirewallOverride'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Security Center', value: 'UpdatesDisableNotify'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Security Center', value: 'UpdatesDisableNotify'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Security Center', value: 'UpdatesOverride'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Security Center', value: 'UpdatesOverride'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Security Center', value: 'UacDisableNotify'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Security Center', value: 'UacDisableNotify'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Security Center', value: 'AntiSpyWareDisableNotify'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Security Center', value: 'AntiSpyWareDisableNotify'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Security Center', value: 'AntiVirusDisableNotify'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Security Center', value: 'AntiVirusDisableNotify'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Security Center', value: 'AntiVirusOverride'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Security Center', value: 'AntiVirusOverride'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Security Center', value: 'AutoUpdateDisableNotify'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Security Center', value: 'AutoUpdateDisableNotify'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Security Center', value: 'FirewallDisableNotify'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Security Center', value: 'FirewallDisableNotify'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Security Center', value: 'FirewallOverride'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Security Center', value: 'FirewallOverride'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Security Center', value: 'UpdatesDisableNotify'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Security Center', value: 'UpdatesDisableNotify'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Security Center', value: 'UpdatesOverride'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Security Center', value: 'UpdatesOverride'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Security Center', value: 'UacDisableNotify'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Security Center', value: 'UacDisableNotify'}
 labels: [System]
 supported_os: [Windows]
 urls:
@@ -2050,14 +2049,14 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows NT\SystemRestore', value: 'DisableConfig'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\SystemRestore', value: 'DisableConfig'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Policies\Microsoft\Windows NT\SystemRestore', value: 'DisableConfig'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows NT\CurrentVersion\SystemRestore', value: 'DisableConfig'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows NT\SystemRestore', value: 'DisableSR'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\SystemRestore', value: 'DisableSR'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Policies\Microsoft\Windows NT\SystemRestore', value: 'DisableSR'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows NT\CurrentVersion\SystemRestore', value: 'DisableSR'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows NT\SystemRestore', value: 'DisableConfig'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\SystemRestore', value: 'DisableConfig'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Policies\Microsoft\Windows NT\SystemRestore', value: 'DisableConfig'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows NT\CurrentVersion\SystemRestore', value: 'DisableConfig'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows NT\SystemRestore', value: 'DisableSR'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\SystemRestore', value: 'DisableSR'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Policies\Microsoft\Windows NT\SystemRestore', value: 'DisableSR'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows NT\CurrentVersion\SystemRestore', value: 'DisableSR'}
 labels: [System]
 supported_os: [Windows]
 urls:
@@ -2074,8 +2073,8 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System', value: 'EnableLUA'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\System', value: 'EnableLUA'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System', value: 'EnableLUA'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\System', value: 'EnableLUA'}
 labels: [System]
 supported_os: [Windows]
 urls:
@@ -2093,10 +2092,10 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\WindowsUpdate', value: 'DisableOSUpgrade'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Policies\Microsoft\Windows\WindowsUpdate', value: 'DisableOSUpgrade'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\WindowsUpdate\OSUpgrade', value: 'ReservationsAllowed'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Policies\Microsoft\Windows\WindowsUpdate\OSUpgrade', value: 'ReservationsAllowed'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\WindowsUpdate', value: 'DisableOSUpgrade'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Policies\Microsoft\Windows\WindowsUpdate', value: 'DisableOSUpgrade'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\WindowsUpdate\OSUpgrade', value: 'ReservationsAllowed'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Policies\Microsoft\Windows\WindowsUpdate\OSUpgrade', value: 'ReservationsAllowed'}
 labels: [System]
 supported_os: [Windows]
 urls:
@@ -2109,7 +2108,7 @@ sources:
 - type: REGISTRY_KEY
   attributes:
     keys:
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Font Drivers\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Font Drivers\*'
 labels: [Software]
 supported_os: [Windows]
 urls:
@@ -2183,8 +2182,8 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\WOW', value: 'cmdline'}
-      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\WOW', value: 'wowcmdline'}
+    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\WOW', value: 'cmdline'}
+    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\WOW', value: 'wowcmdline'}
 supported_os: [Windows]
 urls: ['https://support.microsoft.com/en-us/kb/102986']
 ---
@@ -2194,7 +2193,7 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\System\Setup', value: 'CmdLine'}
+    - {key: 'HKEY_LOCAL_MACHINE\System\Setup', value: 'CmdLine'}
 supported_os: [Windows]
 urls: ['https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2']
 ---
@@ -2204,8 +2203,8 @@ sources:
 - type: REGISTRY_KEY
   attributes:
     keys:
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\SharedTaskScheduler\*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SharedTaskScheduler\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\SharedTaskScheduler\*'
+    - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\SharedTaskScheduler\*'
 supported_os: [Windows]
 urls:
 - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
@@ -2217,8 +2216,8 @@ sources:
 - type: REGISTRY_KEY
   attributes:
     keys:
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\ShellExecuteHooks\*'
-      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\ShellExecuteHooks\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\ShellExecuteHooks\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\ShellExecuteHooks\*'
 supported_os: [Windows]
 urls:
 - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
@@ -2231,10 +2230,10 @@ sources:
 - type: REGISTRY_KEY
   attributes:
     keys:
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved'
-      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved'
+    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved'
+    - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved'
+    - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved'
+    - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved'
 supported_os: [Windows]
 urls: ['https://msdn.microsoft.com/en-us/library/windows/desktop/cc144110(v=vs.85).aspx']
 ---
@@ -2249,42 +2248,42 @@ sources:
 - type: REGISTRY_KEY
   attributes:
     keys:
-      - 'HKEY_LOCAL_MACHINE\Software\Classes\*\ShellEx\ColumnHandlers\*'
-      - 'HKEY_LOCAL_MACHINE\Software\Classes\*\ShellEx\ContextMenuHandlers\*'
-      - 'HKEY_LOCAL_MACHINE\Software\Classes\*\ShellEx\CopyHookHandlers\*'
-      - 'HKEY_LOCAL_MACHINE\Software\Classes\*\ShellEx\DragDropHandlers\*'
-      - 'HKEY_LOCAL_MACHINE\Software\Classes\*\ShellEx\PropertySheetHandlers\*'
-      - 'HKEY_LOCAL_MACHINE\Software\Classes\Directory\Background\ShellEx\ContextMenuHandlers\*'
-      - 'HKEY_LOCAL_MACHINE\Software\Classes\Directory\Background\ShellEx\CopyHookHandlers\*'
-      - 'HKEY_LOCAL_MACHINE\Software\Classes\Directory\Background\ShellEx\DragDropHandlers\*'
-      - 'HKEY_LOCAL_MACHINE\Software\Classes\Directory\Background\ShellEx\PropertySheetHandlers\*'
-      - 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\*\ShellEx\ColumnHandlers\*'
-      - 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\*\ShellEx\ContextMenuHandlers\*'
-      - 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\*\ShellEx\CopyHookHandlers\*'
-      - 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\*\ShellEx\DragDropHandlers\*'
-      - 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\*\ShellEx\PropertySheetHandlers\*'
-      - 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\Directory\Background\ShellEx\ContextMenuHandlers\*'
-      - 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\Directory\Background\ShellEx\CopyHookHandlers\*'
-      - 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\Directory\Background\ShellEx\DragDropHandlers\*'
-      - 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\Directory\Background\ShellEx\PropertySheetHandlers\*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Classes\*\ShellEx\ColumnHandlers\*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Classes\*\ShellEx\ContextMenuHandlers\*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Classes\*\ShellEx\CopyHookHandlers\*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Classes\*\ShellEx\DragDropHandlers\*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Classes\*\ShellEx\PropertySheetHandlers\*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Classes\Directory\Background\ShellEx\ContextMenuHandlers\*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Classes\Directory\Background\ShellEx\CopyHookHandlers\*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Classes\Directory\Background\ShellEx\DragDropHandlers\*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Classes\Directory\Background\ShellEx\PropertySheetHandlers\*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\*\ShellEx\ColumnHandlers\*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\*\ShellEx\ContextMenuHandlers\*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\*\ShellEx\CopyHookHandlers\*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\*\ShellEx\DragDropHandlers\*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\*\ShellEx\PropertySheetHandlers\*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\Directory\Background\ShellEx\ContextMenuHandlers\*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\Directory\Background\ShellEx\CopyHookHandlers\*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\Directory\Background\ShellEx\DragDropHandlers\*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\Directory\Background\ShellEx\PropertySheetHandlers\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Classes\*\ShellEx\ColumnHandlers\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Classes\*\ShellEx\ContextMenuHandlers\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Classes\*\ShellEx\CopyHookHandlers\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Classes\*\ShellEx\DragDropHandlers\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Classes\*\ShellEx\PropertySheetHandlers\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Classes\Directory\Background\ShellEx\ContextMenuHandlers\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Classes\Directory\Background\ShellEx\CopyHookHandlers\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Classes\Directory\Background\ShellEx\DragDropHandlers\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Classes\Directory\Background\ShellEx\PropertySheetHandlers\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\*\ShellEx\ColumnHandlers\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\*\ShellEx\ContextMenuHandlers\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\*\ShellEx\CopyHookHandlers\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\*\ShellEx\DragDropHandlers\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\*\ShellEx\PropertySheetHandlers\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\Directory\Background\ShellEx\ContextMenuHandlers\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\Directory\Background\ShellEx\CopyHookHandlers\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\Directory\Background\ShellEx\DragDropHandlers\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\Directory\Background\ShellEx\PropertySheetHandlers\*'
+    - 'HKEY_USERS\%%users.sid%%\Software\Classes\*\ShellEx\ColumnHandlers\*'
+    - 'HKEY_USERS\%%users.sid%%\Software\Classes\*\ShellEx\ContextMenuHandlers\*'
+    - 'HKEY_USERS\%%users.sid%%\Software\Classes\*\ShellEx\CopyHookHandlers\*'
+    - 'HKEY_USERS\%%users.sid%%\Software\Classes\*\ShellEx\DragDropHandlers\*'
+    - 'HKEY_USERS\%%users.sid%%\Software\Classes\*\ShellEx\PropertySheetHandlers\*'
+    - 'HKEY_USERS\%%users.sid%%\Software\Classes\Directory\Background\ShellEx\ContextMenuHandlers\*'
+    - 'HKEY_USERS\%%users.sid%%\Software\Classes\Directory\Background\ShellEx\CopyHookHandlers\*'
+    - 'HKEY_USERS\%%users.sid%%\Software\Classes\Directory\Background\ShellEx\DragDropHandlers\*'
+    - 'HKEY_USERS\%%users.sid%%\Software\Classes\Directory\Background\ShellEx\PropertySheetHandlers\*'
+    - 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\*\ShellEx\ColumnHandlers\*'
+    - 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\*\ShellEx\ContextMenuHandlers\*'
+    - 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\*\ShellEx\CopyHookHandlers\*'
+    - 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\*\ShellEx\DragDropHandlers\*'
+    - 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\*\ShellEx\PropertySheetHandlers\*'
+    - 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\Directory\Background\ShellEx\ContextMenuHandlers\*'
+    - 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\Directory\Background\ShellEx\CopyHookHandlers\*'
+    - 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\Directory\Background\ShellEx\DragDropHandlers\*'
+    - 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\Directory\Background\ShellEx\PropertySheetHandlers\*'
 supported_os: [Windows]
 urls:
 - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
@@ -2297,10 +2296,10 @@ sources:
 - type: REGISTRY_KEY
   attributes:
     keys:
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\ShellIconOverlayIdentifiers\*'
-      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\ShellIconOverlayIdentifiers\*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\ShellIconOverlayIdentifiers\*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\ShellIconOverlayIdentifiers\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\ShellIconOverlayIdentifiers\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\ShellIconOverlayIdentifiers\*'
+    - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\ShellIconOverlayIdentifiers\*'
+    - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\ShellIconOverlayIdentifiers\*'
 supported_os: [Windows]
 urls:
 - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
@@ -2312,10 +2311,10 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Windows', value: 'Load'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Windows', value: 'Run'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows NT\CurrentVersion\Windows', value: 'Load'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows NT\CurrentVersion\Windows', value: 'Run'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Windows', value: 'Load'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Windows', value: 'Run'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows NT\CurrentVersion\Windows', value: 'Load'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows NT\CurrentVersion\Windows', value: 'Run'}
 supported_os: [Windows]
 urls: ['https://support.microsoft.com/en-us/kb/103865']
 ---
@@ -2328,7 +2327,7 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Windows', value: 'IconServiceLib'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Windows', value: 'IconServiceLib'}
 supported_os: [Windows]
 urls: ['https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2']
 ---
@@ -2338,14 +2337,14 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\*\shell\open\command', value: ''}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\*\shell\open\command', value: 'IsolatedCommand'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\*\shell\open\command', value: ''}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\*\shell\open\command', value: 'IsolatedCommand'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\*\shell\open\command', value: ''}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\*\shell\open\command', value: 'IsolatedCommand'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\*\shell\open\command', value: ''}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\*\shell\open\command', value: 'IsolatedCommand'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\*\shell\open\command', value: ''}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\*\shell\open\command', value: 'IsolatedCommand'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\*\shell\open\command', value: ''}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\*\shell\open\command', value: 'IsolatedCommand'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\*\shell\open\command', value: ''}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\*\shell\open\command', value: 'IsolatedCommand'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\*\shell\open\command', value: ''}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\*\shell\open\command', value: 'IsolatedCommand'}
 supported_os: [Windows]
 urls:
  - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
@@ -2364,14 +2363,14 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\*\shell\runas\command', value: ''}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\*\shell\runas\command', value: 'IsolatedCommand'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\*\shell\runas\command', value: ''}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\*\shell\runas\command', value: 'IsolatedCommand'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\*\shell\runas\command', value: ''}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\*\shell\runas\command', value: 'IsolatedCommand'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\*\shell\runas\command', value: ''}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\*\shell\runas\command', value: 'IsolatedCommand'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\*\shell\runas\command', value: ''}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\*\shell\runas\command', value: 'IsolatedCommand'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\*\shell\runas\command', value: ''}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\*\shell\runas\command', value: 'IsolatedCommand'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\*\shell\runas\command', value: ''}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\*\shell\runas\command', value: 'IsolatedCommand'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\*\shell\runas\command', value: ''}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\*\shell\runas\command', value: 'IsolatedCommand'}
 supported_os: [Windows]
 urls:
  - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
@@ -2384,8 +2383,8 @@ sources:
 - type: REGISTRY_KEY
   attributes:
     keys:
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\ShellServiceObjectDelayLoad'
-      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\ShellServiceObjectDelayLoad'
+    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\ShellServiceObjectDelayLoad'
+    - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\ShellServiceObjectDelayLoad'
 supported_os: [Windows]
 urls: ['http://www.microsoft.com/security/portal/threat/encyclopedia/Entry.aspx?Name=TrojanClicker:Win32/Zirit.X#tab=2']
 ---
@@ -2400,9 +2399,9 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '%%environ_systemroot%%\inf\setupapi.app.log'
-      - '%%environ_systemroot%%\inf\setupapi.dev.log'
-      - '%%environ_systemroot%%\inf\setupapi.offline.log'
+    - '%%environ_systemroot%%\inf\setupapi.app.log'
+    - '%%environ_systemroot%%\inf\setupapi.dev.log'
+    - '%%environ_systemroot%%\inf\setupapi.offline.log'
     separator: '\'
   conditions: [os_major_version >= 6]
 labels: [Logs]
@@ -2415,11 +2414,11 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\System\Scripts', value: 'Shutdown'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Group Policy\Scripts\Shutdown\*\*', value: 'Script'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Group Policy\Scripts\Shutdown\*\*', value: 'Parameters'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Group Policy\State\Machine\Scripts\Shutdown\*\*', value: 'Script'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Group Policy\State\Machine\Scripts\Shutdown\*\*', value: 'Parameters'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\System\Scripts', value: 'Shutdown'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Group Policy\Scripts\Shutdown\*\*', value: 'Script'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Group Policy\Scripts\Shutdown\*\*', value: 'Parameters'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Group Policy\State\Machine\Scripts\Shutdown\*\*', value: 'Script'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Group Policy\State\Machine\Scripts\Shutdown\*\*', value: 'Parameters'}
 supported_os: [Windows]
 urls:
 - 'https://technet.microsoft.com/en-us/library/ff404236.aspx'
@@ -2431,22 +2430,22 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders', value: 'Common Startup'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders', value: 'Startup'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders', value: 'Common Startup'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders', value: 'Startup'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders', value: 'Common Startup'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders', value: 'Startup'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders', value: 'Common Startup'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders', value: 'Startup'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders', value: 'Common Startup'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders', value: 'Startup'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders', value: 'Common Startup'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders', value: 'Startup'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders', value: 'Common Startup'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders', value: 'Startup'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders', value: 'Common Startup'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders', value: 'Startup'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders', value: 'Common Startup'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders', value: 'Startup'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders', value: 'Common Startup'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders', value: 'Startup'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders', value: 'Common Startup'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders', value: 'Startup'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders', value: 'Common Startup'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders', value: 'Startup'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders', value: 'Common Startup'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders', value: 'Startup'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders', value: 'Common Startup'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders', value: 'Startup'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders', value: 'Common Startup'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders', value: 'Startup'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders', value: 'Common Startup'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders', value: 'Startup'}
 supported_os: [Windows]
 ---
 name: WindowsStartupFolders
@@ -2455,10 +2454,10 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '%%environ_allusersprofile%%\Microsoft\Windows\Start Menu\Programs\Startup\*'
-      - '%%environ_allusersprofile%%\Start Menu\Programs\Startup\*'
-      - '%%users.appdata%%\Microsoft\Windows\Start Menu\Programs\Startup\*'
-      - '%%users.userprofile%%\Start Menu\Programs\Startup\*'
+    - '%%environ_allusersprofile%%\Microsoft\Windows\Start Menu\Programs\Startup\*'
+    - '%%environ_allusersprofile%%\Start Menu\Programs\Startup\*'
+    - '%%users.appdata%%\Microsoft\Windows\Start Menu\Programs\Startup\*'
+    - '%%users.userprofile%%\Start Menu\Programs\Startup\*'
     separator: '\'
 supported_os: [Windows]
 ---
@@ -2468,11 +2467,11 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\System\Scripts', value: 'Startup'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Group Policy\Scripts\Startup\*\*', value: 'Script'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Group Policy\Scripts\Startup\*\*', value: 'Parameters'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Group Policy\State\Machine\Scripts\Startup\*\*', value: 'Script'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Group Policy\State\Machine\Scripts\Startup\*\*', value: 'Parameters'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\System\Scripts', value: 'Startup'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Group Policy\Scripts\Startup\*\*', value: 'Script'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Group Policy\Scripts\Startup\*\*', value: 'Parameters'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Group Policy\State\Machine\Scripts\Startup\*\*', value: 'Script'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Group Policy\State\Machine\Scripts\Startup\*\*', value: 'Parameters'}
 supported_os: [Windows]
 urls:
 - 'https://technet.microsoft.com/en-us/library/ff404236.aspx'
@@ -2489,14 +2488,14 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Active Setup\Installed Components\*', value: 'StubPath'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Active Setup\Installed Components\*', value: 'Version'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Active Setup\Installed Components\*', value: 'StubPath'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Active Setup\Installed Components\*', value: 'Version'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Active Setup\Installed Components\*', value: 'StubPath'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Active Setup\Installed Components\*', value: 'Version'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Active Setup\Installed Components\*', value: 'StubPath'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Active Setup\Installed Components\*', value: 'Version'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Active Setup\Installed Components\*', value: 'StubPath'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Active Setup\Installed Components\*', value: 'Version'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Active Setup\Installed Components\*', value: 'StubPath'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Active Setup\Installed Components\*', value: 'Version'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Active Setup\Installed Components\*', value: 'StubPath'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Active Setup\Installed Components\*', value: 'Version'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Active Setup\Installed Components\*', value: 'StubPath'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Active Setup\Installed Components\*', value: 'Version'}
 supported_os: [Windows]
 urls:
 - 'https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2'
@@ -2508,8 +2507,8 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '%%environ_systemroot%%\Prefetch\Ag*.db'
-      - '%%environ_systemroot%%\Prefetch\Ag*.db.trx'
+    - '%%environ_systemroot%%\Prefetch\Ag*.db'
+    - '%%environ_systemroot%%\Prefetch\Ag*.db.trx'
     separator: '\'
 labels: [System]
 supported_os: [Windows]
@@ -2521,9 +2520,9 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '%%environ_systemdrive%%\system.ini'
-      - '%%environ_windir%%\win.ini'
-      - '%%environ_windir%%\wininit.ini'
+    - '%%environ_systemdrive%%\system.ini'
+    - '%%environ_windir%%\win.ini'
+    - '%%environ_windir%%\wininit.ini'
     separator: '\'
 supported_os: [Windows]
 ---
@@ -2533,8 +2532,8 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System', value: 'Shell'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\System', value: 'Shell'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System', value: 'Shell'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\System', value: 'Shell'}
 supported_os: [Windows]
 urls: ['https://technet.microsoft.com/en-us/library/cc728472(v=ws.10).aspx']
 ---
@@ -2544,10 +2543,10 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '%%environ_systemroot%%\System32\config\RegBack\SAM'
-      - '%%environ_systemroot%%\System32\config\RegBack\SECURITY'
-      - '%%environ_systemroot%%\System32\config\RegBack\SOFTWARE'
-      - '%%environ_systemroot%%\System32\config\RegBack\SYSTEM'
+    - '%%environ_systemroot%%\System32\config\RegBack\SAM'
+    - '%%environ_systemroot%%\System32\config\RegBack\SECURITY'
+    - '%%environ_systemroot%%\System32\config\RegBack\SOFTWARE'
+    - '%%environ_systemroot%%\System32\config\RegBack\SYSTEM'
     separator: '\'
 labels: [System]
 supported_os: [Windows]
@@ -2562,18 +2561,18 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '%%environ_systemroot%%\System32\config\RegBack\SAM.LOG'
-      - '%%environ_systemroot%%\System32\config\RegBack\SAM.LOG1'
-      - '%%environ_systemroot%%\System32\config\RegBack\SAM.LOG2'
-      - '%%environ_systemroot%%\System32\config\RegBack\SECURITY.LOG'
-      - '%%environ_systemroot%%\System32\config\RegBack\SECURITY.LOG1'
-      - '%%environ_systemroot%%\System32\config\RegBack\SECURITY.LOG2'
-      - '%%environ_systemroot%%\System32\config\RegBack\SOFTWARE.LOG'
-      - '%%environ_systemroot%%\System32\config\RegBack\SOFTWARE.LOG1'
-      - '%%environ_systemroot%%\System32\config\RegBack\SOFTWARE.LOG2'
-      - '%%environ_systemroot%%\System32\config\RegBack\SYSTEM.LOG'
-      - '%%environ_systemroot%%\System32\config\RegBack\SYSTEM.LOG1'
-      - '%%environ_systemroot%%\System32\config\RegBack\SYSTEM.LOG2'
+    - '%%environ_systemroot%%\System32\config\RegBack\SAM.LOG'
+    - '%%environ_systemroot%%\System32\config\RegBack\SAM.LOG1'
+    - '%%environ_systemroot%%\System32\config\RegBack\SAM.LOG2'
+    - '%%environ_systemroot%%\System32\config\RegBack\SECURITY.LOG'
+    - '%%environ_systemroot%%\System32\config\RegBack\SECURITY.LOG1'
+    - '%%environ_systemroot%%\System32\config\RegBack\SECURITY.LOG2'
+    - '%%environ_systemroot%%\System32\config\RegBack\SOFTWARE.LOG'
+    - '%%environ_systemroot%%\System32\config\RegBack\SOFTWARE.LOG1'
+    - '%%environ_systemroot%%\System32\config\RegBack\SOFTWARE.LOG2'
+    - '%%environ_systemroot%%\System32\config\RegBack\SYSTEM.LOG'
+    - '%%environ_systemroot%%\System32\config\RegBack\SYSTEM.LOG1'
+    - '%%environ_systemroot%%\System32\config\RegBack\SYSTEM.LOG2'
     separator: '\'
 labels: [System]
 supported_os: [Windows]
@@ -2585,11 +2584,11 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '%%environ_systemroot%%\System32\config\SAM'
-      - '%%environ_systemroot%%\System32\config\SECURITY'
-      - '%%environ_systemroot%%\System32\config\SOFTWARE'
-      - '%%environ_systemroot%%\System32\config\SYSTEM'
-      - '\System Volume Information\Syscache.hve'
+    - '%%environ_systemroot%%\System32\config\SAM'
+    - '%%environ_systemroot%%\System32\config\SECURITY'
+    - '%%environ_systemroot%%\System32\config\SOFTWARE'
+    - '%%environ_systemroot%%\System32\config\SYSTEM'
+    - '\System Volume Information\Syscache.hve'
     separator: '\'
 labels: [System]
 supported_os: [Windows]
@@ -2601,18 +2600,18 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '%%environ_systemroot%%\System32\config\SAM.LOG'
-      - '%%environ_systemroot%%\System32\config\SAM.LOG1'
-      - '%%environ_systemroot%%\System32\config\SAM.LOG2'
-      - '%%environ_systemroot%%\System32\config\SECURITY.LOG'
-      - '%%environ_systemroot%%\System32\config\SECURITY.LOG1'
-      - '%%environ_systemroot%%\System32\config\SECURITY.LOG2'
-      - '%%environ_systemroot%%\System32\config\SOFTWARE.LOG'
-      - '%%environ_systemroot%%\System32\config\SOFTWARE.LOG1'
-      - '%%environ_systemroot%%\System32\config\SOFTWARE.LOG2'
-      - '%%environ_systemroot%%\System32\config\SYSTEM.LOG'
-      - '%%environ_systemroot%%\System32\config\SYSTEM.LOG1'
-      - '%%environ_systemroot%%\System32\config\SYSTEM.LOG2'
+    - '%%environ_systemroot%%\System32\config\SAM.LOG'
+    - '%%environ_systemroot%%\System32\config\SAM.LOG1'
+    - '%%environ_systemroot%%\System32\config\SAM.LOG2'
+    - '%%environ_systemroot%%\System32\config\SECURITY.LOG'
+    - '%%environ_systemroot%%\System32\config\SECURITY.LOG1'
+    - '%%environ_systemroot%%\System32\config\SECURITY.LOG2'
+    - '%%environ_systemroot%%\System32\config\SOFTWARE.LOG'
+    - '%%environ_systemroot%%\System32\config\SOFTWARE.LOG1'
+    - '%%environ_systemroot%%\System32\config\SOFTWARE.LOG2'
+    - '%%environ_systemroot%%\System32\config\SYSTEM.LOG'
+    - '%%environ_systemroot%%\System32\config\SYSTEM.LOG1'
+    - '%%environ_systemroot%%\System32\config\SYSTEM.LOG2'
     separator: '\'
 labels: [System]
 supported_os: [Windows]
@@ -2624,8 +2623,8 @@ sources:
 - type: ARTIFACT_GROUP
   attributes:
     names:
-      - 'WindowsSystemRegistryFiles'
-      - 'WindowsSystemRegistryTransactionLogFiles'
+    - 'WindowsSystemRegistryFiles'
+    - 'WindowsSystemRegistryTransactionLogFiles'
 labels: [System]
 supported_os: [Windows]
 ---
@@ -2657,18 +2656,18 @@ sources:
 - type: REGISTRY_KEY
   attributes:
     keys:
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Terminal Server\Install\Software\Microsoft\Windows\CurrentVersion\Runonce\*'
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Terminal Server\Install\Software\Microsoft\Windows\CurrentVersion\RunonceEx\*'
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Terminal Server\Install\Software\Microsoft\Windows\CurrentVersion\Run\*'
-      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows NT\CurrentVersion\Terminal Server\Install\Software\Microsoft\Windows\CurrentVersion\Runonce\*'
-      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows NT\CurrentVersion\Terminal Server\Install\Software\Microsoft\Windows\CurrentVersion\RunonceEx\*'
-      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows NT\CurrentVersion\Terminal Server\Install\Software\Microsoft\Windows\CurrentVersion\Run\*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Terminal Server\Install\Software\Microsoft\Windows\CurrentVersion\Runonce\*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Terminal Server\Install\Software\Microsoft\Windows\CurrentVersion\RunonceEx\*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Terminal Server\Install\Software\Microsoft\Windows\CurrentVersion\Run\*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows NT\CurrentVersion\Terminal Server\Install\Software\Microsoft\Windows\CurrentVersion\Runonce\*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows NT\CurrentVersion\Terminal Server\Install\Software\Microsoft\Windows\CurrentVersion\RunonceEx\*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows NT\CurrentVersion\Terminal Server\Install\Software\Microsoft\Windows\CurrentVersion\Run\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Terminal Server\Install\Software\Microsoft\Windows\CurrentVersion\Runonce\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Terminal Server\Install\Software\Microsoft\Windows\CurrentVersion\RunonceEx\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Terminal Server\Install\Software\Microsoft\Windows\CurrentVersion\Run\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows NT\CurrentVersion\Terminal Server\Install\Software\Microsoft\Windows\CurrentVersion\Runonce\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows NT\CurrentVersion\Terminal Server\Install\Software\Microsoft\Windows\CurrentVersion\RunonceEx\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows NT\CurrentVersion\Terminal Server\Install\Software\Microsoft\Windows\CurrentVersion\Run\*'
+    - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Terminal Server\Install\Software\Microsoft\Windows\CurrentVersion\Runonce\*'
+    - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Terminal Server\Install\Software\Microsoft\Windows\CurrentVersion\RunonceEx\*'
+    - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Terminal Server\Install\Software\Microsoft\Windows\CurrentVersion\Run\*'
+    - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows NT\CurrentVersion\Terminal Server\Install\Software\Microsoft\Windows\CurrentVersion\Runonce\*'
+    - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows NT\CurrentVersion\Terminal Server\Install\Software\Microsoft\Windows\CurrentVersion\RunonceEx\*'
+    - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows NT\CurrentVersion\Terminal Server\Install\Software\Microsoft\Windows\CurrentVersion\Run\*'
 supported_os: [Windows]
 urls: ['http://gladiator-antivirus.com/forum/index.php?showtopic=24610']
 ---
@@ -2678,7 +2677,7 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Terminal Server\Wds\rdpwd', value: 'StartupPrograms'}
+    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Terminal Server\Wds\rdpwd', value: 'StartupPrograms'}
 supported_os: [Windows]
 urls: ['http://forum.sysinternals.com/rdpclip_topic4729.html']
 ---
@@ -2688,11 +2687,11 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp', value: 'InitialProgram'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows NT\Terminal Services', value: 'InitialProgram'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Policies\Microsoft\Windows NT\Terminal Services', value: 'InitialProgram'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Policies\Microsoft\Windows NT\Terminal Services', value: 'InitialProgram'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Policies\Microsoft\Windows NT\Terminal Services', value: 'InitialProgram'}
+    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp', value: 'InitialProgram'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows NT\Terminal Services', value: 'InitialProgram'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Policies\Microsoft\Windows NT\Terminal Services', value: 'InitialProgram'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Policies\Microsoft\Windows NT\Terminal Services', value: 'InitialProgram'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Policies\Microsoft\Windows NT\Terminal Services', value: 'InitialProgram'}
 supported_os: [Windows]
 urls: ['https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2']
 ---
@@ -2702,10 +2701,10 @@ sources:
 - type: REGISTRY_KEY
   attributes:
     keys:
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows CE Services\AutoStartOnConnect\*'
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows CE Services\AutoStartOnDisconnect\*'
-      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows CE Services\AutoStartOnConnect\*'
-      - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows CE Services\AutoStartOnDisconnect\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows CE Services\AutoStartOnConnect\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows CE Services\AutoStartOnDisconnect\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows CE Services\AutoStartOnConnect\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows CE Services\AutoStartOnDisconnect\*'
 supported_os: [Windows]
 urls: ['https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2']
 ---
@@ -2724,10 +2723,10 @@ sources:
 - type: REGISTRY_KEY
   attributes:
     keys:
-      - 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\BackupPath'
-      - 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\ChkDskPath'
-      - 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\cleanuppath'
-      - 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\DefragPath'
+    - 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\BackupPath'
+    - 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\ChkDskPath'
+    - 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\cleanuppath'
+    - 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\DefragPath'
 supported_os: [Windows]
 urls:
 - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
@@ -2758,12 +2757,12 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\Results\Detect', value: 'LastError'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\Results\Detect', value: 'LastSuccessTime'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\Results\Download', value: 'LastError'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\Results\Download', value: 'LastSuccessTime'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\Results\Install', value: 'LastError'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\Results\Install', value: 'LastSuccessTime'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\Results\Detect', value: 'LastError'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\Results\Detect', value: 'LastSuccessTime'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\Results\Download', value: 'LastError'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\Results\Download', value: 'LastSuccessTime'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\Results\Install', value: 'LastError'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\Results\Install', value: 'LastSuccessTime'}
 supported_os: [Windows]
 urls:
 - 'http://forensicswiki.org/wiki/Windows_Update'
@@ -2820,8 +2819,8 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '%%users.appdata%%\Microsoft\Office\Recent\*'
-      - '%%users.appdata%%\Microsoft\Windows\Recent\*'
+    - '%%users.appdata%%\Microsoft\Office\Recent\*'
+    - '%%users.appdata%%\Microsoft\Windows\Recent\*'
     separator: '\'
 labels: [Users]
 supported_os: [Windows]
@@ -2832,9 +2831,9 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '%%users.userprofile%%\NTUSER.DAT'
-      - '%%users.userprofile%%\NTUSER.MAN'
-      - '%%users.localappdata%%\Microsoft\Windows\UsrClass.dat'
+    - '%%users.userprofile%%\NTUSER.DAT'
+    - '%%users.userprofile%%\NTUSER.MAN'
+    - '%%users.localappdata%%\Microsoft\Windows\UsrClass.dat'
     separator: '\'
 labels: [Users]
 supported_os: [Windows]
@@ -2846,12 +2845,12 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '%%users.userprofile%%\NTUSER.DAT.LOG'
-      - '%%users.userprofile%%\NTUSER.DAT.LOG1'
-      - '%%users.userprofile%%\NTUSER.DAT.LOG2'
-      - '%%users.localappdata%%\Microsoft\Windows\UsrClass.dat.LOG'
-      - '%%users.localappdata%%\Microsoft\Windows\UsrClass.dat.LOG1'
-      - '%%users.localappdata%%\Microsoft\Windows\UsrClass.dat.LOG2'
+    - '%%users.userprofile%%\NTUSER.DAT.LOG'
+    - '%%users.userprofile%%\NTUSER.DAT.LOG1'
+    - '%%users.userprofile%%\NTUSER.DAT.LOG2'
+    - '%%users.localappdata%%\Microsoft\Windows\UsrClass.dat.LOG'
+    - '%%users.localappdata%%\Microsoft\Windows\UsrClass.dat.LOG1'
+    - '%%users.localappdata%%\Microsoft\Windows\UsrClass.dat.LOG2'
     separator: '\'
 labels: [Users]
 supported_os: [Windows]
@@ -2863,8 +2862,8 @@ sources:
 - type: ARTIFACT_GROUP
   attributes:
     names:
-      - 'WindowsUserRegistryFiles'
-      - 'WindowsUserRegistryTransactionLogFiles'
+    - 'WindowsUserRegistryFiles'
+    - 'WindowsUserRegistryTransactionLogFiles'
 labels: [Users]
 supported_os: [Windows]
 ---
@@ -2874,9 +2873,9 @@ sources:
 - type: REGISTRY_KEY
   attributes:
     keys:
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\*'
-      - 'HKEY_USERS\%%users.sid%%\Environment\*'
-      - 'HKEY_USERS\%%users.sid%%\Volatile Environment\*'
+    - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\*'
+    - 'HKEY_USERS\%%users.sid%%\Environment\*'
+    - 'HKEY_USERS\%%users.sid%%\Volatile Environment\*'
 provides:
 - users.cookies
 - users.appdata
@@ -2898,8 +2897,8 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'GinaDLL'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'GinaDLL'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'GinaDLL'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'GinaDLL'}
 supported_os: [Windows]
 urls: ['https://technet.microsoft.com/en-us/library/cc939701.aspx']
 ---
@@ -2909,8 +2908,8 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\Notify\*', value: 'DLLName'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\Notify\*', value: 'DLLName'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\Notify\*', value: 'DLLName'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\Notify\*', value: 'DLLName'}
 supported_os: [Windows]
 urls: ['https://msdn.microsoft.com/en-us/library/windows/desktop/aa379402(v=vs.85).aspx']
 ---
@@ -2920,8 +2919,8 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'Shell'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'Shell'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'Shell'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'Shell'}
 supported_os: [Windows]
 urls: ['https://msdn.microsoft.com/en-us/library/ms838576%28v=winembedded.5%29.aspx']
 ---
@@ -2931,8 +2930,8 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'System'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'System'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'System'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'System'}
 supported_os: [Windows]
 urls:
 - 'https://code.google.com/p/regripper/wiki/ASEPs'
@@ -2945,8 +2944,8 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'Taskman'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'Taskman'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'Taskman'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'Taskman'}
 supported_os: [Windows]
 urls: ['https://technet.microsoft.com/en-us/library/cc939701.aspx']
 ---
@@ -2956,8 +2955,8 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'UiHost'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'UiHost'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'UiHost'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'UiHost'}
 supported_os: [Windows]
 urls:
 - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
@@ -2969,8 +2968,8 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'Userinit'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'Userinit'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'Userinit'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'Userinit'}
 supported_os: [Windows]
 urls: ['https://technet.microsoft.com/en-us/library/cc939862.aspx']
 ---
@@ -2998,8 +2997,8 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'VMApplet'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'VMApplet'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'VMApplet'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'VMApplet'}
 supported_os: [Windows]
 urls: ['https://technet.microsoft.com/en-us/library/cc939701.aspx']
 ---
@@ -3009,8 +3008,8 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '%%environ_windir%%\winstart.bat'
-      - '%%environ_windir%%\dosstart.bat'
+    - '%%environ_windir%%\winstart.bat'
+    - '%%environ_windir%%\dosstart.bat'
     separator: '\'
 supported_os: [Windows]
 ---
@@ -3020,7 +3019,7 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'AppSetup'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'AppSetup'}
 supported_os: [Windows]
 urls: ['https://technet.microsoft.com/en-us/library/cc939701.aspx']
 ---
@@ -3034,10 +3033,10 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\GPExtensions\*', value: ''}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\GPExtensions\*', value: 'DllName'}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows NT\CurrentVersion\Winlogon\GPExtensions\*', value: ''}
-      - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows NT\CurrentVersion\Winlogon\GPExtensions\*', value: 'DllName'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\GPExtensions\*', value: ''}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\GPExtensions\*', value: 'DllName'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows NT\CurrentVersion\Winlogon\GPExtensions\*', value: ''}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows NT\CurrentVersion\Winlogon\GPExtensions\*', value: 'DllName'}
 supported_os: [Windows]
 urls: ['https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2']
 ---
@@ -3047,8 +3046,8 @@ sources:
 - type: REGISTRY_KEY
   attributes:
     keys:
-      - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\WinSock2\Parameters\Protocol_Catalog9\Catalog_Entries\*'
-      - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\WinSock2\Parameters\Protocol_Catalog9\Catalog_Entries64\*'
+    - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\WinSock2\Parameters\Protocol_Catalog9\Catalog_Entries\*'
+    - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\WinSock2\Parameters\Protocol_Catalog9\Catalog_Entries64\*'
 supported_os: [Windows]
 urls:
 - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
@@ -3061,8 +3060,8 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\WinSock2\Parameters\NameSpace_Catalog5\Catalog_Entries\*', value: 'LibraryPath'}
-      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\WinSock2\Parameters\NameSpace_Catalog5\Catalog_Entries64\*', value: 'LibraryPath'}
+    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\WinSock2\Parameters\NameSpace_Catalog5\Catalog_Entries\*', value: 'LibraryPath'}
+    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\WinSock2\Parameters\NameSpace_Catalog5\Catalog_Entries64\*', value: 'LibraryPath'}
 supported_os: [Windows]
 urls:
 - 'https://www.symantec.com/security_response/writeup.jsp?docid=2012-020609-4221-99&tabid=2'
@@ -3076,11 +3075,11 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\Tcpip\Parameters', value: 'NameServer'}
-      - {key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\*', value: 'NameServer'}
-      - {key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Dnscache\Parameters', value: 'NameServer'}
-      - {key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\Tcpip\Parameters\Interfaces\*', value: 'DhcpNameServer'}
-      - {key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\Tcpip\Parameters\Interfaces\*', value: 'DhcpServer'}
+    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\Tcpip\Parameters', value: 'NameServer'}
+    - {key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\*', value: 'NameServer'}
+    - {key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Dnscache\Parameters', value: 'NameServer'}
+    - {key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\Tcpip\Parameters\Interfaces\*', value: 'DhcpNameServer'}
+    - {key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\Tcpip\Parameters\Interfaces\*', value: 'DhcpServer'}
 labels: [System, Network]
 supported_os: [Windows]
 urls: ['https://technet.microsoft.com/en-us/library/dd197418(v=ws.10).aspx']

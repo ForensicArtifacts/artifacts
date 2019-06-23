@@ -100,9 +100,9 @@ sources:
 - type: ARTIFACT_GROUP
   attributes:
     names:
-      - PythonDistInfo
-      - PythonEggInfo
-      - PythonWheelInfo
+    - PythonDistInfo
+    - PythonEggInfo
+    - PythonWheelInfo
 labels: [Software]
 ---
 name: PythonWheelInfo

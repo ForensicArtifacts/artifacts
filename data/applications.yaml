@@ -21,15 +21,15 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '%%users.homedir%%/Library/Preferences/com.microsoft.office.plist'
-      - '%%users.homedir%%/Library/Containers/com.microsoft.*/Data/Library/Preferences/com.microsoft.*.securebookmarks.plist'
+    - '%%users.homedir%%/Library/Preferences/com.microsoft.office.plist'
+    - '%%users.homedir%%/Library/Containers/com.microsoft.*/Data/Library/Preferences/com.microsoft.*.securebookmarks.plist'
     separator: '/'
   supported_os: [Darwin]
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Office\*\*\File MRU', value: 'Item *'}
-      - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Office\*\*\Place MRU', value: 'Item *'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Office\*\*\File MRU', value: 'Item *'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Office\*\*\Place MRU', value: 'Item *'}
   supported_os: [Windows]
 supported_os: [Darwin, Windows]
 urls: ['https://github.com/mac4n6/macMRU-Parser']
@@ -40,8 +40,8 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '%%users.homedir%%/AppData/Local/Microsoft/Outlook/*.pab'
-      - '%%users.homedir%%/Documents/Outlook Files/*.pab'
+    - '%%users.homedir%%/AppData/Local/Microsoft/Outlook/*.pab'
+    - '%%users.homedir%%/Documents/Outlook Files/*.pab'
     separator: '/'
 labels: [Users, Mail]
 supported_os: [Windows]
@@ -53,8 +53,8 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '%%users.homedir%%/AppData/Local/Microsoft/Outlook/*.pst'
-      - '%%users.homedir%%/Documents/Outlook Files/*.pst'
+    - '%%users.homedir%%/AppData/Local/Microsoft/Outlook/*.pst'
+    - '%%users.homedir%%/Documents/Outlook Files/*.pst'
     separator: '/'
 labels: [Users, Mail]
 supported_os: [Windows]
@@ -66,8 +66,8 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '%%users.homedir%%/AppData/Local/Microsoft/Outlook/*.ost'
-      - '%%users.homedir%%/Documents/Outlook Files/*.ost'
+    - '%%users.homedir%%/AppData/Local/Microsoft/Outlook/*.ost'
+    - '%%users.homedir%%/Documents/Outlook Files/*.ost'
     separator: '/'
 labels: [Users, Mail]
 supported_os: [Windows]
