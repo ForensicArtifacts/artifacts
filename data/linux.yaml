@@ -6,15 +6,15 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '/etc/anacrontab'
-      - '/etc/cron.daily/*'
-      - '/etc/cron.hourly/*'
-      - '/etc/cron.monthly/*'
-      - '/etc/cron.weekly/*'
-      - '/var/spool/anacron/cron.daily'
-      - '/var/spool/anacron/cron.hourly'
-      - '/var/spool/anacron/cron.monthly'
-      - '/var/spool/anacron/cron.weekly'
+    - '/etc/anacrontab'
+    - '/etc/cron.daily/*'
+    - '/etc/cron.hourly/*'
+    - '/etc/cron.monthly/*'
+    - '/etc/cron.weekly/*'
+    - '/var/spool/anacron/cron.daily'
+    - '/var/spool/anacron/cron.hourly'
+    - '/var/spool/anacron/cron.monthly'
+    - '/var/spool/anacron/cron.weekly'
 labels: [Configuration Files]
 supported_os: [Linux]
 ---
@@ -24,8 +24,8 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '/etc/apt/sources.list'
-      - '/etc/apt/sources.list.d/*.list'
+    - '/etc/apt/sources.list'
+    - '/etc/apt/sources.list.d/*.list'
 labels: [Configuration Files, System]
 supported_os: [Linux]
 urls: ['http://manpages.ubuntu.com/manpages/trusty/en/man5/sources.list.5.html']
@@ -36,10 +36,10 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '/etc/apt/trusted.gpg'
-      - '/etc/apt/trusted.gpg.d/*.gpg'
-      - '/etc/apt/trustdb.gpg'
-      - '/usr/share/keyrings/*.gpg'
+    - '/etc/apt/trusted.gpg'
+    - '/etc/apt/trusted.gpg.d/*.gpg'
+    - '/etc/apt/trustdb.gpg'
+    - '/usr/share/keyrings/*.gpg'
 labels: [Configuration Files, System]
 supported_os: [Linux]
 urls: ['https://wiki.debian.org/SecureApt']
@@ -50,15 +50,15 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '/etc/cron.allow'
-      - '/etc/cron.deny'
-      - '/etc/at.allow'
-      - '/etc/at.deny'
+    - '/etc/cron.allow'
+    - '/etc/cron.deny'
+    - '/etc/at.allow'
+    - '/etc/at.deny'
 labels: [Configuration Files]
 supported_os: [Linux]
 urls:
-  - http://manpages.ubuntu.com/manpages/saucy/man5/at.allow.5.html
-  - http://manpages.ubuntu.com/manpages/precise/en/man1/crontab.1.html
+- http://manpages.ubuntu.com/manpages/saucy/man5/at.allow.5.html
+- http://manpages.ubuntu.com/manpages/precise/en/man1/crontab.1.html
 ---
 name: DebianPackagesLogFiles
 doc: Linux dpkg log files.
@@ -66,8 +66,8 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '/var/log/dpkg.log*'
-      - '/var/log/apt/history.log*'
+    - '/var/log/dpkg.log*'
+    - '/var/log/apt/history.log*'
 labels: [Logs]
 supported_os: [Linux]
 ---
@@ -103,8 +103,8 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '/etc/hosts.allow'
-      - '/etc/hosts.deny'
+    - '/etc/hosts.allow'
+    - '/etc/hosts.deny'
 labels: [Configuration Files]
 supported_os: [Linux]
 ---
@@ -124,8 +124,8 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '/etc/modules.conf'
-      - '/etc/modprobe.d/*'
+    - '/etc/modules.conf'
+    - '/etc/modprobe.d/*'
 supported_os: [Linux]
 ---
 name: LinuxAtJobs
@@ -166,9 +166,9 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '/etc/crontab'
-      - '/etc/cron.d/*'
-      - '/var/spool/cron/**'
+    - '/etc/crontab'
+    - '/etc/cron.d/*'
+    - '/var/spool/cron/**'
 labels: [Configuration Files]
 supported_os: [Linux]
 ---
@@ -186,10 +186,10 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '/etc/enterprise-release'
-      - '/etc/oracle-release'
-      - '/etc/redhat-release'
-      - '/etc/system-release'
+    - '/etc/enterprise-release'
+    - '/etc/oracle-release'
+    - '/etc/redhat-release'
+    - '/etc/system-release'
 provides: [os_release, os_major_version, os_minor_version]
 labels: [Software]
 supported_os: [Linux]
@@ -218,8 +218,8 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '/boot/grub/grub.cfg'
-      - '/boot/grub2/grub.cfg'
+    - '/boot/grub/grub.cfg'
+    - '/boot/grub2/grub.cfg'
 labels: [System, Configuration Files]
 supported_os: [Linux]
 urls: ['https://en.wikipedia.org/wiki/GNU_GRUB']
@@ -238,13 +238,13 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '/boot/initramfs*'
-      - '/boot/initrd*'
+    - '/boot/initramfs*'
+    - '/boot/initrd*'
 labels: [Configuration Files, System]
 supported_os: [Linux]
 urls:
-  - 'http://en.wikipedia.org/wiki/Initrd'
-  - 'https://www.kernel.org/doc/Documentation/initrd.txt'
+- 'http://en.wikipedia.org/wiki/Initrd'
+- 'https://www.kernel.org/doc/Documentation/initrd.txt'
 ---
 name: LinuxIssueFile
 doc: Linux prelogin message and identification (issue) file.
@@ -252,8 +252,8 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '/etc/issue'
-      - '/etc/issue.net'
+    - '/etc/issue'
+    - '/etc/issue.net'
 labels: [Configuration Files, System]
 supported_os: [Linux]
 urls: ['https://linux.die.net/man/5/issue']
@@ -289,9 +289,9 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '/etc/init.d/*'
-      - '/etc/insserv.conf'
-      - '/etc/insserv.conf.d/**'
+    - '/etc/init.d/*'
+    - '/etc/insserv.conf'
+    - '/etc/insserv.conf.d/**'
 labels: [Configuration Files, System]
 supported_os: [Linux]
 urls: ['https://wiki.debian.org/LSBInitScripts']
@@ -338,8 +338,8 @@ sources:
 - type: ARTIFACT_GROUP
   attributes:
     names:
-      - LinuxFstab
-      - LinuxProcMounts
+    - LinuxFstab
+    - LinuxProcMounts
 labels: [System, Configuration Files]
 supported_os: [Linux]
 ---
@@ -349,9 +349,9 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '/etc/pam.conf'
-      - '/etc/pam.d'
-      - '/etc/pam.d/*'
+    - '/etc/pam.conf'
+    - '/etc/pam.d'
+    - '/etc/pam.d/*'
 labels: [Authentication, Configuration Files]
 supported_os: [Linux]
 urls: ['http://www.linux-pam.org/']
@@ -371,12 +371,12 @@ supported_os: [Linux]
 name: LinuxReleaseInfo
 doc: Release information for Linux platforms.
 sources:
-  - type: ARTIFACT_GROUP
-    attributes:
-      names:
-        - LinuxDistributionRelease
-        - LinuxLSBRelease
-        - LinuxSystemdOSRelease
+- type: ARTIFACT_GROUP
+  attributes:
+    names:
+    - LinuxDistributionRelease
+    - LinuxLSBRelease
+    - LinuxSystemdOSRelease
 provides: [os_release, os_major_version, os_minor_version]
 labels: [Software]
 supported_os: [Linux]
@@ -387,9 +387,9 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '/etc/rsyslog.conf'
-      - '/etc/rsyslog.d'
-      - '/etc/rsyslog.d/*'
+    - '/etc/rsyslog.conf'
+    - '/etc/rsyslog.d'
+    - '/etc/rsyslog.d/*'
 labels: [Configuration Files, Logs]
 supported_os: [Linux]
 urls: ['http://www.rsyslog.com/doc/rsyslog_conf.html']
@@ -400,9 +400,9 @@ sources:
 - type: ARTIFACT_GROUP
   attributes:
     names:
-      - AnacronFiles
-      - LinuxCronTabs
-      - LinuxAtJobs
+    - AnacronFiles
+    - LinuxCronTabs
+    - LinuxAtJobs
 labels: [Configuration Files]
 supported_os: [Linux]
 ---
@@ -412,9 +412,9 @@ sources:
 - type: ARTIFACT_GROUP
   attributes:
     names:
-      - LinuxXinetd
-      - LinuxLSBInit
-      - LinuxSysVInit
+    - LinuxXinetd
+    - LinuxLSBInit
+    - LinuxSysVInit
 labels: [Configuration Files, System]
 supported_os: [Linux]
 ---
@@ -441,8 +441,8 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '/etc/syslog-ng/syslog-ng.conf'
-      - '/etc/syslog-ng/conf-d/*.conf'
+    - '/etc/syslog-ng/syslog-ng.conf'
+    - '/etc/syslog-ng/conf-d/*.conf'
 labels: [Configuration Files, Logs]
 supported_os: [Linux]
 urls: ['http://linux.die.net/man/5/syslog-ng.conf']
@@ -453,8 +453,8 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '/etc/os-release'
-      - '/usr/lib/os-release'
+    - '/etc/os-release'
+    - '/usr/lib/os-release'
 provides: [os_release, os_major_version, os_minor_version]
 labels: [Software]
 supported_os: [Linux]
@@ -466,15 +466,15 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '/etc/rc*.d'
-      - '/etc/rc*.d/*'
-      - '/etc/rc.d/rc*.d/*'
-      - '/etc/rc.d/init.d/*'
+    - '/etc/rc*.d'
+    - '/etc/rc*.d/*'
+    - '/etc/rc.d/rc*.d/*'
+    - '/etc/rc.d/init.d/*'
 labels: [Configuration Files, System]
 supported_os: [Linux]
 urls:
-  - 'http://savannah.nongnu.org/projects/sysvinit'
-  - 'http://docs.oracle.com/cd/E37670_01/E41138/html/ol_svcscripts.html'
+- 'http://savannah.nongnu.org/projects/sysvinit'
+- 'http://docs.oracle.com/cd/E37670_01/E41138/html/ol_svcscripts.html'
 ---
 name: LinuxTimezoneFile
 doc: Linux timezone file.
@@ -490,9 +490,9 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '/var/log/btmp'
-      - '/var/log/wtmp'
-      - '/var/run/utmp'
+    - '/var/log/btmp'
+    - '/var/log/wtmp'
+    - '/var/run/utmp'
 labels: [Logs, Authentication]
 supported_os: [Linux]
 urls: ['https://github.com/libyal/dtformats/blob/master/documentation/Utmp%20login%20records%20format.asciidoc']
@@ -513,8 +513,8 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '/etc/xinetd.conf'
-      - '/etc/xinetd.d/**'
+    - '/etc/xinetd.conf'
+    - '/etc/xinetd.d/**'
 labels: [Configuration Files, System]
 supported_os: [Linux]
 urls: ['http://en.wikipedia.org/wiki/Xinetd']
@@ -544,12 +544,12 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '/etc/netgroup'
-      - '/etc/nsswitch.conf'
-      - '/etc/passwd'
-      - '/etc/shadow'
-      - '/etc/security/access.conf'
-      - '/root/.k5login'
+    - '/etc/netgroup'
+    - '/etc/nsswitch.conf'
+    - '/etc/passwd'
+    - '/etc/shadow'
+    - '/etc/security/access.conf'
+    - '/root/.k5login'
 labels: [Authentication, Configuration Files]
 supported_os: [Linux]
 ---
@@ -576,16 +576,16 @@ doc: Info and config files for PCI devices located on the system.
 sources:
 - type: FILE
   attributes:
-     paths:
-        - '/sys/bus/pci/devices/*/vendor'
-        - '/sys/bus/pci/devices/*/device'
-        - '/sys/bus/pci/devices/*/class'
-        - '/sys/bus/pci/devices/*/config'
+    paths:
+    - '/sys/bus/pci/devices/*/vendor'
+    - '/sys/bus/pci/devices/*/device'
+    - '/sys/bus/pci/devices/*/class'
+    - '/sys/bus/pci/devices/*/config'
 labels: [Configuration Files, System]
 urls:
-  - 'https://www.kernel.org/doc/Documentation/ABI/testing/sysfs-bus-pci'
-  - 'https://www.kernel.org/doc/Documentation/filesystems/sysfs-pci.txt'
-  - 'https://wiki.debian.org/HowToIdentifyADevice/PCI'
+- 'https://www.kernel.org/doc/Documentation/ABI/testing/sysfs-bus-pci'
+- 'https://www.kernel.org/doc/Documentation/filesystems/sysfs-pci.txt'
+- 'https://wiki.debian.org/HowToIdentifyADevice/PCI'
 supported_os: [Linux]
 ---
 name: SSHHostPubKeys
@@ -594,7 +594,7 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '/etc/ssh/ssh_host_*_key.pub'
+    - '/etc/ssh/ssh_host_*_key.pub'
 labels: [Authentication, Configuration Files]
 supported_os: [Linux]
 ---
@@ -612,8 +612,8 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '/etc/yum.conf'
-      - '/etc/yum.repos.d/*.repo'
+    - '/etc/yum.conf'
+    - '/etc/yum.repos.d/*.repo'
 labels: [Configuration Files, System]
 supported_os: [Linux]
 urls: ['https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/System_Administrators_Guide/sec-Configuring_Yum_and_Yum_Repositories.html']

@@ -6,8 +6,8 @@ sources:
 - type: ARTIFACT_GROUP
   attributes:
     names:
-      - 'TomcatLogFiles'
-      - 'TomcatPasswordFile'
+    - 'TomcatLogFiles'
+    - 'TomcatPasswordFile'
 labels: [Software]
 supported_os: [Darwin,Linux,Windows]
 ---
