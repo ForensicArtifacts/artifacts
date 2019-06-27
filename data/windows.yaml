@@ -109,12 +109,15 @@ urls:
 - 'http://www.hexacorn.com/blog/2013/01/19/beyond-good-ol-run-key-part-3/'
 - 'https://msdn.microsoft.com/en-us/library/windows/desktop/ee872121(v=vs.85).aspx'
 ---
-name: WindowsApplicationShimFiles
+name: WindowsApplicationCompatibilityInstalledShimDatabases
 doc: |
-  Windows Application Shim Files
+  Windows Application Compatibility Installed Shim Databases.
 
-  Malicious shim database files can be used to bypass UAC, inject DLLs into
-  legitimate processes, and modify anti-virus software to avoid detection.
+  Malicious shim database file entries can be used to bypass UAC, inject DLLs
+  into legitimate processes, and modify anti-virus software to avoid detection.
+  See the description under the
+  WindowsApplicationCompatibilityShimDatabaseMappings artifact for a more
+  in-depth overview of Windows application compatibility shims.
 
   drvmain.sdb, frxmain.sdb, msimain.sdb, pcamain.sdb, and sysmain.sdb are
   shim database files that ship with Windows, and contain many predefined
@@ -122,7 +125,8 @@ doc: |
   signed, so malware can insert shim entries into them.
 
   The other paths point to the locations where SDB files are installed
-  when the sdbinst.exe utility is used to install them.
+  when the sdbinst.exe utility is used to install them. Note, however, that
+  shim database files can also exist elsewhere in the file system.
 sources:
 - type: FILE
   attributes:
@@ -145,12 +149,29 @@ urls:
 - 'http://files.brucon.org/2015/Tomczak_and_Ballenthin_Shims_for_the_Win.pdf'
 - 'https://www.blackhat.com/docs/eu-15/materials/eu-15-Pierce-Defending-Against-Malicious-Application-Compatibility-Shims-wp.pdf'
 ---
-name: WindowsApplicationShimRegistryKeys
+name: WindowsApplicationCompatibilityShimDatabaseMappings
 doc: |
-  Windows Application Shims Registry Keys
+  Windows Application Compatibility Shim Database Mappings.
 
-  These can be used by malware to bypass UAC, inject DLLs into legitimate
-  processes, and modify anti-virus software to avoid detection.
+  Windows application shims provide a way for the operating system to
+  apply patches to executables before they are run, ultimately providing
+  a lightweight mechanism for applying hot fixes and making modifications to
+  ensure compatibility across the various versions of Windows. This
+  functionality can also be leveraged maliciously to change how certain
+  programs operate, or to provide capabilities to malware, such as the
+  ability to bypass UAC, gain persistence by injecting loading into legitimate
+  processes, or avoid detection by disabling anti-virus software.
+
+  Windows allows for custom application shims to be installed via the
+  sdbinst.exe application, which stores the mappings between the the shim
+  database files and the programs that they apply to in the registry. An
+  example registry layout for an application shim applied to the 'notepad.exe'
+  application would look like (all keys relative to
+  HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\):
+  * AppCompatFlags\Custom\notepad.exe\{00000000-1111-2222-3333-444444444444}.sdb = 0
+  * AppCompatFlags\InstalledSDB\{00000000-1111-2222-3333-444444444444}\DatabasePath = 
+      "C:\Windows\AppPatch\Custom\{00000000-1111-2222-3333-444444444444}.sdb"
+
 sources:
 - type: REGISTRY_VALUE
   attributes:
@@ -1898,23 +1919,22 @@ name: WindowsBootConfigurationSettings
 doc: |
   Windows Boot Configuration Settings.
 
-  These registry keys are associated with the Windows Boot
-  Configuration Data. Malware can modify these keys to disable
-  recovery options like the ability to boot into safe mode.
-  One malware family known to modify these keys is Cerber, a
-  well-known ransomware.
+  These Windows Registry values are associated with the Windows Boot
+  Configuration Settings. Malware, like Cerber (ransomware), is known to
+  change the Windows Boot Configuration Settings and disable recovery options
+  like the ability to boot into safe mode.
 
-  Modifications are most easily performed via bcdedit.exe. The
-  mappings of registry key to associated bcdedit commands is as
+  'bcdedit.exe' can be used to modify the Windows Boot Configuration Settings.
+  The mappings of registry key to associated bcdedit commands is as
   follows:
   * 16000009: 'bcdedit.exe /set {default} recoveryenabled <yes|no>'
     * 00 gets stored for 'no', 01 gets stored for 'yes'
   * 250000e0: 'bcdedit.exe /set {default} bootstatuspolicy ignoreallfailures'
     * 01 00 00 00 00 00 00 00 gets stored.  Otherwise, the key is not present
 
-  The wildcard component of the registry key is the identifier associated
-  with the Windows Boot Loader instance on a given machine. This identifier
-  can be determined by running 'bcdedit.exe /v' and looking at the
+  The wildcard component of the Windows Registry key is the identifier
+  associated with the Windows Boot Loader instance on a given machine. This
+  identifier can be determined by running 'bcdedit.exe /v' and looking at the
   'identifier' under the Windows Boot Loader section (on Windows 7 and
   Windows 10, '{default}' [used by Cerber] points to this instance).
 sources:
@@ -2236,10 +2256,7 @@ urls:
 - 'https://blog.talosintelligence.com/2019/05/threat-roundup-0517-0524.html'
 ---
 name: WindowsUpdateSettings
-doc: |
-  Windows Update Settings
-
-  Malware can disable automatic updates in order to better avoid detection.
+doc: Windows Update Settings
 sources:
 - type: REGISTRY_VALUE
   attributes:
