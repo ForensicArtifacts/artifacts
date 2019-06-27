@@ -109,6 +109,60 @@ urls:
 - 'http://www.hexacorn.com/blog/2013/01/19/beyond-good-ol-run-key-part-3/'
 - 'https://msdn.microsoft.com/en-us/library/windows/desktop/ee872121(v=vs.85).aspx'
 ---
+name: WindowsApplicationShimFiles
+doc: |
+  Windows Application Shim Files
+
+  Malicious shim database files can be used to bypass UAC, inject DLLs into
+  legitimate processes, and modify anti-virus software to avoid detection.
+
+  drvmain.sdb, frxmain.sdb, msimain.sdb, pcamain.sdb, and sysmain.sdb are
+  shim database files that ship with Windows, and contain many predefined
+  shims that address known program incompabilities. These files are not
+  signed, so malware can insert shim entries into them.
+
+  The other paths point to the locations where SDB files are installed
+  when the sdbinst.exe utility is used to install them.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%environ_windir%%\AppPatch\drvmain.sdb'
+    - '%%environ_windir%%\AppPatch\frxmain.sdb'
+    - '%%environ_windir%%\AppPatch\msimain.sdb'
+    - '%%environ_windir%%\AppPatch\pcamain.sdb'
+    - '%%environ_windir%%\AppPatch\sysmain.sdb'
+    - '%%environ_windir%%\AppPatch\AppPatch64\Custom\*'
+    - '%%environ_windir%%\AppPatch\Custom\*'
+    - '%%environ_windir%%\AppPatch\Custom\Custom64\*'
+    - '%%environ_windir%%\AppPatch\CustomSDB\*'
+    separator: '\'
+labels: [Users]
+supported_os: [Windows]
+urls:
+- 'https://attack.mitre.org/techniques/T1138/'
+- 'https://countercept.com/blog/hunting-for-application-shim-databases/'
+- 'http://files.brucon.org/2015/Tomczak_and_Ballenthin_Shims_for_the_Win.pdf'
+- 'https://www.blackhat.com/docs/eu-15/materials/eu-15-Pierce-Defending-Against-Malicious-Application-Compatibility-Shims-wp.pdf'
+---
+name: WindowsApplicationShimRegistryKeys
+doc: |
+  Windows Application Shims Registry Keys
+
+  These can be used by malware to bypass UAC, inject DLLs into legitimate
+  processes, and modify anti-virus software to avoid detection.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\InstalledSDB\*', value: 'DatabaseDescription'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\InstalledSDB\*', value: 'DatabasePath'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Custom\*', value: '*'}
+supported_os: [Windows]
+urls:
+- 'https://attack.mitre.org/techniques/T1138/'
+- 'https://countercept.com/blog/hunting-for-application-shim-databases/'
+---
 name: WinAppXRT
 doc: WinAppXRT DLL loaded by .Net applications when the APPX_PROCESS environment variable is set.
 sources:
@@ -330,6 +384,39 @@ supported_os: [Windows]
 urls:
 - 'https://msdn.microsoft.com/en-us/library/windows/desktop/ms694515(v=vs.85).aspx'
 - 'https://msdn.microsoft.com/en-us/library/windows/desktop/ms686595(v=vs.85).aspx'
+---
+name: WindowsCOMProperties
+doc: |
+  Various properties of Windows COM Objects.
+
+  These artifacts are meant to highlight properties of COM objects that,
+  although legitimate, are known to be associated with persistence techniques
+  or other capabilities that malware can leverage.
+
+  ShellFolder\HideOnDesktop, ShellFolder\Attributes (specifically with value
+  0xf090013d), and InprocServer\LoadWithoutCOM are associated with a technique
+  to cause iexplore or explorer to load a malicious DLL by registering a COM
+  object and invoking it through the use of Junction Folders.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\CLSID\*\ShellFolder', value: 'Attributes'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\CLSID\*\ShellFolder', value: 'Attributes'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\CLSID\*\ShellFolder', value: 'Attributes'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\CLSID\*\ShellFolder', value: 'Attributes'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\CLSID\*\ShellFolder', value: 'HideOnDesktop'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\CLSID\*\ShellFolder', value: 'HideOnDesktop'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\CLSID\*\ShellFolder', value: 'HideOnDesktop'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\CLSID\*\ShellFolder', value: 'HideOnDesktop'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\CLSID\*\InprocServer32', value: 'LoadWithoutCOM'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\CLSID\*\InprocServer32', value: 'LoadWithoutCOM'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\CLSID\*\InprocServer32', value: 'LoadWithoutCOM'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\CLSID\*\InprocServer32', value: 'LoadWithoutCOM'}
+supported_os: [Windows]
+urls:
+- 'https://ired.team/offensive-security/code-execution/forcing-iexplore.exe-to-load-a-malicious-dll-via-com-abuse'
+- 'https://labs.nettitude.com/blog/com-and-the-powerthief/'
 ---
 name: WindowsCOMRegisteredTypeLibraries
 doc: Windows COM registered type libraries
@@ -1807,6 +1894,41 @@ urls:
 - 'https://blog.talosintelligence.com/2019/05/threat-roundup-0517-0524.html'
 - 'https://blogs.technet.microsoft.com/platforms_lync_cloud/2017/05/05/disabling-windows-10-action-center-notifications/'
 ---
+name: WindowsBootConfigurationSettings
+doc: |
+  Windows Boot Configuration Settings.
+
+  These registry keys are associated with the Windows Boot
+  Configuration Data. Malware can modify these keys to disable
+  recovery options like the ability to boot into safe mode.
+  One malware family known to modify these keys is Cerber, a
+  well-known ransomware.
+
+  Modifications are most easily performed via bcdedit.exe. The
+  mappings of registry key to associated bcdedit commands is as
+  follows:
+  * 16000009: 'bcdedit.exe /set {default} recoveryenabled <yes|no>'
+    * 00 gets stored for 'no', 01 gets stored for 'yes'
+  * 250000e0: 'bcdedit.exe /set {default} bootstatuspolicy ignoreallfailures'
+    * 01 00 00 00 00 00 00 00 gets stored.  Otherwise, the key is not present
+
+  The wildcard component of the registry key is the identifier associated
+  with the Windows Boot Loader instance on a given machine. This identifier
+  can be determined by running 'bcdedit.exe /v' and looking at the
+  'identifier' under the Windows Boot Loader section (on Windows 7 and
+  Windows 10, '{default}' [used by Cerber] points to this instance).
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+    - {key: 'HKEY_LOCAL_MACHINE\BCD00000000\Objects\*\Elements\16000009', value: 'Element'}
+    - {key: 'HKEY_LOCAL_MACHINE\BCD00000000\Objects\*\Elements\250000e0', value: 'Element'}
+labels: [System]
+supported_os: [Windows]
+urls:
+- 'https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/bcd-system-store-settings-for-uefi'
+- 'https://blog.talosintelligence.com/2019/04/sodinokibi-ransomware-exploits-weblogic.html'
+---
 name: WindowsDisallowedSystemCertificates
 doc: |
   Windows Disallowed System Certificates
@@ -1841,6 +1963,10 @@ sources:
     - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'Hidden'}
     - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'Hidden'}
     - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'Hidden'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'HideFileExt'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'HideFileExt'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'HideFileExt'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'HideFileExt'}
     - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'ShowSuperHidden'}
     - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'ShowSuperHidden'}
     - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'ShowSuperHidden'}
@@ -1878,6 +2004,7 @@ supported_os: [Windows]
 urls:
 - 'https://www.sdkhere.com/2016/02/analysis-of-malware-using-wmi-query.html'
 - 'https://www.trendmicro.com/vinfo/us/threat-encyclopedia/malware/troj_mandrom.e'
+- 'https://www.trendmicro.com/vinfo/us/threat-encyclopedia/malware/troj_deleter.ah'
 - 'https://blog.malwarebytes.com/detections/pum-optional-disabledrightclick/'
 - 'https://blog.malwarebytes.com/detections/pum-optional-disableshowcontrolpanel/'
 ---
@@ -2057,11 +2184,14 @@ sources:
     - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\SystemRestore', value: 'DisableSR'}
     - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Policies\Microsoft\Windows NT\SystemRestore', value: 'DisableSR'}
     - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows NT\CurrentVersion\SystemRestore', value: 'DisableSR'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\Installer', value: 'LimitSystemRestoreCheckpointing'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Policies\Microsoft\Windows\Installer', value: 'LimitSystemRestoreCheckpointing'}
 labels: [System]
 supported_os: [Windows]
 urls:
 - 'https://blog.talosintelligence.com/2019/05/threat-roundup-0503-0510.html'
 - 'https://www.windows-commandline.com/enable-disable-system-restore-service/'
+- 'https://docs.microsoft.com/en-us/windows/desktop/msi/limitsystemrestorecheckpointing'
 ---
 name: WindowsUserAccountControlSettings
 doc: |
@@ -2075,11 +2205,14 @@ sources:
     key_value_pairs:
     - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System', value: 'EnableLUA'}
     - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\System', value: 'EnableLUA'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System', value: 'ConsentPromptBehaviorAdmin'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\System', value: 'ConsentPromptBehaviorAdmin'}
 labels: [System]
 supported_os: [Windows]
 urls:
 - 'https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-gpsb/958053ae-5397-4f96-977f-b7700ee461ec'
 - 'https://blog.talosintelligence.com/2019/05/threat-roundup-0503-0510.html'
+- 'https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-gpsb/341747f5-6b5d-4d30-85fc-fa1cc04038d4'
 ---
 name: WindowsUpgradeSettings
 doc: |
@@ -2101,6 +2234,23 @@ supported_os: [Windows]
 urls:
 - 'https://www.ghacks.net/2016/01/08/disableosupgrade-prevents-the-upgrade-to-windows-10/'
 - 'https://blog.talosintelligence.com/2019/05/threat-roundup-0517-0524.html'
+---
+name: WindowsUpdateSettings
+doc: |
+  Windows Update Settings
+
+  Malware can disable automatic updates in order to better avoid detection.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\WindowsUpdate\AU', value: 'NoAutoUpdate'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Policies\Microsoft\Windows\WindowsUpdate\AU', value: 'NoAutoUpdate'}
+labels: [System]
+supported_os: [Windows]
+urls:
+- 'https://docs.microsoft.com/en-us/windows/deployment/update/waas-wu-settings'
+- 'https://blog.talosintelligence.com/2019/06/threat-roundup-0531-0607.html'
 ---
 name: WindowsFontDrivers
 doc: Windows font drivers from the Registry.
