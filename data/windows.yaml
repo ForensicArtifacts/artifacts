@@ -183,6 +183,17 @@ urls:
 - 'https://attack.mitre.org/techniques/T1138/'
 - 'https://countercept.com/blog/hunting-for-application-shim-databases/'
 ---
+name: WindowsApplicationCompatibilityShims
+doc: Windows Application Compatibility Shim Database Files and Application Mappings
+sources:
+- type: ARTIFACT_GROUP
+  attributes:
+    names:
+    - 'WindowsApplicationCompatibilityInstalledShimDatabases'
+    - 'WindowsApplicationCompatibilityShimDatabaseMappings'
+labels: [System]
+supported_os: [Windows]
+---
 name: WinAppXRT
 doc: WinAppXRT DLL loaded by .Net applications when the APPX_PROCESS environment variable is set.
 sources:
