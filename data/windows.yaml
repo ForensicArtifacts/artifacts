@@ -169,7 +169,7 @@ doc: |
   application would look like (all keys relative to
   HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\):
   * AppCompatFlags\Custom\notepad.exe\{00000000-1111-2222-3333-444444444444}.sdb = 0
-  * AppCompatFlags\InstalledSDB\{00000000-1111-2222-3333-444444444444}\DatabasePath = 
+  * AppCompatFlags\InstalledSDB\{00000000-1111-2222-3333-444444444444}\DatabasePath =
       "C:\Windows\AppPatch\Custom\{00000000-1111-2222-3333-444444444444}.sdb"
 
 sources:
