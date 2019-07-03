@@ -113,20 +113,21 @@ name: WindowsApplicationCompatibilityInstalledShimDatabases
 doc: |
   Windows Application Compatibility Installed Shim Databases.
 
+  drvmain.sdb, frxmain.sdb, msimain.sdb, pcamain.sdb, and sysmain.sdb are
+  shim database files (SDB files) that are provided by Windows, and contain
+  many predefined shims that address known application compability issues.
+  These database files are not signed, so can be misused by malware.
+
+  Windows also supports custom shim database. These are typically installed
+  by the sdbinst.exe utility. Note, that shim database files can also exist
+  elsewhere in the file system.
+
   Malicious shim database file entries can be used to bypass UAC, inject DLLs
   into legitimate processes, and modify anti-virus software to avoid detection.
+
   See the description under the
   WindowsApplicationCompatibilityShimDatabaseMappings artifact for a more
   in-depth overview of Windows application compatibility shims.
-
-  drvmain.sdb, frxmain.sdb, msimain.sdb, pcamain.sdb, and sysmain.sdb are
-  shim database files that ship with Windows, and contain many predefined
-  shims that address known program incompabilities. These files are not
-  signed, so malware can insert shim entries into them.
-
-  The other paths point to the locations where SDB files are installed
-  when the sdbinst.exe utility is used to install them. Note, however, that
-  shim database files can also exist elsewhere in the file system.
 sources:
 - type: FILE
   attributes:
