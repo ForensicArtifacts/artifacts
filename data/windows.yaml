@@ -116,18 +116,20 @@ doc: |
   drvmain.sdb, frxmain.sdb, msimain.sdb, pcamain.sdb, and sysmain.sdb are
   shim database files (SDB files) that are provided by Windows, and contain
   many predefined shims that address known application compability issues.
-  These database files are not signed, so can be misused by malware.
+  Note that these database files are not signed.
 
   Windows also supports custom shim database. These are typically installed
   by the sdbinst.exe utility. Note, that shim database files can also exist
   elsewhere in the file system.
 
-  Malicious shim database file entries can be used to bypass UAC, inject DLLs
-  into legitimate processes, and modify anti-virus software to avoid detection.
-
-  See the description under the
-  WindowsApplicationCompatibilityShimDatabaseMappings artifact for a more
-  in-depth overview of Windows application compatibility shims.
+  Windows application shims provide a way for the operating system to
+  apply patches to executables before they are run, ultimately providing
+  a lightweight mechanism for applying hot fixes and making modifications to
+  ensure compatibility across the various versions of Windows. This
+  functionality can also be leveraged maliciously to change how certain
+  programs operate, or to provide capabilities to malware, such as the
+  ability to bypass UAC, gain persistence by injecting loading into legitimate
+  processes, or avoid detection by disabling anti-virus software.
 sources:
 - type: FILE
   attributes:
@@ -154,6 +156,20 @@ name: WindowsApplicationCompatibilityShimDatabaseMappings
 doc: |
   Windows Application Compatibility Shim Database Mappings.
 
+  Mappings between the Windows Application Compatibility shim database files and
+  the programs that they apply to.
+
+  Windows allows for custom application shims to be installed via the
+  sdbinst.exe application. For example a mapping for 'notepad.exe':
+  
+  Key: HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\
+      AppCompatFlags\Custom\notepad.exe
+  Value: {00000000-1111-2222-3333-444444444444}.sdb = 0
+  
+  Key: AppCompatFlags\InstalledSDB\{00000000-1111-2222-3333-444444444444}
+  Value: DatabasePath =
+      "C:\Windows\AppPatch\Custom\{00000000-1111-2222-3333-444444444444}.sdb"
+
   Windows application shims provide a way for the operating system to
   apply patches to executables before they are run, ultimately providing
   a lightweight mechanism for applying hot fixes and making modifications to
@@ -162,16 +178,6 @@ doc: |
   programs operate, or to provide capabilities to malware, such as the
   ability to bypass UAC, gain persistence by injecting loading into legitimate
   processes, or avoid detection by disabling anti-virus software.
-
-  Windows allows for custom application shims to be installed via the
-  sdbinst.exe application, which stores the mappings between the the shim
-  database files and the programs that they apply to in the registry. An
-  example registry layout for an application shim applied to the 'notepad.exe'
-  application would look like (all keys relative to
-  HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\):
-  * AppCompatFlags\Custom\notepad.exe\{00000000-1111-2222-3333-444444444444}.sdb = 0
-  * AppCompatFlags\InstalledSDB\{00000000-1111-2222-3333-444444444444}\DatabasePath =
-      "C:\Windows\AppPatch\Custom\{00000000-1111-2222-3333-444444444444}.sdb"
 sources:
 - type: REGISTRY_VALUE
   attributes:
