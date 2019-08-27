@@ -357,6 +357,7 @@ sources:
     - '%%users.localappdata%%\Microsoft\Windows\Temporary Internet Files\Content.IE5\index.dat'
     - '%%users.localappdata%%\Microsoft\Windows\Temporary Internet Files\Low\Content.IE5\index.dat'
     - '%%users.localappdata%%\Microsoft\Windows\WebCache\WebCacheV*.dat'
+    - '%%users.userprofile%%\Local Settings\History\History.IE5\index.dat'
     separator: '\'
 labels: [Browser]
 supported_os: [Windows]
