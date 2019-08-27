@@ -583,7 +583,7 @@ urls:
 - 'https://www.mandiant.com/blog/fxsst/'
 ---
 name: WindowsCurrentVersion
-doc: The Windows current verson
+doc: The Windows current version
 sources:
 - type: REGISTRY_VALUE
   attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion', value: 'CurrentVersion'}]}
