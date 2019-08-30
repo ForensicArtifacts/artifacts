@@ -622,7 +622,10 @@ name: ZeitgeistDatabase
 doc: Zeitgeist user activity database.
 sources:
 - type: FILE
-  attributes: {paths: ['%%users.homedir%%/.local/share/zeitgeist/activity.sqlite']}
+  attributes:
+    paths:
+    - '%%users.homedir%%/.local/share/zeitgeist/activity.sqlite'
+    - '%%users.homedir%%/.local/share/zeitgeist/activity.sqlite-wal'
 labels: [Users, Logs]
 urls: ['http://forensicswiki.org/wiki/Zeitgeist']
 supported_os: [Linux]
