@@ -948,12 +948,18 @@ name: MacOSUserSocialAccounts
 doc: User's Social Accounts
 sources:
 - type: FILE
-  attributes: {paths: ['%%users.homedir%%/Library/Accounts/Accounts3.sqlite']}
+  attributes:
+    paths:
+     - '%%users.homedir%%/Library/Accounts/Accounts3.sqlite'
+     - '%%users.homedir%%/Library/Accounts/Accounts3.sqlite-wal'
+     - '%%users.homedir%%/Library/Accounts/Accounts4.sqlite'
+     - '%%users.homedir%%/Library/Accounts/Accounts4.sqlite-wal'
 labels: [Users, ExternalAccount]
 supported_os: [Darwin]
 urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#User.27s_Accounts'
+- 'https://lab.wallarm.com/hunting-the-files-34caa0c1496'
 ---
 name: MacOSUserTrash
 doc: User Trash Folder
