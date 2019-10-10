@@ -629,6 +629,36 @@ urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Recent_Items'
 ---
+name: MacOSRemoteDesktopAdministratorSystem
+doc: Apple Remote Desktop (ARD) was first released in 2002 and is Apple’s desktop management system for software distribution, asset management, and remote assistance.
+sources:
+- type: FILE
+  attributes: 
+    paths: 
+    - '/private/var/db/RemoteManagement/ClientCaches/*'
+    - '/private/var/db/RemoteManagement/RMDB/rmdb.sqlite3'
+labels: [System, Network]
+supported_os: [Darwin]
+urls: 
+- 'https://help.apple.com/remotedesktop/mac/3.9/'
+- 'https://www.fireeye.com/blog/threat-research/2019/10/leveraging-apple-remote-desktop-for-good-and-evil.html'
+- 'https://github.com/fireeye/ARDvark#ard-artifacts-to-parse'
+---
+name: MacOSRemoteDesktopClientSystem
+doc: Apple Remote Desktop (ARD) was first released in 2002 and is Apple’s desktop management system for software distribution, asset management, and remote assistance.
+sources:
+- type: FILE
+  attributes: 
+    paths: 
+    - '/private/var/db/RemoteManagement/caches/AppUsage.plist'
+    - '/private/var/db/RemoteManagement/caches/UserAcct.tmp'
+labels: [System, Network]
+supported_os: [Darwin]
+urls: 
+- 'https://help.apple.com/remotedesktop/mac/3.9/'
+- 'https://www.fireeye.com/blog/threat-research/2019/10/leveraging-apple-remote-desktop-for-good-and-evil.html'
+- 'https://github.com/fireeye/ARDvark#ard-artifacts-to-parse'
+---
 name: MacOSSidebarLists
 doc: |
   Sidebar Lists Preferences
