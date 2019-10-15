@@ -1008,3 +1008,14 @@ supported_os: [Darwin]
 urls:
 - 'http://forensicswiki.org/wiki/Mac_OS_X'
 - 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Networking'
+---
+name: MacOSFSEvents
+doc: Mac OS X file system event log
+sources:
+- type: FILE
+  attributes: {paths: '/.fsevents/*'}
+labels: [Logs, System, Users]
+supported_os: [Darwin]
+urls:
+- 'http://nicoleibrahim.com/apple-fsevents-forensics/'
+- 'https://www.sans.org/cyber-security-summit/archives/file/summit-archive-1498158287.pdf'
