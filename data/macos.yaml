@@ -1013,7 +1013,7 @@ name: MacOSFSEvents
 doc: Mac OS X file system event log
 sources:
 - type: FILE
-  attributes: {paths: '/.fsevents/*'}
+  attributes: {paths: '/.fseventsd/*'}
 labels: [Logs, System, Users]
 supported_os: [Darwin]
 urls:
