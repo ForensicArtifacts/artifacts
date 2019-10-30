@@ -13,7 +13,7 @@ sources:
   attributes:
     paths:
     - '%%users.appdata%%\Sun\Java\Deployment\cache\**'
-    - '%%users.userprofile%%\AppData\LocalLow\Sun\Java\Deployment\cache\**'
+    - '%%users.localappdata_low%%\Sun\Java\Deployment\cache\**'
     separator: '\'
   supported_os: [Windows]
 supported_os: [Windows, Linux, Darwin]

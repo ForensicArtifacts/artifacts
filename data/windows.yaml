@@ -583,7 +583,7 @@ urls:
 - 'https://www.mandiant.com/blog/fxsst/'
 ---
 name: WindowsCurrentVersion
-doc: The Windows current verson
+doc: The Windows current version
 sources:
 - type: REGISTRY_VALUE
   attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion', value: 'CurrentVersion'}]}
@@ -2896,7 +2896,10 @@ name: WindowsTimezone
 doc: The timezone of the system in Olson format.
 sources:
 - type: REGISTRY_VALUE
-  attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\TimeZoneInformation', value: 'StandardName'}]}
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\TimeZoneInformation', value: 'StandardName'}
+      - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\TimeZoneInformation', value: 'TimeZoneKeyName'}
 provides: [time_zone]
 supported_os: [Windows]
 urls: ['https://github.com/libyal/winreg-kb/blob/master/documentation/Time%20zone%20keys.asciidoc']
@@ -2920,7 +2923,10 @@ name: WindowsUninstallKeys
 doc: Uninstall Registry keys
 sources:
 - type: REGISTRY_KEY
-  attributes: {keys: ['HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Uninstall\*']}
+  attributes:
+      keys:
+      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Uninstall\*\*'
+      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Uninstall\*\*'
 supported_os: [Windows]
 urls: ['https://msdn.microsoft.com/en-us/library/aa372105(v=vs.85).aspx']
 ---
