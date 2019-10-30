@@ -38,6 +38,7 @@ class ArtifactDefinitionsValidator(object):
   _SUPPORTED_WINDOWS_USERS_VARIABLES = [
       '%%users.appdata%%',
       '%%users.localappdata%%',
+      '%%users.localappdata_low%%',
       '%%users.sid%%',
       '%%users.temp%%',
       '%%users.username%%',
@@ -253,6 +254,7 @@ class ArtifactDefinitionsValidator(object):
 
     elif path_segments[0].startswith('%%users.') and path_segments[0] not in (
         '%%users.appdata%%', '%%users.homedir%%', '%%users.localappdata%%',
+        '%%users.localappdata_low%%',
         '%%users.temp%%', '%%users.username%%', '%%users.userprofile%%'):
       logging.warning((
           'Unsupported "{0:s}" in path: {1:s} defined by artifact '
@@ -279,6 +281,14 @@ class ArtifactDefinitionsValidator(object):
       logging.warning((
           'Replace "%%users.userprofile%%\\AppData\\Roaming" by '
           '"%%users.appdata%%" in path: {0:s} defined by artifact '
+          'definition: {1:s} in file: {2:s}').format(
+              path, artifact_definition.name, filename))
+      result = False
+
+    elif path_lower.startswith('%%users.userprofile%%\\appdata\\locallow\\'):
+      logging.warning((
+          'Replace "%%users.userprofile%%\\AppData\\LocalLow" by '
+          '"%%users.localappdata_low%%" in path: {0:s} defined by artifact '
           'definition: {1:s} in file: {2:s}').format(
               path, artifact_definition.name, filename))
       result = False
