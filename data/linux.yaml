@@ -492,7 +492,7 @@ sources:
     - '%%users.homedir%%/.config/systemd/user.control/*.service'
     - '%%users.homedir%%/.config/systemd/user/*.service'
     - '%%users.homedir%%/.local/share/systemd/user/*.service'
-provides: [Configuration Files, System]
+labels: [Configuration Files, System]
 supported_os: [Linux]
 urls: ['https://https://www.freedesktop.org/software/systemd/man/systemd.unit.html#System%20Unit%20Search%20Path']
 ---
