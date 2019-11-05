@@ -415,6 +415,7 @@ sources:
     - LinuxXinetd
     - LinuxLSBInit
     - LinuxSysVInit
+    - LinuxSystemdServices
 labels: [Configuration Files, System]
 supported_os: [Linux]
 ---
@@ -459,6 +460,41 @@ provides: [os_release, os_major_version, os_minor_version]
 labels: [Software]
 supported_os: [Linux]
 urls: ['https://www.freedesktop.org/software/systemd/man/os-release.html']
+---
+name: LinuxSystemdServices
+doc: Linux systemd service unit files
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/etc/systemd/system.control/*.service'
+    - '/run/systemd/system.control/*.service'
+    - '/run/systemd/transient/*.service'
+    - '/run/systemd/generator.early/*.service'
+    - '/etc/systemd/system/*.service'
+    - '/etc/systemd/systemd.attached/*.service'
+    - '/run/systemd/system/*.service'
+    - '/run/systemd/systemd.attached/*.service'
+    - '/run/systemd/generator/*.service'
+    - '/usr/lib/systemd/system/*.service'
+    - '/lib/systemd/system/*.service'
+    - '/run/systemd/generator.late/*.service'
+    - '%%users.homedir%%/.config/systemd/user.control/*.service'
+    - '%%users.homedir%%/.config/systemd/user/*.service'
+    - '/etc/systemd/user/*.service'
+    - '/run/systemd/user/*.service'
+    - '%%users.homedir%%/.local/share/systemd/user/*.service'
+    - '/usr/lib/systemd/user/*.service'
+    - '/lib/systemd/user/*.service'
+    - '/run/user/*/systemd/user.control/*.service'
+    - '/run/user/*/systemd/transient/*.service'
+    - '/run/user/*/systemd/generator.early/*.service'
+    - '/run/user/*/systemd/user/*.service'
+    - '/run/user/*/systemd/generator/*.service'
+    - '/run/user/*/systemd/generator.late/*.service'
+provides: [Configuration Files, System]
+supported_os: [Linux]
+urls: ['https://https://www.freedesktop.org/software/systemd/man/systemd.unit.html#System%20Unit%20Search%20Path']
 ---
 name: LinuxSysVInit
 doc: Services started by sysv-style init scripts.
