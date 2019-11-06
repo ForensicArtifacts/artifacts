@@ -134,10 +134,13 @@ class DirectorySourceType(SourceType):
       separator (Optional[str]): path segment separator.
 
     Raises:
-      FormatError: when paths is not set.
+      FormatError: when paths is not set or not a list type.
     """
     if not paths:
-      raise errors.FormatError('Missing directory value.')
+      raise errors.FormatError('Missing paths value.')
+
+    if not isinstance(paths, list):
+      raise errors.FormatError('Invalid paths value, not a list.')
 
     super(DirectorySourceType, self).__init__()
     self.paths = paths
@@ -169,10 +172,13 @@ class FileSourceType(SourceType):
       separator (Optional[str]): path segment separator.
 
     Raises:
-      FormatError: when paths is not set.
+      FormatError: when paths is not set or not a list type.
     """
     if not paths:
       raise errors.FormatError('Missing paths value.')
+
+    if not isinstance(paths, list):
+      raise errors.FormatError('Invalid paths value, not a list.')
 
     super(FileSourceType, self).__init__()
     self.paths = paths
@@ -204,10 +210,13 @@ class PathSourceType(SourceType):
       separator (Optional[str]): path segment separator.
 
     Raises:
-      FormatError: when paths is not set.
+      FormatError: when paths is not set or not a list type.
     """
     if not paths:
       raise errors.FormatError('Missing paths value.')
+
+    if not isinstance(paths, list):
+      raise errors.FormatError('Invalid paths value, not a list.')
 
     super(PathSourceType, self).__init__()
     self.paths = paths

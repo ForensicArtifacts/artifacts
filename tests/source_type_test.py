@@ -60,6 +60,12 @@ class FileSourceTypeTest(test_lib.BaseTestCase):
     source_type.FileSourceType(paths=['test'])
     source_type.FileSourceType(paths=['test'], separator='\\')
 
+    with self.assertRaises(errors.FormatError):
+      source_type.FileSourceType()
+
+    with self.assertRaises(errors.FormatError):
+      source_type.FileSourceType(paths='test')
+
 
 class PathSourceTypeTest(test_lib.BaseTestCase):
   """Class to test the paths source type."""
@@ -68,6 +74,12 @@ class PathSourceTypeTest(test_lib.BaseTestCase):
     """Tests the __init__ function."""
     source_type.PathSourceType(paths=['test'])
     source_type.PathSourceType(paths=['test'], separator='\\')
+
+    with self.assertRaises(errors.FormatError):
+      source_type.PathSourceType()
+
+    with self.assertRaises(errors.FormatError):
+      source_type.PathSourceType(paths='test')
 
 
 class WindowsRegistryKeySourceTypeTest(test_lib.BaseTestCase):
