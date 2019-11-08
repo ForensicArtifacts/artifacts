@@ -636,7 +636,9 @@ sources:
   attributes:
     paths:
     - '/private/var/db/RemoteManagement/ClientCaches/*'
+    - '/var/db/RemoteManagement/ClientCaches/*'
     - '/private/var/db/RemoteManagement/RMDB/rmdb.sqlite3'
+    - '/var/db/RemoteManagement/RMDB/rmdb.sqlite3'
 labels: [System, Network]
 supported_os: [Darwin]
 urls:
@@ -651,7 +653,9 @@ sources:
   attributes:
     paths:
     - '/private/var/db/RemoteManagement/caches/AppUsage.plist'
+    - '/var/db/RemoteManagement/caches/AppUsage.plist'
     - '/private/var/db/RemoteManagement/caches/UserAcct.tmp'
+    - '/var/db/RemoteManagement/caches/UserAcct.tmp'
 labels: [System, Network]
 supported_os: [Darwin]
 urls:
