@@ -1,17 +1,21 @@
 environment:
   matrix:
-  - TARGET: windows_python27
+  - TARGET: unittests
     MACHINE_TYPE: "x86"
     PYTHON: "C:\\Python27"
-  - TARGET: windows_python27
+    PYTHON_VERSION: "2.7"
+  - TARGET: unittests
     MACHINE_TYPE: "amd64"
     PYTHON: "C:\\Python27-x64"
-  - TARGET: windows_python37
+    PYTHON_VERSION: "2.7"
+  - TARGET: unittests
     MACHINE_TYPE: "x86"
     PYTHON: "C:\\Python37"
-  - TARGET: windows_python37
+    PYTHON_VERSION: "3.7"
+  - TARGET: unittests
     MACHINE_TYPE: "amd64"
     PYTHON: "C:\\Python37-x64"
+    PYTHON_VERSION: "3.7"
 
 install:
 - cmd: '"C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.cmd" /x86 /release'
@@ -19,11 +23,11 @@ install:
 - cmd: "%PYTHON%\\python.exe -m pip install pywin32 WMI"
 - cmd: "%PYTHON%\\python.exe %PYTHON%\\Scripts\\pywin32_postinstall.py -install"
 - cmd: git clone https://github.com/log2timeline/l2tdevtools.git ..\l2tdevtools
-- cmd: if [%TARGET%]==[windows_python27] (
+- cmd: if [%PYTHON_VERSION%]==[2.7] (
     mkdir dependencies &&
     set PYTHONPATH=..\l2tdevtools &&
     "%PYTHON%\\python.exe" ..\l2tdevtools\tools\update.py --download-directory dependencies --machine-type %MACHINE_TYPE% --msi-targetdir "%PYTHON%" --track dev PyYAML funcsigs mock pbr six )
-- cmd: if [%TARGET%]==[windows_python37] (
+- cmd: if [%PYTHON_VERSION%]==[3.7] (
     mkdir dependencies &&
     set PYTHONPATH=..\l2tdevtools &&
     "%PYTHON%\\python.exe" ..\l2tdevtools\tools\update.py --download-directory dependencies --machine-type %MACHINE_TYPE% --msi-targetdir "%PYTHON%" --track dev PyYAML mock pbr six )
@@ -31,4 +35,5 @@ install:
 build: off
 
 test_script:
-- cmd: "%PYTHON%\\python.exe run_tests.py"
+- cmd: if [%TARGET%]==[unittests] (
+    "%PYTHON%\\python.exe" run_tests.py )
