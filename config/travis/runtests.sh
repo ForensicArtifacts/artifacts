@@ -11,7 +11,7 @@ set -e;
 if test -n "${FEDORA_VERSION}";
 then
 	CONTAINER_NAME="fedora${FEDORA_VERSION}";
-	CONTAINER_OPTIONS="-e LANG=en_US.UTF-8";
+	CONTAINER_OPTIONS="-e LANG=C.utf8";
 
 	if test -n "${TOXENV}";
 	then
@@ -72,18 +72,11 @@ then
 	# Note that exec options need to be defined before the container name.
 	docker exec ${CONTAINER_OPTIONS} ${CONTAINER_NAME} sh -c "cd artifacts && ${TEST_COMMAND}";
 
+elif test "${TARGET}" = "dockerfile";
+then
+	cd config/docker && docker build --build-arg PPA_TRACK="dev" -f Dockerfile .
+
 elif test "${TRAVIS_OS_NAME}" = "osx";
 then
-	PYTHONPATH=/Library/Python/2.7/site-packages/ /usr/bin/python ./run_tests.py;
-
-	python ./setup.py build
-
-	python ./setup.py sdist
-
-	python ./setup.py bdist
-
-	if test -f tests/end-to-end.py;
-	then
-		PYTHONPATH=. python ./tests/end-to-end.py --debug -c config/end-to-end.ini;
-	fi
+	tox -e ${TOXENV};
 fi
