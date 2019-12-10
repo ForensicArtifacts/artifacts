@@ -6,6 +6,7 @@ from __future__ import print_function
 from __future__ import unicode_literals
 
 import argparse
+import glob
 import logging
 import os
 import sys
@@ -425,6 +426,23 @@ class ArtifactDefinitionsValidator(object):
     self._artifact_registry_key_paths.update(source.keys)
     return result
 
+  def CheckDirectory(self, path):
+    """Validates the artifacts definition in a specific directory.
+
+    Args:
+      path (str): path of the directory containing the artifacts definition
+          files.
+
+    Returns:
+      bool: True if the file contains valid artifacts definitions.
+    """
+    for filename in glob.glob(os.path.join(path, '*.yaml')):
+      result = self.CheckFile(filename)
+      if not result:
+        break
+
+    return result
+
   def CheckFile(self, filename):
     """Validates the artifacts definition in a specific file.
 
@@ -528,31 +546,35 @@ def Main():
       description='Validates an artifact definitions file.')
 
   args_parser.add_argument(
-      'filename',
-      nargs='?',
-      action='store',
-      metavar='artifacts.yaml',
-      default=None,
-      help=('path of the file that contains the artifact '
+      'definitions', nargs='?', action='store', metavar='PATH', default=None,
+      help=('path of the file or directory that contains the artifact '
             'definitions.'))
 
   options = args_parser.parse_args()
 
-  if not options.filename:
+  if not options.definitions:
     print('Source value is missing.')
     print('')
     args_parser.print_help()
     print('')
     return False
 
-  if not os.path.isfile(options.filename):
-    print('No such file: {0:s}'.format(options.filename))
+  if not os.path.exists(options.definitions):
+    print('No such file or directory: {0:s}'.format(options.definitions))
     print('')
     return False
 
-  print('Validating: {0:s}'.format(options.filename))
   validator = ArtifactDefinitionsValidator()
-  if not validator.CheckFile(options.filename):
+
+  if os.path.isdir(options.definitions):
+    print('Validating definitions in: {0:s}/*.yaml'.format(options.definitions))
+    result = validator.CheckDirectory(options.definitions)
+
+  elif os.path.isfile(options.definitions):
+    print('Validating definitions in: {0:s}'.format(options.definitions))
+    result = validator.CheckFile(options.definitions)
+
+  if not result:
     print('FAILURE')
     return False
 
