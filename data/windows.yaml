@@ -701,6 +701,7 @@ doc: |
     The %ComSpec% environment variable.
 
     Specifies the command line interpreter.
+sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
@@ -714,6 +715,7 @@ doc: |
     The %DriverData% environment variable.
 
     A directory for temporary state files related to user-mode drivers.
+sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
