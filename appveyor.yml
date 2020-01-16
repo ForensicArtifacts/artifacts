@@ -2,14 +2,6 @@ environment:
   matrix:
   - TARGET: unittests
     MACHINE_TYPE: "x86"
-    PYTHON: "C:\\Python27"
-    PYTHON_VERSION: "2.7"
-  - TARGET: unittests
-    MACHINE_TYPE: "amd64"
-    PYTHON: "C:\\Python27-x64"
-    PYTHON_VERSION: "2.7"
-  - TARGET: unittests
-    MACHINE_TYPE: "x86"
     PYTHON: "C:\\Python37"
     PYTHON_VERSION: "3.7"
   - TARGET: unittests
@@ -19,14 +11,10 @@ environment:
 
 install:
 - cmd: '"C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.cmd" /x86 /release'
-- cmd: "%PYTHON%\\python.exe -m pip install --upgrade pip"
+- cmd: "%PYTHON%\\python.exe -m pip install -U pip setuptools wheel"
 - cmd: "%PYTHON%\\python.exe -m pip install pywin32 WMI"
 - cmd: "%PYTHON%\\python.exe %PYTHON%\\Scripts\\pywin32_postinstall.py -install"
 - cmd: git clone https://github.com/log2timeline/l2tdevtools.git ..\l2tdevtools
-- cmd: if [%PYTHON_VERSION%]==[2.7] (
-    mkdir dependencies &&
-    set PYTHONPATH=..\l2tdevtools &&
-    "%PYTHON%\\python.exe" ..\l2tdevtools\tools\update.py --download-directory dependencies --machine-type %MACHINE_TYPE% --msi-targetdir "%PYTHON%" --track dev PyYAML funcsigs mock pbr six )
 - cmd: if [%PYTHON_VERSION%]==[3.7] (
     mkdir dependencies &&
     set PYTHONPATH=..\l2tdevtools &&

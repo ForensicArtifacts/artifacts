@@ -4,12 +4,8 @@
 from __future__ import print_function
 from __future__ import unicode_literals
 
+import configparser
 import re
-
-try:
-  import ConfigParser as configparser
-except ImportError:
-  import configparser  # pylint: disable=import-error
 
 
 class DependencyDefinition(object):
@@ -94,10 +90,8 @@ class DependencyDefinitionReader(object):
     Yields:
       DependencyDefinition: dependency definition.
     """
-    config_parser = configparser.RawConfigParser()
-    # pylint: disable=deprecated-method
-    # TODO: replace readfp by read_file, check if Python 2 compatible
-    config_parser.readfp(file_object)
+    config_parser = configparser.ConfigParser(interpolation=None)
+    config_parser.read_file(file_object)
 
     for section_name in config_parser.sections():
       dependency_definition = DependencyDefinition(section_name)
