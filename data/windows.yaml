@@ -668,6 +668,63 @@ supported_os: [Windows]
 conditions: [os_major_version >= 6 AND os_minor_version >= 2]
 urls: ['http://www.hexacorn.com/blog/2014/08/31/beyond-good-ol-run-key-part-17/']
 ---
+name: WindowsEnvironmentVariableCommonProgramFiles
+doc: |
+    The %COMMONPROGRAMFILES% environment variable.
+
+    Used store files shared between applications.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion', value: 'CommonFilesDir'}
+provides: [environ_commonprogramfiles]
+supported_os: [Windows]
+urls: ['http://environmentvariables.org/CommonProgramFiles']
+---
+name: WindowsEnvironmentVariableCommonProgramFilesX86
+doc: |
+    The %COMMONPROGRAMFILES(X86)% environment variable.
+
+    Used store files shared between applications.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion', value: 'CommonFilesDir (x86)'}
+provides: [environ_commonprogramfilesx86]
+supported_os: [Windows]
+urls: ['http://environmentvariables.org/CommonProgramFiles']
+---
+name: WindowsEnvironmentVariableComSpec
+doc: |
+    The %ComSpec% environment variable.
+
+    Specifies the command line interpreter.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+    - {key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment', value: 'ComSpec'}
+provides: [environ_comspec]
+supported_os: [Windows]
+urls: ['http://environmentvariables.org/ComSpec']
+---
+name: WindowsEnvironmentVariableDriverData
+doc: |
+    The %DriverData% environment variable.
+
+    A directory for temporary state files related to user-mode drivers.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+    - {key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment', value: 'DriverData'}
+provides: [environ_driverdata]
+supported_os: [Windows]
+conditions: [os_major_version >= 10]
+urls: ['https://docs.microsoft.com/en-us/windows-hardware/drivers/develop/driver-isolation#driverdata-and-programdata']
+---
 name: WindowsEnvironmentVariablePath
 doc: The %PATH% environment variable.
 sources:
