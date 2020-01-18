@@ -9,6 +9,7 @@ override_dh_auto_clean:
 		$$python setup.py clean -a; \
 	done;
 	rm -rf build artifacts.egg-info/SOURCES.txt artifacts.egg-info/PKG-INFO
+	find . -name __pycache__ -type d -exec rm -rf {} \;
 
 .PHONY: override_dh_auto_build
 override_dh_auto_build:
