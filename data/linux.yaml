@@ -663,5 +663,5 @@ sources:
     - '%%users.homedir%%/.local/share/zeitgeist/activity.sqlite'
     - '%%users.homedir%%/.local/share/zeitgeist/activity.sqlite-wal'
 labels: [Users, Logs]
-urls: ['http://forensicswiki.org/wiki/Zeitgeist']
+urls: ['https://forensicswiki.xyz/wiki/index.php?title=Zeitgeist']
 supported_os: [Linux]

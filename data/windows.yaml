@@ -1,7 +1,7 @@
 # Windows specific artifacts.
 
 name: WindowsActiveDesktop
-doc: Windows Active Desktop executable paths, used for persistence.
+doc: Windows Active Desktop settings and components.
 sources:
 - type: REGISTRY_KEY
   attributes:
@@ -10,16 +10,10 @@ sources:
     - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Internet Explorer\Desktop\General'
 conditions: [os_major_version < 6]
 supported_os: [Windows]
-urls:
-- 'https://www.sophos.com/en-us/threat-center/threat-analyses/viruses-and-spyware/Troj~DwnLdr-GWV/detailed-analysis.aspx'
-- 'https://support.microsoft.com/en-us/kb/929200'
-- 'https://en.wikipedia.org/wiki/Active_Desktop'
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/ActiveDesktop.md']
 ---
-name: WindowsActivitiesCache
-doc: |
-  Windows activities cache SQLite database.
-
-  This file is available since Windows 10 and version 1803.
+name: WindowsActivitiesCacheDatabase
+doc: SQLite database containing the Windows activities cache.
 sources:
 - type: FILE
   attributes:
@@ -27,9 +21,7 @@ sources:
     separator: '\'
 labels: [Users]
 supported_os: [Windows]
-urls:
-- 'https://cclgroupltd.com/windows-10-timeline-forensic-artefacts/'
-- 'https://salt4n6.com/2018/05/03/windows-10-timeline-forensic-artefacts/amp/'
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/ActivitiesCacheDatabase.md']
 ---
 name: WindowsAlternateShell
 doc: Alternate Shell to be run via Userinit.
@@ -1889,7 +1881,7 @@ sources:
     - '%%environ_systemroot%%\SysWow64\Tasks\**10'
     separator: '\'
 supported_os: [Windows]
-urls: ['http://forensicswiki.org/wiki/Windows#Scheduled_Tasks']
+urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows#Scheduled_Tasks']
 ---
 name: WindowsScreenSaverExecutable
 doc: ScreenSaver Executable
@@ -3012,7 +3004,7 @@ sources:
     - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\Results\Install', value: 'LastSuccessTime'}
 supported_os: [Windows]
 urls:
-- 'http://forensicswiki.org/wiki/Windows_Update'
+- 'https://forensicswiki.xyz/wiki/index.php?title=Windows_Update'
 - 'http://blogs.msdn.com/b/aruns_blog/archive/2011/06/20/active-setup-registry-key-what-it-is-and-how-to-create-in-the-package-using-admin-studio-install-shield.aspx'
 ---
 name: WindowsUserAutomaticDestinationsJumpLists
