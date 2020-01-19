@@ -62,8 +62,8 @@ labels: [Users]
 supported_os: [Darwin]
 provides: [users.username]
 urls:
-- 'http://forensicswiki.org/wiki/Mac_OS_X'
-- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Users'
+- 'https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X'
+- 'https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#Users'
 ---
 name: ProgramFiles
 doc: The %ProgramFiles% environment variable.

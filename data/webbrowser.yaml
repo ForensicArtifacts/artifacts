@@ -185,7 +185,7 @@ sources:
   supported_os: [Linux]
 supported_os: [Windows,Darwin,Linux]
 labels: [Browser]
-urls: ['http://forensicswiki.org/wiki/Google_Chrome#Extension_Activity_database']
+urls: ['https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome#Extension_Activity_database']
 ---
 name: ChromeExtensions
 doc: Chrome browser extension files.
@@ -214,7 +214,7 @@ sources:
   supported_os: [Linux]
 supported_os: [Windows, Darwin, Linux]
 labels: [Browser]
-urls: ['http://forensicswiki.org/wiki/Google_Chrome#Extensions']
+urls: ['https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome#Extensions']
 ---
 name: ChromeExtensionRegistryKeys
 doc: Chrome extensions installed by writing windows registry keys.
@@ -254,7 +254,7 @@ sources:
   supported_os: [Linux]
 supported_os: [Windows,Darwin,Linux]
 labels: [Browser]
-urls: ['http://forensicswiki.org/wiki/Google_Chrome#Configuration']
+urls: ['https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome#Configuration']
 ---
 name: FirefoxCache
 doc: Mozilla Firefox browser caches.
@@ -533,8 +533,8 @@ sources:
 labels: [Users, Browser]
 supported_os: [Darwin, Windows]
 urls:
-- 'http://forensicswiki.org/wiki/Mac_OS_X'
-- 'http://forensicswiki.org/wiki/Mac_OS_X_10.9_-_Artifacts_Location#Safari'
+- 'https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X'
+- 'https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#Safari'
 - 'https://www.forensicswiki.org/wiki/Apple_Safari'
 ---
 name: SafariHistory
