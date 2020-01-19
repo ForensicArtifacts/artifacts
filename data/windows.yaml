@@ -1748,6 +1748,7 @@ sources:
     - 'WindowsUserRegistryTransactionLogFiles'
 labels: [System,Users]
 supported_os: [Windows]
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/RegistryFiles.md']
 ---
 name: WindowsRegistryProfiles
 doc: |
@@ -2784,7 +2785,7 @@ sources:
     separator: '\'
 labels: [System]
 supported_os: [Windows]
-urls: ['https://github.com/msuhanov/regf/blob/master/Windows%20registry%20file%20format%20specification.md#types-of-files']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/RegistryFiles.md']
 ---
 name: WindowsSystemRegistryTransactionLogFilesBackup
 doc: |
@@ -2810,7 +2811,7 @@ sources:
     separator: '\'
 labels: [System]
 supported_os: [Windows]
-urls: ['https://github.com/msuhanov/regf/blob/master/Windows%20registry%20file%20format%20specification.md#types-of-files']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/RegistryFiles.md']
 ---
 name: WindowsSystemRegistryFiles
 doc: Windows system Registry files.
@@ -2826,7 +2827,7 @@ sources:
     separator: '\'
 labels: [System]
 supported_os: [Windows]
-urls: ['https://github.com/libyal/winreg-kb/blob/master/documentation/Registry%20files.asciidoc']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/RegistryFiles.md']
 ---
 name: WindowsSystemRegistryTransactionLogFiles
 doc: Windows system Registry transaction log files.
@@ -2849,7 +2850,7 @@ sources:
     separator: '\'
 labels: [System]
 supported_os: [Windows]
-urls: ['https://github.com/msuhanov/regf/blob/master/Windows%20registry%20file%20format%20specification.md#format-of-transaction-log-files']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/RegistryFiles.md']
 ---
 name: WindowsSystemRegistryFilesAndTransactionLogs
 doc: Windows system Registry files and transaction logs.
@@ -2861,6 +2862,7 @@ sources:
     - 'WindowsSystemRegistryTransactionLogFiles'
 labels: [System]
 supported_os: [Windows]
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/RegistryFiles.md']
 ---
 name: WindowsSystemResourceUsageMonitorDatabaseFile
 doc: Windows System Resource Usage Monitor (SRUM) database file.
@@ -3077,7 +3079,7 @@ sources:
     separator: '\'
 labels: [Users]
 supported_os: [Windows]
-urls: ['https://github.com/libyal/winreg-kb/blob/master/documentation/Registry%20files.asciidoc']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/RegistryFiles.md']
 ---
 name: WindowsUserRegistryTransactionLogFiles
 doc: Windows user Registry transaction log files.
@@ -3094,7 +3096,7 @@ sources:
     separator: '\'
 labels: [Users]
 supported_os: [Windows]
-urls: ['https://github.com/msuhanov/regf/blob/master/Windows%20registry%20file%20format%20specification.md#format-of-transaction-log-files']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/RegistryFiles.md']
 ---
 name: WindowsUserRegistryFilesAndTransactionLogs
 doc: Windows user Registry files and transaction logs.
@@ -3106,6 +3108,7 @@ sources:
     - 'WindowsUserRegistryTransactionLogFiles'
 labels: [Users]
 supported_os: [Windows]
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/RegistryFiles.md']
 ---
 name: WindowsUserShellFolders
 doc: The Shell Folders information for Windows users.
