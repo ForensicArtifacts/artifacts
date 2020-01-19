@@ -858,9 +858,12 @@ sources:
     - 'WindowsEventLogSystem'
     - 'WindowsXMLEventLogApplication'
     - 'WindowsXMLEventLogSecurity'
+    - 'WindowsXMLEventLogSysmon'
     - 'WindowsXMLEventLogSystem'
+    - 'WindowsXMLEventLogTerminalServices'
 labels: [Logs]
 supported_os: [Windows]
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/EventLog.md']
 ---
 name: WindowsEventLogApplication
 doc: Application Windows Event Log.
@@ -872,7 +875,7 @@ sources:
 conditions: [os_major_version < 6]
 labels: [Logs]
 supported_os: [Windows]
-urls: ['http://www.forensicswiki.org/wiki/Windows_Event_Log_(EVT)']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/EventLog.md']
 ---
 name: WindowsEventLogSecurity
 doc: Security Windows Event Log.
@@ -884,7 +887,7 @@ sources:
 conditions: [os_major_version < 6]
 labels: [Logs]
 supported_os: [Windows]
-urls: ['http://www.forensicswiki.org/wiki/Windows_Event_Log_(EVT)']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/EventLog.md']
 ---
 name: WindowsEventLogSystem
 doc: System Windows Event Log.
@@ -896,7 +899,7 @@ sources:
 conditions: [os_major_version < 6]
 labels: [Logs]
 supported_os: [Windows]
-urls: ['http://www.forensicswiki.org/wiki/Windows_Event_Log_(EVT)']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/EventLog.md']
 ---
 name: WindowsXMLEventLogApplication
 doc: Application Windows XML Event Log.
@@ -908,7 +911,7 @@ sources:
 conditions: [os_major_version >= 6]
 labels: [Logs]
 supported_os: [Windows]
-urls: ['http://www.forensicswiki.org/wiki/Windows_XML_Event_Log_(EVTX)']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/EventLog.md']
 ---
 name: WindowsXMLEventLogSecurity
 doc: Security Windows XML Event Log.
@@ -920,7 +923,7 @@ sources:
 conditions: [os_major_version >= 6]
 labels: [Logs]
 supported_os: [Windows]
-urls: ['http://www.forensicswiki.org/wiki/Windows_XML_Event_Log_(EVTX)']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/EventLog.md']
 ---
 name: WindowsXMLEventLogSysmon
 doc: Sysmon Windows XML Event Log.
@@ -931,9 +934,7 @@ sources:
     separator: '\'
 labels: [Logs]
 supported_os: [Windows]
-urls:
-- 'https://docs.microsoft.com/en-us/sysinternals/downloads/sysmon'
-- 'https://blogs.technet.microsoft.com/motiba/2016/10/18/sysinternals-sysmon-unleashed'
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/EventLog.md']
 ---
 name: WindowsXMLEventLogSystem
 doc: System Windows XML Event Log.
@@ -945,7 +946,7 @@ sources:
 conditions: [os_major_version >= 6]
 labels: [Logs]
 supported_os: [Windows]
-urls: ['http://www.forensicswiki.org/wiki/Windows_XML_Event_Log_(EVTX)']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/EventLog.md']
 ---
 name: WindowsXMLEventLogTerminalServices
 doc: TerminalServices Windows XML Event Log.
@@ -957,7 +958,7 @@ sources:
 conditions: [os_major_version >= 6]
 labels: [Logs]
 supported_os: [Windows]
-urls: ['http://www.forensicswiki.org/wiki/Windows_XML_Event_Log_(EVTX)']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/EventLog.md']
 ---
 name: WindowsExcludeFromKnownDLLs
 doc: ExcludeFromKnownDLLs can be used to bypass search order hijacking protection.
@@ -1424,7 +1425,7 @@ sources:
 conditions: [os_major_version < 6]
 supported_os: [Windows]
 urls:
- - 'http://www.forensicswiki.org/wiki/OpenSaveMRU'
+ - 'https://forensicswiki.xyz/wiki/index.php?title=OpenSaveMRU'
  - 'https://digital-forensics.sans.org/blog/2010/04/02/openrunsavemru-lastvisitedmru'
 ---
 name: WindowsOpenSavePidlMRU
@@ -1437,7 +1438,7 @@ conditions: [os_major_version >= 6]
 supported_os: [Windows]
 urls:
  - 'https://digital-forensics.sans.org/blog/2010/04/02/openrunsavemru-lastvisitedmru'
- - 'http://www.forensicswiki.org/wiki/OpenSavePidlMRU'
+ - 'https://forensicswiki.xyz/wiki/index.php?title=OpenSavePidlMRU'
 ---
 name: WindowsPendingFileRenames
 doc: Windows Pending file renames on reboot
@@ -1626,7 +1627,7 @@ sources:
     separator: '\'
 labels: [System]
 supported_os: [Windows]
-urls: ['http://www.forensicswiki.org/wiki/Prefetch']
+urls: ['https://forensicswiki.xyz/wiki/index.php?title=Prefetch']
 ---
 name: WindowsPrintMonitors
 doc: Windows Print Monitor DLL config.
@@ -1724,7 +1725,7 @@ sources:
     separator: '\'
 labels: [Users]
 supported_os: [Windows]
-urls: ['http://www.forensicswiki.org/wiki/Windows#Recycle_Bin']
+urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows#Recycle_Bin']
 ---
 name: WindowsRegistryCurrentControlSet
 doc: The current control set of the Windows Registry.
@@ -1906,7 +1907,7 @@ sources:
     separator: '\'
 labels: [Software]
 supported_os: [Windows]
-urls: ['http://www.forensicswiki.org/wiki/Windows_Desktop_Search']
+urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows_Desktop_Search']
 ---
 name: WindowsSecurityProviders
 doc: Security Providers DLLs
@@ -2639,7 +2640,7 @@ sources:
   conditions: [os_major_version >= 6]
 labels: [Logs]
 supported_os: [Windows]
-urls: ['http://www.forensicswiki.org/wiki/Setup_API_Logs']
+urls: ['https://forensicswiki.xyz/wiki/index.php?title=Setup_API_Logs']
 ---
 name: WindowsShutdownScript
 doc: Windows policy shutdown script
@@ -2745,7 +2746,7 @@ sources:
     separator: '\'
 labels: [System]
 supported_os: [Windows]
-urls: ['http://www.forensicswiki.org/wiki/SuperFetch']
+urls: ['https://forensicswiki.xyz/wiki/index.php?title=SuperFetch']
 ---
 name: WindowsSystemIniFiles
 doc: Windows system ini files
