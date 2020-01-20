@@ -629,10 +629,7 @@ urls:
 - 'https://social.msdn.microsoft.com/Forums/windowsdesktop/en-US/cb6f1d6f-60a6-4369-803e-ec03d902e638/gina-how-to-run-domain-scripts-after-logon'
 ---
 name: WindowsEnvironmentVariableAllUsersProfile
-doc: |
-  The %AllUsersProfile% environment variable
-
-  May or may not depend on registry keys - see urls
+doc: The system-wide %AllUsersProfile% environment variable contains the path of the of the "All Users" or "Common" profile directory.
 sources:
 - type: REGISTRY_VALUE
   attributes:
@@ -640,17 +637,13 @@ sources:
     - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\ProfileList', value: 'AllUsersProfile'}
 provides: [environ_allusersprofile]
 supported_os: [Windows]
-urls:
-- 'https://www.microsoft.com/en-us/wdsi/help/folder-variables'
-- 'https://github.com/mirror/reactos/blob/c6d2b35ffc91e09f50dfb214ea58237509329d6b/reactos/boot/bootdata/livecd.inf'
-- 'http://support.microsoft.com/kb//214653'
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/EnvironmentVariables.md']
 ---
 name: WindowsEnvironmentVariableAppxProcess
 doc: |
-  The %APPX_PROCESS% environment variable.
+  The user-specific %APPX_PROCESS% environment variable is used for .NET applications.
 
-  If this variable is set, .NET applications will attempt to load WinAppXRT.dll
-  from PATH, which is a potential persistence mechanism.
+  If set, a .NET applications will attempt to load WinAppXRT.dll from %PATH%, which can be used as a persistence mechanism by malware.
 sources:
 - type: REGISTRY_VALUE
   attributes:
@@ -658,13 +651,10 @@ sources:
     - {key: 'HKEY_USERS\%%users.sid%%\Environment', value: 'APPX_PROCESS'}
 supported_os: [Windows]
 conditions: [os_major_version >= 6 AND os_minor_version >= 2]
-urls: ['http://www.hexacorn.com/blog/2014/08/31/beyond-good-ol-run-key-part-17/']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/EnvironmentVariables.md']
 ---
 name: WindowsEnvironmentVariableCommonProgramFiles
-doc: |
-    The %COMMONPROGRAMFILES% environment variable.
-
-    Used store files shared between applications.
+doc: The %COMMONPROGRAMFILES% environment variable contains the path of the common program files folder.
 sources:
 - type: REGISTRY_VALUE
   attributes:
@@ -672,13 +662,10 @@ sources:
     - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion', value: 'CommonFilesDir'}
 provides: [environ_commonprogramfiles]
 supported_os: [Windows]
-urls: ['http://environmentvariables.org/CommonProgramFiles']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/EnvironmentVariables.md']
 ---
 name: WindowsEnvironmentVariableCommonProgramFilesX86
-doc: |
-    The %COMMONPROGRAMFILES(X86)% environment variable.
-
-    Used store files shared between applications.
+doc: The %COMMONPROGRAMFILES(X86)% environment variable contains the path of the 32-bit common program files folder on a 64-bit Windows installation.
 sources:
 - type: REGISTRY_VALUE
   attributes:
@@ -686,13 +673,10 @@ sources:
     - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion', value: 'CommonFilesDir (x86)'}
 provides: [environ_commonprogramfilesx86]
 supported_os: [Windows]
-urls: ['http://environmentvariables.org/CommonProgramFiles']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/EnvironmentVariables.md']
 ---
 name: WindowsEnvironmentVariableComSpec
-doc: |
-    The %ComSpec% environment variable.
-
-    Specifies the command line interpreter.
+doc: The %ComSpec% environment variable contains the path of the command processor, typically "cmd.exe".
 sources:
 - type: REGISTRY_VALUE
   attributes:
@@ -700,13 +684,10 @@ sources:
     - {key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment', value: 'ComSpec'}
 provides: [environ_comspec]
 supported_os: [Windows]
-urls: ['http://environmentvariables.org/ComSpec']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/EnvironmentVariables.md']
 ---
 name: WindowsEnvironmentVariableDriverData
-doc: |
-    The %DriverData% environment variable.
-
-    A directory for temporary state files related to user-mode drivers.
+doc: The %DriverData% environment variable contains the path of the directory used for temporary state files of user-mode drivers.
 sources:
 - type: REGISTRY_VALUE
   attributes:
@@ -715,10 +696,10 @@ sources:
 provides: [environ_driverdata]
 supported_os: [Windows]
 conditions: [os_major_version >= 10]
-urls: ['https://docs.microsoft.com/en-us/windows-hardware/drivers/develop/driver-isolation#driverdata-and-programdata']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/EnvironmentVariables.md']
 ---
 name: WindowsEnvironmentVariablePath
-doc: The %PATH% environment variable.
+doc: The %PATH% environment variable contains an ordered list of paths of directories that will be searched on execution request without a specific path.
 sources:
 - type: REGISTRY_VALUE
   attributes:
@@ -726,10 +707,10 @@ sources:
     - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment', value: 'Path'}
 provides: [environ_path]
 supported_os: [Windows]
-urls: ['http://environmentvariables.org/Path']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/EnvironmentVariables.md']
 ---
 name: WindowsEnvironmentVariableProfilesDirectory
-doc: Folder that typically contains users' profile directories; default is '%SystemDrive%\Users'
+doc: The %ProfilesDirectory% environment variable contain a path of a directory that contains the users' profile directories, typically "%SystemDrive%\Users".
 sources:
 - type: REGISTRY_VALUE
   attributes:
@@ -737,13 +718,10 @@ sources:
     - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\ProfileList', value: 'ProfilesDirectory'}
 provides: [environ_profilesdirectory]
 supported_os: [Windows]
-urls:
-- 'https://msdn.microsoft.com/en-us/library/windows/desktop/bb776892(v=vs.85).aspx'
-- 'https://docs.microsoft.com/en-us/windows/deployment/usmt/usmt-recognized-environment-variables'
-- 'http://support.microsoft.com/kb//214653'
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/EnvironmentVariables.md']
 ---
 name: WindowsEnvironmentVariableProgramData
-doc: The %ProgramData% environment variable.
+doc: The %ProgramData% environment variable contains a path of the "Program Data" directory.
 sources:
 - type: REGISTRY_VALUE
   attributes:
@@ -751,10 +729,10 @@ sources:
     - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\ProfileList', value: 'ProgramData'}
 provides: [environ_programdata]
 supported_os: [Windows]
-urls: ['http://environmentvariables.org/ProgramData']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/EnvironmentVariables.md']
 ---
 name: WindowsEnvironmentVariableProgramFiles
-doc: The %ProgramFiles% environment variable.
+doc: The %ProgramFiles% environment variable contains a path of the "Program Files" directory.
 sources:
 - type: PATH
   attributes:
@@ -766,10 +744,10 @@ sources:
     - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion', value: 'ProgramFilesDir'}
 provides: [environ_programfiles]
 supported_os: [Windows]
-urls: ['http://environmentvariables.org/ProgramFiles']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/EnvironmentVariables.md']
 ---
 name: WindowsEnvironmentVariableProgramFilesX86
-doc: The %ProgramFiles(x86)% environment variable.
+doc: The %ProgramFiles(x86)% environment variable contains a path of the 32-bit "Program Files" directory on a 64-bit Windows installation.
 sources:
 - type: PATH
   attributes:
@@ -781,25 +759,22 @@ sources:
     - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion', value: 'ProgramFilesDir (x86)'}
 provides: [environ_programfilesx86]
 supported_os: [Windows]
-urls: ['http://environmentvariables.org/ProgramFiles']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/EnvironmentVariables.md']
 ---
 name: WindowsEnvironmentVariableSystemDrive
 doc: |
-  The %SystemDrive% environment variable, usually "C:".
+  The %SystemDrive% environment variable contains the letter of the drive in which the system directory is located, typically "C:".
 
-  This value isn't actually present in the Registry but with some parsing we
-  can figure it out from SystemRoot.
+  This value is not present in the Windows Registry but can be derived from %SystemRoot%.
 sources:
 - type: ARTIFACT_GROUP
   attributes: {names: ['WindowsEnvironmentVariableSystemRoot']}
 provides: [environ_systemdrive]
 supported_os: [Windows]
-urls:
-- 'http://environmentvariables.org/SystemDrive'
-- 'https://msdn.microsoft.com/en-us/library/cc231436.aspx'
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/EnvironmentVariables.md']
 ---
 name: WindowsEnvironmentVariableSystemRoot
-doc: The system root directory path, defined by %SystemRoot%, typically "C:\Windows".
+doc: The %SystemRoot%, environment variable contains the path of the system directory, typically "C:\Windows".
 sources:
 - type: PATH
   attributes:
@@ -815,7 +790,7 @@ sources:
     - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion', value: 'SystemRoot'}
 provides: [environ_systemroot]
 supported_os: [Windows]
-urls: ['http://environmentvariables.org/SystemRoot']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/EnvironmentVariables.md']
 ---
 name: WindowsEnvironmentVariableTemp
 doc: The %TEMP% environment variable.
@@ -826,10 +801,10 @@ sources:
     - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment', value: 'TEMP'}
 provides: [environ_temp]
 supported_os: [Windows]
-urls: ['http://environmentvariables.org/Temp']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/EnvironmentVariables.md']
 ---
 name: WindowsEnvironmentVariableWinDir
-doc: The %WinDir% environment variable.
+doc: The %WinDir%, environment variable contains the path of the Windows directory, typically "C:\Windows".
 sources:
 - type: PATH
   attributes:
@@ -845,7 +820,7 @@ sources:
     - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment', value: 'windir'}
 provides: [environ_windir]
 supported_os: [Windows]
-urls: ['http://environmentvariables.org/WinDir']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/EnvironmentVariables.md']
 ---
 name: WindowsEventLogs
 doc: Windows Event logs.
