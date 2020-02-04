@@ -38,7 +38,7 @@ urls:
 - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
 ---
 name: WindowsAMCacheHveFile
-doc: The AMCache.hve Windows NT Registry file.
+doc: The AMCache file, stored in the Windows NT Registry file format.
 sources:
 - type: FILE
   attributes:
@@ -46,7 +46,7 @@ sources:
     separator: '\'
 conditions: [os_major_version >= 6 AND os_minor_version >= 1]
 supported_os: [Windows]
-urls: ['http://www.swiftforensics.com/2013/12/amcachehve-in-windows-8-goldmine-for.html']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/AMCache.md']
 ---
 name: WindowsAppCertDLLs
 doc: Windows AppCertDLLs persistence.
