@@ -1687,7 +1687,7 @@ sources:
     separator: '\'
 conditions: [os_major_version >= 6 AND os_minor_version >= 1]
 supported_os: [Windows]
-urls: ['https://github.com/libyal/assorted/blob/master/documentation/RecentFileCache.bcf%20format.asciidoc']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/RecentFileCache.md']
 ---
 name: WindowsRecycleBin
 doc: Windows Recycle Bin (Recyler, $Recycle.Bin) files.
