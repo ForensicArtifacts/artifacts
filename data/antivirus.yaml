@@ -76,6 +76,7 @@ sources:
   attributes:
     paths:
     - '%%environ_allusersappdata%%\Symantec\Symantec Endpoint Protection\*\Data\Logs\*.log'
+    - '%%environ_allusersappdata%%\Symantec\Symantec Endpoint Protection\*\Data\Logs\AV\*.log'
     - '%%users.localappdata%%\Symantec\Symantec Endpoint Protection\Logs\*.log'
     separator: '\'
   supported_os: [Windows]
