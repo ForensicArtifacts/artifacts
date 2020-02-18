@@ -15,6 +15,28 @@ sources:
 labels: [Configuration Files]
 supported_os: [Linux, Darwin]
 ---
+name: RedisConfigFile
+doc: Redis configuration file
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%environ_programfiles%%\Redis\conf\redis.windows.conf'
+    - '%%environ_programfiles%%\Redis\conf\redis.conf'
+  supported_os: [Windows]
+- type: FILE
+  attributes:
+    paths:
+      - '/etc/redis/redis.conf'
+  supported_os: [Linux]
+- type: FILE
+  attributes:
+    paths:
+      - '/private/etc/redis/redis.conf'
+  supported_os: [Darwin]
+labels: [Configuration Files]
+supported_os: [Darwin, Linux, Windows]
+---
 name: SshdConfigFile
 doc: Sshd configuration
 sources:
