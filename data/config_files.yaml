@@ -20,9 +20,10 @@ doc: Redis configuration file
 sources:
 - type: FILE
   attributes:
+    separator: '\'
     paths:
-    - '%%environ_programfiles%%/Redis/conf/redis.windows.conf'
-    - '%%environ_programfiles%%/Redis/conf/redis.conf'
+    - '%%environ_programfiles%%\Redis\conf\redis.windows.conf'
+    - '%%environ_programfiles%%\Redis\conf\redis.conf'
   supported_os: [Windows]
 - type: FILE
   attributes:
