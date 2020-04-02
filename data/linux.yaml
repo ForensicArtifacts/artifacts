@@ -125,7 +125,7 @@ sources:
   attributes:
     paths:
     - '/var/lib/sss/secrets/secrets.ldb'
-    - '//var/lib/sss/secrets/secrets.ldb'
+    - '/var/lib/sss/secrets/.secrets.mkey'
 labels: [System, Configuration Files]
 supported_os: [Linux]
 urls: ['https://www.fireeye.com/blog/threat-research/2020/04/kerberos-tickets-on-linux-red-teams.html']
