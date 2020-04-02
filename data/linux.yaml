@@ -118,6 +118,18 @@ sources:
 labels: [System]
 supported_os: [Linux]
 ---
+name: KerberosTickets
+doc: Kerberos tickets on domain-joined systems are managed by System Security Services Daemon (SSSD).
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/var/lib/sss/secrets/secrets.ldb'
+    - '//var/lib/sss/secrets/secrets.ldb'
+labels: [System, Configuration Files]
+supported_os: [Linux]
+urls: ['https://www.fireeye.com/blog/threat-research/2020/04/kerberos-tickets-on-linux-red-teams.html']
+---
 name: KernelModules
 doc: Kernel modules to be loaded on boot.
 sources:
