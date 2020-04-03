@@ -1936,6 +1936,20 @@ urls:
 - 'http://support.microsoft.com/kb/103000'
 - 'https://github.com/libyal/winreg-kb/blob/master/documentation/System%20keys.asciidoc'
 ---
+name: WindowsSubsystemForLinuxProfileFiles
+doc: Windows Subsystem for Linux (WSL) Profile Files.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.localappdata%%\Packages\*\LocalState\rootfs\home\*\.bash_history'
+    - '%%users.localappdata%%\Packages\*\LocalState\rootfs\home\*\.bash_logout'
+    - '%%users.localappdata%%\Packages\*\LocalState\rootfs\home\*\.bashrc'
+    - '%%users.localappdata%%\Packages\*\LocalState\rootfs\home\*\.profile'
+    separator: '\'
+supported_os: [Windows]
+urls: ['https://docs.microsoft.com/en-us/windows/wsl/install-win10']
+---
 name: WindowsActionCenterSettings
 doc: |
   Windows Action Center Settings
