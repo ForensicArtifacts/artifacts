@@ -216,8 +216,19 @@ sources:
     - '%%users.homedir%%/.zlogin'
     - '%%users.homedir%%/.zlogout'
     - '%%users.homedir%%/.zprofile'
+    - '%%users.localappdata%%\Packages\*\LocalState\rootfs\home\*\.bash_logout'
+    - '%%users.localappdata%%\Packages\*\LocalState\rootfs\home\*\.bash_profile'
+    - '%%users.localappdata%%\Packages\*\LocalState\rootfs\home\*\.bashrc'
+    - '%%users.localappdata%%\Packages\*\LocalState\rootfs\home\*\.cshrc'
+    - '%%users.localappdata%%\Packages\*\LocalState\rootfs\home\*\.ksh'
+    - '%%users.localappdata%%\Packages\*\LocalState\rootfs\home\*\.logout'
+    - '%%users.localappdata%%\Packages\*\LocalState\rootfs\home\*\.profile'
+    - '%%users.localappdata%%\Packages\*\LocalState\rootfs\home\*\.tcsh'
+    - '%%users.localappdata%%\Packages\*\LocalState\rootfs\home\*\.zlogin'
+    - '%%users.localappdata%%\Packages\*\LocalState\rootfs\home\*\.zlogout'
+    - '%%users.localappdata%%\Packages\*\LocalState\rootfs\home\*\.zprofile'
 labels: [Configuration Files]
-supported_os: [Linux, Darwin]
+supported_os: [Linux, Darwin, Windows]
 ---
 name: UsersShellHistory
 doc: Common unix user shell history files.
@@ -229,5 +240,9 @@ sources:
     - '%%users.homedir%%/.sh_history'
     - '%%users.homedir%%/.zhistory'
     - '%%users.homedir%%/.zsh_history'
+    - '%%users.localappdata%%\Packages\*\LocalState\rootfs\home\*\.bash_history'
+    - '%%users.localappdata%%\Packages\*\LocalState\rootfs\home\*\.sh_history'
+    - '%%users.localappdata%%\Packages\*\LocalState\rootfs\home\*\.zhistory'
+    - '%%users.localappdata%%\Packages\*\LocalState\rootfs\home\*\.zsh_history'
 labels: [History Files]
-supported_os: [Linux, Darwin]
+supported_os: [Linux, Darwin, Windows]
