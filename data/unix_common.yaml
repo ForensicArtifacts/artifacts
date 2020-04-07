@@ -234,6 +234,7 @@ sources:
     separator: '\'
   supported_os: [Windows]
 labels: [Configuration Files]
+supported_os: [Linux, Darwin, Windows]
 ---
 name: UsersShellHistory
 doc: Common Unix user shell history files.
@@ -256,3 +257,4 @@ sources:
     separator: '\'
   supported_os: [Windows]
 labels: [History Files]
+supported_os: [Linux, Darwin, Windows]
