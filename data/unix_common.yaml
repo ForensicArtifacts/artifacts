@@ -200,7 +200,7 @@ labels: [Authentication]
 supported_os: [Linux, Darwin]
 ---
 name: UsersShellConfigs
-doc: Common unix user shell configuration files.
+doc: Common Unix user shell configuration files.
 sources:
 - type: FILE
   attributes:
@@ -216,6 +216,10 @@ sources:
     - '%%users.homedir%%/.zlogin'
     - '%%users.homedir%%/.zlogout'
     - '%%users.homedir%%/.zprofile'
+  supported_os: [Linux, Darwin]
+- type: FILE
+  attributes:
+    paths:
     - '%%users.localappdata%%\Packages\*\LocalState\rootfs\home\*\.bash_logout'
     - '%%users.localappdata%%\Packages\*\LocalState\rootfs\home\*\.bash_profile'
     - '%%users.localappdata%%\Packages\*\LocalState\rootfs\home\*\.bashrc'
@@ -227,11 +231,12 @@ sources:
     - '%%users.localappdata%%\Packages\*\LocalState\rootfs\home\*\.zlogin'
     - '%%users.localappdata%%\Packages\*\LocalState\rootfs\home\*\.zlogout'
     - '%%users.localappdata%%\Packages\*\LocalState\rootfs\home\*\.zprofile'
+    separator: '\'
+  supported_os: [Windows]
 labels: [Configuration Files]
-supported_os: [Linux, Darwin, Windows]
 ---
 name: UsersShellHistory
-doc: Common unix user shell history files.
+doc: Common Unix user shell history files.
 sources:
 - type: FILE
   attributes:
@@ -240,9 +245,14 @@ sources:
     - '%%users.homedir%%/.sh_history'
     - '%%users.homedir%%/.zhistory'
     - '%%users.homedir%%/.zsh_history'
+  supported_os: [Linux, Darwin]
+- type: FILE
+  attributes:
+    paths:
     - '%%users.localappdata%%\Packages\*\LocalState\rootfs\home\*\.bash_history'
     - '%%users.localappdata%%\Packages\*\LocalState\rootfs\home\*\.sh_history'
     - '%%users.localappdata%%\Packages\*\LocalState\rootfs\home\*\.zhistory'
     - '%%users.localappdata%%\Packages\*\LocalState\rootfs\home\*\.zsh_history'
+    separator: '\'
+  supported_os: [Windows]
 labels: [History Files]
-supported_os: [Linux, Darwin, Windows]
