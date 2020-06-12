@@ -1055,7 +1055,7 @@ urls:
 - 'https://www.sans.org/cyber-security-summit/archives/file/summit-archive-1498158287.pdf'
 ---
 name: MacOSTCC
-doc: Apple's Transparency, Consent, Control framework database
+doc: Apple's Transparency, Consent, Control (TCC) framework database
 sources:
   - type: FILE
     attributes:
@@ -1065,5 +1065,5 @@ sources:
 labels: [System]
 supported_os: [Darwin]
 urls:
-  - https://blog.fleetsmith.com/tcc-a-quick-primer/
-  - https://carlashley.com/2018/09/06/reading-tcc-logs-in-macos/
+- https://blog.fleetsmith.com/tcc-a-quick-primer/
+- https://carlashley.com/2018/09/06/reading-tcc-logs-in-macos/
