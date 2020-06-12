@@ -2,12 +2,14 @@ environment:
   matrix:
   - TARGET: unittests
     MACHINE_TYPE: "x86"
-    PYTHON: "C:\\Python37"
-    PYTHON_VERSION: "3.7"
+    PYTHON: "C:\\Python38"
+    PYTHON_VERSION: "3.8"
+    L2TBINARIES_TRACK: "dev"
   - TARGET: unittests
     MACHINE_TYPE: "amd64"
-    PYTHON: "C:\\Python37-x64"
-    PYTHON_VERSION: "3.7"
+    PYTHON: "C:\\Python38-x64"
+    PYTHON_VERSION: "3.8"
+    L2TBINARIES_TRACK: "dev"
 
 install:
 - cmd: '"C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.cmd" /x86 /release'
@@ -15,13 +17,17 @@ install:
 - cmd: "%PYTHON%\\python.exe -m pip install pywin32 WMI"
 - cmd: "%PYTHON%\\python.exe %PYTHON%\\Scripts\\pywin32_postinstall.py -install"
 - cmd: git clone https://github.com/log2timeline/l2tdevtools.git ..\l2tdevtools
-- cmd: if [%PYTHON_VERSION%]==[3.7] (
+- cmd: IF [%PYTHON_VERSION%]==[3.8] (
     mkdir dependencies &&
     set PYTHONPATH=..\l2tdevtools &&
-    "%PYTHON%\\python.exe" ..\l2tdevtools\tools\update.py --download-directory dependencies --machine-type %MACHINE_TYPE% --msi-targetdir "%PYTHON%" --track dev PyYAML mock pbr six )
+    "%PYTHON%\\python.exe" ..\l2tdevtools\tools\update.py --download-directory dependencies --machine-type %MACHINE_TYPE% --msi-targetdir "%PYTHON%" --track "%L2TBINARIES_TRACK%" PyYAML mock pbr six )
 
 build: off
 
 test_script:
-- cmd: if [%TARGET%]==[unittests] (
-    "%PYTHON%\\python.exe" run_tests.py )
+- cmd: IF [%TARGET%]==[unittests] (
+    "%PYTHON%\\python.exe" run_tests.py &&
+    IF EXIST "tests\\end-to-end.py" (
+        set PYTHONPATH=. &&
+        "%PYTHON%\\python.exe" "tests\\end-to-end.py" --debug -c "config\\end-to-end.ini" ) )
+
