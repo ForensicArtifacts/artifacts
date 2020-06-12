@@ -511,7 +511,10 @@ sources:
     separator: '\'
   supported_os: [Windows]
 - type: FILE
-  attributes: {paths: ['%%users.homedir%%/Library/Caches/com.apple.Safari/cache.db']}
+  attributes:
+    paths:
+    - '%%users.homedir%%/Library/Caches/com.apple.Safari/Cache.db'
+    - '%%users.homedir%%/Library/Caches/com.apple.Safari/Cache.db-wal'
   supported_os: [Darwin]
 supported_os: [Windows, Darwin]
 labels: [Browser]
@@ -557,3 +560,13 @@ sources:
 supported_os: [Windows, Darwin]
 labels: [Browser]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Apple_Safari']
+---
+name: SafariExtensions
+doc: Safari browser Extensions.
+sources:
+- type: FILE
+  attributes: {paths: ['%%users.homedir%%/Library/Safari/Extensions/**']}
+  supported_os: [Darwin]
+supported_os: [Darwin]
+labels: [Browser]
+urls: ['http://www.forensicswiki.org/wiki/Apple_Safari']
