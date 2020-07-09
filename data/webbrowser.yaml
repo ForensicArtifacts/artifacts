@@ -98,6 +98,14 @@ sources:
     - '%%users.homedir%%/.config/chromium/*/Cache/*'
     - '%%users.homedir%%/.config/chromium/*/Media Cache/*'
     - '%%users.homedir%%/.config/chromium/*/GPUCache/*'
+    - '%%users.homedir%%/.cache/chrome-remote-desktop/chrome-profile/Cache/*'
+    - '%%users.homedir%%/.cache/chrome-remote-desktop/chrome-profile/*/Cache/*'
+    - '%%users.homedir%%/.cache/chrome-remote-desktop/chrome-profile/*/Media Cache/*'
+    - '%%users.homedir%%/.cache/chrome-remote-desktop/chrome-profile/PnaclTranslationCache/*'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Application Cache/*'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Cache/*'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Media Cache/*'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/GPUCache/*'
   supported_os: [Linux]
 supported_os: [Windows,Darwin,Linux]
 labels: [Browser]
@@ -154,6 +162,10 @@ sources:
     - '%%users.homedir%%/.config/google-chrome-beta/*/Archived History-journal'
     - '%%users.homedir%%/.config/google-chrome-beta/*/History'
     - '%%users.homedir%%/.config/google-chrome-beta/*/History-journal'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Archived History'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Archived History-journal'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/History'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/History-journal'
   supported_os: [Linux]
 supported_os: [Windows,Darwin,Linux]
 labels: [Browser]
@@ -211,6 +223,7 @@ sources:
     - '%%users.homedir%%/.config/google-chrome/*/Extensions/**10'
     - '%%users.homedir%%/.config/google-chrome-beta/*/Extensions/**10'
     - '%%users.homedir%%/.config/chromium/*/Extensions/**10'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Extensions/**10'
   supported_os: [Linux]
 supported_os: [Windows, Darwin, Linux]
 labels: [Browser]
@@ -251,6 +264,7 @@ sources:
     paths:
     - '%%users.homedir%%/.config/google-chrome/*/Preferences'
     - '%%users.homedir%%/.config/chromium/*/Preferences'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Preferences'
   supported_os: [Linux]
 supported_os: [Windows,Darwin,Linux]
 labels: [Browser]
