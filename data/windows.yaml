@@ -42,7 +42,10 @@ doc: The AMCache file, stored in the Windows NT Registry file format.
 sources:
 - type: FILE
   attributes:
-    paths: ['%%environ_systemroot%%\AppCompat\Programs\Amcache.hve']
+    paths:
+      -'%%environ_systemroot%%\AppCompat\Programs\Amcache.hve'
+      -'%%environ_systemroot%%\AppCompat\Programs\Amcache.hve.LOG1'
+      -'%%environ_systemroot%%\AppCompat\Programs\Amcache.hve.LOG2'
     separator: '\'
 conditions: [os_major_version >= 6 AND os_minor_version >= 1]
 supported_os: [Windows]
