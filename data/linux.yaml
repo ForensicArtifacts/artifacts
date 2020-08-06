@@ -148,8 +148,10 @@ name: LinuxAuthLogs
 doc: Linux authentication log files.
 sources:
 - type: FILE
-  attributes: {paths: ['/var/log/auth.log*']}
-  attributes: {paths: ['/var/log/secure.log*']}
+  attributes:
+    paths:
+    - '/var/log/auth.log*'
+    - '/var/log/secure.log*'
 labels: [Logs, Authentication]
 supported_os: [Linux]
 ---
