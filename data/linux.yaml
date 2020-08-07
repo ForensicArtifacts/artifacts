@@ -145,10 +145,13 @@ labels: [Logs]
 supported_os: [Linux]
 ---
 name: LinuxAuthLogs
-doc: Linux auth log files.
+doc: Linux authentication log files.
 sources:
 - type: FILE
-  attributes: {paths: ['/var/log/auth.log*']}
+  attributes:
+    paths:
+    - '/var/log/auth.log*'
+    - '/var/log/secure.log*'
 labels: [Logs, Authentication]
 supported_os: [Linux]
 ---
@@ -186,9 +189,11 @@ sources:
 - type: FILE
   attributes:
     paths:
+    - '/etc/centos-release'
     - '/etc/enterprise-release'
     - '/etc/oracle-release'
     - '/etc/redhat-release'
+    - '/etc/SuSE-release'
     - '/etc/system-release'
 provides: [os_release, os_major_version, os_minor_version]
 labels: [Software]
@@ -426,6 +431,14 @@ sources:
   attributes: {paths: ['/sys/firmware/acpi/tables/SSDT*']}
 labels: [System]
 urls: ['https://www.kernel.org/doc/Documentation/acpi/initrd_table_override.txt']
+supported_os: [Linux]
+---
+name: LinuxSudoReplayLogs
+doc: Linux sudoreplay log files.
+sources:
+- type: FILE
+  attributes: {paths: ['/var/log/sudo-io/**']}
+labels: [Logs, Authentication]
 supported_os: [Linux]
 ---
 name: LinuxSysLogFiles
