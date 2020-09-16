@@ -111,6 +111,45 @@ supported_os: [Windows,Darwin,Linux]
 labels: [Browser]
 urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/webbrowser/ChromeCache.md']
 ---
+name: ChromeCookies
+doc: Chrome Cookies database.
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '%%users.localappdata%%\Chromium\User Data\*\Cookies'
+      - '%%users.localappdata%%\Chromium\User Data\*\Cookies-journal'
+      - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Cookies'
+      - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Cookies-journal'
+      - '%%users.localappdata%%\Google\Chrome\User Data\*\Cookies'
+      - '%%users.localappdata%%\Google\Chrome\User Data\*\Cookies-journal'
+    separator: '\'
+  supported_os: [Windows]
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/.config/google-chrome/*/Cookies'
+    - '%%users.homedir%%/.config/google-chrome/*/Cookies-journal'
+    - '%%users.homedir%%/.config/chromium/*/Cookies'
+    - '%%users.homedir%%/.config/chromium/*/Cookies-journal'
+    - '%%users.homedir%%/.config/google-chrome-beta/*/Cookies'
+    - '%%users.homedir%%/.config/google-chrome-beta/*/Cookies-journal'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Cookies'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Cookies-journal'
+  supported_os: [Linux]
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/Library/Application Support/Chromium/*/Cookies'
+    - '%%users.homedir%%/Library/Application Support/Chromium/*/Cookies-journal'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Cookies'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Cookies-journal'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Cookies'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Cookies-journal'
+  supported_os: [Darwin]
+supported_os: [Windows,Darwin,Linux]
+labels: [Browser]
+---
 name: ChromeHistory
 doc: Chrome browser history.
 sources:
