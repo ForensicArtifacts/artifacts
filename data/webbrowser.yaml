@@ -150,6 +150,44 @@ sources:
 supported_os: [Windows,Darwin,Linux]
 labels: [Browser]
 ---
+name: ChromeLocalStorage
+doc: |
+  Google Chrome, Canary and Chromium Local Storage files.
+
+  * Chrome v60 and below used individual .sqlite files per origin for Local Storage,
+    stored in the Local Storage directory root.
+  * In Chrome v61, a leveldb directory was added inside the root Local Storage directory,
+    and new origins saved Local Storage data in a single LevelDB there.
+  * Existing .sqlite files are kept (not moved to leveldb), so it is possible for a
+    single Chrome profile to use both SQLite and LevelDB for Local Storage.
+
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '%%users.localappdata%%\Chromium\User Data\*\Local Storage\**'
+      - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Local Storage\**'
+      - '%%users.localappdata%%\Google\Chrome\User Data\*\Local Storage\**'
+    separator: '\'
+  supported_os: [Windows]
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/.config/google-chrome/*/Local Storage/**'
+    - '%%users.homedir%%/.config/chromium/*/Local Storage/**'
+    - '%%users.homedir%%/.config/google-chrome-beta/*/Local Storage/**'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Local Storage/**'
+  supported_os: [Linux]
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/Library/Application Support/Chromium/*/Local Storage/**'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Local Storage/**'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Local Storage/**'
+  supported_os: [Darwin]
+supported_os: [Windows,Darwin,Linux]
+labels: [Browser]
+---
 name: ChromeHistory
 doc: Chrome browser history.
 sources:
