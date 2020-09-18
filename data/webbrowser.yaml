@@ -227,6 +227,45 @@ urls:
 - 'https://developer.mozilla.org/en-US/docs/Web/API/FileSystem'
 - 'https://dfir.blog/deciphering-browser-hieroglyphics-leveldb-filesystem/'
 ---
+name: ChromeIndexedDB
+doc: |
+  Google Chrome, Canary and Chromium IndexedDB files.
+
+  The IndexedDB directory contains one directory per origin that uses IndexedDB, named
+  like https_www.example.com_0.indexeddb.leveldb, chrome-extension_app-id-xxx_0.indexeddb.leveldb, or
+  https_www.example.com_0.indexeddb.blob. Inside each of the *.leveldb directories are the files the
+  comprise a LevelDB database, which in turn holds IndexedDB data for that origin. There may be an
+  accompanying .blob directory, which contains a nested folder structure of blobs.
+
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '%%users.localappdata%%\Chromium\User Data\*\IndexedDB\**5'
+      - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\IndexedDB\**5'
+      - '%%users.localappdata%%\Google\Chrome\User Data\*\IndexedDB\**5'
+    separator: '\'
+  supported_os: [Windows]
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/.config/google-chrome/*/IndexedDB/**5'
+    - '%%users.homedir%%/.config/chromium/*/IndexedDB/**5'
+    - '%%users.homedir%%/.config/google-chrome-beta/*/IndexedDB/**5'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/IndexedDB/**5'
+  supported_os: [Linux]
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/Library/Application Support/Chromium/*/IndexedDB/**5'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/IndexedDB/**5'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/IndexedDB/**5'
+  supported_os: [Darwin]
+supported_os: [Windows,Darwin,Linux]
+labels: [Browser]
+urls:
+- 'https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API'
+---
 name: ChromeHistory
 doc: Chrome browser history.
 sources:
