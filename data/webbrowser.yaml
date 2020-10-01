@@ -28,6 +28,29 @@ sources:
 labels: [Browser]
 supported_os: [Darwin,Linux,Windows]
 ---
+name: ChromeStorage
+doc: |
+  Google Chrome, Canary and Chromium browser artifacts for Storage APIs.
+
+  Includes Web Storage (sessionStorage for session-only data and
+  localStorage for persistent data), IndexedDB (used for structured data),
+  and FileSystem (object storage in a virtual file system).
+
+sources:
+- type: ARTIFACT_GROUP
+  attributes:
+    names:
+    - 'ChromeLocalStorage'
+    - 'ChromeSessionStorage'
+    - 'ChromeFileSystem'
+    - 'ChromeIndexedDB'
+labels: [Browser]
+supported_os: [Darwin,Linux,Windows]
+urls:
+- 'https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API'
+- 'https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API'
+- 'https://developer.mozilla.org/en-US/docs/Web/API/FileSystem'
+---
 name: ChromeCache
 doc: |
   Google Chrome, Canary and Chromium browser caches.
@@ -111,65 +134,44 @@ supported_os: [Windows,Darwin,Linux]
 labels: [Browser]
 urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/webbrowser/ChromeCache.md']
 ---
-name: ChromeHistory
-doc: Chrome browser history.
+name: ChromeCookies
+doc: Chrome Cookies database.
 sources:
 - type: FILE
   attributes:
     paths:
-    - '%%users.localappdata%%\Chromium\User Data\*\Archived History'
-    - '%%users.localappdata%%\Chromium\User Data\*\Archived History-journal'
-    - '%%users.localappdata%%\Chromium\User Data\*\History'
-    - '%%users.localappdata%%\Chromium\User Data\*\History-journal'
-    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Archived History'
-    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Archived History-journal'
-    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\History'
-    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\History-journal'
-    - '%%users.localappdata%%\Google\Chrome\User Data\*\Archived History'
-    - '%%users.localappdata%%\Google\Chrome\User Data\*\Archived History-journal'
-    - '%%users.localappdata%%\Google\Chrome\User Data\*\History'
-    - '%%users.localappdata%%\Google\Chrome\User Data\*\History-journal'
+    - '%%users.localappdata%%\Chromium\User Data\*\Cookies'
+    - '%%users.localappdata%%\Chromium\User Data\*\Cookies-journal'
+    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Cookies'
+    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Cookies-journal'
+    - '%%users.localappdata%%\Google\Chrome\User Data\*\Cookies'
+    - '%%users.localappdata%%\Google\Chrome\User Data\*\Cookies-journal'
     separator: '\'
   supported_os: [Windows]
 - type: FILE
   attributes:
     paths:
-    - '%%users.homedir%%/Library/Application Support/Chromium/*/Archived History'
-    - '%%users.homedir%%/Library/Application Support/Chromium/*/Archived History-journal'
-    - '%%users.homedir%%/Library/Application Support/Chromium/*/History'
-    - '%%users.homedir%%/Library/Application Support/Chromium/*/History-journal'
-    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Archived History'
-    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Archived History-journal'
-    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/History'
-    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/History-journal'
-    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Archived History'
-    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Archived History-journal'
-    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/History'
-    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/History-journal'
-  supported_os: [Darwin]
+    - '%%users.homedir%%/.config/google-chrome/*/Cookies'
+    - '%%users.homedir%%/.config/google-chrome/*/Cookies-journal'
+    - '%%users.homedir%%/.config/chromium/*/Cookies'
+    - '%%users.homedir%%/.config/chromium/*/Cookies-journal'
+    - '%%users.homedir%%/.config/google-chrome-beta/*/Cookies'
+    - '%%users.homedir%%/.config/google-chrome-beta/*/Cookies-journal'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Cookies'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Cookies-journal'
+  supported_os: [Linux]
 - type: FILE
   attributes:
     paths:
-    - '%%users.homedir%%/.config/chromium/*/Archived History'
-    - '%%users.homedir%%/.config/chromium/*/Archived History-journal'
-    - '%%users.homedir%%/.config/chromium/*/History'
-    - '%%users.homedir%%/.config/chromium/*/History-journal'
-    - '%%users.homedir%%/.config/google-chrome/*/Archived History'
-    - '%%users.homedir%%/.config/google-chrome/*/Archived History-journal'
-    - '%%users.homedir%%/.config/google-chrome/*/History'
-    - '%%users.homedir%%/.config/google-chrome/*/History-journal'
-    - '%%users.homedir%%/.config/google-chrome-beta/*/Archived History'
-    - '%%users.homedir%%/.config/google-chrome-beta/*/Archived History-journal'
-    - '%%users.homedir%%/.config/google-chrome-beta/*/History'
-    - '%%users.homedir%%/.config/google-chrome-beta/*/History-journal'
-    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Archived History'
-    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Archived History-journal'
-    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/History'
-    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/History-journal'
-  supported_os: [Linux]
+    - '%%users.homedir%%/Library/Application Support/Chromium/*/Cookies'
+    - '%%users.homedir%%/Library/Application Support/Chromium/*/Cookies-journal'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Cookies'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Cookies-journal'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Cookies'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Cookies-journal'
+  supported_os: [Darwin]
 supported_os: [Windows,Darwin,Linux]
 labels: [Browser]
-urls: ['https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome']
 ---
 name: ChromeExtensionActivity
 doc: Chrome Extension Activity database.
@@ -241,6 +243,185 @@ labels: [Browser]
 supported_os: [Windows]
 urls: ['https://developer.chrome.com/extensions/external_extensions#registry']
 ---
+name: ChromeFileSystem
+doc: |
+  Google Chrome, Canary and Chromium File System files.
+
+  The File System directory backs Chrome's fileSystem API. Inside this
+  directory are a mixture of the data files saved using the fileSystem
+  API and LevelDB directories that track the logical structure of the
+  virtual file system.
+
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '%%users.localappdata%%\Chromium\User Data\*\File System\**5'
+      - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\File System\**5'
+      - '%%users.localappdata%%\Google\Chrome\User Data\*\File System\**5'
+    separator: '\'
+  supported_os: [Windows]
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/.config/google-chrome/*/File System/**5'
+    - '%%users.homedir%%/.config/chromium/*/File System/**5'
+    - '%%users.homedir%%/.config/google-chrome-beta/*/File System/**5'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/File System/**5'
+  supported_os: [Linux]
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/Library/Application Support/Chromium/*/File System/**5'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/File System/**5'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/File System/**5'
+  supported_os: [Darwin]
+supported_os: [Windows,Darwin,Linux]
+labels: [Browser]
+urls:
+- 'https://developer.chrome.com/apps/fileSystem'
+- 'https://developer.mozilla.org/en-US/docs/Web/API/FileSystem'
+- 'https://dfir.blog/deciphering-browser-hieroglyphics-leveldb-filesystem/'
+---
+name: ChromeHistory
+doc: Chrome browser history.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.localappdata%%\Chromium\User Data\*\Archived History'
+    - '%%users.localappdata%%\Chromium\User Data\*\Archived History-journal'
+    - '%%users.localappdata%%\Chromium\User Data\*\History'
+    - '%%users.localappdata%%\Chromium\User Data\*\History-journal'
+    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Archived History'
+    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Archived History-journal'
+    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\History'
+    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\History-journal'
+    - '%%users.localappdata%%\Google\Chrome\User Data\*\Archived History'
+    - '%%users.localappdata%%\Google\Chrome\User Data\*\Archived History-journal'
+    - '%%users.localappdata%%\Google\Chrome\User Data\*\History'
+    - '%%users.localappdata%%\Google\Chrome\User Data\*\History-journal'
+    separator: '\'
+  supported_os: [Windows]
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/Library/Application Support/Chromium/*/Archived History'
+    - '%%users.homedir%%/Library/Application Support/Chromium/*/Archived History-journal'
+    - '%%users.homedir%%/Library/Application Support/Chromium/*/History'
+    - '%%users.homedir%%/Library/Application Support/Chromium/*/History-journal'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Archived History'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Archived History-journal'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/History'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/History-journal'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Archived History'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Archived History-journal'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/History'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/History-journal'
+  supported_os: [Darwin]
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/.config/chromium/*/Archived History'
+    - '%%users.homedir%%/.config/chromium/*/Archived History-journal'
+    - '%%users.homedir%%/.config/chromium/*/History'
+    - '%%users.homedir%%/.config/chromium/*/History-journal'
+    - '%%users.homedir%%/.config/google-chrome/*/Archived History'
+    - '%%users.homedir%%/.config/google-chrome/*/Archived History-journal'
+    - '%%users.homedir%%/.config/google-chrome/*/History'
+    - '%%users.homedir%%/.config/google-chrome/*/History-journal'
+    - '%%users.homedir%%/.config/google-chrome-beta/*/Archived History'
+    - '%%users.homedir%%/.config/google-chrome-beta/*/Archived History-journal'
+    - '%%users.homedir%%/.config/google-chrome-beta/*/History'
+    - '%%users.homedir%%/.config/google-chrome-beta/*/History-journal'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Archived History'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Archived History-journal'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/History'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/History-journal'
+  supported_os: [Linux]
+supported_os: [Windows,Darwin,Linux]
+labels: [Browser]
+urls: ['https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome']
+---
+name: ChromeIndexedDB
+doc: |
+  Google Chrome, Canary and Chromium IndexedDB files.
+
+  The IndexedDB directory contains one directory per origin that uses
+  IndexedDB, named like https_www.example.com_0.indexeddb.leveldb,
+  chrome-extension_app-id-xxx_0.indexeddb.leveldb, or
+  https_www.example.com_0.indexeddb.blob. Inside each of the *.leveldb
+  directories are the files the comprise a LevelDB database, which in turn
+  holds IndexedDB data for that origin. There may be an accompanying .blob
+  directory, which contains a nested folder structure of blobs.
+
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '%%users.localappdata%%\Chromium\User Data\*\IndexedDB\**5'
+      - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\IndexedDB\**5'
+      - '%%users.localappdata%%\Google\Chrome\User Data\*\IndexedDB\**5'
+    separator: '\'
+  supported_os: [Windows]
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/.config/google-chrome/*/IndexedDB/**5'
+    - '%%users.homedir%%/.config/chromium/*/IndexedDB/**5'
+    - '%%users.homedir%%/.config/google-chrome-beta/*/IndexedDB/**5'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/IndexedDB/**5'
+  supported_os: [Linux]
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/Library/Application Support/Chromium/*/IndexedDB/**5'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/IndexedDB/**5'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/IndexedDB/**5'
+  supported_os: [Darwin]
+supported_os: [Windows,Darwin,Linux]
+labels: [Browser]
+urls:
+- 'https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API'
+---
+name: ChromeLocalStorage
+doc: |
+  Google Chrome, Canary and Chromium Local Storage files.
+
+  * Chrome v60 and below used individual .sqlite files per origin for Local Storage,
+    stored in the Local Storage directory root.
+  * In Chrome v61, a leveldb directory was added inside the root Local Storage directory,
+    and new origins saved Local Storage data in a single LevelDB there.
+  * Existing .sqlite files are kept (not moved to leveldb), so it is possible for a
+    single Chrome profile to use both SQLite and LevelDB for Local Storage.
+
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '%%users.localappdata%%\Chromium\User Data\*\Local Storage\**'
+      - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Local Storage\**'
+      - '%%users.localappdata%%\Google\Chrome\User Data\*\Local Storage\**'
+    separator: '\'
+  supported_os: [Windows]
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/.config/google-chrome/*/Local Storage/**'
+    - '%%users.homedir%%/.config/chromium/*/Local Storage/**'
+    - '%%users.homedir%%/.config/google-chrome-beta/*/Local Storage/**'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Local Storage/**'
+  supported_os: [Linux]
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/Library/Application Support/Chromium/*/Local Storage/**'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Local Storage/**'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Local Storage/**'
+  supported_os: [Darwin]
+supported_os: [Windows,Darwin,Linux]
+labels: [Browser]
+---
 name: ChromePreferences
 doc: Chrome Preferences file.
 sources:
@@ -269,6 +450,40 @@ sources:
 supported_os: [Windows,Darwin,Linux]
 labels: [Browser]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome#Configuration']
+---
+name: ChromeSessionStorage
+doc: |
+  Google Chrome, Canary and Chromium Session Storage files.
+
+  The Session Storage directory contains the files that comprise a LevelDB
+  database, which in turn holds the Session Storage data.
+
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '%%users.localappdata%%\Chromium\User Data\*\Session Storage\*'
+      - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Session Storage\*'
+      - '%%users.localappdata%%\Google\Chrome\User Data\*\Session Storage\*'
+    separator: '\'
+  supported_os: [Windows]
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/.config/google-chrome/*/Session Storage/*'
+    - '%%users.homedir%%/.config/chromium/*/Session Storage/*'
+    - '%%users.homedir%%/.config/google-chrome-beta/*/Session Storage/*'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Session Storage/*'
+  supported_os: [Linux]
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/Library/Application Support/Chromium/*/Session Storage/*'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Session Storage/*'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Session Storage/*'
+  supported_os: [Darwin]
+supported_os: [Windows,Darwin,Linux]
+labels: [Browser]
 ---
 name: FirefoxCache
 doc: Mozilla Firefox browser caches.
