@@ -140,12 +140,12 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '%%users.localappdata%%\Chromium\User Data\*\Cookies'
-      - '%%users.localappdata%%\Chromium\User Data\*\Cookies-journal'
-      - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Cookies'
-      - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Cookies-journal'
-      - '%%users.localappdata%%\Google\Chrome\User Data\*\Cookies'
-      - '%%users.localappdata%%\Google\Chrome\User Data\*\Cookies-journal'
+    - '%%users.localappdata%%\Chromium\User Data\*\Cookies'
+    - '%%users.localappdata%%\Chromium\User Data\*\Cookies-journal'
+    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Cookies'
+    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Cookies-journal'
+    - '%%users.localappdata%%\Google\Chrome\User Data\*\Cookies'
+    - '%%users.localappdata%%\Google\Chrome\User Data\*\Cookies-journal'
     separator: '\'
   supported_os: [Windows]
 - type: FILE
