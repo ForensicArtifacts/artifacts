@@ -30,4 +30,3 @@ test_script:
     IF EXIST "tests\\end-to-end.py" (
         set PYTHONPATH=. &&
         "%PYTHON%\\python.exe" "tests\\end-to-end.py" --debug -c "config\\end-to-end.ini" ) )
-

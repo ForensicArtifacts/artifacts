@@ -16,10 +16,6 @@ then
 	if test -n "${TOXENV}";
 	then
 		TEST_COMMAND="tox -e ${TOXENV}";
-
-	elif test "${TARGET}" = "pylint";
-	then
-		TEST_COMMAND="./config/travis/run_pylint.sh";
 	else
 		TEST_COMMAND="./config/travis/run_python3.sh";
 	fi
@@ -46,10 +42,6 @@ then
 	elif test "${TARGET}" = "jenkins3";
 	then
 		TEST_COMMAND="./config/jenkins/linux/run_end_to_end_tests_py3.sh travis";
-
-	elif test "${TARGET}" = "pylint";
-	then
-		TEST_COMMAND="./config/travis/run_pylint.sh";
 	else
 		TEST_COMMAND="./config/travis/run_python3.sh";
 	fi
@@ -58,7 +50,14 @@ then
 
 elif test "${TARGET}" = "dockerfile";
 then
-	cd config/docker && docker build --build-arg PPA_TRACK="dev" -f Dockerfile .
+	SOURCE_PATH=${PWD};
+	CONTAINER_NAME="test";
+
+	cd config/docker
+
+	docker build --build-arg PPA_TRACK="dev" -f Dockerfile -t ${CONTAINER_NAME} .
+
+	# TODO: add tests
 
 elif test "${TRAVIS_OS_NAME}" = "osx";
 then
