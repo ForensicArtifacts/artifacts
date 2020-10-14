@@ -32,6 +32,14 @@ jobs:
     python: 3.6
     services:
     - docker
+  - name: "Ubuntu Bionic (18.04) (Docker) with Python 3.6(ppc64le)"
+    env: UBUNTU_VERSION="18.04"
+    group: edge
+    language: python
+    python: 3.6
+    services:
+    - docker
+    arch: ppc64le
   - name: "Ubuntu Focal (20.04) (Docker) with Python 3.8"
     env: UBUNTU_VERSION="20.04"
     group: edge
@@ -39,6 +47,14 @@ jobs:
     python: 3.8
     services:
     - docker
+  - name: "Ubuntu Focal (20.04) (Docker) with Python 3.8(ppc64le)"
+    env: UBUNTU_VERSION="20.04"
+    group: edge
+    language: python
+    python: 3.8
+    services:
+    - docker
+    arch: ppc64le
   - name: "Ubuntu Focal (20.04) (Docker) with Python 3.5 (tox)"
     env:
     - TOXENV="py35"
