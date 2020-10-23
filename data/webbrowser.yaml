@@ -125,10 +125,18 @@ sources:
     - '%%users.homedir%%/.cache/chrome-remote-desktop/chrome-profile/*/Cache/*'
     - '%%users.homedir%%/.cache/chrome-remote-desktop/chrome-profile/*/Media Cache/*'
     - '%%users.homedir%%/.cache/chrome-remote-desktop/chrome-profile/PnaclTranslationCache/*'
+    - '%%users.homedir%%/.cache/chrome-remote-desktop/chrome-config/google-chrome/Cache/*'
+    - '%%users.homedir%%/.cache/chrome-remote-desktop/chrome-config/google-chrome/*/Cache/*'
+    - '%%users.homedir%%/.cache/chrome-remote-desktop/chrome-config/google-chrome/*/Media Cache/*'
+    - '%%users.homedir%%/.cache/chrome-remote-desktop/chrome-config/google-chrome/PnaclTranslationCache/*'
     - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Application Cache/*'
     - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Cache/*'
     - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Media Cache/*'
     - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/GPUCache/*'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Application Cache/*'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Cache/*'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Media Cache/*'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/GPUCache/*'
   supported_os: [Linux]
 supported_os: [Windows,Darwin,Linux]
 labels: [Browser]
@@ -159,6 +167,8 @@ sources:
     - '%%users.homedir%%/.config/google-chrome-beta/*/Cookies-journal'
     - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Cookies'
     - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Cookies-journal'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Cookies'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Cookies-journal'
   supported_os: [Linux]
 - type: FILE
   attributes:
@@ -226,6 +236,7 @@ sources:
     - '%%users.homedir%%/.config/google-chrome-beta/*/Extensions/**10'
     - '%%users.homedir%%/.config/chromium/*/Extensions/**10'
     - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Extensions/**10'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Extensions/**10'
   supported_os: [Linux]
 supported_os: [Windows, Darwin, Linux]
 labels: [Browser]
@@ -268,6 +279,7 @@ sources:
     - '%%users.homedir%%/.config/chromium/*/File System/**5'
     - '%%users.homedir%%/.config/google-chrome-beta/*/File System/**5'
     - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/File System/**5'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/File System/**5'
   supported_os: [Linux]
 - type: FILE
   attributes:
@@ -338,6 +350,10 @@ sources:
     - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Archived History-journal'
     - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/History'
     - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/History-journal'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Archived History'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Archived History-journal'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/History'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/History-journal'
   supported_os: [Linux]
 supported_os: [Windows,Darwin,Linux]
 labels: [Browser]
@@ -371,6 +387,7 @@ sources:
     - '%%users.homedir%%/.config/chromium/*/IndexedDB/**5'
     - '%%users.homedir%%/.config/google-chrome-beta/*/IndexedDB/**5'
     - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/IndexedDB/**5'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/IndexedDB/**5'
   supported_os: [Linux]
 - type: FILE
   attributes:
@@ -411,6 +428,7 @@ sources:
     - '%%users.homedir%%/.config/chromium/*/Local Storage/**'
     - '%%users.homedir%%/.config/google-chrome-beta/*/Local Storage/**'
     - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Local Storage/**'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Local Storage/**'
   supported_os: [Linux]
 - type: FILE
   attributes:
@@ -446,6 +464,7 @@ sources:
     - '%%users.homedir%%/.config/google-chrome/*/Preferences'
     - '%%users.homedir%%/.config/chromium/*/Preferences'
     - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Preferences'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Preferences'
   supported_os: [Linux]
 supported_os: [Windows,Darwin,Linux]
 labels: [Browser]
@@ -474,6 +493,7 @@ sources:
     - '%%users.homedir%%/.config/chromium/*/Session Storage/*'
     - '%%users.homedir%%/.config/google-chrome-beta/*/Session Storage/*'
     - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Session Storage/*'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Session Storage/*'
   supported_os: [Linux]
 - type: FILE
   attributes:
