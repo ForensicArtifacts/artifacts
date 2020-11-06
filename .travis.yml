@@ -19,6 +19,13 @@ jobs:
     python: 3.8
     services:
     - docker
+  - name: "Fedora 33 (Docker) with Python 3.9"
+    env: FEDORA_VERSION="33"
+    group: edge
+    language: python
+    python: 3.9
+    services:
+    - docker
   - name: "Ubuntu Bionic (18.04) (Docker) with Python 3.6 (amd64)"
     env: UBUNTU_VERSION="18.04"
     group: edge
@@ -76,6 +83,15 @@ jobs:
     python: 3.8
     services:
     - docker
+  - name: "Ubuntu Focal (20.04) (Docker) with Python 3.9 (tox)"
+    env:
+    - TOXENV="py39"
+    - UBUNTU_VERSION="20.04"
+    group: edge
+    language: python
+    python: 3.9
+    services:
+    - docker
   - name: "Pylint on Ubuntu Focal (20.04) (Docker) with Python 3.8 (tox)"
     env:
     - TOXENV="pylint"
@@ -89,6 +105,10 @@ jobs:
     env: TOXENV="py38"
     os: osx
     osx_image: xcode11
+  - name: "MacOS 10.15 with Python 3.8 (tox)"
+    env: TOXENV="py38"
+    os: osx
+    osx_image: xcode12
 install:
 - ./config/travis/install.sh
 script:
