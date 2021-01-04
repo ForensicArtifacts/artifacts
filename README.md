@@ -11,14 +11,14 @@ follow the specification.
 
 ### Project status
 
-[Travis-CI](https://travis-ci.com/) | [AppVeyor](https://ci.appveyor.com) | [Codecov](https://codecov.io/)
+Status | [AppVeyor](https://ci.appveyor.com) | [Codecov](https://codecov.io/)
 --- | --- | ---
-[![Build Status](https://travis-ci.com/ForensicArtifacts/artifacts.svg?branch=master)](https://travis-ci.com/ForensicArtifacts/artifacts) | [![Build status](https://ci.appveyor.com/api/projects/status/7gv9fwr269527cj1?svg=true)](https://ci.appveyor.com/project/forensicartifacts/artifacts) | [![codecov](https://codecov.io/gh/ForensicArtifacts/artifacts/branch/master/graph/badge.svg)](https://codecov.io/gh/ForensicArtifacts/artifacts)
+![test_tox](https://github.com/ForensicArtifacts/artifacts/workflows/test_tox/badge.svg) | [![Build status](https://ci.appveyor.com/api/projects/status/7gv9fwr269527cj1?svg=true)](https://ci.appveyor.com/project/forensicartifacts/artifacts) | [![codecov](https://codecov.io/gh/ForensicArtifacts/artifacts/branch/main/graph/badge.svg)](https://codecov.io/gh/ForensicArtifacts/artifacts)
 
 ## Artifact Definitions
 
-The artifact definitions can be found in the [data directory](https://github.com/ForensicArtifacts/artifacts/tree/master/data)
-and the format is described in detail in the [Style Guide](https://github.com/ForensicArtifacts/artifacts/blob/master/docs/Artifacts%20definition%20format%20and%20style%20guide.asciidoc).
+The artifact definitions can be found in the [data directory](https://github.com/ForensicArtifacts/artifacts/tree/main/data)
+and the format is described in detail in the [Style Guide](https://github.com/ForensicArtifacts/artifacts/blob/main/docs/Artifacts%20definition%20format%20and%20style%20guide.asciidoc).
 
 As of 2019-06-10 the repository contains:
 

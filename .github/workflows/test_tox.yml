@@ -1,0 +1,43 @@
+# Run tox tests on Ubuntu Docker images using GIFT PPA
+name: test_tox
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+        - python-version: 3.6
+          toxenv: 'py36'
+        - python-version: 3.7
+          toxenv: 'py37'
+        - python-version: 3.8
+          toxenv: 'py38,coverage,codecov'
+        - python-version: 3.8
+          toxenv: 'pylint'
+    container:
+      image: ubuntu:20.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up container
+      env:
+        DEBIAN_FRONTEND: noninteractive
+      run: |
+        apt-get update -q
+        apt-get install -y libterm-readline-gnu-perl locales software-properties-common
+        locale-gen en_US.UTF-8
+        ln -f -s /usr/share/zoneinfo/UTC /etc/localtime
+    - name: Install dependencies
+      env:
+        DEBIAN_FRONTEND: noninteractive
+      run: |
+        add-apt-repository -y universe
+        add-apt-repository -y ppa:deadsnakes/ppa
+        add-apt-repository -y ppa:gift/dev
+        apt-get update -q
+        apt-get install -y build-essential git python${{ matrix.python-version }} python${{ matrix.python-version }}-dev tox python3-distutils python3-funcsigs python3-mock python3-pbr python3-setuptools python3-six python3-yaml
+    - name: Run tests
+      env:
+        LANG: en_US.UTF-8
+      run: |
+        tox -e${{ matrix.toxenv }}
