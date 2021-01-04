@@ -5,6 +5,7 @@ from __future__ import print_function
 from __future__ import unicode_literals
 
 import configparser
+import os
 import re
 
 
@@ -14,8 +15,6 @@ class DependencyDefinition(object):
   Attributes:
     dpkg_name (str): name of the dpkg package that provides the dependency.
     is_optional (bool): True if the dependency is optional.
-    l2tbinaries_macos_name (str): name of the l2tbinaries macos package that
-        provides the dependency.
     l2tbinaries_name (str): name of the l2tbinaries package that provides
         the dependency.
     maximum_version (str): maximum supported version, a greater or equal
@@ -41,7 +40,6 @@ class DependencyDefinition(object):
     super(DependencyDefinition, self).__init__()
     self.dpkg_name = None
     self.is_optional = False
-    self.l2tbinaries_macos_name = None
     self.l2tbinaries_name = None
     self.maximum_version = None
     self.minimum_version = None
@@ -60,7 +58,6 @@ class DependencyDefinitionReader(object):
   _VALUE_NAMES = frozenset([
       'dpkg_name',
       'is_optional',
-      'l2tbinaries_macos_name',
       'l2tbinaries_name',
       'maximum_version',
       'minimum_version',
@@ -118,11 +115,15 @@ class DependencyHelper(object):
   _VERSION_NUMBERS_REGEX = re.compile(r'[0-9.]+')
   _VERSION_SPLIT_REGEX = re.compile(r'\.|\-')
 
-  def __init__(self, configuration_file='dependencies.ini'):
+  def __init__(
+      self, dependencies_file='dependencies.ini',
+      test_dependencies_file='test_dependencies.ini'):
     """Initializes a dependency helper.
 
     Args:
-      configuration_file (Optional[str]): path to the dependencies
+      dependencies_file (Optional[str]): path to the dependencies configuration
+          file.
+      test_dependencies_file (Optional[str]): path to the test dependencies
           configuration file.
     """
     super(DependencyHelper, self).__init__()
@@ -131,14 +132,14 @@ class DependencyHelper(object):
 
     dependency_reader = DependencyDefinitionReader()
 
-    with open(configuration_file, 'r') as file_object:
+    with open(dependencies_file, 'r') as file_object:
       for dependency in dependency_reader.Read(file_object):
         self.dependencies[dependency.name] = dependency
 
-    dependency = DependencyDefinition('mock')
-    dependency.minimum_version = '0.7.1'
-    dependency.version_property = '__version__'
-    self._test_dependencies['mock'] = dependency
+    if os.path.exists(test_dependencies_file):
+      with open(test_dependencies_file, 'r') as file_object:
+        for dependency in dependency_reader.Read(file_object):
+          self._test_dependencies[dependency.name] = dependency
 
   def _CheckPythonModule(self, dependency):
     """Checks the availability of a Python module.
