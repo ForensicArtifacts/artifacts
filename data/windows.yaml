@@ -1596,6 +1596,19 @@ urls:
 - 'https://technet.microsoft.com/library/hh847748.aspx'
 - 'http://www.hexacorn.com/blog/2014/08/27/beyond-good-ol-run-key-part-16/'
 ---
+---
+name: WindowsPowerShellHistory
+doc: History of commands executed in an interactive PowerShell session.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.appdata%%\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt'
+supported_os: [Windows]
+urls:
+- 'https://0xdf.gitlab.io/2018/11/08/powershell-history-file.html'
+- 'https://docs.microsoft.com/en-us/powershell/module/psreadline/get-psreadlineoption?view=powershell-7.1'
+---
 name: WindowsPrefetchFiles
 doc: Windows Prefetch files.
 sources:
