@@ -1,12 +1,12 @@
 # Script to set up tests on AppVeyor Windows.
 
-$Dependencies = "PyYAML funcsigs mock pbr six"
+$Dependencies = "PyYAML mock pbr six"
 $Dependencies = ${Dependencies} -split " "
 
 $Output = Invoke-Expression -Command "git clone https://github.com/log2timeline/l2tdevtools.git ..\l2tdevtools 2>&1"
 Write-Host (${Output} | Out-String)
 
-If ($env:APPVEYOR_REPO_BRANCH -eq "master")
+If ($env:APPVEYOR_REPO_BRANCH -eq "main")
 {
 	$Track = "stable"
 }

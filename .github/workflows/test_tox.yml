@@ -15,6 +15,8 @@ jobs:
           toxenv: 'py38,coverage,codecov'
         - python-version: 3.8
           toxenv: 'pylint'
+        - python-version: 3.8
+          toxenv: 'docs'
     container:
       image: ubuntu:20.04
     steps:
@@ -35,7 +37,7 @@ jobs:
         add-apt-repository -y ppa:deadsnakes/ppa
         add-apt-repository -y ppa:gift/dev
         apt-get update -q
-        apt-get install -y build-essential git python${{ matrix.python-version }} python${{ matrix.python-version }}-dev tox python3-distutils python3-funcsigs python3-mock python3-pbr python3-setuptools python3-six python3-yaml
+        apt-get install -y build-essential git python${{ matrix.python-version }} python${{ matrix.python-version }}-dev tox python3-distutils python3-mock python3-pbr python3-setuptools python3-six python3-yaml
     - name: Run tests
       env:
         LANG: en_US.UTF-8
