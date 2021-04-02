@@ -1018,7 +1018,7 @@ sources:
     - '/var/log/wtmp'
 labels: [Logs, Authentication]
 supported_os: [Darwin]
-urls: ['https://github.com/libyal/dtformats/blob/master/documentation/Utmp%20login%20records%20format.asciidoc']
+urls: ['https://github.com/libyal/dtformats/blob/main/documentation/Utmp%20login%20records%20format.asciidoc']
 ---
 name: MacOSUtmpxFile
 doc: Mac OS X 10.5 utmpx login record file.
@@ -1030,7 +1030,7 @@ sources:
     - '/var/run/utmpx'
 labels: [Logs, Authentication]
 supported_os: [Darwin]
-urls: ['https://github.com/libyal/dtformats/blob/master/documentation/Utmp%20login%20records%20format.asciidoc']
+urls: ['https://github.com/libyal/dtformats/blob/main/documentation/Utmp%20login%20records%20format.asciidoc']
 ---
 name: MacOSWirelessNetworks
 doc: Remembered Wireless Networks
