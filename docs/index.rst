@@ -15,6 +15,11 @@ The source code is available from the `project page <https://github.com/Forensic
 .. toctree::
    :maxdepth: 2
 
+   Format specification <sources/Format-specification>
+
+.. toctree::
+   :maxdepth: 2
+
    API documentation <sources/api/artifacts>
 
 

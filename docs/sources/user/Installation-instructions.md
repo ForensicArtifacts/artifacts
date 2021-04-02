@@ -48,7 +48,7 @@ The [l2tbinaries](https://github.com/log2timeline/l2tbinaries) contains the
 necessary packages for running Forensics Artifacts. l2tbinaries provides the following
 branches:
 
-* master; branch intended for the "packaged release" of Forensics Artifacts and dependencies;
+* main; branch intended for the "packaged release" of Forensics Artifacts and dependencies;
 * dev; branch intended for the "development release" of Forensics Artifacts;
 * testing; branch intended for testing newly created packages.
 
@@ -56,7 +56,7 @@ The l2tdevtools project provides [an update script](https://github.com/log2timel
 to ease the process of keeping the dependencies up to date.
 
 The script requires [pywin32](https://github.com/mhammond/pywin32/releases) and
-[Python WMI](https://pypi.python.org/pypi/WMI/).
+[Python WMI](https://pypi.org/project/WMI/).
 
 To install the release versions of the dependencies run:
 

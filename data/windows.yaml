@@ -10,7 +10,7 @@ sources:
     - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Internet Explorer\Desktop\General'
 conditions: [os_major_version < 6]
 supported_os: [Windows]
-urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/ActiveDesktop.md']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/main/windows/ActiveDesktop.md']
 ---
 name: WindowsActivitiesCacheDatabase
 doc: SQLite database containing the Windows activities cache.
@@ -21,7 +21,7 @@ sources:
     separator: '\'
 labels: [Users]
 supported_os: [Windows]
-urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/ActivitiesCacheDatabase.md']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/main/windows/ActivitiesCacheDatabase.md']
 ---
 name: WindowsAlternateShell
 doc: Alternate Shell to be run via Userinit.
@@ -49,7 +49,7 @@ sources:
     separator: '\'
 conditions: [os_major_version >= 6 AND os_minor_version >= 1]
 supported_os: [Windows]
-urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/AMCache.md']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/main/windows/AMCache.md']
 ---
 name: WindowsAppCertDLLs
 doc: Windows AppCertDLLs persistence.
@@ -69,7 +69,7 @@ sources:
     - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\AppCompatibility', value: 'AppCompatCache'}
     - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\AppCompatCache', value: 'AppCompatCache'}
 supported_os: [Windows]
-urls: ['https://github.com/libyal/winreg-kb/blob/master/documentation/Application%20Compatibility%20Cache%20key.asciidoc']
+urls: ['https://github.com/libyal/winreg-kb/blob/main/documentation/Application%20Compatibility%20Cache%20key.asciidoc']
 ---
 name: WindowsAppInitDLLs
 doc: |
@@ -258,7 +258,7 @@ sources:
 - type: REGISTRY_KEY
   attributes: {keys: ['HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Time Zones\*']}
 supported_os: [Windows]
-urls: ['https://github.com/libyal/winreg-kb/blob/master/documentation/Time%20zone%20keys.asciidoc']
+urls: ['https://github.com/libyal/winreg-kb/blob/main/documentation/Time%20zone%20keys.asciidoc']
 ---
 name: WindowsBITSQueueManagerDatabases
 doc: Databases that contain the Windows BITS jobs definition and state.
@@ -316,7 +316,7 @@ sources:
 supported_os: [Windows]
 urls:
 - 'https://www.fireeye.com/content/dam/fireeye-www/global/en/current-threats/pdfs/wp-windows-management-instrumentation.pdf'
-- 'https://github.com/libyal/dtformats/blob/master/documentation/WMI%20repository%20file%20format.asciidoc'
+- 'https://github.com/libyal/dtformats/blob/main/documentation/WMI%20repository%20file%20format.asciidoc'
 ---
 name: WindowsCodePage
 doc: The code page of the system.
@@ -462,7 +462,7 @@ sources:
     - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\Typelib\*\*\*\*', value: ''}
     - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\Typelib\*\*\*\*', value: ''}
 supported_os: [Windows]
-urls: ['https://github.com/libyal/winreg-kb/blob/master/documentation/Component%20Object%20Model%20keys.asciidoc#type-libraries-key']
+urls: ['https://github.com/libyal/winreg-kb/blob/main/documentation/Component%20Object%20Model%20keys.asciidoc#type-libraries-key']
 ---
 name: WindowsSearchFilterHandlers
 doc: |
@@ -583,7 +583,7 @@ sources:
 - type: REGISTRY_VALUE
   attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion', value: 'CurrentVersion'}]}
 supported_os: [Windows]
-urls: ['https://github.com/libyal/winreg-kb/blob/master/documentation/System%20keys.asciidoc']
+urls: ['https://github.com/libyal/winreg-kb/blob/main/documentation/System%20keys.asciidoc']
 ---
 name: WindowsDebugger
 doc: Windows Debugger peristence or AV disable.
@@ -640,7 +640,7 @@ sources:
     - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\ProfileList', value: 'AllUsersProfile'}
 provides: [environ_allusersprofile]
 supported_os: [Windows]
-urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/EnvironmentVariables.md']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/main/windows/EnvironmentVariables.md']
 ---
 name: WindowsEnvironmentVariableAppxProcess
 doc: |
@@ -654,7 +654,7 @@ sources:
     - {key: 'HKEY_USERS\%%users.sid%%\Environment', value: 'APPX_PROCESS'}
 supported_os: [Windows]
 conditions: [os_major_version >= 6 AND os_minor_version >= 2]
-urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/EnvironmentVariables.md']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/main/windows/EnvironmentVariables.md']
 ---
 name: WindowsEnvironmentVariableCommonProgramFiles
 doc: The %COMMONPROGRAMFILES% environment variable contains the path of the common program files folder.
@@ -665,7 +665,7 @@ sources:
     - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion', value: 'CommonFilesDir'}
 provides: [environ_commonprogramfiles]
 supported_os: [Windows]
-urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/EnvironmentVariables.md']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/main/windows/EnvironmentVariables.md']
 ---
 name: WindowsEnvironmentVariableCommonProgramFilesX86
 doc: The %COMMONPROGRAMFILES(X86)% environment variable contains the path of the 32-bit common program files folder on a 64-bit Windows installation.
@@ -676,7 +676,7 @@ sources:
     - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion', value: 'CommonFilesDir (x86)'}
 provides: [environ_commonprogramfilesx86]
 supported_os: [Windows]
-urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/EnvironmentVariables.md']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/main/windows/EnvironmentVariables.md']
 ---
 name: WindowsEnvironmentVariableComSpec
 doc: The %ComSpec% environment variable contains the path of the command processor, typically "cmd.exe".
@@ -687,7 +687,7 @@ sources:
     - {key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment', value: 'ComSpec'}
 provides: [environ_comspec]
 supported_os: [Windows]
-urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/EnvironmentVariables.md']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/main/windows/EnvironmentVariables.md']
 ---
 name: WindowsEnvironmentVariableDriverData
 doc: The %DriverData% environment variable contains the path of the directory used for temporary state files of user-mode drivers.
@@ -699,7 +699,7 @@ sources:
 provides: [environ_driverdata]
 supported_os: [Windows]
 conditions: [os_major_version >= 10]
-urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/EnvironmentVariables.md']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/main/windows/EnvironmentVariables.md']
 ---
 name: WindowsEnvironmentVariablePath
 doc: The %PATH% environment variable contains an ordered list of paths of directories that will be searched on execution request without a specific path.
@@ -710,7 +710,7 @@ sources:
     - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment', value: 'Path'}
 provides: [environ_path]
 supported_os: [Windows]
-urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/EnvironmentVariables.md']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/main/windows/EnvironmentVariables.md']
 ---
 name: WindowsEnvironmentVariableProfilesDirectory
 doc: The %ProfilesDirectory% environment variable contain a path of a directory that contains the users' profile directories, typically "%SystemDrive%\Users".
@@ -721,7 +721,7 @@ sources:
     - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\ProfileList', value: 'ProfilesDirectory'}
 provides: [environ_profilesdirectory]
 supported_os: [Windows]
-urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/EnvironmentVariables.md']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/main/windows/EnvironmentVariables.md']
 ---
 name: WindowsEnvironmentVariableProgramData
 doc: The %ProgramData% environment variable contains a path of the "Program Data" directory.
@@ -732,7 +732,7 @@ sources:
     - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\ProfileList', value: 'ProgramData'}
 provides: [environ_programdata]
 supported_os: [Windows]
-urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/EnvironmentVariables.md']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/main/windows/EnvironmentVariables.md']
 ---
 name: WindowsEnvironmentVariableProgramFiles
 doc: The %ProgramFiles% environment variable contains a path of the "Program Files" directory.
@@ -747,7 +747,7 @@ sources:
     - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion', value: 'ProgramFilesDir'}
 provides: [environ_programfiles]
 supported_os: [Windows]
-urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/EnvironmentVariables.md']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/main/windows/EnvironmentVariables.md']
 ---
 name: WindowsEnvironmentVariableProgramFilesX86
 doc: The %ProgramFiles(x86)% environment variable contains a path of the 32-bit "Program Files" directory on a 64-bit Windows installation.
@@ -762,7 +762,7 @@ sources:
     - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion', value: 'ProgramFilesDir (x86)'}
 provides: [environ_programfilesx86]
 supported_os: [Windows]
-urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/EnvironmentVariables.md']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/main/windows/EnvironmentVariables.md']
 ---
 name: WindowsEnvironmentVariableSystemDrive
 doc: |
@@ -774,7 +774,7 @@ sources:
   attributes: {names: ['WindowsEnvironmentVariableSystemRoot']}
 provides: [environ_systemdrive]
 supported_os: [Windows]
-urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/EnvironmentVariables.md']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/main/windows/EnvironmentVariables.md']
 ---
 name: WindowsEnvironmentVariableSystemRoot
 doc: The %SystemRoot%, environment variable contains the path of the system directory, typically "C:\Windows".
@@ -793,7 +793,7 @@ sources:
     - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion', value: 'SystemRoot'}
 provides: [environ_systemroot]
 supported_os: [Windows]
-urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/EnvironmentVariables.md']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/main/windows/EnvironmentVariables.md']
 ---
 name: WindowsEnvironmentVariableTemp
 doc: The %TEMP% environment variable.
@@ -804,7 +804,7 @@ sources:
     - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment', value: 'TEMP'}
 provides: [environ_temp]
 supported_os: [Windows]
-urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/EnvironmentVariables.md']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/main/windows/EnvironmentVariables.md']
 ---
 name: WindowsEnvironmentVariableWinDir
 doc: The %WinDir%, environment variable contains the path of the Windows directory, typically "C:\Windows".
@@ -823,7 +823,7 @@ sources:
     - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment', value: 'windir'}
 provides: [environ_windir]
 supported_os: [Windows]
-urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/EnvironmentVariables.md']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/main/windows/EnvironmentVariables.md']
 ---
 name: WindowsEventLogs
 doc: Windows Event logs.
@@ -841,7 +841,7 @@ sources:
     - 'WindowsXMLEventLogTerminalServices'
 labels: [Logs]
 supported_os: [Windows]
-urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/EventLog.md']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/main/windows/EventLog.md']
 ---
 name: WindowsEventLogApplication
 doc: Application Windows Event Log.
@@ -853,7 +853,7 @@ sources:
 conditions: [os_major_version < 6]
 labels: [Logs]
 supported_os: [Windows]
-urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/EventLog.md']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/main/windows/EventLog.md']
 ---
 name: WindowsEventLogSecurity
 doc: Security Windows Event Log.
@@ -865,7 +865,7 @@ sources:
 conditions: [os_major_version < 6]
 labels: [Logs]
 supported_os: [Windows]
-urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/EventLog.md']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/main/windows/EventLog.md']
 ---
 name: WindowsEventLogSystem
 doc: System Windows Event Log.
@@ -877,7 +877,7 @@ sources:
 conditions: [os_major_version < 6]
 labels: [Logs]
 supported_os: [Windows]
-urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/EventLog.md']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/main/windows/EventLog.md']
 ---
 name: WindowsXMLEventLogApplication
 doc: Application Windows XML Event Log.
@@ -889,7 +889,7 @@ sources:
 conditions: [os_major_version >= 6]
 labels: [Logs]
 supported_os: [Windows]
-urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/EventLog.md']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/main/windows/EventLog.md']
 ---
 name: WindowsXMLEventLogSecurity
 doc: Security Windows XML Event Log.
@@ -901,7 +901,7 @@ sources:
 conditions: [os_major_version >= 6]
 labels: [Logs]
 supported_os: [Windows]
-urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/EventLog.md']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/main/windows/EventLog.md']
 ---
 name: WindowsXMLEventLogSysmon
 doc: Sysmon Windows XML Event Log.
@@ -912,7 +912,7 @@ sources:
     separator: '\'
 labels: [Logs]
 supported_os: [Windows]
-urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/EventLog.md']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/main/windows/EventLog.md']
 ---
 name: WindowsXMLEventLogSystem
 doc: System Windows XML Event Log.
@@ -924,7 +924,7 @@ sources:
 conditions: [os_major_version >= 6]
 labels: [Logs]
 supported_os: [Windows]
-urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/EventLog.md']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/main/windows/EventLog.md']
 ---
 name: WindowsXMLEventLogTerminalServices
 doc: TerminalServices Windows XML Event Log.
@@ -936,7 +936,7 @@ sources:
 conditions: [os_major_version >= 6]
 labels: [Logs]
 supported_os: [Windows]
-urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/EventLog.md']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/main/windows/EventLog.md']
 ---
 name: WindowsExcludeFromKnownDLLs
 doc: ExcludeFromKnownDLLs can be used to bypass search order hijacking protection.
@@ -1636,7 +1636,7 @@ sources:
 - type: REGISTRY_VALUE
   attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion', value: 'ProductName'}]}
 supported_os: [Windows]
-urls: ['https://github.com/libyal/winreg-kb/blob/master/documentation/System%20keys.asciidoc']
+urls: ['https://github.com/libyal/winreg-kb/blob/main/documentation/System%20keys.asciidoc']
 ---
 name: WindowsProgramsCache
 doc: Windows Programs Cache
@@ -1647,7 +1647,7 @@ sources:
     - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\StartPage', value: 'ProgramsCache'}
     - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\StartPage2', value: 'ProgramsCache'}
 supported_os: [Windows]
-urls: ['https://github.com/libyal/winreg-kb/blob/master/documentation/Programs%20Cache%20values.asciidoc']
+urls: ['https://github.com/libyal/winreg-kb/blob/main/documentation/Programs%20Cache%20values.asciidoc']
 ---
 name: WindowsProgramsCacheJumpLists
 doc: Windows Programs Cache Jump Lists
@@ -1658,7 +1658,7 @@ sources:
     - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\StartPage2', value: 'ProgramsCacheSMP'}
     - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\StartPage2', value: 'ProgramsCacheTBP'}
 supported_os: [Windows]
-urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/JumpLists.md']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/main/windows/JumpLists.md']
 ---
 name: WindowsProxyPACAutoConfigURL
 doc: Windows Proxy PAC AutoConfigURL.
@@ -1702,7 +1702,7 @@ sources:
     separator: '\'
 conditions: [os_major_version >= 6 AND os_minor_version >= 1]
 supported_os: [Windows]
-urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/RecentFileCache.md']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/main/windows/RecentFileCache.md']
 ---
 name: WindowsRecycleBin
 doc: Windows Recycle Bin (Recyler, $Recycle.Bin) files.
@@ -1724,7 +1724,7 @@ sources:
   attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\System\Select', value: 'Current'}]}
 provides: [current_control_set]
 supported_os: [Windows]
-urls: ['https://github.com/libyal/winreg-kb/blob/master/documentation/System%20keys.asciidoc']
+urls: ['https://github.com/libyal/winreg-kb/blob/main/documentation/System%20keys.asciidoc']
 ---
 name: WindowsRegistryFilesAndTransactionLogs
 doc: Windows user and system Registry files and transaction logs.
@@ -1738,7 +1738,7 @@ sources:
     - 'WindowsUserRegistryTransactionLogFiles'
 labels: [System,Users]
 supported_os: [Windows]
-urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/RegistryFiles.md']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/main/windows/RegistryFiles.md']
 ---
 name: WindowsRegistryProfiles
 doc: |
@@ -1949,7 +1949,7 @@ labels: [Software]
 supported_os: [Windows]
 urls:
 - 'http://support.microsoft.com/kb/103000'
-- 'https://github.com/libyal/winreg-kb/blob/master/documentation/System%20keys.asciidoc'
+- 'https://github.com/libyal/winreg-kb/blob/main/documentation/System%20keys.asciidoc'
 ---
 name: WindowsActionCenterSettings
 doc: |
@@ -2775,7 +2775,7 @@ sources:
     separator: '\'
 labels: [System]
 supported_os: [Windows]
-urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/RegistryFiles.md']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/main/windows/RegistryFiles.md']
 ---
 name: WindowsSystemRegistryTransactionLogFilesBackup
 doc: |
@@ -2801,7 +2801,7 @@ sources:
     separator: '\'
 labels: [System]
 supported_os: [Windows]
-urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/RegistryFiles.md']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/main/windows/RegistryFiles.md']
 ---
 name: WindowsSystemRegistryFiles
 doc: Windows system Registry files.
@@ -2817,7 +2817,7 @@ sources:
     separator: '\'
 labels: [System]
 supported_os: [Windows]
-urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/RegistryFiles.md']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/main/windows/RegistryFiles.md']
 ---
 name: WindowsSystemRegistryTransactionLogFiles
 doc: Windows system Registry transaction log files.
@@ -2840,7 +2840,7 @@ sources:
     separator: '\'
 labels: [System]
 supported_os: [Windows]
-urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/RegistryFiles.md']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/main/windows/RegistryFiles.md']
 ---
 name: WindowsSystemRegistryFilesAndTransactionLogs
 doc: Windows system Registry files and transaction logs.
@@ -2852,7 +2852,7 @@ sources:
     - 'WindowsSystemRegistryTransactionLogFiles'
 labels: [System]
 supported_os: [Windows]
-urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/RegistryFiles.md']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/main/windows/RegistryFiles.md']
 ---
 name: WindowsSystemResourceUsageMonitorDatabaseFile
 doc: Windows System Resource Usage Monitor (SRUM) database file.
@@ -2862,7 +2862,7 @@ sources:
     paths: ['%%environ_systemroot%%\System32\sru\SRUDB.dat']
     separator: '\'
 supported_os: [Windows]
-urls: ['https://github.com/libyal/esedb-kb/blob/master/documentation/System%20Resource%20Usage%20Monitor%20(SRUM).asciidoc']
+urls: ['https://github.com/libyal/esedb-kb/blob/main/documentation/System%20Resource%20Usage%20Monitor%20(SRUM).asciidoc']
 ---
 name: WindowsTempDirectories
 doc: Contents of the Windows temporary directories
@@ -2944,7 +2944,7 @@ sources:
       - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\TimeZoneInformation', value: 'TimeZoneKeyName'}
 provides: [time_zone]
 supported_os: [Windows]
-urls: ['https://github.com/libyal/winreg-kb/blob/master/documentation/Time%20zone%20keys.asciidoc']
+urls: ['https://github.com/libyal/winreg-kb/blob/main/documentation/Time%20zone%20keys.asciidoc']
 ---
 name: WindowsToolPaths
 doc: Paths to windows tools such as defrag, chkdsk.
@@ -3010,7 +3010,7 @@ sources:
     separator: '\'
 labels: [Users]
 supported_os: [Windows]
-urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/JumpLists.md']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/main/windows/JumpLists.md']
 ---
 name: WindowsUserCustomDestinationsJumpLists
 doc: Windows user CustomDestinations Jump Lists.
@@ -3021,7 +3021,7 @@ sources:
     separator: '\'
 labels: [Users]
 supported_os: [Windows]
-urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/JumpLists.md']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/main/windows/JumpLists.md']
 ---
 name: WindowsUserDownloadsDirectory
 doc: User downloads directory
@@ -3044,7 +3044,7 @@ sources:
     - 'WindowsUserCustomDestinationsJumpLists'
 labels: [Users]
 supported_os: [Windows]
-urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/JumpLists.md']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/main/windows/JumpLists.md']
 ---
 name: WindowsUserRecentFiles
 doc: Windows user specific recent files.
@@ -3070,7 +3070,7 @@ sources:
     separator: '\'
 labels: [Users]
 supported_os: [Windows]
-urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/RegistryFiles.md']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/main/windows/RegistryFiles.md']
 ---
 name: WindowsUserRegistryTransactionLogFiles
 doc: Windows user Registry transaction log files.
@@ -3087,7 +3087,7 @@ sources:
     separator: '\'
 labels: [Users]
 supported_os: [Windows]
-urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/RegistryFiles.md']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/main/windows/RegistryFiles.md']
 ---
 name: WindowsUserRegistryFilesAndTransactionLogs
 doc: Windows user Registry files and transaction logs.
@@ -3099,7 +3099,7 @@ sources:
     - 'WindowsUserRegistryTransactionLogFiles'
 labels: [Users]
 supported_os: [Windows]
-urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/master/windows/RegistryFiles.md']
+urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/main/windows/RegistryFiles.md']
 ---
 name: WindowsUserShellFolders
 doc: The Shell Folders information for Windows users.

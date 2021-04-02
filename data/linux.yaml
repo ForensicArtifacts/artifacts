@@ -544,7 +544,7 @@ sources:
     - '/var/run/utmp'
 labels: [Logs, Authentication]
 supported_os: [Linux]
-urls: ['https://github.com/libyal/dtformats/blob/master/documentation/Utmp%20login%20records%20format.asciidoc']
+urls: ['https://github.com/libyal/dtformats/blob/main/documentation/Utmp%20login%20records%20format.asciidoc']
 ---
 name: LinuxWtmp
 doc: Linux wtmp login record file
@@ -554,7 +554,7 @@ sources:
 labels: [Logs, Authentication]
 provides: [users.username, users.last_logon]
 supported_os: [Linux]
-urls: ['https://github.com/libyal/dtformats/blob/master/documentation/Utmp%20login%20records%20format.asciidoc']
+urls: ['https://github.com/libyal/dtformats/blob/main/documentation/Utmp%20login%20records%20format.asciidoc']
 ---
 name: LinuxXinetd
 doc: Linux xinetd configurations.
