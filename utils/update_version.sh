@@ -1,10 +1,28 @@
 #!/bin/bash
 # Script to update the version information.
 
-DATE_VERSION=`date +"%Y%m%d"`;
-DATE_DPKG=`date -R`;
-EMAIL_DPKG="Forensic artifacts <forensicartifacts@googlegroups.com>";
+EXIT_FAILURE=1;
+EXIT_SUCCESS=0;
 
-sed -i -e "s/^\(__version__ = \)'[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]'$/\1'${DATE_VERSION}'/" artifacts/__init__.py
-sed -i -e "s/^\(artifacts \)([0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]-1)/\1(${DATE_VERSION}-1)/" config/dpkg/changelog
-sed -i -e "s/^\( -- ${EMAIL_DPKG}  \).*$/\1${DATE_DPKG}/" config/dpkg/changelog
+VERSION=`date -u +"%Y%m%d"`
+DPKG_DATE=`date -R`
+
+# Update the Python module version.
+sed "s/__version__ = '[0-9]*'/__version__ = '${VERSION}'/" -i artifacts/__init__.py
+
+# Update the version in the dpkg configuration files.
+cat > config/dpkg/changelog << EOT
+artifacts (${VERSION}-1) unstable; urgency=low
+
+  * Auto-generated
+
+ -- Forensic artifacts <forensicartifacts@googlegroups.com>  ${DPKG_DATE}
+EOT
+
+# Regenerate the artifact definitions statistics documentation.
+# TODO: generate docs/sources/background/Stats.md
+
+# Regenerate the API documentation.
+tox -edocs
+
+exit ${EXIT_SUCCESS};
