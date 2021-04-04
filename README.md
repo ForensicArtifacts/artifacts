@@ -9,62 +9,13 @@ to do is read YAML**. That is it, no other dependencies. The Python code in
 this project is just used to validate all the artifacts to make sure they
 follow the specification.
 
-### Project status
+For more information see:
 
-Status | [AppVeyor](https://ci.appveyor.com) | [Codecov](https://codecov.io/)
---- | --- | ---
-![test_tox](https://github.com/ForensicArtifacts/artifacts/workflows/test_tox/badge.svg) | [![Build status](https://ci.appveyor.com/api/projects/status/7gv9fwr269527cj1?svg=true)](https://ci.appveyor.com/project/forensicartifacts/artifacts) | [![codecov](https://codecov.io/gh/ForensicArtifacts/artifacts/branch/main/graph/badge.svg)](https://codecov.io/gh/ForensicArtifacts/artifacts)
-
-## Artifact Definitions
-
-The artifact definitions can be found in the [data directory](https://github.com/ForensicArtifacts/artifacts/tree/main/data)
-and the format is described in detail in the [Style Guide](https://github.com/ForensicArtifacts/artifacts/blob/main/docs/Artifacts%20definition%20format%20and%20style%20guide.asciidoc).
-
-As of 2019-06-10 the repository contains:
-
-| **File paths covered** | **1013** |
-| :------------------ | ------: |
-| **Registry keys covered** | **635** |
-| **Total artifacts** | **525** |
-
-**Artifacts by type**
-
-| ARTIFACT_GROUP | COMMAND | DIRECTORY | FILE | PATH | REGISTRY_KEY | REGISTRY_VALUE | WMI |
-| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| 21 | 9 | 14 | 283 | 8 | 50 | 114 | 26 |
-
-**Artifacts by OS**
-
-| Darwin | Linux | Windows |
-| :---: | :---: | :---: |
-| 33 | 25 | 23 |
-
-**Artifacts by label**
-
-| Antivirus | Authentication | Browser | Cloud | Cloud Storage | Configuration Files | Docker | External Media | ExternalAccount | Hadoop | History Files | Logs | Mail | Network | Software | System | Users | iOS |
-| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| 6 | 18 | 21 | 2 | 4 | 41 | 2 | 2 | 3 | 1 | 3 | 46 | 15 | 15 | 43 | 104 | 68 | 5 |
-
-## Background/History
-
-The [ForensicArtifacts.com](http://forensicartifacts.com/) artifact repository
-was forked from the [GRR project](https://github.com/google/grr) artifact
-collection into a stand-alone repository that is not tool-specific. The GRR
-developers have migrated to using this repository and make contributions here. In
-addition the ForensicArtifact team will begin backfilling artifacts in the new
-format from the [ForensicArtifacts.com](http://forensicartifacts.com/) website.
-
-For some background on the artifacts system and how we expect it to be used see
-[this blackhat presentation](https://www.blackhat.com/us-14/archives.html#grr-find-all-the-badness-collect-all-the-things)
-and [youtube video](https://www.youtube.com/watch?v=ren6QSvwFvg) from the GRR team.
+* Project documentation: https://artifacts.readthedocs.io/en/latest
 
 ## Contributing
 
 Please send us your contribution! See [the developers guide](https://github.com/ForensicArtifacts/artifacts/wiki/Developers-guide) for instructions.
-
-## External links
-
-* [GRR Artifacts](https://www.blackhat.com/docs/us-14/materials/us-14-Castle-GRR-Find-All-The-Badness-Collect-All-The-Things-WP.pdf), by Greg Castle, Blackhat 2014
 
 ## Contact
 

@@ -11,25 +11,8 @@ The source code is available from the `project page <https://github.com/Forensic
    :maxdepth: 2
 
    sources/user/index
-
-.. toctree::
-   :maxdepth: 2
-
-   History <sources/History>
-
-.. toctree::
-   :maxdepth: 2
-
-   Terminology <sources/Terminology>
-
-.. toctree::
-   :maxdepth: 2
-
+   sources/background/index
    Format specification <sources/Format-specification>
-
-.. toctree::
-   :maxdepth: 2
-
    API documentation <sources/api/artifacts>
 
 
