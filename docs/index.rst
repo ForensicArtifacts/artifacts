@@ -1,5 +1,5 @@
 Welcome to the Forensics Artifacts documentation
-===============================================
+================================================
 
 Digital Forensics Artifacts Repository, is a free, community-sourced,
 machine-readable knowledge base of digital forensic artifacts that the world
