@@ -19,8 +19,15 @@ artifacts (${VERSION}-1) unstable; urgency=low
  -- Forensic artifacts <forensicartifacts@googlegroups.com>  ${DPKG_DATE}
 EOT
 
-# Regenerate the artifact definitions statistics documentation.
-# TODO: generate docs/sources/background/Stats.md
+# Regenerate the statistics documentation.
+cat > docs/sources/background/Stats.md << EOT
+## Statistics
+
+The artifact definitions can be found in the [data directory](https://github.com/ForensicArtifacts/artifacts/tree/main/data)
+and the format is described in detail in the [Style Guide](https://github.com/ForensicArtifacts/artifacts/blob/main/docs/Artifacts%20definition%20format%20and%20style%20guide.asciidoc).
+EOT
+
+PYTHONPATH=. ./tools/stats.py >> docs/sources/background/Stats.md
 
 # Regenerate the API documentation.
 tox -edocs

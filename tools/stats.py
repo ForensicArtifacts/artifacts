@@ -31,52 +31,59 @@ class ArtifactStatistics(object):
     Args:
       src_dict (dict[str, ArtifactDefinition]): artifact definitions by name.
     """
-    key_list = list(src_dict.keys())
-    key_list.sort()
+    print('<table>')
 
-    print('|', end='')
-    for key in key_list:
-      print(' {0:s} |'.format(key), end='')
+    for key, value in sorted(src_dict.items()):
+      print('  <tr>')
+      print('    <th nowrap style="text-align:left;vertical-align:top">')
+      print('      {0:s}</th>'.format(key))
+      print('    <td>{0!s}</td>'.format(value))
+      print('  </tr>')
+
+    print('</table>')
     print('')
-
-    print('|', end='')
-    for key in key_list:
-      print(' :---: |', end='')
-    print('')
-
-    print('|', end='')
-    for key in key_list:
-      print(' {0!s} |'.format(src_dict[key]), end='')
-    print('\n')
 
   def PrintOSTable(self):
     """Prints a table of artifact definitions by operating system."""
-    print('**Artifacts by OS**\n')
+    print('**Operating systems**\n')
     self._PrintDictAsTable(self._os_counts)
 
   def PrintLabelTable(self):
     """Prints a table of artifact definitions by label."""
-    print('**Artifacts by label**\n')
+    print('**Labels**\n')
     self._PrintDictAsTable(self._label_counts)
 
   def PrintSourceTypeTable(self):
     """Prints a table of artifact definitions by source type."""
-    print('**Artifacts by type**\n')
+    print('**Artifact definition source types**\n')
     self._PrintDictAsTable(self._source_type_counts)
 
   def PrintSummaryTable(self):
     """Prints a summary table."""
+    date_time_string = time.strftime('%Y-%m-%d')
+
     print("""
+**Status of the repository as of {0:s}**
 
-As of {0:s} the repository contains:
-
-| **File paths covered** | **{1:d}** |
-| :------------------ | ------: |
-| **Registry keys covered** | **{2:d}** |
-| **Total artifacts** | **{3:d}** |
+<table>
+  <tr>
+    <th nowrap style="text-align:left;vertical-align:top">
+      Number of artifact definitions:</th>
+    <td>{1:d}</td>
+  </tr>
+  <tr>
+    <th nowrap style="text-align:left;vertical-align:top">
+      Number of file paths:</th>
+    <td>{2:d}</td>
+  </tr>
+  <tr>
+    <th nowrap style="text-align:left;vertical-align:top">
+      Number of Windows Registry key paths:</th>
+    <td>{3:d}</td>
+  </tr>
+</table>
 """.format(
-    time.strftime('%Y-%m-%d'), self._path_count, self._reg_key_count,
-    self._total_count))
+    date_time_string, self._total_count, self._path_count, self._reg_key_count))
 
   def BuildStats(self):
     """Builds the statistics."""
