@@ -10,20 +10,20 @@ Homepage: https://github.com/ForensicArtifacts/artifacts
 Package: artifacts-data
 Architecture: all
 Depends: ${misc:Depends}
-Description: Data files for ForensicArtifacts.com Artifact Repository
+Description: Data files for Digital Forensics Artifacts Repository
  A free, community-sourced, machine-readable knowledge base of forensic
  artifacts that the world can use both as an information source and within other tools.
 
 Package: python3-artifacts
 Architecture: all
 Depends: artifacts-data (>= ${binary:Version}), python3-yaml (>= 3.10), ${python3:Depends}, ${misc:Depends}
-Description: Python 3 module of ForensicArtifacts.com Artifact Repository
+Description: Python 3 module of Digital Forensics Artifacts Repository
  A free, community-sourced, machine-readable knowledge base of forensic
  artifacts that the world can use both as an information source and within other tools.
 
 Package: artifacts-tools
 Architecture: all
 Depends: python3-artifacts (>= ${binary:Version}), ${python3:Depends}, ${misc:Depends}
-Description: Tools of ForensicArtifacts.com Artifact Repository
+Description: Tools of Digital Forensics Artifacts Repository
  A free, community-sourced, machine-readable knowledge base of forensic
  artifacts that the world can use both as an information source and within other tools.
