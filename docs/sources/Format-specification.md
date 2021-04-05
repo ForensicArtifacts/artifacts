@@ -13,7 +13,7 @@ sources:
 conditions: [os_major_version >= 6]
 labels: [Logs]
 supported_os: [Windows]
-urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/main/windows/EventLog.md']
+urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/EventLog.html']
 ```
 
 The artifact definition can have the following values:
@@ -343,7 +343,7 @@ characters to save on unnecessary line breaks:
 ```yaml
 labels: [Logs]
 supported_os: [Windows]
-urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/main/windows/EventLog.md']
+urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/EventLog.html']
 ```
 
 and the bulleted list form for multi-item lists or long lines:
@@ -366,7 +366,7 @@ Paths and URLs should use single quotes to avoid the need for manual escaping.
 
 ```yaml
 paths: ['%%environ_temp%%\*.exe']
-urls: ['https://github.com/ForensicArtifacts/artifacts-kb/blob/main/windows/EventLog.md']
+urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/EventLog.html']
 ```
 
 Double quotes should be used where escaping causes problems, such as
