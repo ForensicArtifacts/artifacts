@@ -25,63 +25,47 @@ class ArtifactStatistics(object):
     self._source_type_counts = {}
     self._total_count = 0
 
-  def _PrintDictAsTable(self, src_dict):
+  def _PrintDictAsTable(self, title, src_dict):
     """Prints a table of artifact definitions.
 
     Args:
+      title (str): title of the table.
       src_dict (dict[str, ArtifactDefinition]): artifact definitions by name.
     """
-    print('<table>')
+    print('### {0:s}'.format(title))
+    print('')
+    print('Identifier | Number')
+    print('--- | ---')
 
     for key, value in sorted(src_dict.items()):
-      print('  <tr>')
-      print('    <th nowrap style="text-align:left;vertical-align:top">')
-      print('      {0:s}</th>'.format(key))
-      print('    <td>{0!s}</td>'.format(value))
-      print('  </tr>')
+      print('{0:s} | {1!s}'.format(key, value))
 
-    print('</table>')
     print('')
 
   def PrintOSTable(self):
     """Prints a table of artifact definitions by operating system."""
-    print('**Operating systems**\n')
-    self._PrintDictAsTable(self._os_counts)
+    self._PrintDictAsTable('Operating systems', self._os_counts)
 
   def PrintLabelTable(self):
     """Prints a table of artifact definitions by label."""
-    print('**Labels**\n')
-    self._PrintDictAsTable(self._label_counts)
+    self._PrintDictAsTable('Labels', self._label_counts)
 
   def PrintSourceTypeTable(self):
     """Prints a table of artifact definitions by source type."""
-    print('**Artifact definition source types**\n')
-    self._PrintDictAsTable(self._source_type_counts)
+    self._PrintDictAsTable(
+        'Artifact definition source types', self._source_type_counts)
 
   def PrintSummaryTable(self):
     """Prints a summary table."""
     date_time_string = time.strftime('%Y-%m-%d')
 
-    print("""
-**Status of the repository as of {0:s}**
+    print("""Status of the repository as of {0:s}
 
-<table>
-  <tr>
-    <th nowrap style="text-align:left;vertical-align:top">
-      Number of artifact definitions:</th>
-    <td>{1:d}</td>
-  </tr>
-  <tr>
-    <th nowrap style="text-align:left;vertical-align:top">
-      Number of file paths:</th>
-    <td>{2:d}</td>
-  </tr>
-  <tr>
-    <th nowrap style="text-align:left;vertical-align:top">
-      Number of Windows Registry key paths:</th>
-    <td>{3:d}</td>
-  </tr>
-</table>
+Description | Number
+--- | ---
+Number of artifact definitions: | {1:d}
+Number of file paths: | {2:d}
+Number of Windows Registry key paths: | {3:d}
 """.format(
     date_time_string, self._total_count, self._path_count, self._reg_key_count))
 
@@ -120,6 +104,14 @@ class ArtifactStatistics(object):
 
   def PrintStats(self):
     """Build stats and print in MarkDown format."""
+    print("""## Statistics
+
+The artifact definitions can be found in the [data directory]({0:s})
+and the format is described in detail in the [Style Guide]({1:s}).
+""".format('https://github.com/ForensicArtifacts/artifacts/tree/main/data',
+           ('https://artifacts.readthedocs.io/en/latest/sources/'
+            'Format-specification.html')))
+
     self.BuildStats()
     self.PrintSummaryTable()
     self.PrintSourceTypeTable()

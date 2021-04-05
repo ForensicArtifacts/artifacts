@@ -26,13 +26,14 @@ needs_sphinx = '2.0.1'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
+    'recommonmark',
     'sphinx.ext.autodoc',
-    'sphinx.ext.doctest',
     'sphinx.ext.coverage',
-    'sphinx.ext.viewcode',
+    'sphinx.ext.doctest',
     'sphinx.ext.napoleon',
+    'sphinx.ext.viewcode',
     'sphinx_markdown_tables',
-    'recommonmark'
+    'sphinx_rtd_theme',
 ]
 
 # We cannot install architecture dependent Python modules on readthedocs,
@@ -57,7 +58,7 @@ napoleon_include_special_with_doc = True
 # General information about the project.
 # pylint: disable=redefined-builtin
 project = 'Digital Forensics Artifacts Repository'
-copyright = 'The Digital Forensics Artifacts Repository Authors'
+copyright = 'The Digital Forensics Artifacts Repository Project Authors'
 version = artifacts.__version__
 release = artifacts.__version__
 
@@ -79,7 +80,7 @@ pygments_style = 'sphinx'
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_theme = 'default'
+html_theme = 'sphinx_rtd_theme'
 
 # Output file base name for HTML help builder.
 htmlhelp_basename = 'artifactsdoc'
