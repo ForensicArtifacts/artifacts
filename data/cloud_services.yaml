@@ -43,6 +43,7 @@ sources:
     - '%%users.localappdata%%\Google\Drive\user_default\snapshot.db'
     - '%%users.localappdata%%\Google\Drive\user_default\sync_config.db'
     - '%%users.localappdata%%\Google\Drive\user_default\sync_config.log*'
+    - '%%users.localappdata%%\Google\Drive\user_default\sync_log.log*'
     separator: '\'
   supported_os: [Windows]
 - type: FILE
