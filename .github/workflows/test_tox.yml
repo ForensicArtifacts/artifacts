@@ -1,21 +1,31 @@
 # Run tox tests on Ubuntu Docker images using GIFT PPA
 name: test_tox
-on: [push, pull_request]
+on:
+  pull_request:
+    branches:
+    - main
+  push:
+    branches:
+    - main
 jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         include:
-        - python-version: 3.6
+        - python-version: '3.6'
           toxenv: 'py36'
-        - python-version: 3.7
+        - python-version: '3.7'
           toxenv: 'py37'
-        - python-version: 3.8
+        - python-version: '3.8'
           toxenv: 'py38,coverage,codecov'
-        - python-version: 3.8
+        - python-version: '3.9'
+          toxenv: 'py39'
+        - python-version: '3.10'
+          toxenv: 'py310'
+        - python-version: '3.8'
           toxenv: 'pylint'
-        - python-version: 3.8
+        - python-version: '3.8'
           toxenv: 'docs'
     container:
       image: ubuntu:20.04
@@ -37,7 +47,10 @@ jobs:
         add-apt-repository -y ppa:deadsnakes/ppa
         add-apt-repository -y ppa:gift/dev
         apt-get update -q
-        apt-get install -y build-essential git python${{ matrix.python-version }} python${{ matrix.python-version }}-dev tox python3-distutils python3-mock python3-pbr python3-setuptools python3-six python3-yaml
+        apt-get install -y build-essential git libffi-dev python${{ matrix.python-version }} python${{ matrix.python-version }}-dev python${{ matrix.python-version }}-venv python3-distutils python3-mock python3-pbr python3-pip python3-setuptools python3-six python3-yaml
+    - name: Install tox
+      run: |
+        python3 -m pip install tox
     - name: Run tests
       env:
         LANG: en_US.UTF-8
