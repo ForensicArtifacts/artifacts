@@ -1563,6 +1563,19 @@ urls:
 - 'https://support.microsoft.com/en-us/kb/323525'
 - 'https://blog.malwarebytes.com/detections/pum-optional-disallowrun/'
 ---
+name: WindowsPortProxyConfiguration
+doc: Windows PortProxy registry keys (set by netsh portproxy command or manually).
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
+    - 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\PortProxy\v4tov4\tcp\*'
+supported_os: [Windows]
+urls:
+- 'https://www.fireeye.com/blog/threat-research/2019/01/bypassing-network-restrictions-through-rdp-tunneling.html'
+- 'https://adepts.of0x.cc/netsh-portproxy-code/'
+- 'https://www.dfirnotes.net/portproxy_detection/'
+---
 name: WindowsPowerShellDefaultProfiles
 doc: Default PowerShell Profile files. These files are executed by default when PowerShell starts up.
 sources:
