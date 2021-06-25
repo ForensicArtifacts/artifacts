@@ -200,7 +200,7 @@ labels: [Authentication]
 supported_os: [Linux, Darwin]
 ---
 name: UsersShellConfigs
-doc: Common Unix user shell configuration files.
+doc: Common Unix user shell configuration files on *nix or Windows Subsystem for Linux (WSL).
 sources:
 - type: FILE
   attributes:
