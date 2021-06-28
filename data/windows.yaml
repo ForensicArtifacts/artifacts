@@ -1569,7 +1569,7 @@ sources:
 - type: REGISTRY_KEY
   attributes:
     keys:
-    - 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\PortProxy\*\'
+    - 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\PortProxy\*\*\*'
 supported_os: [Windows]
 urls:
 - 'https://www.fireeye.com/blog/threat-research/2019/01/bypassing-network-restrictions-through-rdp-tunneling.html'
