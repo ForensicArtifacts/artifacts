@@ -15,7 +15,8 @@ sources:
   attributes:
     paths:
     - '%%environ_allusersappdata%%\Microsoft\Microsoft Antimalware\Quarantine\**'
-    - '%%environ_allusersappdata%%\Microsoft\Windows Defender\Quarantine\**'
+    - '%%environ_allusersappdata%%\Microsoft\Windows 
+    \Quarantine\**'
     separator: '\'
 supported_os: [Windows]
 labels: [Antivirus]
@@ -34,11 +35,12 @@ labels: [Antivirus, Logs]
 ---
 name: WindowsDefenderExclusions
 doc: |
-  Directories, processes, and extensions configured not to be scanned by Windows Defender.
+  Directories, processes, and extensions configured not to be scanned by Windows Defender set locally or through group policies (GPO).
 
-  Certain malware families (for example, Tofsee) are known to add
+  Certain malware families (for example, Tofsee) are known to add 
   directories to the Paths list in order to avoid being detected by
-  Windows Defender.
+  Windows Defender. Other malware (for example, REvil) use the existing 
+  exclusions to be ignored by the AV.
 sources:
 - type: REGISTRY_KEY
   attributes:
@@ -47,11 +49,16 @@ sources:
     - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows Defender\Exclusions\Processes\*'
     - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows Defender\Exclusions\Extensions\*'
     - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows Defender\Exclusions\TemporaryPaths\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Exclusions\Paths\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Exclusions\Processes\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Exclusions\Extensions\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Exclusions\TemporaryPaths\*'
 supported_os: [Windows]
 urls:
 - 'https://blog.malwarebytes.com/detections/pum-optional-msexclusion/'
 - 'https://answers.microsoft.com/en-us/protect/forum/all/windows-defender-how-to-remove-exclusions/2a0cc465-97b2-46ea-ae77-b87075ed124e'
 - 'https://blog.talosintelligence.com/2019/05/threat-roundup-0503-0510.html'
+- 'https://news.sophos.com/en-us/2021/07/04/independence-day-revil-uses-supply-chain-exploit-to-attack-hundreds-of-businesses/'
 ---
 name: SophosAVLogs
 doc: Sophos Anti-Virus log files.
