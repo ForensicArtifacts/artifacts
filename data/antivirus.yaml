@@ -15,8 +15,7 @@ sources:
   attributes:
     paths:
     - '%%environ_allusersappdata%%\Microsoft\Microsoft Antimalware\Quarantine\**'
-    - '%%environ_allusersappdata%%\Microsoft\Windows 
-    \Quarantine\**'
+    - '%%environ_allusersappdata%%\Microsoft\Windows\Quarantine\**'
     separator: '\'
 supported_os: [Windows]
 labels: [Antivirus]
