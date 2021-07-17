@@ -265,7 +265,9 @@ doc: Databases that contain the Windows BITS jobs definition and state.
 sources:
 - type: FILE
   attributes:
-    paths: ['%%environ_allusersprofile%%\Microsoft\Network\Downloader\*']
+    paths:
+    - '%%environ_allusersprofile%%\Microsoft\Network\Downloader\qmgr*.dat'
+    - '%%environ_allusersprofile%%\Microsoft\Network\Downloader\qmgr.db'
     separator: '\'
 supported_os: [Windows]
 urls: ['http://dfrws.org/2015/proceedings/presentations/DFRWS2015-pres3.pdf']
