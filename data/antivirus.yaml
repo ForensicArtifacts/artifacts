@@ -37,9 +37,9 @@ doc: |
   Directories, processes and extensions configured not to be scanned by Windows Defender.
   The can be set locally or through group policy objects (GPO).
 
-  Certain malware families (for example, Tofsee) are known to add directories to the Paths
-  list in order to avoid being detected by Windows Defender. Other malware (for example,
-  REvil) use the existing exclusions to be ignored by Anti-Virus products.
+  Certain malware families (for example, Tofsee) are known to add directories to the
+  Paths list in order to avoid being detected by Windows Defender. Other malware
+  (for example, REvil) use the existing exclusions to be ignored by Anti-Virus products.
 sources:
 - type: REGISTRY_KEY
   attributes:
