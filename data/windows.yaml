@@ -321,7 +321,7 @@ urls:
 - 'https://github.com/libyal/dtformats/blob/main/documentation/WMI%20repository%20file%20format.asciidoc'
 ---
 name: WindowsCodePage
-doc: The code page of the system.
+doc: The system code page.
 sources:
 - type: REGISTRY_VALUE
   attributes:
@@ -329,7 +329,7 @@ sources:
     - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Nls\CodePage', value: 'ACP'}
 provides: [code_page]
 supported_os: [Windows]
-urls: ['http://en.wikipedia.org/wiki/Windows_code_page']
+urls: ['https://winreg-kb.readthedocs.io/en/latest/sources/system-keys/Codepage.html']
 ---
 name: WindowsComputerName
 doc: The name of the system.
@@ -1248,6 +1248,16 @@ sources:
     key_value_pairs:
     - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion', value: 'InstallDate'}
 supported_os: [Windows]
+---
+name: WindowsLanguage
+doc: The system language.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Nls\Language', value: 'Default'}
+supported_os: [Windows]
+urls: ['https://winreg-kb.readthedocs.io/en/latest/sources/system-keys/Language.html']
 ---
 name: WindowsLogoffScript
 doc: Windows policy logoff script
