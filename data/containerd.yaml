@@ -1,0 +1,30 @@
+# containerd artifacts
+
+---
+name: ContainerdConfig
+doc: containerd configuration files
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/etc/containerd/config.toml'
+    - '/var/lib/containerd/io.containerd.metadata.v1.bolt/meta.db'
+    - '/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/metadata.db'
+    - '/var/run/containerd/io.containerd.runtime.v2.task/*/*/config.json'
+    - '/var/run/containerd/io.containerd.runtime.v2.task/*/*/options.json'
+labels: [Containerd, Configuration Files]
+supported_os: [Linux]
+---
+name: ContainerdLogs
+doc: containerd related events in the log files
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/var/run/containerd/io.containerd.runtime.v2.task/*/*/log.json'
+    - '/var/log/daemon.log'
+    - '/var/log/daemon.log.*.gz'
+    - '/var/log/syslog*'
+    - '/var/log/message*'
+labels: [Containerd, Logs]
+supported_os: [Linux]
