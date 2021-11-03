@@ -850,15 +850,11 @@ doc: Windows Event logs.
 sources:
 - type: ARTIFACT_GROUP
   attributes:
-    names:
-    - 'WindowsEventLogApplication'
-    - 'WindowsEventLogSecurity'
-    - 'WindowsEventLogSystem'
-    - 'WindowsXMLEventLogApplication'
-    - 'WindowsXMLEventLogSecurity'
-    - 'WindowsXMLEventLogSysmon'
-    - 'WindowsXMLEventLogSystem'
-    - 'WindowsXMLEventLogTerminalServices'
+    paths:
+    - '%%environ_systemroot%%\System32\winevt\Logs\*.evt'
+    - '%%environ_systemroot%%\System32\config\*.evt'
+    - '%%environ_systemroot%%\System32\winevt\Logs\*.evtx'
+    separator: '\'
 labels: [Logs]
 supported_os: [Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/EventLog.html']
