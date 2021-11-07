@@ -1381,6 +1381,14 @@ urls:
 - 'http://www.trendmicro.com/vinfo/us/threat-encyclopedia/malware/troj_ransom.smc7'
 - 'https://www.symantec.com/security_response/writeup.jsp?docid=2014-092314-3644-99&tabid=2'
 ---
+name: WindowsMountedDevices
+doc: Windows mounted devices
+sources:
+- type: REGISTRY_KEY
+  attributes: {keys: ['HKEY_LOCAL_MACHINE\System\MountedDevices']}
+supported_os: [Windows]
+urls: ['https://winreg-kb.readthedocs.io/en/latest/sources/system-keys/Mounted-devices.html']
+---
 name: WindowsMSDTCDLLs
 doc: Windows MSDTC attempts to load these DLLs on start
 sources:
