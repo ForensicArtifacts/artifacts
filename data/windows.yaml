@@ -848,7 +848,7 @@ urls: ['https://winreg-kb.readthedocs.io/en/latest/sources/EventLog-keys.html']
 name: WindowsEventLogs
 doc: Windows Event logs.
 sources:
-- type: PATH
+- type: FILE
   attributes:
     paths:
     - '%%environ_systemroot%%\System32\config\*.evt'
