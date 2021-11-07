@@ -848,17 +848,12 @@ urls: ['https://winreg-kb.readthedocs.io/en/latest/sources/EventLog-keys.html']
 name: WindowsEventLogs
 doc: Windows Event logs.
 sources:
-- type: ARTIFACT_GROUP
+- type: FILE
   attributes:
-    names:
-    - 'WindowsEventLogApplication'
-    - 'WindowsEventLogSecurity'
-    - 'WindowsEventLogSystem'
-    - 'WindowsXMLEventLogApplication'
-    - 'WindowsXMLEventLogSecurity'
-    - 'WindowsXMLEventLogSysmon'
-    - 'WindowsXMLEventLogSystem'
-    - 'WindowsXMLEventLogTerminalServices'
+    paths:
+    - '%%environ_systemroot%%\System32\config\*.evt'
+    - '%%environ_systemroot%%\System32\winevt\Logs\*.evtx'
+    separator: '\'
 labels: [Logs]
 supported_os: [Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/EventLog.html']
@@ -868,7 +863,7 @@ doc: Application Windows Event Log.
 sources:
 - type: FILE
   attributes:
-    paths: ['%%environ_systemroot%%\System32\winevt\Logs\AppEvent.evt']
+    paths: ['%%environ_systemroot%%\System32\config\AppEvent.evt']
     separator: '\'
 conditions: [os_major_version < 6]
 labels: [Logs]
@@ -880,7 +875,7 @@ doc: Security Windows Event Log.
 sources:
 - type: FILE
   attributes:
-    paths: ['%%environ_systemroot%%\System32\winevt\Logs\SecEvent.evt']
+    paths: ['%%environ_systemroot%%\System32\config\SecEvent.evt']
     separator: '\'
 conditions: [os_major_version < 6]
 labels: [Logs]
@@ -892,7 +887,7 @@ doc: System Windows Event Log.
 sources:
 - type: FILE
   attributes:
-    paths: ['%%environ_systemroot%%\System32\winevt\Logs\SysEvent.evt']
+    paths: ['%%environ_systemroot%%\System32\config\SysEvent.evt']
     separator: '\'
 conditions: [os_major_version < 6]
 labels: [Logs]
