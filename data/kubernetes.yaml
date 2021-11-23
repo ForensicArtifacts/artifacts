@@ -4,8 +4,7 @@ name: KubernetesLogs
 doc: Locations of log files that contain generic information about the Kubernetes installation on the node.
 sources:
 - type: FILE
-  attributes:
-    paths: ['/var/log/syslog*']
+  attributes: {paths: ['/var/log/syslog*']}
 labels: [Kubernetes, Log]
 supported_os: [Linux]
 ---
@@ -33,8 +32,7 @@ doc: |
   The database contains information about the clusters state, deployed resourcees and also deleted components.
 sources:
 - type: FILE
-  attributes:
-    paths: ['/var/lib/etcd/member/snap/db']
+  attributes: {paths: ['/var/lib/etcd/member/snap/db']}
 labels: [Kubernetes, Configuration Files]
 supported_os: [Linux]
 urls:
@@ -46,8 +44,7 @@ name: KubernetesKubelet
 doc: Installation path of the Kubernetes Kubelet component. This component is installed on all nodes that are member of a Kubernetes cluster.
 sources:
 - type: PATH
-  attributes:
-    paths: ['/var/lib/kubelet']
+  attributes: {paths: ['/var/lib/kubelet']}
 labels: [Kubernetes]
 supported_os: [Linux]
 urls: ['https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/']
@@ -72,7 +69,7 @@ sources:
 - type: PATH
   attributes:
     paths:
-    - '/var/lib/kubelet/pki*'
+    - '/var/lib/kubelet/pki/*'
     - '/etc/kubernetes/pki/ca.crt'
 labels: [Kubernetes, Configuration Files]
 supported_os: [Linux]
@@ -83,8 +80,7 @@ name: KubernetesKubeletPod
 doc: Path where the Kubelet component of Kubernetes stores information about the Pods that were scheduled to run on that particular node of the cluster.
 sources:
 - type: PATH
-  attributes:
-    paths: ['/var/lib/kubelet/pods/*']
+  attributes: {paths: ['/var/lib/kubelet/pods/*']}
 labels: [Kubernetes]
 supported_os: [Linux]
 ---
@@ -92,8 +88,7 @@ name: KubernetesKubeletPodManifest
 doc: Location of the manifest file that has been used to deploy a Pod. The manifest contains the Pods specification.
 sources:
 - type: FILE
-  attributes:
-    paths: ['/etc/kubernetes/manifests/*.yaml']
+  attributes: {paths: ['/etc/kubernetes/manifests/*.yaml']}
 labels: [Kubernetes]
 supported_os: [Linux]
 ---
@@ -103,13 +98,13 @@ doc: |
   The path 'containers/' does contain a directory for each container scheduled in that pod.
   In each of that path there is a file located that gets mounted into the container at path '/dev/termination-log'.
   This is the logfile that stores termination information in case a container terminates. 
-  The id of that file can be correlated to the container runtime installed on the host.
+  The id of that file can be correlated to the container runtime installed on the host to find out the mount configuration.
 sources:
 - type: PATH
-  attributes:
-    paths: ['/var/lib/kubelet/pods/<pod_id>/containers/<container_name>/*']
+  attributes: {paths: ['/var/lib/kubelet/pods/<pod_id>/containers/<container_name>/*']}
 labels: [Kubernetes]
 supported_os: [Linux]
+urls: ['https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#container-v1-core']
 ---
 name: KubernetesKubeletPodVolumes
 doc: |
@@ -120,8 +115,7 @@ doc: |
   'volumes/kubernetes.io~configmap' -> describes a Kubernetes ConfigMap resource
 sources:
 - type: PATH
-  attributes:
-    paths: ['/var/lib/kubelet/pods/<pod_id>/volumes/*']
+  attributes: {paths: ['/var/lib/kubelet/pods/<pod_id>/volumes/*']}
 labels: [Kubernetes]
 supported_os: [Linux]
 urls:
@@ -133,8 +127,7 @@ name: KubernetesKubeletPodLogs
 doc: Location where the log data of Pods can be found. Includes also redirected STDOut, STDErr and (if applicable) STDIn of container executions.
 sources:
 - type: FILE
-  attributes:
-    paths: ['/var/log/pods/<namespace>_<pod_name>_<pod_id>/<container_name>/<num>.log']
+  attributes: {paths: ['/var/log/pods/<namespace>_<pod_name>_<pod_id>/<container_name>/<num>.log']}
 labels: [Kubernetes, Logs]
 supported_os: [Linux]
 urls:
