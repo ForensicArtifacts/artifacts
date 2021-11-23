@@ -1,7 +1,7 @@
 # kubernetes artifacts
 
 name: KubernetesLogs
-doc: Locations of log files that contain generic information about the Kubernetes node.
+doc: Locations of log files that contain generic information about the Kubernetes installation on the node.
 sources:
 - type: FILE
   attributes:
@@ -27,10 +27,10 @@ name: KubernetesClusterDatabase
 doc: |
   Kubernetes uses etcd as a cluster database.
   The etcd database is hosted within a pod and can be configured to be deployed as distributed environment or single intance.
-  The databse is mounted from the local file system into the corresponding containers scheduled by the Pod.
+  The database is mounted from the local file system into the corresponding containers scheduled by the Pod.
   To examine the database in a post-mortem investigation, the tool etcd-dumb-db (see urls) is recommended.
   The location only applies to those nodes in a kubernetes cluster, whose kubelet is running the etcd Pod.
-  The database contains information about the clusters state, deployed resourcees and also delete components.
+  The database contains information about the clusters state, deployed resourcees and also deleted components.
 sources:
 - type: FILE
   attributes:
