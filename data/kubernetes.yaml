@@ -101,7 +101,9 @@ name: KubernetesKubeletPodContainer
 doc: |
   Path where the container resources created within a Pod are located. The Pod itself gets created/scheduled by the Kubelet component.
   The path 'containers/' does contain a directory for each container scheduled in that pod.
-  In each of that path there is a file located that 
+  In each of that path there is a file located that gets mounted into the container at path '/dev/termination-log'.
+  This is the logfile that stores termination information in case a container terminates. 
+  The id of that file can be correlated to the container runtime installed on the host.
 sources:
 - type: PATH
   attributes:
