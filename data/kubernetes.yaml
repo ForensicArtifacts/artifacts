@@ -5,7 +5,7 @@ doc: Locations of log files that contain generic information about the Kubernete
 sources:
 - type: FILE
   attributes: {paths: ['/var/log/syslog*']}
-labels: [Kubernetes, Log]
+labels: [Kubernetes, Logs]
 supported_os: [Linux]
 ---
 name: KubernetesCertificates
