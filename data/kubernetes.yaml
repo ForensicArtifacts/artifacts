@@ -1,0 +1,161 @@
+# Kubernetes artifacts
+
+name: KubernetesLogs
+doc: Log files that contain information about the Kubernetes installation of a node.
+sources:
+- type: FILE
+  attributes: {paths: ['/var/log/syslog*']}
+labels: [Kubernetes, Logs]
+supported_os: [Linux]
+---
+name: KubernetesCertificates
+doc: |
+  Certificate files that are used for a Kubernetes cluster.
+  
+  The files are typically only present on the control-plane node.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/etc/kubernetes/admin.conf'
+    - '/etc/kubernetes/controller-manager.conf'
+    - '/etc/kubernetes/kubelet.conf'
+    - '/etc/kubernetes/scheduler.conf'
+labels: [Kubernetes, Configuration Files]
+supported_os: [Linux]
+urls: ['https://kubernetes.io/docs/setup/best-practices/certificates/']
+---
+name: KubernetesClusterDatabase
+doc: |
+  Kubernetes cluster (etcd) database.
+
+  The cluster database is hosted within a Pod and can be configured to be
+  deployed as distributed environment or single intance. The database is
+  mounted from the local file system into the corresponding containers
+  scheduled by a pod.
+
+  The database contains information about the clusters state, deployed
+  resourcees and also deleted components.
+sources:
+- type: FILE
+  attributes: {paths: ['/var/lib/etcd/member/snap/db']}
+labels: [Kubernetes, Configuration Files]
+supported_os: [Linux]
+urls:
+- 'https://kubernetes.io/docs/tasks/administer-cluster/configure-upgrade-etcd/'
+- 'https://github.com/etcd-io/etcd'
+- 'https://github.com/etcd-io/etcd/tree/main/tools/etcd-dump-db'
+---
+name: KubernetesKubelet
+doc: |
+  Installation path of the (Kubernetes) Kubelet component.
+
+  This component is installed on all nodes that are member of a Kubernetes cluster.
+sources:
+- type: PATH
+  attributes: {paths: ['/var/lib/kubelet']}
+labels: [Kubernetes]
+supported_os: [Linux]
+urls: ['https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/']
+---
+name: KubernetesKubeletConfiguration
+doc: Files that stores the configuration of the local (Kubernetes) Kubelet.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/var/lib/kubelet/config.yaml'
+    - '/etc/kubernetes/kubelet.conf'
+labels: [Kubernetes, Configuration Files]
+supported_os: [Linux]
+urls:
+- 'https://kubernetes.io/docs/tasks/administer-cluster/kubelet-config-file/'
+- 'https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/'
+---
+name: KubernetesKubeletNetworkPKI
+doc: Certificates and other keyfiles used for Kubelet and Kubernetes general PKI.
+sources:
+- type: PATH
+  attributes:
+    paths:
+    - '/etc/kubernetes/pki'
+    - '/var/lib/kubelet/pki'
+labels: [Kubernetes, Configuration Files]
+supported_os: [Linux]
+urls: ['https://kubernetes.io/docs/setup/best-practices/certificates']
+---
+name: KubernetesKubeletPod
+doc: Path of (Kubernetes) Kubelet component information about Pods scheduled to run on a particular node.
+sources:
+- type: PATH
+  attributes: {paths: ['/var/lib/kubelet/pods']}
+labels: [Kubernetes]
+supported_os: [Linux]
+---
+name: KubernetesKubeletPodManifest
+doc: |
+  Manifest file that has been used to deploy a (Kubernetes) Pod.
+
+  The manifest contains the Pods specification.
+sources:
+- type: FILE
+  attributes: {paths: ['/etc/kubernetes/manifests/*.yaml']}
+labels: [Kubernetes]
+supported_os: [Linux]
+---
+name: KubernetesKubeletPodContainer
+doc: |
+  Path where the container resources created within a (Kubernetes) Pod are located.
+  
+  The paths naming would explain as the following:
+  '/var/lib/kubelet/pods/<pod_id>/containers/<container_name>/*'
+
+  The Pod itself gets created/scheduled by the Kubelet component. The path
+  'containers/' does contain a directory for each container scheduled in that
+  Pod. In each of that path there is a file located that gets mounted into
+  the container at '/dev/termination-log'.
+  
+  This is the logfile that stores termination information in case a container
+  terminates. The pod identifier of that file can be correlated to the container
+  runtime installed on the host to find out the mount configuration.
+sources:
+- type: PATH
+  attributes: {paths: ['/var/lib/kubelet/pods/*/containers']}
+labels: [Kubernetes]
+supported_os: [Linux]
+urls: ['https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#container-v1-core']
+---
+name: KubernetesKubeletPodVolumes
+doc: |
+  Volumes and other objects that are mounted into a (Kubernetes) Pod and respectively into the scheduled container(s).
+
+  The type of volumes (or objects) are identified by the name appended to a tilde.
+
+  Examples:
+  * 'volumes/kubernetes.io~projected' -> describes a projected volume
+  * 'volumes/kubernetes.io~configmap' -> describes a Kubernetes ConfigMap resource
+sources:
+- type: PATH
+  attributes: {paths: ['/var/lib/kubelet/pods/*/volumes/*']}
+labels: [Kubernetes]
+supported_os: [Linux]
+urls:
+- 'https://kubernetes.io/docs/concepts/storage/volumes'
+- 'https://kubernetes.io/docs/concepts/storage/projected-volumes/'
+- 'https://kubernetes.io/docs/concepts/storage/volumes/#configmap'
+---
+name: KubernetesKubeletPodLogs
+doc: |
+  Location where the log data of (Kubernetes) Pods can be found.
+  
+  The path's name would contain the folllowing elements:
+  '/var/log/pods/<namespace>_<pod_name>_<pod_id>/<container_name>/<num>.log'
+  Includes also redirected stdout, stderr and (if applicable) stdin of container executions.
+sources:
+- type: FILE
+  attributes: {paths: ['/var/log/pods/*/*/*.log']}
+labels: [Kubernetes, Logs]
+supported_os: [Linux]
+urls:
+- 'https://github.com/kubernetes/kubernetes/pull/74441'
+- 'https://kubernetes.io/docs/concepts/cluster-administration/logging/'
