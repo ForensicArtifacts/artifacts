@@ -151,4 +151,3 @@ supported_os: [Linux]
 urls:
 - 'https://github.com/kubernetes/kubernetes/pull/74441'
 - 'https://kubernetes.io/docs/concepts/cluster-administration/logging/'
----
