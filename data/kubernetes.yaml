@@ -78,8 +78,8 @@ sources:
 - type: PATH
   attributes:
     paths:
-    - '/var/lib/kubelet/pki/*'
-    - '/etc/kubernetes/pki/ca.crt'
+    - '/var/lib/kubelet/pki'
+    - '/etc/kubernetes/pki'
 labels: [Kubernetes, Configuration Files]
 supported_os: [Linux]
 urls:
@@ -89,7 +89,7 @@ name: KubernetesKubeletPod
 doc: Path where the Kubelet component of Kubernetes stores information about the Pods that were scheduled to run on that particular node of the cluster.
 sources:
 - type: PATH
-  attributes: {paths: ['/var/lib/kubelet/pods/*']}
+  attributes: {paths: ['/var/lib/kubelet/pods']}
 labels: [Kubernetes]
 supported_os: [Linux]
 ---
@@ -105,6 +105,9 @@ name: KubernetesKubeletPodContainer
 doc: |
   Path where the container resources created within a Pod are located.
   
+  The paths naming would explain as the following:
+  '/var/lib/kubelet/pods/<pod_id>/containers/<container_name>/*'
+
   The Pod itself gets created/scheduled by the Kubelet component. The path
   'containers/' does contain a directory for each container scheduled in that
   pod. In each of that path there is a file located that gets mounted into
@@ -114,7 +117,7 @@ doc: |
   find out the mount configuration.
 sources:
 - type: PATH
-  attributes: {paths: ['/var/lib/kubelet/pods/<pod_id>/containers/<container_name>/*']}
+  attributes: {paths: ['/var/lib/kubelet/pods/*/containers']}
 labels: [Kubernetes]
 supported_os: [Linux]
 urls: ['https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#container-v1-core']
@@ -130,7 +133,7 @@ doc: |
   * 'volumes/kubernetes.io~configmap' -> describes a Kubernetes ConfigMap resource
 sources:
 - type: PATH
-  attributes: {paths: ['/var/lib/kubelet/pods/<pod_id>/volumes/*']}
+  attributes: {paths: ['/var/lib/kubelet/pods/*/volumes/*']}
 labels: [Kubernetes]
 supported_os: [Linux]
 urls:
@@ -142,10 +145,12 @@ name: KubernetesKubeletPodLogs
 doc: |
   Location where the log data of Pods can be found.
   
+  The path's name would contain the folllowing elements:
+  '/var/log/pods/<namespace>_<pod_name>_<pod_id>/<container_name>/<num>.log'
   Includes also redirected stdout, stderr and (if applicable) stdin of container executions.
 sources:
 - type: FILE
-  attributes: {paths: ['/var/log/pods/<namespace>_<pod_name>_<pod_id>/<container_name>/<num>.log']}
+  attributes: {paths: ['/var/log/pods/*/*/*.log']}
 labels: [Kubernetes, Logs]
 supported_os: [Linux]
 urls:
