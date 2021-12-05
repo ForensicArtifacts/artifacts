@@ -1959,30 +1959,14 @@ urls:
 - 'http://www.silentrunners.org/Silent%20Runners.vbs'
 ---
 name: WindowsServices
-doc: |
-  Windows services from the Registry.
-
-  Malware can add new services to gain persistence, or modify
-  existing ones to avoid detection. For example, the ZeroAccess
-  rootkit will make the following changes to the WSCSVC (Windows
-  Security Service Center), WINDEFEND (Windows Defender),
-  and MPSSVC (Windows Firewall) services, among others
-
-  * Set 'Start' to 4, indicating that the service should be disabled
-  * Set 'DeleteFlag' to 1, indicating that the service should be removed
-  * Set 'ErrorControl' to 0 and 'Type' to 32, causing it to fail to be
-    started by the Service Controller and no error messages generated
+doc: Windows service and driver configurations.
 sources:
 - type: REGISTRY_KEY
   attributes:
-    keys:
-    - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\*\*'
-    - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\*\Parameters\*'
+    keys: ['HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\*']
 labels: [Software]
 supported_os: [Windows]
-urls:
-- 'http://support.microsoft.com/kb/103000'
-- 'https://github.com/libyal/winreg-kb/blob/main/documentation/System%20keys.asciidoc'
+urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/ServicesAndDrivers.html']
 ---
 name: WindowsActionCenterSettings
 doc: |
@@ -2895,7 +2879,7 @@ sources:
     paths: ['%%environ_systemroot%%\System32\sru\SRUDB.dat']
     separator: '\'
 supported_os: [Windows]
-urls: ['https://github.com/libyal/esedb-kb/blob/main/documentation/System%20Resource%20Usage%20Monitor%20(SRUM).asciidoc']
+urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/SystemResourceUsageMonitor.html']
 ---
 name: WindowsTempDirectories
 doc: Contents of the Windows temporary directories
