@@ -150,35 +150,57 @@ sources:
     paths:
     - '%%users.localappdata%%\Chromium\User Data\*\Cookies'
     - '%%users.localappdata%%\Chromium\User Data\*\Cookies-journal'
+    - '%%users.localappdata%%\Chromium\User Data\*\Network\Cookies'
+    - '%%users.localappdata%%\Chromium\User Data\*\Network\Cookies-journal'
     - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Cookies'
     - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Cookies-journal'
+    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Network\Cookies'
+    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Network\Cookies-journal'
     - '%%users.localappdata%%\Google\Chrome\User Data\*\Cookies'
     - '%%users.localappdata%%\Google\Chrome\User Data\*\Cookies-journal'
+    - '%%users.localappdata%%\Google\Chrome\User Data\*\Network\Cookies'
+    - '%%users.localappdata%%\Google\Chrome\User Data\*\Network\Cookies-journal'
     separator: '\'
   supported_os: [Windows]
 - type: FILE
   attributes:
     paths:
-    - '%%users.homedir%%/.config/google-chrome/*/Cookies'
-    - '%%users.homedir%%/.config/google-chrome/*/Cookies-journal'
-    - '%%users.homedir%%/.config/chromium/*/Cookies'
-    - '%%users.homedir%%/.config/chromium/*/Cookies-journal'
-    - '%%users.homedir%%/.config/google-chrome-beta/*/Cookies'
-    - '%%users.homedir%%/.config/google-chrome-beta/*/Cookies-journal'
-    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Cookies'
-    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Cookies-journal'
     - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Cookies'
     - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Cookies-journal'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Network/Cookies'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Network/Cookies-journal'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Cookies'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Cookies-journal'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Network/Cookies'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Network/Cookies-journal'
+    - '%%users.homedir%%/.config/chromium/*/Cookies'
+    - '%%users.homedir%%/.config/chromium/*/Cookies-journal'
+    - '%%users.homedir%%/.config/chromium/*/Network/Cookies'
+    - '%%users.homedir%%/.config/chromium/*/Network/Cookies-journal'
+    - '%%users.homedir%%/.config/google-chrome-beta/*/Cookies'
+    - '%%users.homedir%%/.config/google-chrome-beta/*/Cookies-journal'
+    - '%%users.homedir%%/.config/google-chrome-beta/*/Network/Cookies'
+    - '%%users.homedir%%/.config/google-chrome-beta/*/Network/Cookies-journal'
+    - '%%users.homedir%%/.config/google-chrome/*/Cookies'
+    - '%%users.homedir%%/.config/google-chrome/*/Cookies-journal'
+    - '%%users.homedir%%/.config/google-chrome/*/Network/Cookies'
+    - '%%users.homedir%%/.config/google-chrome/*/Network/Cookies-journal'
   supported_os: [Linux]
 - type: FILE
   attributes:
     paths:
     - '%%users.homedir%%/Library/Application Support/Chromium/*/Cookies'
     - '%%users.homedir%%/Library/Application Support/Chromium/*/Cookies-journal'
+    - '%%users.homedir%%/Library/Application Support/Chromium/*/Network/Cookies'
+    - '%%users.homedir%%/Library/Application Support/Chromium/*/Network/Cookies-journal'
     - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Cookies'
     - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Cookies-journal'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Network/Cookies'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Network/Cookies-journal'
     - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Cookies'
     - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Cookies-journal'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Network/Cookies'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Network/Cookies-journal'
   supported_os: [Darwin]
 supported_os: [Windows,Darwin,Linux]
 labels: [Browser]
