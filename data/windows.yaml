@@ -3364,6 +3364,7 @@ sources:
     - '%%users.userprofile%%\AppData\LocalLow\Microsoft\CryptnetUrlCache\MetaData\*'
     separator: '\'
 labels: [System, Network]
+conditions: [os_major_version >= 6]
 supported_os: [Windows]
 urls:
 - 'https://u0041.co/blog/post/3'
@@ -3387,6 +3388,7 @@ sources:
     - '%%users.userprofile%%\AppData\LocalLow\Microsoft\CryptnetUrlCache\Content\*'
     separator: '\'
 labels: [System, Network]
+conditions: [os_major_version >= 6]
 supported_os: [Windows]
 urls:
 - 'https://u0041.co/blog/post/3'
