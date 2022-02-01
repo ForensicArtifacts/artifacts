@@ -3444,6 +3444,7 @@ sources:
     paths:
     - '%%environ_allusersprofile%%\Microsoft\Windows\WER\**'
     - '%%environ_systemroot%%\*.dmp'
+    - '%%environ_systemroot%%\Minidump\*.dmp'
     - '%%environ_systemroot%%\ServiceProfiles\AppData\Local\CrashDumps\**'
     - '%%environ_systemroot%%\ServiceProfiles\AppData\Local\Temp\*.dmp'
     - '%%environ_systemroot%%\System32\config\systemprofile\AppData\Local\CrashDumps\**'
@@ -3456,6 +3457,7 @@ sources:
 labels: [Execution]
 supported_os: [Windows]
 urls:
+- 'https://forensicswiki.xyz/wiki/index.php?title=Windows#Crash_and_minidumps'
 - 'https://medium.com/dfir-dudes/amcache-is-not-alone-using-wer-files-to-hunt-evil-86bdfdb216d7'
 - 'https://docs.microsoft.com/en-us/windows/win32/wer/collecting-user-mode-dumps'
 - 'https://www.ired.team/offensive-security/credential-access-and-credential-dumping/dump-credentials-from-lsass-process-without-mimikatz'
