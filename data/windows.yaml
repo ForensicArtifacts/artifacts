@@ -3349,7 +3349,7 @@ supported_os: [Windows]
 urls: ['https://technet.microsoft.com/en-us/library/dd197418(v=ws.10).aspx']
 ---
 name: WindowsCryptnetUrlCacheMetadata
-doc:  |
+doc: |
   Metadata of a Windows cache of files downloaded from the internet.
 
   Helpful when investigating the use of "Living of the Land" tools that allow
@@ -3373,7 +3373,7 @@ urls:
 - 'https://github.com/Velocidex/velociraptor/blob/32ff014a4504e95c2650fe4770bfda550d998884/artifacts/definitions/Windows/Forensics/CertUtil.yaml'
 ---
 name: WindowsCryptnetUrlCacheContent
-doc:  |
+doc: |
   Content of a Windows cache of files downloaded from the internet.
 
   Helpful when investigating the use of "Living of the Land" tools that allow
@@ -3397,7 +3397,7 @@ urls:
 - 'https://github.com/Velocidex/velociraptor/blob/32ff014a4504e95c2650fe4770bfda550d998884/artifacts/definitions/Windows/Forensics/CertUtil.yaml'
 ---
 name: WindowsStartupInfo
-doc:  |
+doc: |
   StartupInfo XML files.
 
   The files include the user's SID in the name and there could be up to 5 per
