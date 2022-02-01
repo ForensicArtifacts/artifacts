@@ -3347,3 +3347,49 @@ sources:
 labels: [System, Network]
 supported_os: [Windows]
 urls: ['https://technet.microsoft.com/en-us/library/dd197418(v=ws.10).aspx']
+---
+name: WindowsCryptnetUrlCacheMetadata
+doc:  |
+  Metadata of a Windows cache of files downloaded from the internet.
+
+  Helpful when investigating the use of "Living of the Land" tools that allow
+  attackers to download arbitrary files from the internet, such as
+  "certutil.exe".
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%environ_systemroot%%\System32\config\systemprofile\AppData\LocalLow\Microsoft\CryptnetUrlCache\MetaData\*'
+    - '%%environ_systemroot%%\SysWOW64\config\systemprofile\AppData\LocalLow\Microsoft\CryptnetUrlCache\MetaData\*'
+    - '%%users.userprofile%%\AppData\LocalLow\Microsoft\CryptnetUrlCache\MetaData\*'
+    separator: '\'
+labels: [System, Network]
+supported_os: [Windows]
+urls:
+- 'https://u0041.co/blog/post/3'
+- 'https://thinkdfir.com/2020/07/30/certutil-download-artefacts/amp/'
+- 'https://blog.menasec.net/2019/03/initial-access-execution-evidences-for.html'
+- 'https://github.com/Velocidex/velociraptor/blob/32ff014a4504e95c2650fe4770bfda550d998884/artifacts/definitions/Windows/Forensics/CertUtil.yaml'
+---
+name: WindowsCryptnetUrlCacheContent
+doc:  |
+  Content of a Windows cache of files downloaded from the internet.
+
+  Helpful when investigating the use of "Living of the Land" tools that allow
+  attackers to download arbitrary files from the internet, such as
+  "certutil.exe".
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%environ_systemroot%%\System32\config\systemprofile\AppData\LocalLow\Microsoft\CryptnetUrlCache\Content\*'
+    - '%%environ_systemroot%%\SysWOW64\config\systemprofile\AppData\LocalLow\Microsoft\CryptnetUrlCache\Content\*'
+    - '%%users.userprofile%%\AppData\LocalLow\Microsoft\CryptnetUrlCache\Content\*'
+    separator: '\'
+labels: [System, Network]
+supported_os: [Windows]
+urls:
+- 'https://u0041.co/blog/post/3'
+- 'https://thinkdfir.com/2020/07/30/certutil-download-artefacts/amp/'
+- 'https://blog.menasec.net/2019/03/initial-access-execution-evidences-for.html'
+- 'https://github.com/Velocidex/velociraptor/blob/32ff014a4504e95c2650fe4770bfda550d998884/artifacts/definitions/Windows/Forensics/CertUtil.yaml'
