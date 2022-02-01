@@ -3395,3 +3395,24 @@ urls:
 - 'https://thinkdfir.com/2020/07/30/certutil-download-artefacts/amp/'
 - 'https://blog.menasec.net/2019/03/initial-access-execution-evidences-for.html'
 - 'https://github.com/Velocidex/velociraptor/blob/32ff014a4504e95c2650fe4770bfda550d998884/artifacts/definitions/Windows/Forensics/CertUtil.yaml'
+---
+name: WindowsStartupInfo
+doc:  |
+  StartupInfo XML files.
+
+  The files include the user's SID in the name and there could be up to 5 per
+  user. They contain a list of processes that were executed within the first 90
+  seconds from the time the user logged in. The info includes start time, the
+  full command line and the parent process info, among other things.
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%environ_systemroot%%\System32\WDI\LogFiles\StartupInfo\*.xml']
+    separator: '\'
+labels: [Execution]
+conditions: [os_major_version >= 6 AND os_minor_version >= 2]
+supported_os: [Windows]
+urls:
+- 'https://medium.com/dfir-dudes/startupinfo-autoruns-served-up-on-a-plate-ba2da0c753c5'
+- 'https://gist.github.com/mkorman90/272dbc126409135018de3210dd3d2eca'
+- 'https://www.trustedsec.com/blog/who-left-the-backdoor-open-using-startupinfo-for-the-win/'
