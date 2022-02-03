@@ -3379,11 +3379,7 @@ sources:
 labels: [System, Network]
 conditions: [os_major_version >= 6]
 supported_os: [Windows]
-urls:
-- 'https://u0041.co/blog/post/3'
-- 'https://thinkdfir.com/2020/07/30/certutil-download-artefacts/amp/'
-- 'https://blog.menasec.net/2019/03/initial-access-execution-evidences-for.html'
-- 'https://github.com/Velocidex/velociraptor/blob/32ff014a4504e95c2650fe4770bfda550d998884/artifacts/definitions/Windows/Forensics/CertUtil.yaml'
+urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows#Cryptnet_URL_Cache']
 ---
 name: WindowsCryptnetUrlCacheContent
 doc: |
@@ -3403,11 +3399,7 @@ sources:
 labels: [System, Network]
 conditions: [os_major_version >= 6]
 supported_os: [Windows]
-urls:
-- 'https://u0041.co/blog/post/3'
-- 'https://thinkdfir.com/2020/07/30/certutil-download-artefacts/amp/'
-- 'https://blog.menasec.net/2019/03/initial-access-execution-evidences-for.html'
-- 'https://github.com/Velocidex/velociraptor/blob/32ff014a4504e95c2650fe4770bfda550d998884/artifacts/definitions/Windows/Forensics/CertUtil.yaml'
+urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows#Cryptnet_URL_Cache']
 ---
 name: WindowsStartupInfo
 doc: |
@@ -3426,10 +3418,7 @@ sources:
 labels: [Execution]
 conditions: [os_major_version >= 6 AND os_minor_version >= 2]
 supported_os: [Windows]
-urls:
-- 'https://medium.com/dfir-dudes/startupinfo-autoruns-served-up-on-a-plate-ba2da0c753c5'
-- 'https://gist.github.com/mkorman90/272dbc126409135018de3210dd3d2eca'
-- 'https://www.trustedsec.com/blog/who-left-the-backdoor-open-using-startupinfo-for-the-win/'
+urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows#Startup_info']
 ---
 name: WindowsCrashDumps
 doc: |
@@ -3457,8 +3446,4 @@ sources:
     separator: '\'
 labels: [Execution]
 supported_os: [Windows]
-urls:
-- 'https://forensicswiki.xyz/wiki/index.php?title=Windows#Crash_and_minidumps'
-- 'https://medium.com/dfir-dudes/amcache-is-not-alone-using-wer-files-to-hunt-evil-86bdfdb216d7'
-- 'https://docs.microsoft.com/en-us/windows/win32/wer/collecting-user-mode-dumps'
-- 'https://www.ired.team/offensive-security/credential-access-and-credential-dumping/dump-credentials-from-lsass-process-without-mimikatz'
+urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows#Crash_and_minidumps']
