@@ -3374,7 +3374,7 @@ sources:
     paths:
     - '%%environ_systemroot%%\System32\config\systemprofile\AppData\LocalLow\Microsoft\CryptnetUrlCache\MetaData\*'
     - '%%environ_systemroot%%\SysWOW64\config\systemprofile\AppData\LocalLow\Microsoft\CryptnetUrlCache\MetaData\*'
-    - '%%users.localappdata_low%%\Microsoft\CryptnetUrlCache\MetaData\*'
+    - '%%users.userprofile%%\AppData\LocalLow\Microsoft\CryptnetUrlCache\MetaData\*'
     separator: '\'
 labels: [System, Network]
 conditions: [os_major_version >= 6]
@@ -3398,7 +3398,7 @@ sources:
     paths:
     - '%%environ_systemroot%%\System32\config\systemprofile\AppData\LocalLow\Microsoft\CryptnetUrlCache\Content\*'
     - '%%environ_systemroot%%\SysWOW64\config\systemprofile\AppData\LocalLow\Microsoft\CryptnetUrlCache\Content\*'
-    - '%%users.localappdata_low%%\Microsoft\CryptnetUrlCache\Content\*'
+    - '%%users.userprofile%%\AppData\LocalLow\Microsoft\CryptnetUrlCache\Content\*'
     separator: '\'
 labels: [System, Network]
 conditions: [os_major_version >= 6]
