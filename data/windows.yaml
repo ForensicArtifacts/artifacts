@@ -3364,3 +3364,26 @@ supported_os: [Windows]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows#TBD'] # TODO: add a section
 # https://www.vestigeltd.com/in-the-news/virtual-case-notes-piecing-together-truth-word-document/
 # https://github.com/EricZimmerman/KapeFiles/blob/master/Targets/Windows/OfficeAutosave.tkape
+---
+name: WindowsUserAccessLogging
+doc: |
+  User Access Logging (UAL) databases.
+
+  UAL is a local data aggregation feature (enabled by default) on Windows
+  Servers 2012 and above, recording client usage by role and product on each
+  system providing the resource. It's typically between 2 and 4 extensible
+  storage engine (ESE) databases ("Current.mdb", "SystemIdentity.mdb, and
+  "<GUID>.mdb").
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%environ_systemroot%%\System32\LogFiles\SUM\*.mdb'
+    separator: '\'
+labels: [Users]
+supported_os: [Windows]
+urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows#TBD'] # TODO: add a section
+# https://docs.microsoft.com/en-us/windows-server/administration/user-access-logging/manage-user-access-logging
+# https://advisory.kpmg.us/blog/2021/digital-forensics-incident-response.html
+# https://github.com/brimorlabs/KStrike
+# https://www.crowdstrike.com/blog/user-access-logging-ual-overview/
