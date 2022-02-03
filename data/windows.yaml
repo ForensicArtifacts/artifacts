@@ -3413,10 +3413,11 @@ name: WindowsStartupInfo
 doc: |
   StartupInfo XML files.
 
-  The files include the user's SID in the name and there could be up to 5 per
-  user. They contain a list of processes that were executed within the first 90
-  seconds from the time the user logged in. The info includes start time, the
-  full command line and the parent process info, among other things.
+  The files include the user account's Security Identifier (SID) in the name
+  and there could be up to 5 per user account. They contain a list of processes
+  that were executed within the first 90 seconds from the time the user logged
+  in. The info includes start time, the full command line and the parent
+  process info, among other things.
 sources:
 - type: FILE
   attributes:
@@ -3432,7 +3433,7 @@ urls:
 ---
 name: WindowsCrashDumps
 doc: |
-  Windows Error Reporting (WER) files & crash dumps.
+  Windows Error Reporting (WER) files and crash dumps.
 
   The files include information about the crashed processes and potentially
   process dumps, whether auto-generated upon a crash or by a user. It's helpful
