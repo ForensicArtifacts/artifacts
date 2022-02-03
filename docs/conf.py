@@ -58,7 +58,7 @@ napoleon_include_special_with_doc = True
 # General information about the project.
 # pylint: disable=redefined-builtin
 project = 'Digital Forensics Artifacts Repository'
-copyright = 'The Digital Forensics Artifacts Repository Project Authors'
+copyright = 'The Digital Forensics Artifacts Repository authors'
 version = artifacts.__version__
 release = artifacts.__version__
 
