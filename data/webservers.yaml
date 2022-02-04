@@ -44,3 +44,17 @@ sources:
     - '/wp/wp-config.php'
 labels: [Configuration Files]
 supported_os: [Linux, Darwin]
+---
+name: MicrosoftIISLogs
+doc: Internet Information Services (IIS) web server's log files.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%environ_systemroot%%\System32\LogFiles\W3SVC*\*.log'
+    - '%%environ_systemdrive%%\inetpub\logs\LogFiles\*.log'
+    - '%%environ_systemdrive%%\Resources\Directory\*\LogFiles\Web\W3SVC*\*.log'
+    separator: '\'
+labels: [Configuration Files]
+supported_os: [Windows]
+urls: [https://github.com/EricZimmerman/KapeFiles/blob/49c05a2d2c9edc76d2b67d7e3d51ac321dec01d0/Targets/Logs/IISLogFiles.tkape]
