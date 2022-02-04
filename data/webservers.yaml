@@ -17,10 +17,19 @@ sources:
   attributes:
     paths:
     - '/var/log/apache/access.log*'
+    - '/var/log/apache/access_log*'
     - '/var/log/apache2/access.log*'
-    - '/var/log/httpd/access.log'
+    - '/var/log/apache2/access_log*'
+    - '/var/log/httpd/access.log*'
+    - '/var/log/httpd/access_log*'
+  supported_os: [Linux]
+- type: FILE
+  attributes:
+    paths: ['%%environ_systemdrive%%\**6\logs\access.log*']
+    separator: '\'
+  supported_os: [Windows]
 labels: [Software, Logs]
-supported_os: [Linux]
+supported_os: [Linux, Windows]
 ---
 name:  WordpressConfigFile
 doc: WordPress configuration file
