@@ -2833,6 +2833,18 @@ labels: [System]
 supported_os: [Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/RegistryFiles.html']
 ---
+name: WindowsSystemRegistryFilesAndTransactionLogsBackup
+doc: Backup of Windows system Registry files and transaction logs.
+sources:
+- type: ARTIFACT_GROUP
+  attributes:
+    names:
+    - 'WindowsSystemRegistryFilesBackup'
+    - 'WindowsSystemRegistryTransactionLogFilesBackup'
+labels: [System,Users]
+supported_os: [Windows]
+urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/RegistryFiles.html']
+---
 name: WindowsSystemRegistryFiles
 doc: Windows system Registry files.
 sources:
