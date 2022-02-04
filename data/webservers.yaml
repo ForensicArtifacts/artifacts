@@ -7,8 +7,14 @@ sources:
   attributes:
     paths:
     - '/var/log/nginx/access.log*'
+  supported_os: [Linux]
+- type: FILE
+  attributes:
+    paths: ['%%environ_systemdrive%%\nginx\logs\*.log*']
+    separator: '\'
+  supported_os: [Windows]
 labels: [Software, Logs]
-supported_os: [Linux]
+supported_os: [Linux, Windows]
 ---
 name: ApacheAccessLogs
 doc: Location where Apache access logs are stored
@@ -55,6 +61,6 @@ sources:
     - '%%environ_systemdrive%%\inetpub\logs\LogFiles\*.log'
     - '%%environ_systemdrive%%\Resources\Directory\*\LogFiles\Web\W3SVC*\*.log'
     separator: '\'
-labels: [Configuration Files]
+labels: [Software, Logs]
 supported_os: [Windows]
 urls: [https://github.com/EricZimmerman/KapeFiles/blob/49c05a2d2c9edc76d2b67d7e3d51ac321dec01d0/Targets/Logs/IISLogFiles.tkape]
