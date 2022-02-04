@@ -314,6 +314,56 @@ labels: [Browser]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome#Extensions'] # TODO: update wiki
 # 'https://github.com/osquery/osquery/blob/6969e075fd4118e36f6cab54b0956e53dde5ba3f/osquery/tables/applications/chrome/utils.cpp'
 ---
+name: ChromeAndDerivedBrowsersExtensionActivity
+doc: |
+  Browser Extension Activity database for Google Chrome and multiple
+  Chrome-derived browsers (Brave, Chromium, Yandex, Opera, Edge, EdgeBeta).
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.appdata%%\Opera Software\Opera Stable\*\Extension Activity'
+    - '%%users.appdata%%\Brave\*\Extension Activity'
+    - '%%users.localappdata%%\Chromium\*\Extension Activity'
+    - '%%users.localappdata%%\Chromium\User Data\*\Extension Activity'
+    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Extension Activity'
+    - '%%users.localappdata%%\Google\Chrome\User Data\*\Extension Activity'
+    - '%%users.localappdata%%\Microsoft\Edge Beta\User Data\*\Extension Activity'
+    - '%%users.localappdata%%\Microsoft\Edge\User Data\*\Extension Activity'
+    - '%%users.localappdata%%\Yandex\YandexBrowser\User Data\*\Extension Activity'
+    separator: '\'
+  supported_os: [Windows]
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/Library/Application Support/BraveSoftware/Brave-Browser'
+    - '%%users.homedir%%/Library/Application Support/BraveSoftware/Brave-Browser/*/Extensions/**10'
+    - '%%users.homedir%%/Library/Application Support/Chromium/*/Extensions/**10'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Extensions/**10'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Extensions/**10'
+    - '%%users.homedir%%/Library/Application Support/Microsoft Edge Beta/*/Extensions/**10'
+    - '%%users.homedir%%/Library/Application Support/Microsoft Edge/*/Extensions/**10'
+    - '%%users.homedir%%/Library/Application Support/Yandex/YandexBrowser/*/Extensions/**10'
+    - '%%users.homedir%%/Library/Application Support/com.operasoftware.Opera/*/Extensions/**10'
+  supported_os: [Darwin]
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/.config/BraveSoftware/Brave-Browser/*/Extensions/**10'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Extensions/**10'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Extensions/**10'
+    - '%%users.homedir%%/.config/chromium/*/Extensions/**10'
+    - '%%users.homedir%%/.config/google-chrome-beta/*/Extensions/**10'
+    - '%%users.homedir%%/.config/google-chrome/*/Extensions/**10'
+    - '%%users.homedir%%/.config/opera/*/Extensions/**10'
+    - '%%users.homedir%%/.config/yandex-browser-beta/*/Extensions/**10'
+    - '%%users.homedir%%/snap/chromium/common/chromium/*/Extensions/**10'
+  supported_os: [Linux]
+supported_os: [Windows, Darwin, Linux]
+labels: [Browser]
+urls: ['https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome#Extension_Activity_database'] # TODO: update wiki
+# 'https://github.com/osquery/osquery/blob/6969e075fd4118e36f6cab54b0956e53dde5ba3f/osquery/tables/applications/chrome/utils.cpp'
+---
 name: ChromeExtensionRegistryKeys
 doc: Chrome extensions installed by writing windows registry keys.
 sources:
