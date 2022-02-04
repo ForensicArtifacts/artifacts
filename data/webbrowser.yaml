@@ -588,6 +588,38 @@ supported_os: [Windows,Darwin,Linux]
 labels: [Browser]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mozilla_Firefox']
 ---
+name: FirefoxAddOns
+doc: Firefox browser add-ons/extensions.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.appdata%%\Mozilla\Firefox\Profiles\*\addons.json'
+    - '%%users.appdata%%\Mozilla\Firefox\Profiles\*\extensions.json'
+    - '%%users.appdata%%\Mozilla\Firefox\Profiles\*\webapps\webapps.json'
+    - '%%users.localappdata%%\Mozilla\Firefox\Profiles\*\addons.json'
+    - '%%users.localappdata%%\Mozilla\Firefox\Profiles\*\extensions.json'
+    - '%%users.localappdata%%\Mozilla\Firefox\Profiles\*\webapps\webapps.json'
+    separator: '\'
+  supported_os: [Windows]
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/Library/Application Support/Firefox/Profiles/*/addons.json'
+    - '%%users.homedir%%/Library/Application Support/Firefox/Profiles/*/extensions.json'
+    - '%%users.homedir%%/Library/Application Support/Firefox/Profiles/*/webapps/webapps.json'
+  supported_os: [Darwin]
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/.mozilla/firefox/*/addons.json'
+    - '%%users.homedir%%/.mozilla/firefox/*/extensions.json'
+    - '%%users.homedir%%/.mozilla/firefox/*/webapps/webapps.json'
+  supported_os: [Linux]
+supported_os: [Windows,Darwin,Linux]
+labels: [Browser]
+urls: ['https://github.com/osquery/osquery/blob/6969e075fd4118e36f6cab54b0956e53dde5ba3f/osquery/tables/applications/browser_firefox.cpp#']
+---
 name: InternetExplorerBrowserHelperObjects
 doc: Loaded on Internet Explorer startup
 sources:
