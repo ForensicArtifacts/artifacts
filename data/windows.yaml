@@ -320,6 +320,30 @@ urls:
 - 'https://www.fireeye.com/content/dam/fireeye-www/global/en/current-threats/pdfs/wp-windows-management-instrumentation.pdf'
 - 'https://github.com/libyal/dtformats/blob/main/documentation/WMI%20repository%20file%20format.asciidoc'
 ---
+name: WindowsCIMDatabase
+doc: |
+  Windows Common Information Model (CIM) database file (OBJECTS.DATA).
+
+  Persistent database that holds the schema, also called the object repository
+  or class store, that models the managed environment and defines every piece of
+  data exposed by WMI.
+
+  The database can be parsed with the help of other files in the same directory,
+  or it can be carved by itself for data structures known to be useful in DFIR
+  (e.g. CCM_RecentlyUsedApps and CommandLineEventConsumer).
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%environ_systemroot%%\System32\wbem\Repository\OBJECTS.DATA'
+    - '%%environ_systemroot%%\System32\wbem\Repository\FS\OBJECTS.DATA'
+    separator: '\'
+supported_os: [Windows]
+urls:
+- 'https://github.com/libyal/dtformats/blob/main/documentation/WMI%20repository%20file%20format.asciidoc'
+- 'https://www.fireeye.com/blog/threat-research/2016/12/do_you_see_what_icc.html'
+- 'https://github.com/davidpany/WMI_Forensics'
+---
 name: WindowsCodePage
 doc: The system code page.
 sources:
