@@ -1787,6 +1787,19 @@ labels: [Users]
 supported_os: [Windows]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows#Recycle_Bin']
 ---
+name: WindowsRecycleBinMetadata
+doc: Windows Recycle Bin (Recyler, $Recycle.Bin) metadata files only.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '\$Recycle.Bin\*\$I*'
+    - '\Recycler\*\INFO2'
+    separator: '\'
+labels: [Users]
+supported_os: [Windows]
+urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows#Recycle_Bin']
+---
 name: WindowsRegistryCurrentControlSet
 doc: The current control set of the Windows Registry.
 sources:
@@ -3383,6 +3396,93 @@ sources:
 labels: [System, Network]
 supported_os: [Windows]
 urls: ['https://technet.microsoft.com/en-us/library/dd197418(v=ws.10).aspx']
+---
+name: WindowsCryptnetUrlCacheMetadata
+doc: |
+  Metadata of a Windows cache of files downloaded from the internet.
+
+  Helpful when investigating the use of "Living of the Land" tools that allow
+  attackers to download arbitrary files from the internet, such as
+  "certutil.exe".
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%environ_systemroot%%\System32\config\systemprofile\AppData\LocalLow\Microsoft\CryptnetUrlCache\MetaData\*'
+    - '%%environ_systemroot%%\SysWOW64\config\systemprofile\AppData\LocalLow\Microsoft\CryptnetUrlCache\MetaData\*'
+    - '%%users.userprofile%%\AppData\LocalLow\Microsoft\CryptnetUrlCache\MetaData\*'
+    separator: '\'
+labels: [System, Network]
+conditions: [os_major_version >= 6]
+supported_os: [Windows]
+urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows#Cryptnet_URL_Cache']
+---
+name: WindowsCryptnetUrlCacheContent
+doc: |
+  Content of a Windows cache of files downloaded from the internet.
+
+  Helpful when investigating the use of "Living of the Land" tools that allow
+  attackers to download arbitrary files from the internet, such as
+  "certutil.exe".
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%environ_systemroot%%\System32\config\systemprofile\AppData\LocalLow\Microsoft\CryptnetUrlCache\Content\*'
+    - '%%environ_systemroot%%\SysWOW64\config\systemprofile\AppData\LocalLow\Microsoft\CryptnetUrlCache\Content\*'
+    - '%%users.userprofile%%\AppData\LocalLow\Microsoft\CryptnetUrlCache\Content\*'
+    separator: '\'
+labels: [System, Network]
+conditions: [os_major_version >= 6]
+supported_os: [Windows]
+urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows#Cryptnet_URL_Cache']
+---
+name: WindowsStartupInfo
+doc: |
+  StartupInfo XML files.
+
+  The files include the user account's Security Identifier (SID) in the name
+  and there could be up to 5 per user account. They contain a list of processes
+  that were executed within the first 90 seconds from the time the user logged
+  in. The info includes start time, the full command line and the parent
+  process info, among other things.
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%environ_systemroot%%\System32\WDI\LogFiles\StartupInfo\*.xml']
+    separator: '\'
+labels: [Execution]
+conditions: [os_major_version >= 6 AND os_minor_version >= 2]
+supported_os: [Windows]
+urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows#Startup_info']
+---
+name: WindowsCrashDumps
+doc: |
+  Windows Error Reporting (WER) files and crash dumps.
+
+  The files include information about the crashed processes and potentially
+  process dumps, whether auto-generated upon a crash or by a user. It's helpful
+  to analyze them to identify unexpected process executions or exploitation
+  attempts.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%environ_allusersprofile%%\Microsoft\Windows\WER\**'
+    - '%%environ_systemroot%%\*.dmp'
+    - '%%environ_systemroot%%\Minidump\*.dmp'
+    - '%%environ_systemroot%%\ServiceProfiles\AppData\Local\CrashDumps\**'
+    - '%%environ_systemroot%%\ServiceProfiles\AppData\Local\Temp\*.dmp'
+    - '%%environ_systemroot%%\System32\config\systemprofile\AppData\Local\CrashDumps\**'
+    - '%%environ_systemroot%%\System32\config\systemprofile\AppData\Local\Temp\*.dmp'
+    - '%%environ_systemroot%%\Temp\*.dmp'
+    - '%%users.localappdata%%\CrashDumps\**'
+    - '%%users.localappdata%%\Microsoft\Windows\WER\**'
+    - '%%users.localappdata%%\Temp\*.dmp'
+    separator: '\'
+labels: [Execution]
+supported_os: [Windows]
+urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows#Crash_and_minidumps']
 ---
 name: WindowsMsOfficeAutosave
 doc: Recovery files automatically created by Microsoft Office applications.
