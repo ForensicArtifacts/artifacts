@@ -562,7 +562,7 @@ sources:
 supported_os: [Windows, Darwin, Linux]
 labels: [Browser]
 urls:
-- 'https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome#Extension_Activity_database']
+- 'https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome#Extension_Activity_database'
 - 'https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome#Chrome-derived_Browsers'
 ---
 name: ChromeExtensionRegistryKeys
