@@ -339,8 +339,9 @@ sources:
   supported_os: [Linux]
 supported_os: [Windows,Darwin,Linux]
 labels: [Browser]
-urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/webbrowser/ChromeCache.html'] # TODO: update the wiki
-# https://github.com/osquery/osquery/blob/master/osquery/tables/applications/chrome/utils.cpp
+urls:
+- 'https://artifacts-kb.readthedocs.io/en/latest/sources/webbrowser/ChromeCache.html'
+- 'https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome#Chrome-derived_Browsers'
 ---
 name: ChromeCookies
 doc: Chrome Cookies database.
@@ -510,8 +511,9 @@ sources:
   supported_os: [Linux]
 supported_os: [Windows, Darwin, Linux]
 labels: [Browser]
-urls: ['https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome#Extensions'] # TODO: update wiki
-# 'https://github.com/osquery/osquery/blob/6969e075fd4118e36f6cab54b0956e53dde5ba3f/osquery/tables/applications/chrome/utils.cpp'
+urls:
+- 'https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome#Extensions'
+- 'https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome#Chrome-derived_Browsers'
 ---
 name: ChromeAndDerivedBrowsersExtensionActivity
 doc: |
@@ -559,8 +561,9 @@ sources:
   supported_os: [Linux]
 supported_os: [Windows, Darwin, Linux]
 labels: [Browser]
-urls: ['https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome#Extension_Activity_database'] # TODO: update wiki
-# 'https://github.com/osquery/osquery/blob/6969e075fd4118e36f6cab54b0956e53dde5ba3f/osquery/tables/applications/chrome/utils.cpp'
+urls:
+- 'https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome#Extension_Activity_database']
+- 'https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome#Chrome-derived_Browsers'
 ---
 name: ChromeExtensionRegistryKeys
 doc: Chrome extensions installed by writing windows registry keys.
@@ -802,8 +805,9 @@ sources:
   supported_os: [Linux]
 supported_os: [Windows,Darwin,Linux]
 labels: [Browser]
-urls: ['https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome'] # TODO: update the wiki
-# 'https://github.com/osquery/osquery/blob/6969e075fd4118e36f6cab54b0956e53dde5ba3f/osquery/tables/applications/chrome/utils.cpp'
+urls:
+- 'https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome'
+- 'https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome#Chrome-derived_Browsers'
 ---
 name: ChromeIndexedDB
 doc: |
@@ -892,40 +896,39 @@ sources:
 - type: FILE
   attributes:
     paths:
-    - '%%users.localappdata%%\Google\Chrome\User Data\*\Preferences'
-    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Preferences'
     - '%%users.localappdata%%\Chromium\User Data\*\Preferences'
-    - '%%users.localappdata%%\Google\Chrome\User Data\*\Secure Preferences'
-    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Secure Preferences'
     - '%%users.localappdata%%\Chromium\User Data\*\Secure Preferences'
+    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Preferences'
+    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Secure Preferences'
+    - '%%users.localappdata%%\Google\Chrome\User Data\*\Preferences'
+    - '%%users.localappdata%%\Google\Chrome\User Data\*\Secure Preferences'
     separator: '\'
   supported_os: [Windows]
 - type: FILE
   attributes:
     paths:
-    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Preferences'
-    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Preferences'
     - '%%users.homedir%%/Library/Application Support/Chromium/*/Preferences'
-    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Secure Preferences'
-    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Secure Preferences'
     - '%%users.homedir%%/Library/Application Support/Chromium/*/Secure Preferences'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Preferences'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Secure Preferences'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Preferences'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Secure Preferences'
   supported_os: [Darwin]
 - type: FILE
   attributes:
     paths:
-    - '%%users.homedir%%/.config/google-chrome/*/Preferences'
-    - '%%users.homedir%%/.config/chromium/*/Preferences'
-    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Preferences'
     - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Preferences'
-    - '%%users.homedir%%/.config/google-chrome/*/Secure Preferences'
-    - '%%users.homedir%%/.config/chromium/*/Secure Preferences'
-    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Secure Preferences'
     - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Secure Preferences'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Preferences'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Secure Preferences'
+    - '%%users.homedir%%/.config/chromium/*/Preferences'
+    - '%%users.homedir%%/.config/chromium/*/Secure Preferences'
+    - '%%users.homedir%%/.config/google-chrome/*/Preferences'
+    - '%%users.homedir%%/.config/google-chrome/*/Secure Preferences'
   supported_os: [Linux]
 supported_os: [Windows,Darwin,Linux]
 labels: [Browser]
-urls: ['https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome#Configuration'] # TODO: update wiki
-# https://github.com/osquery/osquery/blob/6969e075fd4118e36f6cab54b0956e53dde5ba3f/osquery/tables/applications/chrome/utils.cpp
+urls: ['https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome#Configuration']
 ---
 name: ChromeSessionStorage
 doc: |

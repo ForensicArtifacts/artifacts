@@ -104,3 +104,4 @@ sources:
     separator: '\'
 labels: [Software, Logs]
 supported_os: [Windows]
+urls: ['https://github.com/EricZimmerman/KapeFiles/blob/a60491344a6c24ad1e6987f66283da960b9be739/Targets/Logs/MSSQLErrorLog.tkape']

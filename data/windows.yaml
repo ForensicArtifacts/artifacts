@@ -3397,9 +3397,7 @@ sources:
     separator: '\'
 labels: [Users]
 supported_os: [Windows]
-urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows#TBD'] # TODO: add a section
-# https://www.vestigeltd.com/in-the-news/virtual-case-notes-piecing-together-truth-word-document/
-# https://github.com/EricZimmerman/KapeFiles/blob/master/Targets/Windows/OfficeAutosave.tkape
+urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows#Microsoft_Office_Autosave']
 ---
 name: WindowsUserAccessLogging
 doc: |
@@ -3418,8 +3416,4 @@ sources:
     separator: '\'
 labels: [Users]
 supported_os: [Windows]
-urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows#TBD'] # TODO: add a section
-# https://docs.microsoft.com/en-us/windows-server/administration/user-access-logging/manage-user-access-logging
-# https://advisory.kpmg.us/blog/2021/digital-forensics-incident-response.html
-# https://github.com/brimorlabs/KStrike
-# https://www.crowdstrike.com/blog/user-access-logging-ual-overview/
+urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows#User_Access_Logging_(UAL)']
