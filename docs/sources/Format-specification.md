@@ -31,7 +31,7 @@ urls | Optional list of URLs with more contextual information. Ideally the artif
 
 ## Name
 
-**Style note**: The name of an artifact defintion should be in CamelCase name
+**Style note**: The name of an artifact definition should be in CamelCase name
 without spaces.
 
 As of July 2016 we are migrating to the following naming convention:
@@ -174,7 +174,7 @@ Where `attributes` can contain the following values:
 Value | Description
 --- | ---
 paths | A list of file paths that can potentially be collected. The paths can use parameter expansion e.g. `%%environ_systemroot%%`. See section: [Parameter expansion and globs](parameter-expansion-and-globs).
-separator | Optional path segment seperator e.g. '\' for Windows systems. When not specified the default path segment separator is '/'.
+separator | Optional path segment separator e.g. '\' for Windows systems. When not specified the default path segment separator is '/'.
 
 ### Path source
 
@@ -192,7 +192,7 @@ Where `attributes` can contain the following values:
 Value | Description
 --- | ---
 paths | A list of file paths that can potentially be collected. The paths can use parameter expansion e.g. `%%environ_systemroot%%`. See section: [Parameter expansion and globs](parameter-expansion-and-globs).
-separator | Optional path segment seperator e.g. '\' for Windows systems. When not specified the default path segment separator is '/'.
+separator | Optional path segment separator e.g. '\' for Windows systems. When not specified the default path segment separator is '/'.
 
 ### Windows Registry key source
 
@@ -327,7 +327,7 @@ $FILENAME.yaml
 
 Where $FILENAME is name of the file e.g. windows.yaml.
 
-Each defintion file should have a comment at the top of the file with a
+Each definition file should have a comment at the top of the file with a
 one-line summary describing the type of artifact definitions contained in the
 file e.g.
 
