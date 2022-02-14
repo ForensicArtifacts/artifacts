@@ -148,7 +148,7 @@ name: KubernetesKubeletPodLogs
 doc: |
   Location where the log data of (Kubernetes) Pods can be found.
   
-  The path's name would contain the folllowing elements:
+  The path's name would contain the following elements:
   '/var/log/pods/<namespace>_<pod_name>_<pod_id>/<container_name>/<num>.log'
   Includes also redirected stdout, stderr and (if applicable) stdin of container executions.
 sources:
