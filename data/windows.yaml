@@ -314,6 +314,20 @@ sources:
     - '%%environ_systemroot%%\System32\wbem\Repository\FS\MAPPING[1-2].MAP'
     - '%%environ_systemroot%%\System32\wbem\Repository\FS\OBJECTS.DATA'
     - '%%environ_systemroot%%\System32\wbem\Repository\FS\OBJECTS.MAP'
+    # Copies from the system rebuild process - Windows Vista and later
+    - '%%environ_systemroot%%\System32\wbem\Repository.00[1-9]\INDEX.BTR'
+    - '%%environ_systemroot%%\System32\wbem\Repository.00[1-9]\INDEX.MAP'
+    - '%%environ_systemroot%%\System32\wbem\Repository.00[1-9]\MAPPING.VER'
+    - '%%environ_systemroot%%\System32\wbem\Repository.00[1-9]\MAPPING[1-3].MAP'
+    - '%%environ_systemroot%%\System32\wbem\Repository.00[1-9]\OBJECTS.DATA'
+    - '%%environ_systemroot%%\System32\wbem\Repository.00[1-9]\OBJECTS.MAP'
+    # Copies from the system rebuild process - Windows XP and Windows 2003
+    - '%%environ_systemroot%%\System32\wbem\Repository.00[1-9]\FS\INDEX.BTR'
+    - '%%environ_systemroot%%\System32\wbem\Repository.00[1-9]\FS\INDEX.MAP'
+    - '%%environ_systemroot%%\System32\wbem\Repository.00[1-9]\FS\MAPPING.VER'
+    - '%%environ_systemroot%%\System32\wbem\Repository.00[1-9]\FS\MAPPING[1-2].MAP'
+    - '%%environ_systemroot%%\System32\wbem\Repository.00[1-9]\FS\OBJECTS.DATA'
+    - '%%environ_systemroot%%\System32\wbem\Repository.00[1-9]\FS\OBJECTS.MAP'
     separator: '\'
 supported_os: [Windows]
 urls:
