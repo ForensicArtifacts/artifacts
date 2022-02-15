@@ -37,7 +37,9 @@ sources:
     - '%%environ_allusersappdata%%\Microsoft\Windows Defender\Scans\History\Service\DetectionHistory\**'
     - '%%environ_allusersappdata%%\Microsoft\Windows Defender\Support\MPDetection-*.log'
     - '%%environ_allusersappdata%%\Microsoft\Windows Defender\Support\MPLog-*.log'
+    - '%%environ_systemroot%%\ServiceProfiles\LocalService\AppData\Local\Temp\MpCmdRun.log'
     - '%%environ_systemroot%%\Temp\MpCmdRun.log'
+    - '%%users.temp%%\MpCmdRun.log'
     separator: '\'
 supported_os: [Windows]
 labels: [Antivirus, Logs]
