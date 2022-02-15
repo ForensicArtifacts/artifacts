@@ -19,7 +19,7 @@ sources:
 - type: ARTIFACT_GROUP
   attributes:
     names:
-    - 'ChromeAndDerivedBrowsersHistory'
+    - 'ChromiumBasedBrowsersHistory'
     - 'FirefoxHistory'
     - 'InternetExplorerHistory'
     - 'OperaHistory'
@@ -142,10 +142,10 @@ supported_os: [Windows,Darwin,Linux]
 labels: [Browser]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/webbrowser/ChromeCache.html']
 ---
-name: ChromeAndDerivedBrowsersCache
+name: ChromiumBasedBrowsersCache
 doc: |
-  Google Chrome and Chrome-derived browsers (Brave, Chromium, Yandex, Opera,
-  Edge, EdgeBeta) caches.
+  Caches of multiple Chromium-based browsers (Google Chrome, Brave, Chromium,
+  Yandex, Opera, Edge, EdgeBeta).
 
   * Disk cache (or Cache)
   * Media cache
@@ -339,9 +339,7 @@ sources:
   supported_os: [Linux]
 supported_os: [Windows,Darwin,Linux]
 labels: [Browser]
-urls:
-- 'https://artifacts-kb.readthedocs.io/en/latest/sources/webbrowser/ChromeCache.html'
-- 'https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome#Chrome-derived_Browsers'
+urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/webbrowser/ChromeCache.html']
 ---
 name: ChromeCookies
 doc: Chrome Cookies database.
@@ -465,10 +463,10 @@ supported_os: [Windows, Darwin, Linux]
 labels: [Browser]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome#Extensions']
 ---
-name: ChromeAndDerivedBrowsersExtensions
+name: ChromiumBasedBrowsersExtensions
 doc: |
-  Browser extension files for Google Chrome and multiple Chrome-derived
-  browsers (Brave, Chromium, Yandex, Opera, Edge, EdgeBeta).
+  Browser extension files for multiple Chromium-based browsers (Google Chrome,
+  Brave, Chromium, Yandex, Opera, Edge, EdgeBeta).
 sources:
 - type: FILE
   attributes:
@@ -513,12 +511,12 @@ supported_os: [Windows, Darwin, Linux]
 labels: [Browser]
 urls:
 - 'https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome#Extensions'
-- 'https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome#Chrome-derived_Browsers'
+- 'https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome#Chromium-based_Browsers'
 ---
-name: ChromeAndDerivedBrowsersExtensionActivity
+name: ChromiumBasedBrowsersExtensionActivity
 doc: |
-  Browser Extension Activity database for Google Chrome and multiple
-  Chrome-derived browsers (Brave, Chromium, Yandex, Opera, Edge, EdgeBeta).
+  Browser Extension Activity database for multiple Chromium-based browsers
+  (Google Chrome, Brave, Chromium, Yandex, Opera, Edge, EdgeBeta).
 sources:
 - type: FILE
   attributes:
@@ -563,7 +561,7 @@ supported_os: [Windows, Darwin, Linux]
 labels: [Browser]
 urls:
 - 'https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome#Extension_Activity_database'
-- 'https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome#Chrome-derived_Browsers'
+- 'https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome#Chromium-based_Browsers'
 ---
 name: ChromeExtensionRegistryKeys
 doc: Chrome extensions installed by writing windows registry keys.
@@ -682,9 +680,10 @@ supported_os: [Windows,Darwin,Linux]
 labels: [Browser]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome']
 ---
-name: ChromeAndDerivedBrowsersHistory
-doc: Browsing history for Google Chrome browser and multiple Chrome-derived
-  browsers (Brave, Chromium, Yandex, Opera, Edge, EdgeBeta).
+name: ChromiumBasedBrowsersHistory
+doc: |
+  Browsing history for multiple Chromium-based browsers (Google Chrome,
+  Brave, Chromium, Yandex, Opera, Edge, EdgeBeta).
 sources:
 - type: FILE
   attributes:
@@ -807,7 +806,7 @@ supported_os: [Windows,Darwin,Linux]
 labels: [Browser]
 urls:
 - 'https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome'
-- 'https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome#Chrome-derived_Browsers'
+- 'https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome#Chromium-based_Browsers'
 ---
 name: ChromeIndexedDB
 doc: |

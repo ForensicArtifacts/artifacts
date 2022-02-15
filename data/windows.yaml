@@ -341,8 +341,7 @@ sources:
 supported_os: [Windows]
 urls:
 - 'https://github.com/libyal/dtformats/blob/main/documentation/WMI%20repository%20file%20format.asciidoc'
-- 'https://www.fireeye.com/blog/threat-research/2016/12/do_you_see_what_icc.html'
-- 'https://github.com/davidpany/WMI_Forensics'
+- 'https://forensicswiki.xyz/wiki/index.php?title=WMI'
 ---
 name: WindowsCodePage
 doc: The system code page.
@@ -3511,8 +3510,7 @@ doc: |
 sources:
 - type: FILE
   attributes:
-    paths:
-    - '%%environ_systemroot%%\System32\LogFiles\SUM\*.mdb'
+    paths: ['%%environ_systemroot%%\System32\LogFiles\SUM\*.mdb']
     separator: '\'
 labels: [Users]
 supported_os: [Windows]
