@@ -263,4 +263,5 @@ doc: Enumerate instances of CCM_RecentlyUsedApps.
 sources:
 - type: WMI
   attributes: {query: SELECT * FROM CCM_RecentlyUsedApps, base_object: 'winmgmts:\root\ccm\SoftwareMeteringAgent'}
+labels: [Execution]
 supported_os: [Windows]
