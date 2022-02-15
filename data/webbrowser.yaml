@@ -19,7 +19,7 @@ sources:
 - type: ARTIFACT_GROUP
   attributes:
     names:
-    - 'ChromeHistory'
+    - 'ChromiumBasedBrowsersHistory'
     - 'FirefoxHistory'
     - 'InternetExplorerHistory'
     - 'OperaHistory'
@@ -137,6 +137,205 @@ sources:
     - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Cache/*'
     - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Media Cache/*'
     - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/GPUCache/*'
+  supported_os: [Linux]
+supported_os: [Windows,Darwin,Linux]
+labels: [Browser]
+urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/webbrowser/ChromeCache.html']
+---
+name: ChromiumBasedBrowsersCache
+doc: |
+  Caches of multiple Chromium-based browsers (Google Chrome, Brave, Chromium,
+  Yandex, Opera, Edge, EdgeBeta).
+
+  * Disk cache (or Cache)
+  * Media cache
+  * Application cache
+  * GPU shader cache
+  * PNaCl translation cache
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.appdata%%\Brave\*\Application Cache\Cache\*'
+    - '%%users.appdata%%\Brave\*\Cache\*'
+    - '%%users.appdata%%\Brave\*\GPUCache\*'
+    - '%%users.appdata%%\Brave\*\Media Cache\*'
+    - '%%users.appdata%%\Opera Software\Opera Stable\*\Application Cache\Cache\*'
+    - '%%users.appdata%%\Opera Software\Opera Stable\*\Cache\*'
+    - '%%users.appdata%%\Opera Software\Opera Stable\*\GPUCache\*'
+    - '%%users.appdata%%\Opera Software\Opera Stable\*\Media Cache\*'
+    - '%%users.localappdata%%\Chromium\*\Application Cache\Cache\*'
+    - '%%users.localappdata%%\Chromium\*\Cache\*'
+    - '%%users.localappdata%%\Chromium\*\GPUCache\*'
+    - '%%users.localappdata%%\Chromium\*\Media Cache\*'
+    - '%%users.localappdata%%\Chromium\User Data\*\Application Cache\Cache\*'
+    - '%%users.localappdata%%\Chromium\User Data\*\Cache\*'
+    - '%%users.localappdata%%\Chromium\User Data\*\GPUCache\*'
+    - '%%users.localappdata%%\Chromium\User Data\*\Media Cache\*'
+    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Application Cache\Cache\*'
+    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Cache\*'
+    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\GPUCache\*'
+    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Media Cache\*'
+    - '%%users.localappdata%%\Google\Chrome\User Data\*\Application Cache\Cache\*'
+    - '%%users.localappdata%%\Google\Chrome\User Data\*\Cache\*'
+    - '%%users.localappdata%%\Google\Chrome\User Data\*\GPUCache\*'
+    - '%%users.localappdata%%\Google\Chrome\User Data\*\Media Cache\*'
+    - '%%users.localappdata%%\Microsoft\Edge Beta\User Data\*\Application Cache\Cache\*'
+    - '%%users.localappdata%%\Microsoft\Edge Beta\User Data\*\Cache\*'
+    - '%%users.localappdata%%\Microsoft\Edge Beta\User Data\*\GPUCache\*'
+    - '%%users.localappdata%%\Microsoft\Edge Beta\User Data\*\Media Cache\*'
+    - '%%users.localappdata%%\Microsoft\Edge\User Data\*\Application Cache\Cache\*'
+    - '%%users.localappdata%%\Microsoft\Edge\User Data\*\Cache\*'
+    - '%%users.localappdata%%\Microsoft\Edge\User Data\*\GPUCache\*'
+    - '%%users.localappdata%%\Microsoft\Edge\User Data\*\Media Cache\*'
+    - '%%users.localappdata%%\Yandex\YandexBrowser\User Data\*\Application Cache\Cache\*'
+    - '%%users.localappdata%%\Yandex\YandexBrowser\User Data\*\Cache\*'
+    - '%%users.localappdata%%\Yandex\YandexBrowser\User Data\*\GPUCache\*'
+    - '%%users.localappdata%%\Yandex\YandexBrowser\User Data\*\Media Cache\*'
+    separator: '\'
+  supported_os: [Windows]
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/Caches/Chromium/*/Cache/*'
+    - '%%users.homedir%%/Caches/Google/Chrome Canary/*/Cache/*'
+    - '%%users.homedir%%/Caches/Google/Chrome/*/Cache/*'
+    - '%%users.homedir%%/Library/Application Support/BraveSoftware/Brave-Browser/*/Application Cache/*'
+    - '%%users.homedir%%/Library/Application Support/BraveSoftware/Brave-Browser/*/Cache/*'
+    - '%%users.homedir%%/Library/Application Support/BraveSoftware/Brave-Browser/*/GPUCache/*'
+    - '%%users.homedir%%/Library/Application Support/BraveSoftware/Brave-Browser/*/Media Cache/*'
+    - '%%users.homedir%%/Library/Application Support/BraveSoftware/Brave-Browser/Cache/*'
+    - '%%users.homedir%%/Library/Application Support/BraveSoftware/Brave-Browser/PnaclTranslationCache/*'
+    - '%%users.homedir%%/Library/Application Support/Chromium/*/Application Cache/*'
+    - '%%users.homedir%%/Library/Application Support/Chromium/*/Cache/*'
+    - '%%users.homedir%%/Library/Application Support/Chromium/*/GPUCache/*'
+    - '%%users.homedir%%/Library/Application Support/Chromium/*/Media Cache/*'
+    - '%%users.homedir%%/Library/Application Support/Chromium/Cache/*'
+    - '%%users.homedir%%/Library/Application Support/Chromium/PnaclTranslationCache/*'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Application Cache/*'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Cache/*'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/GPUCache/*'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Media Cache/*'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/Cache/*'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/PnaclTranslationCache/*'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Application Cache/*'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Cache/*'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/GPUCache/*'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Media Cache/*'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome/Cache/*'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome/PnaclTranslationCache/*'
+    - '%%users.homedir%%/Library/Application Support/Microsoft Edge Beta/*/Application Cache/*'
+    - '%%users.homedir%%/Library/Application Support/Microsoft Edge Beta/*/Cache/*'
+    - '%%users.homedir%%/Library/Application Support/Microsoft Edge Beta/*/GPUCache/*'
+    - '%%users.homedir%%/Library/Application Support/Microsoft Edge Beta/*/Media Cache/*'
+    - '%%users.homedir%%/Library/Application Support/Microsoft Edge Beta/Cache/*'
+    - '%%users.homedir%%/Library/Application Support/Microsoft Edge Beta/PnaclTranslationCache/*'
+    - '%%users.homedir%%/Library/Application Support/Microsoft Edge/*/Application Cache/*'
+    - '%%users.homedir%%/Library/Application Support/Microsoft Edge/*/Cache/*'
+    - '%%users.homedir%%/Library/Application Support/Microsoft Edge/*/GPUCache/*'
+    - '%%users.homedir%%/Library/Application Support/Microsoft Edge/*/Media Cache/*'
+    - '%%users.homedir%%/Library/Application Support/Microsoft Edge/Cache/*'
+    - '%%users.homedir%%/Library/Application Support/Microsoft Edge/PnaclTranslationCache/*'
+    - '%%users.homedir%%/Library/Application Support/Yandex/YandexBrowser/*/Application Cache/*'
+    - '%%users.homedir%%/Library/Application Support/Yandex/YandexBrowser/*/Cache/*'
+    - '%%users.homedir%%/Library/Application Support/Yandex/YandexBrowser/*/GPUCache/*'
+    - '%%users.homedir%%/Library/Application Support/Yandex/YandexBrowser/*/Media Cache/*'
+    - '%%users.homedir%%/Library/Application Support/Yandex/YandexBrowser/Cache/*'
+    - '%%users.homedir%%/Library/Application Support/Yandex/YandexBrowser/PnaclTranslationCache/*'
+    - '%%users.homedir%%/Library/Application Support/com.operasoftware.Opera/*/Application Cache/*'
+    - '%%users.homedir%%/Library/Application Support/com.operasoftware.Opera/*/Cache/*'
+    - '%%users.homedir%%/Library/Application Support/com.operasoftware.Opera/*/GPUCache/*'
+    - '%%users.homedir%%/Library/Application Support/com.operasoftware.Opera/*/Media Cache/*'
+    - '%%users.homedir%%/Library/Application Support/com.operasoftware.Opera/Cache/*'
+    - '%%users.homedir%%/Library/Application Support/com.operasoftware.Opera/PnaclTranslationCache/*'
+    - '%%users.homedir%%/Library/Caches/Chromium/*/Application Cache/*'
+    - '%%users.homedir%%/Library/Caches/Chromium/*/Cache/*'
+    - '%%users.homedir%%/Library/Caches/Chromium/*/GPUCache/*'
+    - '%%users.homedir%%/Library/Caches/Chromium/*/Media Cache/*'
+    - '%%users.homedir%%/Library/Caches/Chromium/Cache/*'
+    - '%%users.homedir%%/Library/Caches/Chromium/PnaclTranslationCache/*'
+    - '%%users.homedir%%/Library/Caches/Google/Chrome Canary/*/Cache/*'
+    - '%%users.homedir%%/Library/Caches/Google/Chrome Canary/*/Media Cache/*'
+    - '%%users.homedir%%/Library/Caches/Google/Chrome Canary/Cache/*'
+    - '%%users.homedir%%/Library/Caches/Google/Chrome Canary/PnaclTranslationCache/*'
+    - '%%users.homedir%%/Library/Caches/Google/Chrome/*/Cache/*'
+    - '%%users.homedir%%/Library/Caches/Google/Chrome/*/Media Cache/*'
+    - '%%users.homedir%%/Library/Caches/Google/Chrome/Cache/*'
+    - '%%users.homedir%%/Library/Caches/Google/Chrome/PnaclTranslationCache/*'
+  supported_os: [Darwin]
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/.cache/chrome-remote-desktop/chrome-config/google-chrome/*/Cache/*'
+    - '%%users.homedir%%/.cache/chrome-remote-desktop/chrome-config/google-chrome/*/Media Cache/*'
+    - '%%users.homedir%%/.cache/chrome-remote-desktop/chrome-config/google-chrome/Cache/*'
+    - '%%users.homedir%%/.cache/chrome-remote-desktop/chrome-config/google-chrome/PnaclTranslationCache/*'
+    - '%%users.homedir%%/.cache/chrome-remote-desktop/chrome-profile/*/Cache/*'
+    - '%%users.homedir%%/.cache/chrome-remote-desktop/chrome-profile/*/Media Cache/*'
+    - '%%users.homedir%%/.cache/chrome-remote-desktop/chrome-profile/Cache/*'
+    - '%%users.homedir%%/.cache/chrome-remote-desktop/chrome-profile/PnaclTranslationCache/*'
+    - '%%users.homedir%%/.cache/chromium/*/Cache/*'
+    - '%%users.homedir%%/.cache/chromium/*/Media Cache/*'
+    - '%%users.homedir%%/.cache/chromium/Cache/*'
+    - '%%users.homedir%%/.cache/chromium/PnaclTranslationCache/*'
+    - '%%users.homedir%%/.cache/google-chrome/*/Cache/*'
+    - '%%users.homedir%%/.cache/google-chrome/*/Media Cache/*'
+    - '%%users.homedir%%/.cache/google-chrome/Cache/*'
+    - '%%users.homedir%%/.cache/google-chrome/PnaclTranslationCache/*'
+    - '%%users.homedir%%/.config/BraveSoftware/Brave-Browser/*/Application Cache/*'
+    - '%%users.homedir%%/.config/BraveSoftware/Brave-Browser/*/Cache/*'
+    - '%%users.homedir%%/.config/BraveSoftware/Brave-Browser/*/GPUCache/*'
+    - '%%users.homedir%%/.config/BraveSoftware/Brave-Browser/*/Media Cache/*'
+    - '%%users.homedir%%/.config/BraveSoftware/Brave-Browser/Cache/*'
+    - '%%users.homedir%%/.config/BraveSoftware/Brave-Browser/PnaclTranslationCache/*'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Application Cache/*'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Cache/*'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/GPUCache/*'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Media Cache/*'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/Cache/*'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/PnaclTranslationCache/*'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Application Cache/*'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Cache/*'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/GPUCache/*'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Media Cache/*'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/Cache/*'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/PnaclTranslationCache/*'
+    - '%%users.homedir%%/.config/chromium/*/Application Cache/*'
+    - '%%users.homedir%%/.config/chromium/*/Cache/*'
+    - '%%users.homedir%%/.config/chromium/*/GPUCache/*'
+    - '%%users.homedir%%/.config/chromium/*/Media Cache/*'
+    - '%%users.homedir%%/.config/chromium/Cache/*'
+    - '%%users.homedir%%/.config/chromium/PnaclTranslationCache/*'
+    - '%%users.homedir%%/.config/google-chrome-beta/*/Application Cache/*'
+    - '%%users.homedir%%/.config/google-chrome-beta/*/Cache/*'
+    - '%%users.homedir%%/.config/google-chrome-beta/*/GPUCache/*'
+    - '%%users.homedir%%/.config/google-chrome-beta/*/Media Cache/*'
+    - '%%users.homedir%%/.config/google-chrome-beta/Cache/*'
+    - '%%users.homedir%%/.config/google-chrome-beta/PnaclTranslationCache/*'
+    - '%%users.homedir%%/.config/google-chrome/*/Application Cache/*'
+    - '%%users.homedir%%/.config/google-chrome/*/Cache/*'
+    - '%%users.homedir%%/.config/google-chrome/*/GPUCache/*'
+    - '%%users.homedir%%/.config/google-chrome/*/Media Cache/*'
+    - '%%users.homedir%%/.config/google-chrome/Cache/*'
+    - '%%users.homedir%%/.config/google-chrome/PnaclTranslationCache/*'
+    - '%%users.homedir%%/.config/opera/*/Application Cache/*'
+    - '%%users.homedir%%/.config/opera/*/Cache/*'
+    - '%%users.homedir%%/.config/opera/*/GPUCache/*'
+    - '%%users.homedir%%/.config/opera/*/Media Cache/*'
+    - '%%users.homedir%%/.config/opera/Cache/*'
+    - '%%users.homedir%%/.config/opera/PnaclTranslationCache/*'
+    - '%%users.homedir%%/.config/yandex-browser-beta/*/Application Cache/*'
+    - '%%users.homedir%%/.config/yandex-browser-beta/*/Cache/*'
+    - '%%users.homedir%%/.config/yandex-browser-beta/*/GPUCache/*'
+    - '%%users.homedir%%/.config/yandex-browser-beta/*/Media Cache/*'
+    - '%%users.homedir%%/.config/yandex-browser-beta/Cache/*'
+    - '%%users.homedir%%/.config/yandex-browser-beta/PnaclTranslationCache/*'
+    - '%%users.homedir%%/snap/chromium/common/chromium/*/Application Cache/*'
+    - '%%users.homedir%%/snap/chromium/common/chromium/*/Cache/*'
+    - '%%users.homedir%%/snap/chromium/common/chromium/*/GPUCache/*'
+    - '%%users.homedir%%/snap/chromium/common/chromium/*/Media Cache/*'
+    - '%%users.homedir%%/snap/chromium/common/chromium/Cache/*'
+    - '%%users.homedir%%/snap/chromium/common/chromium/PnaclTranslationCache/*'
   supported_os: [Linux]
 supported_os: [Windows,Darwin,Linux]
 labels: [Browser]
@@ -264,6 +463,106 @@ supported_os: [Windows, Darwin, Linux]
 labels: [Browser]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome#Extensions']
 ---
+name: ChromiumBasedBrowsersExtensions
+doc: |
+  Browser extension files for multiple Chromium-based browsers (Google Chrome,
+  Brave, Chromium, Yandex, Opera, Edge, EdgeBeta).
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.appdata%%\Opera Software\Opera Stable\*\Extensions\**10'
+    - '%%users.appdata%%\Brave\*\Extensions\**10'
+    - '%%users.localappdata%%\Chromium\*\Extensions\**10'
+    - '%%users.localappdata%%\Chromium\User Data\*\Extensions\**10'
+    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Extensions\**10'
+    - '%%users.localappdata%%\Google\Chrome\User Data\*\Extensions\**10'
+    - '%%users.localappdata%%\Microsoft\Edge Beta\User Data\*\Extensions\**10'
+    - '%%users.localappdata%%\Microsoft\Edge\User Data\*\Extensions\**10'
+    - '%%users.localappdata%%\Yandex\YandexBrowser\User Data\*\Extensions\**10'
+    separator: '\'
+  supported_os: [Windows]
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/Library/Application Support/BraveSoftware/Brave-Browser/*/Extensions/**10'
+    - '%%users.homedir%%/Library/Application Support/Chromium/*/Extensions/**10'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Extensions/**10'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Extensions/**10'
+    - '%%users.homedir%%/Library/Application Support/Microsoft Edge Beta/*/Extensions/**10'
+    - '%%users.homedir%%/Library/Application Support/Microsoft Edge/*/Extensions/**10'
+    - '%%users.homedir%%/Library/Application Support/Yandex/YandexBrowser/*/Extensions/**10'
+    - '%%users.homedir%%/Library/Application Support/com.operasoftware.Opera/*/Extensions/**10'
+  supported_os: [Darwin]
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/.config/BraveSoftware/Brave-Browser/*/Extensions/**10'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Extensions/**10'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Extensions/**10'
+    - '%%users.homedir%%/.config/chromium/*/Extensions/**10'
+    - '%%users.homedir%%/.config/google-chrome-beta/*/Extensions/**10'
+    - '%%users.homedir%%/.config/google-chrome/*/Extensions/**10'
+    - '%%users.homedir%%/.config/opera/*/Extensions/**10'
+    - '%%users.homedir%%/.config/yandex-browser-beta/*/Extensions/**10'
+    - '%%users.homedir%%/snap/chromium/common/chromium/*/Extensions/**10'
+  supported_os: [Linux]
+supported_os: [Windows, Darwin, Linux]
+labels: [Browser]
+urls:
+- 'https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome#Extensions'
+- 'https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome#Chromium-based_Browsers'
+---
+name: ChromiumBasedBrowsersExtensionActivity
+doc: |
+  Browser Extension Activity database for multiple Chromium-based browsers
+  (Google Chrome, Brave, Chromium, Yandex, Opera, Edge, EdgeBeta).
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.appdata%%\Opera Software\Opera Stable\*\Extension Activity'
+    - '%%users.appdata%%\Brave\*\Extension Activity'
+    - '%%users.localappdata%%\Chromium\*\Extension Activity'
+    - '%%users.localappdata%%\Chromium\User Data\*\Extension Activity'
+    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Extension Activity'
+    - '%%users.localappdata%%\Google\Chrome\User Data\*\Extension Activity'
+    - '%%users.localappdata%%\Microsoft\Edge Beta\User Data\*\Extension Activity'
+    - '%%users.localappdata%%\Microsoft\Edge\User Data\*\Extension Activity'
+    - '%%users.localappdata%%\Yandex\YandexBrowser\User Data\*\Extension Activity'
+    separator: '\'
+  supported_os: [Windows]
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/Library/Application Support/BraveSoftware/Brave-Browser/*/Extensions/**10'
+    - '%%users.homedir%%/Library/Application Support/Chromium/*/Extensions/**10'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Extensions/**10'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Extensions/**10'
+    - '%%users.homedir%%/Library/Application Support/Microsoft Edge Beta/*/Extensions/**10'
+    - '%%users.homedir%%/Library/Application Support/Microsoft Edge/*/Extensions/**10'
+    - '%%users.homedir%%/Library/Application Support/Yandex/YandexBrowser/*/Extensions/**10'
+    - '%%users.homedir%%/Library/Application Support/com.operasoftware.Opera/*/Extensions/**10'
+  supported_os: [Darwin]
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/.config/BraveSoftware/Brave-Browser/*/Extensions/**10'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Extensions/**10'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Extensions/**10'
+    - '%%users.homedir%%/.config/chromium/*/Extensions/**10'
+    - '%%users.homedir%%/.config/google-chrome-beta/*/Extensions/**10'
+    - '%%users.homedir%%/.config/google-chrome/*/Extensions/**10'
+    - '%%users.homedir%%/.config/opera/*/Extensions/**10'
+    - '%%users.homedir%%/.config/yandex-browser-beta/*/Extensions/**10'
+    - '%%users.homedir%%/snap/chromium/common/chromium/*/Extensions/**10'
+  supported_os: [Linux]
+supported_os: [Windows, Darwin, Linux]
+labels: [Browser]
+urls:
+- 'https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome#Extension_Activity_database'
+- 'https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome#Chromium-based_Browsers'
+---
 name: ChromeExtensionRegistryKeys
 doc: Chrome extensions installed by writing windows registry keys.
 sources:
@@ -381,6 +680,134 @@ supported_os: [Windows,Darwin,Linux]
 labels: [Browser]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome']
 ---
+name: ChromiumBasedBrowsersHistory
+doc: |
+  Browsing history for multiple Chromium-based browsers (Google Chrome,
+  Brave, Chromium, Yandex, Opera, Edge, EdgeBeta).
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.appdata%%\Brave\*\Archived History'
+    - '%%users.appdata%%\Brave\*\Archived History-journal'
+    - '%%users.appdata%%\Brave\*\History'
+    - '%%users.appdata%%\Brave\*\History-journal'
+    - '%%users.appdata%%\Opera Software\Opera Stable\*\Archived History'
+    - '%%users.appdata%%\Opera Software\Opera Stable\*\Archived History-journal'
+    - '%%users.appdata%%\Opera Software\Opera Stable\*\History'
+    - '%%users.appdata%%\Opera Software\Opera Stable\*\History-journal'
+    - '%%users.localappdata%%\Chromium\*\Archived History'
+    - '%%users.localappdata%%\Chromium\*\Archived History-journal'
+    - '%%users.localappdata%%\Chromium\*\History'
+    - '%%users.localappdata%%\Chromium\*\History-journal'
+    - '%%users.localappdata%%\Chromium\User Data\*\Archived History'
+    - '%%users.localappdata%%\Chromium\User Data\*\Archived History-journal'
+    - '%%users.localappdata%%\Chromium\User Data\*\History'
+    - '%%users.localappdata%%\Chromium\User Data\*\History-journal'
+    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Archived History'
+    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Archived History-journal'
+    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\History'
+    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\History-journal'
+    - '%%users.localappdata%%\Google\Chrome\User Data\*\Archived History'
+    - '%%users.localappdata%%\Google\Chrome\User Data\*\Archived History-journal'
+    - '%%users.localappdata%%\Google\Chrome\User Data\*\History'
+    - '%%users.localappdata%%\Google\Chrome\User Data\*\History-journal'
+    - '%%users.localappdata%%\Microsoft\Edge Beta\User Data\*\Archived History'
+    - '%%users.localappdata%%\Microsoft\Edge Beta\User Data\*\Archived History-journal'
+    - '%%users.localappdata%%\Microsoft\Edge Beta\User Data\*\History'
+    - '%%users.localappdata%%\Microsoft\Edge Beta\User Data\*\History-journal'
+    - '%%users.localappdata%%\Microsoft\Edge\User Data\*\Archived History'
+    - '%%users.localappdata%%\Microsoft\Edge\User Data\*\Archived History-journal'
+    - '%%users.localappdata%%\Microsoft\Edge\User Data\*\History'
+    - '%%users.localappdata%%\Microsoft\Edge\User Data\*\History-journal'
+    - '%%users.localappdata%%\Yandex\YandexBrowser\User Data\*\Archived History'
+    - '%%users.localappdata%%\Yandex\YandexBrowser\User Data\*\Archived History-journal'
+    - '%%users.localappdata%%\Yandex\YandexBrowser\User Data\*\History'
+    - '%%users.localappdata%%\Yandex\YandexBrowser\User Data\*\History-journal'
+    separator: '\'
+  supported_os: [Windows]
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/Library/Application Support/BraveSoftware/Brave-Browser/*/Archived History'
+    - '%%users.homedir%%/Library/Application Support/BraveSoftware/Brave-Browser/*/Archived History-journal'
+    - '%%users.homedir%%/Library/Application Support/BraveSoftware/Brave-Browser/*/History'
+    - '%%users.homedir%%/Library/Application Support/BraveSoftware/Brave-Browser/*/History-journal'
+    - '%%users.homedir%%/Library/Application Support/Chromium/*/Archived History'
+    - '%%users.homedir%%/Library/Application Support/Chromium/*/Archived History-journal'
+    - '%%users.homedir%%/Library/Application Support/Chromium/*/History'
+    - '%%users.homedir%%/Library/Application Support/Chromium/*/History-journal'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Archived History'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Archived History-journal'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/History'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/History-journal'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Archived History'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Archived History-journal'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/History'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/History-journal'
+    - '%%users.homedir%%/Library/Application Support/Microsoft Edge Beta/*/Archived History'
+    - '%%users.homedir%%/Library/Application Support/Microsoft Edge Beta/*/Archived History-journal'
+    - '%%users.homedir%%/Library/Application Support/Microsoft Edge Beta/*/History'
+    - '%%users.homedir%%/Library/Application Support/Microsoft Edge Beta/*/History-journal'
+    - '%%users.homedir%%/Library/Application Support/Microsoft Edge/*/Archived History'
+    - '%%users.homedir%%/Library/Application Support/Microsoft Edge/*/Archived History-journal'
+    - '%%users.homedir%%/Library/Application Support/Microsoft Edge/*/History'
+    - '%%users.homedir%%/Library/Application Support/Microsoft Edge/*/History-journal'
+    - '%%users.homedir%%/Library/Application Support/Yandex/YandexBrowser/*/Archived History'
+    - '%%users.homedir%%/Library/Application Support/Yandex/YandexBrowser/*/Archived History-journal'
+    - '%%users.homedir%%/Library/Application Support/Yandex/YandexBrowser/*/History'
+    - '%%users.homedir%%/Library/Application Support/Yandex/YandexBrowser/*/History-journal'
+    - '%%users.homedir%%/Library/Application Support/com.operasoftware.Opera/*/Archived History'
+    - '%%users.homedir%%/Library/Application Support/com.operasoftware.Opera/*/Archived History-journal'
+    - '%%users.homedir%%/Library/Application Support/com.operasoftware.Opera/*/History'
+    - '%%users.homedir%%/Library/Application Support/com.operasoftware.Opera/*/History-journal'
+  supported_os: [Darwin]
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/.config/BraveSoftware/Brave-Browser/*/Archived History'
+    - '%%users.homedir%%/.config/BraveSoftware/Brave-Browser/*/Archived History-journal'
+    - '%%users.homedir%%/.config/BraveSoftware/Brave-Browser/*/History'
+    - '%%users.homedir%%/.config/BraveSoftware/Brave-Browser/*/History-journal'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Archived History'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Archived History-journal'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/History'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/History-journal'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Archived History'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Archived History-journal'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/History'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/History-journal'
+    - '%%users.homedir%%/.config/chromium/*/Archived History'
+    - '%%users.homedir%%/.config/chromium/*/Archived History-journal'
+    - '%%users.homedir%%/.config/chromium/*/History'
+    - '%%users.homedir%%/.config/chromium/*/History-journal'
+    - '%%users.homedir%%/.config/google-chrome-beta/*/Archived History'
+    - '%%users.homedir%%/.config/google-chrome-beta/*/Archived History-journal'
+    - '%%users.homedir%%/.config/google-chrome-beta/*/History'
+    - '%%users.homedir%%/.config/google-chrome-beta/*/History-journal'
+    - '%%users.homedir%%/.config/google-chrome/*/Archived History'
+    - '%%users.homedir%%/.config/google-chrome/*/Archived History-journal'
+    - '%%users.homedir%%/.config/google-chrome/*/History'
+    - '%%users.homedir%%/.config/google-chrome/*/History-journal'
+    - '%%users.homedir%%/.config/opera/*/Archived History'
+    - '%%users.homedir%%/.config/opera/*/Archived History-journal'
+    - '%%users.homedir%%/.config/opera/*/History'
+    - '%%users.homedir%%/.config/opera/*/History-journal'
+    - '%%users.homedir%%/.config/yandex-browser-beta/*/Archived History'
+    - '%%users.homedir%%/.config/yandex-browser-beta/*/Archived History-journal'
+    - '%%users.homedir%%/.config/yandex-browser-beta/*/History'
+    - '%%users.homedir%%/.config/yandex-browser-beta/*/History-journal'
+    - '%%users.homedir%%/snap/chromium/common/chromium/*/Archived History'
+    - '%%users.homedir%%/snap/chromium/common/chromium/*/Archived History-journal'
+    - '%%users.homedir%%/snap/chromium/common/chromium/*/History'
+    - '%%users.homedir%%/snap/chromium/common/chromium/*/History-journal'
+  supported_os: [Linux]
+supported_os: [Windows,Darwin,Linux]
+labels: [Browser]
+urls:
+- 'https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome'
+- 'https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome#Chromium-based_Browsers'
+---
 name: ChromeIndexedDB
 doc: |
   Google Chrome, Canary and Chromium IndexedDB files.
@@ -468,25 +895,35 @@ sources:
 - type: FILE
   attributes:
     paths:
-    - '%%users.localappdata%%\Google\Chrome\User Data\*\Preferences'
-    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Preferences'
     - '%%users.localappdata%%\Chromium\User Data\*\Preferences'
+    - '%%users.localappdata%%\Chromium\User Data\*\Secure Preferences'
+    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Preferences'
+    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Secure Preferences'
+    - '%%users.localappdata%%\Google\Chrome\User Data\*\Preferences'
+    - '%%users.localappdata%%\Google\Chrome\User Data\*\Secure Preferences'
     separator: '\'
   supported_os: [Windows]
 - type: FILE
   attributes:
     paths:
-    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Preferences'
-    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Preferences'
     - '%%users.homedir%%/Library/Application Support/Chromium/*/Preferences'
+    - '%%users.homedir%%/Library/Application Support/Chromium/*/Secure Preferences'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Preferences'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Secure Preferences'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Preferences'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Secure Preferences'
   supported_os: [Darwin]
 - type: FILE
   attributes:
     paths:
-    - '%%users.homedir%%/.config/google-chrome/*/Preferences'
-    - '%%users.homedir%%/.config/chromium/*/Preferences'
-    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Preferences'
     - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Preferences'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Secure Preferences'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Preferences'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Secure Preferences'
+    - '%%users.homedir%%/.config/chromium/*/Preferences'
+    - '%%users.homedir%%/.config/chromium/*/Secure Preferences'
+    - '%%users.homedir%%/.config/google-chrome/*/Preferences'
+    - '%%users.homedir%%/.config/google-chrome/*/Secure Preferences'
   supported_os: [Linux]
 supported_os: [Windows,Darwin,Linux]
 labels: [Browser]
@@ -587,6 +1024,38 @@ sources:
 supported_os: [Windows,Darwin,Linux]
 labels: [Browser]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mozilla_Firefox']
+---
+name: FirefoxAddOns
+doc: Firefox browser add-ons/extensions.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.appdata%%\Mozilla\Firefox\Profiles\*\addons.json'
+    - '%%users.appdata%%\Mozilla\Firefox\Profiles\*\extensions.json'
+    - '%%users.appdata%%\Mozilla\Firefox\Profiles\*\webapps\webapps.json'
+    - '%%users.localappdata%%\Mozilla\Firefox\Profiles\*\addons.json'
+    - '%%users.localappdata%%\Mozilla\Firefox\Profiles\*\extensions.json'
+    - '%%users.localappdata%%\Mozilla\Firefox\Profiles\*\webapps\webapps.json'
+    separator: '\'
+  supported_os: [Windows]
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/Library/Application Support/Firefox/Profiles/*/addons.json'
+    - '%%users.homedir%%/Library/Application Support/Firefox/Profiles/*/extensions.json'
+    - '%%users.homedir%%/Library/Application Support/Firefox/Profiles/*/webapps/webapps.json'
+  supported_os: [Darwin]
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/.mozilla/firefox/*/addons.json'
+    - '%%users.homedir%%/.mozilla/firefox/*/extensions.json'
+    - '%%users.homedir%%/.mozilla/firefox/*/webapps/webapps.json'
+  supported_os: [Linux]
+supported_os: [Windows,Darwin,Linux]
+labels: [Browser]
+urls: ['https://github.com/osquery/osquery/blob/6969e075fd4118e36f6cab54b0956e53dde5ba3f/osquery/tables/applications/browser_firefox.cpp#']
 ---
 name: InternetExplorerBrowserHelperObjects
 doc: Loaded on Internet Explorer startup

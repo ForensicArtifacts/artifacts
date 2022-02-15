@@ -7,8 +7,14 @@ sources:
   attributes:
     paths:
     - '/var/log/nginx/access.log*'
+  supported_os: [Linux]
+- type: FILE
+  attributes:
+    paths: ['%%environ_systemdrive%%\nginx\logs\*.log*']
+    separator: '\'
+  supported_os: [Windows]
 labels: [Software, Logs]
-supported_os: [Linux]
+supported_os: [Linux, Windows]
 ---
 name: ApacheAccessLogs
 doc: Location where Apache access logs are stored
@@ -17,10 +23,19 @@ sources:
   attributes:
     paths:
     - '/var/log/apache/access.log*'
+    - '/var/log/apache/access_log*'
     - '/var/log/apache2/access.log*'
-    - '/var/log/httpd/access.log'
+    - '/var/log/apache2/access_log*'
+    - '/var/log/httpd/access.log*'
+    - '/var/log/httpd/access_log*'
+  supported_os: [Linux]
+- type: FILE
+  attributes:
+    paths: ['%%environ_systemdrive%%\**6\logs\access.log*']
+    separator: '\'
+  supported_os: [Windows]
 labels: [Software, Logs]
-supported_os: [Linux]
+supported_os: [Linux, Windows]
 ---
 name:  WordpressConfigFile
 doc: WordPress configuration file
@@ -35,3 +50,16 @@ sources:
     - '/wp/wp-config.php'
 labels: [Configuration Files]
 supported_os: [Linux, Darwin]
+---
+name: MicrosoftIISLogs
+doc: Internet Information Services (IIS) web server's log files.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%environ_systemroot%%\System32\LogFiles\W3SVC*\*.log'
+    - '%%environ_systemdrive%%\inetpub\logs\LogFiles\*.log'
+    - '%%environ_systemdrive%%\Resources\Directory\*\LogFiles\Web\W3SVC*\*.log'
+    separator: '\'
+labels: [Software, Logs]
+supported_os: [Windows]
