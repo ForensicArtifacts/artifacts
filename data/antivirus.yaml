@@ -5,7 +5,13 @@ doc: Eset Anti-Virus Quarantine (Infected) files.
 sources:
 - type: FILE
   attributes: {paths: ['/Library/Application Support/ESET/esets/cache/quarantine/*']}
-supported_os: [Darwin]
+  supported_os: [Darwin]
+- type: FILE
+  attributes:
+    paths: ['%%environ_allusersappdata%%\ESET\ESET NOD32 Antivirus\Logs\**']
+    separator: '\'
+  supported_os: [Windows]
+supported_os: [Darwin,Windows]
 labels: [Antivirus]
 ---
 name: MicrosoftAVQuarantine
@@ -26,8 +32,14 @@ sources:
 - type: FILE
   attributes:
     paths:
-    - '%%environ_allusersappdata%%\Microsoft\Windows Defender\Support\MPLog-*.log'
+    - '%%environ_allusersappdata%%\Microsoft\Windows AntiMalware\Support\MPDetection-*.log'
+    - '%%environ_allusersappdata%%\Microsoft\Windows AntiMalware\Support\MPLog-*.log'
+    - '%%environ_allusersappdata%%\Microsoft\Windows Defender\Scans\History\Service\DetectionHistory\**'
     - '%%environ_allusersappdata%%\Microsoft\Windows Defender\Support\MPDetection-*.log'
+    - '%%environ_allusersappdata%%\Microsoft\Windows Defender\Support\MPLog-*.log'
+    - '%%environ_systemroot%%\ServiceProfiles\LocalService\AppData\Local\Temp\MpCmdRun.log'
+    - '%%environ_systemroot%%\Temp\MpCmdRun.log'
+    - '%%users.temp%%\MpCmdRun.log'
     separator: '\'
 supported_os: [Windows]
 labels: [Antivirus, Logs]
@@ -105,6 +117,7 @@ sources:
     paths:
     - '%%environ_allusersappdata%%\Symantec\Symantec Endpoint Protection\*\Data\Logs\*.log'
     - '%%environ_allusersappdata%%\Symantec\Symantec Endpoint Protection\*\Data\Logs\AV\*.log'
+    - '%%environ_allusersappdata%%\Symantec\Symantec Endpoint Protection\Logs\AV\*.log'
     - '%%users.localappdata%%\Symantec\Symantec Endpoint Protection\Logs\*.log'
     separator: '\'
   supported_os: [Windows]
@@ -112,11 +125,15 @@ supported_os: [Windows]
 labels: [Antivirus, Logs]
 ---
 name: SymantecAVQuarantine
-doc: Symantec Anti-Virus Quarantine (Infected) files.
+doc: Symantec Anti-Virus quarantine (infected) and cloud submission files.
 sources:
 - type: FILE
   attributes:
-    paths: ['%%environ_allusersappdata%%\Symantec\Symantec Endpoint Protection\**5\*.vbn']
+    paths:
+    - '%%environ_allusersappdata%%\Symantec\Symantec Endpoint Protection\**5\*.vbn'
+    - '%%environ_allusersappdata%%\Symantec\Symantec Endpoint Protection\Quarantine\**'
+    - '%%environ_allusersappdata%%\Symantec\Symantec Endpoint Protection\*\Data\Quarantine\**'
+    - '%%environ_allusersappdata%%\Symantec\Symantec Endpoint Protection\*\Data\CmnClnt\ccSubSDK\**'
     separator: '\'
   supported_os: [Windows]
 supported_os: [Windows]

@@ -92,3 +92,15 @@ supported_os: [Windows]
 urls:
 - 'http://www.hexacorn.com/blog/2012/09/16/beyond-good-ol-run-key-part-2/'
 - 'http://acritum.com/software/manuals/winrar/html/helpcommandsvirusscan.htm'
+---
+name: MicrosoftSqlServerErrorLogs
+doc: Microsoft SQL Server's error log files.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%environ_programfiles%%\Microsoft SQL Server\*\MSSQL\LOG\ERRORLOG*'
+    - '%%environ_programfilesx86%%\Microsoft SQL Server\*\MSSQL\LOG\ERRORLOG*'
+    separator: '\'
+labels: [Software, Logs]
+supported_os: [Windows]
