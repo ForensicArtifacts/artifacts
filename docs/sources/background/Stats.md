@@ -45,7 +45,7 @@ Configuration Files | 52
 Containerd | 2
 Docker | 2
 External Media | 2
-ExternalAccount | 3
+External Account | 3
 Hadoop | 1
 History Files | 3
 Kubernetes | 11

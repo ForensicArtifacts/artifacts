@@ -292,19 +292,37 @@ Currently the following different labels are defined:
 
 Value | Description
 --- | ---
-Antivirus | Antivirus related artifacts, e.g. quarantine files.
+Applications | Configuration files and logs of installed applications e.g. Nginx log files.
 Authentication | Authentication artifacts.
 Browser | Web Browser artifacts.
+Cloud | Cloud applications artifacts.
 Cloud Storage | Cloud Storage artifacts.
 Configuration Files | Configuration files artifacts.
+Containerd | Containerd artifacts.
+Docker | Docker artifacts.
 Execution | Contain execution events.
+External Account | Information about any user accounts e.g. username, account ID, etc.
 External Media | Contain external media data or events e.g. USB drives.
-KnowledgeBase | Artifacts used in knowledge base generation.
+File System | Artifacts related to the file system e.g. MFT.
+Hadoop | Hadoop artifacts.
+IM | Instant Messaging / Chat applications artifacts.
+Interactive | Artifacts created by interactive (e.g. RDP) user activity.
+iOS | Artifacts related to iOS devices connected to the system.
+History Files | History files artifacts e.g. .bash_history.
+Knowledge Base | Artifacts used in knowledge base generation.
+Kubernetes | Kubernetes artifacts
 Logs | Contain log files.
+Mail | Mail client applications artifacts.
 Memory | Artifacts retrieved from memory.
 Network | Describe networking state.
+Persistence  | Persistence mechanisms e.g. the Startup folder.
+Plist | Artifact that is a plist.
 Processes | Describe running processes.
-Software | Installed software.
+Rekall | Artifacts using the Rekall memory forensics framework.
+Registry | Files related to the Windows Registry.
+Security Agents | Endpoint detection and response related artifacts, e.g. antivirus quarantine files.
+Software | Information about installed software.
+SQLiteDB | Artifact that is a SQLite database.
 System | Core system artifacts.
 Users | Information about users.
 
