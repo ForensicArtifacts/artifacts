@@ -265,3 +265,4 @@ sources:
   attributes: {query: SELECT * FROM CCM_RecentlyUsedApps, base_object: 'winmgmts:\root\ccm\SoftwareMeteringAgent'}
 labels: [Execution]
 supported_os: [Windows]
+urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows#CCM_RecentlyUsedApps']
