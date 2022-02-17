@@ -314,7 +314,7 @@ urls:
 - 'https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X'
 - 'https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#Kernel_Extension'
 ---
-name: MacOSDuetKnowledge Base
+name: MacOSDuetKnowledgeBase
 doc: KnowledgeC User and Application usage database
 sources:
 - type: FILE
