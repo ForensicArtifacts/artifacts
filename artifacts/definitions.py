@@ -13,6 +13,7 @@ TYPE_INDICATOR_WINDOWS_REGISTRY_VALUE = 'REGISTRY_VALUE'
 TYPE_INDICATOR_WMI_QUERY = 'WMI'
 
 LABELS = {
+    'Antivirus': '<Deprecated>', # TODO: to be deleted
     'Applications': (
         'Configuration files and logs of installed applications '
         'e.g. Nginx log files.'),
@@ -24,6 +25,7 @@ LABELS = {
     'Containerd': 'Containerd artifacts',
     'Docker': 'Docker artifacts.',
     'Execution': 'Contain execution events.',
+    'ExternalAccount': '<Deprecated>', # TODO: to be deleted
     'External Account': (
         'Information about any user accounts e.g. username, '
         'account ID, etc.'),
@@ -34,6 +36,7 @@ LABELS = {
     'Interactive': 'Artifacts created by interactive (e.g. RDP) user activity.',
     'iOS': 'Artifacts related to iOS devices connected to the system.',
     'History Files': 'History files artifacts e.g. .bash_history.',
+    'KnowledgeBase': '<Deprecated>', # TODO: to be deleted
     'Knowledge Base': 'Artifacts used in knowledge base generation.',
     'Kubernetes': 'Kubernetes artifacts',
     'Logs': 'Contain log files.',
