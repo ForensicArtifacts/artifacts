@@ -20,7 +20,7 @@ sources:
     paths:
     - '%%users.appdata%%\Dropbox\*.db*'
     - '%%users.localappdata%%\Dropbox\*.db*'
-    - '%%users.homedir%%/.dropbox/instance1/sync_history.db'
+    - '%%users.localappdata%%\Dropbox\instance1\sync_history.db'
     separator: '\'
   supported_os: [Windows]
 - type: FILE
