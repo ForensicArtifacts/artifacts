@@ -52,6 +52,7 @@ urls:
 - 'https://developer.mozilla.org/en-US/docs/Web/API/FileSystem'
 ---
 name: ChromeCache
+alias: [ChromiumCache, EdgeCache]
 doc: |
   Google Chrome, Canary and Chromium browser caches.
 
