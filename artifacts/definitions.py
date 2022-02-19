@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 """Constants and definitions."""
 
-from __future__ import unicode_literals
-
 TYPE_INDICATOR_ARTIFACT_GROUP = 'ARTIFACT_GROUP'
 TYPE_INDICATOR_COMMAND = 'COMMAND'
 TYPE_INDICATOR_DIRECTORY = 'DIRECTORY'
@@ -55,6 +53,7 @@ SUPPORTED_OS = frozenset([
     SUPPORTED_OS_WINDOWS])
 
 TOP_LEVEL_KEYS = frozenset([
+    'aliases',
     'conditions',
     'doc',
     'labels',

@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 """The artifact definition."""
 
-from __future__ import unicode_literals
-
 from artifacts import errors
 from artifacts import registry
 
@@ -11,6 +9,7 @@ class ArtifactDefinition(object):
   """Artifact definition interface.
 
   Attributes:
+    aliases (list[str]): aliases that identify the artifact definition.
     conditions (list[str]): conditions.
     description (str): description.
     name (str): name that uniquely identifiers the artifact definition.
@@ -22,14 +21,16 @@ class ArtifactDefinition(object):
     urls (list[str]): URLs with more information about the artifact definition.
   """
 
-  def __init__(self, name, description=None):
+  def __init__(self, name, aliases=None, description=None):
     """Initializes an artifact definition.
 
     Args:
       name (str): name that uniquely identifiers the artifact definition.
+      aliases (Optional[str]): aliases that identify the artifact definition.
       description (Optional[str]): description of the artifact definition.
     """
     super(ArtifactDefinition, self).__init__()
+    self.aliases = aliases or []
     self.conditions = []
     self.description = description
     self.name = name
@@ -95,6 +96,8 @@ class ArtifactDefinition(object):
         'doc': self.description,
         'sources': sources,
     }
+    if self.aliases:
+      artifact_definition['aliases'] = self.aliases
     if self.labels:
       artifact_definition['labels'] = self.labels
     if self.supported_os:

@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 """The artifact writer objects."""
 
-from __future__ import unicode_literals
-
 import abc
 import json
 import yaml

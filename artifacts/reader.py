@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 """The artifact reader objects."""
 
-from __future__ import unicode_literals
-
 import abc
 import glob
 import io
@@ -236,8 +234,10 @@ class ArtifactsReader(BaseArtifactsReader):
           'Invalid artifact definition: {0:s} missing description.'.format(
               name))
 
+    aliases = artifact_definition_values.get('aliases', None)
+
     artifact_definition = artifact.ArtifactDefinition(
-        name, description=description)
+        name, aliases=aliases, description=description)
 
     if artifact_definition_values.get('collectors', []):
       raise errors.FormatError(

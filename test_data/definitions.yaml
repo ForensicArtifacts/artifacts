@@ -1,6 +1,7 @@
 # Test artifact definitions.
 
-name: SecurityEventLogEvtx
+name: SecurityEventLogEvtxFile
+aliases: [SecurityEventLogEvtx]
 doc: Windows Security Event log for Vista or later systems.
 sources:
 - type: FILE
