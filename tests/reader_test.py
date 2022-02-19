@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 """Tests for the artifact definitions readers."""
 
-from __future__ import unicode_literals
-
 import io
 import unittest
 import yaml
@@ -127,7 +125,7 @@ supported_os: [Windows]
 
     # Artifact with file source type.
     artifact_definition = artifact_definitions[0]
-    self.assertEqual(artifact_definition.name, 'SecurityEventLogEvtx')
+    self.assertEqual(artifact_definition.name, 'SecurityEventLogEvtxFile')
 
     expected_description = (
         'Windows Security Event log for Vista or later systems.')

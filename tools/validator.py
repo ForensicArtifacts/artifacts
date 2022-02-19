@@ -2,9 +2,6 @@
 # -*- coding: utf-8 -*-
 """Tool to validate artifact definitions."""
 
-from __future__ import print_function
-from __future__ import unicode_literals
-
 import argparse
 import glob
 import logging

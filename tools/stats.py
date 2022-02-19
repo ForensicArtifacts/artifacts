@@ -2,9 +2,6 @@
 # -*- coding: utf-8 -*-
 """Report statistics about the artifact collection."""
 
-from __future__ import print_function
-from __future__ import unicode_literals
-
 import sys
 import time
 

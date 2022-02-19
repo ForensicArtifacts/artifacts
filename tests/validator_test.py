@@ -2,8 +2,6 @@
 # -*- coding: utf-8 -*-
 """Tests for the artifact definitions validator."""
 
-from __future__ import unicode_literals
-
 import glob
 import os
 import unittest

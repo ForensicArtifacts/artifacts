@@ -19,8 +19,6 @@ C:\\Windows\\System32\\winevt\\Logs\\AppEvent.evt a file artifact definition,
 pointing to the Application Event Log file.
 """
 
-from __future__ import unicode_literals
-
 import abc
 
 from artifacts import definitions

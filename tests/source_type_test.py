@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 """Tests for the source type objects."""
 
-from __future__ import unicode_literals
-
 import unittest
 
 from artifacts import errors

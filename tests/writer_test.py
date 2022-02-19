@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 """Tests for the artifact definitions readers."""
 
-from __future__ import unicode_literals
-
 import os
 import unittest
 

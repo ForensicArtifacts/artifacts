@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 """Tests for the artifact definitions registry."""
 
-from __future__ import unicode_literals
-
 import io
 import unittest
 
@@ -80,10 +78,11 @@ class ArtifactDefinitionsRegistryTest(test_lib.BaseTestCase):
     self.assertEqual(len(artifact_registry.GetDefinitions()), 6)
 
     test_artifact_definition = artifact_registry.GetDefinitionByName(
-        'SecurityEventLogEvtx')
+        'SecurityEventLogEvtxFile')
     self.assertIsNotNone(test_artifact_definition)
 
-    self.assertEqual(test_artifact_definition.name, 'SecurityEventLogEvtx')
+    self.assertEqual(test_artifact_definition.name, 'SecurityEventLogEvtxFile')
+    self.assertEqual(test_artifact_definition.aliases, ['SecurityEventLogEvtx'])
 
     expected_description = (
         'Windows Security Event log for Vista or later systems.')
