@@ -3463,12 +3463,14 @@ urls:
 - 'https://msdn.microsoft.com/en-us/library/windows/desktop/ms739923(v=vs.85).aspx'
 - 'https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2'
 ---
-name: WindowsSecuritySettingsDatabase
-doc: Windows security settings database (secedit.sdb)
+name: WindowsSecuritySettingsDatabases
+doc: Windows security settings databases (secedit.sdb and spsecupd.sdb)
 sources:
 - type: FILE
   attributes:
-    paths: ['%%environ_systemroot%%\security\Database\secedit.sdb']
+    paths:
+    - '%%environ_systemroot%%\security\Database\secedit.sdb'
+    - '%%environ_systemroot%%\security\templates\spsecupd.sdb'
     separator: '\'
 supported_os: [Windows]
 ---
