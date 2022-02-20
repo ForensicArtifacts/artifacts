@@ -434,6 +434,28 @@ urls:
 - 'https://msdn.microsoft.com/en-us/library/windows/desktop/ms694515(v=vs.85).aspx'
 - 'https://msdn.microsoft.com/en-us/library/windows/desktop/ms686595(v=vs.85).aspx'
 ---
+name: WindowsCommonFilePlacementAttacks
+doc: Common files associated with search order hijacking and other file placement attacks.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%environ_programfiles%%\Internet Explorer\sxs.dll'
+    - '%%environ_programfilesx86%%\Internet Explorer\sxs.dll'
+    - '%%environ_systemdrive%%\explorer.exe'
+    - '%%environ_systemdrive%%\program.exe'
+    - '%%environ_systemroot%%\linkinfo.dll'
+    - '%%environ_systemroot%%\ntshrui.dll'
+    - '%%environ_systemroot%%\System32\oci.dll'
+    - '%%environ_systemroot%%\System32\sysprep\cryptbase.dll'
+    - '%%environ_systemroot%%\SysWOW64\oci.dll'
+    - '%%environ_systemroot%%\SysWOW64\sysprep\cryptbase.dll'
+    separator: '\'
+supported_os: [Windows]
+urls:
+- 'http://web.cs.ucdavis.edu/~su/publications/issta10-loading.pdf'
+- 'https://www.mandiant.com/blog/fxsst/'
+---
 name: WindowsCOMProperties
 doc: |
   Various properties of Windows COM Objects.
@@ -480,18 +502,6 @@ sources:
 supported_os: [Windows]
 urls: ['https://github.com/libyal/winreg-kb/blob/main/documentation/Component%20Object%20Model%20keys.asciidoc#type-libraries-key']
 ---
-name: WindowsCortanaDatabase
-doc: Windows Cortana database
-sources:
-- type: FILE
-  attributes:
-    paths:
-    - '%%users.localappdata%%\Packages\Microsoft.Windows.Cortana_*\AppData\Indexed DB\IndexedDB.edb'
-    - '%%users.localappdata%%\Packages\Microsoft.Windows.Cortana_*\LocalState\ESEDatabase_CortanaCoreInstance\CortanaCoreDb.dat'
-    separator: '\'
-supported_os: [Windows]
-urls: ['https://forensicswiki.xyz/wiki/index.php?title=Cortana']
----
 name: WindowsConfigSys
 doc: Windows config.sys file
 sources:
@@ -519,6 +529,46 @@ urls:
 - 'http://www.geoffchappell.com/studies/windows/shell/shell32/classes/controlpanel.htm'
 - 'https://msdn.microsoft.com/en-us/library/windows/desktop/ms683844(v=vs.85).aspx'
 ---
+name: WindowsCortanaDatabase
+doc: Windows Cortana database
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.localappdata%%\Packages\Microsoft.Windows.Cortana_*\AppData\Indexed DB\IndexedDB.edb'
+    - '%%users.localappdata%%\Packages\Microsoft.Windows.Cortana_*\LocalState\ESEDatabase_CortanaCoreInstance\CortanaCoreDb.dat'
+    separator: '\'
+supported_os: [Windows]
+urls: ['https://forensicswiki.xyz/wiki/index.php?title=Cortana']
+---
+name: WindowsCrashDumps
+doc: |
+  Windows Error Reporting (WER) files and crash dumps.
+
+  The files include information about the crashed processes and potentially
+  process dumps, whether auto-generated upon a crash or by a user. It's helpful
+  to analyze them to identify unexpected process executions or exploitation
+  attempts.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%environ_allusersprofile%%\Microsoft\Windows\WER\**'
+    - '%%environ_systemroot%%\*.dmp'
+    - '%%environ_systemroot%%\Minidump\*.dmp'
+    - '%%environ_systemroot%%\ServiceProfiles\AppData\Local\CrashDumps\**'
+    - '%%environ_systemroot%%\ServiceProfiles\AppData\Local\Temp\*.dmp'
+    - '%%environ_systemroot%%\System32\config\systemprofile\AppData\Local\CrashDumps\**'
+    - '%%environ_systemroot%%\System32\config\systemprofile\AppData\Local\Temp\*.dmp'
+    - '%%environ_systemroot%%\Temp\*.dmp'
+    - '%%users.localappdata%%\CrashDumps\**'
+    - '%%users.localappdata%%\Microsoft\Windows\WER\**'
+    - '%%users.localappdata%%\Temp\*.dmp'
+    separator: '\'
+labels: [Execution]
+supported_os: [Windows]
+urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows#Crash_and_minidumps']
+---
 name: WindowsCredentialProviderFilters
 doc: Windows Credential Provider Filters
 sources:
@@ -545,27 +595,45 @@ urls:
 - 'http://blog.leetsys.com/2012/01/02/capturing-windows-7-credentials-at-logon-using-custom-credential-provider/'
 - 'https://www.sophos.com/en-us/support/knowledgebase/114190.aspx'
 ---
-name: WindowsCommonFilePlacementAttacks
-doc: Common files associated with search order hijacking and other file placement attacks.
+name: WindowsCryptnetUrlCacheMetadata
+doc: |
+  Metadata of a Windows cache of files downloaded from the internet.
+
+  Helpful when investigating the use of "Living of the Land" tools that allow
+  attackers to download arbitrary files from the internet, such as
+  "certutil.exe".
 sources:
 - type: FILE
   attributes:
     paths:
-    - '%%environ_programfiles%%\Internet Explorer\sxs.dll'
-    - '%%environ_programfilesx86%%\Internet Explorer\sxs.dll'
-    - '%%environ_systemdrive%%\explorer.exe'
-    - '%%environ_systemdrive%%\program.exe'
-    - '%%environ_systemroot%%\linkinfo.dll'
-    - '%%environ_systemroot%%\ntshrui.dll'
-    - '%%environ_systemroot%%\System32\oci.dll'
-    - '%%environ_systemroot%%\System32\sysprep\cryptbase.dll'
-    - '%%environ_systemroot%%\SysWOW64\oci.dll'
-    - '%%environ_systemroot%%\SysWOW64\sysprep\cryptbase.dll'
+    - '%%environ_systemroot%%\System32\config\systemprofile\AppData\LocalLow\Microsoft\CryptnetUrlCache\MetaData\*'
+    - '%%environ_systemroot%%\SysWOW64\config\systemprofile\AppData\LocalLow\Microsoft\CryptnetUrlCache\MetaData\*'
+    - '%%users.userprofile%%\AppData\LocalLow\Microsoft\CryptnetUrlCache\MetaData\*'
     separator: '\'
+labels: [System, Network]
+conditions: [os_major_version >= 6]
 supported_os: [Windows]
-urls:
-- 'http://web.cs.ucdavis.edu/~su/publications/issta10-loading.pdf'
-- 'https://www.mandiant.com/blog/fxsst/'
+urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows#Cryptnet_URL_Cache']
+---
+name: WindowsCryptnetUrlCacheContent
+doc: |
+  Content of a Windows cache of files downloaded from the internet.
+
+  Helpful when investigating the use of "Living of the Land" tools that allow
+  attackers to download arbitrary files from the internet, such as
+  "certutil.exe".
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%environ_systemroot%%\System32\config\systemprofile\AppData\LocalLow\Microsoft\CryptnetUrlCache\Content\*'
+    - '%%environ_systemroot%%\SysWOW64\config\systemprofile\AppData\LocalLow\Microsoft\CryptnetUrlCache\Content\*'
+    - '%%users.userprofile%%\AppData\LocalLow\Microsoft\CryptnetUrlCache\Content\*'
+    separator: '\'
+labels: [System, Network]
+conditions: [os_major_version >= 6]
+supported_os: [Windows]
+urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows#Cryptnet_URL_Cache']
 ---
 name: WindowsCurrentVersion
 doc: The Windows current version
@@ -587,6 +655,21 @@ sources:
     - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\*', value: 'Debugger'}
 supported_os: [Windows]
 urls: ['https://msdn.microsoft.com/en-us/library/a329t4ed%28VS.71%29.aspx']
+---
+name: WindowsDNSSettings
+doc: Windows Registry Keys that contain DNS and DHCP settings.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\Tcpip\Parameters', value: 'NameServer'}
+    - {key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\*', value: 'NameServer'}
+    - {key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Dnscache\Parameters', value: 'NameServer'}
+    - {key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\Tcpip\Parameters\Interfaces\*', value: 'DhcpNameServer'}
+    - {key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\Tcpip\Parameters\Interfaces\*', value: 'DhcpServer'}
+labels: [System, Network]
+supported_os: [Windows]
+urls: ['https://technet.microsoft.com/en-us/library/dd197418(v=ws.10).aspx']
 ---
 name: WindowsDomainCachedCredentials
 doc: Windows domain cached credentials
@@ -3380,60 +3463,14 @@ urls:
 - 'https://msdn.microsoft.com/en-us/library/windows/desktop/ms739923(v=vs.85).aspx'
 - 'https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2'
 ---
-name: WindowsDNSSettings
-doc: Windows Registry Keys that contain DNS and DHCP settings.
-sources:
-- type: REGISTRY_VALUE
-  attributes:
-    key_value_pairs:
-    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\Tcpip\Parameters', value: 'NameServer'}
-    - {key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\*', value: 'NameServer'}
-    - {key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Dnscache\Parameters', value: 'NameServer'}
-    - {key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\Tcpip\Parameters\Interfaces\*', value: 'DhcpNameServer'}
-    - {key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\Tcpip\Parameters\Interfaces\*', value: 'DhcpServer'}
-labels: [System, Network]
-supported_os: [Windows]
-urls: ['https://technet.microsoft.com/en-us/library/dd197418(v=ws.10).aspx']
----
-name: WindowsCryptnetUrlCacheMetadata
-doc: |
-  Metadata of a Windows cache of files downloaded from the internet.
-
-  Helpful when investigating the use of "Living of the Land" tools that allow
-  attackers to download arbitrary files from the internet, such as
-  "certutil.exe".
+name: WindowsSecuritySettingsDatabase
+doc: Windows security settings database (secedit.sdb)
 sources:
 - type: FILE
   attributes:
-    paths:
-    - '%%environ_systemroot%%\System32\config\systemprofile\AppData\LocalLow\Microsoft\CryptnetUrlCache\MetaData\*'
-    - '%%environ_systemroot%%\SysWOW64\config\systemprofile\AppData\LocalLow\Microsoft\CryptnetUrlCache\MetaData\*'
-    - '%%users.userprofile%%\AppData\LocalLow\Microsoft\CryptnetUrlCache\MetaData\*'
+    paths: ['%%environ_systemroot%%\security\Database\secedit.sdb']
     separator: '\'
-labels: [System, Network]
-conditions: [os_major_version >= 6]
 supported_os: [Windows]
-urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows#Cryptnet_URL_Cache']
----
-name: WindowsCryptnetUrlCacheContent
-doc: |
-  Content of a Windows cache of files downloaded from the internet.
-
-  Helpful when investigating the use of "Living of the Land" tools that allow
-  attackers to download arbitrary files from the internet, such as
-  "certutil.exe".
-sources:
-- type: FILE
-  attributes:
-    paths:
-    - '%%environ_systemroot%%\System32\config\systemprofile\AppData\LocalLow\Microsoft\CryptnetUrlCache\Content\*'
-    - '%%environ_systemroot%%\SysWOW64\config\systemprofile\AppData\LocalLow\Microsoft\CryptnetUrlCache\Content\*'
-    - '%%users.userprofile%%\AppData\LocalLow\Microsoft\CryptnetUrlCache\Content\*'
-    separator: '\'
-labels: [System, Network]
-conditions: [os_major_version >= 6]
-supported_os: [Windows]
-urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows#Cryptnet_URL_Cache']
 ---
 name: WindowsStartupInfo
 doc: |
@@ -3454,50 +3491,7 @@ conditions: [os_major_version >= 6 AND os_minor_version >= 2]
 supported_os: [Windows]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows#Startup_info']
 ---
-name: WindowsCrashDumps
-doc: |
-  Windows Error Reporting (WER) files and crash dumps.
-
-  The files include information about the crashed processes and potentially
-  process dumps, whether auto-generated upon a crash or by a user. It's helpful
-  to analyze them to identify unexpected process executions or exploitation
-  attempts.
-sources:
-- type: FILE
-  attributes:
-    paths:
-    - '%%environ_allusersprofile%%\Microsoft\Windows\WER\**'
-    - '%%environ_systemroot%%\*.dmp'
-    - '%%environ_systemroot%%\Minidump\*.dmp'
-    - '%%environ_systemroot%%\ServiceProfiles\AppData\Local\CrashDumps\**'
-    - '%%environ_systemroot%%\ServiceProfiles\AppData\Local\Temp\*.dmp'
-    - '%%environ_systemroot%%\System32\config\systemprofile\AppData\Local\CrashDumps\**'
-    - '%%environ_systemroot%%\System32\config\systemprofile\AppData\Local\Temp\*.dmp'
-    - '%%environ_systemroot%%\Temp\*.dmp'
-    - '%%users.localappdata%%\CrashDumps\**'
-    - '%%users.localappdata%%\Microsoft\Windows\WER\**'
-    - '%%users.localappdata%%\Temp\*.dmp'
-    separator: '\'
-labels: [Execution]
-supported_os: [Windows]
-urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows#Crash_and_minidumps']
----
-name: WindowsMsOfficeAutosave
-doc: Recovery files automatically created by Microsoft Office applications.
-sources:
-- type: FILE
-  attributes:
-    paths:
-    - '%%users.appdata%%\Microsoft\Word\**'
-    - '%%users.appdata%%\Microsoft\Excel\**'
-    - '%%users.appdata%%\Microsoft\Powerpoint\**'
-    - '%%users.appdata%%\Microsoft\Publisher\**'
-    separator: '\'
-labels: [Users]
-supported_os: [Windows]
-urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows#Microsoft_Office_Autosave']
----
-name: WindowsTileDataLayerDatable
+name: WindowsTileDataLayerDatabase
 doc: |
   Windows tile data layer database (vedatamodel.edb)
 
