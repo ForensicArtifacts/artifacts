@@ -20,12 +20,14 @@ sources:
     paths:
     - '%%users.appdata%%\Dropbox\*.db*'
     - '%%users.localappdata%%\Dropbox\*.db*'
+    - '%%users.localappdata%%\Dropbox\instance*\sync_history.db'
     separator: '\'
   supported_os: [Windows]
 - type: FILE
   attributes:
     paths:
     - '%%users.homedir%%/.dropbox/*.db*'
+    - '%%users.homedir%%/.dropbox/instance*/sync_history.db'
   supported_os: [Darwin,Linux]
 supported_os: [Darwin,Linux,Windows]
 labels: [Cloud Storage]
