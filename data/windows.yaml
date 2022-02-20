@@ -434,6 +434,28 @@ urls:
 - 'https://msdn.microsoft.com/en-us/library/windows/desktop/ms694515(v=vs.85).aspx'
 - 'https://msdn.microsoft.com/en-us/library/windows/desktop/ms686595(v=vs.85).aspx'
 ---
+name: WindowsCommonFilePlacementAttacks
+doc: Common files associated with search order hijacking and other file placement attacks.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%environ_programfiles%%\Internet Explorer\sxs.dll'
+    - '%%environ_programfilesx86%%\Internet Explorer\sxs.dll'
+    - '%%environ_systemdrive%%\explorer.exe'
+    - '%%environ_systemdrive%%\program.exe'
+    - '%%environ_systemroot%%\linkinfo.dll'
+    - '%%environ_systemroot%%\ntshrui.dll'
+    - '%%environ_systemroot%%\System32\oci.dll'
+    - '%%environ_systemroot%%\System32\sysprep\cryptbase.dll'
+    - '%%environ_systemroot%%\SysWOW64\oci.dll'
+    - '%%environ_systemroot%%\SysWOW64\sysprep\cryptbase.dll'
+    separator: '\'
+supported_os: [Windows]
+urls:
+- 'http://web.cs.ucdavis.edu/~su/publications/issta10-loading.pdf'
+- 'https://www.mandiant.com/blog/fxsst/'
+---
 name: WindowsCOMProperties
 doc: |
   Various properties of Windows COM Objects.
@@ -480,44 +502,6 @@ sources:
 supported_os: [Windows]
 urls: ['https://github.com/libyal/winreg-kb/blob/main/documentation/Component%20Object%20Model%20keys.asciidoc#type-libraries-key']
 ---
-name: WindowsSearchFilterHandlers
-doc: |
-  Windows Search filter handlers configured for file types and applications.
-
-  Windows Search loads DLLs that implement the IFilter interface in order to
-  scan files for text and extract certain types of information. Malware can
-  replace the filter handler for a given file type or CLSID with itself to gain
-  execution when a search operation is performed on that file. Search
-  operations can be performed indirectly in a number of cases; for instance,
-  the .txt, .html, and .rtf filter handlers are invoked when indexing email
-  message bodies.
-
-  The filter handler to use is specified indirectly via a persistent handler.
-  The persistent handler GUID is indicated via the PersistentHandler subkey for
-  a file type or application GUID.  The filter handler CLSID is indicated via
-  the PersistentAddinsRegistered\{89BCB740-6119-101A-BCB7-00DD010655AF} subkey
-  under the persistent handler GUID key path. This artifact inspects both of
-  these paths.
-
-  NOTE: Only the HKEY_LOCAL_MACHINE root key needs be checked, because these
-  are the only keys used. SearchFilterHost.exe runs under the SYSTEM account,
-  which does not have access to HKEY_CURRENT_USER.
-sources:
-- type: REGISTRY_VALUE
-  attributes:
-    key_value_pairs:
-    - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\*\PersistentHandler', value: ''}
-    - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\*\PersistentHandler', value: ''}
-    - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\CLSID\*\PersistentHandler', value: ''}
-    - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\CLSID\*\PersistentHandler', value: ''}
-    - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\CLSID\*\PersistentAddinsRegistered\{89BCB740-6119-101A-BCB7-00DD010655AF}', value: ''}
-    - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\CLSID\*\PersistentAddinsRegistered\{89BCB740-6119-101A-BCB7-00DD010655AF}', value: ''}
-supported_os: [Windows]
-urls:
-- 'https://docs.microsoft.com/en-us/windows/desktop/search/-search-ifilter-about'
-- 'https://docs.microsoft.com/en-us/windows/desktop/search/-search-ifilter-implementations'
-- 'https://docs.microsoft.com/en-us/windows/desktop/search/-search-ifilter-registering-filters'
----
 name: WindowsConfigSys
 doc: Windows config.sys file
 sources:
@@ -545,6 +529,46 @@ urls:
 - 'http://www.geoffchappell.com/studies/windows/shell/shell32/classes/controlpanel.htm'
 - 'https://msdn.microsoft.com/en-us/library/windows/desktop/ms683844(v=vs.85).aspx'
 ---
+name: WindowsCortanaDatabase
+doc: Windows Cortana database
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.localappdata%%\Packages\Microsoft.Windows.Cortana_*\AppData\Indexed DB\IndexedDB.edb'
+    - '%%users.localappdata%%\Packages\Microsoft.Windows.Cortana_*\LocalState\ESEDatabase_CortanaCoreInstance\CortanaCoreDb.dat'
+    separator: '\'
+supported_os: [Windows]
+urls: ['https://forensicswiki.xyz/wiki/index.php?title=Cortana']
+---
+name: WindowsCrashDumps
+doc: |
+  Windows Error Reporting (WER) files and crash dumps.
+
+  The files include information about the crashed processes and potentially
+  process dumps, whether auto-generated upon a crash or by a user. It's helpful
+  to analyze them to identify unexpected process executions or exploitation
+  attempts.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%environ_allusersprofile%%\Microsoft\Windows\WER\**'
+    - '%%environ_systemroot%%\*.dmp'
+    - '%%environ_systemroot%%\Minidump\*.dmp'
+    - '%%environ_systemroot%%\ServiceProfiles\AppData\Local\CrashDumps\**'
+    - '%%environ_systemroot%%\ServiceProfiles\AppData\Local\Temp\*.dmp'
+    - '%%environ_systemroot%%\System32\config\systemprofile\AppData\Local\CrashDumps\**'
+    - '%%environ_systemroot%%\System32\config\systemprofile\AppData\Local\Temp\*.dmp'
+    - '%%environ_systemroot%%\Temp\*.dmp'
+    - '%%users.localappdata%%\CrashDumps\**'
+    - '%%users.localappdata%%\Microsoft\Windows\WER\**'
+    - '%%users.localappdata%%\Temp\*.dmp'
+    separator: '\'
+labels: [Execution]
+supported_os: [Windows]
+urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows#Crash_and_minidumps']
+---
 name: WindowsCredentialProviderFilters
 doc: Windows Credential Provider Filters
 sources:
@@ -571,27 +595,45 @@ urls:
 - 'http://blog.leetsys.com/2012/01/02/capturing-windows-7-credentials-at-logon-using-custom-credential-provider/'
 - 'https://www.sophos.com/en-us/support/knowledgebase/114190.aspx'
 ---
-name: WindowsCommonFilePlacementAttacks
-doc: Common files associated with search order hijacking and other file placement attacks.
+name: WindowsCryptnetUrlCacheMetadata
+doc: |
+  Metadata of a Windows cache of files downloaded from the internet.
+
+  Helpful when investigating the use of "Living of the Land" tools that allow
+  attackers to download arbitrary files from the internet, such as
+  "certutil.exe".
 sources:
 - type: FILE
   attributes:
     paths:
-    - '%%environ_programfiles%%\Internet Explorer\sxs.dll'
-    - '%%environ_programfilesx86%%\Internet Explorer\sxs.dll'
-    - '%%environ_systemdrive%%\explorer.exe'
-    - '%%environ_systemdrive%%\program.exe'
-    - '%%environ_systemroot%%\linkinfo.dll'
-    - '%%environ_systemroot%%\ntshrui.dll'
-    - '%%environ_systemroot%%\System32\oci.dll'
-    - '%%environ_systemroot%%\System32\sysprep\cryptbase.dll'
-    - '%%environ_systemroot%%\SysWOW64\oci.dll'
-    - '%%environ_systemroot%%\SysWOW64\sysprep\cryptbase.dll'
+    - '%%environ_systemroot%%\System32\config\systemprofile\AppData\LocalLow\Microsoft\CryptnetUrlCache\MetaData\*'
+    - '%%environ_systemroot%%\SysWOW64\config\systemprofile\AppData\LocalLow\Microsoft\CryptnetUrlCache\MetaData\*'
+    - '%%users.userprofile%%\AppData\LocalLow\Microsoft\CryptnetUrlCache\MetaData\*'
     separator: '\'
+labels: [System, Network]
+conditions: [os_major_version >= 6]
 supported_os: [Windows]
-urls:
-- 'http://web.cs.ucdavis.edu/~su/publications/issta10-loading.pdf'
-- 'https://www.mandiant.com/blog/fxsst/'
+urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows#Cryptnet_URL_Cache']
+---
+name: WindowsCryptnetUrlCacheContent
+doc: |
+  Content of a Windows cache of files downloaded from the internet.
+
+  Helpful when investigating the use of "Living of the Land" tools that allow
+  attackers to download arbitrary files from the internet, such as
+  "certutil.exe".
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%environ_systemroot%%\System32\config\systemprofile\AppData\LocalLow\Microsoft\CryptnetUrlCache\Content\*'
+    - '%%environ_systemroot%%\SysWOW64\config\systemprofile\AppData\LocalLow\Microsoft\CryptnetUrlCache\Content\*'
+    - '%%users.userprofile%%\AppData\LocalLow\Microsoft\CryptnetUrlCache\Content\*'
+    separator: '\'
+labels: [System, Network]
+conditions: [os_major_version >= 6]
+supported_os: [Windows]
+urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows#Cryptnet_URL_Cache']
 ---
 name: WindowsCurrentVersion
 doc: The Windows current version
@@ -613,6 +655,21 @@ sources:
     - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\*', value: 'Debugger'}
 supported_os: [Windows]
 urls: ['https://msdn.microsoft.com/en-us/library/a329t4ed%28VS.71%29.aspx']
+---
+name: WindowsDNSSettings
+doc: Windows Registry Keys that contain DNS and DHCP settings.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\Tcpip\Parameters', value: 'NameServer'}
+    - {key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\*', value: 'NameServer'}
+    - {key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Dnscache\Parameters', value: 'NameServer'}
+    - {key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\Tcpip\Parameters\Interfaces\*', value: 'DhcpNameServer'}
+    - {key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\Tcpip\Parameters\Interfaces\*', value: 'DhcpServer'}
+labels: [System, Network]
+supported_os: [Windows]
+urls: ['https://technet.microsoft.com/en-us/library/dd197418(v=ws.10).aspx']
 ---
 name: WindowsDomainCachedCredentials
 doc: Windows domain cached credentials
@@ -1346,8 +1403,7 @@ sources:
     paths: ['%%users.localappdata%%\Packages\*\AC\INetCache']
     separator: '\'
 supported_os: [Windows]
-urls:
-- 'http://www.forensicmag.com/article/2012/09/microsoft-windows-8-forensic-first-look'
+urls: ['http://www.forensicmag.com/article/2012/09/microsoft-windows-8-forensic-first-look']
 ---
 name: WindowsMetroApplicationCookies
 doc: Windows Metro application cookies.
@@ -1357,8 +1413,7 @@ sources:
     paths: ['%%users.localappdata%%\Packages\*\AC\INetCookies']
     separator: '\'
 supported_os: [Windows]
-urls:
-- 'http://www.forensicmag.com/article/2012/09/microsoft-windows-8-forensic-first-look'
+urls: ['http://www.forensicmag.com/article/2012/09/microsoft-windows-8-forensic-first-look']
 ---
 name: WindowsMetroApplicationHistory
 doc: Windows Metro application history.
@@ -1368,8 +1423,7 @@ sources:
     paths: ['%%users.localappdata%%\Packages\*\AC\INetHistory']
     separator: '\'
 supported_os: [Windows]
-urls:
-- 'http://www.forensicmag.com/article/2012/09/microsoft-windows-8-forensic-first-look'
+urls: ['http://www.forensicmag.com/article/2012/09/microsoft-windows-8-forensic-first-look']
 ---
 name: WindowsMetroUserPinnedFavoriteTiles
 doc: Windows Metro user-pinned favorite tiles.
@@ -1379,8 +1433,7 @@ sources:
     paths: ['%%users.localappdata%%\Microsoft\Windows\RoamingTiles']
     separator: '\'
 supported_os: [Windows]
-urls:
-- 'http://www.forensicmag.com/article/2012/09/microsoft-windows-8-forensic-first-look'
+urls: ['http://www.forensicmag.com/article/2012/09/microsoft-windows-8-forensic-first-look']
 ---
 name: WindowsMostRecentApplication
 doc: Windows Most Recent Application name key
@@ -1450,8 +1503,8 @@ sources:
 conditions: [os_major_version < 6]
 supported_os: [Windows]
 urls:
- - 'https://forensicswiki.xyz/wiki/index.php?title=OpenSaveMRU'
- - 'https://digital-forensics.sans.org/blog/2010/04/02/openrunsavemru-lastvisitedmru'
+- 'https://forensicswiki.xyz/wiki/index.php?title=OpenSaveMRU'
+- 'https://digital-forensics.sans.org/blog/2010/04/02/openrunsavemru-lastvisitedmru'
 ---
 name: WindowsOpenSavePidlMRU
 doc: Information about files opened or saved in a Windows shell dialog.
@@ -1462,8 +1515,8 @@ sources:
 conditions: [os_major_version >= 6]
 supported_os: [Windows]
 urls:
- - 'https://digital-forensics.sans.org/blog/2010/04/02/openrunsavemru-lastvisitedmru'
- - 'https://forensicswiki.xyz/wiki/index.php?title=OpenSavePidlMRU'
+- 'https://digital-forensics.sans.org/blog/2010/04/02/openrunsavemru-lastvisitedmru'
+- 'https://forensicswiki.xyz/wiki/index.php?title=OpenSavePidlMRU'
 ---
 name: WindowsPendingFileRenames
 doc: Windows Pending file renames on reboot
@@ -1973,6 +2026,44 @@ labels: [Software]
 supported_os: [Windows]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows_Desktop_Search']
 ---
+name: WindowsSearchFilterHandlers
+doc: |
+  Windows Search filter handlers configured for file types and applications.
+
+  Windows Search loads DLLs that implement the IFilter interface in order to
+  scan files for text and extract certain types of information. Malware can
+  replace the filter handler for a given file type or CLSID with itself to gain
+  execution when a search operation is performed on that file. Search
+  operations can be performed indirectly in a number of cases; for instance,
+  the .txt, .html, and .rtf filter handlers are invoked when indexing email
+  message bodies.
+
+  The filter handler to use is specified indirectly via a persistent handler.
+  The persistent handler GUID is indicated via the PersistentHandler subkey for
+  a file type or application GUID.  The filter handler CLSID is indicated via
+  the PersistentAddinsRegistered\{89BCB740-6119-101A-BCB7-00DD010655AF} subkey
+  under the persistent handler GUID key path. This artifact inspects both of
+  these paths.
+
+  NOTE: Only the HKEY_LOCAL_MACHINE root key needs be checked, because these
+  are the only keys used. SearchFilterHost.exe runs under the SYSTEM account,
+  which does not have access to HKEY_CURRENT_USER.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\*\PersistentHandler', value: ''}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\*\PersistentHandler', value: ''}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\CLSID\*\PersistentHandler', value: ''}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\CLSID\*\PersistentHandler', value: ''}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\CLSID\*\PersistentAddinsRegistered\{89BCB740-6119-101A-BCB7-00DD010655AF}', value: ''}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Classes\Wow6432Node\CLSID\*\PersistentAddinsRegistered\{89BCB740-6119-101A-BCB7-00DD010655AF}', value: ''}
+supported_os: [Windows]
+urls:
+- 'https://docs.microsoft.com/en-us/windows/desktop/search/-search-ifilter-about'
+- 'https://docs.microsoft.com/en-us/windows/desktop/search/-search-ifilter-implementations'
+- 'https://docs.microsoft.com/en-us/windows/desktop/search/-search-ifilter-registering-filters'
+---
 name: WindowsSecurityProviders
 doc: Security Providers DLLs
 sources:
@@ -2205,8 +2296,8 @@ sources:
 labels: [System]
 supported_os: [Windows]
 urls:
- - 'https://threatvector.cylance.com/en_us/home/threat-spotlight-eyepyramid-malware.html'
- - 'https://blog.talosintelligence.com/2019/05/threat-roundup-0524-0531.html'
+- 'https://threatvector.cylance.com/en_us/home/threat-spotlight-eyepyramid-malware.html'
+- 'https://blog.talosintelligence.com/2019/05/threat-roundup-0524-0531.html'
 ---
 name: WindowsFirewallGloballyOpenPorts
 doc: |
@@ -2229,8 +2320,8 @@ sources:
 labels: [System]
 supported_os: [Windows]
 urls:
- - 'https://qaforce.wordpress.com/2009/10/06/windows-firewall-registry-keys/'
- - 'https://github.com/steeve85/Malwares/wiki/Registry'
+- 'https://qaforce.wordpress.com/2009/10/06/windows-firewall-registry-keys/'
+- 'https://github.com/steeve85/Malwares/wiki/Registry'
 ---
 name: WindowsFirewallPolicySettings
 doc: |
@@ -2629,9 +2720,9 @@ sources:
     - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\*\shell\open\command', value: 'IsolatedCommand'}
 supported_os: [Windows]
 urls:
- - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
- - 'https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2'
- - 'https://pentestlab.blog/2017/06/09/uac-bypass-sdclt/'
+- 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
+- 'https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2'
+- 'https://pentestlab.blog/2017/06/09/uac-bypass-sdclt/'
 ---
 name: WindowsShellRunasCommand
 doc: |
@@ -2655,9 +2746,9 @@ sources:
     - {key: 'HKEY_USERS\%%users.sid%%\Software\Classes\Wow6432Node\*\shell\runas\command', value: 'IsolatedCommand'}
 supported_os: [Windows]
 urls:
- - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
- - 'https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2'
- - 'https://enigma0x3.net/2017/03/17/fileless-uac-bypass-using-sdclt-exe/'
+- 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
+- 'https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2'
+- 'https://enigma0x3.net/2017/03/17/fileless-uac-bypass-using-sdclt-exe/'
 ---
 name: WindowsShellServiceObjects
 doc: Windows Shell (explorer.exe) service objects delayed load.
@@ -3372,60 +3463,16 @@ urls:
 - 'https://msdn.microsoft.com/en-us/library/windows/desktop/ms739923(v=vs.85).aspx'
 - 'https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2'
 ---
-name: WindowsDNSSettings
-doc: Windows Registry Keys that contain DNS and DHCP settings.
-sources:
-- type: REGISTRY_VALUE
-  attributes:
-    key_value_pairs:
-    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\Tcpip\Parameters', value: 'NameServer'}
-    - {key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\*', value: 'NameServer'}
-    - {key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Dnscache\Parameters', value: 'NameServer'}
-    - {key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\Tcpip\Parameters\Interfaces\*', value: 'DhcpNameServer'}
-    - {key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\Tcpip\Parameters\Interfaces\*', value: 'DhcpServer'}
-labels: [System, Network]
-supported_os: [Windows]
-urls: ['https://technet.microsoft.com/en-us/library/dd197418(v=ws.10).aspx']
----
-name: WindowsCryptnetUrlCacheMetadata
-doc: |
-  Metadata of a Windows cache of files downloaded from the internet.
-
-  Helpful when investigating the use of "Living of the Land" tools that allow
-  attackers to download arbitrary files from the internet, such as
-  "certutil.exe".
+name: WindowsSecuritySettingsDatabases
+doc: Windows security settings databases (secedit.sdb and spsecupd.sdb)
 sources:
 - type: FILE
   attributes:
     paths:
-    - '%%environ_systemroot%%\System32\config\systemprofile\AppData\LocalLow\Microsoft\CryptnetUrlCache\MetaData\*'
-    - '%%environ_systemroot%%\SysWOW64\config\systemprofile\AppData\LocalLow\Microsoft\CryptnetUrlCache\MetaData\*'
-    - '%%users.userprofile%%\AppData\LocalLow\Microsoft\CryptnetUrlCache\MetaData\*'
+    - '%%environ_systemroot%%\security\Database\secedit.sdb'
+    - '%%environ_systemroot%%\security\templates\spsecupd.sdb'
     separator: '\'
-labels: [System, Network]
-conditions: [os_major_version >= 6]
 supported_os: [Windows]
-urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows#Cryptnet_URL_Cache']
----
-name: WindowsCryptnetUrlCacheContent
-doc: |
-  Content of a Windows cache of files downloaded from the internet.
-
-  Helpful when investigating the use of "Living of the Land" tools that allow
-  attackers to download arbitrary files from the internet, such as
-  "certutil.exe".
-sources:
-- type: FILE
-  attributes:
-    paths:
-    - '%%environ_systemroot%%\System32\config\systemprofile\AppData\LocalLow\Microsoft\CryptnetUrlCache\Content\*'
-    - '%%environ_systemroot%%\SysWOW64\config\systemprofile\AppData\LocalLow\Microsoft\CryptnetUrlCache\Content\*'
-    - '%%users.userprofile%%\AppData\LocalLow\Microsoft\CryptnetUrlCache\Content\*'
-    separator: '\'
-labels: [System, Network]
-conditions: [os_major_version >= 6]
-supported_os: [Windows]
-urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows#Cryptnet_URL_Cache']
 ---
 name: WindowsStartupInfo
 doc: |
@@ -3446,48 +3493,18 @@ conditions: [os_major_version >= 6 AND os_minor_version >= 2]
 supported_os: [Windows]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows#Startup_info']
 ---
-name: WindowsCrashDumps
+name: WindowsTileDataLayerDatabase
 doc: |
-  Windows Error Reporting (WER) files and crash dumps.
+  Windows tile data layer database (vedatamodel.edb)
 
-  The files include information about the crashed processes and potentially
-  process dumps, whether auto-generated upon a crash or by a user. It's helpful
-  to analyze them to identify unexpected process executions or exploitation
-  attempts.
+  The tile data layer database is used to store information about Start Tiles.
 sources:
 - type: FILE
   attributes:
-    paths:
-    - '%%environ_allusersprofile%%\Microsoft\Windows\WER\**'
-    - '%%environ_systemroot%%\*.dmp'
-    - '%%environ_systemroot%%\Minidump\*.dmp'
-    - '%%environ_systemroot%%\ServiceProfiles\AppData\Local\CrashDumps\**'
-    - '%%environ_systemroot%%\ServiceProfiles\AppData\Local\Temp\*.dmp'
-    - '%%environ_systemroot%%\System32\config\systemprofile\AppData\Local\CrashDumps\**'
-    - '%%environ_systemroot%%\System32\config\systemprofile\AppData\Local\Temp\*.dmp'
-    - '%%environ_systemroot%%\Temp\*.dmp'
-    - '%%users.localappdata%%\CrashDumps\**'
-    - '%%users.localappdata%%\Microsoft\Windows\WER\**'
-    - '%%users.localappdata%%\Temp\*.dmp'
+    paths: ['%%users.localappdata%%\TileDataLayer\Database\vedatamodel.edb']
     separator: '\'
-labels: [Execution]
 supported_os: [Windows]
-urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows#Crash_and_minidumps']
----
-name: WindowsMsOfficeAutosave
-doc: Recovery files automatically created by Microsoft Office applications.
-sources:
-- type: FILE
-  attributes:
-    paths:
-    - '%%users.appdata%%\Microsoft\Word\**'
-    - '%%users.appdata%%\Microsoft\Excel\**'
-    - '%%users.appdata%%\Microsoft\Powerpoint\**'
-    - '%%users.appdata%%\Microsoft\Publisher\**'
-    separator: '\'
-labels: [Users]
-supported_os: [Windows]
-urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows#Microsoft_Office_Autosave']
+urls: ['https://forensicswiki.xyz/wiki/index.php?title=Extensible_Storage_Engine_(ESE)_Database_File_(EDB)_format#Tile_Data_Layer_database']
 ---
 name: WindowsUserAccessLogging
 doc: |
