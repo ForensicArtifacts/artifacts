@@ -11,7 +11,7 @@ supported_os: [Linux]
 name: KubernetesCertificates
 doc: |
   Certificate files that are used for a Kubernetes cluster.
-  
+
   The files are typically only present on the control-plane node.
 sources:
 - type: FILE
@@ -106,7 +106,7 @@ supported_os: [Linux]
 name: KubernetesKubeletPodContainer
 doc: |
   Path where the container resources created within a (Kubernetes) Pod are located.
-  
+
   The paths naming would explain as the following:
   '/var/lib/kubelet/pods/<pod_id>/containers/<container_name>/*'
 
@@ -114,7 +114,7 @@ doc: |
   'containers/' does contain a directory for each container scheduled in that
   Pod. In each of that path there is a file located that gets mounted into
   the container at '/dev/termination-log'.
-  
+
   This is the logfile that stores termination information in case a container
   terminates. The pod identifier of that file can be correlated to the container
   runtime installed on the host to find out the mount configuration.
@@ -147,7 +147,7 @@ urls:
 name: KubernetesKubeletPodLogs
 doc: |
   Location where the log data of (Kubernetes) Pods can be found.
-  
+
   The path's name would contain the following elements:
   '/var/log/pods/<namespace>_<pod_name>_<pod_id>/<container_name>/<num>.log'
   Includes also redirected stdout, stderr and (if applicable) stdin of container executions.
