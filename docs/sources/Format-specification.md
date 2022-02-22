@@ -309,8 +309,7 @@ Software | Installed software.
 System | Core system artifacts.
 Users | Information about users.
 
-The labes are defined in
-link:https://github.com/ForensicArtifacts/artifacts/blob/main/artifacts/definitions.py[definitions.py].
+The labes are defined in [definitions.py](https://github.com/ForensicArtifacts/artifacts/blob/main/artifacts/definitions.py).
 
 ## Parameter expansion and globs
 
