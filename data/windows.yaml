@@ -270,6 +270,29 @@ sources:
 supported_os: [Windows]
 urls: ['http://dfrws.org/2015/proceedings/presentations/DFRWS2015-pres3.pdf']
 ---
+name: WindowsBootConfigurationDataRegistryFiles
+doc: Boot Configuration Data (BCD) Windows Registry files.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '\Boot\BCD'
+    - '\Boot\BCD.LOG'
+    - '\Boot\BCD.LOG1'
+    - '\Boot\BCD.LOG2'
+    - '\EFI\Microsoft\Boot\BCD'
+    - '\EFI\Microsoft\Boot\BCD.LOG'
+    - '\EFI\Microsoft\Boot\BCD.LOG1'
+    - '\EFI\Microsoft\Boot\BCD.LOG2'
+    - '\EFI\Microsoft\Recovery\BCD'
+    - '\EFI\Microsoft\Recovery\BCD.LOG'
+    - '\EFI\Microsoft\Recovery\BCD.LOG1'
+    - '\EFI\Microsoft\Recovery\BCD.LOG2'
+    separator: '\'
+labels: [System]
+supported_os: [Windows]
+urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/RegistryFiles.html']
+---
 name: WindowsBootVerificationProgram
 doc: Path to custom startup verification program.
 sources:
