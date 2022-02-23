@@ -1,5 +1,5 @@
 # DLL Hijack Locations
-
+---
 name: DLLHijackLocations
 doc: DLL search order hijacking locations collected from base Windows 7.
 urls: ['https://www.fireeye.com/blog/threat-research/2010/07/malware-persistence-windows-registry.html']

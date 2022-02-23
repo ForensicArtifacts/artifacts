@@ -1,5 +1,5 @@
 # Apache Tomcat artifacts.
-
+---
 name: TomcatFiles
 doc: Tomcat files.
 sources:
@@ -9,7 +9,7 @@ sources:
     - 'TomcatLogFiles'
     - 'TomcatPasswordFile'
 labels: [Software]
-supported_os: [Darwin,Linux,Windows]
+supported_os: [Darwin, Linux, Windows]
 ---
 name: TomcatLogFiles
 doc: Tomcat log files.
@@ -62,12 +62,13 @@ sources:
     - '/usr/local/apache-tomcat*/logs/access_log*'
     - '/usr/local/apache-tomcat*/logs/**/catalina.out'
     - '/usr/local/apache-tomcat*/logs/catalina.out'
-    - '/usr/local/Cellar/tomcat*/logs/**/access_log*' # Default location for Homebrew
-    - '/usr/local/Cellar/tomcat*/logs/access_log*' # Default location for Homebrew
-    - '/usr/local/Cellar/tomcat*/logs/**/catalina.out' # Default location for Homebrew
-    - '/usr/local/Cellar/tomcat*/logs/catalina.out' # Default location for Homebrew
+    # Default locations for Homebrew
+    - '/usr/local/Cellar/tomcat*/logs/**/access_log*'
+    - '/usr/local/Cellar/tomcat*/logs/access_log*'
+    - '/usr/local/Cellar/tomcat*/logs/**/catalina.out'
+    - '/usr/local/Cellar/tomcat*/logs/catalina.out'
   supported_os: [Darwin]
-supported_os: [Windows,Linux,Darwin]
+supported_os: [Darwin, Linux, Windows]
 urls:
 - 'https://tomcat.apache.org/tomcat-8.0-doc/config/valve.html#Access_Logging'
 - 'https://tomcat.apache.org/tomcat-8.0-doc/logging.html'
@@ -97,7 +98,8 @@ sources:
     paths:
     - '/Library/Tomcat/conf/tomcat-users.xml'
     - '/usr/local/apache-tomcat-*/conf/tomcat-users.xml'
-    - '/usr/local/Cellar/tomcat/*/conf/tomcat-users.xml' # Default location for Homebrew
+    # Default location for Homebrew
+    - '/usr/local/Cellar/tomcat/*/conf/tomcat-users.xml'
   supported_os: [Darwin]
-supported_os: [Windows,Linux,Darwin]
+supported_os: [Darwin, Linux, Windows]
 urls: ['https://tomcat.apache.org/tomcat-8.0-doc/manager-howto.html#Configuring_Manager_Application_Access']

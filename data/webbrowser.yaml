@@ -1,5 +1,5 @@
 # Web browser artifacts.
-
+---
 name: BrowserCache
 doc: Web browser cache of multiple web browsers.
 sources:
@@ -11,7 +11,7 @@ sources:
     - 'InternetExplorerCache'
     - 'SafariCache'
 labels: [Browser]
-supported_os: [Darwin,Linux,Windows]
+supported_os: [Darwin, Linux, Windows]
 ---
 name: BrowserHistory
 doc: Web browser history of multiple web browsers.
@@ -26,7 +26,7 @@ sources:
     - 'SafariDownloads'
     - 'SafariHistory'
 labels: [Browser]
-supported_os: [Darwin,Linux,Windows]
+supported_os: [Darwin, Linux, Windows]
 ---
 name: ChromeStorage
 doc: |
@@ -45,7 +45,7 @@ sources:
     - 'ChromeFileSystem'
     - 'ChromeIndexedDB'
 labels: [Browser]
-supported_os: [Darwin,Linux,Windows]
+supported_os: [Darwin, Linux, Windows]
 urls:
 - 'https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API'
 - 'https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API'
@@ -141,7 +141,7 @@ sources:
     - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Media Cache/*'
     - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/GPUCache/*'
   supported_os: [Linux]
-supported_os: [Windows,Darwin,Linux]
+supported_os: [Darwin, Linux, Windows]
 labels: [Browser]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/webbrowser/ChromeCache.html']
 ---
@@ -340,7 +340,7 @@ sources:
     - '%%users.homedir%%/snap/chromium/common/chromium/Cache/*'
     - '%%users.homedir%%/snap/chromium/common/chromium/PnaclTranslationCache/*'
   supported_os: [Linux]
-supported_os: [Windows,Darwin,Linux]
+supported_os: [Darwin, Linux, Windows]
 labels: [Browser]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/webbrowser/ChromeCache.html']
 ---
@@ -406,7 +406,7 @@ sources:
     - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Network/Cookies'
     - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Network/Cookies-journal'
   supported_os: [Darwin]
-supported_os: [Windows,Darwin,Linux]
+supported_os: [Darwin, Linux, Windows]
 labels: [Browser]
 ---
 name: ChromeExtensionActivity
@@ -433,7 +433,7 @@ sources:
     - '%%users.homedir%%/.config/google-chrome/*/Extension Activity'
     - '%%users.homedir%%/.config/chromium/*/Extension Activity'
   supported_os: [Linux]
-supported_os: [Windows,Darwin,Linux]
+supported_os: [Darwin, Linux, Windows]
 labels: [Browser]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome#Extension_Activity_database']
 ---
@@ -465,7 +465,7 @@ sources:
     - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Extensions/**10'
     - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Extensions/**10'
   supported_os: [Linux]
-supported_os: [Windows, Darwin, Linux]
+supported_os: [Darwin, Linux, Windows]
 labels: [Browser]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome#Extensions']
 ---
@@ -513,7 +513,7 @@ sources:
     - '%%users.homedir%%/.config/yandex-browser-beta/*/Extensions/**10'
     - '%%users.homedir%%/snap/chromium/common/chromium/*/Extensions/**10'
   supported_os: [Linux]
-supported_os: [Windows, Darwin, Linux]
+supported_os: [Darwin, Linux, Windows]
 labels: [Browser]
 urls:
 - 'https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome#Extensions'
@@ -563,7 +563,7 @@ sources:
     - '%%users.homedir%%/.config/yandex-browser-beta/*/Extensions/**10'
     - '%%users.homedir%%/snap/chromium/common/chromium/*/Extensions/**10'
   supported_os: [Linux]
-supported_os: [Windows, Darwin, Linux]
+supported_os: [Darwin, Linux, Windows]
 labels: [Browser]
 urls:
 - 'https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome#Extension_Activity_database'
@@ -594,10 +594,10 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '%%users.localappdata%%\Chromium\User Data\*\File System\**5'
-      - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\File System\**5'
-      - '%%users.localappdata%%\Google\Chrome\User Data\*\File System\**5'
-      - '%%users.localappdata%%\Microsoft\Edge\User Data\*\File System\**5'
+    - '%%users.localappdata%%\Chromium\User Data\*\File System\**5'
+    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\File System\**5'
+    - '%%users.localappdata%%\Google\Chrome\User Data\*\File System\**5'
+    - '%%users.localappdata%%\Microsoft\Edge\User Data\*\File System\**5'
     separator: '\'
   supported_os: [Windows]
 - type: FILE
@@ -616,7 +616,7 @@ sources:
     - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/File System/**5'
     - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/File System/**5'
   supported_os: [Darwin]
-supported_os: [Windows,Darwin,Linux]
+supported_os: [Darwin, Linux, Windows]
 labels: [Browser]
 urls:
 - 'https://developer.chrome.com/apps/fileSystem'
@@ -745,7 +745,7 @@ sources:
     - '%%users.homedir%%/snap/chromium/common/chromium/*/History'
     - '%%users.homedir%%/snap/chromium/common/chromium/*/History-journal'
   supported_os: [Linux]
-supported_os: [Windows,Darwin,Linux]
+supported_os: [Darwin, Linux, Windows]
 labels: [Browser]
 urls:
 - 'https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome'
@@ -767,10 +767,10 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '%%users.localappdata%%\Chromium\User Data\*\IndexedDB\**5'
-      - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\IndexedDB\**5'
-      - '%%users.localappdata%%\Google\Chrome\User Data\*\IndexedDB\**5'
-      - '%%users.localappdata%%\Microsoft\Edge\User Data\*\IndexedDB\**5'
+    - '%%users.localappdata%%\Chromium\User Data\*\IndexedDB\**5'
+    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\IndexedDB\**5'
+    - '%%users.localappdata%%\Google\Chrome\User Data\*\IndexedDB\**5'
+    - '%%users.localappdata%%\Microsoft\Edge\User Data\*\IndexedDB\**5'
     separator: '\'
   supported_os: [Windows]
 - type: FILE
@@ -789,30 +789,26 @@ sources:
     - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/IndexedDB/**5'
     - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/IndexedDB/**5'
   supported_os: [Darwin]
-supported_os: [Windows,Darwin,Linux]
+supported_os: [Darwin, Linux, Windows]
 labels: [Browser]
-urls:
-- 'https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API'
+urls: ['https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API']
 ---
 name: ChromeLocalStorage
 doc: |
   Google Chrome, Canary and Chromium Local Storage files.
 
-  * Chrome v60 and below used individual .sqlite files per origin for Local Storage,
-    stored in the Local Storage directory root.
-  * In Chrome v61, a leveldb directory was added inside the root Local Storage directory,
-    and new origins saved Local Storage data in a single LevelDB there.
-  * Existing .sqlite files are kept (not moved to leveldb), so it is possible for a
-    single Chrome profile to use both SQLite and LevelDB for Local Storage.
+  Chrome 60 and earlier versions used individual .sqlite files per origin for Local Storage, stored in the Local Storage directory root.
+  In Chrome 61, a leveldb directory was added inside the root Local Storage directory, and new origins saved Local Storage data in a single LevelDB there.
 
+  Existing .sqlite files are kept (not moved to leveldb), so it is possible for a single Chrome profile to use both SQLite and LevelDB for Local Storage.
 sources:
 - type: FILE
   attributes:
     paths:
-      - '%%users.localappdata%%\Chromium\User Data\*\Local Storage\**'
-      - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Local Storage\**'
-      - '%%users.localappdata%%\Google\Chrome\User Data\*\Local Storage\**'
-      - '%%users.localappdata%%\Microsoft\Edge\User Data\*\Local Storage\**'
+    - '%%users.localappdata%%\Chromium\User Data\*\Local Storage\**'
+    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Local Storage\**'
+    - '%%users.localappdata%%\Google\Chrome\User Data\*\Local Storage\**'
+    - '%%users.localappdata%%\Microsoft\Edge\User Data\*\Local Storage\**'
     separator: '\'
   supported_os: [Windows]
 - type: FILE
@@ -831,7 +827,7 @@ sources:
     - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Local Storage/**'
     - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Local Storage/**'
   supported_os: [Darwin]
-supported_os: [Windows,Darwin,Linux]
+supported_os: [Darwin, Linux, Windows]
 labels: [Browser]
 ---
 name: ChromePreferences
@@ -871,7 +867,7 @@ sources:
     - '%%users.homedir%%/.config/google-chrome/*/Preferences'
     - '%%users.homedir%%/.config/google-chrome/*/Secure Preferences'
   supported_os: [Linux]
-supported_os: [Windows,Darwin,Linux]
+supported_os: [Darwin, Linux, Windows]
 labels: [Browser]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome#Configuration']
 ---
@@ -886,10 +882,10 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '%%users.localappdata%%\Chromium\User Data\*\Session Storage\*'
-      - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Session Storage\*'
-      - '%%users.localappdata%%\Google\Chrome\User Data\*\Session Storage\*'
-      - '%%users.localappdata%%\Microsoft\Edge\User Data\*\Session Storage\*'
+    - '%%users.localappdata%%\Chromium\User Data\*\Session Storage\*'
+    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Session Storage\*'
+    - '%%users.localappdata%%\Google\Chrome\User Data\*\Session Storage\*'
+    - '%%users.localappdata%%\Microsoft\Edge\User Data\*\Session Storage\*'
     separator: '\'
   supported_os: [Windows]
 - type: FILE
@@ -908,7 +904,7 @@ sources:
     - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Session Storage/*'
     - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Session Storage/*'
   supported_os: [Darwin]
-supported_os: [Windows,Darwin,Linux]
+supported_os: [Darwin, Linux, Windows]
 labels: [Browser]
 ---
 name: FirefoxCache
@@ -940,7 +936,7 @@ sources:
     - '%%users.homedir%%/.cache/mozilla/firefox/*.default/cache2/doomed/*'
     - '%%users.homedir%%/.cache/mozilla/firefox/*.default/cache2/entries/*'
   supported_os: [Linux]
-supported_os: [Windows,Darwin,Linux]
+supported_os: [Darwin, Linux, Windows]
 labels: [Browser]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/webbrowser/FirefoxCache.html']
 ---
@@ -968,7 +964,7 @@ sources:
     - '%%users.homedir%%/.mozilla/firefox/*/places.sqlite'
     - '%%users.homedir%%/.mozilla/firefox/*/places.sqlite-wal'
   supported_os: [Linux]
-supported_os: [Windows,Darwin,Linux]
+supported_os: [Darwin, Linux, Windows]
 labels: [Browser]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mozilla_Firefox']
 ---
@@ -1000,7 +996,7 @@ sources:
     - '%%users.homedir%%/.mozilla/firefox/*/extensions.json'
     - '%%users.homedir%%/.mozilla/firefox/*/webapps/webapps.json'
   supported_os: [Linux]
-supported_os: [Windows,Darwin,Linux]
+supported_os: [Darwin, Linux, Windows]
 labels: [Browser]
 urls: ['https://github.com/osquery/osquery/blob/6969e075fd4118e36f6cab54b0956e53dde5ba3f/osquery/tables/applications/browser_firefox.cpp#']
 ---
@@ -1085,14 +1081,13 @@ doc: |
   The ElevationPolicy dictates how IE handles applications that want to execute
   in other applications that reside outside of the Low Rights IE session.
 
-  * AppName is the executable
+  AppName is the executable
   * AppPath is the directory
   * CLSID is used if it launches a COM server through CoCreateInstance
   * Policy (DWORD) is the trust level, of 0 through 3.
 
   * 3 Protected Mode silently launches the broker as a medium integrity process.
-  * 2 Protected Mode prompts the user for permission to launch the process. If
-      permission is granted, the process is launched as a medium integrity process.
+  * 2 Protected Mode prompts the user for permission to launch the process. If permission is granted, the process is launched as a medium integrity process.
   * 1 Protected Mode silently launches the broker as a low integrity process.
   * 0 Protected Mode prevents the process from launching.
 sources:
@@ -1110,8 +1105,8 @@ sources:
 labels: [Browser]
 supported_os: [Windows]
 urls:
- - 'http://blogs.technet.com/b/juanand/archive/2010/10/29/internet-explorer-protected-mode-elevation-policy-and-administrative-templates.aspx'
- - 'https://msdn.microsoft.com/en-us/library/bb250462(VS.85).aspx'
+- 'http://blogs.technet.com/b/juanand/archive/2010/10/29/internet-explorer-protected-mode-elevation-policy-and-administrative-templates.aspx'
+- 'https://msdn.microsoft.com/en-us/library/bb250462(VS.85).aspx'
 ---
 name: InternetExplorerProtectedModeDisable
 doc: |
@@ -1185,7 +1180,7 @@ sources:
     - '%%users.appdata%%\Opera Software\Opera Stable\History'
     separator: '\'
   supported_os: [Windows]
-supported_os: [Windows,Darwin,Linux]
+supported_os: [Darwin, Linux, Windows]
 labels: [Browser]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Opera']
 ---

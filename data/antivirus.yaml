@@ -1,5 +1,5 @@
 # Anti-Virus artifacts.
-
+---
 name: EsetAVQuarantine
 doc: Eset Anti-Virus Quarantine (Infected) files.
 sources:
@@ -11,7 +11,7 @@ sources:
     paths: ['%%environ_allusersappdata%%\ESET\ESET NOD32 Antivirus\Logs\**']
     separator: '\'
   supported_os: [Windows]
-supported_os: [Darwin,Windows]
+supported_os: [Darwin, Windows]
 labels: [Antivirus]
 ---
 name: MicrosoftAVQuarantine

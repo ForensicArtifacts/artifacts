@@ -1,5 +1,5 @@
 # File system artifacts.
-
+---
 name: NTFSMFTFiles
 doc: The NTFS $MFT and $MFTMirr file system metadata files.
 sources:

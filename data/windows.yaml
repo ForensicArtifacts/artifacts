@@ -1,5 +1,5 @@
 # Windows specific artifacts.
-
+---
 name: WindowsActiveDesktop
 doc: Windows Active Desktop settings and components.
 sources:
@@ -157,13 +157,11 @@ doc: |
   Windows allows for custom application shims to be installed via the
   sdbinst.exe application. For example a mapping for 'notepad.exe':
 
-  Key: HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\
-      AppCompatFlags\Custom\notepad.exe
+  Key: HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Custom\notepad.exe
   Value: {00000000-1111-2222-3333-444444444444}.sdb = 0
 
   Key: AppCompatFlags\InstalledSDB\{00000000-1111-2222-3333-444444444444}
-  Value: DatabasePath =
-      "C:\Windows\AppPatch\Custom\{00000000-1111-2222-3333-444444444444}.sdb"
+  Value: DatabasePath = "C:\Windows\AppPatch\Custom\{00000000-1111-2222-3333-444444444444}.sdb"
 
   Windows application shims provide a way for the operating system to
   apply patches to executables before they are run, ultimately providing
@@ -1862,7 +1860,7 @@ sources:
     - 'WindowsSystemRegistryTransactionLogFiles'
     - 'WindowsUserRegistryFiles'
     - 'WindowsUserRegistryTransactionLogFiles'
-labels: [System,Users]
+labels: [System, Users]
 supported_os: [Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/RegistryFiles.html']
 ---
@@ -2959,7 +2957,7 @@ sources:
     names:
     - 'WindowsSystemRegistryFilesBackup'
     - 'WindowsSystemRegistryTransactionLogFilesBackup'
-labels: [System,Users]
+labels: [System, Users]
 supported_os: [Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/RegistryFiles.html']
 ---
@@ -3126,10 +3124,10 @@ doc: Uninstall Registry keys
 sources:
 - type: REGISTRY_KEY
   attributes:
-      keys:
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Uninstall\*\*'
-      - 'HKEY_LOCAL_MACHINE\Software\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*\*'
-      - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Uninstall\*\*'
+    keys:
+    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Uninstall\*\*'
+    - 'HKEY_LOCAL_MACHINE\Software\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*\*'
+    - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Uninstall\*\*'
 supported_os: [Windows]
 urls: ['https://msdn.microsoft.com/en-us/library/aa372105(v=vs.85).aspx']
 ---

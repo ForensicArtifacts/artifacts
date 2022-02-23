@@ -1,5 +1,5 @@
 # Artifacts common to Unix based OSs
-
+---
 name: AllShellConfigs
 doc: Common shell configuration files containing global, users & root settings.
 sources:

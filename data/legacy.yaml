@@ -3,7 +3,7 @@
 #
 # https://github.com/google/grr/blob/master/grr/config/artifacts.py
 # https://github.com/google/grr/blob/master/grr/parsers/windows_registry_parser.py
-
+---
 name: AllUsersAppDataEnvironmentVariable
 doc: The %ProgramData% environment variable.
 sources:
@@ -264,6 +264,6 @@ sources:
     - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/History'
     - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/History-journal'
   supported_os: [Linux]
-supported_os: [Windows,Darwin,Linux]
+supported_os: [Darwin, Linux, Windows]
 labels: [Browser]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome']

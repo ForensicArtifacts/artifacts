@@ -1,5 +1,5 @@
 # Linux specific /proc artifacts.
-
+---
 name: LinuxASLREnabled
 doc: Kernel ASLR state.
 sources:

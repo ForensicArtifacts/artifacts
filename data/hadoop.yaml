@@ -1,5 +1,5 @@
 # Hadoop artifacts
-
+---
 name: HadoopAppRoot
 doc: Location where Hadoop application files are stored
 sources:

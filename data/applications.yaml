@@ -1,5 +1,5 @@
 # Application artifacts.
-
+---
 name: MicrosoftOfficeAutosave
 aliases: [WindowsMsOfficeAutosave]
 doc: Automatically created Microsoft Office recovery files.
