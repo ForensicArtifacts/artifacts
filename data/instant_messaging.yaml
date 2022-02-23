@@ -8,9 +8,7 @@ sources:
     paths: ['%%users.homedir%%/Library/Application Support/Skype/*/chatsync/*']
   supported_os: [Darwin]
 supported_os: [Darwin]
-urls:
-- 'https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X'
-- 'https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#Skype'
+urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#Skype']
 ---
 name: SkypeDb
 doc: Main Skype database
@@ -20,9 +18,7 @@ sources:
     paths: ['%%users.homedir%%/Library/Application Support/Skype/*/Main.db']
   supported_os: [Darwin]
 supported_os: [Darwin]
-urls:
-- 'https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X'
-- 'https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#Skype'
+urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#Skype']
 ---
 name: SkypeMainDirectory
 doc: Skype Directory
@@ -41,9 +37,7 @@ sources:
     paths: ['%%users.homedir%%/Library/Preferences/com.skype.skype.plist']
   supported_os: [Darwin]
 supported_os: [Darwin]
-urls:
-- 'https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X'
-- 'https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#Skype'
+urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#Skype']
 ---
 name: SkypeUserProfile
 doc: Skype User profile
@@ -53,6 +47,4 @@ sources:
     paths: ['%%users.homedir%%/Library/Application Support/Skype/*/*']
   supported_os: [Darwin]
 supported_os: [Darwin]
-urls:
-- 'https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X'
-- 'https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#Skype'
+urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#Skype']
