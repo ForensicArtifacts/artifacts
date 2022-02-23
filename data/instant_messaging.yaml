@@ -1,5 +1,5 @@
 # Instant Messaging applications specific artifacts.
-
+---
 name: SkypeChatSync
 doc: Chat Sync Directory
 sources:

@@ -1,5 +1,5 @@
 # Cloud service artifacts.
-
+---
 name: CloudStorageClients
 doc: Multiple cloud storage client artifacts.
 sources:
@@ -10,7 +10,7 @@ sources:
     - 'GoogleDriveClient'
     - 'SkyDriveClient'
 labels: [Cloud Storage]
-supported_os: [Darwin,Linux,Windows]
+supported_os: [Darwin, Linux, Windows]
 ---
 name: DropboxClient
 doc: Dropbox cloud storage client artifacts.
@@ -28,8 +28,8 @@ sources:
     paths:
     - '%%users.homedir%%/.dropbox/*.db*'
     - '%%users.homedir%%/.dropbox/instance*/sync_history.db'
-  supported_os: [Darwin,Linux]
-supported_os: [Darwin,Linux,Windows]
+  supported_os: [Darwin, Linux]
+supported_os: [Darwin, Linux, Windows]
 labels: [Cloud Storage]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Dropbox']
 ---

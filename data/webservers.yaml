@@ -1,5 +1,5 @@
 # Webserver related artifacts.
-
+---
 name: NginxAccessLogs
 doc: Location where nginx access logs are stored
 sources:
@@ -13,7 +13,7 @@ sources:
     paths: ['%%environ_systemdrive%%\nginx\logs\*.log*']
     separator: '\'
   supported_os: [Windows]
-labels: [Software, Logs]
+labels: [Logs, Software]
 supported_os: [Linux, Windows]
 ---
 name: ApacheAccessLogs
@@ -34,10 +34,10 @@ sources:
     paths: ['%%environ_systemdrive%%\**6\logs\access.log*']
     separator: '\'
   supported_os: [Windows]
-labels: [Software, Logs]
+labels: [Logs, Software]
 supported_os: [Linux, Windows]
 ---
-name:  WordpressConfigFile
+name: WordpressConfigFile
 doc: WordPress configuration file
 sources:
 - type: FILE
@@ -61,5 +61,5 @@ sources:
     - '%%environ_systemdrive%%\inetpub\logs\LogFiles\*.log'
     - '%%environ_systemdrive%%\Resources\Directory\*\LogFiles\Web\W3SVC*\*.log'
     separator: '\'
-labels: [Software, Logs]
+labels: [Logs, Software]
 supported_os: [Windows]

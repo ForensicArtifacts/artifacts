@@ -1,5 +1,5 @@
 # WMI specific artifacts.
-
+---
 name: WMIAccountUsersDomain
 doc: |
   Fill out user AD domain information based on username.
@@ -51,8 +51,7 @@ name: WMIDrivers
 doc: Installed drivers via Windows Management Instrumentation (WMI).
 sources:
 - type: WMI
-  attributes: {query: 'SELECT DisplayName, Description, InstallDate, Name, PathName, Status,
-      State, ServiceType from Win32_SystemDriver'}
+  attributes: {query: 'SELECT DisplayName, Description, InstallDate, Name, PathName, Status, State, ServiceType from Win32_SystemDriver'}
 conditions: [os_major_version >= 6]
 labels: [Software]
 supported_os: [Windows]
@@ -84,8 +83,7 @@ name: WMIInstalledSoftware
 doc: Installed software via Windows Management Instrumentation (WMI).
 sources:
 - type: WMI
-  attributes: {query: 'SELECT Name, Vendor, Description, InstallDate, InstallDate2, Version
-      from Win32_Product'}
+  attributes: {query: 'SELECT Name, Vendor, Description, InstallDate, InstallDate2, Version from Win32_Product'}
 conditions: [os_major_version >= 6]
 labels: [Software]
 supported_os: [Windows]

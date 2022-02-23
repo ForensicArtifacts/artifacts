@@ -1,5 +1,5 @@
 # Artifacts from the Kaspersky Careto report.
-
+---
 name: KasperskyCaretoDarwinFiles
 doc: Darwin Careto IOCs.
 sources:

@@ -1,5 +1,5 @@
 # Kubernetes artifacts
-
+---
 name: KubernetesLogs
 doc: Log files that contain information about the Kubernetes installation of a node.
 sources:

@@ -1,5 +1,5 @@
 # Modules for interpreted languages.
-
+---
 name: PythonDistInfo
 doc: |
   Python module files distributed in the dist-info format of PEP-0376
