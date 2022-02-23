@@ -133,7 +133,9 @@ The artifact group source is a source that consists of a group of other artifact
 ```yaml
 - type: ARTIFACT_GROUP
   attributes:
-    names: [WindowsRunKeys, WindowsServices]
+    names:
+    - WindowsRunKeys
+    - WindowsServices
 ```
 
 Where `attributes` can contain the following values:
