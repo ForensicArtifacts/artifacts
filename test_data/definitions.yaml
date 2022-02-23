@@ -1,5 +1,5 @@
 # Test artifact definitions.
-
+---
 name: SecurityEventLogEvtxFile
 aliases: [SecurityEventLogEvtx]
 doc: Windows Security Event log for Vista or later systems.
@@ -17,8 +17,8 @@ sources:
 - type: REGISTRY_KEY
   attributes:
     keys:
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\ProfileList\ProfilesDirectory'
-      - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\ProfileList\AllUsersProfile'
+    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\ProfileList\ProfilesDirectory'
+    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\ProfileList\AllUsersProfile'
 provides: [environ_allusersprofile]
 supported_os: [Windows]
 urls: ['http://support.microsoft.com/kb//214653']
@@ -29,7 +29,7 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs:
-      - {key: 'HKEY_LOCAL_MACHINE\SYSTEM\Select', value: 'Current'}
+    - {key: 'HKEY_LOCAL_MACHINE\SYSTEM\Select', value: 'Current'}
 provides: [current_control_set]
 supported_os: [Windows]
 urls: ['https://code.google.com/p/winreg-kb/wiki/SystemKeys']
@@ -55,12 +55,12 @@ sources:
 - type: ARTIFACT_GROUP
   attributes:
     names:
-      - 'ApplicationEventLog'
-      - 'ApplicationEventLogEvtx'
-      - 'SecurityEventLog'
-      - 'SecurityEventLogEvtx'
-      - 'SystemEventLog'
-      - 'SystemEventLogEvtx'
+    - 'ApplicationEventLog'
+    - 'ApplicationEventLogEvtx'
+    - 'SecurityEventLog'
+    - 'SecurityEventLogEvtx'
+    - 'SystemEventLog'
+    - 'SystemEventLogEvtx'
 labels: [Logs]
 supported_os: [Windows]
 ---
