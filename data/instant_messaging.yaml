@@ -23,7 +23,7 @@ urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts
 name: SkypeMainDirectory
 doc: Skype Directory
 sources:
-- type: DIRECTORY
+- type: PATH
   attributes:
     paths: ['%%users.homedir%%/Library/Application Support/Skype/*']
   supported_os: [Darwin]

@@ -1,0 +1,52 @@
+# Platform independent user artifacts.
+---
+name: UserDownloads
+aliases: [WindowsUserDownloadsDirectory]
+doc: User downloaded files.
+sources:
+- type: PATH
+  attributes:
+    paths: ['%%users.homedir%%/Downloads/*']
+  supported_os: [Darwin, Linux]
+- type: PATH
+  attributes:
+    paths: ['%%users.userprofile%%\Downloads\*']
+    separator: '\'
+  supported_os: [Windows]
+labels: [Users]
+supported_os: [Darwin, Linux, Windows]
+---
+name: UserHomeDirectory
+aliases: [OSXUsers]
+doc: User home (or profile) directories.
+sources:
+- type: PATH
+  attributes: {paths: ['/Users/*']}
+labels: [Users]
+supported_os: [Darwin]
+provides: [users.username]
+urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#Users']
+---
+name: UserShellHistory
+aliases: [UsersShellHistory]
+doc: User shell history files.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/.bash_history'
+    - '%%users.homedir%%/.sh_history'
+    - '%%users.homedir%%/.zhistory'
+    - '%%users.homedir%%/.zsh_history'
+  supported_os: [Darwin, Linux]
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.localappdata%%\Packages\*\LocalState\rootfs\home\*\.bash_history'
+    - '%%users.localappdata%%\Packages\*\LocalState\rootfs\home\*\.sh_history'
+    - '%%users.localappdata%%\Packages\*\LocalState\rootfs\home\*\.zhistory'
+    - '%%users.localappdata%%\Packages\*\LocalState\rootfs\home\*\.zsh_history'
+    separator: '\'
+  supported_os: [Windows]
+labels: [History Files]
+supported_os: [Darwin, Linux, Windows]

@@ -19,7 +19,7 @@ sources:
   attributes:
     names:
     - 'RootUserShellHistory'
-    - 'UsersShellHistory'
+    - 'UserShellHistory'
 labels: [History Files]
 supported_os: [Linux, Darwin]
 ---
@@ -80,7 +80,7 @@ labels: [Configuration Files]
 supported_os: [Linux, Darwin]
 ---
 name: RootUserShellConfigs
-doc: Common unix root shell configuration files.
+doc: Common Unix root shell configuration files.
 sources:
 - type: FILE
   attributes:
@@ -100,7 +100,7 @@ labels: [Configuration Files]
 supported_os: [Linux, Darwin]
 ---
 name: RootUserShellHistory
-doc: Common unix root shell history files.
+doc: Common Unix root shell history files.
 sources:
 - type: FILE
   attributes:
@@ -234,27 +234,4 @@ sources:
     separator: '\'
   supported_os: [Windows]
 labels: [Configuration Files]
-supported_os: [Linux, Darwin, Windows]
----
-name: UsersShellHistory
-doc: Common Unix user shell history files.
-sources:
-- type: FILE
-  attributes:
-    paths:
-    - '%%users.homedir%%/.bash_history'
-    - '%%users.homedir%%/.sh_history'
-    - '%%users.homedir%%/.zhistory'
-    - '%%users.homedir%%/.zsh_history'
-  supported_os: [Linux, Darwin]
-- type: FILE
-  attributes:
-    paths:
-    - '%%users.localappdata%%\Packages\*\LocalState\rootfs\home\*\.bash_history'
-    - '%%users.localappdata%%\Packages\*\LocalState\rootfs\home\*\.sh_history'
-    - '%%users.localappdata%%\Packages\*\LocalState\rootfs\home\*\.zhistory'
-    - '%%users.localappdata%%\Packages\*\LocalState\rootfs\home\*\.zsh_history'
-    separator: '\'
-  supported_os: [Windows]
-labels: [History Files]
-supported_os: [Linux, Darwin, Windows]
+supported_os: [Darwin, Linux, Windows]
