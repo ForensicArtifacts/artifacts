@@ -2143,27 +2143,7 @@ urls:
 - 'https://blogs.technet.microsoft.com/platforms_lync_cloud/2017/05/05/disabling-windows-10-action-center-notifications/'
 ---
 name: WindowsBootConfigurationSettings
-doc: |
-  Windows Boot Configuration Settings.
-
-  These Windows Registry values are associated with the Windows Boot
-  Configuration Settings. Malware, like Cerber (ransomware), is known to
-  change the Windows Boot Configuration Settings and disable recovery options
-  like the ability to boot into safe mode.
-
-  'bcdedit.exe' can be used to modify the Windows Boot Configuration Settings.
-  The mappings of registry key to associated bcdedit commands is as
-  follows:
-  * 16000009: 'bcdedit.exe /set {default} recoveryenabled <yes|no>'
-    * 00 gets stored for 'no', 01 gets stored for 'yes'
-  * 250000e0: 'bcdedit.exe /set {default} bootstatuspolicy ignoreallfailures'
-    * 01 00 00 00 00 00 00 00 gets stored.  Otherwise, the key is not present
-
-  The wildcard component of the Windows Registry key is the identifier
-  associated with the Windows Boot Loader instance on a given machine. This
-  identifier can be determined by running 'bcdedit.exe /v' and looking at the
-  'identifier' under the Windows Boot Loader section (on Windows 7 and
-  Windows 10, '{default}' [used by Cerber] points to this instance).
+doc: Windows Boot Configuration Settings
 sources:
 - type: REGISTRY_VALUE
   attributes:
@@ -2172,9 +2152,7 @@ sources:
     - {key: 'HKEY_LOCAL_MACHINE\BCD00000000\Objects\*\Elements\250000e0', value: 'Element'}
 labels: [System]
 supported_os: [Windows]
-urls:
-- 'https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/bcd-system-store-settings-for-uefi'
-- 'https://blog.talosintelligence.com/2019/04/sodinokibi-ransomware-exploits-weblogic.html'
+urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows_Boot_Configuration_Data']
 ---
 name: WindowsDisallowedSystemCertificates
 doc: |
