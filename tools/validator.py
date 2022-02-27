@@ -470,7 +470,14 @@ class ArtifactDefinitionsValidator(object):
                 artifact_definition.supported_os))
 
         for source in artifact_definition.sources:
+          if source.type_indicator == definitions.TYPE_INDICATOR_DIRECTORY:
+            logging.warning((
+                'Use of deprecated source type: DIRECTORY in artifact '
+                'definition: {0:s} in file: {1:s}').format(
+                    artifact_definition.name, filename))
+
           if source.type_indicator in (
+              definitions.TYPE_INDICATOR_DIRECTORY,
               definitions.TYPE_INDICATOR_FILE, definitions.TYPE_INDICATOR_PATH):
 
             if (definitions.SUPPORTED_OS_DARWIN in source.supported_os or (

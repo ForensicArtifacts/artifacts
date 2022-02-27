@@ -3182,16 +3182,6 @@ labels: [Users]
 supported_os: [Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/JumpLists.html']
 ---
-name: WindowsUserDownloadsDirectory
-doc: User downloads directory
-sources:
-- type: DIRECTORY
-  attributes:
-    paths: ['%%users.userprofile%%\Downloads\*']
-    separator: '\'
-labels: [Users]
-supported_os: [Windows]
----
 name: WindowsUserJumpLists
 doc: Windows user Jump Lists.
 sources:

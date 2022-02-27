@@ -53,18 +53,6 @@ provides: [os_release, os_major_version, os_minor_version]
 labels: [Software]
 supported_os: [Linux]
 ---
-name: OSXUsers
-doc: Users directories in /Users
-sources:
-- type: DIRECTORY
-  attributes: {paths: ['/Users/*']}
-labels: [Users]
-supported_os: [Darwin]
-provides: [users.username]
-urls:
-- 'https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X'
-- 'https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#Users'
----
 name: ProgramFiles
 doc: The %ProgramFiles% environment variable.
 sources:
