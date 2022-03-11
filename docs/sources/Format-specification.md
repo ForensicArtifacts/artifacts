@@ -326,8 +326,9 @@ Supported Windows evironment variables are:
 
 Variable | Description
 --- | ---
-%%environ_allusersappdata%% | The %AllUsersAppData% environment variable, which should fallback to the %ProgramData% environment variable.
-%%environ_allusersprofile%% |
+%%environ_allusersappdata%% | The %AllUsersAppData% environment variable, which should fallback to the %ProgramData% environment variable if not available.
+%%environ_allusersprofile%% | The %AllUsersProfile% environment variable.
+%%environ_programdata%% | The %ProgramData% environment variable, which should fallback to the %AllUsersAppData% environment variable or '%AllUsersProfile%\\Application Data' if not available.
 %%environ_programfiles%% | The %ProgramFiles% environment variable.
 %%environ_programfilesx86%% | The %ProgramFiles(x86)% environment variable.
 %%environ_systemdrive%% | The %SystemDrive% environment variable, for example 'C:'
