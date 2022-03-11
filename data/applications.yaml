@@ -12,7 +12,6 @@ sources:
     - '%%users.appdata%%\Microsoft\Powerpoint\**'
     - '%%users.appdata%%\Microsoft\Publisher\**'
     separator: '\'
-labels: [Users]
 supported_os: [Windows]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows#Microsoft_Office_Autosave']
 ---
@@ -44,7 +43,6 @@ sources:
     - '%%users.localappdata%%\Microsoft\Outlook\*.pab'
     - '%%users.userprofile%%\Documents\Outlook Files\*.pab'
     separator: '\'
-labels: [Users, Mail]
 supported_os: [Windows]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Personal_Folder_File_(PAB,_PST,_OST)']
 ---
@@ -57,7 +55,6 @@ sources:
     - '%%users.localappdata%%\Microsoft\Outlook\*.pst'
     - '%%users.userprofile%%\Documents\Outlook Files\*.pst'
     separator: '\'
-labels: [Users, Mail]
 supported_os: [Windows]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Personal_Folder_File_(PAB,_PST,_OST)']
 ---
@@ -70,7 +67,6 @@ sources:
     - '%%users.localappdata%%\Microsoft\Outlook\*.ost'
     - '%%users.userprofile%%\Documents\Outlook Files\*.ost'
     separator: '\'
-labels: [Users, Mail]
 supported_os: [Windows]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Personal_Folder_File_(PAB,_PST,_OST)']
 ---
@@ -118,5 +114,4 @@ sources:
     - '%%environ_programfiles%%\Microsoft SQL Server\*\MSSQL\LOG\ERRORLOG*'
     - '%%environ_programfilesx86%%\Microsoft SQL Server\*\MSSQL\LOG\ERRORLOG*'
     separator: '\'
-labels: [Software, Logs]
 supported_os: [Windows]

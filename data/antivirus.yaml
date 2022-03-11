@@ -12,7 +12,6 @@ sources:
     separator: '\'
   supported_os: [Windows]
 supported_os: [Darwin, Windows]
-labels: [Antivirus]
 ---
 name: MicrosoftAVQuarantine
 doc: Microsoft Anti-Virus Quarantine (Infected) files.
@@ -24,7 +23,6 @@ sources:
     - '%%environ_allusersappdata%%\Microsoft\Windows Defender\Quarantine\**'
     separator: '\'
 supported_os: [Windows]
-labels: [Antivirus]
 ---
 name: MicrosoftAVLogs
 doc: Microsoft Anti-Virus log files.
@@ -42,7 +40,6 @@ sources:
     - '%%users.temp%%\MpCmdRun.log'
     separator: '\'
 supported_os: [Windows]
-labels: [Antivirus, Logs]
 ---
 name: WindowsDefenderScanDetectionHistoryFiles
 doc: Microsoft Windows Defender scan detection history files.
@@ -52,7 +49,6 @@ sources:
     paths: ['%%environ_allusersappdata%%\Microsoft\Windows Defender\Scans\History\Service\DetectionHistory\*\*-*-*-*']
     separator: '\'
 supported_os: [Windows]
-labels: [Antivirus, Logs]
 ---
 name: WindowsDefenderExclusions
 doc: |
@@ -93,7 +89,6 @@ sources:
     separator: '\'
   supported_os: [Windows]
 supported_os: [Darwin, Windows]
-labels: [Antivirus, Logs]
 ---
 name: SophosAVQuarantine
 doc: Sophos Anti-Virus Quarantine (Infected) files.
@@ -107,7 +102,6 @@ sources:
     separator: '\'
   supported_os: [Windows]
 supported_os: [Darwin, Windows]
-labels: [Antivirus]
 ---
 name: SymantecAVLogs
 doc: Symantec Anti-Virus Log Files.
@@ -122,7 +116,6 @@ sources:
     separator: '\'
   supported_os: [Windows]
 supported_os: [Windows]
-labels: [Antivirus, Logs]
 ---
 name: SymantecAVQuarantine
 doc: Symantec Anti-Virus quarantine (infected) and cloud submission files.
@@ -137,4 +130,3 @@ sources:
     separator: '\'
   supported_os: [Windows]
 supported_os: [Windows]
-labels: [Antivirus, Logs]

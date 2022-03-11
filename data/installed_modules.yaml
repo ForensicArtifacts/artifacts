@@ -23,7 +23,6 @@ sources:
     - '/usr/local/lib64/python*/site-packages/*.dist-info/*'
   supported_os: [Linux]
 supported_os: [Linux]
-labels: [Software]
 urls: ['https://www.python.org/dev/peps/pep-0376/']
 ---
 name: PythonEggInfo
@@ -89,7 +88,6 @@ sources:
     - '/usr/share/pyshared/*.egg-info/*'
   supported_os: [Linux]
 supported_os: [Linux]
-labels: [Software]
 urls:
 - 'https://pythonhosted.org/setuptools/formats.html'
 - 'https://www.python.org/dev/peps/pep-0370/'
@@ -103,7 +101,6 @@ sources:
     - PythonDistInfo
     - PythonEggInfo
     - PythonWheelInfo
-labels: [Software]
 ---
 name: PythonWheelInfo
 doc: |
@@ -121,7 +118,6 @@ sources:
     - '%%users.homedir%%/.cache/pip/wheels/*.whl'
   supported_os: [Linux]
 supported_os: [Linux]
-labels: [Software]
 urls:
 - 'https://wheel.readthedocs.org/en/latest/'
 - 'http://pip.readthedocs.org/en/stable/reference/pip_install/'

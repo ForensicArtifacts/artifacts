@@ -9,7 +9,6 @@ sources:
     - 'GlobalShellConfigs'
     - 'RootUserShellConfigs'
     - 'UsersShellConfigs'
-labels: [Configuration Files]
 supported_os: [Linux, Darwin]
 ---
 name: AllUsersShellHistory
@@ -20,7 +19,6 @@ sources:
     names:
     - 'RootUserShellHistory'
     - 'UserShellHistory'
-labels: [History Files]
 supported_os: [Linux, Darwin]
 ---
 name: GlobalShellConfigs
@@ -76,7 +74,6 @@ sources:
     - '/etc/zsh/zshenv'
     - '/etc/zsh/zshrc'
   supported_os: [Linux]
-labels: [Configuration Files]
 supported_os: [Linux, Darwin]
 ---
 name: RootUserShellConfigs
@@ -96,7 +93,6 @@ sources:
     - '/root/.zlogin'
     - '/root/.zlogout'
     - '/root/.zprofile'
-labels: [Configuration Files]
 supported_os: [Linux, Darwin]
 ---
 name: RootUserShellHistory
@@ -109,7 +105,6 @@ sources:
     - '/root/.sh_history'
     - '/root/.zhistory'
     - '/root/.zsh_history'
-labels: [History Files]
 supported_os: [Linux, Darwin]
 ---
 name: UnixGroups
@@ -124,7 +119,6 @@ sources:
 - type: FILE
   attributes: {paths: ['/etc/group']}
   supported_os: [Linux]
-labels: [Authentication]
 supported_os: [Linux, Darwin]
 ---
 name: UnixHostsFile
@@ -139,7 +133,6 @@ sources:
 - type: FILE
   attributes: {paths: ['/etc/hosts']}
   supported_os: [Linux]
-labels: [Configuration Files]
 supported_os: [Linux, Darwin]
 ---
 name: UnixPasswd
@@ -154,7 +147,6 @@ sources:
 - type: FILE
   attributes: {paths: ['/etc/passwd']}
   supported_os: [Linux]
-labels: [Authentication]
 supported_os: [Linux, Darwin]
 ---
 name: UnixShadowFile
@@ -169,7 +161,6 @@ sources:
 - type: FILE
   attributes: {paths: ['/etc/shadow']}
   supported_os: [Linux]
-labels: [Authentication]
 supported_os: [Linux, Darwin]
 ---
 name: UnixSudoersConfiguration
@@ -184,7 +175,6 @@ sources:
 - type: FILE
   attributes: {paths: ['/etc/sudoers']}
   supported_os: [Linux]
-labels: [Authentication, Configuration Files]
 supported_os: [Linux, Darwin]
 ---
 name: UnixUsersGroups
@@ -196,7 +186,6 @@ sources:
     - 'UnixGroups'
     - 'UnixPasswd'
     - 'UnixShadowFile'
-labels: [Authentication]
 supported_os: [Linux, Darwin]
 ---
 name: UsersShellConfigs
@@ -233,5 +222,4 @@ sources:
     - '%%users.localappdata%%\Packages\*\LocalState\rootfs\home\*\.zprofile'
     separator: '\'
   supported_os: [Windows]
-labels: [Configuration Files]
 supported_os: [Darwin, Linux, Windows]

@@ -13,7 +13,6 @@ sources:
     paths: ['%%environ_systemdrive%%\nginx\logs\*.log*']
     separator: '\'
   supported_os: [Windows]
-labels: [Logs, Software]
 supported_os: [Linux, Windows]
 ---
 name: ApacheAccessLogs
@@ -34,7 +33,6 @@ sources:
     paths: ['%%environ_systemdrive%%\**6\logs\access.log*']
     separator: '\'
   supported_os: [Windows]
-labels: [Logs, Software]
 supported_os: [Linux, Windows]
 ---
 name: WordpressConfigFile
@@ -48,7 +46,6 @@ sources:
     - '/var/www/**/wp-config.php'
     - '/var/www/wp-config.php'
     - '/wp/wp-config.php'
-labels: [Configuration Files]
 supported_os: [Linux, Darwin]
 ---
 name: MicrosoftIISLogs
@@ -61,5 +58,4 @@ sources:
     - '%%environ_systemdrive%%\inetpub\logs\LogFiles\*.log'
     - '%%environ_systemdrive%%\Resources\Directory\*\LogFiles\Web\W3SVC*\*.log'
     separator: '\'
-labels: [Logs, Software]
 supported_os: [Windows]

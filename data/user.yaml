@@ -13,7 +13,6 @@ sources:
     paths: ['%%users.userprofile%%\Downloads\*']
     separator: '\'
   supported_os: [Windows]
-labels: [Users]
 supported_os: [Darwin, Linux, Windows]
 ---
 name: UserHomeDirectory
@@ -22,7 +21,6 @@ doc: User home (or profile) directories.
 sources:
 - type: PATH
   attributes: {paths: ['/Users/*']}
-labels: [Users]
 supported_os: [Darwin]
 provides: [users.username]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#Users']
@@ -48,5 +46,4 @@ sources:
     - '%%users.localappdata%%\Packages\*\LocalState\rootfs\home\*\.zsh_history'
     separator: '\'
   supported_os: [Windows]
-labels: [History Files]
 supported_os: [Darwin, Linux, Windows]

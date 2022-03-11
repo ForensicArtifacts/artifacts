@@ -9,7 +9,6 @@ sources:
     - 'DropboxClient'
     - 'GoogleDriveClient'
     - 'SkyDriveClient'
-labels: [Cloud Storage]
 supported_os: [Darwin, Linux, Windows]
 ---
 name: DropboxClient
@@ -30,7 +29,6 @@ sources:
     - '%%users.homedir%%/.dropbox/instance*/sync_history.db'
   supported_os: [Darwin, Linux]
 supported_os: [Darwin, Linux, Windows]
-labels: [Cloud Storage]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Dropbox']
 ---
 name: GoogleDriveClient
@@ -59,7 +57,6 @@ sources:
     - '%%users.homedir%%/Library/Application Support/Google/Drive/user_default/sync_config.log*'
   supported_os: [Darwin]
 supported_os: [Darwin, Windows]
-labels: [Cloud Storage]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Google_Drive']
 ---
 name: SkyDriveClient
@@ -79,5 +76,4 @@ sources:
     separator: '\'
   supported_os: [Windows]
 supported_os: [Windows]
-labels: [Cloud Storage]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=One_Drive#Sky_Drive_client']

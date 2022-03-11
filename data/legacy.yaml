@@ -50,7 +50,6 @@ sources:
     - '/etc/redhat-release'
     - '/etc/system-release'
 provides: [os_release, os_major_version, os_minor_version]
-labels: [Software]
 supported_os: [Linux]
 ---
 name: ProgramFiles
@@ -253,5 +252,4 @@ sources:
     - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/History-journal'
   supported_os: [Linux]
 supported_os: [Darwin, Linux, Windows]
-labels: [Browser]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome']
