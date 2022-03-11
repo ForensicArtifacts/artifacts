@@ -19,7 +19,6 @@ sources:
   attributes:
     paths: ['%%users.localappdata%%\ConnectedDevicesPlatform\L.%%users.username%%\ActivitiesCache.db']
     separator: '\'
-labels: [Users]
 supported_os: [Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/ActivitiesCacheDatabase.html']
 ---
@@ -139,7 +138,6 @@ sources:
     - '%%environ_windir%%\AppPatch\Custom\Custom64\*'
     - '%%environ_windir%%\AppPatch\CustomSDB\*'
     separator: '\'
-labels: [Users]
 supported_os: [Windows]
 urls:
 - 'https://attack.mitre.org/techniques/T1138/'
@@ -191,7 +189,6 @@ sources:
     names:
     - 'WindowsApplicationCompatibilityInstalledShimDatabases'
     - 'WindowsApplicationCompatibilityShimDatabaseMappings'
-labels: [System]
 supported_os: [Windows]
 ---
 name: WinAppXRT
@@ -289,7 +286,6 @@ sources:
     - '\EFI\Microsoft\Recovery\BCD.LOG1'
     - '\EFI\Microsoft\Recovery\BCD.LOG2'
     separator: '\'
-labels: [System]
 supported_os: [Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/RegistryFiles.html']
 ---
@@ -586,7 +582,6 @@ sources:
     - '%%users.localappdata%%\Microsoft\Windows\WER\**'
     - '%%users.localappdata%%\Temp\*.dmp'
     separator: '\'
-labels: [Execution]
 supported_os: [Windows]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows#Crash_and_minidumps']
 ---
@@ -631,7 +626,6 @@ sources:
     - '%%environ_systemroot%%\SysWOW64\config\systemprofile\AppData\LocalLow\Microsoft\CryptnetUrlCache\MetaData\*'
     - '%%users.userprofile%%\AppData\LocalLow\Microsoft\CryptnetUrlCache\MetaData\*'
     separator: '\'
-labels: [System, Network]
 conditions: [os_major_version >= 6]
 supported_os: [Windows]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows#Cryptnet_URL_Cache']
@@ -651,7 +645,6 @@ sources:
     - '%%environ_systemroot%%\SysWOW64\config\systemprofile\AppData\LocalLow\Microsoft\CryptnetUrlCache\Content\*'
     - '%%users.userprofile%%\AppData\LocalLow\Microsoft\CryptnetUrlCache\Content\*'
     separator: '\'
-labels: [System, Network]
 conditions: [os_major_version >= 6]
 supported_os: [Windows]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows#Cryptnet_URL_Cache']
@@ -688,7 +681,6 @@ sources:
     - {key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Dnscache\Parameters', value: 'NameServer'}
     - {key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\Tcpip\Parameters\Interfaces\*', value: 'DhcpNameServer'}
     - {key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\Tcpip\Parameters\Interfaces\*', value: 'DhcpServer'}
-labels: [System, Network]
 supported_os: [Windows]
 urls: ['https://technet.microsoft.com/en-us/library/dd197418(v=ws.10).aspx']
 ---
@@ -946,7 +938,6 @@ sources:
     - '%%environ_systemroot%%\System32\config\*.evt'
     - '%%environ_systemroot%%\System32\winevt\Logs\*.evtx'
     separator: '\'
-labels: [Logs]
 supported_os: [Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/EventLog.html']
 ---
@@ -958,7 +949,6 @@ sources:
     paths: ['%%environ_systemroot%%\System32\config\AppEvent.evt']
     separator: '\'
 conditions: [os_major_version < 6]
-labels: [Logs]
 supported_os: [Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/EventLog.html']
 ---
@@ -970,7 +960,6 @@ sources:
     paths: ['%%environ_systemroot%%\System32\config\SecEvent.evt']
     separator: '\'
 conditions: [os_major_version < 6]
-labels: [Logs]
 supported_os: [Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/EventLog.html']
 ---
@@ -982,7 +971,6 @@ sources:
     paths: ['%%environ_systemroot%%\System32\config\SysEvent.evt']
     separator: '\'
 conditions: [os_major_version < 6]
-labels: [Logs]
 supported_os: [Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/EventLog.html']
 ---
@@ -994,7 +982,6 @@ sources:
     paths: ['%%environ_systemroot%%\System32\winevt\Logs\Application.evtx']
     separator: '\'
 conditions: [os_major_version >= 6]
-labels: [Logs]
 supported_os: [Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/EventLog.html']
 ---
@@ -1006,7 +993,6 @@ sources:
     paths: ['%%environ_systemroot%%\System32\winevt\Logs\Security.evtx']
     separator: '\'
 conditions: [os_major_version >= 6]
-labels: [Logs]
 supported_os: [Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/EventLog.html']
 ---
@@ -1017,7 +1003,6 @@ sources:
   attributes:
     paths: ['%%environ_systemroot%%\System32\winevt\Logs\Microsoft-Windows-Sysmon%4Operational.evtx']
     separator: '\'
-labels: [Logs]
 supported_os: [Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/EventLog.html']
 ---
@@ -1029,7 +1014,6 @@ sources:
     paths: ['%%environ_systemroot%%\System32\winevt\Logs\System.evtx']
     separator: '\'
 conditions: [os_major_version >= 6]
-labels: [Logs]
 supported_os: [Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/EventLog.html']
 ---
@@ -1041,7 +1025,6 @@ sources:
     paths: ['%%environ_systemroot%%\System32\winevt\Logs\Microsoft-Windows-TerminalServices-LocalSessionManager%4Operational.evtx']
     separator: '\'
 conditions: [os_major_version >= 6]
-labels: [Logs]
 supported_os: [Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/EventLog.html']
 ---
@@ -1272,7 +1255,6 @@ sources:
   attributes:
     paths: ['%%environ_systemroot%%\System32\logfiles\firewall\pfirewall.log']
     separator: '\'
-labels: [System]
 supported_os: [Windows]
 urls: ['https://docs.microsoft.com/en-us/windows/access-protection/windows-firewall/configure-the-windows-firewall-log']
 ---
@@ -1283,7 +1265,6 @@ sources:
   attributes:
     args: ["advfirewall", "monitor", "show", "firewall", "rule", "name=all"]
     cmd: netsh.exe
-labels: [System]
 supported_os: [Windows]
 ---
 name: WindowsFirewallRules
@@ -1293,7 +1274,6 @@ sources:
   attributes:
     args: ["advfirewall", "firewall", "show", "rule", "name=all"]
     cmd: netsh.exe
-labels: [System]
 supported_os: [Windows]
 ---
 name: WindowsGroupPolicyScripts
@@ -1572,7 +1552,6 @@ sources:
     - WindowsPersistenceRegistryKeys
     - WindowsPowerShellDefaultProfiles
     - WindowsServices
-labels: [Software]
 supported_os: [Windows]
 ---
 name: WindowsPersistenceRegistryKeys
@@ -1647,7 +1626,6 @@ sources:
     - WindowsWinlogonVMApplet
     - WinSock2LayeredServiceProviders
     - WinSock2NamespaceProviders
-labels: [Software]
 supported_os: [Windows]
 ---
 name: WindowsPLAPProviders
@@ -1669,7 +1647,6 @@ sources:
     keys:
     - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\DisallowRun\*'
     - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer\DisallowRun\*'
-labels: [System]
 supported_os: [Windows]
 urls:
 - 'https://support.microsoft.com/en-us/kb/323525'
@@ -1749,7 +1726,6 @@ sources:
   attributes:
     paths: ['%%environ_systemroot%%\Prefetch\*.pf']
     separator: '\'
-labels: [System]
 supported_os: [Windows]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Prefetch']
 ---
@@ -1801,7 +1777,6 @@ sources:
   attributes:
     key_value_pairs:
     - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Internet Settings', value: 'AutoConfigURL'}
-labels: [System, Network]
 supported_os: [Windows]
 urls: ['https://blogs.msdn.microsoft.com/askie/2015/07/17/how-can-i-configure-proxy-autoconfigurl-setting-using-group-policy-preference-gpp/']
 ---
@@ -1823,7 +1798,6 @@ sources:
     - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Internet Settings', value: 'ProxyServer'}
     - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\NlaSvc\Parameters\Internet\ManualProxies', value: 'ProxyServer'}
     - {key: 'HKEY_USERS\%%users.sid%%\System\CurrentControlSet\Services\NlaSvc\Parameters\Internet\ManualProxies', value: 'ProxyServer'}
-labels: [System, Network]
 supported_os: [Windows]
 urls: ['https://blog.malwarebytes.com/detections/pum-optional-proxyhijacker/']
 ---
@@ -1847,7 +1821,6 @@ sources:
     - '\$Recycle.Bin\**'
     - '\Recycler\**'
     separator: '\'
-labels: [Users]
 supported_os: [Windows]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows#Recycle_Bin']
 ---
@@ -1860,7 +1833,6 @@ sources:
     - '\$Recycle.Bin\*\$I*'
     - '\Recycler\*\INFO2'
     separator: '\'
-labels: [Users]
 supported_os: [Windows]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows#Recycle_Bin']
 ---
@@ -1883,7 +1855,6 @@ sources:
     - 'WindowsSystemRegistryTransactionLogFiles'
     - 'WindowsUserRegistryFiles'
     - 'WindowsUserRegistryTransactionLogFiles'
-labels: [System, Users]
 supported_os: [Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/RegistryFiles.html']
 ---
@@ -1896,7 +1867,6 @@ doc: |
 sources:
 - type: REGISTRY_VALUE
   attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\ProfileList\*', value: 'ProfileImagePath'}]}
-labels: [Users]
 provides: [users.sid, users.userprofile, users.homedir, users.username]
 supported_os: [Windows]
 urls: ['http://msdn.microsoft.com/en-us/library/windows/desktop/bb776892(v=vs.85).aspx']
@@ -1982,7 +1952,6 @@ sources:
     - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunOnce\*'
     - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunOnce\Setup\*'
     - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\RunOnceEx\*'
-labels: [Software]
 supported_os: [Windows]
 urls:
 - 'https://msdn.microsoft.com/en-us/library/windows/desktop/aa376977%28v=vs.85%29.aspx'
@@ -2043,7 +2012,6 @@ sources:
   attributes:
     paths: ['%%environ_allusersappdata%%\Microsoft\Search\Data\Applications\Windows\Windows.edb']
     separator: '\'
-labels: [Software]
 supported_os: [Windows]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows_Desktop_Search']
 ---
@@ -2102,7 +2070,6 @@ sources:
 - type: REGISTRY_VALUE
   attributes:
     key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control', value: 'ServiceControlManagerExtension'}]
-labels: [Software]
 supported_os: [Windows]
 urls:
 - 'http://forum.sysinternals.com/autoruns-and-windows-7_topic19770.html'
@@ -2116,7 +2083,6 @@ sources:
 - type: REGISTRY_KEY
   attributes:
     keys: ['HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\*']
-labels: [Software]
 supported_os: [Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/ServicesAndDrivers.html']
 ---
@@ -2135,7 +2101,6 @@ sources:
     - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Action Center\Checks\{e8433b72-5842-4d43-8645-bc2c35960837}.check.*', value: 'CheckSetting'}
     - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Notifications\Settings\Windows.SystemToast.SecurityAndMaintenance', value: 'Enabled'}
     - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Notifications\Settings\Windows.SystemToast.SecurityAndMaintenance', value: 'Enabled'}
-labels: [System]
 supported_os: [Windows]
 urls:
 - 'https://winaero.com/blog/registry-tweak-to-disable-action-center-notifications-in-windows-7/'
@@ -2150,7 +2115,6 @@ sources:
     key_value_pairs:
     - {key: 'HKEY_LOCAL_MACHINE\BCD00000000\Objects\*\Elements\16000009', value: 'Element'}
     - {key: 'HKEY_LOCAL_MACHINE\BCD00000000\Objects\*\Elements\250000e0', value: 'Element'}
-labels: [System]
 supported_os: [Windows]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows_Boot_Configuration_Data']
 ---
@@ -2169,7 +2133,6 @@ sources:
     - 'HKEY_USERS\%%users.sid%%\Software\Policies\Microsoft\SystemCertificates\Disallowed\Certificates\*'
     - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Policies\Microsoft\SystemCertificates\Disallowed\Certificates\*'
     - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Policies\Microsoft\SystemCertificates\Disallowed\Certificates\*'
-labels: [System]
 supported_os: [Windows]
 urls:
 - 'https://blog.malwarebytes.com/detections/pum-optional-misplacedcertificate/'
@@ -2224,7 +2187,6 @@ sources:
     - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'TaskbarNoNotification'}
     - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'TaskbarNoNotification'}
     - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'TaskbarNoNotification'}
-labels: [System]
 supported_os: [Windows]
 urls:
 - 'https://www.sdkhere.com/2016/02/analysis-of-malware-using-wmi-query.html'
@@ -2263,7 +2225,6 @@ sources:
     - {key: 'HKEY_USERS\%%users.sid%%\Software\Policies\Microsoft\Windows\System', value: 'DisableCMD'}
     - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Policies\Microsoft\Windows\System', value: 'DisableCMD'}
     - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Policies\Microsoft\Windows\System', value: 'DisableCMD'}
-labels: [System]
 supported_os: [Windows]
 urls:
 - 'https://www.sdkhere.com/2016/02/analysis-of-malware-using-wmi-query.html'
@@ -2292,7 +2253,6 @@ sources:
     - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile\AuthorizedApplications\List\*'
     - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile\AuthorizedApplications\List\*'
     - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\AuthorizedApplications\List\*'
-labels: [System]
 supported_os: [Windows]
 urls:
 - 'https://threatvector.cylance.com/en_us/home/threat-spotlight-eyepyramid-malware.html'
@@ -2316,7 +2276,6 @@ sources:
     - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile\GloballyOpenPorts\List\*'
     - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile\GloballyOpenPorts\List\*'
     - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\GloballyOpenPorts\List\*'
-labels: [System]
 supported_os: [Windows]
 urls:
 - 'https://qaforce.wordpress.com/2009/10/06/windows-firewall-registry-keys/'
@@ -2348,7 +2307,6 @@ sources:
     - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile', value: 'DoNotAllowExceptions'}
     - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile', value: 'DefaultInboundAction'}
     - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile', value: 'DefaultOutboundAction'}
-labels: [System]
 supported_os: [Windows]
 urls:
 - 'https://docs.microsoft.com/en-us/windows-hardware/customize/desktop/unattend/networking-mpssvc-svc-privateprofile-enablefirewall'
@@ -2384,7 +2342,6 @@ sources:
     - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Security Center', value: 'UpdatesOverride'}
     - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Security Center', value: 'UacDisableNotify'}
     - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Security Center', value: 'UacDisableNotify'}
-labels: [System]
 supported_os: [Windows]
 urls:
 - 'https://blog.talosintelligence.com/2019/05/threat-roundup-0503-0510.html'
@@ -2411,7 +2368,6 @@ sources:
     - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows NT\CurrentVersion\SystemRestore', value: 'DisableSR'}
     - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\Installer', value: 'LimitSystemRestoreCheckpointing'}
     - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Policies\Microsoft\Windows\Installer', value: 'LimitSystemRestoreCheckpointing'}
-labels: [System]
 supported_os: [Windows]
 urls:
 - 'https://blog.talosintelligence.com/2019/05/threat-roundup-0503-0510.html'
@@ -2432,7 +2388,6 @@ sources:
     - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\System', value: 'EnableLUA'}
     - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System', value: 'ConsentPromptBehaviorAdmin'}
     - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\System', value: 'ConsentPromptBehaviorAdmin'}
-labels: [System]
 supported_os: [Windows]
 urls:
 - 'https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-gpsb/958053ae-5397-4f96-977f-b7700ee461ec'
@@ -2454,7 +2409,6 @@ sources:
     - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Policies\Microsoft\Windows\WindowsUpdate', value: 'DisableOSUpgrade'}
     - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\WindowsUpdate\OSUpgrade', value: 'ReservationsAllowed'}
     - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Policies\Microsoft\Windows\WindowsUpdate\OSUpgrade', value: 'ReservationsAllowed'}
-labels: [System]
 supported_os: [Windows]
 urls:
 - 'https://www.ghacks.net/2016/01/08/disableosupgrade-prevents-the-upgrade-to-windows-10/'
@@ -2468,7 +2422,6 @@ sources:
     key_value_pairs:
     - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\WindowsUpdate\AU', value: 'NoAutoUpdate'}
     - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Policies\Microsoft\Windows\WindowsUpdate\AU', value: 'NoAutoUpdate'}
-labels: [System]
 supported_os: [Windows]
 urls:
 - 'https://docs.microsoft.com/en-us/windows/deployment/update/waas-wu-settings'
@@ -2481,7 +2434,6 @@ sources:
   attributes:
     keys:
     - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Font Drivers\*'
-labels: [Software]
 supported_os: [Windows]
 urls:
 - 'https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2'
@@ -2776,7 +2728,6 @@ sources:
     - '%%environ_systemroot%%\inf\setupapi.offline.log'
     separator: '\'
   conditions: [os_major_version >= 6]
-labels: [Logs]
 supported_os: [Windows]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Setup_API_Logs']
 ---
@@ -2882,7 +2833,6 @@ sources:
     - '%%environ_systemroot%%\Prefetch\Ag*.db'
     - '%%environ_systemroot%%\Prefetch\Ag*.db.trx'
     separator: '\'
-labels: [System]
 supported_os: [Windows]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=SuperFetch']
 ---
@@ -2920,7 +2870,6 @@ sources:
     - '%%environ_systemroot%%\System32\config\RegBack\SOFTWARE'
     - '%%environ_systemroot%%\System32\config\RegBack\SYSTEM'
     separator: '\'
-labels: [System]
 supported_os: [Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/RegistryFiles.html']
 ---
@@ -2946,7 +2895,6 @@ sources:
     - '%%environ_systemroot%%\System32\config\RegBack\SYSTEM.LOG1'
     - '%%environ_systemroot%%\System32\config\RegBack\SYSTEM.LOG2'
     separator: '\'
-labels: [System]
 supported_os: [Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/RegistryFiles.html']
 ---
@@ -2958,7 +2906,6 @@ sources:
     names:
     - 'WindowsSystemRegistryFilesBackup'
     - 'WindowsSystemRegistryTransactionLogFilesBackup'
-labels: [System, Users]
 supported_os: [Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/RegistryFiles.html']
 ---
@@ -2974,7 +2921,6 @@ sources:
     - '%%environ_systemroot%%\System32\config\SYSTEM'
     - '\System Volume Information\Syscache.hve'
     separator: '\'
-labels: [System]
 supported_os: [Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/RegistryFiles.html']
 ---
@@ -2997,7 +2943,6 @@ sources:
     - '%%environ_systemroot%%\System32\config\SYSTEM.LOG1'
     - '%%environ_systemroot%%\System32\config\SYSTEM.LOG2'
     separator: '\'
-labels: [System]
 supported_os: [Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/RegistryFiles.html']
 ---
@@ -3009,7 +2954,6 @@ sources:
     names:
     - 'WindowsSystemRegistryFiles'
     - 'WindowsSystemRegistryTransactionLogFiles'
-labels: [System]
 supported_os: [Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/RegistryFiles.html']
 ---
@@ -3167,7 +3111,6 @@ sources:
   attributes:
     paths: ['%%users.appdata%%\Microsoft\Windows\Recent\AutomaticDestinations\*.automaticDestinations-ms']
     separator: '\'
-labels: [Users]
 supported_os: [Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/JumpLists.html']
 ---
@@ -3178,7 +3121,6 @@ sources:
   attributes:
     paths: ['%%users.appdata%%\Microsoft\Windows\Recent\CustomDestinations\*.customDestinations-ms']
     separator: '\'
-labels: [Users]
 supported_os: [Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/JumpLists.html']
 ---
@@ -3191,7 +3133,6 @@ sources:
     - 'WindowsProgramsCacheJumpLists'
     - 'WindowsUserAutomaticDestinationsJumpLists'
     - 'WindowsUserCustomDestinationsJumpLists'
-labels: [Users]
 supported_os: [Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/JumpLists.html']
 ---
@@ -3204,7 +3145,6 @@ sources:
     - '%%users.appdata%%\Microsoft\Office\Recent\*'
     - '%%users.appdata%%\Microsoft\Windows\Recent\*'
     separator: '\'
-labels: [Users]
 supported_os: [Windows]
 ---
 name: WindowsUserRegistryFiles
@@ -3217,7 +3157,6 @@ sources:
     - '%%users.userprofile%%\NTUSER.MAN'
     - '%%users.localappdata%%\Microsoft\Windows\UsrClass.dat'
     separator: '\'
-labels: [Users]
 supported_os: [Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/RegistryFiles.html']
 ---
@@ -3234,7 +3173,6 @@ sources:
     - '%%users.localappdata%%\Microsoft\Windows\UsrClass.dat.LOG1'
     - '%%users.localappdata%%\Microsoft\Windows\UsrClass.dat.LOG2'
     separator: '\'
-labels: [Users]
 supported_os: [Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/RegistryFiles.html']
 ---
@@ -3246,7 +3184,6 @@ sources:
     names:
     - 'WindowsUserRegistryFiles'
     - 'WindowsUserRegistryTransactionLogFiles'
-labels: [Users]
 supported_os: [Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/RegistryFiles.html']
 ---
@@ -3477,7 +3414,6 @@ sources:
   attributes:
     paths: ['%%environ_systemroot%%\System32\WDI\LogFiles\StartupInfo\*.xml']
     separator: '\'
-labels: [Execution]
 conditions: [os_major_version >= 6 AND os_minor_version >= 2]
 supported_os: [Windows]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows#Startup_info']
@@ -3509,6 +3445,5 @@ sources:
   attributes:
     paths: ['%%environ_systemroot%%\System32\LogFiles\SUM\*.mdb']
     separator: '\'
-labels: [Users]
 supported_os: [Windows]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows#User_Access_Logging_(UAL)']

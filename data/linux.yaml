@@ -15,7 +15,6 @@ sources:
     - '/var/spool/anacron/cron.hourly'
     - '/var/spool/anacron/cron.monthly'
     - '/var/spool/anacron/cron.weekly'
-labels: [Configuration Files]
 supported_os: [Linux]
 ---
 name: APTSources
@@ -26,7 +25,6 @@ sources:
     paths:
     - '/etc/apt/sources.list'
     - '/etc/apt/sources.list.d/*.list'
-labels: [Configuration Files, System]
 supported_os: [Linux]
 urls: ['http://manpages.ubuntu.com/manpages/trusty/en/man5/sources.list.5.html']
 ---
@@ -40,7 +38,6 @@ sources:
     - '/etc/apt/trusted.gpg.d/*.gpg'
     - '/etc/apt/trustdb.gpg'
     - '/usr/share/keyrings/*.gpg'
-labels: [Configuration Files, System]
 supported_os: [Linux]
 urls: ['https://wiki.debian.org/SecureApt']
 ---
@@ -54,7 +51,6 @@ sources:
     - '/etc/cron.deny'
     - '/etc/at.allow'
     - '/etc/at.deny'
-labels: [Configuration Files]
 supported_os: [Linux]
 urls:
 - http://manpages.ubuntu.com/manpages/saucy/man5/at.allow.5.html
@@ -68,7 +64,6 @@ sources:
     paths:
     - '/var/log/dpkg.log*'
     - '/var/log/apt/history.log*'
-labels: [Logs]
 supported_os: [Linux]
 ---
 name: DebianPackagesStatus
@@ -76,7 +71,6 @@ doc: Linux dpkg status file.
 sources:
 - type: FILE
   attributes: {paths: ['/var/lib/dpkg/status']}
-labels: [Software]
 supported_os: [Linux]
 ---
 name: DebianVersion
@@ -85,7 +79,6 @@ sources:
 - type: FILE
   attributes: {paths: ['/etc/debian_version']}
 provides: [os_release, os_major_version, os_minor_version]
-labels: [Software]
 supported_os: [Linux]
 ---
 name: DNSResolvConfFile
@@ -93,7 +86,6 @@ doc: DNS Resolver configuration file.
 sources:
 - type: FILE
   attributes: {paths: ['/etc/resolv.conf']}
-labels: [Configuration Files]
 supported_os: [Linux]
 urls: ['http://man7.org/linux/man-pages/man5/resolv.conf.5.html']
 ---
@@ -102,7 +94,6 @@ doc: Gnome application state for frequent application data.
 sources:
 - type: FILE
   attributes: {paths: ['%%users.homedir%%/.local/share/gnome-shell/application_state']}
-labels: [Configuration Files]
 supported_os: [Linux]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Gnome_Desktop_Environment']
 ---
@@ -114,7 +105,6 @@ sources:
     paths:
     - '/etc/hosts.allow'
     - '/etc/hosts.deny'
-labels: [Configuration Files]
 supported_os: [Linux]
 ---
 name: IPTablesRules
@@ -124,7 +114,6 @@ sources:
   attributes:
     args: ["-L", "-n", "-v"]
     cmd: /sbin/iptables
-labels: [System]
 supported_os: [Linux]
 ---
 name: KernelModules
@@ -142,7 +131,6 @@ doc: Linux at jobs.
 sources:
 - type: FILE
   attributes: {paths: ['/var/spool/at/*']}
-labels: [Configuration Files]
 supported_os: [Linux]
 ---
 name: LinuxAuditLogs
@@ -150,7 +138,6 @@ doc: Linux audit log files.
 sources:
 - type: FILE
   attributes: {paths: ['/var/log/audit/*']}
-labels: [Logs]
 supported_os: [Linux]
 ---
 name: LinuxAuthLogs
@@ -161,7 +148,6 @@ sources:
     paths:
     - '/var/log/auth.log*'
     - '/var/log/secure.log*'
-labels: [Logs, Authentication]
 supported_os: [Linux]
 ---
 name: LinuxCronLogs
@@ -169,7 +155,6 @@ doc: Linux cron log files.
 sources:
 - type: FILE
   attributes: {paths: ['/var/log/cron.log*']}
-labels: [Logs]
 supported_os: [Linux]
 ---
 name: LinuxCronTabs
@@ -181,7 +166,6 @@ sources:
     - '/etc/crontab'
     - '/etc/cron.d/*'
     - '/var/spool/cron/**'
-labels: [Configuration Files]
 supported_os: [Linux]
 ---
 name: LinuxDaemonLogFiles
@@ -189,7 +173,6 @@ doc: Linux daemon log files.
 sources:
 - type: FILE
   attributes: {paths: ['/var/log/daemon.log*']}
-labels: [Logs]
 supported_os: [Linux]
 ---
 name: LinuxDistributionRelease
@@ -205,7 +188,6 @@ sources:
     - '/etc/SuSE-release'
     - '/etc/system-release'
 provides: [os_release, os_major_version, os_minor_version]
-labels: [Software]
 supported_os: [Linux]
 ---
 name: LinuxDSDTTable
@@ -213,7 +195,6 @@ doc: Linux file containing DSDT table.
 sources:
 - type: FILE
   attributes: {paths: ['/sys/firmware/acpi/tables/DSDT']}
-labels: [System]
 urls: ['https://www.kernel.org/doc/Documentation/acpi/initrd_table_override.txt']
 supported_os: [Linux]
 ---
@@ -222,7 +203,6 @@ doc: Linux fstab file.
 sources:
 - type: FILE
   attributes: {paths: ['/etc/fstab']}
-labels: [System, Configuration Files]
 supported_os: [Linux]
 urls: ['http://en.wikipedia.org/wiki/Fstab']
 ---
@@ -234,7 +214,6 @@ sources:
     paths:
     - '/boot/grub/grub.cfg'
     - '/boot/grub2/grub.cfg'
-labels: [System, Configuration Files]
 supported_os: [Linux]
 urls: ['https://en.wikipedia.org/wiki/GNU_GRUB']
 ---
@@ -243,7 +222,6 @@ doc: Linux hostname file.
 sources:
 - type: FILE
   attributes: {paths: ['/etc/hostname']}
-labels: [Configuration Files, System]
 supported_os: [Linux]
 ---
 name: LinuxInitrdFiles
@@ -254,7 +232,6 @@ sources:
     paths:
     - '/boot/initramfs*'
     - '/boot/initrd*'
-labels: [Configuration Files, System]
 supported_os: [Linux]
 urls:
 - 'http://en.wikipedia.org/wiki/Initrd'
@@ -268,7 +245,6 @@ sources:
     paths:
     - '/etc/issue'
     - '/etc/issue.net'
-labels: [Configuration Files, System]
 supported_os: [Linux]
 urls: ['https://linux.die.net/man/5/issue']
 ---
@@ -277,7 +253,6 @@ doc: Linux kernel log files.
 sources:
 - type: FILE
   attributes: {paths: ['/var/log/kern.log*']}
-labels: [Logs]
 supported_os: [Linux]
 ---
 name: LinuxLastlogFile
@@ -285,7 +260,6 @@ doc: Linux lastlog file.
 sources:
 - type: FILE
   attributes: {paths: ['/var/log/lastlog']}
-labels: [Logs, Authentication]
 supported_os: [Linux]
 ---
 name: LinuxLoaderSystemPreloadFile
@@ -293,7 +267,6 @@ doc: Linux dynamic linker/loader system-wide preload file (ld.so.preload).
 sources:
 - type: FILE
   attributes: {paths: ['/etc/ld.so.preload']}
-labels: [Configuration Files]
 supported_os: [Linux]
 urls: ['http://man7.org/linux/man-pages/man8/ld.so.8.html']
 ---
@@ -306,7 +279,6 @@ sources:
     - '/etc/init.d/*'
     - '/etc/insserv.conf'
     - '/etc/insserv.conf.d/**'
-labels: [Configuration Files, System]
 supported_os: [Linux]
 urls: ['https://wiki.debian.org/LSBInitScripts']
 ---
@@ -315,7 +287,6 @@ doc: Local time zone configuration
 sources:
 - type: FILE
   attributes: {paths: ['/etc/localtime']}
-labels: [System]
 supported_os: [Linux]
 ---
 name: LinuxLSBRelease
@@ -324,7 +295,6 @@ sources:
 - type: FILE
   attributes: {paths: ['/etc/lsb-release']}
 provides: [os_release, os_major_version, os_minor_version]
-labels: [Software]
 supported_os: [Linux]
 urls: ['https://linux.die.net/man/1/lsb_release']
 ---
@@ -333,7 +303,6 @@ doc: Linux messages log files.
 sources:
 - type: FILE
   attributes: {paths: ['/var/log/messages*']}
-labels: [Logs]
 supported_os: [Linux]
 ---
 name: LinuxMountCmd
@@ -343,7 +312,6 @@ sources:
   attributes:
     args: []
     cmd: /bin/mount
-labels: [System]
 supported_os: [Linux]
 ---
 name: LinuxMountInfo
@@ -354,7 +322,6 @@ sources:
     names:
     - LinuxFstab
     - LinuxProcMounts
-labels: [System, Configuration Files]
 supported_os: [Linux]
 ---
 name: LinuxPamConfigs
@@ -366,7 +333,6 @@ sources:
     - '/etc/pam.conf'
     - '/etc/pam.d'
     - '/etc/pam.d/*'
-labels: [Authentication, Configuration Files]
 supported_os: [Linux]
 urls: ['http://www.linux-pam.org/']
 ---
@@ -379,7 +345,6 @@ doc: |
 sources:
 - type: FILE
   attributes: {paths: ['/etc/passwd']}
-labels: [Configuration Files, System]
 supported_os: [Linux]
 ---
 name: LinuxReleaseInfo
@@ -392,7 +357,6 @@ sources:
     - LinuxLSBRelease
     - LinuxSystemdOSRelease
 provides: [os_release, os_major_version, os_minor_version]
-labels: [Software]
 supported_os: [Linux]
 ---
 name: LinuxRsyslogConfigs
@@ -404,7 +368,6 @@ sources:
     - '/etc/rsyslog.conf'
     - '/etc/rsyslog.d'
     - '/etc/rsyslog.d/*'
-labels: [Configuration Files, Logs]
 supported_os: [Linux]
 urls: ['http://www.rsyslog.com/doc/rsyslog_conf.html']
 ---
@@ -417,7 +380,6 @@ sources:
     - AnacronFiles
     - LinuxCronTabs
     - LinuxAtJobs
-labels: [Configuration Files]
 supported_os: [Linux]
 ---
 name: LinuxServices
@@ -430,7 +392,6 @@ sources:
     - LinuxLSBInit
     - LinuxSysVInit
     - LinuxSystemdServices
-labels: [Configuration Files, System]
 supported_os: [Linux]
 ---
 name: LinuxSSDTTables
@@ -438,7 +399,6 @@ doc: Linux files containing SSDT table.
 sources:
 - type: FILE
   attributes: {paths: ['/sys/firmware/acpi/tables/SSDT*']}
-labels: [System]
 urls: ['https://www.kernel.org/doc/Documentation/acpi/initrd_table_override.txt']
 supported_os: [Linux]
 ---
@@ -447,7 +407,6 @@ doc: Linux sudoreplay log files.
 sources:
 - type: FILE
   attributes: {paths: ['/var/log/sudo-io/**']}
-labels: [Logs, Authentication]
 supported_os: [Linux]
 ---
 name: LinuxSysLogFiles
@@ -455,7 +414,6 @@ doc: Linux syslog log files.
 sources:
 - type: FILE
   attributes: {paths: ['/var/log/syslog.log*']}
-labels: [Logs]
 supported_os: [Linux]
 ---
 name: LinuxSyslogNgConfigs
@@ -466,7 +424,6 @@ sources:
     paths:
     - '/etc/syslog-ng/syslog-ng.conf'
     - '/etc/syslog-ng/conf-d/*.conf'
-labels: [Configuration Files, Logs]
 supported_os: [Linux]
 urls: ['http://linux.die.net/man/5/syslog-ng.conf']
 ---
@@ -479,7 +436,6 @@ sources:
     - '/etc/os-release'
     - '/usr/lib/os-release'
 provides: [os_release, os_major_version, os_minor_version]
-labels: [Software]
 supported_os: [Linux]
 urls: ['https://www.freedesktop.org/software/systemd/man/os-release.html']
 ---
@@ -514,7 +470,6 @@ sources:
     - '%%users.homedir%%/.config/systemd/user.control/*.service'
     - '%%users.homedir%%/.config/systemd/user/*.service'
     - '%%users.homedir%%/.local/share/systemd/user/*.service'
-labels: [Configuration Files, System]
 supported_os: [Linux]
 urls: ['https://https://www.freedesktop.org/software/systemd/man/systemd.unit.html#System%20Unit%20Search%20Path']
 ---
@@ -528,7 +483,6 @@ sources:
     - '/etc/rc*.d/*'
     - '/etc/rc.d/rc*.d/*'
     - '/etc/rc.d/init.d/*'
-labels: [Configuration Files, System]
 supported_os: [Linux]
 urls:
 - 'http://savannah.nongnu.org/projects/sysvinit'
@@ -539,7 +493,6 @@ doc: Linux timezone file.
 sources:
 - type: FILE
   attributes: {paths: ['/etc/timezone']}
-labels: [Configuration Files, System]
 supported_os: [Linux]
 ---
 name: LinuxUtmpFiles
@@ -551,7 +504,6 @@ sources:
     - '/var/log/btmp'
     - '/var/log/wtmp'
     - '/var/run/utmp'
-labels: [Logs, Authentication]
 supported_os: [Linux]
 urls: ['https://github.com/libyal/dtformats/blob/main/documentation/Utmp%20login%20records%20format.asciidoc']
 ---
@@ -560,7 +512,6 @@ doc: Linux wtmp login record file
 sources:
 - type: FILE
   attributes: {paths: ['/var/log/wtmp']}
-labels: [Logs, Authentication]
 provides: [users.username, users.last_logon]
 supported_os: [Linux]
 urls: ['https://github.com/libyal/dtformats/blob/main/documentation/Utmp%20login%20records%20format.asciidoc']
@@ -573,7 +524,6 @@ sources:
     paths:
     - '/etc/xinetd.conf'
     - '/etc/xinetd.d/**'
-labels: [Configuration Files, System]
 supported_os: [Linux]
 urls: ['http://en.wikipedia.org/wiki/Xinetd']
 ---
@@ -608,7 +558,6 @@ sources:
     - '/etc/shadow'
     - '/etc/security/access.conf'
     - '/root/.k5login'
-labels: [Authentication, Configuration Files]
 supported_os: [Linux]
 ---
 name: NetgroupConfiguration
@@ -616,7 +565,6 @@ doc: Linux netgroup configuration.
 sources:
 - type: FILE
   attributes: {paths: ['/etc/netgroup']}
-labels: [Authentication, Configuration Files]
 provides: [users.username]
 supported_os: [Linux]
 ---
@@ -625,7 +573,6 @@ doc: The configuration file for ntpd. e.g. ntp.conf.
 sources:
 - type: FILE
   attributes: {paths: ['/etc/ntp.conf']}
-labels: [Configuration Files]
 supported_os: [Linux]
 urls: ['https://www.freebsd.org/cgi/man.cgi?query=ntp.conf&sektion=5']
 ---
@@ -639,7 +586,6 @@ sources:
     - '/sys/bus/pci/devices/*/device'
     - '/sys/bus/pci/devices/*/class'
     - '/sys/bus/pci/devices/*/config'
-labels: [Configuration Files, System]
 urls:
 - 'https://www.kernel.org/doc/Documentation/ABI/testing/sysfs-bus-pci'
 - 'https://www.kernel.org/doc/Documentation/filesystems/sysfs-pci.txt'
@@ -654,7 +600,6 @@ sources:
     paths:
     - '/var/lib/sss/secrets/secrets.ldb'
     - '/var/lib/sss/secrets/.secrets.mkey'
-labels: [System, Configuration Files]
 supported_os: [Linux]
 urls:
 - 'https://docs.pagure.org/SSSD.sssd/design_pages/secrets_service.html'
@@ -667,7 +612,6 @@ sources:
   attributes:
     paths:
     - '/etc/ssh/ssh_host_*_key.pub'
-labels: [Authentication, Configuration Files]
 supported_os: [Linux]
 ---
 name: ThumbnailCacheFolder
@@ -675,7 +619,6 @@ doc: Thumbnail cache folder.
 sources:
 - type: FILE
   attributes: {paths: ['%%users.homedir%%/.thumbnails/**3']}
-labels: [Users]
 supported_os: [Linux]
 ---
 name: YumSources
@@ -686,7 +629,6 @@ sources:
     paths:
     - '/etc/yum.conf'
     - '/etc/yum.repos.d/*.repo'
-labels: [Configuration Files, System]
 supported_os: [Linux]
 urls: ['https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/System_Administrators_Guide/sec-Configuring_Yum_and_Yum_Repositories.html']
 ---
@@ -698,6 +640,5 @@ sources:
     paths:
     - '%%users.homedir%%/.local/share/zeitgeist/activity.sqlite'
     - '%%users.homedir%%/.local/share/zeitgeist/activity.sqlite-wal'
-labels: [Users, Logs]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Zeitgeist']
 supported_os: [Linux]

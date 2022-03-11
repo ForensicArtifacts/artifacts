@@ -10,7 +10,6 @@ sources:
     - '%%environ_systemdrive%%\$MFTMirr'
     separator: '\'
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/file_systems/NTFS.html']
-labels: [System]
 supported_os: [Windows]
 ---
 name: NTFSLogFile
@@ -21,7 +20,6 @@ sources:
     paths: ['%%environ_systemdrive%%\$LogFile']
     separator: '\'
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/file_systems/NTFS.html']
-labels: [System]
 supported_os: [Windows]
 ---
 name: NTFSUSNJournal
@@ -35,5 +33,4 @@ sources:
     paths: ['%%environ_systemdrive%%\$Extend\$UsnJrnl']
     separator: '\'
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/file_systems/NTFS.html']
-labels: [System]
 supported_os: [Windows]

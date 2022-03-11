@@ -16,7 +16,6 @@ doc: |
 sources:
 - type: WMI
   attributes: {query: SELECT * FROM Win32_UserAccount WHERE name='%%users.username%%'}
-labels: [Users]
 provides: [users.userdomain]
 supported_os: [Windows]
 urls: ['http://msdn.microsoft.com/en-us/library/windows/desktop/aa394507(v=vs.85).aspx']
@@ -33,7 +32,6 @@ doc: Computer System Product including Identifiying number queried from WMI.
 sources:
 - type: WMI
   attributes: {query: SELECT * FROM Win32_ComputerSystemProduct}
-labels: [System]
 supported_os: [Windows]
 urls: ['http://msdn.microsoft.com/en-us/library/aa394105(v=vs.85).aspx']
 ---
@@ -43,7 +41,6 @@ sources:
 - type: WMI
   attributes: {query: SELECT * from MSFT_DNSClientCache, base_object: 'winmgmts:\root\StandardCimv2'}
 conditions: [os_major_version >= 6 AND os_minor_version >= 2]
-labels: [Network]
 supported_os: [Windows]
 urls: ['https://docs.microsoft.com/en-us/previous-versions/windows/desktop/dnsclientcimprov/msft-dnsclientcache']
 ---
@@ -53,7 +50,6 @@ sources:
 - type: WMI
   attributes: {query: 'SELECT DisplayName, Description, InstallDate, Name, PathName, Status, State, ServiceType from Win32_SystemDriver'}
 conditions: [os_major_version >= 6]
-labels: [Software]
 supported_os: [Windows]
 ---
 name: WMIEnumerateASEC
@@ -76,7 +72,6 @@ sources:
 - type: WMI
   attributes: {query: SELECT * from Win32_QuickFixEngineering}
 conditions: [os_major_version >= 6]
-labels: [Software]
 supported_os: [Windows]
 ---
 name: WMIInstalledSoftware
@@ -85,7 +80,6 @@ sources:
 - type: WMI
   attributes: {query: 'SELECT Name, Vendor, Description, InstallDate, InstallDate2, Version from Win32_Product'}
 conditions: [os_major_version >= 6]
-labels: [Software]
 supported_os: [Windows]
 ---
 name: WMILastBootupTime
@@ -93,7 +87,6 @@ doc: Last system boot time (UTC) retrieved from WMI.
 sources:
 - type: WMI
   attributes: {query: SELECT LastBootUpTime FROM Win32_OperatingSystem}
-labels: [System]
 supported_os: [Windows]
 urls: ['https://msdn.microsoft.com/en-us/library/windows/desktop/aa394239(v=vs.85).aspx']
 ---
@@ -102,7 +95,6 @@ doc: Disk information via Windows Management Instrumentation (WMI).
 sources:
 - type: WMI
   attributes: {query: SELECT * FROM Win32_LogicalDisk}
-labels: [System]
 supported_os: [Windows]
 urls: ['http://msdn.microsoft.com/en-us/library/aa394173(v=vs.85).aspx']
 ---
@@ -130,7 +122,6 @@ sources:
 - type: WMI
   attributes: {query: SELECT * from Win32_GroupUser where Name = "login_users"}
 conditions: [os_major_version >= 6]
-labels: [Software]
 supported_os: [Windows]
 ---
 name: WMINetNeighbors
@@ -139,7 +130,6 @@ sources:
 - type: WMI
   attributes: {query: SELECT * from MSFT_NetNeighbor, base_object: 'winmgmts:\root\StandardCimv2'}
 conditions: [os_major_version >= 6 AND os_minor_version >= 2]
-labels: [Network]
 supported_os: [Windows]
 urls: ['https://docs.microsoft.com/en-us/previous-versions/windows/desktop/nettcpipprov/msft-netneighbor']
 ---
@@ -149,7 +139,6 @@ sources:
 - type: WMI
   attributes: {query: SELECT * from MSFT_NetTCPConnection, base_object: 'winmgmts:\root\StandardCimv2'}
 conditions: [os_major_version >= 6 AND os_minor_version >= 2]
-labels: [Network]
 supported_os: [Windows]
 urls: ['https://docs.microsoft.com/en-us/previous-versions/windows/desktop/nettcpipprov/msft-nettcpconnection']
 ---
@@ -159,7 +148,6 @@ sources:
 - type: WMI
   attributes: {query: SELECT * from MSFT_NetUDPEndpoint, base_object: 'winmgmts:\root\StandardCimv2'}
 conditions: [os_major_version >= 6 AND os_minor_version >= 2]
-labels: [Network]
 supported_os: [Windows]
 urls: ['https://docs.microsoft.com/en-us/previous-versions/windows/desktop/nettcpipprov/msft-netudpendpoint']
 ---
@@ -169,7 +157,6 @@ sources:
 - type: WMI
   attributes: {query: SELECT * from Win32_OperatingSystem}
 conditions: [os_major_version >= 6]
-labels: [System]
 supported_os: [Windows]
 urls: ['https://docs.microsoft.com/en-us/windows/desktop/cimwin32prov/win32-operatingsystem']
 ---
@@ -179,7 +166,6 @@ sources:
 - type: WMI
   attributes: {query: SELECT * from Win32_PhysicalMemory}
 conditions: [os_major_version >= 6]
-labels: [System]
 supported_os: [Windows]
 urls: ["http://msdn.microsoft.com/en-us/library/aa394347%28v=vs.85%29.aspx"]
 ---
@@ -189,7 +175,6 @@ sources:
 - type: WMI
   attributes: {query: SELECT * from Win32_Process}
 conditions: [os_major_version >= 6]
-labels: [Software]
 supported_os: [Windows]
 ---
 name: WMIProfileUsersHomeDir
@@ -202,7 +187,6 @@ doc: |
 sources:
 - type: WMI
   attributes: {query: SELECT * FROM Win32_UserProfile WHERE SID='%%users.sid%%'}
-labels: [Users]
 provides: [users.homedir]
 supported_os: [Windows]
 urls: ['http://msdn.microsoft.com/en-us/library/windows/desktop/ee886409(v=vs.85).aspx']
@@ -213,7 +197,6 @@ sources:
 - type: WMI
   attributes: {query: SELECT * from MSFT_ScheduledTask, base_object: 'winmgmts:\root\Microsoft\Windows\TaskScheduler'}
 conditions: [os_major_version >= 6 AND os_minor_version >= 2]
-labels: [System]
 supported_os: [Windows]
 urls: ['https://wutils.com/wmi/root/microsoft/windows/taskscheduler/msft_scheduledtask/']
 ---
@@ -230,7 +213,6 @@ sources:
 - type: WMI
   attributes: {query: SELECT * from Win32_StartupCommand}
 conditions: [os_major_version >= 6]
-labels: [System]
 supported_os: [Windows]
 urls: ['https://docs.microsoft.com/en-us/windows/desktop/cimwin32prov/win32-startupcommand']
 ---
@@ -244,7 +226,6 @@ doc: |
 sources:
 - type: WMI
   attributes: {query: SELECT * FROM Win32_UserAccount}
-labels: [Users]
 supported_os: [Windows]
 urls: ['http://msdn.microsoft.com/en-us/library/windows/desktop/aa394507(v=vs.85).aspx']
 ---
@@ -253,7 +234,6 @@ doc: A List of Volume Shadow Copies from WMI.
 sources:
 - type: WMI
   attributes: {query: SELECT * FROM Win32_ShadowCopy}
-labels: [System]
 supported_os: [Windows]
 ---
 name: WMICCMRUA
@@ -261,6 +241,5 @@ doc: Enumerate instances of CCM_RecentlyUsedApps.
 sources:
 - type: WMI
   attributes: {query: SELECT * FROM CCM_RecentlyUsedApps, base_object: 'winmgmts:\root\ccm\SoftwareMeteringAgent'}
-labels: [Execution]
 supported_os: [Windows]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows#CCM_RecentlyUsedApps']

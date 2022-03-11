@@ -10,7 +10,6 @@ sources:
     - 'FirefoxCache'
     - 'InternetExplorerCache'
     - 'SafariCache'
-labels: [Browser]
 supported_os: [Darwin, Linux, Windows]
 ---
 name: BrowserHistory
@@ -25,7 +24,6 @@ sources:
     - 'OperaHistory'
     - 'SafariDownloads'
     - 'SafariHistory'
-labels: [Browser]
 supported_os: [Darwin, Linux, Windows]
 ---
 name: ChromeStorage
@@ -44,7 +42,6 @@ sources:
     - 'ChromeSessionStorage'
     - 'ChromeFileSystem'
     - 'ChromeIndexedDB'
-labels: [Browser]
 supported_os: [Darwin, Linux, Windows]
 urls:
 - 'https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API'
@@ -142,7 +139,6 @@ sources:
     - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/GPUCache/*'
   supported_os: [Linux]
 supported_os: [Darwin, Linux, Windows]
-labels: [Browser]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/webbrowser/ChromeCache.html']
 ---
 name: ChromiumBasedBrowsersCache
@@ -341,7 +337,6 @@ sources:
     - '%%users.homedir%%/snap/chromium/common/chromium/PnaclTranslationCache/*'
   supported_os: [Linux]
 supported_os: [Darwin, Linux, Windows]
-labels: [Browser]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/webbrowser/ChromeCache.html']
 ---
 name: ChromeCookies
@@ -407,7 +402,6 @@ sources:
     - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Network/Cookies-journal'
   supported_os: [Darwin]
 supported_os: [Darwin, Linux, Windows]
-labels: [Browser]
 ---
 name: ChromeExtensionActivity
 doc: Chrome Extension Activity database.
@@ -434,7 +428,6 @@ sources:
     - '%%users.homedir%%/.config/chromium/*/Extension Activity'
   supported_os: [Linux]
 supported_os: [Darwin, Linux, Windows]
-labels: [Browser]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome#Extension_Activity_database']
 ---
 name: ChromeExtensions
@@ -466,7 +459,6 @@ sources:
     - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Extensions/**10'
   supported_os: [Linux]
 supported_os: [Darwin, Linux, Windows]
-labels: [Browser]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome#Extensions']
 ---
 name: ChromiumBasedBrowsersExtensions
@@ -514,7 +506,6 @@ sources:
     - '%%users.homedir%%/snap/chromium/common/chromium/*/Extensions/**10'
   supported_os: [Linux]
 supported_os: [Darwin, Linux, Windows]
-labels: [Browser]
 urls:
 - 'https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome#Extensions'
 - 'https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome#Chromium-based_Browsers'
@@ -564,7 +555,6 @@ sources:
     - '%%users.homedir%%/snap/chromium/common/chromium/*/Extensions/**10'
   supported_os: [Linux]
 supported_os: [Darwin, Linux, Windows]
-labels: [Browser]
 urls:
 - 'https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome#Extension_Activity_database'
 - 'https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome#Chromium-based_Browsers'
@@ -577,7 +567,6 @@ sources:
     keys:
     - 'HKEY_LOCAL_MACHINE\Software\Google\Chrome\Extensions\**5'
     - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Google\Chrome\Extensions\**5'
-labels: [Browser]
 supported_os: [Windows]
 urls: ['https://developer.chrome.com/extensions/external_extensions#registry']
 ---
@@ -617,7 +606,6 @@ sources:
     - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/File System/**5'
   supported_os: [Darwin]
 supported_os: [Darwin, Linux, Windows]
-labels: [Browser]
 urls:
 - 'https://developer.chrome.com/apps/fileSystem'
 - 'https://developer.mozilla.org/en-US/docs/Web/API/FileSystem'
@@ -746,7 +734,6 @@ sources:
     - '%%users.homedir%%/snap/chromium/common/chromium/*/History-journal'
   supported_os: [Linux]
 supported_os: [Darwin, Linux, Windows]
-labels: [Browser]
 urls:
 - 'https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome'
 - 'https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome#Chromium-based_Browsers'
@@ -790,7 +777,6 @@ sources:
     - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/IndexedDB/**5'
   supported_os: [Darwin]
 supported_os: [Darwin, Linux, Windows]
-labels: [Browser]
 urls: ['https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API']
 ---
 name: ChromeLocalStorage
@@ -828,7 +814,6 @@ sources:
     - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Local Storage/**'
   supported_os: [Darwin]
 supported_os: [Darwin, Linux, Windows]
-labels: [Browser]
 ---
 name: ChromePreferences
 doc: Chrome Preferences file.
@@ -868,7 +853,6 @@ sources:
     - '%%users.homedir%%/.config/google-chrome/*/Secure Preferences'
   supported_os: [Linux]
 supported_os: [Darwin, Linux, Windows]
-labels: [Browser]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome#Configuration']
 ---
 name: ChromeSessionStorage
@@ -905,7 +889,6 @@ sources:
     - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Session Storage/*'
   supported_os: [Darwin]
 supported_os: [Darwin, Linux, Windows]
-labels: [Browser]
 ---
 name: FirefoxCache
 doc: Mozilla Firefox browser caches.
@@ -937,7 +920,6 @@ sources:
     - '%%users.homedir%%/.cache/mozilla/firefox/*.default/cache2/entries/*'
   supported_os: [Linux]
 supported_os: [Darwin, Linux, Windows]
-labels: [Browser]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/webbrowser/FirefoxCache.html']
 ---
 name: FirefoxHistory
@@ -965,7 +947,6 @@ sources:
     - '%%users.homedir%%/.mozilla/firefox/*/places.sqlite-wal'
   supported_os: [Linux]
 supported_os: [Darwin, Linux, Windows]
-labels: [Browser]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mozilla_Firefox']
 ---
 name: FirefoxAddOns
@@ -997,7 +978,6 @@ sources:
     - '%%users.homedir%%/.mozilla/firefox/*/webapps/webapps.json'
   supported_os: [Linux]
 supported_os: [Darwin, Linux, Windows]
-labels: [Browser]
 urls: ['https://github.com/osquery/osquery/blob/6969e075fd4118e36f6cab54b0956e53dde5ba3f/osquery/tables/applications/browser_firefox.cpp#']
 ---
 name: InternetExplorerBrowserHelperObjects
@@ -1029,7 +1009,6 @@ sources:
     - '%%users.localappdata%%\Microsoft\Windows\INetCache\IE\*\*'
     - '%%users.localappdata%%\Microsoft\Windows\INetCache\Low\*\*'
     separator: '\'
-labels: [Browser]
 supported_os: [Windows]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Internet_Explorer']
 ---
@@ -1045,7 +1024,6 @@ sources:
     - '%%users.appdata%%\Microsoft\Windows\Cookies\index.dat'
     - '%%users.appdata%%\Microsoft\Windows\Cookies\Low\index.dat'
     separator: '\'
-labels: [Browser]
 supported_os: [Windows]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Internet_Explorer']
 ---
@@ -1070,7 +1048,6 @@ sources:
     - '%%users.localappdata%%\Microsoft\Windows\WebCache\WebCacheV*.dat'
     - '%%users.userprofile%%\Local Settings\History\History.IE5\index.dat'
     separator: '\'
-labels: [Browser]
 supported_os: [Windows]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Internet_Explorer']
 ---
@@ -1102,7 +1079,6 @@ sources:
     - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Internet Explorer\Low Rights\ElevationPolicy\*', value: 'AppName'}
     - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Internet Explorer\Low Rights\ElevationPolicy\*', value: 'AppPath'}
     - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Internet Explorer\Low Rights\ElevationPolicy\*', value: 'CLSID'}
-labels: [Browser]
 supported_os: [Windows]
 urls:
 - 'http://blogs.technet.com/b/juanand/archive/2010/10/29/internet-explorer-protected-mode-elevation-policy-and-administrative-templates.aspx'
@@ -1117,7 +1093,6 @@ doc: |
 sources:
 - type: REGISTRY_KEY
   attributes: {keys: ['HKEY_USERS\%%users.sid%%\Software\Microsoft\Internet Explorer\Main\NoProtectedModeBanner']}
-labels: [Browser]
 supported_os: [Windows]
 urls: ['http://www.blackforce.co.uk/2014/01/07/disable-protected-mode-is-turned-off-for-the-internet-zone-group-policy']
 ---
@@ -1149,7 +1124,6 @@ sources:
     - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Internet Explorer\Main', value: 'Search Page'}
     - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Internet Explorer\Main', value: 'Start Page'}
     - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Internet Explorer\Main', value: 'Search Bar'}
-labels: [Browser]
 supported_os: [Windows]
 urls:
 - 'https://support.microsoft.com/en-us/kb/895339'
@@ -1160,7 +1134,6 @@ doc: Microsoft Internet Explorer TypedUrls keys.
 sources:
 - type: REGISTRY_KEY
   attributes: {keys: ['HKEY_USERS\%%users.sid%%\Software\Microsoft\Internet Explorer\TypedURLs\*']}
-labels: [Browser]
 supported_os: [Windows]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Internet_Explorer#Typed_URLs']
 ---
@@ -1181,7 +1154,6 @@ sources:
     separator: '\'
   supported_os: [Windows]
 supported_os: [Darwin, Linux, Windows]
-labels: [Browser]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Opera']
 ---
 name: SafariCache
@@ -1199,7 +1171,6 @@ sources:
     - '%%users.homedir%%/Library/Caches/com.apple.Safari/Cache.db-wal'
   supported_os: [Darwin]
 supported_os: [Windows, Darwin]
-labels: [Browser]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Apple_Safari']
 ---
 name: SafariDownloads
@@ -1215,7 +1186,6 @@ sources:
     - '%%users.appdata%%\Apple Computer\Safari\Downloads.plist'
     separator: '\'
   supported_os: [Windows]
-labels: [Users, Browser]
 supported_os: [Darwin, Windows]
 urls:
 - 'https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X'
@@ -1240,7 +1210,6 @@ sources:
     - '%%users.homedir%%/Library/Safari/History.db-wal'
   supported_os: [Darwin]
 supported_os: [Windows, Darwin]
-labels: [Browser]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Apple_Safari']
 ---
 name: SafariExtensions
@@ -1250,5 +1219,4 @@ sources:
   attributes: {paths: ['%%users.homedir%%/Library/Safari/Extensions/**']}
   supported_os: [Darwin]
 supported_os: [Darwin]
-labels: [Browser]
 urls: ['http://www.forensicswiki.org/wiki/Apple_Safari']

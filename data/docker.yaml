@@ -9,7 +9,6 @@ sources:
     paths:
     - '/var/lib/docker/containers/*/config.v2.json'
     - '/var/lib/docker/containers/*/config.json'
-labels: [Docker, Configuration Files]
 supported_os: [Linux]
 ---
 name: GKEDockerContainerLogs
@@ -17,5 +16,4 @@ doc: Location where stdout and stderr from containers is logged in a Google Kube
 sources:
 - type: FILE
   attributes: {paths: ['/var/lib/docker/containers/*/*-json.log*']}
-labels: [Docker, Logs]
 supported_os: [Linux]

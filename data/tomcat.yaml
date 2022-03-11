@@ -8,7 +8,6 @@ sources:
     names:
     - 'TomcatLogFiles'
     - 'TomcatPasswordFile'
-labels: [Software]
 supported_os: [Darwin, Linux, Windows]
 ---
 name: TomcatLogFiles
