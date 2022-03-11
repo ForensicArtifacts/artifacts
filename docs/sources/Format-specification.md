@@ -326,13 +326,13 @@ Supported Windows evironment variables are:
 
 Variable | Description
 --- | ---
-%%environ_allusersappdata%% |
+%%environ_allusersappdata%% | The %AllUsersAppData% environment variable, which should fallback to the %ProgramData% environment variable.
 %%environ_allusersprofile%% |
-%%environ_programfiles%% | %ProgramFiles% environment variable.
-%%environ_programfilesx86%% | %ProgramFiles(x86)% environment variable.
-%%environ_systemdrive%% | %SystemDrive% environment variable, for example 'C:'
-%%environ_systemroot%% | %SystemRoot% environment variable, for example 'C:\\Windows'
-%%environ_windir%% | %WinDir% environment variable, for example 'C:\\Windows'
+%%environ_programfiles%% | The %ProgramFiles% environment variable.
+%%environ_programfilesx86%% | The %ProgramFiles(x86)% environment variable.
+%%environ_systemdrive%% | The %SystemDrive% environment variable, for example 'C:'
+%%environ_systemroot%% | The %SystemRoot% environment variable, for example 'C:\\Windows'
+%%environ_windir%% | The %WinDir% environment variable, for example 'C:\\Windows'
 
 ### Windows users variables
 
@@ -374,8 +374,8 @@ common usage scenarios.
 
 %%users.userprofile%% can be decomposed into:
 
-* 'Documents and Settings\*'
-* 'Users\*' for Windows Vista and later
+* 'Documents and Settings\\*'
+* 'Users\\*' for Windows Vista and later
 
 ## Additional style notes
 
