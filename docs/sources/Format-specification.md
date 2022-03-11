@@ -308,7 +308,17 @@ Supported POSIX users variables are:
 
 Variable | Description
 --- | ---
-%%users.homedir%% | A user's home directory, for example '/root', '/home/username' or '/Users/username'
+%%users.homedir%% | A user's home directory, for example '/home/username', '/root' or '/Users/username'
+
+#### Decomposition rules
+
+Note that the following decomposition rules are approximations based on
+common usage scenarios.
+
+%%users.homedir%% can be decomposed into:
+
+* '/Users/*' for Mac OS
+* '/home/*' and '/root' for Linux
 
 ### Windows evironment variables
 
@@ -341,6 +351,9 @@ Variable | Description
 
 **TODO: add information about system accounts**
 
+Note that the following decomposition rules are approximations based on
+common usage scenarios.
+
 %%users.appdata%% can be decomposed into:
 
 * '%%users.userprofile%%\\AppData\\Roaming' for Windows Vista and later
@@ -358,6 +371,11 @@ Variable | Description
 %%users.temp%% can be decomposed into:
 
 * '%%users.localappdata%%\\Temp'
+
+%%users.userprofile%% can be decomposed into:
+
+* 'Documents and Settings\*'
+* 'Users\*' for Windows Vista and later
 
 ## Additional style notes
 
