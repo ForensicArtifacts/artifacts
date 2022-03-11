@@ -11,7 +11,6 @@ sources:
 - type: FILE
   attributes: {paths: ['%%environ_systemroot%%\System32\winevt\Logs\System.evtx']}
 conditions: [os_major_version >= 6]
-labels: [Logs]
 supported_os: [Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/EventLog.html']
 ```
@@ -23,12 +22,17 @@ Value | Description
 aliases | Optional list of alternate names to identify the artifact definition. Also see: See section: [Name](#name).
 conditions | Optional list of conditions that describe when the artifact definition should apply. See section: [Conditions](#conditions).
 doc | The description (or documentation). A human readable string that describes the artifact definition. See section: [Description](#description).
-labels | Optional list of predefined labels. See section: [Labels](#labels).
 name | The name. An unique string that identifies the artifact definition. See section: [Name](#name).
 provides | Optional list of *TODO*
 sources | A list of source definitions. See section: [Sources](#sources).
 supported_os | Optional list that indicates which operating systems the artifact definition applies to. See section: [Supported operating system](#supported-operating-system).
 urls | Optional list of URLs with more contextual information. Ideally the artifact definition links to an article that discusses the artifact in more depth for example on [Digital Forensics Artifact Knowledge Base](https://github.com/ForensicArtifacts/artifacts-kb).
+
+## Deprecated values
+
+Value | Description
+--- | ---
+labels | Optional list of predefined labels. Note that labels have been deprecated as of version 20220311.
 
 ## Name
 
@@ -289,33 +293,90 @@ This can be translated to objectfilter as:
 ["os =='Darwin'" OR "os=='Linux'" OR "os == 'Windows'"]
 ```
 
-## Labels
-
-Currently the following different labels are defined:
-
-Value | Description
---- | ---
-Antivirus | Antivirus related artifacts, e.g. quarantine files.
-Authentication | Authentication artifacts.
-Browser | Web Browser artifacts.
-Cloud Storage | Cloud Storage artifacts.
-Configuration Files | Configuration files artifacts.
-Execution | Contain execution events.
-External Media | Contain external media data or events e.g. USB drives.
-KnowledgeBase | Artifacts used in knowledge base generation.
-Logs | Contain log files.
-Memory | Artifacts retrieved from memory.
-Network | Describe networking state.
-Processes | Describe running processes.
-Software | Installed software.
-System | Core system artifacts.
-Users | Information about users.
-
-The labes are defined in [definitions.py](https://github.com/ForensicArtifacts/artifacts/blob/main/artifacts/definitions.py).
-
 ## Parameter expansion and globs
 
-**TODO: add text**
+Artifact definitions can use different types of parameters that need to be
+expanded at runtime, such as:
+
+* POSIX users variables, for example %%users.homedir%%
+* Windows evironment variables, for example %%environ_systemroot%%
+* Windows users variables, for example %%users.temp%%
+
+### POSIX users variables
+
+Supported POSIX users variables are:
+
+Variable | Description
+--- | ---
+%%users.homedir%% | A user's home directory, for example '/home/username', '/root' or '/Users/username'
+
+#### Decomposition rules
+
+Note that the following decomposition rules are approximations based on
+common usage scenarios.
+
+%%users.homedir%% can be decomposed into:
+
+* '/Users/*' for Mac OS
+* '/home/*' and '/root' for Linux
+
+### Windows evironment variables
+
+Supported Windows evironment variables are:
+
+Variable | Description
+--- | ---
+%%environ_allusersappdata%% | The %AllUsersAppData% environment variable, which should fallback to the %ProgramData% environment variable if not available.
+%%environ_allusersprofile%% | The %AllUsersProfile% environment variable.
+%%environ_programdata%% | The %ProgramData% environment variable, which should fallback to the %AllUsersAppData% environment variable or '%AllUsersProfile%\\Application Data' if not available.
+%%environ_programfiles%% | The %ProgramFiles% environment variable.
+%%environ_programfilesx86%% | The %ProgramFiles(x86)% environment variable.
+%%environ_systemdrive%% | The %SystemDrive% environment variable, for example 'C:'
+%%environ_systemroot%% | The %SystemRoot% environment variable, for example 'C:\\Windows'
+%%environ_windir%% | The %WinDir% environment variable, for example 'C:\\Windows'
+
+### Windows users variables
+
+Supported Windows users variables are:
+
+Variable | Description
+--- | ---
+%%users.appdata%% | Windows version independent representation of a user specific %AppData% environment variable.
+%%users.localappdata%% | Windows version independent representation of a user specific %LocalAppData% environment variable.
+%%users.sid%% | A user's security identifier (SID)
+%%users.temp%% | A user's temporary files directory, comparable to the %TEMP% or %TMP% environment variables, for example '/Users/username/temp'
+%%users.username%% | A user's username, comparable to the %USERNAME% environment variable
+%%users.userprofile%% | A user's (local) profile directory, for example '/Users/username'
+
+#### Decomposition rules
+
+**TODO: add information about system accounts**
+
+Note that the following decomposition rules are approximations based on
+common usage scenarios.
+
+%%users.appdata%% can be decomposed into:
+
+* '%%users.userprofile%%\\AppData\\Roaming' for Windows Vista and later
+* '%%users.userprofile%%\\Application Data'
+
+%%users.localappdata%% can be decomposed into:
+
+* '%%users.userprofile%%\\AppData\\Local' for Windows Vista and later
+* '%%users.userprofile%%\\Local Settings\\Application Data'
+
+%%users.localappdata_low%% can be decomposed into:
+
+* '%%users.userprofile%%\\AppData\\LocalLow' for Windows Vista and later
+
+%%users.temp%% can be decomposed into:
+
+* '%%users.localappdata%%\\Temp'
+
+%%users.userprofile%% can be decomposed into:
+
+* 'Documents and Settings\\*'
+* 'Users\\*' for Windows Vista and later
 
 ## Additional style notes
 
@@ -343,7 +404,6 @@ Generally use the short `[]` format for single-item lists that fit inside 80
 characters to save on unnecessary line breaks:
 
 ```yaml
-labels: [Logs]
 supported_os: [Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/EventLog.html']
 ```
@@ -362,7 +422,7 @@ paths:
 ### Quotes
 
 Quotes should not be used for doc strings, artifact names, and simple lists
-like labels and supported_os.
+like supported_os.
 
 Paths and URLs should use single quotes to avoid the need for manual escaping.
 
@@ -402,7 +462,6 @@ sources:
   attributes:
     paths: ['%%users.homedir%%/.mozilla/firefox/*/places.sqlite']
   supported_os: [Linux]
-labels: [Browser]
 supported_os: [Windows, Linux, Darwin]
 ```
 
