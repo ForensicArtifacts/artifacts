@@ -15,7 +15,6 @@ class ArtifactStatistics(object):
   def __init__(self):
     """Initializes artifact statistics."""
     super(ArtifactStatistics, self).__init__()
-    self._label_counts = {}
     self._os_counts = {}
     self._path_count = 0
     self._reg_key_count = 0
@@ -43,10 +42,6 @@ class ArtifactStatistics(object):
     """Prints a table of artifact definitions by operating system."""
     self._PrintDictAsTable('Operating systems', self._os_counts)
 
-  def PrintLabelTable(self):
-    """Prints a table of artifact definitions by label."""
-    self._PrintDictAsTable('Labels', self._label_counts)
-
   def PrintSourceTypeTable(self):
     """Prints a table of artifact definitions by source type."""
     self._PrintDictAsTable(
@@ -69,7 +64,6 @@ Number of Windows Registry key paths: | {3:d}
   def BuildStats(self):
     """Builds the statistics."""
     artifact_reader = reader.YamlArtifactsReader()
-    self._label_counts = {}
     self._os_counts = {}
     self._path_count = 0
     self._reg_key_count = 0
@@ -77,10 +71,6 @@ Number of Windows Registry key paths: | {3:d}
     self._total_count = 0
 
     for artifact_definition in artifact_reader.ReadDirectory('data'):
-      if hasattr(artifact_definition, 'labels'):
-        for label in artifact_definition.labels:
-          self._label_counts[label] = self._label_counts.get(label, 0) + 1
-
       for source in artifact_definition.sources:
         self._total_count += 1
         source_type = source.type_indicator
@@ -113,7 +103,6 @@ and the format is described in detail in the [Style Guide]({1:s}).
     self.PrintSummaryTable()
     self.PrintSourceTypeTable()
     self.PrintOSTable()
-    self.PrintLabelTable()
 
 
 def Main():
