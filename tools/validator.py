@@ -86,13 +86,12 @@ class ArtifactDefinitionsValidator(object):
 
     return True
 
-  def _CheckMacOSPaths(self, filename, artifact_definition, source, paths):
+  def _CheckMacOSPaths(self, filename, artifact_definition, paths):
     """Checks if the paths are valid MacOS paths.
 
     Args:
       filename (str): name of the artifacts definition file.
       artifact_definition (ArtifactDefinition): artifact definition.
-      source (SourceType): source definition.
       paths (list[str]): paths to validate.
 
     Returns:
@@ -105,7 +104,7 @@ class ArtifactDefinitionsValidator(object):
 
     for path in paths:
       path_lower = path.lower()
-      path_segments = path_lower.split(source.separator)
+      path_segments = path_lower.split('/')
       if not path_segments:
         logging.warning((
             'Empty path defined by artifact definition: {0:s} in file: '
@@ -145,7 +144,7 @@ class ArtifactDefinitionsValidator(object):
               filename, artifact_definition, path, path_segment):
             result = False
 
-      if has_globstar and path.endswith(source.separator):
+      if has_globstar and path.endswith('/'):
         logging.warning((
             'Unsupported path: {0:s} with globstar and trailing path '
             'separator defined by artifact definition: {1:s} in file: '
@@ -469,6 +468,8 @@ class ArtifactDefinitionsValidator(object):
             definitions.SUPPORTED_OS_WINDOWS in (
                 artifact_definition.supported_os))
 
+        macos_paths = []
+
         for source in artifact_definition.sources:
           if source.type_indicator == definitions.TYPE_INDICATOR_DIRECTORY:
             logging.warning((
@@ -483,9 +484,13 @@ class ArtifactDefinitionsValidator(object):
             if (definitions.SUPPORTED_OS_DARWIN in source.supported_os or (
                 artifact_definition_supports_macos and
                 not source.supported_os)):
-              if not self._CheckMacOSPaths(
-                  filename, artifact_definition, source, source.paths):
-                result = False
+              if source.separator != '/':
+                logging.warning((
+                    'Use of unsupported path segment seperator in artifact '
+                    'definition: {0:s} in file: {1:s}').format(
+                        artifact_definition.name, filename))
+
+              macos_paths.extend(source.paths)
 
             elif (artifact_definition_supports_windows or
                   definitions.SUPPORTED_OS_WINDOWS in source.supported_os):
@@ -522,6 +527,11 @@ class ArtifactDefinitionsValidator(object):
               if not self._CheckWindowsRegistryKeyPath(
                   filename, artifact_definition, key_value_pair['key']):
                 result = False
+
+        if macos_paths:
+          if not self._CheckMacOSPaths(
+              filename, artifact_definition, macos_paths):
+            result = False
 
     except errors.FormatError as exception:
       logging.warning(
