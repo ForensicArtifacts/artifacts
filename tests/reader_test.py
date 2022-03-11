@@ -15,18 +15,6 @@ from tests import test_lib
 class YamlArtifactsReaderTest(test_lib.BaseTestCase):
   """YAML artifacts reader tests."""
 
-  _DEFINITION_INVALID_LABELS = """\
-name: BadLabel
-doc: badlabel.
-sources:
-- type: ARTIFACT_GROUP
-  attributes:
-    names:
-      - 'SystemEventLogEvtx'
-labels: Logs
-supported_os: [Windows]
-"""
-
   _DEFINITION_INVALID_SUPPORTED_OS_1 = """\
 name: BadSupportedOS
 doc: supported_os should be an array of strings.
@@ -35,7 +23,6 @@ sources:
   attributes:
     names:
       - 'SystemEventLogEvtx'
-labels: [Logs]
 supported_os: Windows
 """
 
@@ -48,7 +35,6 @@ sources:
     names:
       - 'SystemEventLogEvtx'
   supported_os: [Windows]
-labels: [Logs]
 """
 
   _DEFINITION_INVALID_URLS = """\
@@ -72,7 +58,6 @@ sources:
     names:
       - 'SystemEventLogEvtx'
 extra_key: 'wrong'
-labels: [Logs]
 supported_os: [Windows]
 """
 
@@ -107,7 +92,6 @@ sources:
   _DEFINITION_WITHOUT_SOURCES = """\
 name: BadSources
 doc: must have one sources.
-labels: [Logs]
 supported_os: [Windows]
 """
 
@@ -145,9 +129,6 @@ supported_os: [Windows]
     self.assertEqual(len(artifact_definition.conditions), 1)
     expected_condition = 'os_major_version >= 6'
     self.assertEqual(artifact_definition.conditions[0], expected_condition)
-
-    self.assertEqual(len(artifact_definition.labels), 1)
-    self.assertEqual(artifact_definition.labels[0], 'Logs')
 
     self.assertEqual(len(artifact_definition.supported_os), 1)
     self.assertEqual(artifact_definition.supported_os[0], 'Windows')
@@ -243,14 +224,6 @@ supported_os: [Windows]
     self.assertIsNotNone(collector_definition)
     self.assertEqual(
         collector_definition.type_indicator, definitions.TYPE_INDICATOR_COMMAND)
-
-  def testReadFileObjectInvalidLabels(self):
-    """Tests the ReadFileObject function on an invalid labels."""
-    artifact_reader = reader.YamlArtifactsReader()
-
-    file_object = io.StringIO(initial_value=self._DEFINITION_INVALID_LABELS)
-    with self.assertRaises(errors.FormatError):
-      _ = list(artifact_reader.ReadFileObject(file_object))
 
   def testReadFileObjectInvalidSupportedOS(self):
     """Tests the ReadFileObject function on an invalid supported_os."""
