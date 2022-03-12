@@ -17,7 +17,6 @@ class BaseArtifactsReader(object):
   """Artifacts reader interface.
 
   Attributes:
-    labels (set[str]): defined labels.
     supported_os (set[str]): supported operating systems.
   """
 
@@ -28,7 +27,6 @@ class BaseArtifactsReader(object):
   def __init__(self):
     """Initializes an artifacts reader."""
     super(BaseArtifactsReader, self).__init__()
-    self.labels = set()
     self.supported_os = set()
 
   @abc.abstractmethod
@@ -98,30 +96,7 @@ class ArtifactsReader(BaseArtifactsReader):
   def __init__(self):
     """Initializes an artifacts reader."""
     super(ArtifactsReader, self).__init__()
-    self.labels = set(definitions.LABELS)
     self.supported_os = set(definitions.SUPPORTED_OS)
-
-  def _ReadLabels(self, artifact_definition_values, artifact_definition, name):
-    """Reads the optional artifact definition labels.
-
-    Args:
-      artifact_definition_values (dict[str, object]): artifact definition
-          values.
-      artifact_definition (ArtifactDefinition): an artifact definition.
-      name (str): name of the artifact definition.
-
-    Raises:
-      FormatError: if there are undefined labels.
-    """
-    labels = artifact_definition_values.get('labels', [])
-
-    undefined_labels = set(labels).difference(self.labels)
-    if undefined_labels:
-      raise errors.FormatError(
-          'Artifact definition: {0:s} found undefined labels: {1:s}.'.format(
-              name, ', '.join(undefined_labels)))
-
-    artifact_definition.labels = labels
 
   # Pylint fails on detecting the type of definition_object based on
   # the docstring.
@@ -255,7 +230,6 @@ class ArtifactsReader(BaseArtifactsReader):
         'conditions', [])
     artifact_definition.provides = artifact_definition_values.get(
         'provides', [])
-    self._ReadLabels(artifact_definition_values, artifact_definition, name)
     self._ReadSupportedOS(artifact_definition_values, artifact_definition, name)
     artifact_definition.urls = urls
     self._ReadSources(artifact_definition_values, artifact_definition, name)

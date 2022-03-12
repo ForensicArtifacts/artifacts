@@ -13,7 +13,6 @@ class ArtifactDefinition(object):
     conditions (list[str]): conditions.
     description (str): description.
     name (str): name that uniquely identifiers the artifact definition.
-    labels (list[str]): labels.
     provides (list[str]): hints to what information the artifact definition
         provides.
     sources (list[str]): sources.
@@ -34,7 +33,6 @@ class ArtifactDefinition(object):
     self.conditions = []
     self.description = description
     self.name = name
-    self.labels = []
     self.provides = []
     self.sources = []
     self.supported_os = []
@@ -98,8 +96,6 @@ class ArtifactDefinition(object):
     }
     if self.aliases:
       artifact_definition['aliases'] = self.aliases
-    if self.labels:
-      artifact_definition['labels'] = self.labels
     if self.supported_os:
       artifact_definition['supported_os'] = self.supported_os
     if self.provides:

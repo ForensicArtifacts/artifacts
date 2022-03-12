@@ -96,7 +96,6 @@ class ArtifactDefinitionsRegistryTest(test_lib.BaseTestCase):
         b'  attributes: {broken: [\'%%environ_systemroot%%\\System32\\'
         b'winevt\\Logs\\Security.evtx\']}\n'
         b'conditions: [os_major_version >= 6]\n'
-        b'labels: [Logs]\n'
         b'supported_os: [Windows]\n'
         b'urls: [\'http://www.forensicswiki.org/wiki/\n'
         b'Windows_XML_Event_Log_(EVTX)\']\n')
