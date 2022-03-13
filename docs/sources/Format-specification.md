@@ -51,6 +51,7 @@ Suffix artifact definitions with the type of artifact, for example are files use
 
 Suffix | Description
 --- | ---
+ConfigurationFile | Contents of one or more configuration files.
 Directory | Contents of one or more directories.
 File | Contents of one or more files.
 LogFile | Contents of one or more log files.
