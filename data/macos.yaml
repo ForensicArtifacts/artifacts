@@ -1,7 +1,8 @@
 # Mac OS (Darwin) specific artifacts.
 ---
-name: MacOSAppleSystemLogFiles
-doc: Apple system log (ASL) files
+name: MacOSAppleSystemLogFile
+aliases: [MacOSAppleSystemLogFiles]
+doc: Apple system log (ASL) files.
 sources:
 - type: FILE
   attributes:
@@ -28,14 +29,6 @@ sources:
 supported_os: [Darwin]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#Recent_Items']
 ---
-name: MacOSApplicationSupport
-doc: Application Support Directory
-sources:
-- type: PATH
-  attributes: {paths: ['%%users.homedir%%/Library/Application Support/*']}
-supported_os: [Darwin]
-urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#Misc']
----
 name: MacOSAtJobs
 doc: MacOS at jobs
 sources:
@@ -46,8 +39,9 @@ urls:
 - 'https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#System_Info_Misc'
 - 'https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/at.1.html#//apple_ref/doc/man/1/at'
 ---
-name: MacOSAuditLogFiles
-doc: Audit log files
+name: MacOSAuditLogFile
+aliases: [MacOSAuditLogFiles]
+doc: Audit log files.
 sources:
 - type: FILE
   attributes:
@@ -67,8 +61,9 @@ sources:
 supported_os: [Darwin]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#System_Preferences']
 ---
-name: MacOSCoreAnalyticsFiles
-doc: macOS 10.13 (High Sierra) CoreAnalytics log files.
+name: MacOSCoreAnalyticsFile
+aliases: [MacOSCoreAnalyticsFiles]
+doc: CoreAnalytics log files.
 sources:
 - type: FILE
   attributes:
@@ -106,7 +101,7 @@ supported_os: [Darwin]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#Preferences']
 ---
 name: MacOSDuetKnowledgeBase
-doc: KnowledgeC User and Application usage database
+doc: KnowledgeC User and Application usage database.
 sources:
 - type: FILE
   attributes:
@@ -116,6 +111,15 @@ sources:
     - '/var/db/CoreDuet/Knowledge/knowledgeC.db'
 supported_os: [Darwin]
 urls: ['https://www.mac4n6.com/blog/2018/8/5/knowledge-is-power-using-the-knowledgecdb-database-on-macos-and-ios-to-determine-precise-user-and-application-usage']
+---
+name: MacOSFSEventsFile
+aliases: [MacOSFSEvents]
+doc: File system events disk log stream (fsevents) files.
+sources:
+- type: FILE
+  attributes: {paths: ['/.fseventsd/*']}
+supported_os: [Darwin]
+urls: ['https://github.com/libyal/dtformats/blob/main/documentation/MacOS%20File%20System%20Events%20Disk%20Log%20Stream%20format.asciidoc']
 ---
 name: MacOSGlobalPreferencesPlistFile
 doc: |
@@ -204,31 +208,23 @@ supported_os: [Darwin]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#iDevice_Backup']
 ---
 name: MacOSiOSBackupStatus
-doc: iOS device backup status information
+doc: iOS device backup status information.
 sources:
 - type: FILE
   attributes: {paths: ['%%users.homedir%%/Library/Application Support/MobileSync/Backup/*/Status.plist']}
 supported_os: [Darwin]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#iDevice_Backup']
 ---
-name: MacOSKeychains
-doc: User keychain files
-sources:
-- type: FILE
-  attributes: {paths: ['%%users.homedir%%/Library/Keychains/*.keychain']}
-supported_os: [Darwin]
-urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#Misc']
----
 name: MacOSKeyboardLayoutPlistFile
-doc: Keyboard layout property list (plist) file
+doc: Keyboard layout property list (plist) file.
 sources:
 - type: FILE
   attributes: {paths: ['/Library/Preferences/com.apple.HIToolbox.plist']}
 supported_os: [Darwin]
 ---
-name: MacOSKernelExtensionFiles
+name: MacOSKernelExtensionFile
 aliases: [MacOSKextFiles]
-doc: Kernel extension (.kext) files
+doc: Kernel extension (.kext) files.
 sources:
 - type: FILE
   attributes:
@@ -239,7 +235,7 @@ supported_os: [Darwin]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#Kernel_Extension']
 ---
 name: MacOSLastlogFile
-doc: Mac OS lastlog file.
+doc: Lastlog file.
 sources:
 - type: FILE
   attributes:
@@ -248,8 +244,9 @@ sources:
     - '/var/log/lastlog'
 supported_os: [Darwin]
 ---
-name: MacOSLaunchAgentsPlistFiles
-doc: Launch Agents property list (plist) files
+name: MacOSLaunchAgentsPlistFile
+aliases: [MacOSLaunchAgentsPlistFiles]
+doc: Launch Agents property list (plist) files.
 sources:
 - type: FILE
   attributes:
@@ -260,8 +257,9 @@ sources:
 supported_os: [Darwin]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#Autorun_Locations']
 ---
-name: MacOSLaunchDaemonsPlistFiles
-doc: Launch Daemons property list (plist) files
+name: MacOSLaunchDaemonsPlistFile
+aliases: [MacOSLaunchDaemonsPlistFiles]
+doc: Launch Daemons property list (plist) files.
 sources:
 - type: FILE
   attributes:
@@ -523,8 +521,9 @@ sources:
 supported_os: [Darwin]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#Sleep.2FHibernate_and_Swap_Image_File']
 ---
-name: MacOSStartupItemsPlistFiles
-doc: Startup Items property list (plist) files
+name: MacOSStartupItemsPlistFile
+aliases: [MacOSStartupItemsPlistFiles]
+doc: Startup Items property list (plist) files.
 sources:
 - type: FILE
   attributes:
@@ -534,7 +533,8 @@ sources:
 supported_os: [Darwin]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#Autorun_Locations']
 ---
-name: MacOSSwapFiles
+name: MacOSSwapFile
+aliases: [MacOSSwapFiles]
 doc: Swap files
 sources:
 - type: FILE
@@ -563,7 +563,8 @@ sources:
 supported_os: [Darwin]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#System_Settings_and_Informations']
 ---
-name: MacOSSystemLogFiles
+name: MacOSSystemLogFile
+aliases: [MacOSSystemLogFiles]
 doc: System log files
 sources:
 - type: FILE
@@ -574,7 +575,8 @@ sources:
 supported_os: [Darwin]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#System_Logs']
 ---
-name: MacOSSystemPreferencesPlistFiles
+name: MacOSSystemPreferencesPlistFile
+aliases: [MacOSSystemPreferencesPlistFiles]
 doc: System Preferences property list (plist) files
 sources:
 - type: FILE
@@ -621,16 +623,26 @@ sources:
 supported_os: [Darwin]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#Software_Installation']
 ---
-name: MacOSUserApplicationLogs
-doc: User and Applications Logs Directory
+name: MacOSUserApplicationLogFile
+aliases: [MacOSUserApplicationLogs]
+doc: User applications log files.
 sources:
 - type: FILE
   attributes: {paths: ['%%users.homedir%%/Library/Logs/*.log']}
 supported_os: [Darwin]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#Logs']
 ---
+name: MacOSUserApplicationSupportDirectory
+aliases: [MacOSApplicationSupport]
+doc: Contents of the user Application Support directories.
+sources:
+- type: PATH
+  attributes: {paths: ['%%users.homedir%%/Library/Application Support/*']}
+supported_os: [Darwin]
+urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#Misc']
+---
 name: MacOSUserDesktopDirectory
-doc: Desktop Directory
+doc: Contents of the user Desktop directories.
 sources:
 - type: PATH
   attributes: {paths: ['%%users.homedir%%/Desktop/*']}
@@ -638,7 +650,7 @@ supported_os: [Darwin]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#User_Directories']
 ---
 name: MacOSUserDocumentsDirectory
-doc: Documents Directory
+doc: Contents of the user Documents directories.
 sources:
 - type: PATH
   attributes: {paths: ['%%users.homedir%%/Documents/*']}
@@ -646,23 +658,33 @@ supported_os: [Darwin]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#User_Directories']
 ---
 name: MacOSUserDownloadsDirectory
-doc: User downloads directory
+doc: Contents of the user Downloads directories.
 sources:
 - type: PATH
   attributes: {paths: ['%%users.homedir%%/Downloads/*']}
 supported_os: [Darwin]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#User_Directories']
 ---
-name: MacOSUserGlobalPreferences
-doc: User global preferences property list (plist) file
+name: MacOSUserGlobalPreferencesPlistFile
+aliases: [MacOSUserGlobalPreferences]
+doc: User global preferences property list (plist) file.
 sources:
 - type: FILE
   attributes: {paths: ['%%users.homedir%%/Library/Preferences/.GlobalPreferences.plist']}
 supported_os: [Darwin]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#Preferences']
 ---
+name: MacOSUserKeychainFile
+aliases: [MacOSKeychains]
+doc: User keychain files.
+sources:
+- type: FILE
+  attributes: {paths: ['%%users.homedir%%/Library/Keychains/*.keychain']}
+supported_os: [Darwin]
+urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#Misc']
+---
 name: MacOSUserLibraryDirectory
-doc: Library Directory
+doc: Contents of the user Library directories.
 sources:
 - type: PATH
   attributes: {paths: ['%%users.homedir%%/Library/*']}
@@ -670,7 +692,7 @@ supported_os: [Darwin]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#User_Directories']
 ---
 name: MacOSUserLoginItems
-doc: Login items property list (plist) file
+doc: User login items property list (plist) file.
 sources:
 - type: FILE
   attributes: {paths: ['%%users.homedir%%/Library/Preferences/com.apple.loginitems.plist']}
@@ -678,7 +700,7 @@ supported_os: [Darwin]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#Autorun_Locations_2']
 ---
 name: MacOSUserMoviesDirectory
-doc: Movies Directory
+doc: Contents of the user Movies directories.
 sources:
 - type: PATH
   attributes: {paths: ['%%users.homedir%%/Movies/*']}
@@ -686,15 +708,16 @@ supported_os: [Darwin]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#User_Directories']
 ---
 name: MacOSUserMusicDirectory
-doc: Music Directory
+doc: Contents of the user Music directories.
 sources:
 - type: PATH
   attributes: {paths: ['%%users.homedir%%/Music/*']}
 supported_os: [Darwin]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#User_Directories']
 ---
-name: MacOSUserPasswordHashesPlistFiles
-doc: User password hashes property list (plist) files
+name: MacOSUserPasswordHashesPlistFile
+aliases: [MacOSUserPasswordHashesPlistFiles]
+doc: User password hashes property list (plist) files.
 sources:
 - type: FILE
   attributes:
@@ -705,15 +728,16 @@ supported_os: [Darwin]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#System_Settings_and_Informations']
 ---
 name: MacOSUserPicturesDirectory
-doc: Pictures Directory
+doc: Contents of the user Pictures directories.
 sources:
 - type: PATH
   attributes: {paths: ['%%users.homedir%%/Pictures/*']}
 supported_os: [Darwin]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#User_Directories']
 ---
-name: MacOSUserPreferences
-doc: User preferences directory
+name: MacOSUserPreferencesDirectory
+aliases: [MacOSUserPreferences]
+doc: Contents of the user Preferences directories.
 sources:
 - type: FILE
   attributes: {paths: ['%%users.homedir%%/Library/Preferences/*']}
@@ -721,15 +745,16 @@ supported_os: [Darwin]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#Preferences']
 ---
 name: MacOSUserPublicDirectory
-doc: Public Directory
+doc: Contents of the user Public directories.
 sources:
 - type: PATH
   attributes: {paths: ['%%users.homedir%%/Public/*']}
 supported_os: [Darwin]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#User_Directories']
 ---
-name: MacOSUsers
-doc: Users directories in /Users
+name: MacOSUsersDirectory
+aliases: [MacOSUsers]
+doc: Contents of the Users directory.
 sources:
 - type: PATH
   attributes: {paths: ['/Users/*']}
@@ -748,33 +773,19 @@ sources:
     - '%%users.homedir%%/Library/Accounts/Accounts4.sqlite'
     - '%%users.homedir%%/Library/Accounts/Accounts4.sqlite-wal'
 supported_os: [Darwin]
-urls:
-- 'https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#User.27s_Accounts'
-- 'https://lab.wallarm.com/hunting-the-files-34caa0c1496'
+urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#User.27s_Accounts']
 ---
-name: MacOSUserTrash
-doc: User Trash Folder
+name: MacOSUserTrashDirectory
+aliases: [MacOSUserTrash]
+doc: Contents of the user Trash directories.
 sources:
 - type: FILE
   attributes: {paths: ['%%users.homedir%%/.Trash/*']}
 supported_os: [Darwin]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#Misc']
 ---
-name: MacOSUtmpFile
-doc: Mac OS utmp and wmtp login record file.
-sources:
-- type: FILE
-  attributes:
-    paths:
-    - '/private/var/run/utmp'
-    - '/private/var/log/wtmp'
-    - '/var/run/utmp'
-    - '/var/log/wtmp'
-supported_os: [Darwin]
-urls: ['https://github.com/libyal/dtformats/blob/main/documentation/Utmp%20login%20records%20format.asciidoc']
----
 name: MacOSUtmpxFile
-doc: Mac OS 10.5 utmpx login record file.
+doc: Utmpx login record file.
 sources:
 - type: FILE
   attributes:
@@ -784,23 +795,14 @@ sources:
 supported_os: [Darwin]
 urls: ['https://github.com/libyal/dtformats/blob/main/documentation/Utmp%20login%20records%20format.asciidoc']
 ---
-name: MacOSWirelessNetworks
-doc: Wireless networking (Airport) property list (plist) file
+name: MacOSAirportPreferencesPlistFile
+aliases: [MacOSWirelessNetworks]
+doc: Airport (wireless networking) preferences property list (plist) file.
 sources:
 - type: FILE
   attributes: {paths: ['/Library/Preferences/SystemConfiguration/com.apple.airport.preferences.plist']}
 supported_os: [Darwin]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#Networking']
----
-name: MacOSFSEvents
-doc: Mac OS file system event log
-sources:
-- type: FILE
-  attributes: {paths: ['/.fseventsd/*']}
-supported_os: [Darwin]
-urls:
-- 'http://nicoleibrahim.com/apple-fsevents-forensics/'
-- 'https://www.sans.org/cyber-security-summit/archives/file/summit-archive-1498158287.pdf'
 ---
 name: MacOSTCC
 doc: Apple's Transparency, Consent, Control (TCC) framework database
