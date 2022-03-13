@@ -59,18 +59,16 @@ sources:
   supported_os: [Darwin]
 supported_os: [Darwin, Linux]
 ---
-name: UnixSudoersConfiguration
-doc: Unix sudoers configuration.
+name: UnixSudoersConfigurationFile
+aliases: [UnixSudoersConfiguration]
+doc: Unix sudoers configuration file.
 sources:
 - type: FILE
-  attributes:
-    paths:
-    - '/etc/sudoers'
-    - '/private/etc/sudoers'
-  supported_os: [Darwin]
-- type: FILE
   attributes: {paths: ['/etc/sudoers']}
-  supported_os: [Linux]
+  supported_os: [Darwin, Linux]
+- type: FILE
+  attributes: {paths: ['/private/etc/sudoers']}
+  supported_os: [Darwin]
 supported_os: [Darwin, Linux]
 ---
 name: UnixUsersGroups

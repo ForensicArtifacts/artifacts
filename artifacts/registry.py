@@ -169,7 +169,7 @@ class ArtifactDefinitionsRegistry(object):
 
       if alias_lower in self._artifact_definitions_by_name:
         raise KeyError(
-            'Artifact definition alias: {1:s} already used as name.'.format(
+            'Artifact definition alias: {0:s} already used as name.'.format(
                 alias))
 
     self._artifact_definitions_by_name[artifact_definition_name] = (

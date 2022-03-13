@@ -9,7 +9,7 @@ sources:
     - 'ChromeCache'
     - 'FirefoxCache'
     - 'InternetExplorerCache'
-    - 'SafariCache'
+    - 'SafariCacheSQLiteDatabaseFile'
 supported_os: [Darwin, Linux, Windows]
 ---
 name: BrowserHistory
@@ -21,9 +21,10 @@ sources:
     - 'ChromiumBasedBrowsersHistory'
     - 'FirefoxHistory'
     - 'InternetExplorerHistory'
-    - 'OperaHistory'
-    - 'SafariDownloads'
-    - 'SafariHistory'
+    - 'OperaHistoryFile'
+    - 'SafariDownloadsPlistFile'
+    - 'SafariHistorySQLiteDatabaseFile'
+    - 'SafariHistoryPlistFile'
 supported_os: [Darwin, Linux, Windows]
 ---
 name: ChromeStorage
@@ -403,69 +404,37 @@ sources:
   supported_os: [Darwin]
 supported_os: [Darwin, Linux, Windows]
 ---
-name: ChromeExtensionActivity
-doc: Chrome Extension Activity database.
+name: ChromiumBasedBrowsersExtensions
+aliases: [ChromeExtensions]
+doc: |
+  Browser extension files for multiple Chromium-based browsers, such as Google
+  Chrome, Brave, Chromium, Yandex, Opera, Edge, EdgeBeta.
 sources:
 - type: FILE
   attributes:
     paths:
-    - '%%users.localappdata%%\Google\Chrome\User Data\*\Extension Activity'
-    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Extension Activity'
-    - '%%users.localappdata%%\Chromium\User Data\*\Extension Activity'
-    separator: '\'
-  supported_os: [Windows]
-- type: FILE
-  attributes:
-    paths:
-    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Extension Activity'
-    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Extension Activity'
-    - '%%users.homedir%%/Library/Application Support/Chromium/*/Extension Activity'
-  supported_os: [Darwin]
-- type: FILE
-  attributes:
-    paths:
-    - '%%users.homedir%%/.config/google-chrome/*/Extension Activity'
-    - '%%users.homedir%%/.config/chromium/*/Extension Activity'
-  supported_os: [Linux]
-supported_os: [Darwin, Linux, Windows]
-urls: ['https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome#Extension_Activity_database']
----
-name: ChromeExtensions
-doc: Chrome browser extension files.
-sources:
-- type: FILE
-  attributes:
-    paths:
-    - '%%users.localappdata%%\Google\Chrome\User Data\*\Extensions\**10'
-    - '%%users.localappdata%%\Chromium\User Data\*\Extensions\**10'
-    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Extensions\**10'
-    - '%%users.localappdata%%\Microsoft\Edge\User Data\*\Extensions\**10'
-    separator: '\'
-  supported_os: [Windows]
-- type: FILE
-  attributes:
-    paths:
-    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Extensions/**10'
+    - '%%users.homedir%%/Library/Application Support/BraveSoftware/Brave-Browser/*/Extensions/**10'
     - '%%users.homedir%%/Library/Application Support/Chromium/*/Extensions/**10'
     - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Extensions/**10'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Extensions/**10'
+    - '%%users.homedir%%/Library/Application Support/Microsoft Edge Beta/*/Extensions/**10'
+    - '%%users.homedir%%/Library/Application Support/Microsoft Edge/*/Extensions/**10'
+    - '%%users.homedir%%/Library/Application Support/Yandex/YandexBrowser/*/Extensions/**10'
+    - '%%users.homedir%%/Library/Application Support/com.operasoftware.Opera/*/Extensions/**10'
   supported_os: [Darwin]
 - type: FILE
   attributes:
     paths:
-    - '%%users.homedir%%/.config/google-chrome/*/Extensions/**10'
-    - '%%users.homedir%%/.config/google-chrome-beta/*/Extensions/**10'
-    - '%%users.homedir%%/.config/chromium/*/Extensions/**10'
-    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Extensions/**10'
+    - '%%users.homedir%%/.config/BraveSoftware/Brave-Browser/*/Extensions/**10'
     - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Extensions/**10'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Extensions/**10'
+    - '%%users.homedir%%/.config/chromium/*/Extensions/**10'
+    - '%%users.homedir%%/.config/google-chrome-beta/*/Extensions/**10'
+    - '%%users.homedir%%/.config/google-chrome/*/Extensions/**10'
+    - '%%users.homedir%%/.config/opera/*/Extensions/**10'
+    - '%%users.homedir%%/.config/yandex-browser-beta/*/Extensions/**10'
+    - '%%users.homedir%%/snap/chromium/common/chromium/*/Extensions/**10'
   supported_os: [Linux]
-supported_os: [Darwin, Linux, Windows]
-urls: ['https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome#Extensions']
----
-name: ChromiumBasedBrowsersExtensions
-doc: |
-  Browser extension files for multiple Chromium-based browsers (Google Chrome,
-  Brave, Chromium, Yandex, Opera, Edge, EdgeBeta).
-sources:
 - type: FILE
   attributes:
     paths:
@@ -480,46 +449,47 @@ sources:
     - '%%users.localappdata%%\Yandex\YandexBrowser\User Data\*\Extensions\**10'
     separator: '\'
   supported_os: [Windows]
-- type: FILE
-  attributes:
-    paths:
-    - '%%users.homedir%%/Library/Application Support/BraveSoftware/Brave-Browser/*/Extensions/**10'
-    - '%%users.homedir%%/Library/Application Support/Chromium/*/Extensions/**10'
-    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Extensions/**10'
-    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Extensions/**10'
-    - '%%users.homedir%%/Library/Application Support/Microsoft Edge Beta/*/Extensions/**10'
-    - '%%users.homedir%%/Library/Application Support/Microsoft Edge/*/Extensions/**10'
-    - '%%users.homedir%%/Library/Application Support/Yandex/YandexBrowser/*/Extensions/**10'
-    - '%%users.homedir%%/Library/Application Support/com.operasoftware.Opera/*/Extensions/**10'
-  supported_os: [Darwin]
-- type: FILE
-  attributes:
-    paths:
-    - '%%users.homedir%%/.config/BraveSoftware/Brave-Browser/*/Extensions/**10'
-    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Extensions/**10'
-    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Extensions/**10'
-    - '%%users.homedir%%/.config/chromium/*/Extensions/**10'
-    - '%%users.homedir%%/.config/google-chrome-beta/*/Extensions/**10'
-    - '%%users.homedir%%/.config/google-chrome/*/Extensions/**10'
-    - '%%users.homedir%%/.config/opera/*/Extensions/**10'
-    - '%%users.homedir%%/.config/yandex-browser-beta/*/Extensions/**10'
-    - '%%users.homedir%%/snap/chromium/common/chromium/*/Extensions/**10'
-  supported_os: [Linux]
 supported_os: [Darwin, Linux, Windows]
 urls:
 - 'https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome#Extensions'
 - 'https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome#Chromium-based_Browsers'
 ---
-name: ChromiumBasedBrowsersExtensionActivity
+name: ChromiumBasedBrowsersExtensionActivitySQLiteDatabaseFile
+aliases: [ChromeExtensionActivity, ChromiumBasedBrowsersExtensionActivity]
 doc: |
-  Browser Extension Activity database for multiple Chromium-based browsers
-  (Google Chrome, Brave, Chromium, Yandex, Opera, Edge, EdgeBeta).
+  Browser Extension Activity SQLite database file for Chromium-based browsers,
+  such as Google Chrome, Brave, Chromium, Yandex, Opera, Edge, EdgeBeta.
 sources:
 - type: FILE
   attributes:
     paths:
-    - '%%users.appdata%%\Opera Software\Opera Stable\*\Extension Activity'
+    - '%%users.homedir%%/Library/Application Support/BraveSoftware/Brave-Browser/*/Extension Activity'
+    - '%%users.homedir%%/Library/Application Support/Chromium/*/Extension Activity'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Extension Activity'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Extension Activity'
+    - '%%users.homedir%%/Library/Application Support/Microsoft Edge Beta/*/Extension Activity'
+    - '%%users.homedir%%/Library/Application Support/Microsoft Edge/*/Extension Activity'
+    - '%%users.homedir%%/Library/Application Support/Yandex/YandexBrowser/*/Extension Activity'
+    - '%%users.homedir%%/Library/Application Support/com.operasoftware.Opera/*/Extension Activity'
+  supported_os: [Darwin]
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/.config/BraveSoftware/Brave-Browser/*/Extension Activity'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Extension Activity'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Extension Activity'
+    - '%%users.homedir%%/.config/chromium/*/Extension Activity'
+    - '%%users.homedir%%/.config/google-chrome-beta/*/Extension Activity'
+    - '%%users.homedir%%/.config/google-chrome/*/Extension Activity'
+    - '%%users.homedir%%/.config/opera/*/Extension Activity'
+    - '%%users.homedir%%/.config/yandex-browser-beta/*/Extension Activity'
+    - '%%users.homedir%%/snap/chromium/common/chromium/*/Extension Activity'
+  supported_os: [Linux]
+- type: FILE
+  attributes:
+    paths:
     - '%%users.appdata%%\Brave\*\Extension Activity'
+    - '%%users.appdata%%\Opera Software\Opera Stable\*\Extension Activity'
     - '%%users.localappdata%%\Chromium\*\Extension Activity'
     - '%%users.localappdata%%\Chromium\User Data\*\Extension Activity'
     - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Extension Activity'
@@ -529,31 +499,6 @@ sources:
     - '%%users.localappdata%%\Yandex\YandexBrowser\User Data\*\Extension Activity'
     separator: '\'
   supported_os: [Windows]
-- type: FILE
-  attributes:
-    paths:
-    - '%%users.homedir%%/Library/Application Support/BraveSoftware/Brave-Browser/*/Extensions/**10'
-    - '%%users.homedir%%/Library/Application Support/Chromium/*/Extensions/**10'
-    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Extensions/**10'
-    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Extensions/**10'
-    - '%%users.homedir%%/Library/Application Support/Microsoft Edge Beta/*/Extensions/**10'
-    - '%%users.homedir%%/Library/Application Support/Microsoft Edge/*/Extensions/**10'
-    - '%%users.homedir%%/Library/Application Support/Yandex/YandexBrowser/*/Extensions/**10'
-    - '%%users.homedir%%/Library/Application Support/com.operasoftware.Opera/*/Extensions/**10'
-  supported_os: [Darwin]
-- type: FILE
-  attributes:
-    paths:
-    - '%%users.homedir%%/.config/BraveSoftware/Brave-Browser/*/Extensions/**10'
-    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Extensions/**10'
-    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Extensions/**10'
-    - '%%users.homedir%%/.config/chromium/*/Extensions/**10'
-    - '%%users.homedir%%/.config/google-chrome-beta/*/Extensions/**10'
-    - '%%users.homedir%%/.config/google-chrome/*/Extensions/**10'
-    - '%%users.homedir%%/.config/opera/*/Extensions/**10'
-    - '%%users.homedir%%/.config/yandex-browser-beta/*/Extensions/**10'
-    - '%%users.homedir%%/snap/chromium/common/chromium/*/Extensions/**10'
-  supported_os: [Linux]
 supported_os: [Darwin, Linux, Windows]
 urls:
 - 'https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome#Extension_Activity_database'
@@ -578,7 +523,6 @@ doc: |
   directory are a mixture of the data files saved using the fileSystem
   API and LevelDB directories that track the logical structure of the
   virtual file system.
-
 sources:
 - type: FILE
   attributes:
@@ -617,47 +561,6 @@ doc: |
   Browsing history for multiple Chromium-based browsers (Google Chrome,
   Brave, Chromium, Yandex, Opera, Edge, EdgeBeta).
 sources:
-- type: FILE
-  attributes:
-    paths:
-    - '%%users.appdata%%\Brave\*\Archived History'
-    - '%%users.appdata%%\Brave\*\Archived History-journal'
-    - '%%users.appdata%%\Brave\*\History'
-    - '%%users.appdata%%\Brave\*\History-journal'
-    - '%%users.appdata%%\Opera Software\Opera Stable\*\Archived History'
-    - '%%users.appdata%%\Opera Software\Opera Stable\*\Archived History-journal'
-    - '%%users.appdata%%\Opera Software\Opera Stable\*\History'
-    - '%%users.appdata%%\Opera Software\Opera Stable\*\History-journal'
-    - '%%users.localappdata%%\Chromium\*\Archived History'
-    - '%%users.localappdata%%\Chromium\*\Archived History-journal'
-    - '%%users.localappdata%%\Chromium\*\History'
-    - '%%users.localappdata%%\Chromium\*\History-journal'
-    - '%%users.localappdata%%\Chromium\User Data\*\Archived History'
-    - '%%users.localappdata%%\Chromium\User Data\*\Archived History-journal'
-    - '%%users.localappdata%%\Chromium\User Data\*\History'
-    - '%%users.localappdata%%\Chromium\User Data\*\History-journal'
-    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Archived History'
-    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Archived History-journal'
-    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\History'
-    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\History-journal'
-    - '%%users.localappdata%%\Google\Chrome\User Data\*\Archived History'
-    - '%%users.localappdata%%\Google\Chrome\User Data\*\Archived History-journal'
-    - '%%users.localappdata%%\Google\Chrome\User Data\*\History'
-    - '%%users.localappdata%%\Google\Chrome\User Data\*\History-journal'
-    - '%%users.localappdata%%\Microsoft\Edge Beta\User Data\*\Archived History'
-    - '%%users.localappdata%%\Microsoft\Edge Beta\User Data\*\Archived History-journal'
-    - '%%users.localappdata%%\Microsoft\Edge Beta\User Data\*\History'
-    - '%%users.localappdata%%\Microsoft\Edge Beta\User Data\*\History-journal'
-    - '%%users.localappdata%%\Microsoft\Edge\User Data\*\Archived History'
-    - '%%users.localappdata%%\Microsoft\Edge\User Data\*\Archived History-journal'
-    - '%%users.localappdata%%\Microsoft\Edge\User Data\*\History'
-    - '%%users.localappdata%%\Microsoft\Edge\User Data\*\History-journal'
-    - '%%users.localappdata%%\Yandex\YandexBrowser\User Data\*\Archived History'
-    - '%%users.localappdata%%\Yandex\YandexBrowser\User Data\*\Archived History-journal'
-    - '%%users.localappdata%%\Yandex\YandexBrowser\User Data\*\History'
-    - '%%users.localappdata%%\Yandex\YandexBrowser\User Data\*\History-journal'
-    separator: '\'
-  supported_os: [Windows]
 - type: FILE
   attributes:
     paths:
@@ -734,6 +637,47 @@ sources:
     - '%%users.homedir%%/snap/chromium/common/chromium/*/History'
     - '%%users.homedir%%/snap/chromium/common/chromium/*/History-journal'
   supported_os: [Linux]
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.appdata%%\Brave\*\Archived History'
+    - '%%users.appdata%%\Brave\*\Archived History-journal'
+    - '%%users.appdata%%\Brave\*\History'
+    - '%%users.appdata%%\Brave\*\History-journal'
+    - '%%users.appdata%%\Opera Software\Opera Stable\*\Archived History'
+    - '%%users.appdata%%\Opera Software\Opera Stable\*\Archived History-journal'
+    - '%%users.appdata%%\Opera Software\Opera Stable\*\History'
+    - '%%users.appdata%%\Opera Software\Opera Stable\*\History-journal'
+    - '%%users.localappdata%%\Chromium\*\Archived History'
+    - '%%users.localappdata%%\Chromium\*\Archived History-journal'
+    - '%%users.localappdata%%\Chromium\*\History'
+    - '%%users.localappdata%%\Chromium\*\History-journal'
+    - '%%users.localappdata%%\Chromium\User Data\*\Archived History'
+    - '%%users.localappdata%%\Chromium\User Data\*\Archived History-journal'
+    - '%%users.localappdata%%\Chromium\User Data\*\History'
+    - '%%users.localappdata%%\Chromium\User Data\*\History-journal'
+    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Archived History'
+    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Archived History-journal'
+    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\History'
+    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\History-journal'
+    - '%%users.localappdata%%\Google\Chrome\User Data\*\Archived History'
+    - '%%users.localappdata%%\Google\Chrome\User Data\*\Archived History-journal'
+    - '%%users.localappdata%%\Google\Chrome\User Data\*\History'
+    - '%%users.localappdata%%\Google\Chrome\User Data\*\History-journal'
+    - '%%users.localappdata%%\Microsoft\Edge Beta\User Data\*\Archived History'
+    - '%%users.localappdata%%\Microsoft\Edge Beta\User Data\*\Archived History-journal'
+    - '%%users.localappdata%%\Microsoft\Edge Beta\User Data\*\History'
+    - '%%users.localappdata%%\Microsoft\Edge Beta\User Data\*\History-journal'
+    - '%%users.localappdata%%\Microsoft\Edge\User Data\*\Archived History'
+    - '%%users.localappdata%%\Microsoft\Edge\User Data\*\Archived History-journal'
+    - '%%users.localappdata%%\Microsoft\Edge\User Data\*\History'
+    - '%%users.localappdata%%\Microsoft\Edge\User Data\*\History-journal'
+    - '%%users.localappdata%%\Yandex\YandexBrowser\User Data\*\Archived History'
+    - '%%users.localappdata%%\Yandex\YandexBrowser\User Data\*\Archived History-journal'
+    - '%%users.localappdata%%\Yandex\YandexBrowser\User Data\*\History'
+    - '%%users.localappdata%%\Yandex\YandexBrowser\User Data\*\History-journal'
+    separator: '\'
+  supported_os: [Windows]
 supported_os: [Darwin, Linux, Windows]
 urls:
 - 'https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome'
@@ -750,7 +694,6 @@ doc: |
   directories are the files the comprise a LevelDB database, which in turn
   holds IndexedDB data for that origin. There may be an accompanying .blob
   directory, which contains a nested folder structure of blobs.
-
 sources:
 - type: FILE
   attributes:
@@ -792,12 +735,10 @@ sources:
 - type: FILE
   attributes:
     paths:
-    - '%%users.localappdata%%\Chromium\User Data\*\Local Storage\**'
-    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Local Storage\**'
-    - '%%users.localappdata%%\Google\Chrome\User Data\*\Local Storage\**'
-    - '%%users.localappdata%%\Microsoft\Edge\User Data\*\Local Storage\**'
-    separator: '\'
-  supported_os: [Windows]
+    - '%%users.homedir%%/Library/Application Support/Chromium/*/Local Storage/**'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Local Storage/**'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Local Storage/**'
+  supported_os: [Darwin]
 - type: FILE
   attributes:
     paths:
@@ -810,27 +751,17 @@ sources:
 - type: FILE
   attributes:
     paths:
-    - '%%users.homedir%%/Library/Application Support/Chromium/*/Local Storage/**'
-    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Local Storage/**'
-    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Local Storage/**'
-  supported_os: [Darwin]
+    - '%%users.localappdata%%\Chromium\User Data\*\Local Storage\**'
+    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Local Storage\**'
+    - '%%users.localappdata%%\Google\Chrome\User Data\*\Local Storage\**'
+    - '%%users.localappdata%%\Microsoft\Edge\User Data\*\Local Storage\**'
+    separator: '\'
+  supported_os: [Windows]
 supported_os: [Darwin, Linux, Windows]
 ---
 name: ChromePreferences
 doc: Chrome Preferences file.
 sources:
-- type: FILE
-  attributes:
-    paths:
-    - '%%users.localappdata%%\Chromium\User Data\*\Preferences'
-    - '%%users.localappdata%%\Chromium\User Data\*\Secure Preferences'
-    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Preferences'
-    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Secure Preferences'
-    - '%%users.localappdata%%\Google\Chrome\User Data\*\Preferences'
-    - '%%users.localappdata%%\Google\Chrome\User Data\*\Secure Preferences'
-    - '%%users.localappdata%%\Microsoft\Edge\User Data\*\Preferences'
-    separator: '\'
-  supported_os: [Windows]
 - type: FILE
   attributes:
     paths:
@@ -853,6 +784,18 @@ sources:
     - '%%users.homedir%%/.config/google-chrome/*/Preferences'
     - '%%users.homedir%%/.config/google-chrome/*/Secure Preferences'
   supported_os: [Linux]
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.localappdata%%\Chromium\User Data\*\Preferences'
+    - '%%users.localappdata%%\Chromium\User Data\*\Secure Preferences'
+    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Preferences'
+    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Secure Preferences'
+    - '%%users.localappdata%%\Google\Chrome\User Data\*\Preferences'
+    - '%%users.localappdata%%\Google\Chrome\User Data\*\Secure Preferences'
+    - '%%users.localappdata%%\Microsoft\Edge\User Data\*\Preferences'
+    separator: '\'
+  supported_os: [Windows]
 supported_os: [Darwin, Linux, Windows]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome#Configuration']
 ---
@@ -862,17 +805,14 @@ doc: |
 
   The Session Storage directory contains the files that comprise a LevelDB
   database, which in turn holds the Session Storage data.
-
 sources:
 - type: FILE
   attributes:
     paths:
-    - '%%users.localappdata%%\Chromium\User Data\*\Session Storage\*'
-    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Session Storage\*'
-    - '%%users.localappdata%%\Google\Chrome\User Data\*\Session Storage\*'
-    - '%%users.localappdata%%\Microsoft\Edge\User Data\*\Session Storage\*'
-    separator: '\'
-  supported_os: [Windows]
+    - '%%users.homedir%%/Library/Application Support/Chromium/*/Session Storage/*'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Session Storage/*'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Session Storage/*'
+  supported_os: [Darwin]
 - type: FILE
   attributes:
     paths:
@@ -885,24 +825,17 @@ sources:
 - type: FILE
   attributes:
     paths:
-    - '%%users.homedir%%/Library/Application Support/Chromium/*/Session Storage/*'
-    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Session Storage/*'
-    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Session Storage/*'
-  supported_os: [Darwin]
+    - '%%users.localappdata%%\Chromium\User Data\*\Session Storage\*'
+    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Session Storage\*'
+    - '%%users.localappdata%%\Google\Chrome\User Data\*\Session Storage\*'
+    - '%%users.localappdata%%\Microsoft\Edge\User Data\*\Session Storage\*'
+    separator: '\'
+  supported_os: [Windows]
 supported_os: [Darwin, Linux, Windows]
 ---
 name: FirefoxCache
 doc: Mozilla Firefox browser caches.
 sources:
-- type: FILE
-  attributes:
-    paths:
-    - '%%users.localappdata%%\Mozilla\Firefox\Profiles\*.default\Cache\*'
-    - '%%users.localappdata%%\Mozilla\Firefox\Profiles\*.default\cache2\*'
-    - '%%users.localappdata%%\Mozilla\Firefox\Profiles\*.default\cache2\doomed\*'
-    - '%%users.localappdata%%\Mozilla\Firefox\Profiles\*.default\cache2\entries\*'
-    separator: '\'
-  supported_os: [Windows]
 - type: FILE
   attributes:
     paths:
@@ -920,21 +853,21 @@ sources:
     - '%%users.homedir%%/.cache/mozilla/firefox/*.default/cache2/doomed/*'
     - '%%users.homedir%%/.cache/mozilla/firefox/*.default/cache2/entries/*'
   supported_os: [Linux]
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.localappdata%%\Mozilla\Firefox\Profiles\*.default\Cache\*'
+    - '%%users.localappdata%%\Mozilla\Firefox\Profiles\*.default\cache2\*'
+    - '%%users.localappdata%%\Mozilla\Firefox\Profiles\*.default\cache2\doomed\*'
+    - '%%users.localappdata%%\Mozilla\Firefox\Profiles\*.default\cache2\entries\*'
+    separator: '\'
+  supported_os: [Windows]
 supported_os: [Darwin, Linux, Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/webbrowser/FirefoxCache.html']
 ---
 name: FirefoxHistory
 doc: Firefox browser history (places.sqlite).
 sources:
-- type: FILE
-  attributes:
-    paths:
-    - '%%users.localappdata%%\Mozilla\Firefox\Profiles\*\places.sqlite'
-    - '%%users.localappdata%%\Mozilla\Firefox\Profiles\*\places.sqlite-wal'
-    - '%%users.appdata%%\Mozilla\Firefox\Profiles\*\places.sqlite'
-    - '%%users.localappdata%%\Mozilla\Firefox\Profiles\*\places.sqlite-wal'
-    separator: '\'
-  supported_os: [Windows]
 - type: FILE
   attributes:
     paths:
@@ -947,23 +880,21 @@ sources:
     - '%%users.homedir%%/.mozilla/firefox/*/places.sqlite'
     - '%%users.homedir%%/.mozilla/firefox/*/places.sqlite-wal'
   supported_os: [Linux]
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.localappdata%%\Mozilla\Firefox\Profiles\*\places.sqlite'
+    - '%%users.localappdata%%\Mozilla\Firefox\Profiles\*\places.sqlite-wal'
+    - '%%users.appdata%%\Mozilla\Firefox\Profiles\*\places.sqlite'
+    - '%%users.localappdata%%\Mozilla\Firefox\Profiles\*\places.sqlite-wal'
+    separator: '\'
+  supported_os: [Windows]
 supported_os: [Darwin, Linux, Windows]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mozilla_Firefox']
 ---
 name: FirefoxAddOns
 doc: Firefox browser add-ons/extensions.
 sources:
-- type: FILE
-  attributes:
-    paths:
-    - '%%users.appdata%%\Mozilla\Firefox\Profiles\*\addons.json'
-    - '%%users.appdata%%\Mozilla\Firefox\Profiles\*\extensions.json'
-    - '%%users.appdata%%\Mozilla\Firefox\Profiles\*\webapps\webapps.json'
-    - '%%users.localappdata%%\Mozilla\Firefox\Profiles\*\addons.json'
-    - '%%users.localappdata%%\Mozilla\Firefox\Profiles\*\extensions.json'
-    - '%%users.localappdata%%\Mozilla\Firefox\Profiles\*\webapps\webapps.json'
-    separator: '\'
-  supported_os: [Windows]
 - type: FILE
   attributes:
     paths:
@@ -978,6 +909,17 @@ sources:
     - '%%users.homedir%%/.mozilla/firefox/*/extensions.json'
     - '%%users.homedir%%/.mozilla/firefox/*/webapps/webapps.json'
   supported_os: [Linux]
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.appdata%%\Mozilla\Firefox\Profiles\*\addons.json'
+    - '%%users.appdata%%\Mozilla\Firefox\Profiles\*\extensions.json'
+    - '%%users.appdata%%\Mozilla\Firefox\Profiles\*\webapps\webapps.json'
+    - '%%users.localappdata%%\Mozilla\Firefox\Profiles\*\addons.json'
+    - '%%users.localappdata%%\Mozilla\Firefox\Profiles\*\extensions.json'
+    - '%%users.localappdata%%\Mozilla\Firefox\Profiles\*\webapps\webapps.json'
+    separator: '\'
+  supported_os: [Windows]
 supported_os: [Darwin, Linux, Windows]
 urls: ['https://github.com/osquery/osquery/blob/6969e075fd4118e36f6cab54b0956e53dde5ba3f/osquery/tables/applications/browser_firefox.cpp#']
 ---
@@ -1138,8 +1080,9 @@ sources:
 supported_os: [Windows]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Internet_Explorer#Typed_URLs']
 ---
-name: OperaHistory
-doc: Opera browser history (global_history.dat).
+name: OperaHistoryFile
+aliases: [OperaHistory]
+doc: Opera browser history (global_history.dat) file.
 sources:
 - type: FILE
   attributes: {paths: ['%%users.homedir%%/Library/Opera/global_history.dat']}
@@ -1157,25 +1100,27 @@ sources:
 supported_os: [Darwin, Linux, Windows]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Opera']
 ---
-name: SafariCache
-doc: Safari browser cache (cache.db).
+name: SafariCacheSQLiteDatabaseFile
+aliases: [SafariCache]
+doc: Safari browser cache (cache.db) SQLite database file.
 sources:
-- type: FILE
-  attributes:
-    paths: ['%%users.localappdata%%\Apple Computer\Safari\cache.db']
-    separator: '\'
-  supported_os: [Windows]
 - type: FILE
   attributes:
     paths:
     - '%%users.homedir%%/Library/Caches/com.apple.Safari/Cache.db'
     - '%%users.homedir%%/Library/Caches/com.apple.Safari/Cache.db-wal'
   supported_os: [Darwin]
-supported_os: [Windows, Darwin]
+- type: FILE
+  attributes:
+    paths: ['%%users.localappdata%%\Apple Computer\Safari\cache.db']
+    separator: '\'
+  supported_os: [Windows]
+supported_os: [Darwin, Windows]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Apple_Safari']
 ---
-name: SafariDownloads
-doc: Safari downloads history (Downloads.plist).
+name: SafariDownloadsPlistFile
+aliases: [SafariDownloads]
+doc: Safari downloads history (Downloads.plist) property list (plist) file.
 sources:
 - type: FILE
   attributes: {paths: ['%%users.homedir%%/Library/Safari/Downloads.plist']}
@@ -1189,13 +1134,37 @@ sources:
   supported_os: [Windows]
 supported_os: [Darwin, Windows]
 urls:
-- 'https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X'
 - 'https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#Safari'
 - 'https://www.forensicswiki.org/wiki/Apple_Safari'
 ---
 name: SafariHistory
-doc: Safari browser history (History.plist).
+doc: Safari browser history.
 sources:
+- type: ARTIFACT_GROUP
+  attributes:
+    names:
+    - 'SafariHistorySQLiteDatabaseFile'
+    - 'SafariHistoryPlistFile'
+supported_os: [Darwin, Windows]
+urls: ['https://forensicswiki.xyz/wiki/index.php?title=Apple_Safari']
+---
+name: SafariHistorySQLiteDatabaseFile
+doc: Safari browser history SQLite database files.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/Library/Safari/History.db'
+    - '%%users.homedir%%/Library/Safari/History.db-wal'
+supported_os: [Darwin]
+urls: ['https://forensicswiki.xyz/wiki/index.php?title=Apple_Safari']
+---
+name: SafariHistoryPlistFile
+doc: Safari browser history (History.plist) property list (plist) file.
+sources:
+- type: FILE
+  attributes: {paths: ['%%users.homedir%%/Library/Safari/History.plist']}
+  supported_os: [Darwin]
 - type: FILE
   attributes:
     paths:
@@ -1203,21 +1172,13 @@ sources:
     - '%%users.appdata%%\Apple Computer\Safari\History.plist'
     separator: '\'
   supported_os: [Windows]
-- type: FILE
-  attributes:
-    paths:
-    - '%%users.homedir%%/Library/Safari/History.plist'
-    - '%%users.homedir%%/Library/Safari/History.db'
-    - '%%users.homedir%%/Library/Safari/History.db-wal'
-  supported_os: [Darwin]
-supported_os: [Windows, Darwin]
+supported_os: [Darwin, Windows]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Apple_Safari']
 ---
 name: SafariExtensions
-doc: Safari browser Extensions.
+doc: Safari browser extensions.
 sources:
 - type: FILE
   attributes: {paths: ['%%users.homedir%%/Library/Safari/Extensions/**']}
-  supported_os: [Darwin]
 supported_os: [Darwin]
 urls: ['http://www.forensicswiki.org/wiki/Apple_Safari']
