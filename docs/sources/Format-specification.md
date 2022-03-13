@@ -36,18 +36,25 @@ labels | Optional list of predefined labels. Note that labels have been deprecat
 
 ## Name
 
-**Style note**: The name of an artifact definition should be in CamelCase name
-without spaces.
+The name of an artifact definition should be in CamelCase name without spaces.
 
-As of July 2016 we are migrating to the following naming convention:
+Prefix platform specific artifact definitions with the name of the operating
+system using "Linux", "MacOS" or "Windows".
 
-* Prefix platform specific artifact definitions with the name of the operating system using "Linux", "MacOS" or "Windows"
-* If not platform specific:
-** prefix with the application name, for example "ChromeHistory".
-** prefix with the name of the subsystem, for example "WMIComputerSystemProduct".
+If not platform specific:
 
-**Style note**: If the sole source of the artifact definition for example are
-files use "BrowserHistoryFiles" instead of "BrowserHistory" to reduce ambiguity.
+* prefix with the application name, for example "ChromeHistory".
+* prefix with the name of the subsystem, for example "WMIComputerSystemProduct".
+
+Suffix artifact definitions with the type of artifact, for example are files use
+"BrowserHistoryFile" instead of "BrowserHistory" to reduce ambiguity.
+
+Suffix | Description
+--- | ---
+Directory | Contents of one or more directories.
+File | Contents of one or more files.
+LogFile | Contents of one or more log files.
+PlistFile | Contents of one or more property list (plist) files.
 
 ## Description
 

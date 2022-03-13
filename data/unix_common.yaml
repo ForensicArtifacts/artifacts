@@ -21,7 +21,7 @@ sources:
     - 'UserShellHistory'
 supported_os: [Darwin, Linux]
 ---
-name: BashShellConfigFiles
+name: BashShellConfigFile
 doc: Bourne Again Shell (bash) history files.
 sources:
 - type: FILE
@@ -42,7 +42,7 @@ sources:
 supported_os: [Darwin, Linux]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Bash_shell']
 ---
-name: BashShellHistoryFiles
+name: BashShellHistoryFile
 aliases: [MacOSBashHistory]
 doc: Bourne Again Shell (bash) history files.
 sources:
@@ -54,7 +54,7 @@ sources:
 supported_os: [Darwin, Linux]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Bash_shell']
 ---
-name: BashShellSessionFiles
+name: BashShellSessionFile
 aliases: [MacOSBashSessions]
 doc: Bourne Again Shell (bash) session files.
 sources:
