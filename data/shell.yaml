@@ -1,0 +1,280 @@
+# Shell user-interface artifact definitions.
+---
+name: BashShellConfigurationFile
+doc: Bourne Again shell (bash) configuration files.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/.bash_logout'
+    - '%%users.homedir%%/.bash_profile'
+    - '%%users.homedir%%/.bashrc'
+    - '/etc/bash.bashrc'
+    - '/etc/bashrc'
+  supported_os: [Darwin, Linux]
+- type: FILE
+  attributes:
+    paths:
+    - '/private/etc/bash.bashrc'
+    - '/private/etc/bashrc'
+  supported_os: [Darwin]
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.localappdata%%\Packages\*\LocalState\rootfs\home\*\.bash_logout'
+    - '%%users.localappdata%%\Packages\*\LocalState\rootfs\home\*\.bash_profile'
+    - '%%users.localappdata%%\Packages\*\LocalState\rootfs\home\*\.bashrc'
+    separator: '\'
+  supported_os: [Windows]
+supported_os: [Darwin, Linux, Windows]
+urls: ['https://forensicswiki.xyz/wiki/index.php?title=Bash_shell']
+---
+name: BashShellHistoryFile
+aliases: [MacOSBashHistory]
+doc: Bourne Again shell (bash) history files.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/.bash_history'
+- type: FILE
+  attributes:
+    paths: ['%%users.localappdata%%\Packages\*\LocalState\rootfs\home\*\.bash_history']
+    separator: '\'
+  supported_os: [Windows]
+supported_os: [Darwin, Linux, Windows]
+urls: ['https://forensicswiki.xyz/wiki/index.php?title=Bash_shell']
+---
+name: BashShellSessionFile
+aliases: [MacOSBashSessions]
+doc: Bourne Again shell (bash) session files.
+sources:
+- type: FILE
+  attributes: {paths: ['%%users.homedir%%/.bash_sessions/*']}
+supported_os: [Darwin]
+urls: ['https://forensicswiki.xyz/wiki/index.php?title=Bash_shell']
+---
+name: BourneShellHistoryFile
+doc: Bourne shell (sh) history files.
+sources:
+- type: FILE
+  attributes: {paths: ['%%users.homedir%%/.sh_history']}
+  supported_os: [Darwin, Linux]
+- type: FILE
+  attributes:
+    paths: ['%%users.localappdata%%\Packages\*\LocalState\rootfs\home\*\.sh_history']
+    separator: '\'
+  supported_os: [Windows]
+supported_os: [Darwin, Linux, Windows]
+urls: ['https://en.wikipedia.org/wiki/Bourne_shell']
+---
+name: CShellConfigurationFile
+doc: C shell (csh) configuration files.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/.cshrc'
+    - '/etc/csh.cshrc'
+    - '/etc/csh.login'
+    - '/etc/csh.logout'
+  supported_os: [Darwin, Linux]
+- type: FILE
+  attributes:
+    paths:
+    - '/private/etc/csh.cshrc'
+    - '/private/etc/csh.login'
+    - '/private/etc/csh.logout'
+  supported_os: [Darwin]
+- type: FILE
+  attributes:
+    paths: ['%%users.localappdata%%\Packages\*\LocalState\rootfs\home\*\.cshrc']
+    separator: '\'
+  supported_os: [Windows]
+supported_os: [Darwin, Linux, Windows]
+urls: ['https://en.wikipedia.org/wiki/C_shell']
+---
+name: KornShellConfigurationFile
+doc: KornShell (ksh) configuration files.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/.ksh'
+    - '/etc/kshrc'
+  supported_os: [Darwin, Linux]
+- type: FILE
+  attributes:
+    paths:
+    - '/private/etc/kshrc'
+  supported_os: [Darwin]
+- type: FILE
+  attributes:
+    paths: ['%%users.localappdata%%\Packages\*\LocalState\rootfs\home\*\.ksh']
+    separator: '\'
+  supported_os: [Windows]
+supported_os: [Darwin, Linux, Windows]
+urls: ['https://en.wikipedia.org/wiki/KornShell']
+---
+name: RootUserShellConfigs
+doc: Common Unix root shell configuration files.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/root/.bash_logout'
+    - '/root/.bash_profile'
+    - '/root/.bashrc'
+    - '/root/.cshrc'
+    - '/root/.ksh'
+    - '/root/.logout'
+    - '/root/.profile'
+    - '/root/.tcsh'
+    - '/root/.zlogin'
+    - '/root/.zlogout'
+    - '/root/.zprofile'
+supported_os: [Darwin, Linux]
+---
+name: RootUserShellHistory
+doc: Common Unix root shell history files.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/root/.bash_history'
+    - '/root/.sh_history'
+    - '/root/.zhistory'
+    - '/root/.zsh_history'
+supported_os: [Darwin, Linux]
+---
+name: ShellConfigurationFile
+aliases: [AllShellConfigs, GlobalShellConfigs, UsersShellConfigs]
+doc: Group of shell configuration files.
+sources:
+- type: ARTIFACT_GROUP
+  attributes:
+    names:
+    - 'BashShellConfigurationFile'
+    - 'CShellConfigurationFile'
+    - 'KornShellConfigurationFile'
+    - 'ShellLogoutFile'
+    - 'ShellProfileFile'
+    - 'TeeShellConfigurationFile'
+    - 'ZShellConfigurationFile'
+supported_os: [Darwin, Linux, Windows]
+---
+name: ShellHistoryFile
+aliases: [AllUsersShellHistory, UserShellHistory]
+doc: Group of shell history files.
+sources:
+- type: ARTIFACT_GROUP
+  attributes:
+    names:
+    - 'BashShellHistoryFile'
+    - 'BourneShellHistoryFile'
+    - 'ZShellHistoryFile'
+supported_os: [Darwin, Linux, Windows]
+---
+name: ShellLogoutFile
+doc: Shell logout file.
+sources:
+- type: FILE
+  attributes: {paths: ['%%users.homedir%%/.logout']}
+  supported_os: [Darwin, Linux]
+- type: FILE
+  attributes:
+    paths: ['%%users.localappdata%%\Packages\*\LocalState\rootfs\home\*\.logout']
+    separator: '\'
+  supported_os: [Windows]
+supported_os: [Darwin, Linux, Windows]
+---
+name: ShellProfileFile
+doc: Shell profile file.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/.profile'
+    - '/etc/profile'
+  supported_os: [Darwin, Linux]
+- type: FILE
+  attributes: {paths: ['/private/etc/profile']}
+  supported_os: [Darwin]
+- type: FILE
+  attributes:
+    paths: ['%%users.localappdata%%\Packages\*\LocalState\rootfs\home\*\.profile']
+    separator: '\'
+  supported_os: [Windows]
+supported_os: [Darwin, Linux, Windows]
+---
+name: TeeShellConfigurationFile
+doc: Tee shell (tcsh) configuration files.
+sources:
+- type: FILE
+  attributes: {paths: ['%%users.homedir%%/.tcsh']}
+  supported_os: [Darwin, Linux]
+- type: FILE
+  attributes:
+    paths: ['%%users.localappdata%%\Packages\*\LocalState\rootfs\home\*\.tcsh']
+    separator: '\'
+  supported_os: [Windows]
+supported_os: [Darwin, Linux, Windows]
+urls: ['https://en.wikipedia.org/wiki/Tcsh']
+---
+name: ZShellConfigurationFile
+doc: Z shell (zsh) configuration files.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/.zlogin'
+    - '%%users.homedir%%/.zlogout'
+    - '%%users.homedir%%/.zprofile'
+    - '/etc/zshenv'
+    - '/etc/zshrc'
+    - '/etc/zsh/zlogin'
+    - '/etc/zsh/zlogout'
+    - '/etc/zsh/zprofile'
+    - '/etc/zsh/zshenv'
+    - '/etc/zsh/zshrc'
+  supported_os: [Darwin, Linux]
+- type: FILE
+  attributes:
+    paths:
+    - '/private/etc/zshenv'
+    - '/private/etc/zshrc'
+    - '/private/etc/zsh/zlogin'
+    - '/private/etc/zsh/zlogout'
+    - '/private/etc/zsh/zprofile'
+    - '/private/etc/zsh/zshenv'
+    - '/private/etc/zsh/zshrc'
+  supported_os: [Darwin]
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.localappdata%%\Packages\*\LocalState\rootfs\home\*\.zlogin'
+    - '%%users.localappdata%%\Packages\*\LocalState\rootfs\home\*\.zlogout'
+    - '%%users.localappdata%%\Packages\*\LocalState\rootfs\home\*\.zprofile'
+    separator: '\'
+  supported_os: [Windows]
+supported_os: [Darwin, Linux, Windows]
+urls: ['https://en.wikipedia.org/wiki/Z_shell']
+---
+name: ZShellHistoryFile
+doc: Z shell (zsh) history files.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/.zhistory'
+    - '%%users.homedir%%/.zsh_history'
+  supported_os: [Darwin, Linux]
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.localappdata%%\Packages\*\LocalState\rootfs\home\*\.zhistory'
+    - '%%users.localappdata%%\Packages\*\LocalState\rootfs\home\*\.zsh_history'
+    separator: '\'
+  supported_os: [Windows]
+supported_os: [Darwin, Linux, Windows]
+urls: ['https://en.wikipedia.org/wiki/Z_shell']
