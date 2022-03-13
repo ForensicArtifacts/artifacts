@@ -67,6 +67,7 @@ Directory | Contents of one or more directories.
 File | Contents of one or more files.
 LogFile | Contents of one or more log files.
 PlistFile | Contents of one or more property list (plist) files.
+SQLiteDatabaseFile | Contents of one or more SQLite database files.
 
 ## Description
 

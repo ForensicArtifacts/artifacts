@@ -1,5 +1,14 @@
 # Mac OS (Darwin) specific artifacts.
 ---
+name: MacOSAirportPreferencesPlistFile
+aliases: [MacOSWirelessNetworks]
+doc: Airport (wireless networking) preferences property list (plist) file.
+sources:
+- type: FILE
+  attributes: {paths: ['/Library/Preferences/SystemConfiguration/com.apple.airport.preferences.plist']}
+supported_os: [Darwin]
+urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#Networking']
+---
 name: MacOSAppleSetupDoneFile
 aliases: [MacOSSystemInstallationTime]
 doc: Mac OS .AppleSetupDone file that hints to the system installation date and time.
@@ -413,8 +422,9 @@ sources:
     cmd: /usr/bin/hdiutil
 supported_os: [Darwin]
 ---
-name: MacOSNotificationCenter
-doc: MacOS NotificationCenter database
+name: MacOSNotificationCenterSQLiteDatabaseFile
+aliases: [MacOSNotificationCenter]
+doc: MacOS NotificationCenter SQLite database files.
 sources:
 - type: FILE
   attributes:
@@ -460,8 +470,9 @@ urls:
 - 'https://www.freebsd.org/cgi/man.cgi?periodic'
 - 'https://www.freebsd.org/cgi/man.cgi?periodic.conf'
 ---
-name: MacOSQuarantineEvents
-doc: Quarantine Event Database
+name: MacOSQuarantineEventsSQLiteDatabaseFile
+aliases: [MacOSQuarantineEvents]
+doc: Quarantine events SQLite database file.
 sources:
 - type: FILE
   attributes:
@@ -487,8 +498,8 @@ sources:
   attributes:
     paths:
     - '/private/var/db/RemoteManagement/ClientCaches/*'
-    - '/var/db/RemoteManagement/ClientCaches/*'
     - '/private/var/db/RemoteManagement/RMDB/rmdb.sqlite3'
+    - '/var/db/RemoteManagement/ClientCaches/*'
     - '/var/db/RemoteManagement/RMDB/rmdb.sqlite3'
 supported_os: [Darwin]
 urls:
@@ -606,6 +617,18 @@ sources:
   attributes: {paths: ['/System/Library/CoreServices/SystemVersion.plist']}
 supported_os: [Darwin]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#System_Settings_and_Informations']
+---
+name: MacOSTCCSQLiteDatabaseFile
+aliases: [MacOSTCC]
+doc: Transparency, Consent, Control (TCC) framework SQLite database files.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/Library/Application Support/com.apple.TCC/TCC.db'
+    - '/Library/Application Support/com.apple.TCC/TCC.db'
+supported_os: [Darwin]
+urls: ['https://forensicswiki.xyz/wiki/index.php?title=TCC_database']
 ---
 name: MacOSTimeMachinePlistFile
 doc: Time Machine information property list (plist) file
@@ -752,8 +775,9 @@ sources:
 supported_os: [Darwin]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#User_Directories']
 ---
-name: MacOSUserSocialAccounts
-doc: User's Social Accounts
+name: MacOSUserAccountsSQLiteDatabaseFile
+aliases: [MacOSUserSocialAccounts]
+doc: User Accounts SQLite database files.
 sources:
 - type: FILE
   attributes:
@@ -784,25 +808,3 @@ sources:
     - '/var/run/utmpx'
 supported_os: [Darwin]
 urls: ['https://github.com/libyal/dtformats/blob/main/documentation/Utmp%20login%20records%20format.asciidoc']
----
-name: MacOSAirportPreferencesPlistFile
-aliases: [MacOSWirelessNetworks]
-doc: Airport (wireless networking) preferences property list (plist) file.
-sources:
-- type: FILE
-  attributes: {paths: ['/Library/Preferences/SystemConfiguration/com.apple.airport.preferences.plist']}
-supported_os: [Darwin]
-urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#Networking']
----
-name: MacOSTCC
-doc: Apple's Transparency, Consent, Control (TCC) framework database
-sources:
-- type: FILE
-  attributes:
-    paths:
-    - '/Library/Application Support/com.apple.TCC/TCC.db'
-    - '%%users.homedir%%/Library/Application Support/com.apple.TCC/TCC.db'
-supported_os: [Darwin]
-urls:
-- https://blog.fleetsmith.com/tcc-a-quick-primer/
-- https://carlashley.com/2018/09/06/reading-tcc-logs-in-macos/
