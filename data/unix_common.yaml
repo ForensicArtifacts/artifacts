@@ -233,6 +233,27 @@ sources:
     - 'UnixShadowFile'
 supported_os: [Darwin, Linux]
 ---
+name: UnixUtmpFile
+aliases: [MacOSUtmpFile]
+doc: Utmp login record files.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/var/log/btmp'
+    - '/var/log/wtmp'
+    - '/var/run/utmp'
+  supported_os: [Darwin, Linux]
+- type: FILE
+  attributes:
+    paths:
+    - '/private/var/log/btmp'
+    - '/private/var/log/wtmp'
+    - '/private/var/run/utmp'
+  supported_os: [Darwin]
+supported_os: [Darwin, Linux]
+urls: ['https://github.com/libyal/dtformats/blob/main/documentation/Utmp%20login%20records%20format.asciidoc']
+---
 name: UsersShellConfigs
 doc: Common Unix user shell configuration files.
 sources:
