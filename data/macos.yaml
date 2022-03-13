@@ -1,5 +1,17 @@
 # Mac OS (Darwin) specific artifacts.
 ---
+name: MacOSAppleSetupDoneFile
+aliases: [MacOSSystemInstallationTime]
+doc: Mac OS .AppleSetupDone file that hints to the system installation date and time.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/private/var/db/.AppleSetupDone'
+    - '/var/db/.AppleSetupDone'
+supported_os: [Darwin]
+urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#System_Settings_and_Informations']
+---
 name: MacOSAppleSystemLogFile
 aliases: [MacOSAppleSystemLogFiles]
 doc: Apple system log (ASL) files.
@@ -279,6 +291,15 @@ sources:
     cmd: /usr/sbin/kextstat
 supported_os: [Darwin]
 ---
+name: MacOSLogFile
+aliases: [MacOSMiscLogs]
+doc: Miscellaneous system log files.
+sources:
+- type: FILE
+  attributes: {paths: ['/Library/Logs/*']}
+supported_os: [Darwin]
+urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#Logs']
+---
 name: MacOSLoginWindowPlistFile
 doc: Log-in window information property list (plist) file
 sources:
@@ -383,14 +404,6 @@ sources:
 supported_os: [Darwin]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#Mail']
 ---
-name: MacOSMiscLogs
-doc: Misc. Logs
-sources:
-- type: FILE
-  attributes: {paths: ['/Library/Logs/*']}
-supported_os: [Darwin]
-urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#Logs']
----
 name: MacOSMountedDMGs
 doc: MacOS Mounted DMG files.
 sources:
@@ -413,8 +426,9 @@ sources:
     - '/var/folders/[a-z][0-9]/*/0/com.apple.notificationcenter/db2/db'
 supported_os: [Darwin]
 ---
-name: MacOSPeriodicSystemFunctions
-doc: Periodic system functions scripts and configuration
+name: MacOSPeriodicSystemFunctionConfigurationFile
+aliases: [MacOSPeriodicSystemFunctions]
+doc: Configuration files of system function scripts that should run periodically.
 sources:
 - type: FILE
   attributes:
@@ -443,7 +457,8 @@ sources:
 supported_os: [Darwin]
 urls:
 - 'https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#System_Info_Misc'
-- 'https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man8/periodic.8.html#//apple_ref/doc/man/8/periodic'
+- 'https://www.freebsd.org/cgi/man.cgi?periodic'
+- 'https://www.freebsd.org/cgi/man.cgi?periodic.conf'
 ---
 name: MacOSQuarantineEvents
 doc: Quarantine Event Database
@@ -456,8 +471,9 @@ sources:
 supported_os: [Darwin]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#Preferences']
 ---
-name: MacOSRecentItems
-doc: Recent Items
+name: MacOSRecentItemsPlistFile
+aliases: [MacOSRecentItems]
+doc: Recent items property list (plist) file.
 sources:
 - type: FILE
   attributes: {paths: ['%%users.homedir%%/Library/Preferences/com.apple.recentitems.plist']}
@@ -496,7 +512,8 @@ urls:
 - 'https://www.fireeye.com/blog/threat-research/2019/10/leveraging-apple-remote-desktop-for-good-and-evil.html'
 - 'https://github.com/fireeye/ARDvark#ard-artifacts-to-parse'
 ---
-name: MacOSSidebarLists
+name: MacOSSidebarListsPlistFile
+aliases: [MacOSSidebarLists]
 doc: |
   Sidebar lists preferences property list (plist) file.
 
@@ -520,6 +537,15 @@ sources:
     - '/var/vm/sleepimage'
 supported_os: [Darwin]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#Sleep.2FHibernate_and_Swap_Image_File']
+---
+name: MacOSSoftwareUpdatePreferencesPlistFile
+aliases: [MacOSUpdate]
+doc: Software update preferences property list (plist) files.
+sources:
+- type: FILE
+  attributes: {paths: ['/Library/Preferences/com.apple.SoftwareUpdate.plist']}
+supported_os: [Darwin]
+urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#Software_Installation']
 ---
 name: MacOSStartupItemsPlistFile
 aliases: [MacOSStartupItemsPlistFiles]
@@ -551,17 +577,6 @@ sources:
 - type: FILE
   attributes: {paths: ['/Library/Preferences/SystemConfiguration/preferences.plist']}
 supported_os: [Darwin]
----
-name: MacOSSystemInstallationTime
-doc: System installation time
-sources:
-- type: FILE
-  attributes:
-    paths:
-    - '/private/var/db/.AppleSetupDone'
-    - '/var/db/.AppleSetupDone'
-supported_os: [Darwin]
-urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#System_Settings_and_Informations']
 ---
 name: MacOSSystemLogFile
 aliases: [MacOSSystemLogFiles]
@@ -614,14 +629,6 @@ sources:
     - '/var/db/uuidtext/*/*'
 supported_os: [Darwin]
 urls: ['https://github.com/mac4n6/Presentations/blob/master/Logs%20Unite!%20-%20Forensic%20Analysis%20of%20Apple%20Unified%20Logs/LogsUnite.pdf']
----
-name: MacOSUpdate
-doc: Software Update
-sources:
-- type: FILE
-  attributes: {paths: ['/Library/Preferences/com.apple.SoftwareUpdate.plist']}
-supported_os: [Darwin]
-urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#Software_Installation']
 ---
 name: MacOSUserApplicationLogFile
 aliases: [MacOSUserApplicationLogs]
@@ -691,7 +698,8 @@ sources:
 supported_os: [Darwin]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#User_Directories']
 ---
-name: MacOSUserLoginItems
+name: MacOSUserLoginItemsPlistFile
+aliases: [MacOSUserLoginItems]
 doc: User login items property list (plist) file.
 sources:
 - type: FILE
