@@ -664,14 +664,6 @@ sources:
 supported_os: [Darwin]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#User_Directories']
 ---
-name: MacOSUserDownloadsDirectory
-doc: Contents of the user Downloads directories.
-sources:
-- type: PATH
-  attributes: {paths: ['%%users.homedir%%/Downloads/*']}
-supported_os: [Darwin]
-urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#User_Directories']
----
 name: MacOSUserGlobalPreferencesPlistFile
 aliases: [MacOSUserGlobalPreferences]
 doc: User global preferences property list (plist) file.
@@ -759,16 +751,6 @@ sources:
   attributes: {paths: ['%%users.homedir%%/Public/*']}
 supported_os: [Darwin]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#User_Directories']
----
-name: MacOSUsersDirectory
-aliases: [MacOSUsers]
-doc: Contents of the Users directory.
-sources:
-- type: PATH
-  attributes: {paths: ['/Users/*']}
-supported_os: [Darwin]
-provides: [users.username]
-urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#Users']
 ---
 name: MacOSUserSocialAccounts
 doc: User's Social Accounts

@@ -46,6 +46,17 @@ If not platform specific:
 * prefix with the application name, for example "ChromeHistory".
 * prefix with the name of the subsystem, for example "WMIComputerSystemProduct".
 
+Commonly used prefixes:
+
+Prefix | Description
+--- | ---
+Darwin | Mac OS (or Darwin) operating system specific artifact definition.
+Linux | Linux operating system specific artifact definition.
+Shell | Shell user-interface specific artifact definition.
+User | User specific artifact definition.
+Unix | Unix operating system (or POSIX) specific artifact definition.
+Windows | Windows operating system specific artifact definition.
+
 Suffix artifact definitions with the type of artifact, for example are files use
 "BrowserHistoryFile" instead of "BrowserHistory" to reduce ambiguity.
 

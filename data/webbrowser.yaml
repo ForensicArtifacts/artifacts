@@ -612,6 +612,7 @@ urls:
 - 'https://dfir.blog/deciphering-browser-hieroglyphics-leveldb-filesystem/'
 ---
 name: ChromiumBasedBrowsersHistory
+aliases: [ChromeHistory]
 doc: |
   Browsing history for multiple Chromium-based browsers (Google Chrome,
   Brave, Chromium, Yandex, Opera, Edge, EdgeBeta).
