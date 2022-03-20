@@ -974,6 +974,37 @@ conditions: [os_major_version < 6]
 supported_os: [Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/EventLog.html']
 ---
+name: WindowsEventTracingLogFiles
+doc: Event Tracing for Windows (ETW) log files.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%environ_allusersappdata%%\Microsoft\Diagnosis\ETLLogs\ShutdownLogger\*.etl'
+    - '%%environ_allusersappdata%%\Microsoft\DiagnosticLogCSP\Collectors\*.etl'
+    - '%%environ_allusersappdata%%\Microsoft\Windows\wfp\*.etl'
+    - '%%environ_allusersappdata%%\Microsoft\Windows Security Health\Logs\*.etl'
+    - '%%environ_allusersappdata%%\USOShared\Logs\System\*.etl'
+    - '%%users.localappdata%%\Microsoft\OneDrive\logs\Personal\*.etl'
+    - '%%users.localappdata%%\Microsoft\Windows\Explorer\*.etl'
+    - '%%users.localappdata%%\Packages\Microsoft.Windows.Photos_*\LocalState\*.etl'
+    - '%%environ_systemroot%%\Logs\*\*.etl'
+    - '%%environ_systemroot%%\Panther\*.etl'
+    - '%%environ_systemroot%%\Security\Logs\*.etl'
+    - '%%environ_systemroot%%\ServiceProfiles\NetworkService\AppData\Local\Microsoft\Windows\DeliveryOptimization\Logs\*.etl'
+    - '%%environ_systemroot%%\System32\LogFiles\WMI\*.etl'
+    - '%%environ_systemroot%%\System32\LogFiles\WMI\*.etl.0*'
+    - '%%environ_systemroot%%\System32\LogFiles\WMI\RtBackup\*.etl'
+    - '%%environ_systemroot%%\System32\SleepStudy\*.etl'
+    - '%%environ_systemroot%%\System32\SleepStudy\ScreenOn\*.etl'
+    - '%%environ_systemroot%%\System32\WDI\LogFiles\*.etl'
+    - '%%environ_systemroot%%\System32\WDI\LogFiles\*.etl.0*'
+    - '%%environ_systemroot%%\System32\WDI\{86432a0b-3c7d-4ddf-a89c-172faa90485d}\*\*.etl'
+    separator: '\'
+conditions: [os_major_version >= 6]
+supported_os: [Windows]
+urls: ['https://forensicswiki.xyz/wiki/index.php?title=Event_Tracing_for_Windows_(ETW)']
+---
 name: WindowsXMLEventLogApplication
 doc: Application Windows XML Event Log.
 sources:
