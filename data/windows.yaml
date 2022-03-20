@@ -352,6 +352,7 @@ urls:
 - 'https://forensicswiki.xyz/wiki/index.php?title=WMI'
 ---
 name: WindowsCodePage
+aliases: [WinCodePage]
 doc: The system code page.
 sources:
 - type: REGISTRY_VALUE
@@ -788,6 +789,7 @@ conditions: [os_major_version >= 10]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/EnvironmentVariables.html']
 ---
 name: WindowsEnvironmentVariablePath
+aliases: [WinPathEnvironmentVariable]
 doc: The %PATH% environment variable contains an ordered list of paths of directories that will be searched on execution request without a specific path.
 sources:
 - type: REGISTRY_VALUE
@@ -821,6 +823,7 @@ supported_os: [Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/EnvironmentVariables.html']
 ---
 name: WindowsEnvironmentVariableProgramFiles
+aliases: [ProgramFiles]
 doc: The %ProgramFiles% environment variable contains a path of the "Program Files" directory.
 sources:
 - type: PATH
@@ -836,6 +839,7 @@ supported_os: [Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/EnvironmentVariables.html']
 ---
 name: WindowsEnvironmentVariableProgramFilesX86
+aliases: [ProgramFilesx86]
 doc: The %ProgramFiles(x86)% environment variable contains a path of the 32-bit "Program Files" directory on a 64-bit Windows installation.
 sources:
 - type: PATH
@@ -863,6 +867,7 @@ supported_os: [Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/EnvironmentVariables.html']
 ---
 name: WindowsEnvironmentVariableSystemRoot
+aliases: [SystemRoot]
 doc: The %SystemRoot%, environment variable contains the path of the system directory, typically "C:\Windows".
 sources:
 - type: PATH
@@ -882,6 +887,7 @@ supported_os: [Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/EnvironmentVariables.html']
 ---
 name: WindowsEnvironmentVariableTemp
+aliases: [TempEnvironmentVariable]
 doc: The %TEMP% environment variable.
 sources:
 - type: REGISTRY_VALUE
@@ -893,6 +899,7 @@ supported_os: [Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/EnvironmentVariables.html']
 ---
 name: WindowsEnvironmentVariableWinDir
+aliases: [WinDirEnvironmentVariable]
 doc: The %WinDir%, environment variable contains the path of the Windows directory, typically "C:\Windows".
 sources:
 - type: PATH
@@ -911,21 +918,23 @@ provides: [environ_windir]
 supported_os: [Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/EnvironmentVariables.html']
 ---
+name: WindowsEventLogApplication
+doc: Application Windows Event Log.
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%environ_systemroot%%\System32\config\AppEvent.evt']
+    separator: '\'
+conditions: [os_major_version < 6]
+supported_os: [Windows]
+urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/EventLog.html']
+---
 name: WindowsEventLogPublishers
 doc: Windows EventLog publishers (or providers) Registry keys.
 sources:
 - type: REGISTRY_KEY
   attributes:
     keys: ['HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\WINEVT\Publishers\*']
-supported_os: [Windows]
-urls: ['https://winreg-kb.readthedocs.io/en/latest/sources/EventLog-keys.html']
----
-name: WindowsEventLogSources
-doc: Windows EventLog sources Registry keys.
-sources:
-- type: REGISTRY_KEY
-  attributes:
-    keys: ['HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\EventLog\*\*']
 supported_os: [Windows]
 urls: ['https://winreg-kb.readthedocs.io/en/latest/sources/EventLog-keys.html']
 ---
@@ -941,17 +950,6 @@ sources:
 supported_os: [Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/EventLog.html']
 ---
-name: WindowsEventLogApplication
-doc: Application Windows Event Log.
-sources:
-- type: FILE
-  attributes:
-    paths: ['%%environ_systemroot%%\System32\config\AppEvent.evt']
-    separator: '\'
-conditions: [os_major_version < 6]
-supported_os: [Windows]
-urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/EventLog.html']
----
 name: WindowsEventLogSecurity
 doc: Security Windows Event Log.
 sources:
@@ -962,6 +960,16 @@ sources:
 conditions: [os_major_version < 6]
 supported_os: [Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/EventLog.html']
+---
+name: WindowsEventLogSources
+aliases: [WindowsEventLogProviders]
+doc: Windows EventLog sources Registry keys.
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys: ['HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\EventLog\*\*']
+supported_os: [Windows]
+urls: ['https://winreg-kb.readthedocs.io/en/latest/sources/EventLog-keys.html']
 ---
 name: WindowsEventLogSystem
 doc: System Windows Event Log.
@@ -1004,60 +1012,6 @@ sources:
 conditions: [os_major_version >= 6]
 supported_os: [Windows]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Event_Tracing_for_Windows_(ETW)']
----
-name: WindowsXMLEventLogApplication
-doc: Application Windows XML Event Log.
-sources:
-- type: FILE
-  attributes:
-    paths: ['%%environ_systemroot%%\System32\winevt\Logs\Application.evtx']
-    separator: '\'
-conditions: [os_major_version >= 6]
-supported_os: [Windows]
-urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/EventLog.html']
----
-name: WindowsXMLEventLogSecurity
-doc: Security Windows XML Event Log.
-sources:
-- type: FILE
-  attributes:
-    paths: ['%%environ_systemroot%%\System32\winevt\Logs\Security.evtx']
-    separator: '\'
-conditions: [os_major_version >= 6]
-supported_os: [Windows]
-urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/EventLog.html']
----
-name: WindowsXMLEventLogSysmon
-doc: Sysmon Windows XML Event Log.
-sources:
-- type: FILE
-  attributes:
-    paths: ['%%environ_systemroot%%\System32\winevt\Logs\Microsoft-Windows-Sysmon%4Operational.evtx']
-    separator: '\'
-supported_os: [Windows]
-urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/EventLog.html']
----
-name: WindowsXMLEventLogSystem
-doc: System Windows XML Event Log.
-sources:
-- type: FILE
-  attributes:
-    paths: ['%%environ_systemroot%%\System32\winevt\Logs\System.evtx']
-    separator: '\'
-conditions: [os_major_version >= 6]
-supported_os: [Windows]
-urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/EventLog.html']
----
-name: WindowsXMLEventLogTerminalServices
-doc: TerminalServices Windows XML Event Log.
-sources:
-- type: FILE
-  attributes:
-    paths: ['%%environ_systemroot%%\System32\winevt\Logs\Microsoft-Windows-TerminalServices-LocalSessionManager%4Operational.evtx']
-    separator: '\'
-conditions: [os_major_version >= 6]
-supported_os: [Windows]
-urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/EventLog.html']
 ---
 name: WindowsExcludeFromKnownDLLs
 doc: ExcludeFromKnownDLLs can be used to bypass search order hijacking protection.
@@ -1868,6 +1822,7 @@ supported_os: [Windows]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows#Recycle_Bin']
 ---
 name: WindowsRegistryCurrentControlSet
+aliases: [CurrentControlSet]
 doc: The current control set of the Windows Registry.
 sources:
 - type: REGISTRY_VALUE
@@ -3069,6 +3024,7 @@ supported_os: [Windows]
 urls: ['https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2']
 ---
 name: WindowsTimezone
+aliases: [WinTimeZone]
 doc: The time zone of the system as a Windows time zone name or in MUI form.
 sources:
 - type: REGISTRY_VALUE
@@ -3390,6 +3346,60 @@ sources:
     - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows NT\CurrentVersion\Winlogon\GPExtensions\*', value: 'DllName'}
 supported_os: [Windows]
 urls: ['https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2']
+---
+name: WindowsXMLEventLogApplication
+doc: Application Windows XML Event Log.
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%environ_systemroot%%\System32\winevt\Logs\Application.evtx']
+    separator: '\'
+conditions: [os_major_version >= 6]
+supported_os: [Windows]
+urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/EventLog.html']
+---
+name: WindowsXMLEventLogSecurity
+doc: Security Windows XML Event Log.
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%environ_systemroot%%\System32\winevt\Logs\Security.evtx']
+    separator: '\'
+conditions: [os_major_version >= 6]
+supported_os: [Windows]
+urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/EventLog.html']
+---
+name: WindowsXMLEventLogSysmon
+doc: Sysmon Windows XML Event Log.
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%environ_systemroot%%\System32\winevt\Logs\Microsoft-Windows-Sysmon%4Operational.evtx']
+    separator: '\'
+supported_os: [Windows]
+urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/EventLog.html']
+---
+name: WindowsXMLEventLogSystem
+doc: System Windows XML Event Log.
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%environ_systemroot%%\System32\winevt\Logs\System.evtx']
+    separator: '\'
+conditions: [os_major_version >= 6]
+supported_os: [Windows]
+urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/EventLog.html']
+---
+name: WindowsXMLEventLogTerminalServices
+doc: TerminalServices Windows XML Event Log.
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%environ_systemroot%%\System32\winevt\Logs\Microsoft-Windows-TerminalServices-LocalSessionManager%4Operational.evtx']
+    separator: '\'
+conditions: [os_major_version >= 6]
+supported_os: [Windows]
+urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/EventLog.html']
 ---
 name: WinSock2LayeredServiceProviders
 doc: Used to filter TCP/IP traffic through WinSock2.
