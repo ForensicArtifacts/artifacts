@@ -109,7 +109,7 @@ doc: |
 
   drvmain.sdb, frxmain.sdb, msimain.sdb, pcamain.sdb, and sysmain.sdb are
   shim database files (SDB files) that are provided by Windows, and contain
-  many predefined shims that address known application compability issues.
+  many predefined shims that address known application compatibility issues.
   Note that these database files are not signed.
 
   Windows also supports custom shim database. These are typically installed
@@ -3334,7 +3334,7 @@ name: WindowsWinlogonGPExtensions
 doc: |
   Windows Winlogon Group Policy Extensions
 
-  These keys specifiy DLLs that should be loaded when the group policy
+  These keys specify DLLs that should be loaded when the group policy
   engine loads, and can act as a persistence mechanism for malware.
 sources:
 - type: REGISTRY_VALUE
