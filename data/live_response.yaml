@@ -155,7 +155,7 @@ sources:
   attributes:
     names:
     - ChromiumBasedBrowsersExtensions
-    - ChromiumBasedBrowsersExtensionActivity
+    - ChromiumBasedBrowsersExtensionActivitySQLiteDatabaseFile
     - ChromePreferences
 #    - Crease
     - FirefoxAddOns
