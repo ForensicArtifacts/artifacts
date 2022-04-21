@@ -157,7 +157,6 @@ sources:
     - ChromiumBasedBrowsersExtensions
     - ChromiumBasedBrowsersExtensionActivitySQLiteDatabaseFile
     - ChromePreferences
-#    - Crease
     - FirefoxAddOns
 supported_os: [Windows]
 ---
