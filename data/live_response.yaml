@@ -1,6 +1,6 @@
 # Live Response specific artifacts.
 ---
-name: LRApplicationConfigsAndLogs
+name: LiveResponseApplicationConfigsAndLogs
 doc: Group of configuration files and logs of installed applications.
 sources:
 - type: ARTIFACT_GROUP
@@ -13,14 +13,13 @@ sources:
     - TomcatPasswordFile
 supported_os: [Windows]
 ---
-name: LRExecution
+name: LiveResponseExecution
 doc: Group of process/command execution related artifacts.
 sources:
 - type: ARTIFACT_GROUP
   attributes:
     names:
     - JavaCacheFiles
-#    - ListProcessesGrr
     - WindowsAMCacheHveFile
     - WindowsCIMRepositoryFiles
     - WindowsCrashDumps
@@ -32,7 +31,7 @@ sources:
     - WMICCMRUA
 supported_os: [Windows]
 ---
-name: LRExternalMedia
+name: LiveResponseExternalMedia
 doc: Group of external media data or events related artifacts.
 sources:
 - type: ARTIFACT_GROUP
@@ -41,18 +40,17 @@ sources:
     - WindowsSetupApiLogs
 supported_os: [Windows]
 ---
-name: LRFileSystem
+name: LiveResponseFileSystem
 doc: Group of file system related artifacts.
 sources:
 - type: ARTIFACT_GROUP
   attributes:
     names:
-#    - EnumerateFilesystemsGrr
     - NTFSLogFile
     - NTFSMFTFiles
 supported_os: [Windows]
 ---
-name: LRHistoryFiles
+name: LiveResponseHistoryFiles
 doc: Group of history files related artifacts.
 sources:
 - type: ARTIFACT_GROUP
@@ -63,7 +61,7 @@ sources:
     - WindowsPowerShellHistory
 supported_os: [Windows]
 ---
-name: LRInteractiveActivity
+name: LiveResponseInteractiveActivity
 doc: Group of interactive user activity related artifacts.
 sources:
 - type: ARTIFACT_GROUP
@@ -80,19 +78,17 @@ sources:
     - WindowsUserRecentFiles
 supported_os: [Windows]
 ---
-name: LRNetwork
+name: LiveResponseNetwork
 doc: Group of network related artifacts.
 sources:
 - type: ARTIFACT_GROUP
   attributes:
     names:
-#    - EnumerateInterfacesGrr
-#    - ListNetworkConnectionsGrr
     - WindowsFirewallLogFile
     - WindowsHostsFiles
 supported_os: [Windows]
 ---
-name: LRPersistence
+name: LiveResponsePersistence
 doc: Group of persistence mechanism related artifacts.
 sources:
 - type: ARTIFACT_GROUP
@@ -111,14 +107,12 @@ sources:
     - WindowsWinstart
 supported_os: [Windows]
 ---
-name: LRSecurityAgents
+name: LiveResponseSecurityAgents
 doc: Group of endpoint detection and response related artifacts.
 sources:
 - type: ARTIFACT_GROUP
   attributes:
     names:
-#    - Bit9LocalCache
-#    - CrowdStrikeQuarantine
     - EsetAVQuarantine
     - MicrosoftAVLogs
     - MicrosoftAVQuarantine
@@ -128,7 +122,7 @@ sources:
     - SymantecAVQuarantine
 supported_os: [Windows]
 ---
-name: LRSystemConfiguration
+name: LiveResponseSystemConfiguration
 doc: Group of configuration files related artifacts.
 sources:
 - type: ARTIFACT_GROUP
@@ -138,7 +132,7 @@ sources:
     - WindowsSystemRegistryFilesAndTransactionLogsBackup
 supported_os: [Windows]
 ---
-name: LRSystemLogs
+name: LiveResponseSystemLogs
 doc: Group of system logs related artifacts.
 sources:
 - type: ARTIFACT_GROUP
@@ -148,7 +142,7 @@ sources:
     - WindowsEventLogs
 supported_os: [Windows]
 ---
-name: LRWebBrowserExtensions
+name: LiveResponseWebBrowserExtensions
 doc: Group of web browser extensions related artifacts.
 sources:
 - type: ARTIFACT_GROUP
@@ -160,7 +154,7 @@ sources:
     - FirefoxAddOns
 supported_os: [Windows]
 ---
-name: LRWebBrowserHhistory
+name: LiveResponseWebBrowserHhistory
 doc: Group of web browser history related artifacts.
 sources:
 - type: ARTIFACT_GROUP
