@@ -4,23 +4,25 @@ name: Bit9LocalCache
 doc: Bit9 local cache database.
 sources:
 - type: FILE
-  attributes: {paths: ['%%environ_allusersappdata%%\Bit9\Parity Agent\cache.*']}
+  attributes:
+    paths: ['%%environ_allusersappdata%%\Bit9\Parity Agent\cache.*']
+    separator: '\'
 supported_os: [Windows]
 ---
 name: CrowdstrikeQuarantine
 doc: Crowdstrike stores quarantined files encoded on disk.
 sources:
 - type: FILE
-  supported_os: [Darwin]
   attributes:
     paths:
     - '/Library/CS/Quarantine/*'
     - '/Library/Application Support/Crowdstrike/Falcon/Quarantine/*'
+  supported_os: [Darwin]
 - type: FILE
-  supported_os: [Windows]
   attributes:
-    paths:
-    - '%%environ_systemroot%%\System32\drivers\CrowdStrike\Quarantine\*'
+    paths: ['%%environ_systemroot%%\System32\drivers\CrowdStrike\Quarantine\*']
+    separator: '\'
+  supported_os: [Windows]
 supported_os: [Darwin, Windows]
 ---
 name: CrowdstrikeAgentID
@@ -40,8 +42,7 @@ sources:
   supported_os: [Windows]
   attributes:
     key_value_pairs:
-    - key: '/HKEY_LOCAL_MACHINE/SYSTEM/CurrentControlSet/Services/CSAgent/Sim'
-      value: 'AG'
+    - {key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\CSAgent\Sim', value: 'AG'}
 supported_os: [Linux, Darwin, Windows]
 ---
 name: EsetAVQuarantine
@@ -125,7 +126,10 @@ name: SantaLogs
 doc: Local Santa logs.
 sources:
 - type: FILE
-  attributes: {paths: ['/var/db/santa/*']}
+  attributes:
+    paths:
+    - '/var/db/santa/*'
+    - '/private/var/db/santa/*'
 supported_os: [Darwin]
 ---
 name: SophosAVLogs
