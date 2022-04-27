@@ -21,7 +21,7 @@ sources:
   attributes:
     paths:
       - '%%environ_systemroot%%\System32\drivers\CrowdStrike\Quarantine\*'
-labels: [Antivirus]
+supported_os: [Darwin, Windows]
 ---
 name: CrowdstrikeAgentID
 doc: An identifier of the CrowdStrike agent.
@@ -42,6 +42,7 @@ sources:
     key_value_pairs:
     - key: '/HKEY_LOCAL_MACHINE/SYSTEM/CurrentControlSet/Services/CSAgent/Sim'
       value: 'AG'
+supported_os: [Linux, Darwin, Windows]
 ---
 name: EsetAVQuarantine
 doc: Eset Anti-Virus Quarantine (Infected) files.
