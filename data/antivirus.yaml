@@ -14,13 +14,13 @@ sources:
   supported_os: [Darwin]
   attributes:
     paths:
-      - '/Library/CS/Quarantine/*'
-      - '/Library/Application Support/Crowdstrike/Falcon/Quarantine/*'
+    - '/Library/CS/Quarantine/*'
+    - '/Library/Application Support/Crowdstrike/Falcon/Quarantine/*'
 - type: FILE
   supported_os: [Windows]
   attributes:
     paths:
-      - '%%environ_systemroot%%\System32\drivers\CrowdStrike\Quarantine\*'
+    - '%%environ_systemroot%%\System32\drivers\CrowdStrike\Quarantine\*'
 supported_os: [Darwin, Windows]
 ---
 name: CrowdstrikeAgentID
