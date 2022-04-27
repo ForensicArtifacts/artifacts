@@ -1,5 +1,48 @@
 # Anti-Virus artifacts.
 ---
+name: Bit9LocalCache
+doc: Bit9 local cache database.
+sources:
+- type: FILE
+  attributes: {paths: ['%%environ_allusersappdata%%\Bit9\Parity Agent\cache.*']}
+supported_os: [Windows]
+---
+name: CrowdstrikeQuarantine
+doc: Crowdstrike stores quarantined files encoded on disk.
+sources:
+- type: FILE
+  supported_os: [Darwin]
+  attributes:
+    paths:
+      - '/Library/CS/Quarantine/*'
+      - '/Library/Application Support/Crowdstrike/Falcon/Quarantine/*'
+- type: FILE
+  supported_os: [Windows]
+  attributes:
+    paths:
+      - '%%environ_systemroot%%\System32\drivers\CrowdStrike\Quarantine\*'
+labels: [Antivirus]
+---
+name: CrowdstrikeAgentID
+doc: An identifier of the CrowdStrike agent.
+sources:
+- type: COMMAND
+  supported_os: [Linux]
+  attributes:
+    cmd: '/opt/CrowdStrike/falconctl'
+    args: ['-g', '--cid', '--aid']
+- type: FILE
+  supported_os: [Darwin]
+  attributes:
+    paths:
+    - '/Library/CS/registry.base'
+- type: REGISTRY_VALUE
+  supported_os: [Windows]
+  attributes:
+    key_value_pairs:
+    - key: '/HKEY_LOCAL_MACHINE/SYSTEM/CurrentControlSet/Services/CSAgent/Sim'
+      value: 'AG'
+---
 name: EsetAVQuarantine
 doc: Eset Anti-Virus Quarantine (Infected) files.
 sources:
@@ -76,6 +119,13 @@ urls:
 - 'https://answers.microsoft.com/en-us/protect/forum/all/windows-defender-how-to-remove-exclusions/2a0cc465-97b2-46ea-ae77-b87075ed124e'
 - 'https://blog.talosintelligence.com/2019/05/threat-roundup-0503-0510.html'
 - 'https://news.sophos.com/en-us/2021/07/04/independence-day-revil-uses-supply-chain-exploit-to-attack-hundreds-of-businesses/'
+---
+name: SantaLogs
+doc: Local Santa logs.
+sources:
+- type: FILE
+  attributes: {paths: ['/var/db/santa/*']}
+supported_os: [Darwin]
 ---
 name: SophosAVLogs
 doc: Sophos Anti-Virus log files.
