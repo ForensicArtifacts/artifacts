@@ -25,24 +25,23 @@ sources:
   supported_os: [Windows]
 supported_os: [Darwin, Windows]
 ---
-name: CrowdstrikeAgentID
-doc: An identifier of the CrowdStrike agent.
+name: CrowdstrikeAgentIdentifier
+aliases: [CrowdstrikeAgentID]
+doc: Identifier of a CrowdStrike agent.
 sources:
+- type: FILE
+  supported_os: [Darwin]
+  attributes:
+    paths: ['/Library/CS/registry.base']
 - type: COMMAND
   supported_os: [Linux]
   attributes:
     cmd: '/opt/CrowdStrike/falconctl'
     args: ['-g', '--cid', '--aid']
-- type: FILE
-  supported_os: [Darwin]
-  attributes:
-    paths:
-    - '/Library/CS/registry.base'
 - type: REGISTRY_VALUE
   supported_os: [Windows]
   attributes:
-    key_value_pairs:
-    - {key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\CSAgent\Sim', value: 'AG'}
+    key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\CSAgent\Sim', value: 'AG'}]
 supported_os: [Linux, Darwin, Windows]
 ---
 name: EsetAVQuarantine
