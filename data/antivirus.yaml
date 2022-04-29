@@ -25,8 +25,8 @@ sources:
   supported_os: [Windows]
 supported_os: [Darwin, Windows]
 ---
-name: CrowdstrikeAgentIdentifier
-aliases: [CrowdstrikeAgentID]
+# TODO: rename to CrowdstrikeAgentIdentifier and make CrowdstrikeAgentID and alias
+name: CrowdstrikeAgentID
 doc: Identifier of a CrowdStrike agent.
 sources:
 - type: FILE
