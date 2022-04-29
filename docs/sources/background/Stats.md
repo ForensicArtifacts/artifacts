@@ -3,31 +3,31 @@
 The artifact definitions can be found in the [data directory](https://github.com/ForensicArtifacts/artifacts/tree/main/data)
 and the format is described in detail in the [Style Guide](https://artifacts.readthedocs.io/en/latest/sources/Format-specification.html).
 
-Status of the repository as of 2022-03-13
+Status of the repository as of 2022-04-29
 
 Description | Number
 --- | ---
-Number of artifact definitions: | 638
-Number of file paths: | 1606
-Number of Windows Registry key paths: | 680
+Number of artifact definitions: | 632
+Number of file paths: | 1633
+Number of Windows Registry key paths: | 671
 
 ### Artifact definition source types
 
 Identifier | Number
 --- | ---
 ARTIFACT_GROUP | 25
-COMMAND | 9
-FILE | 372
-PATH | 26
-REGISTRY_KEY | 55
-REGISTRY_VALUE | 124
+COMMAND | 10
+FILE | 378
+PATH | 22
+REGISTRY_KEY | 54
+REGISTRY_VALUE | 116
 WMI | 27
 
 ### Operating systems
 
 Identifier | Number
 --- | ---
-Darwin | 65
-Linux | 46
-Windows | 45
+Darwin | 67
+Linux | 47
+Windows | 47
 
