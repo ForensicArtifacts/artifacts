@@ -42,7 +42,7 @@ sources:
   supported_os: [Windows]
   attributes:
     key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\CSAgent\Sim', value: 'AG'}]
-supported_os: [Linux, Darwin, Windows]
+supported_os: [Darwin, Linux, Windows]
 ---
 name: EsetAVQuarantine
 doc: Eset Anti-Virus Quarantine (Infected) files.
