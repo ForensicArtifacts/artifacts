@@ -1,6 +1,6 @@
-# Live Response specific artifacts.
+# Triage specific artifacts.
 ---
-name: LiveResponseApplicationConfigsAndLogs
+name: TriageApplicationConfigsAndLogs
 doc: Group of configuration files and logs of installed applications.
 sources:
 - type: ARTIFACT_GROUP
@@ -13,7 +13,7 @@ sources:
     - TomcatPasswordFile
 supported_os: [Windows]
 ---
-name: LiveResponseExecution
+name: TriageExecution
 doc: Group of process/command execution related artifacts.
 sources:
 - type: ARTIFACT_GROUP
@@ -31,7 +31,7 @@ sources:
     - WMICCMRUA
 supported_os: [Windows]
 ---
-name: LiveResponseExternalMedia
+name: TriageExternalMedia
 doc: Group of external media data or events related artifacts.
 sources:
 - type: ARTIFACT_GROUP
@@ -40,7 +40,7 @@ sources:
     - WindowsSetupApiLogs
 supported_os: [Windows]
 ---
-name: LiveResponseFileSystem
+name: TriageFileSystem
 doc: Group of file system related artifacts.
 sources:
 - type: ARTIFACT_GROUP
@@ -50,7 +50,7 @@ sources:
     - NTFSMFTFiles
 supported_os: [Windows]
 ---
-name: LiveResponseHistoryFiles
+name: TriageHistoryFiles
 doc: Group of history files related artifacts.
 sources:
 - type: ARTIFACT_GROUP
@@ -61,7 +61,7 @@ sources:
     - WindowsPowerShellHistory
 supported_os: [Windows]
 ---
-name: LiveResponseInteractiveActivity
+name: TriageInteractiveActivity
 doc: Group of interactive user activity related artifacts.
 sources:
 - type: ARTIFACT_GROUP
@@ -78,7 +78,7 @@ sources:
     - WindowsUserRecentFiles
 supported_os: [Windows]
 ---
-name: LiveResponseNetwork
+name: TriageNetwork
 doc: Group of network related artifacts.
 sources:
 - type: ARTIFACT_GROUP
@@ -88,7 +88,7 @@ sources:
     - WindowsHostsFiles
 supported_os: [Windows]
 ---
-name: LiveResponsePersistence
+name: TriagePersistence
 doc: Group of persistence mechanism related artifacts.
 sources:
 - type: ARTIFACT_GROUP
@@ -107,7 +107,7 @@ sources:
     - WindowsWinstart
 supported_os: [Windows]
 ---
-name: LiveResponseSecurityAgents
+name: TriageSecurityAgents
 doc: Group of endpoint detection and response related artifacts.
 sources:
 - type: ARTIFACT_GROUP
@@ -122,7 +122,7 @@ sources:
     - SymantecAVQuarantine
 supported_os: [Windows]
 ---
-name: LiveResponseSystemConfiguration
+name: TriageSystemConfiguration
 doc: Group of configuration files related artifacts.
 sources:
 - type: ARTIFACT_GROUP
@@ -132,7 +132,7 @@ sources:
     - WindowsSystemRegistryFilesAndTransactionLogsBackup
 supported_os: [Windows]
 ---
-name: LiveResponseSystemLogs
+name: TriageSystemLogs
 doc: Group of system logs related artifacts.
 sources:
 - type: ARTIFACT_GROUP
@@ -142,7 +142,7 @@ sources:
     - WindowsEventLogs
 supported_os: [Windows]
 ---
-name: LiveResponseWebBrowserExtensions
+name: TriageWebBrowserExtensions
 doc: Group of web browser extensions related artifacts.
 sources:
 - type: ARTIFACT_GROUP
@@ -154,7 +154,7 @@ sources:
     - FirefoxAddOns
 supported_os: [Windows]
 ---
-name: LiveResponseWebBrowserHhistory
+name: TriageWebBrowserHhistory
 doc: Group of web browser history related artifacts.
 sources:
 - type: ARTIFACT_GROUP
