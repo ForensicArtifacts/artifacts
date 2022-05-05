@@ -1,0 +1,165 @@
+# Triage specific artifacts.
+---
+name: TriageApplicationConfigsAndLogs
+doc: Group of configuration files and logs of installed applications.
+sources:
+- type: ARTIFACT_GROUP
+  attributes:
+    names:
+    - MicrosoftIISLogs
+    - MicrosoftSqlServerErrorLogs
+    - RedisConfigFile
+    - TomcatFiles
+    - TomcatPasswordFile
+supported_os: [Windows]
+---
+name: TriageExecution
+doc: Group of process/command execution related artifacts.
+sources:
+- type: ARTIFACT_GROUP
+  attributes:
+    names:
+    - JavaCacheFiles
+    - WindowsAMCacheHveFile
+    - WindowsCIMRepositoryFiles
+    - WindowsCrashDumps
+    - WindowsPrefetchFiles
+    - WindowsRecentFileCacheBCF
+    - WindowsStartupInfo
+    - WindowsSuperFetchFiles
+    - WindowsSystemResourceUsageMonitorDatabaseFile
+    - WMICCMRUA
+supported_os: [Windows]
+---
+name: TriageExternalMedia
+doc: Group of external media data or events related artifacts.
+sources:
+- type: ARTIFACT_GROUP
+  attributes:
+    names:
+    - WindowsSetupApiLogs
+supported_os: [Windows]
+---
+name: TriageFileSystem
+doc: Group of file system related artifacts.
+sources:
+- type: ARTIFACT_GROUP
+  attributes:
+    names:
+    - NTFSLogFile
+    - NTFSMFTFiles
+supported_os: [Windows]
+---
+name: TriageHistoryFiles
+doc: Group of history files related artifacts.
+sources:
+- type: ARTIFACT_GROUP
+  attributes:
+    names:
+    - ShellConfigurationFile
+    - ShellHistoryFile
+    - WindowsPowerShellHistory
+supported_os: [Windows]
+---
+name: TriageInteractiveActivity
+doc: Group of interactive user activity related artifacts.
+sources:
+- type: ARTIFACT_GROUP
+  attributes:
+    names:
+    - MicrosoftOfficeAutosave
+    - MicrosoftOfficeMRU
+    - WindowsActivitiesCacheDatabase
+    - WindowsRDPClientBitmapCache
+    - WindowsRecycleBinMetadata
+    - WindowsSearchDatabase
+    - WindowsUserAutomaticDestinationsJumpLists
+    - WindowsUserCustomDestinationsJumpLists
+    - WindowsUserRecentFiles
+supported_os: [Windows]
+---
+name: TriageNetwork
+doc: Group of network related artifacts.
+sources:
+- type: ARTIFACT_GROUP
+  attributes:
+    names:
+    - WindowsFirewallLogFile
+    - WindowsHostsFiles
+supported_os: [Windows]
+---
+name: TriagePersistence
+doc: Group of persistence mechanism related artifacts.
+sources:
+- type: ARTIFACT_GROUP
+  attributes:
+    names:
+    - WMIEnumerateASEC
+    - WMIEnumerateCLEC
+    - WindowsApplicationCompatibilityInstalledShimDatabases
+    - WindowsAutoexecBat
+    - WindowsAutorun
+    - WindowsBITSQueueManagerDatabases
+    - WindowsGroupPolicyScripts
+    - WindowsPowerShellDefaultProfiles
+    - WindowsScheduledTasks
+    - WindowsStartupFolders
+    - WindowsWinstart
+supported_os: [Windows]
+---
+name: TriageSecurityAgents
+doc: Group of endpoint detection and response related artifacts.
+sources:
+- type: ARTIFACT_GROUP
+  attributes:
+    names:
+    - EsetAVQuarantine
+    - MicrosoftAVLogs
+    - MicrosoftAVQuarantine
+    - SophosAVLogs
+    - SophosAVQuarantine
+    - SymantecAVLogs
+    - SymantecAVQuarantine
+supported_os: [Windows]
+---
+name: TriageSystemConfiguration
+doc: Group of configuration files related artifacts.
+sources:
+- type: ARTIFACT_GROUP
+  attributes:
+    names:
+    - WindowsRegistryFilesAndTransactionLogs
+    - WindowsSystemRegistryFilesAndTransactionLogsBackup
+supported_os: [Windows]
+---
+name: TriageSystemLogs
+doc: Group of system logs related artifacts.
+sources:
+- type: ARTIFACT_GROUP
+  attributes:
+    names:
+    - WindowsUserAccessLogging
+    - WindowsEventLogs
+supported_os: [Windows]
+---
+name: TriageWebBrowserExtensions
+doc: Group of web browser extensions related artifacts.
+sources:
+- type: ARTIFACT_GROUP
+  attributes:
+    names:
+    - ChromiumBasedBrowsersExtensions
+    - ChromiumBasedBrowsersExtensionActivitySQLiteDatabaseFile
+    - ChromePreferences
+    - FirefoxAddOns
+supported_os: [Windows]
+---
+name: TriageWebBrowserHhistory
+doc: Group of web browser history related artifacts.
+sources:
+- type: ARTIFACT_GROUP
+  attributes:
+    names:
+    - BrowserHistory
+    - WindowsCryptnetUrlCacheMetadata
+supported_os: [Windows]
