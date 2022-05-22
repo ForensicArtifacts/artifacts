@@ -546,6 +546,19 @@ sources:
     cmd: /sbin/lsmod
 supported_os: [Linux]
 ---
+name: LocateDatabase
+doc: locate/mlocate database and updatedb configuration.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/var/lib/mlocate/mlocate.db'
+    - '/etc/updatedb.conf'
+urls:
+- 'https://linux.die.net/man/1/locate'
+- 'https://linux.die.net/man/8/updatedb'
+supported_os: [Linux]
+---
 name: LoginPolicyConfiguration
 doc: Linux files related to login policy configuration.
 sources:
