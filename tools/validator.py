@@ -486,7 +486,7 @@ class ArtifactDefinitionsValidator(object):
                 not source.supported_os)):
               if source.separator != '/':
                 logging.warning((
-                    'Use of unsupported path segment seperator in artifact '
+                    'Use of unsupported path segment separator in artifact '
                     'definition: {0:s} in file: {1:s}').format(
                         artifact_definition.name, filename))
 
