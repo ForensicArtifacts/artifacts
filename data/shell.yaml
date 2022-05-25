@@ -101,9 +101,9 @@ sources:
   attributes:
     paths:
     - '%%users.homedir%%/.config/fish/conf.d/config.fish'
-    - /etc/fish/conf.d/*.fish'
+    - '/etc/fish/conf.d/*.fish'
     - '%%users.homedir%%/.config/fish/config.fish'
-    - /etc/fish/config.fish'
+    - '/etc/fish/config.fish'
   supported_os: [Darwin, Linux]
 supported_os: [Darwin, Linux]
 urls: ['https://fishshell.com/docs/current/language.html#configuration']
