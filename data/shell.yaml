@@ -104,8 +104,8 @@ sources:
     - '/etc/fish/conf.d/*.fish'
     - '%%users.homedir%%/.config/fish/config.fish'
     - '/etc/fish/config.fish'
-  supported_os: [Darwin, Linux]
-supported_os: [Darwin, Linux]
+  supported_os: [Linux]
+supported_os: [Linux]
 urls: ['https://fishshell.com/docs/current/language.html#configuration']
 ---
 name: FishShellHistoryFile
@@ -113,8 +113,8 @@ doc: Fish shell (fish) history files.
 sources:
 - type: FILE
   attributes: {paths: ['%%users.homedir%%/.local/share/fish/fish_history']}
-  supported_os: [Darwin, Linux]
-supported_os: [Darwin, Linux]
+  supported_os: [Linux]
+supported_os: [Linux]
 urls: ['https://fishshell.com/docs/current/cmds/history.html']
 ---
 name: KornShellConfigurationFile
