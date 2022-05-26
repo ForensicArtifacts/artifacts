@@ -1,15 +1,15 @@
 # Hadoop artifacts
-
+---
 name: HadoopAppRoot
 doc: Location where Hadoop application files are stored
 sources:
 - type: FILE
   attributes:
     paths:
-      - '/hadoop/yarn/system/rmstore/FSRMStateRoot/RMAppRoot/application_*/application_*'
-      - '/**2/hadoop/yarn/system/rmstore/FSRMStateRoot/RMAppRoot/application_*/application_*'
-      - '/hadoop/*/yarn/system/rmstore/FSRMStateRoot/RMAppRoot/application_*/application_*'
-      - '/**2/hadoop/*/yarn/system/rmstore/FSRMStateRoot/RMAppRoot/application_*/application_*'
+    - '/hadoop/yarn/system/rmstore/FSRMStateRoot/RMAppRoot/application_*/application_*'
+    - '/**2/hadoop/yarn/system/rmstore/FSRMStateRoot/RMAppRoot/application_*/application_*'
+    - '/hadoop/*/yarn/system/rmstore/FSRMStateRoot/RMAppRoot/application_*/application_*'
+    - '/**2/hadoop/*/yarn/system/rmstore/FSRMStateRoot/RMAppRoot/application_*/application_*'
 labels: [Hadoop]
 supported_os: [Linux]
 ---
@@ -19,10 +19,10 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '/hadoop/yarn/timeline/leveldb-timeline-store.ldb/*'
-      - '/**2/hadoop/yarn/timeline/leveldb-timeline-store.ldb/*'
-      - '/hadoop/*/yarn/timeline/leveldb-timeline-store.ldb/*'
-      - '/**2/hadoop/*/yarn/timeline/leveldb-timeline-store.ldb/*'
+    - '/hadoop/yarn/timeline/leveldb-timeline-store.ldb/*'
+    - '/**2/hadoop/yarn/timeline/leveldb-timeline-store.ldb/*'
+    - '/hadoop/*/yarn/timeline/leveldb-timeline-store.ldb/*'
+    - '/**2/hadoop/*/yarn/timeline/leveldb-timeline-store.ldb/*'
 labels: [Hadoop]
 supported_os: [Linux]
 ---
@@ -32,9 +32,9 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '/hadoop/logs/*'
-      - '/**2/hadoop/logs/*'
-      - '/hadoop/logs/userlogs/application_*/container_*/*'
-      - '/**2/hadoop/logs/userlogs/application_*/container_*/*'
+    - '/hadoop/logs/*'
+    - '/**2/hadoop/logs/*'
+    - '/hadoop/logs/userlogs/application_*/container_*/*'
+    - '/**2/hadoop/logs/userlogs/application_*/container_*/*'
 labels: [Hadoop]
 supported_os: [Linux]
