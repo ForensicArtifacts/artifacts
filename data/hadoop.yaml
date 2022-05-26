@@ -8,7 +8,7 @@ sources:
     paths:
       - '/hadoop/yarn/system/rmstore/FSRMStateRoot/RMAppRoot/application_*/application_*'
       - '/**2/hadoop/yarn/system/rmstore/FSRMStateRoot/RMAppRoot/application_*/application_*'
-      - '/hadoop/**1/yarn/system/rmstore/FSRMStateRoot/RMAppRoot/application_*/application_*'
+      - '/hadoop/*/yarn/system/rmstore/FSRMStateRoot/RMAppRoot/application_*/application_*'
       - '/**2/hadoop/**1/yarn/system/rmstore/FSRMStateRoot/RMAppRoot/application_*/application_*'
 labels: [Hadoop]
 supported_os: [Linux]
@@ -21,7 +21,7 @@ sources:
     paths:
       - '/hadoop/yarn/timeline/leveldb-timeline-store.ldb/*'
       - '/**2/hadoop/yarn/timeline/leveldb-timeline-store.ldb/*'
-      - '/hadoop/**1/yarn/timeline/leveldb-timeline-store.ldb/*'
+      - '/hadoop/*/yarn/timeline/leveldb-timeline-store.ldb/*'
       - '/**2/hadoop/**1/yarn/timeline/leveldb-timeline-store.ldb/*'
 labels: [Hadoop]
 supported_os: [Linux]
