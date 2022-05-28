@@ -94,6 +94,29 @@ sources:
 supported_os: [Darwin, Linux, Windows]
 urls: ['https://en.wikipedia.org/wiki/C_shell']
 ---
+name: FishShellConfigurationFile
+doc: FishShell (fish) configuration files.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/.config/fish/conf.d/config.fish'
+    - '/etc/fish/conf.d/*.fish'
+    - '%%users.homedir%%/.config/fish/config.fish'
+    - '/etc/fish/config.fish'
+  supported_os: [Linux]
+supported_os: [Linux]
+urls: ['https://fishshell.com/docs/current/language.html#configuration']
+---
+name: FishShellHistoryFile
+doc: Fish shell (fish) history files.
+sources:
+- type: FILE
+  attributes: {paths: ['%%users.homedir%%/.local/share/fish/fish_history']}
+  supported_os: [Linux]
+supported_os: [Linux]
+urls: ['https://fishshell.com/docs/current/cmds/history.html']
+---
 name: KornShellConfigurationFile
 doc: KornShell (ksh) configuration files.
 sources:
@@ -127,6 +150,7 @@ sources:
     - '/root/.bashrc'
     - '/root/.cshrc'
     - '/root/.ksh'
+    - '/root/.config/fish/config.fish'
     - '/root/.logout'
     - '/root/.profile'
     - '/root/.tcsh'
@@ -142,6 +166,7 @@ sources:
   attributes:
     paths:
     - '/root/.bash_history'
+    - '/root/.local/share/fish/fish_history'
     - '/root/.sh_history'
     - '/root/.zhistory'
     - '/root/.zsh_history'
@@ -156,6 +181,7 @@ sources:
     names:
     - 'BashShellConfigurationFile'
     - 'CShellConfigurationFile'
+    - 'FishShellConfigurationFile'
     - 'KornShellConfigurationFile'
     - 'ShellLogoutFile'
     - 'ShellProfileFile'
@@ -172,6 +198,7 @@ sources:
     names:
     - 'BashShellHistoryFile'
     - 'BourneShellHistoryFile'
+    - 'FishShellHistoryFile'
     - 'ZShellHistoryFile'
 supported_os: [Darwin, Linux, Windows]
 ---
