@@ -4,5 +4,34 @@ name: HadoopAppRoot
 doc: Location where Hadoop application files are stored
 sources:
 - type: FILE
-  attributes: {paths: ['/hadoop/yarn/system/rmstore/FSRMStateRoot/RMAppRoot/application_*/application_*']}
+  attributes:
+    paths:
+    - '/hadoop/*/yarn/system/rmstore/FSRMStateRoot/RMAppRoot/application_*/application_*'
+    - '/hadoop/yarn/system/rmstore/FSRMStateRoot/RMAppRoot/application_*/application_*'
+    - '/**2/hadoop/*/yarn/system/rmstore/FSRMStateRoot/RMAppRoot/application_*/application_*'
+    - '/**2/hadoop/yarn/system/rmstore/FSRMStateRoot/RMAppRoot/application_*/application_*'
+supported_os: [Linux]
+---
+name: HadoopYarnLogs
+doc: Location where Hadoop Yarn LevelDB/Timeline files are stored
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/hadoop/yarn/timeline/leveldb-timeline-store.ldb/*'
+    - '/hadoop/*/yarn/timeline/leveldb-timeline-store.ldb/*'
+    - '/**2/hadoop/yarn/timeline/leveldb-timeline-store.ldb/*'
+    - '/**2/hadoop/*/yarn/timeline/leveldb-timeline-store.ldb/*'
+supported_os: [Linux]
+---
+name: HadoopAppLogs
+doc: Location where Hadoop application logs are stored
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/hadoop/logs/*'
+    - '/hadoop/logs/userlogs/application_*/container_*/*'
+    - '/**2/hadoop/logs/*'
+    - '/**2/hadoop/logs/userlogs/application_*/container_*/*'
 supported_os: [Linux]
