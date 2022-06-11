@@ -60,7 +60,7 @@ class ArtifactWriter(BaseArtifactsWriter):
       artifacts (list[ArtifactDefinition]): artifact definitions to be written.
       filename (str): name of the file to write artifacts to.
     """
-    with open(filename, 'w') as file_object:
+    with open(filename, 'w', encoding='utf-8') as file_object:
       file_object.write(self.FormatArtifacts(artifacts))
 
 
