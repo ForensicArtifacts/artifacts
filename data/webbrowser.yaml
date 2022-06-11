@@ -799,6 +799,52 @@ sources:
 supported_os: [Darwin, Linux, Windows]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome#Configuration']
 ---
+name: ChromeSessions
+doc: |
+  Google Chrome, Canary and Chromium Sessions files
+
+  The Sessions directory contains information for restoring tabs and windows
+  from a browsing session.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/Library/Application Support/Chromium/*/Sessions/Session_*'
+    - '%%users.homedir%%/Library/Application Support/Chromium/*/Sessions/Tabs_*'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Sessions/Session_*'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Sessions/Tabs_*'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Sessions/Session_*'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Sessions/Tabs_*'
+  supported_os: [Darwin]
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/.config/google-chrome/*/Sessions/Session_*'
+    - '%%users.homedir%%/.config/google-chrome/*/Sessions/Tabs_*'
+    - '%%users.homedir%%/.config/chromium/*/Sessions/Session_*'
+    - '%%users.homedir%%/.config/chromium/*/Sessions/Tabs_*'
+    - '%%users.homedir%%/.config/google-chrome-beta/*/Sessions/Session_*'
+    - '%%users.homedir%%/.config/google-chrome-beta/*/Sessions/Tabs_*'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Sessions/Session_*'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Sessions/Tabs_*'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Sessions/Session_*'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Sessions/Tabs_*'
+  supported_os: [Linux]
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.localappdata%%\Chromium\User Data\*\Session Storage\Session_*'
+    - '%%users.localappdata%%\Chromium\User Data\*\Session Storage\Tabs_*'
+    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Session Storage\Session_*'
+    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Session Storage\Tabs_*'
+    - '%%users.localappdata%%\Google\Chrome\User Data\*\Session Storage\Session_*'
+    - '%%users.localappdata%%\Google\Chrome\User Data\*\Session Storage\Tabs_*'
+    - '%%users.localappdata%%\Microsoft\Edge\User Data\*\Session Storage\Session_*'
+    - '%%users.localappdata%%\Microsoft\Edge\User Data\*\Session Storage\Tabs_*'
+    separator: '\'
+  supported_os: [Windows]
+supported_os: [Darwin, Linux, Windows]
+---
 name: ChromeSessionStorage
 doc: |
   Google Chrome, Canary and Chromium Session Storage files.
