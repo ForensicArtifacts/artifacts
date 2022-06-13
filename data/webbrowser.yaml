@@ -799,9 +799,9 @@ sources:
 supported_os: [Darwin, Linux, Windows]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome#Configuration']
 ---
-name: ChromeSessions
+name: ChromeSessionsAndTabs
 doc: |
-  Google Chrome, Canary and Chromium Sessions files
+  Google Chrome, Canary and Chromium Sessions and Tabs files
 
   The Sessions directory contains information for restoring tabs and windows
   from a browsing session.
@@ -833,14 +833,14 @@ sources:
 - type: FILE
   attributes:
     paths:
-    - '%%users.localappdata%%\Chromium\User Data\*\Session Storage\Session_*'
-    - '%%users.localappdata%%\Chromium\User Data\*\Session Storage\Tabs_*'
-    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Session Storage\Session_*'
-    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Session Storage\Tabs_*'
-    - '%%users.localappdata%%\Google\Chrome\User Data\*\Session Storage\Session_*'
-    - '%%users.localappdata%%\Google\Chrome\User Data\*\Session Storage\Tabs_*'
-    - '%%users.localappdata%%\Microsoft\Edge\User Data\*\Session Storage\Session_*'
-    - '%%users.localappdata%%\Microsoft\Edge\User Data\*\Session Storage\Tabs_*'
+    - '%%users.localappdata%%\Chromium\User Data\*\Sessions\Session_*'
+    - '%%users.localappdata%%\Chromium\User Data\*\Sessions\Tabs_*'
+    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Sessions\Session_*'
+    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Sessions\Tabs_*'
+    - '%%users.localappdata%%\Google\Chrome\User Data\*\Sessions\Session_*'
+    - '%%users.localappdata%%\Google\Chrome\User Data\*\Sessions\Tabs_*'
+    - '%%users.localappdata%%\Microsoft\Edge\User Data\*\Sessions\Session_*'
+    - '%%users.localappdata%%\Microsoft\Edge\User Data\*\Sessions\Tabs_*'
     separator: '\'
   supported_os: [Windows]
 supported_os: [Darwin, Linux, Windows]
