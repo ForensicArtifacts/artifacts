@@ -3,7 +3,7 @@
 The artifact definitions can be found in the [data directory](https://github.com/ForensicArtifacts/artifacts/tree/main/data)
 and the format is described in detail in the [Style Guide](https://artifacts.readthedocs.io/en/latest/sources/Format-specification.html).
 
-Status of the repository as of 2022-06-08
+Status of the repository as of 2022-06-15
 
 Description | Number
 --- | ---
