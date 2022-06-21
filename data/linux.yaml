@@ -639,6 +639,13 @@ urls:
 - 'https://wiki.debian.org/HowToIdentifyADevice/PCI'
 supported_os: [Linux]
 ---
+name: PythonHistory
+doc: Python REPL history.
+sources:
+- type: FILE
+  attributes: {paths: ['%%users.homedir%%/.python_history']}
+supported_os: [Linux]
+---
 name: SecretsServiceDatabaseFile
 doc: The System Security Services Daemon (SSSD) database file.
 sources:
