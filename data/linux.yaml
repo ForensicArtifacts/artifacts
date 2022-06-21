@@ -354,7 +354,7 @@ sources:
     - '/var/lib/NetworkManager/NetworkManager-intern.conf'
     - '/var/lib/NetworkManager/*'
 supported_os: [Linux]
-urls: 
+urls:
 - 'https://linux.die.net/man/5/networkmanager.conf'
 - 'https://man.archlinux.org/man/NetworkManager.conf.5.en#FILE_FORMAT'
 ---
