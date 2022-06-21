@@ -668,6 +668,15 @@ sources:
   attributes: {paths: ['%%users.homedir%%/.thumbnails/**3']}
 supported_os: [Linux]
 ---
+name: Viminfo
+doc: Viminfo file.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/.viminfo'
+supported_os: [Linux]
+---
 name: YumSources
 doc: Yum package sources list
 sources:
