@@ -97,6 +97,22 @@ sources:
 supported_os: [Linux]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Gnome_Desktop_Environment']
 ---
+name: GnomeTrash
+doc: Gnome Trash.
+sources:
+- type: FILE
+  attributes: {paths: ['%%users.homedir%%/.local/share/Trash/*']}
+supported_os: [Linux]
+---
+name: GTKRecentlyUsed
+doc: GTK Recent Manager database.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/.local/share/recently-used.xbel'
+supported_os: [Linux]
+---
 name: HostAccessPolicyConfiguration
 doc: Linux files related to host access policy configuration.
 sources:
@@ -323,6 +339,24 @@ sources:
     - LinuxFstab
     - LinuxProcMounts
 supported_os: [Linux]
+---
+name: LinuxNetworkManager
+doc: Linux NetworkManager files.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/etc/NetworkManager/conf.d/name.conf'
+    - '/etc/NetworkManager/NetworkManager.conf'
+    - '/etc/NetworkManager/system-connections'
+    - '/run/NetworkManager/conf.d/name.conf'
+    - '/usr/lib/NetworkManager/conf.d/name.conf'
+    - '/var/lib/NetworkManager/NetworkManager-intern.conf'
+    - '/var/lib/NetworkManager/*'
+supported_os: [Linux]
+urls: 
+- 'https://linux.die.net/man/5/networkmanager.conf'
+- 'https://man.archlinux.org/man/NetworkManager.conf.5.en#FILE_FORMAT'
 ---
 name: LinuxPamConfigs
 doc: Configuration files for PAM.
