@@ -154,7 +154,7 @@ sources:
     - FirefoxAddOns
 supported_os: [Windows]
 ---
-name: TriageWebBrowserHhistory
+name: TriageWebBrowserHistory
 doc: Group of web browser history related artifacts.
 sources:
 - type: ARTIFACT_GROUP
