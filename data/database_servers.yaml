@@ -13,7 +13,7 @@ attributes:
   paths:
   - /usr/local/etc/mongod.conf
   - /opt/homebrew/etc/mongod.conf
-supported_os: [Darwin]
+  supported_os: [Darwin]
 urls:
 - 'https://www.mongodb.com/docs/manual/reference/configuration-options/'
 ---
@@ -40,13 +40,13 @@ sources:
 attributes:
   paths:
   - /usr/local/var/mongodb
-supported_os: [Darwin]
+  supported_os: [Darwin]
 - type: FILE
 attributes:
   paths:
   - \data\db
   separator: '\'
-supported_os: [Windows]
+  supported_os: [Windows]
 urls:
 - 'https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.dbPath'
 ---
