@@ -123,7 +123,7 @@ sources:
 urls:
 - 'https://www.postgresql.org/docs/current/storage-file-layout.html'
 ---
-name: PostgreSQLLogFile
+name: PostgreSQLLogFiles
 doc: PostgreSQL log files.
 sources:
 - type: FILE
@@ -131,4 +131,34 @@ sources:
     paths:
     - /var/log/postgresql/postgresql.log*
     - /var/log/postgresql/postgresql.csv*
+  supported_os: [Linux]
+---
+name: RedisConfigurationFile
+doc: Redis configuration files.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - /etc/redis/*
+    - /etc/init.d/redis_*
+  supported_os: [Linux]
+---
+name: RedisLogFiles
+doc: Redis log files.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - /var/log/redis/redis*.log*
+    - /var/log/redis*.log*
+  supported_os: [Linux]
+---
+name: RedisDataDirectory
+doc: Redis Data Directory.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - /var/redis/*
+    - /var/redis/*/*
   supported_os: [Linux]
