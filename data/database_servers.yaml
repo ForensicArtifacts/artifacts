@@ -10,9 +10,9 @@ sources:
   supported_os: [Linux]
 - type: FILE
   attributes:
-  paths:
-  - /usr/local/etc/mongod.conf
-  - /opt/homebrew/etc/mongod.conf
+    paths:
+    - /usr/local/etc/mongod.conf
+    - /opt/homebrew/etc/mongod.conf
   supported_os: [Darwin]
 supported_os: [Darwin, Linux]
 urls:
@@ -25,28 +25,28 @@ sources:
   attributes:
     paths:
     - /var/log/mongodb/mongod.log*
-  supported_os: [Linux]
+supported_os: [Linux]
 ---
-name: MongoDBDatabaseFolder
-doc: MongoDB database folder.
+name: MongoDBDatabasePath
+doc: MongoDB database Path.
 sources:
-- type: FOLDER
+- type: PATH
   attributes:
     paths:
-    - /data/db
-    - /var/lib/mongo
-    - /var/lib/mongodb
+    - /data/db/*
+    - /var/lib/mongo/*
+    - /var/lib/mongodb/*
   supported_os: [Linux]
 - type: FILE
   attributes:
-  paths:
-  - /usr/local/var/mongodb
+    paths:
+    - /usr/local/var/mongodb/*
   supported_os: [Darwin]
 - type: FILE
   attributes:
-  paths:
-  - \data\db
-  separator: '\'
+    paths:
+    - \data\db\*
+    separator: '\'
   supported_os: [Windows]
 supported_os: [Darwin, Linux, Windows]
 urls:
@@ -60,7 +60,7 @@ sources:
     paths:
     - /etc/my.cnf
     - /etc/mysql/mysql.conf.d/mysqld.cnf
-  supported_os: [Linux]
+supported_os: [Linux]
 ---
 name: MySQLLogFiles
 doc: MySQL log files.
@@ -71,7 +71,7 @@ sources:
     - /var/log/mysql/error.log*
     - /var/log/mysql.log*
     - /var/log/*.log*
-  supported_os: [Linux]
+supported_os: [Linux]
 ---
 name: MySQLDataDictionary
 doc: MySQL data dictionary.
@@ -80,7 +80,7 @@ sources:
   attributes:
     paths:
     - /var/lib/mysql/mysql.ibd
-  supported_os: [Linux]
+supported_os: [Linux]
 urls:
 - 'https://dev.mysql.com/doc/refman/8.0/en/data-dictionary-transactional-storage.html'
 ---
@@ -92,7 +92,7 @@ sources:
     paths:
     - /var/lib/mysql/*
     - /var/lib/mysql/*/*
-  supported_os: [Linux]
+supported_os: [Linux]
 urls:
 - 'https://dev.mysql.com/doc/refman/8.0/en/data-directory.html'
 - 'https://dev.mysql.com/doc/refman/8.0/en/innodb-architecture.html'
@@ -109,7 +109,7 @@ sources:
     - /var/lib/pgsql/postgresql.conf
     - /var/lib/pgsql/pg_hba.conf
     - /var/lib/pgsql/pg_ident.conf
-  supported_os: [Linux]
+supported_os: [Linux]
 urls:
 - 'https://www.postgresql.org/docs/current/runtime-config-file-locations.html'
 ---
@@ -121,7 +121,7 @@ sources:
     paths:
     - /var/lib/pgsql/data/*
     - /var/lib/pgsql/*/*
-  supported_os: [Linux]
+supported_os: [Linux]
 urls:
 - 'https://www.postgresql.org/docs/current/storage-file-layout.html'
 ---
@@ -133,7 +133,7 @@ sources:
     paths:
     - /var/log/postgresql/postgresql.log*
     - /var/log/postgresql/postgresql.csv*
-  supported_os: [Linux]
+supported_os: [Linux]
 ---
 name: RedisConfigurationFile
 doc: Redis configuration files.
@@ -143,7 +143,7 @@ sources:
     paths:
     - /etc/redis/*
     - /etc/init.d/redis_*
-  supported_os: [Linux]
+supported_os: [Linux]
 ---
 name: RedisLogFiles
 doc: Redis log files.
@@ -153,7 +153,7 @@ sources:
     paths:
     - /var/log/redis/redis*.log*
     - /var/log/redis*.log*
-  supported_os: [Linux]
+supported_os: [Linux]
 ---
 name: RedisDataDirectory
 doc: Redis Data Directory.
@@ -163,4 +163,4 @@ sources:
     paths:
     - /var/redis/*
     - /var/redis/*/*
-  supported_os: [Linux]
+supported_os: [Linux]
