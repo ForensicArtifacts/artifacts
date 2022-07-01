@@ -1,5 +1,22 @@
 # Database Server artifacts
 ---
+name: MongoDBConfigurationFile
+doc: MongoDB configuration file.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - /etc/mongod.conf
+  supported_os: [Linux]
+- type: FILE
+attributes:
+  paths:
+  - /usr/local/etc/mongod.conf
+  - /opt/homebrew/etc/mongod.conf
+supported_os: [Darwin]
+urls:
+- 'https://www.mongodb.com/docs/manual/reference/configuration-options/'
+---
 name: MySQLConfigurationFiles
 doc: MySQL configuration files.
 sources:
