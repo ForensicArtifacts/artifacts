@@ -1,0 +1,46 @@
+# Database Server artifacts
+---
+name: MySQLConfigurationFiles
+doc: MySQL configuration files.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - /etc/my.cnf
+    - /etc/mysql/mysql.conf.d/mysqld.cnf
+  supported_os: [Linux]
+---
+name: MySQLLogFiles
+doc: MySQL log files.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - /var/log/mysql/error.log*
+    - /var/log/mysql.log*
+    - /var/log/*.log*
+  supported_os: [Linux]
+---
+name: MySQLDataDictionary
+doc: MySQL data dictionary.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - /var/lib/mysql/*
+    - /var/lib/mysql/*/*
+  supported_os: [Linux]
+urls:
+- 'https://dev.mysql.com/doc/refman/8.0/en/data-dictionary-transactional-storage.html'
+---
+name: MySQL data directory
+doc: MySQL data directory.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - /var/lib/mysql/*/*
+  supported_os: [Linux]
+urls:
+- 'https://dev.mysql.com/doc/refman/8.0/en/data-directory.html'
+- 'https://dev.mysql.com/doc/refman/8.0/en/innodb-architecture.html'
