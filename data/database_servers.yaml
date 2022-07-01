@@ -9,7 +9,7 @@ sources:
     - /etc/mongod.conf
   supported_os: [Linux]
 - type: FILE
-attributes:
+  attributes:
   paths:
   - /usr/local/etc/mongod.conf
   - /opt/homebrew/etc/mongod.conf
@@ -37,12 +37,12 @@ sources:
     - /var/lib/mongodb
   supported_os: [Linux]
 - type: FILE
-attributes:
+  attributes:
   paths:
   - /usr/local/var/mongodb
   supported_os: [Darwin]
 - type: FILE
-attributes:
+  attributes:
   paths:
   - \data\db
   separator: '\'
