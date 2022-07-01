@@ -1,0 +1,13 @@
+# Gitlab Omnibus artifacts
+
+---
+name: GitlabLogs
+doc: Gitlab Logs
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/var/lib/gitlabn/*/*.log'
+    - '/home/git/gitlab/log'
+
+supported_os: [Linux]
