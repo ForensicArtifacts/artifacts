@@ -14,6 +14,7 @@ sources:
   - /usr/local/etc/mongod.conf
   - /opt/homebrew/etc/mongod.conf
   supported_os: [Darwin]
+supported_os: [Darwin, Linux]
 urls:
 - 'https://www.mongodb.com/docs/manual/reference/configuration-options/'
 ---
@@ -47,6 +48,7 @@ sources:
   - \data\db
   separator: '\'
   supported_os: [Windows]
+supported_os: [Darwin, Linux, Windows]
 urls:
 - 'https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.dbPath'
 ---
