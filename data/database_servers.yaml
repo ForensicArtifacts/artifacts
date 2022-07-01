@@ -110,7 +110,7 @@ sources:
   supported_os: [Linux]
 urls:
 - 'https://www.postgresql.org/docs/current/runtime-config-file-locations.html'
-----
+---
 name: PostgreSQLDataDirectory
 doc: PostgreSQL data directory.
 sources:
@@ -122,4 +122,13 @@ sources:
   supported_os: [Linux]
 urls:
 - 'https://www.postgresql.org/docs/current/storage-file-layout.html'
-
+---
+name: PostgreSQLLogFile
+doc: PostgreSQL log files.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - /var/log/postgresql/postgresql.log*
+    - /var/log/postgresql/postgresql.csv*
+  supported_os: [Linux]
