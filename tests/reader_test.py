@@ -312,7 +312,7 @@ supported_os: [Windows]
 
     artifact_reader = reader.YamlArtifactsReader()
 
-    with open(test_file, 'r') as file_object:
+    with open(test_file, 'r', encoding='utf-8') as file_object:
       for artifact_definition in yaml.safe_load_all(file_object):
         artifact_object = artifact_reader.ReadArtifactDefinitionValues(
             artifact_definition)
