@@ -7,7 +7,7 @@ sources:
   attributes:
     paths:
     - '/etc/apache2/*.conf'
-  supported_os: [Linux]
+supported_os: [Linux]
 ---
 name: ApacheDefaultSiteConfigurationFile
 doc: Location where Apache keeps the default site configuration file.
@@ -16,7 +16,7 @@ sources:
   attributes:
     paths:
     - '/etc/apache2/sites-available/000-default.conf'
-  supported_os: [Linux]
+supported_os: [Linux]
 ---
 name: ApacheAccessLogs
 doc: Location where Apache access logs are stored
