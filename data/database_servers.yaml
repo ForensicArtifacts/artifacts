@@ -39,6 +39,7 @@ sources:
   attributes:
     paths:
     - '/var/log/elasticsearch/gc.log'
+    - '/var/log/elasticsearch/gc.log.[0-9]'
 supported_os: [Linux]
 urls:
 - https://www.elastic.co/guide/en/elasticsearch/reference/current/important-settings.html#gc-logging
