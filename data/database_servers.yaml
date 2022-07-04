@@ -133,6 +133,8 @@ sources:
     paths:
     - /var/log/postgresql/postgresql.log*
     - /var/log/postgresql/postgresql.csv*
+    - /var/log/postgresql/postgresql-*-*.log*
+    - /var/log/postgresql/postgresql-*-*.csv*
 supported_os: [Linux]
 ---
 name: RedisConfigurationFile
