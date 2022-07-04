@@ -646,6 +646,17 @@ sources:
   attributes: {paths: ['%%users.homedir%%/.python_history']}
 supported_os: [Linux]
 ---
+name: SambaLogs
+doc: Samba log files
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/var/log/samba/*.log'
+supported_os: [Linux]
+urls:
+- 'https://wiki.samba.org/index.php/Configuring_Logging_on_a_Samba_Server'
+---
 name: SecretsServiceDatabaseFile
 doc: The System Security Services Daemon (SSSD) database file.
 sources:
