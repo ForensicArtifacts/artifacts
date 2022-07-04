@@ -154,6 +154,18 @@ urls:
 - 'https://dev.mysql.com/doc/refman/8.0/en/data-directory.html'
 - 'https://dev.mysql.com/doc/refman/8.0/en/innodb-architecture.html'
 ---
+name: OpenSearchLogFiles
+doc: OpenSearch log files.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - /var/log/opensearch/*.log
+    - /var/log/opensearch/*.json
+supported_os: [Linux]
+urls:
+- 'https://opensearch.org/docs/latest/opensearch/logs/'
+---
 name: PostgreSQLConfigurationFiles
 doc: PostgreSQL configuration files.
 sources:
