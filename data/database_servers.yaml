@@ -1,5 +1,61 @@
 # Database Server artifacts
 ---
+name: ElasticSearchLogs
+doc: Location where ElasticSearch logs are stored
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/var/log/elasticsearch/*.log'
+    - '/var/log/elasticsearch/*.json'
+    - '/var/log/elasticsearch/*.json.gz'
+supported_os: [Linux]
+---
+name: ElasticSearchAccessLog
+doc: Location where ElasticSearch access logs are stored
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/var/log/elasticsearch/*_access.log'
+supported_os: [Linux]
+---
+name: ElasticSearchAuditLog
+doc: Location where ElasticSearch audit logs are stored
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/var/log/elasticsearch/*_audit.json'
+    - '/var/log/elasticsearch/*_audit.log'
+supported_os: [Linux]
+urls:
+- https://www.elastic.co/guide/en/elasticsearch/reference/current/audit-log-output.html
+---
+name: ElasticSearchGCLog
+doc: Location where ElasticSearch GC logs are stored
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/var/log/elasticsearch/gc.log'
+supported_os: [Linux]
+urls:
+- https://www.elastic.co/guide/en/elasticsearch/reference/current/important-settings.html#gc-logging
+---
+name: ElasticSearchServerLog
+doc: Location where ElasticSearch server logs are stored
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/var/log/elasticsearch/*_server.json'
+    - '/var/log/elasticsearch/*-*.json'
+    - '/var/log/elasticsearch/*-*.json.gz'
+supported_os: [Linux]
+urls:
+- https://www.elastic.co/guide/en/elasticsearch/reference/current/logging.html#loggin-configuration
+---
 name: MongoDBConfigurationFile
 doc: MongoDB configuration file.
 sources:
