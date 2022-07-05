@@ -181,7 +181,7 @@ sources:
   attributes:
     paths:
     - '/etc/ssl/certs/ca-certificates.crt'
-    - '/usr/share/ca-certificates'/*
+    - '/usr/share/ca-certificates/*'
     - '/usr/local/share/ca-certificates/*'
 supported_os: [Linux]
 ---
