@@ -462,6 +462,22 @@ sources:
   attributes: {paths: ['/var/log/sudo-io/**']}
 supported_os: [Linux]
 ---
+name: LinuxSysctlConfigurationFiles
+doc: Linux sysctl preload/configuration files.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - /etc/sysctl.d/*.conf
+    - /run/sysctl.d/*.conf
+    - /usr/local/lib/sysctl.d/*.conf
+    - /usr/lib/sysctl.d/*.conf
+    - /lib/sysctl.d/*.conf
+    - /etc/sysctl.con
+supported_os: [Linux]
+urls:
+- 'https://man7.org/linux/man-pages/man5/sysctl.conf.5.html'
+---
 name: LinuxSysLogFiles
 doc: Linux syslog log files.
 sources:
