@@ -166,6 +166,25 @@ sources:
     - '/var/log/secure.log*'
 supported_os: [Linux]
 ---
+name: LinuxCACertificatesConfiguration
+doc: Linux CA Certificates configuration file.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/etc/ca-certificates.conf'
+---
+name: LinuxCACertificates
+doc: Linux CA Certificates.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/etc/ssl/certs/ca-certificates.crt'
+    - '/usr/share/ca-certificates'/*
+    - '/usr/local/share/ca-certificates/*'
+supported_os: [Linux]
+---
 name: LinuxCronLogs
 doc: Linux cron log files.
 sources:
@@ -444,15 +463,6 @@ sources:
 - type: FILE
   attributes: {paths: ['/sys/firmware/acpi/tables/SSDT*']}
 urls: ['https://www.kernel.org/doc/Documentation/acpi/initrd_table_override.txt']
-supported_os: [Linux]
----
-name: LinuxSSLCertificates
-doc: Linux SSL Certificates.
-sources:
-- type: FILE
-  attributes:
-    paths:
-    - '/etc/ssl/*'
 supported_os: [Linux]
 ---
 name: LinuxSudoReplayLogs
