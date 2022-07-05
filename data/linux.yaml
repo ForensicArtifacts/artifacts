@@ -191,6 +191,15 @@ sources:
   attributes: {paths: ['/var/log/daemon.log*']}
 supported_os: [Linux]
 ---
+name: LinuxDHCPConfigurationFile
+doc: Linux DHCP Configuration File
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/etc/dhcp/dhcp.conf'
+supported_os: [Linux]
+---
 name: LinuxDistributionRelease
 doc: Linux distribution release information of non-LSB compliant systems.
 sources:
