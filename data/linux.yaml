@@ -693,7 +693,9 @@ sources:
   attributes:
     paths:
     - '/etc/default/ufw'
-    - '/etc/ufw/*'
+    - '/etc/ufw/sysctl.conf'
+    - '/etc/ufw/*.rules'
+    - '/etc/ufw/applications.d/*'
 supported_os: [Linux]
 ---
 name: UFWLogFile
@@ -702,7 +704,7 @@ sources:
 - type: FILE
   attributes:
     paths:
-    - '//var/log/ufw/log'
+    - '/var/log/ufw.log'
 supported_os: [Linux]
 ---
 name: Viminfo
