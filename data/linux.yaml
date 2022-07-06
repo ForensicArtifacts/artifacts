@@ -706,6 +706,15 @@ sources:
   attributes: {paths: ['%%users.homedir%%/.python_history']}
 supported_os: [Linux]
 ---
+name: RHostsFile
+doc: RHosts file.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/.rhosts'
+supported_os: [Linux]
+---
 name: SambaLogs
 doc: Samba log files
 sources:
@@ -716,15 +725,6 @@ sources:
 supported_os: [Linux]
 urls:
 - 'https://wiki.samba.org/index.php/Configuring_Logging_on_a_Samba_Server'
----
-name: RHostsFile
-doc: RHosts file.
-sources:
-- type: FILE
-  attributes:
-    paths:
-    - '%%users.homedir%%/.rhosts'
-supported_os: [Linux]
 ---
 name: SecretsServiceDatabaseFile
 doc: The System Security Services Daemon (SSSD) database file.
@@ -739,6 +739,25 @@ urls:
 - 'https://docs.pagure.org/SSSD.sssd/design_pages/secrets_service.html'
 - 'https://www.fireeye.com/blog/threat-research/2020/04/kerberos-tickets-on-linux-red-teams.html'
 ---
+name: SQLiteHistoryFile
+doc: SQLite History file
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/.sqlite_history'
+supported_os: [Linux]
+---
+name: SSHAuthorizedKeysFiles
+doc: SSH authorized keys files
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/.ssh/authorized_keys'
+    - '%%users.homedir%%/.ssh/authorized_keys2'
+supported_os: [Linux]
+---
 name: SSHHostPubKeys
 doc: SSH host public keys
 sources:
@@ -746,6 +765,16 @@ sources:
   attributes:
     paths:
     - '/etc/ssh/ssh_host_*_key.pub'
+supported_os: [Linux]
+---
+name: SSHKnownHostsFiles
+doc: SSH known_hosts files
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/.ssh/known_hosts'
+    - '/etc/ssh/known_hosts'
 supported_os: [Linux]
 ---
 name: ThumbnailCacheFolder
