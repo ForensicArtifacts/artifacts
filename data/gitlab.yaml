@@ -213,5 +213,3 @@ supported_os: [Linux]
 urls:
 - 'https://docs.gitlab.com/ee/administration/logs.html#authlog'
 ---
-
-
