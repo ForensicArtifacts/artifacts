@@ -102,7 +102,7 @@ doc: FreeDesktop.org Trash Info Files.
 sources:
 - type: FILE
   attributes:
-    paths: 
+    paths:
     - '%%users.homedir%%/.local/share/Trash/info/*.trashinfo'
 supported_os: [Linux]
 urls:
@@ -113,7 +113,7 @@ doc: FreeDesktop.org Trash Files.
 sources:
 - type: FILE
   attributes:
-    paths: 
+    paths:
     - '%%users.homedir%%/.local/share/Trash/files/*'
 supported_os: [Linux]
 urls:
