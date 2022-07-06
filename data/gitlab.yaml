@@ -1,5 +1,4 @@
-# Gitlab Omnibus artifacts
-
+# Gitlab artifacts
 ---
 name: GitlabLogs
 doc: Gitlab Logs
@@ -8,6 +7,211 @@ sources:
   attributes:
     paths:
     - '/var/lib/gitlabn/*/*.log'
-    - '/home/git/gitlab/log'
-
+    - '/home/git/gitlab/log/*.log'
 supported_os: [Linux]
+---
+name: GitlabStructuredProductionLog
+doc: Contains a strucutred log for Rails controller requests received from Gitlab.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/var/log/gitlab/gitlab-rails/production_json.log'
+    - '/home/git/gitlab/log/production_json.log'
+supported_os: [Linux]
+urls:
+- 'https://docs.gitlab.com/ee/administration/logs.html#production_jsonlog'
+---
+name: GitlabProductionLog
+doc: Contains information about all performed requests.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/var/log/gitlab/gitlab-rails/production.log'
+    - '/home/git/gitlab/log/production.log'
+supported_os: [Linux]
+urls:
+- 'https://docs.gitlab.com/ee/administration/logs.html#productionlog'
+---
+name: GitlabApiJsonLog
+doc: Contains requests made directly to the API.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/var/log/gitlab/gitlab-rails/api_json.log'
+    - '/home/git/gitlab/log/api_json.log'
+supported_os: [Linux]
+urls:
+- 'https://docs.gitlab.com/ee/administration/logs.html#api_jsonlog'
+---
+name: GitlabApplicationLog
+doc: Discover events happening in your instance such as user creation and project deletion.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/var/log/gitlab/gitlab-rails/application.log'
+    - '/home/git/gitlab/log/application.log'
+    - '/var/log/gitlab/gitlab-rails/application_json.log'
+    - '/home/git/gitlab/log/application_json.log'
+supported_os: [Linux]
+urls:
+- 'https://docs.gitlab.com/ee/administration/logs.html#applicationlog'
+---
+name: GitlabIntegrationsJsonLog
+doc: Contains information about integration activities.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/var/log/gitlab/gitlab-rails/integrations_json.log'
+    - '/home/git/gitlab/log/integrations_json.log'
+supported_os: [Linux]
+urls:
+- 'https://docs.gitlab.com/ee/administration/logs.html#application_jsonlog'
+---
+name: GitlabKubernetesJsonLog
+doc: Contains information related to Kubernetes Integration, including errors during installing cluster applications on managed Kubernetes clusters.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/var/log/gitlab/gitlab-rails/kubernetes.log'
+    - '/home/git/gitlab/log/kubernetes.log'
+supported_os: [Linux]
+urls:
+- 'https://docs.gitlab.com/ee/administration/logs.html#kuberneteslog'
+---
+name: GitlabGitJsonLog
+doc: Contains all failed requests from GiLab to Git repositories.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/var/log/gitlab/gitlab-rails/git_json.log'
+    - '/home/git/gitlab/log/git_json.log'
+supported_os: [Linux]
+urls:
+- 'https://docs.gitlab.com/ee/administration/logs.html#git_jsonlog'
+---
+name: GitlabAuditJsonLog
+doc: Changes to group or project settings and memberships are logged to this file.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/var/log/gitlab/gitlab-rails/audit_json.log'
+    - '/home/git/gitlab/log/audit_json.log'
+supported_os: [Linux]
+urls:
+- 'https://docs.gitlab.com/ee/administration/logs.html#audit_jsonlog'
+---
+name: GitlabSidekiqLog
+doc: Changes to group or project settings and memberships are logged to this file.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/var/log/gitlab/sidekiq/current'
+    - '/home/git/gitlab/log/sidekiq.log'
+    - '/var/log/gitlab/gitlab-rails/sidekiq_client.log'
+    - '/home/git/gitlab/log/sidekiq_client.log'
+supported_os: [Linux]
+urls:
+- 'https://docs.gitlab.com/ee/administration/logs.html#sidekiqlog'
+---
+name: GitlabShellLog
+doc: Information containing git-{upload-pack,receive-pack} requests are logged to this file.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/var/log/gitlab/gitlab-shell/gitlab-shell.log'
+    - '/var/log/gitlab/gitaly/current'
+    - '/var/log/gitlab/gitaly/gitlab-shell.log'
+    - '/home/git/gitaly/gitlab-shell.log'
+    - '/var/log/gitlab/gitlab-shell/gitlab-shell.log'
+supported_os: [Linux]
+urls:
+- 'https://docs.gitlab.com/ee/administration/logs.html#gitlab-shelllog'
+---
+name: GitlabGitalyLog
+doc: Gitlab Gitaly logs.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/var/log/gitlab/gitaly/current'
+    - '/var/log/gitlab/gitlab-rails/grpc.log'
+    - '/var/log/gitlab/gitaly/gitaly_ruby_json.log'
+    - '/var/log/gitlab/gitaly/gitaly_hooks.log'
+supported_os: [Linux]
+urls:
+- 'https://docs.gitlab.com/ee/administration/logs.html#gitaly-logs'
+---
+name: GitlabPumaLog
+doc: Gitlab Puma logs.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/var/log/gitlab/puma/puma_stdout.log'
+    - '/home/git/gitlab/log/puma_stdout.log'
+    - '/var/log/gitlab/puma/puma_stderr.log'
+    - '/home/git/gitlab/log/puma_stderr.log'
+supported_os: [Linux]
+urls:
+- 'https://docs.gitlab.com/ee/administration/logs.html#puma-logs'
+---
+name: GitlabRepocheckLog
+doc: Contains information whenever a repository check is run on a project.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/var/log/gitlab/gitlab-rails/repocheck.log'
+    - '/home/git/gitlab/log/repocheck.log'
+supported_os: [Linux]
+urls:
+- 'https://docs.gitlab.com/ee/administration/logs.html#repochecklog'
+---
+name: GitlabExporterLog
+doc: Contains logs of the progress of the export process.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/var/log/gitlab/gitlab-rails/exporter.log'
+    - '/home/git/gitlab/log/exporter.log'
+supported_os: [Linux]
+urls:
+- 'https://docs.gitlab.com/ee/administration/logs.html#exporterlog'
+---
+name: GitlabFeaturesJsonLog
+doc: Contains logs of modification events from the Feature flags in development of GitLab.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/var/log/gitlab/gitlab-rails/features_json.log'
+    - '/home/git/gitlab/log/features_json.log'
+supported_os: [Linux]
+urls:
+- 'https://docs.gitlab.com/ee/administration/logs.html#features_jsonlog'
+---
+name: GitlabAuthLog
+doc: Contains auth logs.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/var/log/gitlab/gitlab-rails/auth.log'
+    - '/home/git/gitlab/log/auth.log'
+supported_os: [Linux]
+urls:
+- 'https://docs.gitlab.com/ee/administration/logs.html#authlog'
+---
+
+
