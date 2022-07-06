@@ -717,6 +717,15 @@ supported_os: [Linux]
 urls:
 - 'https://wiki.samba.org/index.php/Configuring_Logging_on_a_Samba_Server'
 ---
+name: RHostsFile
+doc: RHosts file.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/.rhosts'
+supported_os: [Linux]
+---
 name: SecretsServiceDatabaseFile
 doc: The System Security Services Daemon (SSSD) database file.
 sources:
