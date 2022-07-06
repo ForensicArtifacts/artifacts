@@ -97,12 +97,27 @@ sources:
 supported_os: [Linux]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Gnome_Desktop_Environment']
 ---
-name: GnomeTrash
-doc: Gnome Trash.
+name: FreeDesktopTrashInfoFiles
+doc: FreeDesktop.org Trash Info Files.
 sources:
 - type: FILE
-  attributes: {paths: ['%%users.homedir%%/.local/share/Trash/*']}
+  attributes:
+    paths: 
+    - '%%users.homedir%%/.local/share/Trash/info/*.trashinfo'
 supported_os: [Linux]
+urls:
+- 'https://specifications.freedesktop.org/trash-spec/trashspec-latest.html'
+---
+name: FreeDesktopTrashFiles
+doc: FreeDesktop.org Trash Files.
+sources:
+- type: FILE
+  attributes:
+    paths: 
+    - '%%users.homedir%%/.local/share/Trash/files/*'
+supported_os: [Linux]
+urls:
+- 'https://specifications.freedesktop.org/trash-spec/trashspec-latest.html'
 ---
 name: GTKRecentlyUsed
 doc: GTK Recent Manager database.
