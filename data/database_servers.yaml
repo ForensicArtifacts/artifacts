@@ -178,9 +178,13 @@ sources:
     - /var/lib/pgsql/postgresql.conf
     - /var/lib/pgsql/pg_hba.conf
     - /var/lib/pgsql/pg_ident.conf
+    - /var/lib/pgsql/data/postgresql.conf
+    - /var/lib/pgsql/data/pg_hba.conf
+    - /var/lib/pgsql/data/pg_ident.conf
 supported_os: [Linux]
 urls:
 - 'https://www.postgresql.org/docs/current/runtime-config-file-locations.html'
+- 'https://docs.fedoraproject.org/en-US/quick-docs/postgresql/'
 ---
 name: PostgreSQLDataDirectory
 doc: PostgreSQL data directory.
@@ -189,10 +193,12 @@ sources:
   attributes:
     paths:
     - /var/lib/pgsql/data/*
+    - /var/lib/pgsql/data-old/*
     - /var/lib/pgsql/*/*
 supported_os: [Linux]
 urls:
 - 'https://www.postgresql.org/docs/current/storage-file-layout.html'
+- 'https://docs.fedoraproject.org/en-US/quick-docs/postgresql/'
 ---
 name: PostgreSQLLogFiles
 doc: PostgreSQL log files.
@@ -202,9 +208,19 @@ sources:
     paths:
     - /var/log/postgresql/postgresql.log*
     - /var/log/postgresql/postgresql.csv*
+    - /var/log/postgresql/postgresql-*.log*
+    - /var/log/postgresql/postgresql-*.csv*
     - /var/log/postgresql/postgresql-*-*.log*
     - /var/log/postgresql/postgresql-*-*.csv*
+    - /var/lib/pgsql/data/log/postgresql.log*
+    - /var/lib/pgsql/data/log/postgresql.csv*
+    - /var/lib/pgsql/data/log/postgresql-*.log*
+    - /var/lib/pgsql/data/log/postgresql-*.csv*
+    - /var/lib/pgsql/data/log/postgresql-*-*.log*
+    - /var/lib/pgsql/data/log/postgresql-*-*.csv*
 supported_os: [Linux]
+urls:
+- 'https://www.postgresql.org/docs/14/runtime-config-logging.html'
 ---
 name: RedisConfigurationFile
 doc: Redis configuration files.
