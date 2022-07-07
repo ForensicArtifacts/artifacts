@@ -1,7 +1,7 @@
 # Database Server artifacts
 ---
 name: ElasticSearchLogs
-doc: Location where ElasticSearch logs are stored
+doc: Location where ElasticSearch logs are stored.
 sources:
 - type: FILE
   attributes:
@@ -12,7 +12,7 @@ sources:
 supported_os: [Linux]
 ---
 name: ElasticSearchAccessLog
-doc: Location where ElasticSearch access logs are stored
+doc: Location where ElasticSearch access logs are stored.
 sources:
 - type: FILE
   attributes:
@@ -21,7 +21,7 @@ sources:
 supported_os: [Linux]
 ---
 name: ElasticSearchAuditLog
-doc: Location where ElasticSearch audit logs are stored
+doc: Location where ElasticSearch audit logs are stored.
 sources:
 - type: FILE
   attributes:
@@ -33,7 +33,7 @@ urls:
 - https://www.elastic.co/guide/en/elasticsearch/reference/current/audit-log-output.html
 ---
 name: ElasticSearchGCLog
-doc: Location where ElasticSearch GC logs are stored
+doc: Location where ElasticSearch GC logs are stored.
 sources:
 - type: FILE
   attributes:
@@ -45,7 +45,7 @@ urls:
 - https://www.elastic.co/guide/en/elasticsearch/reference/current/important-settings.html#gc-logging
 ---
 name: ElasticSearchServerLog
-doc: Location where ElasticSearch server logs are stored
+doc: Location where ElasticSearch server logs are stored.
 sources:
 - type: FILE
   attributes:
