@@ -119,7 +119,7 @@ supported_os: [Linux]
 urls:
 - 'https://specifications.freedesktop.org/trash-spec/trashspec-latest.html'
 ---
-name: GTKRecentlyUsed
+name: GTKRecentlyUsedDatabase
 doc: GTK Recent Manager database.
 sources:
 - type: FILE
@@ -699,8 +699,8 @@ urls:
 - 'https://wiki.debian.org/HowToIdentifyADevice/PCI'
 supported_os: [Linux]
 ---
-name: PythonHistory
-doc: Python REPL history.
+name: PythonHistoryFile
+doc: Python REPL history file.
 sources:
 - type: FILE
   attributes: {paths: ['%%users.homedir%%/.python_history']}
@@ -715,8 +715,8 @@ sources:
     - '%%users.homedir%%/.rhosts'
 supported_os: [Linux]
 ---
-name: SambaLogs
-doc: Samba log files
+name: SambaLogFiles
+doc: Samba log files.
 sources:
 - type: FILE
   attributes:
@@ -740,7 +740,7 @@ urls:
 - 'https://www.fireeye.com/blog/threat-research/2020/04/kerberos-tickets-on-linux-red-teams.html'
 ---
 name: SQLiteHistoryFile
-doc: SQLite History file
+doc: SQLite History file.
 sources:
 - type: FILE
   attributes:
@@ -749,7 +749,7 @@ sources:
 supported_os: [Linux]
 ---
 name: SSHAuthorizedKeysFiles
-doc: SSH authorized keys files
+doc: SSH authorized keys files.
 sources:
 - type: FILE
   attributes:
@@ -768,7 +768,7 @@ sources:
 supported_os: [Linux]
 ---
 name: SSHKnownHostsFiles
-doc: SSH known_hosts files
+doc: SSH known_hosts files.
 sources:
 - type: FILE
   attributes:
