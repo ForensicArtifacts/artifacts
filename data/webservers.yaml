@@ -7,6 +7,9 @@ sources:
   attributes:
     paths:
     - '/etc/apache2/*.conf'
+    - '/etc/httpd/*.conf'
+    - '/etc/httpd/conf.d/*.conf'
+    - '/etc/httpd/conf.modules.d/*.conf'
 supported_os: [Linux]
 ---
 name: ApacheDefaultSiteConfigurationFile
