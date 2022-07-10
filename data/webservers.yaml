@@ -16,9 +16,7 @@ name: ApacheDefaultSiteConfigurationFile
 doc: Location where Apache keeps the default site configuration file.
 sources:
 - type: FILE
-  attributes:
-    paths:
-    - '/etc/apache2/sites-available/000-default.conf'
+  attributes: {paths: ['/etc/apache2/sites-available/000-default.conf']}
 supported_os: [Linux]
 ---
 name: ApacheAccessLogs
@@ -27,14 +25,14 @@ sources:
 - type: FILE
   attributes:
     paths:
-    - '/var/log/apache/access.log*'
     - '/var/log/apache/access_log*'
+    - '/var/log/apache/access.log*'
+    - '/var/log/apache2/access_log*'
     - '/var/log/apache2/access.log*'
     - '/var/log/apache2/other_vhosts_access_log*'
     - '/var/log/apache2/other_vhosts_access.log*'
-    - '/var/log/apache2/access_log*'
-    - '/var/log/httpd/access.log*'
     - '/var/log/httpd/access_log*'
+    - '/var/log/httpd/access.log*'
   supported_os: [Linux]
 - type: FILE
   attributes:
@@ -49,12 +47,12 @@ sources:
 - type: FILE
   attributes:
     paths:
-    - '/var/log/apache/error.log*'
     - '/var/log/apache/error*'
-    - '/var/log/apache2/error.log*'
+    - '/var/log/apache/error.log*'
     - '/var/log/apache2/error*'
-    - '/var/log/httpd/error.log*'
+    - '/var/log/apache2/error.log*'
     - '/var/log/httpd/error*'
+    - '/var/log/httpd/error.log*'
   supported_os: [Linux]
 - type: FILE
   attributes:
@@ -67,9 +65,7 @@ name: NginxAccessLogs
 doc: Location where nginx access logs are stored
 sources:
 - type: FILE
-  attributes:
-    paths:
-    - '/var/log/nginx/access.log*'
+  attributes: {paths: ['/var/log/nginx/access.log*']}
   supported_os: [Linux]
 - type: FILE
   attributes:
@@ -82,9 +78,7 @@ name: NginxErrorLogs
 doc: Location where nginx error logs are stored
 sources:
 - type: FILE
-  attributes:
-    paths:
-    - '/var/log/nginx/error.log*'
+  attributes: {paths: ['/var/log/nginx/error.log*']}
 supported_os: [Linux]
 ---
 name: WordpressConfigFile
