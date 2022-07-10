@@ -167,7 +167,6 @@ class ArtifactsReader(BaseArtifactsReader):
               'Invalid artifact definition: {0:s} returned_types no longer '
               'supported.').format(name))
 
-        source_type.conditions = source.get('conditions', [])
         self._ReadSupportedOS(source, source_type, name)
         if set(source_type.supported_os) - set(
             artifact_definition.supported_os):
@@ -225,9 +224,6 @@ class ArtifactsReader(BaseArtifactsReader):
           'Invalid artifact definition: {0:s} urls is not a list.'.format(
               name))
 
-    # TODO: check conditions.
-    artifact_definition.conditions = artifact_definition_values.get(
-        'conditions', [])
     artifact_definition.provides = artifact_definition_values.get(
         'provides', [])
     self._ReadSupportedOS(artifact_definition_values, artifact_definition, name)

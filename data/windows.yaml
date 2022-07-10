@@ -8,7 +8,6 @@ sources:
     keys:
     - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Internet Explorer\Desktop\Components\*'
     - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Internet Explorer\Desktop\General'
-conditions: [os_major_version < 6]
 supported_os: [Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/ActiveDesktop.html']
 ---
@@ -46,7 +45,6 @@ sources:
     - '%%environ_systemroot%%\AppCompat\Programs\Amcache.hve.LOG1'
     - '%%environ_systemroot%%\AppCompat\Programs\Amcache.hve.LOG2'
     separator: '\'
-conditions: [os_major_version >= 6 AND os_minor_version >= 1]
 supported_os: [Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/AMCache.html']
 ---
@@ -203,7 +201,6 @@ sources:
     - '%%environ_systemroot%%\System32\WindowsPowerShell\v1.0\WinAppXRT.dll'
     separator: '\'
 supported_os: [Windows]
-conditions: [os_major_version >= 6 AND os_minor_version >= 2]
 urls: ['http://www.hexacorn.com/blog/2014/08/31/beyond-good-ol-run-key-part-17/']
 ---
 name: WindowsAutoexecBat
@@ -627,7 +624,6 @@ sources:
     - '%%environ_systemroot%%\SysWOW64\config\systemprofile\AppData\LocalLow\Microsoft\CryptnetUrlCache\MetaData\*'
     - '%%users.userprofile%%\AppData\LocalLow\Microsoft\CryptnetUrlCache\MetaData\*'
     separator: '\'
-conditions: [os_major_version >= 6]
 supported_os: [Windows]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows#Cryptnet_URL_Cache']
 ---
@@ -646,7 +642,6 @@ sources:
     - '%%environ_systemroot%%\SysWOW64\config\systemprofile\AppData\LocalLow\Microsoft\CryptnetUrlCache\Content\*'
     - '%%users.userprofile%%\AppData\LocalLow\Microsoft\CryptnetUrlCache\Content\*'
     separator: '\'
-conditions: [os_major_version >= 6]
 supported_os: [Windows]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows#Cryptnet_URL_Cache']
 ---
@@ -740,7 +735,6 @@ sources:
     key_value_pairs:
     - {key: 'HKEY_USERS\%%users.sid%%\Environment', value: 'APPX_PROCESS'}
 supported_os: [Windows]
-conditions: [os_major_version >= 6 AND os_minor_version >= 2]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/EnvironmentVariables.html']
 ---
 name: WindowsEnvironmentVariableCommonProgramFiles
@@ -785,7 +779,6 @@ sources:
     - {key: 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment', value: 'DriverData'}
 provides: [environ_driverdata]
 supported_os: [Windows]
-conditions: [os_major_version >= 10]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/EnvironmentVariables.html']
 ---
 name: WindowsEnvironmentVariablePath
@@ -925,7 +918,6 @@ sources:
   attributes:
     paths: ['%%environ_systemroot%%\System32\config\AppEvent.evt']
     separator: '\'
-conditions: [os_major_version < 6]
 supported_os: [Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/EventLog.html']
 ---
@@ -957,7 +949,6 @@ sources:
   attributes:
     paths: ['%%environ_systemroot%%\System32\config\SecEvent.evt']
     separator: '\'
-conditions: [os_major_version < 6]
 supported_os: [Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/EventLog.html']
 ---
@@ -978,7 +969,6 @@ sources:
   attributes:
     paths: ['%%environ_systemroot%%\System32\config\SysEvent.evt']
     separator: '\'
-conditions: [os_major_version < 6]
 supported_os: [Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/EventLog.html']
 ---
@@ -1009,7 +999,6 @@ sources:
     - '%%environ_systemroot%%\System32\WDI\LogFiles\*.etl.0*'
     - '%%environ_systemroot%%\System32\WDI\{86432a0b-3c7d-4ddf-a89c-172faa90485d}\*\*.etl'
     separator: '\'
-conditions: [os_major_version >= 6]
 supported_os: [Windows]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Event_Tracing_for_Windows_(ETW)']
 ---
@@ -1486,7 +1475,6 @@ sources:
 - type: REGISTRY_KEY
   attributes:
     keys: ['HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\ComDIg32\OpenSaveMRU\*\*']
-conditions: [os_major_version < 6]
 supported_os: [Windows]
 urls:
 - 'https://forensicswiki.xyz/wiki/index.php?title=OpenSaveMRU'
@@ -1498,7 +1486,6 @@ sources:
 - type: REGISTRY_KEY
   attributes:
     keys: ['HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\ComDlg32\OpenSavePidlMRU\*\*']
-conditions: [os_major_version >= 6]
 supported_os: [Windows]
 urls:
 - 'https://digital-forensics.sans.org/blog/2010/04/02/openrunsavemru-lastvisitedmru'
@@ -1793,7 +1780,6 @@ sources:
   attributes:
     paths: ['%%environ_systemroot%%\AppCompat\Programs\RecentFileCache.bcf']
     separator: '\'
-conditions: [os_major_version >= 6 AND os_minor_version >= 1]
 supported_os: [Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/RecentFileCache.html']
 ---
@@ -1903,7 +1889,6 @@ sources:
 - type: REGISTRY_VALUE
   attributes: {key_value_pairs: [{key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows NT\CurrentVersion\Winlogon', value: 'RunGrpConv'}]}
 supported_os: [Windows]
-conditions: [os_major_version <= 5]
 urls:
 - 'http://www.hexacorn.com/blog/2014/06/18/beyond-good-ol-run-key-part-13/'
 - 'http://www.exploit-id.com/local-exploits/windows-xp-sp2-grpconv-exe'
@@ -2703,17 +2688,12 @@ doc: Windows setup API logs.
 sources:
 - type: FILE
   attributes:
-    paths: ['%%environ_systemroot%%\setupapi.log']
-    separator: '\'
-  conditions: [os_major_version < 6]
-- type: FILE
-  attributes:
     paths:
+    - '%%environ_systemroot%%\setupapi.log'
     - '%%environ_systemroot%%\inf\setupapi.app.log'
     - '%%environ_systemroot%%\inf\setupapi.dev.log'
     - '%%environ_systemroot%%\inf\setupapi.offline.log'
     separator: '\'
-  conditions: [os_major_version >= 6]
 supported_os: [Windows]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Setup_API_Logs']
 ---
@@ -3364,7 +3344,6 @@ sources:
   attributes:
     paths: ['%%environ_systemroot%%\System32\winevt\Logs\Application.evtx']
     separator: '\'
-conditions: [os_major_version >= 6]
 supported_os: [Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/EventLog.html']
 ---
@@ -3375,7 +3354,6 @@ sources:
   attributes:
     paths: ['%%environ_systemroot%%\System32\winevt\Logs\Security.evtx']
     separator: '\'
-conditions: [os_major_version >= 6]
 supported_os: [Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/EventLog.html']
 ---
@@ -3396,7 +3374,6 @@ sources:
   attributes:
     paths: ['%%environ_systemroot%%\System32\winevt\Logs\System.evtx']
     separator: '\'
-conditions: [os_major_version >= 6]
 supported_os: [Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/EventLog.html']
 ---
@@ -3407,7 +3384,6 @@ sources:
   attributes:
     paths: ['%%environ_systemroot%%\System32\winevt\Logs\Microsoft-Windows-TerminalServices-LocalSessionManager%4Operational.evtx']
     separator: '\'
-conditions: [os_major_version >= 6]
 supported_os: [Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/EventLog.html']
 ---
@@ -3465,7 +3441,6 @@ sources:
   attributes:
     paths: ['%%environ_systemroot%%\System32\WDI\LogFiles\StartupInfo\*.xml']
     separator: '\'
-conditions: [os_major_version >= 6 AND os_minor_version >= 2]
 supported_os: [Windows]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows#Startup_info']
 ---

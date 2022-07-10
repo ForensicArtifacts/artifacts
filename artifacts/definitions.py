@@ -21,6 +21,7 @@ SUPPORTED_OS = frozenset([
 
 TOP_LEVEL_KEYS = frozenset([
     'aliases',
+    # conditions have been deprecated as of version 20220710.
     'conditions',
     'doc',
     # labels have been deprecated as of version 20220311.

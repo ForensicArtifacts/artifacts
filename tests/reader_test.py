@@ -126,10 +126,6 @@ supported_os: [Windows]
     ]
     self.assertEqual(sorted(source_type.paths), sorted(expected_paths))
 
-    self.assertEqual(len(artifact_definition.conditions), 1)
-    expected_condition = 'os_major_version >= 6'
-    self.assertEqual(artifact_definition.conditions[0], expected_condition)
-
     self.assertEqual(len(artifact_definition.supported_os), 1)
     self.assertEqual(artifact_definition.supported_os[0], 'Windows')
 
