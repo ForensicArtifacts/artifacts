@@ -6,7 +6,6 @@ doc: Windows Security Event log for Vista or later systems.
 sources:
 - type: FILE
   attributes: {paths: ['%%environ_systemroot%%\System32\winevt\Logs\Security.evtx']}
-conditions: [os_major_version >= 6]
 supported_os: [Windows]
 urls: ['http://www.forensicswiki.org/wiki/Windows_XML_Event_Log_(EVTX)']
 ---

@@ -40,7 +40,6 @@ doc: DNS client cache via Windows Management Instrumentation (WMI).
 sources:
 - type: WMI
   attributes: {query: SELECT * from MSFT_DNSClientCache, base_object: 'winmgmts:\root\StandardCimv2'}
-conditions: [os_major_version >= 6 AND os_minor_version >= 2]
 supported_os: [Windows]
 urls: ['https://docs.microsoft.com/en-us/previous-versions/windows/desktop/dnsclientcimprov/msft-dnsclientcache']
 ---
@@ -49,7 +48,6 @@ doc: Installed drivers via Windows Management Instrumentation (WMI).
 sources:
 - type: WMI
   attributes: {query: 'SELECT DisplayName, Description, InstallDate, Name, PathName, Status, State, ServiceType from Win32_SystemDriver'}
-conditions: [os_major_version >= 6]
 supported_os: [Windows]
 ---
 name: WMIEnumerateASEC
@@ -71,7 +69,6 @@ doc: Installed hotfixes via Windows Management Instrumentation (WMI).
 sources:
 - type: WMI
   attributes: {query: SELECT * from Win32_QuickFixEngineering}
-conditions: [os_major_version >= 6]
 supported_os: [Windows]
 ---
 name: WMIInstalledSoftware
@@ -79,7 +76,6 @@ doc: Installed software via Windows Management Instrumentation (WMI).
 sources:
 - type: WMI
   attributes: {query: 'SELECT Name, Vendor, Description, InstallDate, InstallDate2, Version from Win32_Product'}
-conditions: [os_major_version >= 6]
 supported_os: [Windows]
 ---
 name: WMILastBootupTime
@@ -121,7 +117,6 @@ doc: |
 sources:
 - type: WMI
   attributes: {query: SELECT * from Win32_GroupUser where Name = "login_users"}
-conditions: [os_major_version >= 6]
 supported_os: [Windows]
 ---
 name: WMINetNeighbors
@@ -129,7 +124,6 @@ doc: TCP/IP neighbors via Windows Management Instrumentation (WMI).
 sources:
 - type: WMI
   attributes: {query: SELECT * from MSFT_NetNeighbor, base_object: 'winmgmts:\root\StandardCimv2'}
-conditions: [os_major_version >= 6 AND os_minor_version >= 2]
 supported_os: [Windows]
 urls: ['https://docs.microsoft.com/en-us/previous-versions/windows/desktop/nettcpipprov/msft-netneighbor']
 ---
@@ -138,7 +132,6 @@ doc: TCP connections via Windows Management Instrumentation (WMI).
 sources:
 - type: WMI
   attributes: {query: SELECT * from MSFT_NetTCPConnection, base_object: 'winmgmts:\root\StandardCimv2'}
-conditions: [os_major_version >= 6 AND os_minor_version >= 2]
 supported_os: [Windows]
 urls: ['https://docs.microsoft.com/en-us/previous-versions/windows/desktop/nettcpipprov/msft-nettcpconnection']
 ---
@@ -147,7 +140,6 @@ doc: UDP endpoints via Windows Management Instrumentation (WMI).
 sources:
 - type: WMI
   attributes: {query: SELECT * from MSFT_NetUDPEndpoint, base_object: 'winmgmts:\root\StandardCimv2'}
-conditions: [os_major_version >= 6 AND os_minor_version >= 2]
 supported_os: [Windows]
 urls: ['https://docs.microsoft.com/en-us/previous-versions/windows/desktop/nettcpipprov/msft-netudpendpoint']
 ---
@@ -156,7 +148,6 @@ doc: Operating system installed on the computer via Windows Management Instrumen
 sources:
 - type: WMI
   attributes: {query: SELECT * from Win32_OperatingSystem}
-conditions: [os_major_version >= 6]
 supported_os: [Windows]
 urls: ['https://docs.microsoft.com/en-us/windows/desktop/cimwin32prov/win32-operatingsystem']
 ---
@@ -165,7 +156,6 @@ doc: Physical memory information via Windows Management Instrumentation (WMI).
 sources:
 - type: WMI
   attributes: {query: SELECT * from Win32_PhysicalMemory}
-conditions: [os_major_version >= 6]
 supported_os: [Windows]
 urls: ["http://msdn.microsoft.com/en-us/library/aa394347%28v=vs.85%29.aspx"]
 ---
@@ -174,7 +164,6 @@ doc: Process listing via Windows Management Instrumentation (WMI).
 sources:
 - type: WMI
   attributes: {query: SELECT * from Win32_Process}
-conditions: [os_major_version >= 6]
 supported_os: [Windows]
 ---
 name: WMIProfileUsersHomeDir
@@ -196,7 +185,6 @@ doc: Scheduled tasks that are registered on the computer via Windows Management 
 sources:
 - type: WMI
   attributes: {query: SELECT * from MSFT_ScheduledTask, base_object: 'winmgmts:\root\Microsoft\Windows\TaskScheduler'}
-conditions: [os_major_version >= 6 AND os_minor_version >= 2]
 supported_os: [Windows]
 urls: ['https://wutils.com/wmi/root/microsoft/windows/taskscheduler/msft_scheduledtask/']
 ---
@@ -212,7 +200,6 @@ doc: Commands that run automatically when a user logs onto the computer system v
 sources:
 - type: WMI
   attributes: {query: SELECT * from Win32_StartupCommand}
-conditions: [os_major_version >= 6]
 supported_os: [Windows]
 urls: ['https://docs.microsoft.com/en-us/windows/desktop/cimwin32prov/win32-startupcommand']
 ---
