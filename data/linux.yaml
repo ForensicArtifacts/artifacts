@@ -565,7 +565,41 @@ sources:
     - '%%users.homedir%%/.config/systemd/user/*.service'
     - '%%users.homedir%%/.local/share/systemd/user/*.service'
 supported_os: [Linux]
-urls: ['https://https://www.freedesktop.org/software/systemd/man/systemd.unit.html#System%20Unit%20Search%20Path']
+urls: ['https://www.freedesktop.org/software/systemd/man/systemd.unit.html#System%20Unit%20Search%20Path']
+---
+name: LinuxSystemdTimers
+doc: Linux systemd Timer files
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/etc/systemd/system.control/*.timer'
+    - '/etc/systemd/systemd.attached/*.timer'
+    - '/etc/systemd/system/*.timer'
+    - '/etc/systemd/user/*.timer'
+    - '/lib/systemd/system/*.timer'
+    - '/lib/systemd/user/*.timer'
+    - '/run/systemd/generator.early/*.timer'
+    - '/run/systemd/generator.late/*.timer'
+    - '/run/systemd/generator/*.timer'
+    - '/run/systemd/system.control/*.timer'
+    - '/run/systemd/systemd.attached/*.timer'
+    - '/run/systemd/system/*.timer'
+    - '/run/systemd/transient/*.timer'
+    - '/run/systemd/user/*.timer'
+    - '/run/user/*/systemd/generator.early/*.timer'
+    - '/run/user/*/systemd/generator.late/*.timer'
+    - '/run/user/*/systemd/generator/*.timer'
+    - '/run/user/*/systemd/transient/*.timer'
+    - '/run/user/*/systemd/user.control/*.timer'
+    - '/run/user/*/systemd/user/*.timer'
+    - '/usr/lib/systemd/system/*.timer'
+    - '/usr/lib/systemd/user/*.timer'
+    - '%%users.homedir%%/.config/systemd/user.control/*.timer'
+    - '%%users.homedir%%/.config/systemd/user/*.timer'
+    - '%%users.homedir%%/.local/share/systemd/user/*.timer'
+supported_os: [Linux]
+urls: ['https://www.freedesktop.org/software/systemd/man/systemd.timer.html#']
 ---
 name: LinuxSysVInit
 doc: Services started by sysv-style init scripts.
