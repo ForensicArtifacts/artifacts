@@ -842,6 +842,17 @@ sources:
 supported_os: [Linux]
 urls: ['https://www.gnu.org/software/wget/manual/html_node/HTTPS-_0028SSL_002fTLS_0029-Options.html']
 ---
+name: XDGAutostartEntries
+doc: XDG Autostart Entries
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/etc/xdg/autostart/*.desktop'
+    - '%%users.homedir%%/.config/autostart/*.desktop'
+supported_os: [Linux]
+urls: ['https://specifications.freedesktop.org/autostart-spec/autostart-spec-latest.html']
+---
 name: YumSources
 doc: Yum package sources list
 sources:
