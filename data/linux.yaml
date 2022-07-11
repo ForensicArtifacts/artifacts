@@ -573,6 +573,7 @@ sources:
 - type: FILE
   attributes:
     paths:
+    - '/etc/rc.local'
     - '/etc/rc*.d'
     - '/etc/rc*.d/*'
     - '/etc/rc.d/rc*.d/*'
