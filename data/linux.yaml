@@ -749,6 +749,8 @@ sources:
 - type: FILE
   attributes:
     paths:
+    - '/var/lib/postgresql/.psql_history'
+    - '/var/lib/pgsql/.psql_history'
     - '%%users.homedir%%/.psql_history'
 supported_os: [Linux]
 ---
