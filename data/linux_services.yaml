@@ -50,4 +50,3 @@ sources:
 supported_os: [Linux]
 urls:
 - 'https://osquery.readthedocs.io/en/stable/deployment/logging/'
----
