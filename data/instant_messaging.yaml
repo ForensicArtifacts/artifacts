@@ -70,4 +70,3 @@ sources:
     paths: ['%%users.homedir%%/.var/app/org.signal.Signal/db.sqlite']
   supported_os: [Linux]
 supported_os: [Linux]
----
