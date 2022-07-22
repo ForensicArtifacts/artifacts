@@ -120,9 +120,7 @@ name: MozillaThunderbird
 doc: Mozilla Thunderbird files.
 sources:
 - type: FILE
-  attributes:
-    paths:
-    - '%%users.homedir%%/.thunderbird/**'
+  attributes: {paths: ['%%users.homedir%%/.thunderbird/**']}
 supported_os: [Linux]
 ---
 name: GnomeEvolution
