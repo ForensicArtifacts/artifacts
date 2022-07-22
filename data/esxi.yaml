@@ -119,4 +119,3 @@ sources:
 - type: FILE
   attributes: {paths: ['/var/run/log/esxapiadapter.log']}
 supported_os: [ESXi]
----
