@@ -32,12 +32,9 @@ name: JenkinsLogFile
 doc: Jenkins log file
 sources:
 - type: FILE
-  attributes:
-    paths:
-    - '/var/log/jenkins/jenkins.log'
+  attributes: {paths: ['/var/log/jenkins/jenkins.log']}
 supported_os: [Linux]
-urls:
-- 'https://wiki.jenkins.io/display/JENKINS/Logging.html'
+urls: ['https://wiki.jenkins.io/display/JENKINS/Logging.html']
 ---
 name: OsqueryLogFiles
 doc: Osquery daemon log files
@@ -48,5 +45,4 @@ sources:
     - '/var/log/osquery/osqueryd.results.log'
     - '/var/log/osquery/osqueryd.snapshots.log'
 supported_os: [Linux]
-urls:
-- 'https://osquery.readthedocs.io/en/stable/deployment/logging/'
+urls: ['https://osquery.readthedocs.io/en/stable/deployment/logging/']
