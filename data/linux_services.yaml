@@ -1,0 +1,48 @@
+# Linux services artifacts
+---
+name: ApacheKafkaLogFiles
+doc: Apache Kafka Log files
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/opt/kafka/logs/*'
+    - '/opt/kafka/logs/controller.log*'
+    - '/opt/kafka/logs/kafka-*.log*'
+    - '/opt/kafka/logs/server.log*'
+    - '/opt/kafka/logs/state-change.log*'
+supported_os: [Linux]
+---
+name: HAProxyLogFiles
+doc: HAProxy Log files
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/var/log/haproxy/*'
+    - '/var/log/haproxy.log'
+    - '/var/log/haproxy-traffic.log'
+    - '/var/log/haproxy-admin.log'
+supported_os: [Linux]
+urls:
+- 'https://cbonte.github.io/haproxy-dconv/1.8/configuration.html#8'
+- 'https://www.haproxy.com/blog/introduction-to-haproxy-logging/'
+---
+name: JenkinsLogFile
+doc: Jenkins log file
+sources:
+- type: FILE
+  attributes: {paths: ['/var/log/jenkins/jenkins.log']}
+supported_os: [Linux]
+urls: ['https://wiki.jenkins.io/display/JENKINS/Logging.html']
+---
+name: OsqueryLogFiles
+doc: Osquery daemon log files
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/var/log/osquery/osqueryd.results.log'
+    - '/var/log/osquery/osqueryd.snapshots.log'
+supported_os: [Linux]
+urls: ['https://osquery.readthedocs.io/en/stable/deployment/logging/']
