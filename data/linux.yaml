@@ -534,8 +534,8 @@ name: LinuxSystemdJournalLogs
 doc: Linux systemd journal log files
 sources:
 - type: FILE
-  attributes: 
-    paths: 
+  attributes:
+    paths:
     - '/var/log/journal/*/*.journal'
     - '/var/log/journal/*/*.journal~'
 supported_os: [Linux]
