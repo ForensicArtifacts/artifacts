@@ -522,6 +522,17 @@ sources:
 supported_os: [Linux]
 urls: ['http://linux.die.net/man/5/syslog-ng.conf']
 ---
+name: LinuxSystemdJournalLogs
+doc: Linux systemd journal log files
+sources:
+- type: FILE
+  attributes: 
+    paths: 
+    - '/var/log/journal/*/*.journal'
+    - '/var/log/journal/*/*.journal~'
+supported_os: [Linux]
+urls: ['https://wiki.archlinux.org/title/Systemd/Journal']
+---
 name: LinuxSystemdOSRelease
 doc: Linux systemd /etc/os-release file
 sources:
