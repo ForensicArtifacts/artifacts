@@ -1,4 +1,5 @@
 docutils
+Markdown
 recommonmark
 sphinx >= 4.1.0
 sphinx-markdown-tables
