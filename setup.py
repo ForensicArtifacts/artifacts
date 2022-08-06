@@ -218,6 +218,7 @@ setup(
     version=artifacts.__version__,
     description=artifacts_description,
     long_description=artifacts_long_description,
+    long_description_content_type='text/plain',
     license='Apache License, Version 2.0',
     url='https://github.com/ForensicArtifacts/artifacts',
     maintainer='Forensic artifacts',
