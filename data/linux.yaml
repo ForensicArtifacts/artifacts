@@ -129,7 +129,7 @@ sources:
     - '%%users.homedir%%/.cache/tracker/*'
     - '%%users.homedir%%/.local/share/tracker/data/*'
 supported_os: [Linux]
-urls: 
+urls:
 - 'https://wiki.gnome.org/Projects/Tracker/Documentation/GettingStarted'
 ---
 name: GTKRecentlyUsedDatabase
