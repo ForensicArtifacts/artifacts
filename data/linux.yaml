@@ -129,8 +129,7 @@ sources:
     - '%%users.homedir%%/.cache/tracker/*'
     - '%%users.homedir%%/.local/share/tracker/data/*'
 supported_os: [Linux]
-urls:
-- 'https://wiki.gnome.org/Projects/Tracker/Documentation/GettingStarted'
+urls: ['https://wiki.gnome.org/Projects/Tracker/Documentation/GettingStarted']
 ---
 name: GTKRecentlyUsedDatabase
 doc: GTK Recent Manager database.
