@@ -73,7 +73,7 @@ sources:
     - WindowsSuperFetchFiles
     - WindowsSystemResourceUsageMonitorDatabaseFile
     - WMICCMRUA
-  supported_os: [Windows]
+supported_os: [Windows]
 ---
 name: TriageExternalMedia
 doc: Group of external media data or events related artifacts.
