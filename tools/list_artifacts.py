@@ -89,13 +89,13 @@ class ArtifactLister():
             record = {'name': name, 'type': source.type_indicator,
                 'os': supported_os, 'path': source.paths, 'doc': doc}
             yield record
-        elif (source.type_indicator == 
+        elif (source.type_indicator ==
             definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_KEY):
           for key in source.keys:
             record = {'name': name, 'type': source.type_indicator,
                 'os': supported_os, 'key': key, 'doc': doc}
             yield record
-        elif (source.type_indicator == 
+        elif (source.type_indicator ==
             definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_VALUE):
           for key, value in source.key_value_pairs:
             record = {'name': name, 'type': source.type_indicator,
