@@ -368,4 +368,4 @@ sources:
     names:
     - BrowserHistory
     - WindowsCryptnetUrlCacheMetadata
-supported_os: [Linux, Windows]
+supported_os: [Windows]
