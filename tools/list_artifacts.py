@@ -12,10 +12,25 @@ from artifacts import reader
 
 
 class ArtifactLister():
+  """Generate a listing of artifact definitions for an operating system.
 
-  def __init__(self, directory, os, split_paths=False):
+  Attributes:
+    directory (str): the data directory of artifact definitions.
+    target_os (str): the target operating system.
+    split_paths (bool): split artifict definitions into separate entries when
+       there are more than one path values.
+  """
+
+  def __init__(self, directory, target_os, split_paths=False):
+    """Initializes an artifact lister.
+
+    Args:
+      directory: the data directory of artifact definitions.
+      target_os: the target operating system.
+      split_paths: split artifict definitions into separate entries when
+         there are more than one path values."""
     self.directory = directory
-    self.os = os
+    self.target_os = target_os
     self.split_paths = split_paths
 
   def _LoadArtifacts(self):
@@ -27,21 +42,21 @@ class ArtifactLister():
       name = artifact_dict.get('name', '')
       doc = artifact_dict.get('doc', '')
       supported_oses = artifact_dict.get('supported_os', [])
-      if self.os not in supported_oses:
+      if self.target_os not in supported_oses:
         continue
 
       for source in artifact_definition.sources:
         supported_oses = source.supported_os
-        if supported_oses and self.os not in supported_oses:
+        if supported_oses and self.target_os not in supported_oses:
           continue
 
-        supported_os = self.os
+        supported_os = self.target_os
 
         if source.type_indicator == definitions.TYPE_INDICATOR_COMMAND:
           cmd = source.cmd
           args = source.args
           record = {'name': name, 'type': source.type_indicator,
-              'os': supported_os, 'cmd': cmd, 'args': ' '.join(args), 
+              'os': supported_os, 'cmd': cmd, 'args': ' '.join(args),
               'doc': doc}
           yield record
         elif source.type_indicator == definitions.TYPE_INDICATOR_DIRECTORY:
@@ -74,12 +89,14 @@ class ArtifactLister():
             record = {'name': name, 'type': source.type_indicator,
                 'os': supported_os, 'path': source.paths, 'doc': doc}
             yield record
-        elif source.type_indicator == definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_KEY:
+        elif (source.type_indicator == 
+            definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_KEY):
           for key in source.keys:
             record = {'name': name, 'type': source.type_indicator,
                 'os': supported_os, 'key': key, 'doc': doc}
             yield record
-        elif source.type_indicator == definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_VALUE:
+        elif (source.type_indicator == 
+            definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_VALUE):
           for key, value in source.key_value_pairs:
             record = {'name': name, 'type': source.type_indicator,
                 'os': supported_os, 'key': key, 'value': value, 'doc': doc}
@@ -88,12 +105,13 @@ class ArtifactLister():
           query = source.query
           base_object = source.base_object
           record = {'name': name, 'type': source.type_indicator,
-              'os': supported_os, 'query': query, 'base_object': base_object, 
+              'os': supported_os, 'query': query, 'base_object': base_object,
               'doc': doc}
           yield record
 
   def PrintArtifacts(self, show_docs=False):
-    for artifact in sorted(self._LoadArtifacts(), 
+    """Prints artifacts in a key-value list."""
+    for artifact in sorted(self._LoadArtifacts(),
                            key=lambda artifact: artifact['name']):
       print('Name:       ', artifact['name'])
       print('Type:       ', artifact['type'])
@@ -117,12 +135,14 @@ class ArtifactLister():
       print()
 
   def PrintJSONL(self):
+    """Prints artifacts in a JSON-L format."""
     for artifact in self._LoadArtifacts():
       print(artifact)
 
   def PrintCSV(self):
+    """Prints artifacts in a CSV format."""
     fieldnames = [
-        'name', 'type', 'os', 'path', 'key', 'value', 'names', 'query', 
+        'name', 'type', 'os', 'path', 'key', 'value', 'names', 'query',
         'base_object', 'cmd', 'args', 'doc']
     writer = csv.DictWriter(sys.stdout, fieldnames=fieldnames)
     writer.writeheader()
@@ -151,7 +171,7 @@ def Main():
       help='show artifacts from operating system.')
 
   args_parser.add_argument(
-      '--format', 
+      '--format',
       choices=['list', 'jsonl', 'csv'], default='list',
       help='the output format.')
 
