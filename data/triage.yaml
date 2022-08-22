@@ -6,12 +6,56 @@ sources:
 - type: ARTIFACT_GROUP
   attributes:
     names:
+    - ApacheAccessLogs
+    - ApacheConfigurationFolder
+    - ApacheDefaultSiteConfigurationFile
+    - ApacheErrorLogs
+    - ApacheKafkaLogFiles
+    - ElasticsearchAccessLog
+    - ElasticsearchAuditLog
+    - ElasticsearchGCLog
+    - ElasticsearchLogs
+    - ElasticsearchServerLog
+    - HadoopAppLogs
+    - HadoopAppRoot
+    - HadoopYarnLogs
+    - HAProxyLogFiles
+    - JenkinsLogFile
+    - NginxAccessLogs
+    - NginxErrorLogs
+    - OsqueryLogFiles
+    - TomcatLogFiles
+    - TomcatPasswordFile
+    - WordpressConfigFile
+  supported_os: [Linux]
+- type: ARTIFACT_GROUP
+  attributes:
+    names:
     - MicrosoftIISLogs
     - MicrosoftSqlServerErrorLogs
     - RedisConfigFile
     - TomcatFiles
     - TomcatPasswordFile
-supported_os: [Windows]
+  supported_os: [Windows]
+supported_os: [Linux, Windows]
+---
+name: TriageDatabaseConfigsAndLogs
+doc: Group of configuration files and logs of installed databases.
+sources:
+- type: ARTIFACT_GROUP
+  attributes:
+    names:
+    - MongoDBConfigurationFile
+    - MongoDBLogFiles
+    - MySQLConfigurationFiles
+    - MySQLLogFiles
+    - OpenSearchLogFiles
+    - PostgreSQLConfigurationFiles
+    - PostgreSQLLogFiles
+    - RedisConfigFile
+    - RedisConfigurationFile
+    - RedisLogFiles
+supported_os: [Linux]
 ---
 name: TriageExecution
 doc: Group of process/command execution related artifacts.
@@ -56,14 +100,43 @@ sources:
 - type: ARTIFACT_GROUP
   attributes:
     names:
+    - BashShellHistoryFile
+    - BourneShellHistoryFile
+    - FishShellHistoryFile
+    - MySQLHistoryFile
+    - PostgreSQLHistoryFile
+    - PythonHistoryFile
+    - RootUserShellHistory
+    - SQLiteHistoryFile
+    - ZShellHistoryFile
+  supported_os: [Linux]
+- type: ARTIFACT_GROUP
+  attributes:
+    names:
     - ShellConfigurationFile
     - ShellHistoryFile
     - WindowsPowerShellHistory
-supported_os: [Windows]
+  supported_os: [Windows]
+supported_os: [Linux, Windows]
 ---
 name: TriageInteractiveActivity
 doc: Group of interactive user activity related artifacts.
 sources:
+- type: ARTIFACT_GROUP
+  attributes:
+    names:
+    - DropboxClient
+    - FreeDesktopTrashInfoFiles
+    - GnomeApplicationState
+    - GnomeTracker
+    - GTKRecentlyUsedDatabase
+    - SignalDatabase
+    - ThumbnailCacheFolder
+    - Viminfo
+    - WgetHSTSdatabase
+    - XChatLogs
+    - ZeitgeistDatabase
+  supported_os: [Linux]
 - type: ARTIFACT_GROUP
   attributes:
     names:
@@ -76,7 +149,8 @@ sources:
     - WindowsUserAutomaticDestinationsJumpLists
     - WindowsUserCustomDestinationsJumpLists
     - WindowsUserRecentFiles
-supported_os: [Windows]
+  supported_os: [Windows]
+supported_os: [Linux, Windows]
 ---
 name: TriageNetwork
 doc: Group of network related artifacts.
@@ -84,13 +158,40 @@ sources:
 - type: ARTIFACT_GROUP
   attributes:
     names:
+    - DNSResolvConfFile
+    - HostAccessPolicyConfiguration
+    - LinuxHostnameFile
+    - LinuxIgnoreICMPBroadcasts
+    - LinuxNetworkIpForwardingState
+    - LinuxNetworkPathFilteringSettings
+    - LinuxNetworkRedirectState
+    - LinuxProcArp
+    - LinuxSyncookieState
+    - UFWConfigFiles
+    - UnixHostsFile
+  supported_os: [Linux]
+- type: ARTIFACT_GROUP
+  attributes:
+    names:
     - WindowsFirewallLogFile
     - WindowsHostsFiles
-supported_os: [Windows]
+  supported_os: [Windows]
+supported_os: [Linux, Windows]
 ---
 name: TriagePersistence
 doc: Group of persistence mechanism related artifacts.
 sources:
+- type: ARTIFACT_GROUP
+  attributes:
+    names:
+    - AnacronFiles
+    - LinuxAtJobs
+    - LinuxCronTabs
+    - LinuxSystemdServices
+    - LinuxSystemdTimers
+    - LinuxSysVInit
+    - XDGAutostartEntries
+  supported_os: [Linux]
 - type: ARTIFACT_GROUP
   attributes:
     names:
@@ -105,7 +206,8 @@ sources:
     - WindowsScheduledTasks
     - WindowsStartupFolders
     - WindowsWinstart
-supported_os: [Windows]
+  supported_os: [Windows]
+supported_os: [Linux, Windows]
 ---
 name: TriageSecurityAgents
 doc: Group of endpoint detection and response related artifacts.
@@ -128,9 +230,68 @@ sources:
 - type: ARTIFACT_GROUP
   attributes:
     names:
+    - APTSources
+    - APTTrustKeys
+    - CronAtAllowDenyFiles
+    - DebianPackagesStatus
+    - DebianVersion
+    - KernelModules
+    - LinuxASLREnabled
+    - LinuxCACertificates
+    - LinuxDHCPConfigurationFile
+    - LinuxDSDTTable
+    - LinuxFstab
+    - LinuxGrubConfiguration
+    - LinuxInitrdFiles
+    - LinuxIssueFile
+    - LinuxKernelBootloader
+    - LinuxKernelModuleRestrictions
+    - LinuxKernelModuleTaintStatus
+    - LinuxLoaderSystemPreloadFile
+    - LinuxLocalTime
+    - LinuxLSBInit
+    - LinuxLSBRelease
+    - LinuxNetworkManager
+    - LinuxPamConfigs
+    - LinuxPasswdFile
+    - LinuxProcMounts
+    - LinuxRelease
+    - LinuxRestrictedDmesgReadPrivileges
+    - LinuxRestrictedKernelPointerReadPrivileges
+    - LinuxRsyslogConfigs
+    - LinuxSecureFsLinks
+    - LinuxSecureSuidCoreDumps
+    - LinuxSSDTTables
+    - LinuxSysctlConfigurationFiles
+    - LinuxSyslogNgConfigs
+    - LinuxSystemdJournalConfig
+    - LinuxSystemdOSRelease
+    - LinuxTimezoneFile
+    - LinuxXinetd
+    - LocateDatabase
+    - LoginPolicyConfiguration
+    - NetgroupConfiguration
+    - NfsExportsFile
+    - NtpConfFile
+    - PCIDevicesInfoFiles
+    - SambaConfigFile
+    - SecretsServiceDatabaseFile
+    - SshdConfigFile
+    - SSHHostPubKeys
+    - UnixGroupsFile
+    - UnixLocalTimeConfigurationFile
+    - UnixPasswdFile
+    - UnixShadowFile
+    - UnixSudoersConfigurationFile
+    - YumSources
+  supported_os: [Linux]
+- type: ARTIFACT_GROUP
+  attributes:
+    names:
     - WindowsRegistryFilesAndTransactionLogs
     - WindowsSystemRegistryFilesAndTransactionLogsBackup
-supported_os: [Windows]
+  supported_os: [Windows]
+supported_os: [Linux, Windows]
 ---
 name: TriageSystemLogs
 doc: Group of system logs related artifacts.
@@ -138,9 +299,54 @@ sources:
 - type: ARTIFACT_GROUP
   attributes:
     names:
+    - DebianPackagesLogFiles
+    - LinuxAuditLogs
+    - LinuxAuthLogs
+    - LinuxCronLogs
+    - LinuxDaemonLogFiles
+    - LinuxKernelLogFiles
+    - LinuxLastlogFile
+    - LinuxMessagesLogFiles
+    - LinuxSudoReplayLogs
+    - LinuxSysLogFiles
+    - LinuxSystemdJournalLogs
+    - LinuxUtmpFiles
+    - LinuxWtmp
+    - SambaLogFiles
+    - UFWLogFile
+    - UnixUtmpFile
+  supported_os: [Linux]
+- type: ARTIFACT_GROUP
+  attributes:
+    names:
     - WindowsUserAccessLogging
     - WindowsEventLogs
-supported_os: [Windows]
+  supported_os: [Windows]
+supported_os: [Linux, Windows]
+---
+name: TriageUserConfiguration
+doc: Group of user configuration related artifacts.
+sources:
+- type: ARTIFACT_GROUP
+  attributes:
+    names:
+    - BashShellConfigurationFile
+    - ChromePreferences
+    - CShellConfigurationFile
+    - FishShellConfigurationFile
+    - JupyterConfigFile
+    - KornShellConfigurationFile
+    - RHostsFile
+    - RootUserShellConfigs
+    - ShellLogoutFile
+    - ShellProfileFile
+    - SignalApplicationContent
+    - SSHAuthorizedKeysFiles
+    - SSHKnownHostsFiles
+    - SshUserConfigFile
+    - TeeShellConfigurationFile
+    - ZShellConfigurationFile
+supported_os: [Linux]
 ---
 name: TriageWebBrowserExtensions
 doc: Group of web browser extensions related artifacts.
@@ -152,7 +358,7 @@ sources:
     - ChromiumBasedBrowsersExtensionActivitySQLiteDatabaseFile
     - ChromePreferences
     - FirefoxAddOns
-supported_os: [Windows]
+supported_os: [Linux, Windows]
 ---
 name: TriageWebBrowserHistory
 doc: Group of web browser history related artifacts.
