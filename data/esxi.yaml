@@ -6,8 +6,7 @@ sources:
 - type: FILE
   attributes: {paths: ['/var/run/log/*']}
 supported_os: [ESXi]
-urls:
-- 'https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.monitoring.doc/GUID-DACC9E0E-E857-4AE1-A469-3FDAE2B391A0.html'
+urls: ['https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.monitoring.doc/GUID-DACC9E0E-E857-4AE1-A469-3FDAE2B391A0.html']
 ---
 name: vSphereClientLogsDirectory
 doc: vSphere Client Logs Directory
@@ -15,8 +14,7 @@ sources:
 - type: FILE
   attributes: {paths: ['/var/log/vmware/vsphere-ui/logs/*']}
 supported_os: [ESXi]
-urls:
-- 'https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.monitoring.doc/GUID-7E10C58F-16EA-44AB-8AA0-8D4A66399879.html'
+urls: ['https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.monitoring.doc/GUID-7E10C58F-16EA-44AB-8AA0-8D4A66399879.html']
 ---
 name: ESXiAuthenticationLog
 doc: Contains all events related to authentication for the local system.
