@@ -213,18 +213,23 @@ artifacts_long_description = (
     'artifacts that the world can use both as an information source and within'
     ' other tools.')
 
+command_classes = {}
+if BdistMSICommand:
+  command_classes['bdist_msi'] = BdistMSICommand
+if BdistRPMCommand:
+  command_classes['bdist_rpm'] = BdistRPMCommand
+
 setup(
     name='artifacts',
     version=artifacts.__version__,
     description=artifacts_description,
     long_description=artifacts_long_description,
+    long_description_content_type='text/plain',
     license='Apache License, Version 2.0',
     url='https://github.com/ForensicArtifacts/artifacts',
     maintainer='Forensic artifacts',
     maintainer_email='forensicartifacts@googlegroups.com',
-    cmdclass={
-        'bdist_msi': BdistMSICommand,
-        'bdist_rpm': BdistRPMCommand},
+    cmdclass=command_classes,
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Environment :: Console',
