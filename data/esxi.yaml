@@ -22,8 +22,7 @@ name: ESXiAuthenticationLog
 doc: Contains all events related to authentication for the local system.
 sources:
 - type: FILE
-  attributes:
-    paths: {paths: ['/var/log/auth.log']}
+  attributes: {paths: ['/var/log/auth.log']}
 supported_os: [ESXi]
 ---
 name: ESXiHostAgentLog
