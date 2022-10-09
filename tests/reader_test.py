@@ -327,8 +327,8 @@ supported_os: [Windows]
       except errors.FormatError:
         error_location = 'At start'
         if last_artifact_definition:
-          error_location = 'After: {0}'.format(last_artifact_definition.name)
-        self.fail('{0} failed to convert to dict'.format(error_location))
+          error_location = f'After: {last_artifact_definition.name:s}'
+        self.fail(f'{error_location:s} failed to convert to dict')
       last_artifact_definition = artifact_definition
 
 

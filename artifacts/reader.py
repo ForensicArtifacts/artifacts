@@ -114,15 +114,16 @@ class ArtifactsReader(BaseArtifactsReader):
     """
     supported_os = definition_values.get('supported_os', [])
     if not isinstance(supported_os, list):
+      supported_os_type = type(supported_os)
       raise errors.FormatError(
-          'Invalid supported_os type: {0!s}'.format(type(supported_os)))
+          f'Invalid supported_os type: {supported_os_type!s}')
 
     undefined_supported_os = set(supported_os).difference(self.supported_os)
     if undefined_supported_os:
-      error_string = (
-          'Artifact definition: {0:s} undefined supported operating system: '
-          '{1:s}.').format(name, ', '.join(undefined_supported_os))
-      raise errors.FormatError(error_string)
+      undefined_supported_os = ', '.join(undefined_supported_os)
+      raise errors.FormatError((
+          f'Artifact definition: {name:s} undefined supported operating '
+          f'system: {undefined_supported_os:s}.'))
 
     definition_object.supported_os = supported_os
 
@@ -142,13 +143,13 @@ class ArtifactsReader(BaseArtifactsReader):
     sources = artifact_definition_values.get('sources')
     if not sources:
       raise errors.FormatError(
-          'Invalid artifact definition: {0:s} missing sources.'.format(name))
+          f'Invalid artifact definition: {name:s} missing sources.')
 
     for source in sources:
       type_indicator = source.get('type', None)
       if not type_indicator:
         raise errors.FormatError(
-            'Invalid artifact definition: {0:s} source type.'.format(name))
+            f'Invalid artifact definition: {name:s} source type.')
 
       attributes = source.get('attributes', None)
 
@@ -157,22 +158,21 @@ class ArtifactsReader(BaseArtifactsReader):
             type_indicator, attributes)
       except errors.FormatError as exception:
         raise errors.FormatError(
-            'Invalid artifact definition: {0:s}, with error: {1!s}'.format(
-                name, exception))
+            f'Invalid artifact definition: {name:s}, with error: {exception!s}')
 
       # TODO: deprecate these left overs from the collector definition.
       if source_type:
         if source.get('returned_types', None):
           raise errors.FormatError((
-              'Invalid artifact definition: {0:s} returned_types no longer '
-              'supported.').format(name))
+              f'Invalid artifact definition: {name:s} returned_types no longer '
+              f'supported.'))
 
         self._ReadSupportedOS(source, source_type, name)
         if set(source_type.supported_os) - set(
             artifact_definition.supported_os):
           raise errors.FormatError((
-              'Invalid artifact definition: {0:s} missing '
-              'supported_os.').format(name))
+              f'Invalid artifact definition: {name:s} missing '
+              f'supported_os.'))
 
   def ReadArtifactDefinitionValues(self, artifact_definition_values):
     """Reads an artifact definition from a dictionary.
@@ -195,7 +195,7 @@ class ArtifactsReader(BaseArtifactsReader):
         set(artifact_definition_values) - definitions.TOP_LEVEL_KEYS)
     if different_keys:
       different_keys = ', '.join(different_keys)
-      raise errors.FormatError('Undefined keys: {0:s}'.format(different_keys))
+      raise errors.FormatError(f'Undefined keys: {different_keys:s}')
 
     name = artifact_definition_values.get('name', None)
     if not name:
@@ -205,8 +205,7 @@ class ArtifactsReader(BaseArtifactsReader):
     description = artifact_definition_values.get('doc', None)
     if not description:
       raise errors.FormatError(
-          'Invalid artifact definition: {0:s} missing description.'.format(
-              name))
+          f'Invalid artifact definition: {name:s} missing description.')
 
     aliases = artifact_definition_values.get('aliases', None)
 
@@ -215,14 +214,12 @@ class ArtifactsReader(BaseArtifactsReader):
 
     if artifact_definition_values.get('collectors', []):
       raise errors.FormatError(
-          'Invalid artifact definition: {0:s} still uses collectors.'.format(
-              name))
+          f'Invalid artifact definition: {name:s} still uses collectors.')
 
     urls = artifact_definition_values.get('urls', [])
     if not isinstance(urls, list):
       raise errors.FormatError(
-          'Invalid artifact definition: {0:s} urls is not a list.'.format(
-              name))
+          f'Invalid artifact definition: {name:s} urls is not a list.')
 
     artifact_definition.provides = artifact_definition_values.get(
         'provides', [])
@@ -245,7 +242,7 @@ class ArtifactsReader(BaseArtifactsReader):
       ArtifactDefinition: an artifact definition.
     """
     if extension:
-      glob_spec = os.path.join(path, '*.{0:s}'.format(extension))
+      glob_spec = os.path.join(path, f'*.{extension:s}')
     else:
       glob_spec = os.path.join(path, '*')
 
@@ -308,10 +305,9 @@ class JsonArtifactsReader(ArtifactsReader):
       except errors.FormatError as exception:
         error_location = 'At start'
         if last_artifact_definition:
-          error_location = 'After: {0:s}'.format(last_artifact_definition.name)
+          error_location = f'After: {last_artifact_definition.name:s}'
 
-        raise errors.FormatError(
-            '{0:s} {1!s}'.format(error_location, exception))
+        raise errors.FormatError(f'{error_location:s} {exception!s}')
 
       yield artifact_definition
       last_artifact_definition = artifact_definition
@@ -343,10 +339,9 @@ class YamlArtifactsReader(ArtifactsReader):
       except errors.FormatError as exception:
         error_location = 'At start'
         if last_artifact_definition:
-          error_location = 'After: {0:s}'.format(last_artifact_definition.name)
+          error_location = f'After: {last_artifact_definition.name:s}'
 
-        raise errors.FormatError(
-            '{0:s} {1!s}'.format(error_location, exception))
+        raise errors.FormatError(f'{error_location:s} {exception!s}')
 
       yield artifact_definition
       last_artifact_definition = artifact_definition
