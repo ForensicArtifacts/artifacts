@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 """Script to run the tests."""
 
+from __future__ import print_function
+
 import sys
 import unittest
 
@@ -12,7 +14,14 @@ import utils.dependencies  # pylint: disable=wrong-import-position
 
 
 if __name__ == '__main__':
-  print('Using Python version {0!s}'.format(sys.version))
+  print(f'Using Python version {sys.version!s}')
+
+  fail_unless_has_test_file = '--fail-unless-has-test-file' in sys.argv
+  setattr(unittest, 'fail_unless_has_test_file', fail_unless_has_test_file)
+  if fail_unless_has_test_file:
+    # Remove --fail-unless-has-test-file otherwise it will conflict with
+    # the argparse tests.
+    sys.argv.remove('--fail-unless-has-test-file')
 
   dependency_helper = utils.dependencies.DependencyHelper()
 

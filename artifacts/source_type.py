@@ -295,8 +295,7 @@ class WindowsRegistryKeySourceType(SourceType):
           'HKEY_CURRENT_USER\\ is not supported instead use: '
           'HKEY_USERS\\%%users.sid%%\\')
 
-    raise errors.FormatError(
-        'Unupported Registry key path: {0:s}'.format(key_path))
+    raise errors.FormatError(f'Unupported Registry key path: {key_path:s}')
 
 
 class WindowsRegistryValueSourceType(SourceType):
@@ -327,12 +326,10 @@ class WindowsRegistryValueSourceType(SourceType):
 
       if set(pair.keys()) != set(['key', 'value']):
         key_value_pairs = ', '.join([
-            '{0:s}: {1:s}'.format(key, value) for key, value in key_value_pairs
-        ])
-        error_message = (
-            'key_value_pair missing "key" and "value" keys, got: '
-            '{0:s}').format(key_value_pairs)
-        raise errors.FormatError(error_message)
+            f'{key:s}: {value:s}' for key, value in key_value_pairs])
+        raise errors.FormatError((
+            f'key_value_pair missing "key" and "value" keys, got: '
+            f'{key_value_pairs:s}'))
 
       WindowsRegistryKeySourceType.ValidateKey(pair['key'])
 
@@ -421,7 +418,7 @@ class SourceTypeFactory(object):
     """
     if type_indicator not in cls._source_type_classes:
       raise errors.FormatError(
-          'Unsupported type indicator: {0:s}.'.format(type_indicator))
+          f'Unsupported type indicator: {type_indicator:s}.')
 
     return cls._source_type_classes[type_indicator](**attributes)
 
@@ -439,9 +436,9 @@ class SourceTypeFactory(object):
           indicator.
     """
     if source_type_class.TYPE_INDICATOR not in cls._source_type_classes:
-      raise KeyError(
-          'Source type not set for type: {0:s}.'.format(
-              source_type_class.TYPE_INDICATOR))
+      raise KeyError((
+          f'Source type not set for type: '
+          f'{source_type_class.TYPE_INDICATOR:s}.'))
 
     del cls._source_type_classes[source_type_class.TYPE_INDICATOR]
 
@@ -477,9 +474,9 @@ class SourceTypeFactory(object):
           type indicator.
     """
     if source_type_class.TYPE_INDICATOR in cls._source_type_classes:
-      raise KeyError(
-          'Source type already set for type: {0:s}.'.format(
-              source_type_class.TYPE_INDICATOR))
+      raise KeyError((
+          f'Source type already set for type: '
+          f'{source_type_class.TYPE_INDICATOR:s}.'))
 
     cls._source_type_classes[source_type_class.TYPE_INDICATOR] = (
         source_type_class)

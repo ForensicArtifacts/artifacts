@@ -63,8 +63,8 @@ class ArtifactDefinition(object):
           type_indicator, attributes)
     except (AttributeError, TypeError) as exception:
       raise errors.FormatError((
-          'Unable to create source type: {0:s} for artifact definition: {1:s} '
-          'with error: {2!s}').format(type_indicator, self.name, exception))
+          f'Unable to create source type: {type_indicator:s} for artifact '
+          f'definition: {self.name:s} with error: {exception!s}'))
 
     self.sources.append(source_object)
     return source_object

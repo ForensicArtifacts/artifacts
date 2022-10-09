@@ -22,13 +22,13 @@ class ArtifactDefinitionsValidatorTest(test_lib.BaseTestCase):
     for definitions_file in glob.glob(os.path.join('data', '*.yaml')):
       result = validator_object.CheckFile(definitions_file)
       self.assertTrue(
-          result, msg='in definitions file: {0}'.format(definitions_file))
+          result, msg=f'in definitions file: {definitions_file:s}')
 
     undefined_artifacts = validator_object.GetUndefinedArtifacts()
     if undefined_artifacts:
-      raise errors.MissingDependencyError(
-          'Artifacts group referencing undefined artifacts: {0}'.format(
-              undefined_artifacts))
+      raise errors.MissingDependencyError((
+          f'Artifacts group referencing undefined artifacts: '
+          f'{undefined_artifacts:s}'))
 
   # TODO: add tests that deliberately provide invalid definitions to see
   # if the validator works correctly.

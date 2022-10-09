@@ -62,9 +62,9 @@ class ArtifactDefinitionsValidator(object):
     """
     if not path_segment.startswith('**'):
       logging.warning((
-          'Unuspported globstar with prefix: {0:s} for path: {1:s} defined by '
-          'artifact definition: {2:s} in file: {3:s}').format(
-              path_segment, path, artifact_definition.name, filename))
+          f'Unuspported globstar with prefix: {path_segment:s} for path: '
+          f'{path:s} defined by artifact definition: '
+          f'{artifact_definition.name:s} in file: {filename:s}'))
       return False
 
     if len(path_segment) > 2:
@@ -72,16 +72,16 @@ class ArtifactDefinitionsValidator(object):
         recursion_depth = int(path_segment[2:], 10)
       except (TypeError, ValueError):
         logging.warning((
-            'Unuspported globstar with suffix: {0:s} for path: {1:s} defined '
-            'by artifact definition: {2:s} in file: {3:s}').format(
-                path_segment, path, artifact_definition.name, filename))
+            f'Unuspported globstar with suffix: {path_segment:s} for path: '
+            f'{path:s} defined by artifact definition: '
+            f'{artifact_definition.name:s} in file: {filename:s}'))
         return False
 
       if recursion_depth <= 0 or recursion_depth > 10:
         logging.warning((
-            'Globstar with unsupported recursion depth: {0:s} for path: {1:s} '
-            'defined by artifact definition: {2:s} in file: {3:s}').format(
-                path_segment, path, artifact_definition.name, filename))
+            f'Globstar with unsupported recursion depth: {path_segment:s} for '
+            f'path: {path:s} defined by artifact definition: '
+            f'{artifact_definition.name:s} in file: {filename:s}'))
         return False
 
     return True
@@ -107,8 +107,8 @@ class ArtifactDefinitionsValidator(object):
       path_segments = path_lower.split('/')
       if not path_segments:
         logging.warning((
-            'Empty path defined by artifact definition: {0:s} in file: '
-            '{1:s}').format(artifact_definition.name, filename))
+            f'Empty path defined by artifact definition: '
+            f'{artifact_definition.name:s} in file: {filename:s}'))
         result = False
 
       elif len(path_segments) == 1:
@@ -123,9 +123,9 @@ class ArtifactDefinitionsValidator(object):
 
         else:
           logging.warning((
-              'Unsupported private path: {0:s} defined by artifact definition: '
-              '{1:s} in file: {2:s}').format(
-                  path, artifact_definition.name, filename))
+              f'Unsupported private path: {path:s} defined by artifact '
+              f'definition: {artifact_definition.name:s} in file: '
+              f'{filename:s}'))
           result = False
 
       has_globstar = False
@@ -133,9 +133,9 @@ class ArtifactDefinitionsValidator(object):
         if '**' in path_segment:
           if has_globstar:
             logging.warning((
-                'Unsupported path: {0:s} with multiple globstars defined by '
-                'artifact definition: {1:s} in file: {2:s}').format(
-                    path, artifact_definition.name, filename))
+                f'Unsupported path: {path:s} with multiple globstars defined '
+                f'by artifact definition: {artifact_definition.name:s} in '
+                f'file: {filename:s}'))
             result = False
             break
 
@@ -146,27 +146,27 @@ class ArtifactDefinitionsValidator(object):
 
       if has_globstar and path.endswith('/'):
         logging.warning((
-            'Unsupported path: {0:s} with globstar and trailing path '
-            'separator defined by artifact definition: {1:s} in file: '
-            '{2:s}').format(path, artifact_definition.name, filename))
+            f'Unsupported path: {path:s} with globstar and trailing path '
+            f'separator defined by artifact definition: '
+            f'{artifact_definition.name:s} in file: {filename:s}'))
         result = False
 
     for private_path in paths_with_private:
-      if private_path[8:] not in paths_with_symbolic_link_to_private:
+      symbolic_link = private_path[8:]
+      if symbolic_link not in paths_with_symbolic_link_to_private:
         logging.warning((
-            'Missing symbolic link: {0:s} for path: {1:s} defined by artifact '
-            'definition: {2:s} in file: {3:s}').format(
-                private_path[8:], private_path, artifact_definition.name,
-                filename))
+            f'Missing symbolic link: {symbolic_link:s} for path: '
+            f'{private_path:s} defined by artifact definition: '
+            f'{artifact_definition.name:s} in file: {filename:s}'))
         result = False
 
     for path in paths_with_symbolic_link_to_private:
-      private_path = '/private{0:s}'.format(path)
+      private_path = f'/private{path:s}'
       if private_path not in paths_with_private:
         logging.warning((
-            'Missing path: {0:s} for symbolic link: {1:s} defined by artifact '
-            'definition: {2:s} in file: {3:s}').format(
-                private_path, path, artifact_definition.name, filename))
+            f'Missing path: {private_path:s} for symbolic link: {path:s} '
+            f'defined by artifact definition: {artifact_definition.name:s} in '
+            f'file: {filename:s}'))
         result = False
 
     return result
@@ -192,9 +192,9 @@ class ArtifactDefinitionsValidator(object):
       if '**' in path_segment:
         if has_globstar:
           logging.warning((
-              'Unsupported path: {0:s} with multiple globstars defined by '
-              'artifact definition: {1:s} in file: {2:s}').format(
-                  path, artifact_definition.name, filename))
+              f'Unsupported path: {path:s} with multiple globstars defined by '
+              f'artifact definition: {artifact_definition.name:s} in file: '
+              f'{filename:s}'))
           result = False
           break
 
@@ -205,9 +205,9 @@ class ArtifactDefinitionsValidator(object):
 
     if has_globstar and path.endswith(source.separator):
       logging.warning((
-          'Unsupported path: {0:s} with globstar and trailing path '
-          'separator defined by artifact definition: {1:s} in file: '
-          '{2:s}').format(path, artifact_definition.name, filename))
+          f'Unsupported path: {path:s} with globstar and trailing path '
+          f'separator defined by artifact definition: '
+          f'{artifact_definition.name:s} in file: {filename:s}'))
       result = False
 
     return result
@@ -231,10 +231,9 @@ class ArtifactDefinitionsValidator(object):
     if (number_of_forward_slashes < number_of_backslashes and
         source.separator != '\\'):
       logging.warning((
-          'Incorrect path separator: {0:s} in path: {1:s} defined '
-          'by artifact definition: {2:s} in file: {3:s}').format(
-              source.separator, path, artifact_definition.name,
-              filename))
+          f'Incorrect path separator: {source.separator:s} in path: {path:s} '
+          f'defined by artifact definition: {artifact_definition.name:s} in '
+          f'file: {filename:s}'))
       result = False
 
     if source.separator != '\\':
@@ -244,57 +243,53 @@ class ArtifactDefinitionsValidator(object):
     path_segments = path_lower.split(source.separator)
     if not path_segments:
       logging.warning((
-          'Empty path defined by artifact definition: {0:s} in file: '
-          '{1:s}').format(artifact_definition.name, filename))
+          f'Empty path defined by artifact definition: '
+          f'{artifact_definition.name:s} in file: {filename:s}'))
       result = False
 
     elif path_segments[0].startswith('%%users.') and path_segments[0] not in (
         '%%users.appdata%%', '%%users.homedir%%', '%%users.localappdata%%',
         '%%users.temp%%', '%%users.username%%', '%%users.userprofile%%'):
       logging.warning((
-          'Unsupported "{0:s}" in path: {1:s} defined by artifact '
-          'definition: {2:s} in file: {3:s}').format(
-              path_segments[0], path, artifact_definition.name, filename))
+          f'Unsupported "{path_segments[0]:s}" in path: {path:s} defined by '
+          f'artifact definition: {artifact_definition.name:s} in file: '
+          f'{filename:s}'))
       result = False
 
     elif path_segments[0] == '%%users.homedir%%':
       logging.warning((
-          'Replace "%%users.homedir%%" by "%%users.userprofile%%" in path: '
-          '{0:s} defined by artifact definition: {1:s} in file: '
-          '{2:s}').format(path, artifact_definition.name, filename))
+          f'Replace "%%users.homedir%%" by "%%users.userprofile%%" in path: '
+          f'{path:s} defined by artifact definition: '
+          f'{artifact_definition.name:s} in file: {filename:s}'))
       result = False
 
     elif path_lower.startswith('%%users.userprofile%%\\appdata\\local\\'):
       logging.warning((
-          'Replace "%%users.userprofile%%\\AppData\\Local" by '
-          '"%%users.localappdata%%" in path: {0:s} defined by artifact '
-          'definition: {1:s} in file: {2:s}').format(
-              path, artifact_definition.name, filename))
+          f'Replace "%%users.userprofile%%\\AppData\\Local" by '
+          f'"%%users.localappdata%%" in path: {path:s} defined by artifact '
+          f'definition: {artifact_definition.name:s} in file: {filename:s}'))
       result = False
 
     elif path_lower.startswith('%%users.userprofile%%\\appdata\\roaming\\'):
       logging.warning((
-          'Replace "%%users.userprofile%%\\AppData\\Roaming" by '
-          '"%%users.appdata%%" in path: {0:s} defined by artifact '
-          'definition: {1:s} in file: {2:s}').format(
-              path, artifact_definition.name, filename))
+          f'Replace "%%users.userprofile%%\\AppData\\Roaming" by '
+          f'"%%users.appdata%%" in path: {path:s} defined by artifact '
+          f'definition: {artifact_definition.name:s} in file: {filename:s}'))
       result = False
 
     elif path_lower.startswith('%%users.userprofile%%\\application data\\'):
       logging.warning((
-          'Replace "%%users.userprofile%%\\Application Data" by '
-          '"%%users.appdata%%" in path: {0:s} defined by artifact '
-          'definition: {1:s} in file: {2:s}').format(
-              path, artifact_definition.name, filename))
+          f'Replace "%%users.userprofile%%\\Application Data" by '
+          f'"%%users.appdata%%" in path: {path:s} defined by artifact '
+          f'definition: {artifact_definition.name:s} in file: {filename:s}'))
       result = False
 
     elif path_lower.startswith(
         '%%users.userprofile%%\\local settings\\application data\\'):
       logging.warning((
-          'Replace "%%users.userprofile%%\\Local Settings\\Application Data" '
-          'by "%%users.localappdata%%" in path: {0:s} defined by artifact '
-          'definition: {1:s} in file: {2:s}').format(
-              path, artifact_definition.name, filename))
+          f'Replace "%%users.userprofile%%\\Local Settings\\Application Data" '
+          f'by "%%users.localappdata%%" in path: {path:s} defined by artifact '
+          f'definition: {artifact_definition.name:s} in file: {filename:s}'))
       result = False
 
     has_globstar = False
@@ -304,26 +299,24 @@ class ArtifactDefinitionsValidator(object):
             path_segment not in self._SUPPORTED_WINDOWS_ENVIRONMENT_VARIABLES):
           result = False
           logging.warning((
-              'Artifact definition: {0:s} in file: {1:s} contains Windows '
-              'path that contains an unuspported environment variable: '
-              '"{2:s}".').format(
-                  artifact_definition.name, filename, path_segment))
+              f'Artifact definition: {artifact_definition.name:s} in file: '
+              f'{filename:s} contains Windows path that contains an '
+              f'unuspported environment variable: "{path_segment:s}".'))
 
         elif (path_segment.startswith('%%users.') and
               path_segment not in self._SUPPORTED_WINDOWS_USERS_VARIABLES):
           result = False
           logging.warning((
-              'Artifact definition: {0:s} in file: {1:s} contains Windows '
-              'path that contains an unsupported users variable: '
-              '"{2:s}". ').format(
-                  artifact_definition.name, filename, path_segment))
+              f'Artifact definition: {artifact_definition.name:s} in file: '
+              f'{filename:s} contains Windows path that contains an '
+              f'unsupported users variable: "{path_segment:s}". '))
 
       elif '**' in path_segment:
         if has_globstar:
           logging.warning((
-              'Unsupported path: {0:s} with multiple globstars defined by '
-              'artifact definition: {1:s} in file: {2:s}').format(
-                  path, artifact_definition.name, filename))
+              f'Unsupported path: {path:s} with multiple globstars defined by '
+              f'artifact definition: {artifact_definition.name:s} in file: '
+              f'{filename:s}'))
           result = False
           break
 
@@ -334,9 +327,9 @@ class ArtifactDefinitionsValidator(object):
 
     if has_globstar and path.endswith(source.separator):
       logging.warning((
-          'Unsupported path: {0:s} with globstar and trailing path '
-          'separator defined by artifact definition: {1:s} in file: '
-          '{2:s}').format(path, artifact_definition.name, filename))
+          f'Unsupported path: {path:s} with globstar and trailing path '
+          f'separator defined by artifact definition: '
+          f'{artifact_definition.name:s} in file: {filename:s}'))
       result = False
 
     return result
@@ -359,11 +352,10 @@ class ArtifactDefinitionsValidator(object):
     if key_path_segments[0] == '%%current_control_set%%':
       result = False
       logging.warning((
-          'Artifact definition: {0:s} in file: {1:s} contains Windows '
-          'Registry key path that starts with '
-          '%%CURRENT_CONTROL_SET%%. Replace %%CURRENT_CONTROL_SET%% with '
-          'HKEY_LOCAL_MACHINE\\System\\CurrentControlSet').format(
-              artifact_definition.name, filename))
+          f'Artifact definition: {artifact_definition.name:s} in file: '
+          f'{filename:s} contains Windows Registry key path that starts with '
+          f'%%CURRENT_CONTROL_SET%%. Replace %%CURRENT_CONTROL_SET%% with '
+          f'HKEY_LOCAL_MACHINE\\System\\CurrentControlSet'))
 
     for segment_index, key_path_segment in enumerate(key_path_segments):
       if key_path_segment.startswith('%%') and key_path_segment.endswith('%%'):
@@ -374,21 +366,20 @@ class ArtifactDefinitionsValidator(object):
         if key_path_segment.startswith('%%environ_'):
           result = False
           logging.warning((
-              'Artifact definition: {0:s} in file: {1:s} contains Windows '
-              'Registry key path that contains an environment variable: '
-              '"{2:s}". Usage of environment variables in key paths is not '
-              'encouraged at this time.').format(
-                  artifact_definition.name, filename, key_path_segment))
+              f'Artifact definition: {artifact_definition.name:s} in file: '
+              f'{filename:s} contains Windows Registry key path that contains '
+              f'an environment variable: "{key_path_segment:s}". Usage of '
+              f'environment variables in key paths is not encouraged at this '
+              f'time.'))
 
         elif key_path_segment.startswith('%%users.'):
           result = False
           logging.warning((
-              'Artifact definition: {0:s} in file: {1:s} contains Windows '
-              'Registry key path that contains a users variable: "{2:s}". '
-              'Usage of users variables in key paths, except for '
-              '"HKEY_USERS\\%%users.sid%%", is not encouraged at this '
-              'time.').format(
-                  artifact_definition.name, filename, key_path_segment))
+              f'Artifact definition: {artifact_definition.name:s} in file: '
+              f'{filename:s} contains Windows Registry key path that contains '
+              f'a users variable: "{key_path_segment:s}". Usage of users '
+              f'variables in key paths, except for '
+              f'"HKEY_USERS\\%%users.sid%%", is not encouraged at this time.'))
 
     return result
 
@@ -414,9 +405,9 @@ class ArtifactDefinitionsValidator(object):
     if intersection:
       duplicate_key_paths = '\n'.join(intersection)
       logging.warning((
-          'Artifact definition: {0:s} in file: {1:s} has duplicate '
-          'Registry key paths:\n{2:s}').format(
-              artifact_definition.name, filename, duplicate_key_paths))
+          f'Artifact definition: {artifact_definition.name:s} in file: '
+          f'{filename:s} has duplicate Registry key paths:\n'
+          f'{duplicate_key_paths:s}'))
       result = True
 
     self._artifact_registry_key_paths.update(source.keys)
@@ -456,9 +447,9 @@ class ArtifactDefinitionsValidator(object):
         try:
           self._artifact_registry.RegisterDefinition(artifact_definition)
         except KeyError:
-          logging.warning(
-              'Duplicate artifact definition: {0:s} in file: {1:s}'.format(
-                  artifact_definition.name, filename))
+          logging.warning((
+              f'Duplicate artifact definition: {artifact_definition.name:s} in '
+              f'file: {filename:s}'))
           result = False
 
         artifact_definition_supports_macos = (
@@ -473,9 +464,9 @@ class ArtifactDefinitionsValidator(object):
         for source in artifact_definition.sources:
           if source.type_indicator == definitions.TYPE_INDICATOR_DIRECTORY:
             logging.warning((
-                'Use of deprecated source type: DIRECTORY in artifact '
-                'definition: {0:s} in file: {1:s}').format(
-                    artifact_definition.name, filename))
+                f'Use of deprecated source type: DIRECTORY in artifact '
+                f'definition: {artifact_definition.name:s} in file: '
+                f'{filename:s}'))
 
           if source.type_indicator in (
               definitions.TYPE_INDICATOR_DIRECTORY,
@@ -486,9 +477,9 @@ class ArtifactDefinitionsValidator(object):
                 not source.supported_os)):
               if source.separator != '/':
                 logging.warning((
-                    'Use of unsupported path segment separator in artifact '
-                    'definition: {0:s} in file: {1:s}').format(
-                        artifact_definition.name, filename))
+                    f'Use of unsupported path segment separator in artifact '
+                    f'definition: {artifact_definition.name:s} in file: '
+                    f'{filename:s}'))
 
               macos_paths.extend(source.paths)
 
@@ -535,8 +526,7 @@ class ArtifactDefinitionsValidator(object):
 
     except errors.FormatError as exception:
       logging.warning(
-          'Unable to validate file: {0:s} with error: {1!s}'.format(
-              filename, exception))
+          f'Unable to validate file: {filename:s} with error: {exception!s}')
       result = False
 
     return result
@@ -574,18 +564,18 @@ def Main():
     return False
 
   if not os.path.exists(options.definitions):
-    print('No such file or directory: {0:s}'.format(options.definitions))
+    print(f'No such file or directory: {options.definitions:s}')
     print('')
     return False
 
   validator = ArtifactDefinitionsValidator()
 
   if os.path.isdir(options.definitions):
-    print('Validating definitions in: {0:s}/*.yaml'.format(options.definitions))
+    print(f'Validating definitions in: {options.definitions:s}/*.yaml')
     result = validator.CheckDirectory(options.definitions)
 
   elif os.path.isfile(options.definitions):
-    print('Validating definitions in: {0:s}'.format(options.definitions))
+    print(f'Validating definitions in: {options.definitions:s}')
     result = validator.CheckFile(options.definitions)
 
   if not result:
