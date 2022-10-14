@@ -20,8 +20,7 @@ class ArtifactDefinitionsRegistry(object):
           source_type.WindowsRegistryKeySourceType,
       definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_VALUE:
           source_type.WindowsRegistryValueSourceType,
-      definitions.TYPE_INDICATOR_WMI_QUERY: source_type.WMIQuerySourceType,
-  }
+      definitions.TYPE_INDICATOR_WMI_QUERY: source_type.WMIQuerySourceType}
 
   def __init__(self):
     """Initializes an artifact definitions registry."""
@@ -48,7 +47,7 @@ class ArtifactDefinitionsRegistry(object):
     """
     if type_indicator not in cls._source_type_classes:
       raise errors.FormatError(
-          'Unsupported type indicator: {0:s}.'.format(type_indicator))
+          f'Unsupported type indicator: {type_indicator:s}.')
 
     return cls._source_type_classes[type_indicator](**attributes)
 
@@ -65,14 +64,13 @@ class ArtifactDefinitionsRegistry(object):
     """
     artifact_definition_name = artifact_definition.name.lower()
     if artifact_definition_name not in self._artifact_definitions_by_name:
-      raise KeyError(
-          'Artifact definition not set for name: {0:s}.'.format(
-              artifact_definition.name))
+      raise KeyError((
+          f'Artifact definition not set for name: '
+          f'{artifact_definition.name:s}.'))
 
     for alias in artifact_definition.aliases:
       if alias.lower() not in self._artifact_definitions_by_alias:
-        raise KeyError(
-            'Artifact definition not set for alias: {0:s}.'.format(alias))
+        raise KeyError(f'Artifact definition not set for alias: {alias:s}.')
 
     del self._artifact_definitions_by_name[artifact_definition_name]
 
@@ -93,9 +91,9 @@ class ArtifactDefinitionsRegistry(object):
           indicator.
     """
     if source_type_class.TYPE_INDICATOR not in cls._source_type_classes:
-      raise KeyError(
-          'Source type not set for type: {0:s}.'.format(
-              source_type_class.TYPE_INDICATOR))
+      raise KeyError((
+          f'Source type not set for type: '
+          f'{source_type_class.TYPE_INDICATOR:s}.'))
 
     del cls._source_type_classes[source_type_class.TYPE_INDICATOR]
 
@@ -157,20 +155,18 @@ class ArtifactDefinitionsRegistry(object):
     """
     artifact_definition_name = artifact_definition.name.lower()
     if artifact_definition_name in self._artifact_definitions_by_name:
-      raise KeyError(
-          'Artifact definition already set for name: {0:s}.'.format(
-              artifact_definition.name))
+      raise KeyError((
+          f'Artifact definition already set for name: '
+          f'{artifact_definition.name:s}.'))
 
     for alias in artifact_definition.aliases:
       alias_lower = alias.lower()
       if alias_lower in self._artifact_definitions_by_alias:
-        raise KeyError(
-            'Artifact definition already set for alias: {0:s}.'.format(alias))
+        raise KeyError(f'Artifact definition already set for alias: {alias:s}.')
 
       if alias_lower in self._artifact_definitions_by_name:
         raise KeyError(
-            'Artifact definition alias: {0:s} already used as name.'.format(
-                alias))
+            f'Artifact definition alias: {alias:s} already used as name.')
 
     self._artifact_definitions_by_name[artifact_definition_name] = (
         artifact_definition)
@@ -197,9 +193,9 @@ class ArtifactDefinitionsRegistry(object):
           type indicator.
     """
     if source_type_class.TYPE_INDICATOR in cls._source_type_classes:
-      raise KeyError(
-          'Source type already set for type: {0:s}.'.format(
-              source_type_class.TYPE_INDICATOR))
+      raise KeyError((
+          f'Source type already set for type: '
+          f'{source_type_class.TYPE_INDICATOR:s}.'))
 
     cls._source_type_classes[source_type_class.TYPE_INDICATOR] = (
         source_type_class)

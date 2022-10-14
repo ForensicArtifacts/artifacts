@@ -28,13 +28,13 @@ class ArtifactStatistics(object):
       title (str): title of the table.
       src_dict (dict[str, ArtifactDefinition]): artifact definitions by name.
     """
-    print('### {0:s}'.format(title))
+    print(f'### {title:s}')
     print('')
     print('Identifier | Number')
     print('--- | ---')
 
     for key, value in sorted(src_dict.items()):
-      print('{0:s} | {1!s}'.format(key, value))
+      print(f'{key:s} | {value!s}')
 
     print('')
 
@@ -51,15 +51,14 @@ class ArtifactStatistics(object):
     """Prints a summary table."""
     date_time_string = time.strftime('%Y-%m-%d')
 
-    print("""Status of the repository as of {0:s}
+    print(f"""Status of the repository as of {date_time_string:s}
 
 Description | Number
 --- | ---
-Number of artifact definitions: | {1:d}
-Number of file paths: | {2:d}
-Number of Windows Registry key paths: | {3:d}
-""".format(
-    date_time_string, self._total_count, self._path_count, self._reg_key_count))
+Number of artifact definitions: | {self._total_count:d}
+Number of file paths: | {self._path_count:d}
+Number of Windows Registry key paths: | {self._reg_key_count:d}
+""")
 
   def BuildStats(self):
     """Builds the statistics."""
@@ -91,13 +90,19 @@ Number of Windows Registry key paths: | {3:d}
 
   def PrintStats(self):
     """Build stats and print in MarkDown format."""
-    print("""## Statistics
+    data_directory_url = (
+        'https://github.com/ForensicArtifacts/artifacts/tree/main/data')
 
-The artifact definitions can be found in the [data directory]({0:s})
-and the format is described in detail in the [Style Guide]({1:s}).
-""".format('https://github.com/ForensicArtifacts/artifacts/tree/main/data',
-           ('https://artifacts.readthedocs.io/en/latest/sources/'
-            'Format-specification.html')))
+    style_guide_url = (
+       'https://artifacts.readthedocs.io/en/latest/sources/'
+       'Format-specification.html')
+
+    print(f"""## Statistics
+
+The artifact definitions can be found in the
+[data directory]({data_directory_url:s}) and the format is described in detail
+in the [Style Guide]({style_guide_url:s}).
+""")
 
     self.BuildStats()
     self.PrintSummaryTable()

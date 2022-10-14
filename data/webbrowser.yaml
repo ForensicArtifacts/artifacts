@@ -801,7 +801,10 @@ urls: ['https://forensicswiki.xyz/wiki/index.php?title=Google_Chrome#Configurati
 ---
 name: ChromeSessionStorage
 doc: |
-  Google Chrome, Canary and Chromium Session Storage files.
+  Google Chrome, Canary and Chromium Sessions and Session Storage files.
+
+  The Sessions directory contains information for restoring tabs and windows
+  from a browsing session.
 
   The Session Storage directory contains the files that comprise a LevelDB
   database, which in turn holds the Session Storage data.
@@ -812,6 +815,12 @@ sources:
     - '%%users.homedir%%/Library/Application Support/Chromium/*/Session Storage/*'
     - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Session Storage/*'
     - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Session Storage/*'
+    - '%%users.homedir%%/Library/Application Support/Chromium/*/Sessions/Session_*'
+    - '%%users.homedir%%/Library/Application Support/Chromium/*/Sessions/Tabs_*'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Sessions/Session_*'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Sessions/Tabs_*'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Sessions/Session_*'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Sessions/Tabs_*'
   supported_os: [Darwin]
 - type: FILE
   attributes:
@@ -821,6 +830,16 @@ sources:
     - '%%users.homedir%%/.config/google-chrome-beta/*/Session Storage/*'
     - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Session Storage/*'
     - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Session Storage/*'
+    - '%%users.homedir%%/.config/google-chrome/*/Sessions/Session_*'
+    - '%%users.homedir%%/.config/google-chrome/*/Sessions/Tabs_*'
+    - '%%users.homedir%%/.config/chromium/*/Sessions/Session_*'
+    - '%%users.homedir%%/.config/chromium/*/Sessions/Tabs_*'
+    - '%%users.homedir%%/.config/google-chrome-beta/*/Sessions/Session_*'
+    - '%%users.homedir%%/.config/google-chrome-beta/*/Sessions/Tabs_*'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Sessions/Session_*'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Sessions/Tabs_*'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Sessions/Session_*'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Sessions/Tabs_*'
   supported_os: [Linux]
 - type: FILE
   attributes:
@@ -829,6 +848,14 @@ sources:
     - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Session Storage\*'
     - '%%users.localappdata%%\Google\Chrome\User Data\*\Session Storage\*'
     - '%%users.localappdata%%\Microsoft\Edge\User Data\*\Session Storage\*'
+    - '%%users.localappdata%%\Chromium\User Data\*\Sessions\Session_*'
+    - '%%users.localappdata%%\Chromium\User Data\*\Sessions\Tabs_*'
+    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Sessions\Session_*'
+    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Sessions\Tabs_*'
+    - '%%users.localappdata%%\Google\Chrome\User Data\*\Sessions\Session_*'
+    - '%%users.localappdata%%\Google\Chrome\User Data\*\Sessions\Tabs_*'
+    - '%%users.localappdata%%\Microsoft\Edge\User Data\*\Sessions\Session_*'
+    - '%%users.localappdata%%\Microsoft\Edge\User Data\*\Sessions\Tabs_*'
     separator: '\'
   supported_os: [Windows]
 supported_os: [Darwin, Linux, Windows]

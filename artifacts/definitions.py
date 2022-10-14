@@ -11,16 +11,19 @@ TYPE_INDICATOR_WINDOWS_REGISTRY_VALUE = 'REGISTRY_VALUE'
 TYPE_INDICATOR_WMI_QUERY = 'WMI'
 
 SUPPORTED_OS_DARWIN = 'Darwin'
+SUPPORTED_OS_ESXI = 'ESXi'
 SUPPORTED_OS_LINUX = 'Linux'
 SUPPORTED_OS_WINDOWS = 'Windows'
 
 SUPPORTED_OS = frozenset([
     SUPPORTED_OS_DARWIN,
+    SUPPORTED_OS_ESXI,
     SUPPORTED_OS_LINUX,
     SUPPORTED_OS_WINDOWS])
 
 TOP_LEVEL_KEYS = frozenset([
     'aliases',
+    # conditions have been deprecated as of version 20220710.
     'conditions',
     'doc',
     # labels have been deprecated as of version 20220311.

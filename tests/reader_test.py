@@ -126,10 +126,6 @@ supported_os: [Windows]
     ]
     self.assertEqual(sorted(source_type.paths), sorted(expected_paths))
 
-    self.assertEqual(len(artifact_definition.conditions), 1)
-    expected_condition = 'os_major_version >= 6'
-    self.assertEqual(artifact_definition.conditions[0], expected_condition)
-
     self.assertEqual(len(artifact_definition.supported_os), 1)
     self.assertEqual(artifact_definition.supported_os[0], 'Windows')
 
@@ -312,7 +308,7 @@ supported_os: [Windows]
 
     artifact_reader = reader.YamlArtifactsReader()
 
-    with open(test_file, 'r') as file_object:
+    with open(test_file, 'r', encoding='utf-8') as file_object:
       for artifact_definition in yaml.safe_load_all(file_object):
         artifact_object = artifact_reader.ReadArtifactDefinitionValues(
             artifact_definition)
@@ -331,8 +327,8 @@ supported_os: [Windows]
       except errors.FormatError:
         error_location = 'At start'
         if last_artifact_definition:
-          error_location = 'After: {0}'.format(last_artifact_definition.name)
-        self.fail('{0} failed to convert to dict'.format(error_location))
+          error_location = f'After: {last_artifact_definition.name:s}'
+        self.fail(f'{error_location:s} failed to convert to dict')
       last_artifact_definition = artifact_definition
 
 

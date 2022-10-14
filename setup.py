@@ -23,10 +23,9 @@ except ImportError:
   bdist_rpm = None
 
 version_tuple = (sys.version_info[0], sys.version_info[1])
-if version_tuple < (3, 6):
-  print((
-      'Unsupported Python version: {0:s}, version 3.6 or higher '
-      'required.').format(sys.version))
+if version_tuple < (3, 7):
+  print(f'Unsupported Python version: {sys.version:s}, version 3.7 or higher '
+        f'required.')
   sys.exit(1)
 
 # Change PYTHONPATH to include artifacts so that we can get the version.
@@ -83,8 +82,8 @@ else:
           summary = line[9:]
 
         elif line.startswith('BuildRequires: '):
-          line = 'BuildRequires: {0:s}-setuptools, {0:s}-devel'.format(
-              python_package)
+          line = (f'BuildRequires: {python_package:s}-setuptools, '
+                  f'{python_package:s}-devel')
 
         elif line.startswith('Requires: '):
           requires = line[10:]
@@ -113,7 +112,7 @@ else:
               '%doc ACKNOWLEDGEMENTS AUTHORS README',
               '%{_datadir}/%{name}/*',
               '',
-              '%files -n {0:s}-%{{name}}'.format(python_package),
+              f'%files -n {python_package:s}-%{{name}}',
               '%defattr(644,root,root,755)',
               '%license LICENSE',
               '%doc ACKNOWLEDGEMENTS AUTHORS README']
@@ -133,30 +132,27 @@ else:
 
           python_spec_file.extend([
               '%package -n %{name}-data',
-              'Summary: Data files for {0:s}'.format(summary),
+              f'Summary: Data files for {summary:s}',
               '',
               '%description -n %{name}-data'])
 
           python_spec_file.extend(description)
 
-          python_spec_file.append(
-              '%package -n {0:s}-%{{name}}'.format(python_package))
-          python_summary = 'Python 3 module of {0:s}'.format(summary)
+          python_spec_file.append(f'%package -n {python_package:s}-%{{name}}')
+          python_summary = f'Python 3 module of {summary:s}'
 
           python_spec_file.extend([
-              'Requires: artifacts-data >= %{{version}} {0:s}'.format(
-                  requires),
-              'Summary: {0:s}'.format(python_summary),
+              f'Requires: artifacts-data >= %{{version}} {requires:s}',
+              f'Summary: {python_summary:s}',
               '',
-              '%description -n {0:s}-%{{name}}'.format(python_package)])
+              f'%description -n {python_package:s}-%{{name}}'])
 
           python_spec_file.extend(description)
 
           python_spec_file.extend([
               '%package -n %{name}-tools',
-              'Requires: {0:s}-artifacts >= %{{version}}'.format(
-                  python_package),
-              'Summary: Tools for {0:s}'.format(summary),
+              f'Requires: {python_package:s}-artifacts >= %{{version}}',
+              f'Summary: Tools for {summary:s}',
               '',
               '%description -n %{name}-tools'])
 
@@ -213,18 +209,23 @@ artifacts_long_description = (
     'artifacts that the world can use both as an information source and within'
     ' other tools.')
 
+command_classes = {}
+if BdistMSICommand:
+  command_classes['bdist_msi'] = BdistMSICommand
+if BdistRPMCommand:
+  command_classes['bdist_rpm'] = BdistRPMCommand
+
 setup(
     name='artifacts',
     version=artifacts.__version__,
     description=artifacts_description,
     long_description=artifacts_long_description,
+    long_description_content_type='text/plain',
     license='Apache License, Version 2.0',
     url='https://github.com/ForensicArtifacts/artifacts',
     maintainer='Forensic artifacts',
     maintainer_email='forensicartifacts@googlegroups.com',
-    cmdclass={
-        'bdist_msi': BdistMSICommand,
-        'bdist_rpm': BdistRPMCommand},
+    cmdclass=command_classes,
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Environment :: Console',

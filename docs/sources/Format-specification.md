@@ -10,7 +10,6 @@ doc: Windows System Event log for Vista or later systems.
 sources:
 - type: FILE
   attributes: {paths: ['%%environ_systemroot%%\System32\winevt\Logs\System.evtx']}
-conditions: [os_major_version >= 6]
 supported_os: [Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/EventLog.html']
 ```
@@ -20,7 +19,6 @@ The artifact definition can have the following values:
 Value | Description
 --- | ---
 aliases | Optional list of alternate names to identify the artifact definition. Also see: See section: [Name](#name).
-conditions | Optional list of conditions that describe when the artifact definition should apply. See section: [Conditions](#conditions).
 doc | The description (or documentation). A human readable string that describes the artifact definition. See section: [Description](#description).
 name | The name. An unique string that identifies the artifact definition. See section: [Name](#name).
 provides | Optional list of *TODO*
@@ -32,6 +30,7 @@ urls | Optional list of URLs with more contextual information. Ideally the artif
 
 Value | Description
 --- | ---
+conditions | Optional list of conditions that describe when the artifact definition should apply. Note that conditions have been deprecated as of version 20220710.
 labels | Optional list of predefined labels. Note that labels have been deprecated as of version 20220311.
 
 ## Name
@@ -129,8 +128,13 @@ Value | Description
 --- | ---
 attributes | A dictionary of keyword attributes specific to the type of source definition.
 type | The source type.
-conditions | Optional list of conditions to when the artifact definition should apply. See section: [Conditions](#conditions).
 supported_os | Optional list that indicates which operating systems the artifact definition applies to. See section: [Supported operating system](#supported-operating-system).
+
+## Deprecated values
+
+Value | Description
+--- | ---
+conditions | Optional list of conditions to when the artifact definition should apply. See section: Note that conditions have been deprecated as of version 20220710.
 
 ### Source types
 
@@ -276,28 +280,11 @@ Value | Description
 base_object | Optional WMI base object e.g. `winmgmts:\root\SecurityCenter2`
 query | The Windows Management Instrumentation (WMI) query. The query can use parameter expansion e.g. `%%users.username%%`. See section: [Parameter expansion and globs](parameter-expansion-and-globs).
 
-## Conditions
-
-*TODO: work is in progress to move this out of GRR into something more portable.*
-
-Artifact conditions are currently implemented using the
-link:https://github.com/google/objectfilter[objectfilter] system that allows
-you to apply complex conditions to the attributes of an object. Artifacts can
-apply conditions to any of the Knowledge Base object attributes as defined in
-the GRR link:https://github.com/google/grr/blob/master/proto/knowledge_base.proto[knowledge_base.proto].
-
-**Style note**: single quotes should be used for strings when writing conditions.
-
-```yaml
-conditions: [os_major_version >= 6 and time_zone == 'America/Los_Angeles']
-```
-
 ## Supported operating system
 
-Since operating system (OS) conditions are a very common constraint, this has
-been provided as a separate option "supported_os" to simplify syntax. For
-supported_os no quotes are required. The currently supported operating systems
-are:
+Since operating system (OS) are a very common constraint, this has been provided
+as a separate option "supported_os" to simplify syntax. For supported_os no
+quotes are required. The currently supported operating systems are:
 
 * Darwin (also used for Mac OS X)
 * Linux
@@ -461,8 +448,8 @@ content_regex_list: ["^%%users.username%%:[^:]*\n"]
 ### Minimize the number of definitions by using multiple sources
 
 To minimize the number of artifacts in the list, combine them using the
-supported_os and conditions attributes where it makes sense. e.g. rather than
-having FirefoxHistoryWindows, FirefoxHistoryLinux, FirefoxHistoryDarwin, do:
+supported_os attributes where it makes sense. e.g. rather than having
+FirefoxHistoryWindows, FirefoxHistoryLinux, FirefoxHistoryDarwin, do:
 
 ```yaml
 name: FirefoxHistory

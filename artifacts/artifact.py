@@ -10,7 +10,6 @@ class ArtifactDefinition(object):
 
   Attributes:
     aliases (list[str]): aliases that identify the artifact definition.
-    conditions (list[str]): conditions.
     description (str): description.
     name (str): name that uniquely identifiers the artifact definition.
     provides (list[str]): hints to what information the artifact definition
@@ -30,7 +29,6 @@ class ArtifactDefinition(object):
     """
     super(ArtifactDefinition, self).__init__()
     self.aliases = aliases or []
-    self.conditions = []
     self.description = description
     self.name = name
     self.provides = []
@@ -65,8 +63,8 @@ class ArtifactDefinition(object):
           type_indicator, attributes)
     except (AttributeError, TypeError) as exception:
       raise errors.FormatError((
-          'Unable to create source type: {0:s} for artifact definition: {1:s} '
-          'with error: {2!s}').format(type_indicator, self.name, exception))
+          f'Unable to create source type: {type_indicator:s} for artifact '
+          f'definition: {self.name:s} with error: {exception!s}'))
 
     self.sources.append(source_object)
     return source_object
@@ -85,8 +83,6 @@ class ArtifactDefinition(object):
       }
       if source.supported_os:
         source_definition['supported_os'] = source.supported_os
-      if source.conditions:
-        source_definition['conditions'] = source.conditions
       sources.append(source_definition)
 
     artifact_definition = {
@@ -100,8 +96,6 @@ class ArtifactDefinition(object):
       artifact_definition['supported_os'] = self.supported_os
     if self.provides:
       artifact_definition['provides'] = self.provides
-    if self.conditions:
-      artifact_definition['conditions'] = self.conditions
     if self.urls:
       artifact_definition['urls'] = self.urls
     return artifact_definition

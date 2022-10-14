@@ -48,3 +48,36 @@ sources:
   supported_os: [Darwin]
 supported_os: [Darwin]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Mac_OS_X_10.9_-_Artifacts_Location#Skype']
+---
+name: SignalApplicationContent
+doc: Signal Application Content and Configuration
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/.var/app/org.signal.Signal/*/attachments.noindex/*'
+    - '%%users.homedir%%/.var/app/org.signal.Signal/*/Cache/*'
+    - '%%users.homedir%%/.var/app/org.signal.Signal/*/logs/*'
+    - '%%users.homedir%%/.var/app/org.signal.Signal/config.json'
+  supported_os: [Linux]
+supported_os: [Linux]
+---
+name: SignalDatabase
+doc: Signal Database file.
+sources:
+- type: FILE
+  attributes: {paths: ['%%users.homedir%%/.var/app/org.signal.Signal/db.sqlite']}
+  supported_os: [Linux]
+supported_os: [Linux]
+---
+name: XChatLogs
+doc: XChat Log Files
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/.xchat2/xchatlogs/*.log'
+    - '%%users.homedir%%/.xchat2/xchatlogs/*/*.log'
+  supported_os: [Linux]
+supported_os: [Linux]
+urls: ['http://xchat.org/faq/#q222']
