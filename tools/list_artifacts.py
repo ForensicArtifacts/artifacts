@@ -6,9 +6,11 @@ import argparse
 import csv
 import os
 import sys
+from typing import Any, Dict, Iterator
 
 from artifacts import definitions
 from artifacts import reader
+from artifacts import source_type
 
 
 class ArtifactLister():
@@ -33,16 +35,170 @@ class ArtifactLister():
     self.target_os = target_os
     self.split_paths = split_paths
 
+  def _GenerateCommand(
+      self, name: str, doc: str, source: source_type.CommandSourceType
+  ) -> Iterator[Dict[str, Any]]:
+    """Generates dictionaries from a Command artifact.
+
+    Args:
+      name: the name of the artifact
+      doc: the documentation of the artifact
+      source: the source artifact
+
+    Yields:
+      A dictionary of the artifact.
+    """    
+    record = {
+        'name': name, 'type': source.type_indicator, 'os': self.target_os, 
+        'cmd': source.cmd, 'args': ' '.join(source.args), 'doc': doc}
+    yield record
+
+  def _GenerateDirectory(
+      self, name: str, doc: str, source: source_type.DirectorySourceType
+  ) -> Iterator[Dict[str, Any]]:
+    """Generates directories from a Directory artifact.
+
+    Args:
+      name: the name of the artifact
+      doc: the documentation of the artifact
+      source: the source artifact
+
+    Yields:
+      A dictionary of the artifact.
+    """
+    if self.split_paths:
+      for path in source.paths:
+        record = {
+            'name': name, 'type': source.type_indicator, 'os': self.target_os, 
+            'path': path, 'doc': doc}
+        yield record
+    else:
+      record = {
+          'name': name, 'type': source.type_indicator, 'os': self.target_os, 
+          'path': source.paths, 'doc': doc}
+      yield record
+
+  def _GenerateFile(
+      self, name: str, doc: str, source: source_type.FileSourceType
+  ) -> Iterator[Dict[str, Any]]:
+    """Generates directories from a File artifact.
+
+    Args:
+      name: the name of the artifact
+      doc: the documentation of the artifact
+      source: the source artifact
+
+    Yields:
+      A dictionary of the artifact.
+    """
+    if self.split_paths:
+      for path in source.paths:
+        record = {
+            'name': name, 'type': source.type_indicator, 'os': self.target_os, 
+            'path': path, 'doc': doc}
+        yield record
+    else:
+      record = {
+          'name': name, 'type': source.type_indicator, 'os': self.target_os, 
+          'path': source.paths, 'doc': doc}
+      yield record
+
+  def _GeneratePath(
+      self, name: str, doc: str, source: source_type.PathSourceType
+  ) -> Iterator[Dict[str, Any]]:
+    """Generates directories from a Path artifact.
+
+    Args:
+      name: the name of the artifact
+      doc: the documentation of the artifact
+      source: the source artifact
+
+    Yields:
+      A dictionary of the artifact.
+    """
+    if self.split_paths:
+      for path in source.paths:
+        record = {
+            'name': name, 'type': source.type_indicator, 'os': self.target_os, 
+            'path': path, 'doc': doc}
+        yield record
+    else:
+      record = {'name': name, 'type': source.type_indicator,
+          'os': self.target_os, 'path': source.paths, 'doc': doc}
+      yield record
+
+  def _GenerateWindowsRegistryKey(
+      self, name: str, doc: str, 
+      source: source_type.WindowsRegistryKeySourceType
+  ) -> Iterator[Dict[str, Any]]:
+    """Generates directories from a Windows Registry Key artifact.
+
+    Args:
+      name: the name of the artifact
+      doc: the documentation of the artifact
+      source: the source artifact
+
+    Yields:
+      A dictionary of the artifact.
+    """
+    for key in source.keys:
+      record = {
+          'name': name, 'type': source.type_indicator, 'os': self.target_os, 
+          'key': key, 'doc': doc}
+      yield record
+
+  def _GenerateWindowsRegistryValue(
+      self, name: str, doc: str, 
+      source: source_type.WindowsRegistryValueSourceType
+  ) -> Iterator[Dict[str, Any]]:
+    """Generates directories from a Windows Registry Value artifact.
+
+    Args:
+      name: the name of the artifact
+      doc: the documentation of the artifact
+      source: the source artifact
+
+    Yields:
+      A dictionary of the artifact.
+    """
+    for key, value in source.key_value_pairs:
+      record = {
+          'name': name, 'type': source.type_indicator,
+          'os': self.target_os, 'key': key, 'value': value, 'doc': doc}
+      yield record
+
+  def _GenerateWMIQuery(
+      self, name: str, doc: str, source: source_type.WMIQuerySourceType
+  ) -> Iterator[Dict[str, Any]]:
+    """Generates directories from a WMI Query artifact.
+
+    Args:
+      name: the name of the artifact
+      doc: the documentation of the artifact
+      source: the source artifact
+
+    Yields:
+      A dictionary of the artifact.
+    """
+    record = {
+        'name': name, 'type': source.type_indicator,
+        'os': self.target_os, 'query': source.query, 
+        'base_object': source.base_object, 'doc': doc}
+    yield record
+
   def _LoadArtifacts(self):
-    """Generates a dictionary representing an artifact."""
+    """Loads artifact definitions and generates dictionary representations.
+
+    Yields:
+      A dictionary representing an artifact.
+    """
     artifact_reader = reader.YamlArtifactsReader()
 
     for artifact_definition in artifact_reader.ReadDirectory(self.directory):
-      artifact_dict = artifact_definition.AsDict()
-      name = artifact_dict.get('name', '')
-      doc = artifact_dict.get('doc', '')
-      supported_oses = artifact_dict.get('supported_os', [])
-      if self.target_os not in supported_oses:
+      name = artifact_definition.name
+      doc = artifact_definition.description
+
+      if self.target_os not in artifact_definition.supported_os:
         continue
 
       for source in artifact_definition.sources:
@@ -50,64 +206,20 @@ class ArtifactLister():
         if supported_oses and self.target_os not in supported_oses:
           continue
 
-        supported_os = self.target_os
-
-        if source.type_indicator == definitions.TYPE_INDICATOR_COMMAND:
-          cmd = source.cmd
-          args = source.args
-          record = {'name': name, 'type': source.type_indicator,
-              'os': supported_os, 'cmd': cmd, 'args': ' '.join(args),
-              'doc': doc}
-          yield record
-        elif source.type_indicator == definitions.TYPE_INDICATOR_DIRECTORY:
-          if self.split_paths:
-            for path in source.paths:
-              record = {'name': name, 'type': source.type_indicator,
-                  'os': supported_os, 'path': path, 'doc': doc}
-              yield record
-          else:
-            record = {'name': name, 'type': source.type_indicator,
-                'os': supported_os, 'path': source.paths, 'doc': doc}
-            yield record
-        elif source.type_indicator == definitions.TYPE_INDICATOR_FILE:
-          if self.split_paths:
-            for path in source.paths:
-              record = {'name': name, 'type': source.type_indicator,
-                  'os': supported_os, 'path': path, 'doc': doc}
-              yield record
-          else:
-            record = {'name': name, 'type': source.type_indicator,
-                'os': supported_os, 'path': source.paths, 'doc': doc}
-            yield record
-        elif source.type_indicator == definitions.TYPE_INDICATOR_PATH:
-          if self.split_paths:
-            for path in source.paths:
-              record = {'name': name, 'type': source.type_indicator,
-                  'os': supported_os, 'path': path, 'doc': doc}
-              yield record
-          else:
-            record = {'name': name, 'type': source.type_indicator,
-                'os': supported_os, 'path': source.paths, 'doc': doc}
-            yield record
-        elif (source.type_indicator ==
-            definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_KEY):
-          for key in source.keys:
-            record = {'name': name, 'type': source.type_indicator,
-                'os': supported_os, 'key': key, 'doc': doc}
-            yield record
-        elif (source.type_indicator ==
-            definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_VALUE):
-          for key, value in source.key_value_pairs:
-            record = {'name': name, 'type': source.type_indicator,
-                'os': supported_os, 'key': key, 'value': value, 'doc': doc}
-            yield record
-        elif source.type_indicator == definitions.TYPE_INDICATOR_WMI_QUERY:
-          query = source.query
-          base_object = source.base_object
-          record = {'name': name, 'type': source.type_indicator,
-              'os': supported_os, 'query': query, 'base_object': base_object,
-              'doc': doc}
-          yield record
+        if isinstance(source, source_type.CommandSourceType):
+          yield from self._GenerateCommand(name, doc, source)
+        elif isinstance(source, source_type.DirectorySourceType):
+          yield from self._GenerateDirectory(name, doc, source)
+        elif isinstance(source, source_type.FileSourceType):
+          yield from self._GenerateFile(name, doc, source)
+        elif isinstance(source, source_type.PathSourceType):
+          yield from self._GeneratePath(name, doc, source)
+        elif isinstance(source, source_type.WindowsRegistryKeySourceType):
+          yield from self._GenerateWindowsRegistryKey(name, doc, source)
+        elif isinstance(source, source_type.WindowsRegistryValueSourceType):
+          yield from self._GenerateWindowsRegistryValue(name, doc, source)
+        elif isinstance(source, source_type.WMIQuerySourceType):
+          yield from self._GenerateWMIQuery(name, doc, source)
 
   def PrintArtifacts(self, show_docs=False):
     """Prints artifacts in a key-value list."""
@@ -191,7 +303,7 @@ def Main():
     return False
 
   if not os.path.exists(options.definitions):
-    print('No such file or directory: {0:s}'.format(options.definitions))
+    print(f'No such file or directory: {options.definitions}')
     print('')
     return False
 
