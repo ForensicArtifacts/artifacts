@@ -187,7 +187,7 @@ class ArtifactLister():
         'base_object': source.base_object, 'doc': doc}
     yield record
 
-  def _LoadArtifacts(self):
+  def _LoadArtifacts(self) -> Iterator[Dict[str, Any]]:
     """Loads artifact definitions and generates dictionary representations.
 
     Yields:
