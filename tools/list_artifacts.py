@@ -30,7 +30,8 @@ class ArtifactLister():
       directory: the data directory of artifact definitions.
       target_os: the target operating system.
       split_paths: split artifict definitions into separate entries when
-         there are more than one path values."""
+         there are more than one path values.
+    """
     self.directory = directory
     self.target_os = target_os
     self.split_paths = split_paths
