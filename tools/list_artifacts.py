@@ -46,7 +46,7 @@ class ArtifactLister():
       doc: the documentation of the artifact
       source: the source artifact
 
-    Yield:
+    Yields:
       A dictionary of the artifact.
     """
     record = {
@@ -64,7 +64,7 @@ class ArtifactLister():
       doc: the documentation of the artifact
       source: the source artifact
 
-    Yield:
+    Yields:
       A dictionary of the artifact.
     """
     if self.split_paths:
@@ -89,7 +89,7 @@ class ArtifactLister():
       doc: the documentation of the artifact
       source: the source artifact
 
-    Yield:
+    Yields:
       A dictionary of the artifact.
     """
     if self.split_paths:
@@ -114,7 +114,7 @@ class ArtifactLister():
       doc: the documentation of the artifact
       source: the source artifact
 
-    Yield:
+    Yields:
       A dictionary of the artifact.
     """
     if self.split_paths:
@@ -139,7 +139,7 @@ class ArtifactLister():
       doc: the documentation of the artifact
       source: the source artifact
 
-    Yield:
+    Yields:
       A dictionary of the artifact.
     """
     for key in source.keys:
@@ -159,7 +159,7 @@ class ArtifactLister():
       doc: the documentation of the artifact
       source: the source artifact
 
-    Yield:
+    Yields:
       A dictionary of the artifact.
     """
     for key, value in source.key_value_pairs:
@@ -178,7 +178,7 @@ class ArtifactLister():
       doc: the documentation of the artifact
       source: the source artifact
 
-    Yield:
+    Yields:
       A dictionary of the artifact.
     """
     record = {
@@ -190,7 +190,7 @@ class ArtifactLister():
   def _LoadArtifacts(self):
     """Loads artifact definitions and generates dictionary representations.
 
-    Yield:
+    Yields:
       A dictionary representing an artifact.
     """
     artifact_reader = reader.YamlArtifactsReader()
