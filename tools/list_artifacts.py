@@ -46,11 +46,11 @@ class ArtifactLister():
       doc: the documentation of the artifact
       source: the source artifact
 
-    Yields:
+    Yield:
       A dictionary of the artifact.
-    """    
+    """
     record = {
-        'name': name, 'type': source.type_indicator, 'os': self.target_os, 
+        'name': name, 'type': source.type_indicator, 'os': self.target_os,
         'cmd': source.cmd, 'args': ' '.join(source.args), 'doc': doc}
     yield record
 
@@ -64,18 +64,18 @@ class ArtifactLister():
       doc: the documentation of the artifact
       source: the source artifact
 
-    Yields:
+    Yield:
       A dictionary of the artifact.
     """
     if self.split_paths:
       for path in source.paths:
         record = {
-            'name': name, 'type': source.type_indicator, 'os': self.target_os, 
+            'name': name, 'type': source.type_indicator, 'os': self.target_os,
             'path': path, 'doc': doc}
         yield record
     else:
       record = {
-          'name': name, 'type': source.type_indicator, 'os': self.target_os, 
+          'name': name, 'type': source.type_indicator, 'os': self.target_os,
           'path': source.paths, 'doc': doc}
       yield record
 
@@ -89,18 +89,18 @@ class ArtifactLister():
       doc: the documentation of the artifact
       source: the source artifact
 
-    Yields:
+    Yield:
       A dictionary of the artifact.
     """
     if self.split_paths:
       for path in source.paths:
         record = {
-            'name': name, 'type': source.type_indicator, 'os': self.target_os, 
+            'name': name, 'type': source.type_indicator, 'os': self.target_os,
             'path': path, 'doc': doc}
         yield record
     else:
       record = {
-          'name': name, 'type': source.type_indicator, 'os': self.target_os, 
+          'name': name, 'type': source.type_indicator, 'os': self.target_os,
           'path': source.paths, 'doc': doc}
       yield record
 
@@ -114,13 +114,13 @@ class ArtifactLister():
       doc: the documentation of the artifact
       source: the source artifact
 
-    Yields:
+    Yield:
       A dictionary of the artifact.
     """
     if self.split_paths:
       for path in source.paths:
         record = {
-            'name': name, 'type': source.type_indicator, 'os': self.target_os, 
+            'name': name, 'type': source.type_indicator, 'os': self.target_os,
             'path': path, 'doc': doc}
         yield record
     else:
@@ -129,7 +129,7 @@ class ArtifactLister():
       yield record
 
   def _GenerateWindowsRegistryKey(
-      self, name: str, doc: str, 
+      self, name: str, doc: str,
       source: source_type.WindowsRegistryKeySourceType
   ) -> Iterator[Dict[str, Any]]:
     """Generates directories from a Windows Registry Key artifact.
@@ -139,17 +139,17 @@ class ArtifactLister():
       doc: the documentation of the artifact
       source: the source artifact
 
-    Yields:
+    Yield:
       A dictionary of the artifact.
     """
     for key in source.keys:
       record = {
-          'name': name, 'type': source.type_indicator, 'os': self.target_os, 
+          'name': name, 'type': source.type_indicator, 'os': self.target_os,
           'key': key, 'doc': doc}
       yield record
 
   def _GenerateWindowsRegistryValue(
-      self, name: str, doc: str, 
+      self, name: str, doc: str,
       source: source_type.WindowsRegistryValueSourceType
   ) -> Iterator[Dict[str, Any]]:
     """Generates directories from a Windows Registry Value artifact.
@@ -159,7 +159,7 @@ class ArtifactLister():
       doc: the documentation of the artifact
       source: the source artifact
 
-    Yields:
+    Yield:
       A dictionary of the artifact.
     """
     for key, value in source.key_value_pairs:
@@ -178,19 +178,19 @@ class ArtifactLister():
       doc: the documentation of the artifact
       source: the source artifact
 
-    Yields:
+    Yield:
       A dictionary of the artifact.
     """
     record = {
         'name': name, 'type': source.type_indicator,
-        'os': self.target_os, 'query': source.query, 
+        'os': self.target_os, 'query': source.query,
         'base_object': source.base_object, 'doc': doc}
     yield record
 
   def _LoadArtifacts(self):
     """Loads artifact definitions and generates dictionary representations.
 
-    Yields:
+    Yield:
       A dictionary representing an artifact.
     """
     artifact_reader = reader.YamlArtifactsReader()
