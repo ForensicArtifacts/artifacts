@@ -124,7 +124,8 @@ class ArtifactLister():
             'path': path, 'doc': doc}
         yield record
     else:
-      record = {'name': name, 'type': source.type_indicator,
+      record = {
+          'name': name, 'type': source.type_indicator,
           'os': self.target_os, 'path': source.paths, 'doc': doc}
       yield record
 
