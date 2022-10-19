@@ -94,8 +94,8 @@ Number of Windows Registry key paths: | {self._reg_key_count:d}
         'https://github.com/ForensicArtifacts/artifacts/tree/main/data')
 
     style_guide_url = (
-       'https://artifacts.readthedocs.io/en/latest/sources/'
-       'Format-specification.html')
+        'https://artifacts.readthedocs.io/en/latest/sources/'
+        'Format-specification.html')
 
     print(f"""## Statistics
 
