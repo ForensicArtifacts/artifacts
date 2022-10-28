@@ -1501,6 +1501,14 @@ urls:
 - 'https://digital-forensics.sans.org/blog/2010/04/02/openrunsavemru-lastvisitedmru'
 - 'https://forensicswiki.xyz/wiki/index.php?title=OpenSavePidlMRU'
 ---
+name: WindowsMapNetworkDriveMRU
+doc: Recently mapped network shares.
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys: ['HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\Map Network Drive MRU']
+supported_os: [Windows]
+---
 name: WindowsPendingFileRenames
 doc: Windows Pending file renames on reboot
 sources:
@@ -2943,6 +2951,21 @@ sources:
 supported_os: [Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/SystemResourceUsageMonitor.html']
 ---
+name: WindowsBackgroundActivityModeratorKeys
+doc: Windows Background Activity Moderator (BAM) and Desktop Activity Moderator (DAM) registry keys.
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
+    - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\bam\UserSettings\*'
+    - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\bam\State\UserSettings\*'
+    - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\dam\UserSettings\*'
+    - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\dam\State\UserSettings\*'
+supported_os: [Windows]
+urls:
+- 'https://dfir.ru/2020/04/08/bam-internals/'
+- 'https://notes.qazeer.io/dfir/windows/_artefacts_overview'
+---
 name: WindowsTempDirectories
 doc: Contents of the Windows temporary directories
 sources:
@@ -3483,3 +3506,11 @@ sources:
     separator: '\'
 supported_os: [Windows]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows#User_Access_Logging_(UAL)']
+---
+name: WindowsWordWheelQueryRegistryKey
+doc: Keywords searched in from the Windows start menu, potentially resulting in files or folders access or program executions.
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys: ['HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\WordWheelQuery\*']
+supported_os: [Windows]
