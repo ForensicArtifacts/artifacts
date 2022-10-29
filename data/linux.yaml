@@ -177,17 +177,6 @@ sources:
     - '/etc/modprobe.d/*'
 supported_os: [Linux]
 ---
-name: LinuxUdevRules
-doc: Linux udev rules for the events received by the udev's daemon from the Linux kernel.
-sources:
-- type: FILE
-  attributes:
-    paths:
-    - '/usr/lib/udev/rules.d/*'
-    - '/etc/udev/rules.d/*'
-supported_os: [Linux]
-urls: ['https://wiki.archlinux.org/title/Udev']
----
 name: LinuxAtJobs
 doc: Linux at jobs.
 sources:
@@ -693,6 +682,17 @@ sources:
 - type: FILE
   attributes: {paths: ['/etc/timezone']}
 supported_os: [Linux]
+---
+name: LinuxUdevRules
+doc: Linux udev rules for the events received by the udev's daemon from the Linux kernel.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/usr/lib/udev/rules.d/*'
+    - '/etc/udev/rules.d/*'
+supported_os: [Linux]
+urls: ['https://wiki.archlinux.org/title/Udev']
 ---
 name: LinuxUtmpFiles
 doc: Linux btmp, utmp and wtmp login record files.
