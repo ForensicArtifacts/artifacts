@@ -194,16 +194,6 @@ sources:
     - '/var/spool/cron/atspool/*'
 supported_os: [Linux]
 ---
-name: LinuxIfUpDownScripts
-doc: ifupdown scripts executed whenever a network interface goes up or down respectively.
-sources:
-- type: FILE
-  attributes:
-    paths:
-    - '/etc/network/if-up.d/*'
-    - '/etc/network/if-down.d/*'
-supported_os: [Linux]
----
 name: LinuxAuditLogs
 doc: Linux audit log files.
 sources:
@@ -321,6 +311,16 @@ doc: Linux hostname file.
 sources:
 - type: FILE
   attributes: {paths: ['/etc/hostname']}
+supported_os: [Linux]
+---
+name: LinuxIfUpDownScripts
+doc: ifupdown scripts executed whenever a network interface goes up or down respectively.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/etc/network/if-up.d/*'
+    - '/etc/network/if-down.d/*'
 supported_os: [Linux]
 ---
 name: LinuxInitrdFiles
