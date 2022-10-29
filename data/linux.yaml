@@ -347,6 +347,14 @@ sources:
 supported_os: [Linux]
 urls: ['https://linux.die.net/man/5/issue']
 ---
+name: LinuxKerberosConfiguration
+doc: Linux Kerberos configuration information.
+sources:
+- type: FILE
+  attributes: {paths: ['/etc/krb5.conf']}
+supported_os: [Linux]
+urls: ['https://web.mit.edu/kerberos/krb5-1.12/doc/admin/conf_files/krb5_conf.html']
+---
 name: LinuxKernelLogFiles
 doc: Linux kernel log files.
 sources:
@@ -772,16 +780,6 @@ sources:
     - '/root/.k5login'
 supported_os: [Linux]
 ---
-name: LinuxKerberosConfiguration
-doc: Linux Kerberos configuration information.
-sources:
-- type: FILE
-  attributes:
-    paths:
-    - '/etc/krb5.conf'
-supported_os: [Linux]
-urls: ['https://web.mit.edu/kerberos/krb5-1.12/doc/admin/conf_files/krb5_conf.html']
----
 name: MySQLHistoryFile
 doc: MySQL History file.
 sources:
@@ -790,6 +788,14 @@ sources:
     paths:
     - '%%users.homedir%%/.mysql_history'
 supported_os: [Linux]
+---
+name: NanoHistoryFile
+doc: nano history file that logs search and replace strings.
+sources:
+- type: FILE
+  attributes: {paths: ['%%users.homedir%%/.nano_history']}
+supported_os: [Linux]
+urls: ['https://www.nano-editor.org/dist/v2.2/nano.html']
 ---
 name: NetgroupConfiguration
 doc: Linux netgroup configuration.
@@ -948,16 +954,6 @@ sources:
     paths:
     - '%%users.homedir%%/.viminfo'
 supported_os: [Linux]
----
-name: NanoHistoryFile
-doc: nano history file that logs search and replace strings.
-sources:
-- type: FILE
-  attributes:
-    paths:
-    - '%%users.homedir%%/.nano_history'
-supported_os: [Linux]
-urls: ['https://www.nano-editor.org/dist/v2.2/nano.html']
 ---
 name: WgetHSTSdatabase
 doc: Default wget HTTP Strict Transport Security (HSTS) database
