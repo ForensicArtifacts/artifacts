@@ -262,6 +262,21 @@ sources:
 supported_os: [Windows]
 urls: ['https://github.com/libyal/winreg-kb/blob/main/documentation/Time%20zone%20keys.asciidoc']
 ---
+name: WindowsBackgroundActivityModeratorKeys
+doc: Windows Background Activity Moderator (BAM) and Desktop Activity Moderator (DAM) registry keys.
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
+    - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\bam\UserSettings\*'
+    - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\bam\State\UserSettings\*'
+    - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\dam\UserSettings\*'
+    - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\dam\State\UserSettings\*'
+supported_os: [Windows]
+urls:
+- 'https://dfir.ru/2020/04/08/bam-internals/'
+- 'https://notes.qazeer.io/dfir/windows/_artefacts_overview'
+---
 name: WindowsBITSQueueManagerDatabases
 doc: Databases that contain the Windows BITS jobs definition and state.
 sources:
@@ -1379,6 +1394,14 @@ supported_os: [Windows]
 urls:
 - 'https://msdn.microsoft.com/en-us/library/windows/desktop/aa379392(v=vs.85).aspx'
 - 'https://dl.mandiant.com/EE/library/MIRcon2014/MIRcon_2014_IR_Track_Analysis_of_Malicious_SSP.pdf'
+---
+name: WindowsMapNetworkDriveMRU
+doc: Recently mapped network shares.
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys: ['HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\Map Network Drive MRU']
+supported_os: [Windows]
 ---
 name: WindowsMetroApplicationCache
 doc: Windows Metro application cache.
@@ -3483,3 +3506,11 @@ sources:
     separator: '\'
 supported_os: [Windows]
 urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows#User_Access_Logging_(UAL)']
+---
+name: WindowsWordWheelQueryRegistryKey
+doc: Keywords searched in from the Windows start menu, potentially resulting in files or folders access or program executions.
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys: ['HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\WordWheelQuery\*']
+supported_os: [Windows]
