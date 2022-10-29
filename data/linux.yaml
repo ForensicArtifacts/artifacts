@@ -17,6 +17,14 @@ sources:
     - '/var/spool/anacron/cron.weekly'
 supported_os: [Linux]
 ---
+name: AptitudeLogFiles
+doc: Linux aptitude package manager log files.
+sources:
+- type: FILE
+  attributes: {paths: ['/var/log/aptitude*']}
+supported_os: [Linux]
+urls: ['https://www.debian.org/doc/manuals/aptitude/rn01re01.en.html']
+---
 name: APTSources
 doc: APT package sources list
 sources:
@@ -73,16 +81,6 @@ sources:
 - type: FILE
   attributes: {paths: ['/var/lib/dpkg/status']}
 supported_os: [Linux]
----
-name: AptitudeLogFiles
-doc: Linux aptitude package manager log files.
-sources:
-- type: FILE
-  attributes:
-    paths:
-    - '/var/log/aptitude*'
-supported_os: [Linux]
-urls: ['https://www.debian.org/doc/manuals/aptitude/rn01re01.en.html']
 ---
 name: DebianVersion
 doc: Debian version information.
