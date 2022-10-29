@@ -17,6 +17,14 @@ sources:
     - '/var/spool/anacron/cron.weekly'
 supported_os: [Linux]
 ---
+name: AptitudeLogFiles
+doc: Linux aptitude package manager log files.
+sources:
+- type: FILE
+  attributes: {paths: ['/var/log/aptitude*']}
+supported_os: [Linux]
+urls: ['https://www.debian.org/doc/manuals/aptitude/rn01re01.en.html']
+---
 name: APTSources
 doc: APT package sources list
 sources:
@@ -176,6 +184,16 @@ sources:
   attributes: {paths: ['/var/spool/at/*']}
 supported_os: [Linux]
 ---
+name: LinuxAtJobsTemporaryOutputs
+doc: Linux at jobs temporary outputs.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/var/spool/at/spool/*'
+    - '/var/spool/cron/atspool/*'
+supported_os: [Linux]
+---
 name: LinuxAuditLogs
 doc: Linux audit log files.
 sources:
@@ -295,6 +313,16 @@ sources:
   attributes: {paths: ['/etc/hostname']}
 supported_os: [Linux]
 ---
+name: LinuxIfUpDownScripts
+doc: ifupdown scripts executed whenever a network interface goes up or down respectively.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/etc/network/if-up.d/*'
+    - '/etc/network/if-down.d/*'
+supported_os: [Linux]
+---
 name: LinuxInitrdFiles
 doc: Initrd (initramfs) files in /boot/ executed on startup.
 sources:
@@ -318,6 +346,14 @@ sources:
     - '/etc/issue.net'
 supported_os: [Linux]
 urls: ['https://linux.die.net/man/5/issue']
+---
+name: LinuxKerberosConfiguration
+doc: Linux Kerberos configuration information.
+sources:
+- type: FILE
+  attributes: {paths: ['/etc/krb5.conf']}
+supported_os: [Linux]
+urls: ['https://web.mit.edu/kerberos/krb5-1.12/doc/admin/conf_files/krb5_conf.html']
 ---
 name: LinuxKernelLogFiles
 doc: Linux kernel log files.
@@ -655,6 +691,17 @@ sources:
   attributes: {paths: ['/etc/timezone']}
 supported_os: [Linux]
 ---
+name: LinuxUdevRules
+doc: Linux udev rules for the events received by the udev's daemon from the Linux kernel.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/usr/lib/udev/rules.d/*'
+    - '/etc/udev/rules.d/*'
+supported_os: [Linux]
+urls: ['https://wiki.archlinux.org/title/Udev']
+---
 name: LinuxUtmpFiles
 doc: Linux btmp, utmp and wtmp login record files.
 sources:
@@ -741,6 +788,14 @@ sources:
     paths:
     - '%%users.homedir%%/.mysql_history'
 supported_os: [Linux]
+---
+name: NanoHistoryFile
+doc: nano history file that logs search and replace strings.
+sources:
+- type: FILE
+  attributes: {paths: ['%%users.homedir%%/.nano_history']}
+supported_os: [Linux]
+urls: ['https://www.nano-editor.org/dist/v2.2/nano.html']
 ---
 name: NetgroupConfiguration
 doc: Linux netgroup configuration.
