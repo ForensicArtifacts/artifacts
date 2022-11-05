@@ -1,6 +1,6 @@
 docutils
 Markdown
 recommonmark
-sphinx >= 4.1.0
+sphinx >= 4.1.0, < 5.2.0
 sphinx-markdown-tables
 sphinx-rtd-theme >= 0.5.1
