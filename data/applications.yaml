@@ -13,7 +13,7 @@ sources:
     - '%%users.appdata%%\Microsoft\Publisher\**'
     separator: '\'
 supported_os: [Windows]
-urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows#Microsoft_Office_Autosave']
+urls: ['https://forensics.wiki/windows#microsoft_office_autosave']
 ---
 name: MicrosoftOfficeMRU
 doc: Microsoft Office Most Recently Used
@@ -44,7 +44,7 @@ sources:
     - '%%users.userprofile%%\Documents\Outlook Files\*.pab'
     separator: '\'
 supported_os: [Windows]
-urls: ['https://forensicswiki.xyz/wiki/index.php?title=Personal_Folder_File_(PAB,_PST,_OST)']
+urls: ['https://forensics.wiki/personal_folder_file_(pab,_pst,_ost)']
 ---
 name: MicrosoftOutlookPSTFiles
 doc: Microsoft Outlook PST Files
@@ -56,7 +56,7 @@ sources:
     - '%%users.userprofile%%\Documents\Outlook Files\*.pst'
     separator: '\'
 supported_os: [Windows]
-urls: ['https://forensicswiki.xyz/wiki/index.php?title=Personal_Folder_File_(PAB,_PST,_OST)']
+urls: ['https://forensics.wiki/personal_folder_file_(pab,_pst,_ost)']
 ---
 name: MicrosoftOutlookOSTFiles
 doc: Microsoft Outlook OST Files
@@ -68,7 +68,7 @@ sources:
     - '%%users.userprofile%%\Documents\Outlook Files\*.ost'
     separator: '\'
 supported_os: [Windows]
-urls: ['https://forensicswiki.xyz/wiki/index.php?title=Personal_Folder_File_(PAB,_PST,_OST)']
+urls: ['https://forensics.wiki/personal_folder_file_(pab,_pst,_ost)']
 ---
 name: NodeJSPackageManagerCacheFiles
 doc: Node JS package manager (NPM) cache files

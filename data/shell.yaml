@@ -27,7 +27,7 @@ sources:
     separator: '\'
   supported_os: [Windows]
 supported_os: [Darwin, Linux, Windows]
-urls: ['https://forensicswiki.xyz/wiki/index.php?title=Bash_shell']
+urls: ['https://forensics.wiki/bash_shell']
 ---
 name: BashShellHistoryFile
 aliases: [MacOSBashHistory]
@@ -44,7 +44,7 @@ sources:
     separator: '\'
   supported_os: [Windows]
 supported_os: [Darwin, Linux, Windows]
-urls: ['https://forensicswiki.xyz/wiki/index.php?title=Bash_shell']
+urls: ['https://forensics.wiki/bash_shell']
 ---
 name: BashShellSessionFile
 aliases: [MacOSBashSessions]
@@ -53,7 +53,7 @@ sources:
 - type: FILE
   attributes: {paths: ['%%users.homedir%%/.bash_sessions/*']}
 supported_os: [Darwin]
-urls: ['https://forensicswiki.xyz/wiki/index.php?title=Bash_shell']
+urls: ['https://forensics.wiki/bash_shell']
 ---
 name: BourneShellHistoryFile
 doc: Bourne shell (sh) history files.

@@ -371,7 +371,7 @@ sources:
 supported_os: [Windows]
 urls:
 - 'https://github.com/libyal/dtformats/blob/main/documentation/WMI%20repository%20file%20format.asciidoc'
-- 'https://forensicswiki.xyz/wiki/index.php?title=WMI'
+- 'https://forensics.wiki/wmi'
 ---
 name: WindowsCodePage
 aliases: [WinCodePage]
@@ -579,7 +579,7 @@ sources:
     - '%%users.localappdata%%\Packages\Microsoft.Windows.Cortana_*\LocalState\ESEDatabase_CortanaCoreInstance\CortanaCoreDb.dat'
     separator: '\'
 supported_os: [Windows]
-urls: ['https://forensicswiki.xyz/wiki/index.php?title=Cortana']
+urls: ['https://forensics.wiki/cortana']
 ---
 name: WindowsCrashDumps
 doc: |
@@ -606,7 +606,7 @@ sources:
     - '%%users.localappdata%%\Temp\*.dmp'
     separator: '\'
 supported_os: [Windows]
-urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows#Crash_and_minidumps']
+urls: ['https://forensics.wiki/windows#crash_and_minidumps']
 ---
 name: WindowsCredentialProviderFilters
 doc: Windows Credential Provider Filters
@@ -650,7 +650,7 @@ sources:
     - '%%users.userprofile%%\AppData\LocalLow\Microsoft\CryptnetUrlCache\MetaData\*'
     separator: '\'
 supported_os: [Windows]
-urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows#Cryptnet_URL_Cache']
+urls: ['https://forensics.wiki/windows#cryptnet_url_cache']
 ---
 name: WindowsCryptnetUrlCacheContent
 doc: |
@@ -668,7 +668,7 @@ sources:
     - '%%users.userprofile%%\AppData\LocalLow\Microsoft\CryptnetUrlCache\Content\*'
     separator: '\'
 supported_os: [Windows]
-urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows#Cryptnet_URL_Cache']
+urls: ['https://forensics.wiki/windows#cryptnet_url_cache']
 ---
 name: WindowsCurrentVersion
 doc: The Windows current version
@@ -1025,7 +1025,7 @@ sources:
     - '%%environ_systemroot%%\System32\WDI\{86432a0b-3c7d-4ddf-a89c-172faa90485d}\*\*.etl'
     separator: '\'
 supported_os: [Windows]
-urls: ['https://forensicswiki.xyz/wiki/index.php?title=Event_Tracing_for_Windows_(ETW)']
+urls: ['https://forensics.wiki/event_tracing_for_windows_(etw)']
 ---
 name: WindowsExcludeFromKnownDLLs
 doc: ExcludeFromKnownDLLs can be used to bypass search order hijacking protection.
@@ -1510,7 +1510,7 @@ sources:
     keys: ['HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\ComDIg32\OpenSaveMRU\*\*']
 supported_os: [Windows]
 urls:
-- 'https://forensicswiki.xyz/wiki/index.php?title=OpenSaveMRU'
+- 'https://forensics.wiki/opensavemru'
 - 'https://digital-forensics.sans.org/blog/2010/04/02/openrunsavemru-lastvisitedmru'
 ---
 name: WindowsOpenSavePidlMRU
@@ -1522,7 +1522,7 @@ sources:
 supported_os: [Windows]
 urls:
 - 'https://digital-forensics.sans.org/blog/2010/04/02/openrunsavemru-lastvisitedmru'
-- 'https://forensicswiki.xyz/wiki/index.php?title=OpenSavePidlMRU'
+- 'https://forensics.wiki/opensavepidlmru'
 ---
 name: WindowsPendingFileRenames
 doc: Windows Pending file renames on reboot
@@ -1732,7 +1732,7 @@ sources:
     paths: ['%%environ_systemroot%%\Prefetch\*.pf']
     separator: '\'
 supported_os: [Windows]
-urls: ['https://forensicswiki.xyz/wiki/index.php?title=Prefetch']
+urls: ['https://forensics.wiki/prefetch']
 ---
 name: WindowsPrintMonitors
 doc: Windows Print Monitor DLL config.
@@ -1826,7 +1826,7 @@ sources:
     - '\Recycler\**'
     separator: '\'
 supported_os: [Windows]
-urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows#Recycle_Bin']
+urls: ['https://forensics.wiki/windows#recycle_bin']
 ---
 name: WindowsRecycleBinMetadata
 doc: Windows Recycle Bin (Recyler, $Recycle.Bin) metadata files only.
@@ -1838,7 +1838,7 @@ sources:
     - '\Recycler\*\INFO2'
     separator: '\'
 supported_os: [Windows]
-urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows#Recycle_Bin']
+urls: ['https://forensics.wiki/windows#recycle_bin']
 ---
 name: WindowsRegistryCurrentControlSet
 aliases: [CurrentControlSet]
@@ -1993,7 +1993,7 @@ sources:
     - '%%environ_systemroot%%\SysWow64\Tasks\**10'
     separator: '\'
 supported_os: [Windows]
-urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows#Scheduled_Tasks']
+urls: ['https://forensics.wiki/windows#scheduled_tasks']
 ---
 name: WindowsScreenSaverExecutable
 doc: ScreenSaver Executable
@@ -2017,7 +2017,7 @@ sources:
     paths: ['%%environ_allusersappdata%%\Microsoft\Search\Data\Applications\Windows\Windows.edb']
     separator: '\'
 supported_os: [Windows]
-urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows_Desktop_Search']
+urls: ['https://forensics.wiki/windows_desktop_search']
 ---
 name: WindowsSearchFilterHandlers
 doc: |
@@ -2120,7 +2120,7 @@ sources:
     - {key: 'HKEY_LOCAL_MACHINE\BCD00000000\Objects\*\Elements\16000009', value: 'Element'}
     - {key: 'HKEY_LOCAL_MACHINE\BCD00000000\Objects\*\Elements\250000e0', value: 'Element'}
 supported_os: [Windows]
-urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows_Boot_Configuration_Data']
+urls: ['https://forensics.wiki/windows_boot_configuration_data']
 ---
 name: WindowsDisallowedSystemCertificates
 doc: |
@@ -2728,7 +2728,7 @@ sources:
     - '%%environ_systemroot%%\inf\setupapi.offline.log'
     separator: '\'
 supported_os: [Windows]
-urls: ['https://forensicswiki.xyz/wiki/index.php?title=Setup_API_Logs']
+urls: ['https://forensics.wiki/setup_api_logs']
 ---
 name: WindowsShutdownScript
 doc: Windows policy shutdown script
@@ -2833,7 +2833,7 @@ sources:
     - '%%environ_systemroot%%\Prefetch\Ag*.db.trx'
     separator: '\'
 supported_os: [Windows]
-urls: ['https://forensicswiki.xyz/wiki/index.php?title=SuperFetch']
+urls: ['https://forensics.wiki/superfetch']
 ---
 name: WindowsSystemIniFiles
 doc: Windows system ini files
@@ -3031,7 +3031,7 @@ sources:
     paths: ['%%users.localappdata%%\Microsoft\Terminal Server Client\Cache\*.*']
     separator: '\'
 supported_os: [Windows]
-urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows#RDP_Bitmap_Cache']
+urls: ['https://forensics.wiki/windows#rdp_bitmap_cache']
 ---
 name: WindowsActiveSyncAutoStart
 doc: Windows ActiveSync AutoStart entries
@@ -3111,7 +3111,7 @@ sources:
     - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update\Results\Install', value: 'LastSuccessTime'}
 supported_os: [Windows]
 urls:
-- 'https://forensicswiki.xyz/wiki/index.php?title=Windows_Update'
+- 'https://forensics.wiki/windows_update'
 - 'http://blogs.msdn.com/b/aruns_blog/archive/2011/06/20/active-setup-registry-key-what-it-is-and-how-to-create-in-the-package-using-admin-studio-install-shield.aspx'
 ---
 name: WindowsUserAutomaticDestinationsJumpLists
@@ -3475,7 +3475,7 @@ sources:
     paths: ['%%environ_systemroot%%\System32\WDI\LogFiles\StartupInfo\*.xml']
     separator: '\'
 supported_os: [Windows]
-urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows#Startup_info']
+urls: ['https://forensics.wiki/windows#startup_info']
 ---
 name: WindowsTileDataLayerDatabase
 doc: |
@@ -3488,7 +3488,7 @@ sources:
     paths: ['%%users.localappdata%%\TileDataLayer\Database\vedatamodel.edb']
     separator: '\'
 supported_os: [Windows]
-urls: ['https://forensicswiki.xyz/wiki/index.php?title=Extensible_Storage_Engine_(ESE)_Database_File_(EDB)_format#Tile_Data_Layer_database']
+urls: ['https://forensics.wiki/extensible_storage_engine_(ese)_database_file_(edb)_format#tile_data_layer_database']
 ---
 name: WindowsUserAccessLogging
 doc: |
@@ -3505,7 +3505,7 @@ sources:
     paths: ['%%environ_systemroot%%\System32\LogFiles\SUM\*.mdb']
     separator: '\'
 supported_os: [Windows]
-urls: ['https://forensicswiki.xyz/wiki/index.php?title=Windows#User_Access_Logging_(UAL)']
+urls: ['https://forensics.wiki/windows#user_access_logging_(ual)']
 ---
 name: WindowsWordWheelQueryRegistryKey
 doc: Keywords searched in from the Windows start menu, potentially resulting in files or folders access or program executions.
