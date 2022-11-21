@@ -37,6 +37,7 @@ sources:
   attributes:
     paths:
     - '%%users.homedir%%/.bash_history'
+  supported_os: [Darwin, Linux]
 - type: FILE
   attributes:
     paths: ['%%users.localappdata%%\Packages\*\LocalState\rootfs\home\*\.bash_history']
