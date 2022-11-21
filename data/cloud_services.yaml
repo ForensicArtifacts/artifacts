@@ -29,7 +29,7 @@ sources:
     - '%%users.homedir%%/.dropbox/instance*/sync_history.db'
   supported_os: [Darwin, Linux]
 supported_os: [Darwin, Linux, Windows]
-urls: ['https://forensicswiki.xyz/wiki/index.php?title=Dropbox']
+urls: ['https://forensics.wiki/dropbox']
 ---
 name: GoogleDriveClient
 doc: Google Drive cloud storage client artifacts.
@@ -57,7 +57,7 @@ sources:
     - '%%users.homedir%%/Library/Application Support/Google/Drive/user_default/sync_config.log*'
   supported_os: [Darwin]
 supported_os: [Darwin, Windows]
-urls: ['https://forensicswiki.xyz/wiki/index.php?title=Google_Drive']
+urls: ['https://forensics.wiki/google_drive']
 ---
 name: SkyDriveClient
 doc: |
@@ -76,4 +76,4 @@ sources:
     separator: '\'
   supported_os: [Windows]
 supported_os: [Windows]
-urls: ['https://forensicswiki.xyz/wiki/index.php?title=One_Drive#Sky_Drive_client']
+urls: ['https://forensics.wiki/one_drive#sky_drive_client']
