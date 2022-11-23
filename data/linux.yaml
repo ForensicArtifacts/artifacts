@@ -181,9 +181,7 @@ name: LessHistoryFile
 doc: less history file which remembers search and shell commands
 sources:
 - type: FILE
-  attributes:
-    paths:
-    - '%%users.homedir%%/.lesshst'
+  attributes: {paths: ['%%users.homedir%%/.lesshst']}
 supported_os: [Linux]
 urls: ['https://man7.org/linux/man-pages/man1/less.1.html']
 ---
