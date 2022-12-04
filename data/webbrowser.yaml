@@ -20,6 +20,7 @@ sources:
     names:
     - 'ChromiumBasedBrowsersHistory'
     - 'FirefoxHistory'
+    - 'FirefoxDownloads'
     - 'InternetExplorerHistory'
     - 'OperaHistoryFile'
     - 'SafariDownloadsPlistFile'
@@ -891,6 +892,33 @@ sources:
   supported_os: [Windows]
 supported_os: [Darwin, Linux, Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/webbrowser/FirefoxCache.html']
+---
+name: FirefoxDownloads
+doc: Firefox browser downloads (downloads.sqlite).
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/Library/Application Support/Firefox/Profiles/*/downloads.sqlite'
+    - '%%users.homedir%%/Library/Application Support/Firefox/Profiles/*/downloads.sqlite-wal'
+  supported_os: [Darwin]
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/.mozilla/firefox/*/downloads.sqlite'
+    - '%%users.homedir%%/.mozilla/firefox/*/downloads.sqlite-wal'
+  supported_os: [Linux]
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.localappdata%%\Mozilla\Firefox\Profiles\*\downloads.sqlite'
+    - '%%users.localappdata%%\Mozilla\Firefox\Profiles\*\downloads.sqlite-wal'
+    - '%%users.appdata%%\Mozilla\Firefox\Profiles\*\downloads.sqlite'
+    - '%%users.localappdata%%\Mozilla\Firefox\Profiles\*\downloads.sqlite-wal'
+    separator: '\'
+  supported_os: [Windows]
+supported_os: [Darwin, Linux, Windows]
+urls: ['https://forensics.wiki/mozilla_firefox']
 ---
 name: FirefoxHistory
 doc: Firefox browser history (places.sqlite).
