@@ -1188,9 +1188,15 @@ sources:
     separator: '\'
   supported_os: [Windows]
 supported_os: [Darwin, Windows]
-urls:
-- 'https://forensics.wiki/mac_os_x_10.9_-_artifacts_location#safari'
-- 'https://www.forensicswiki.org/wiki/Apple_Safari'
+urls: ['https://forensics.wiki/apple_safari/']
+---
+name: SafariExtensions
+doc: Safari browser extensions.
+sources:
+- type: FILE
+  attributes: {paths: ['%%users.homedir%%/Library/Safari/Extensions/**']}
+supported_os: [Darwin]
+urls: ['https://forensics.wiki/apple_safari/']
 ---
 name: SafariHistory
 doc: Safari browser history.
@@ -1201,17 +1207,6 @@ sources:
     - 'SafariHistorySQLiteDatabaseFile'
     - 'SafariHistoryPlistFile'
 supported_os: [Darwin, Windows]
-urls: ['https://forensics.wiki/apple_safari']
----
-name: SafariHistorySQLiteDatabaseFile
-doc: Safari browser history SQLite database files.
-sources:
-- type: FILE
-  attributes:
-    paths:
-    - '%%users.homedir%%/Library/Safari/History.db'
-    - '%%users.homedir%%/Library/Safari/History.db-wal'
-supported_os: [Darwin]
 urls: ['https://forensics.wiki/apple_safari']
 ---
 name: SafariHistoryPlistFile
@@ -1230,10 +1225,13 @@ sources:
 supported_os: [Darwin, Windows]
 urls: ['https://forensics.wiki/apple_safari']
 ---
-name: SafariExtensions
-doc: Safari browser extensions.
+name: SafariHistorySQLiteDatabaseFile
+doc: Safari browser history SQLite database files.
 sources:
 - type: FILE
-  attributes: {paths: ['%%users.homedir%%/Library/Safari/Extensions/**']}
+  attributes:
+    paths:
+    - '%%users.homedir%%/Library/Safari/History.db'
+    - '%%users.homedir%%/Library/Safari/History.db-wal'
 supported_os: [Darwin]
-urls: ['http://www.forensicswiki.org/wiki/Apple_Safari']
+urls: ['https://forensics.wiki/apple_safari']
