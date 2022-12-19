@@ -1,6 +1,6 @@
 # Script to set up tests on AppVeyor Windows.
 
-$Dependencies = "PyYAML mock pbr six"
+$Dependencies = "PyYAML"
 $Dependencies = ${Dependencies} -split " "
 
 $Output = Invoke-Expression -Command "git clone https://github.com/log2timeline/l2tdevtools.git ..\l2tdevtools 2>&1"
