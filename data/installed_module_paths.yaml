@@ -25,7 +25,7 @@ urls: ['https://docs.npmjs.com/']
 name: PythonDistInfoPath
 doc: |
   Get the path of Python module files distributed in the dist-info format of
-  PEP-0376 (currently linux only).
+  PEP-0376 (currently Linux only).
 
   dist-info is always a directory that must contain METADATA, RECORD and
   INSTALLER. It may also contain REQUESTED.
