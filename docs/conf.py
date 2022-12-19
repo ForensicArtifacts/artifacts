@@ -38,7 +38,7 @@ extensions = [
 
 # We cannot install architecture dependent Python modules on readthedocs,
 # therefore we mock most imports.
-pip_installed_modules = set(['six'])
+pip_installed_modules = set()
 
 dependency_helper = utils.dependencies.DependencyHelper(
     dependencies_file=os.path.join('..', 'dependencies.ini'),
