@@ -1,0 +1,62 @@
+# Artifacts of third-party package managers.
+---
+name: FlatpakAppPaths
+doc: Get paths of installed Flatpak app.
+sources:
+- type: PATH
+  attributes:
+    paths: ['/var/lib/flatpak/app/*']
+  supported_os: [Linux]
+urls: ['https://docs.flatpak.org/']
+supported_os: [Linux]
+---
+name: NpmPackagesPath
+doc: Get path of NPM packages that are globally installed (currently linux only).
+sources:
+- type: PATH
+  attributes:
+    paths:
+    - '/usr/local/lib/node_modules/*'
+    - '/usr/lib/node_modules/*'
+  supported_os: [Linux]
+supported_os: [Linux]
+urls: ['https://docs.npmjs.com/']
+---
+name: PythonDistInfoPath
+doc: |
+  Get the path of Python module files distributed in the dist-info format of
+  PEP-0376 (currently Linux only).
+
+  dist-info is always a directory that must contain METADATA, RECORD and
+  INSTALLER. It may also contain REQUESTED.
+sources:
+- type: PATH
+  attributes:
+    paths:
+    - '%%users.homedir%%/.local/lib/python*/dist-packages/*.dist-info'
+    - '%%users.homedir%%/.local/lib/python*/site-packages/*.dist-info'
+    - '/usr/lib/python*/dist-packages/*.dist-info'
+    - '/usr/lib/python*/site-packages/*.dist-info'
+    - '/usr/lib64/python*/dist-packages/*.dist-info'
+    - '/usr/lib64/python*/site-packages/*.dist-info'
+    - '/usr/local/lib/python*/dist-packages/*.dist-info'
+    - '/usr/local/lib/python*/site-packages/*.dist-info'
+    - '/usr/local/lib64/python*/dist-packages/*.dist-info'
+    - '/usr/local/lib64/python*/site-packages/*.dist-info'
+  supported_os: [Linux]
+supported_os: [Linux]
+urls: ['https://www.python.org/dev/peps/pep-0376/']
+---
+name: VSCodeExtensionsPath
+doc: Get paths of Visual Studio Code extensions
+sources:
+- type: PATH
+  attributes:
+    paths: ['%%users.userprofile%%/.vscode/extensions/*']
+  supported_os: [Windows]
+- type: PATH
+  attributes:
+    paths: ['%%users.homedir%%/.vscode/extensions/*']
+  supported_os: [Darwin, Linux]
+supported_os: [Darwin, Linux, Windows]
+urls: ['https://code.visualstudio.com/']
