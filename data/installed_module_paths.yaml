@@ -57,6 +57,6 @@ sources:
 - type: PATH
   attributes:
     paths: ['%%users.homedir%%/.vscode/extensions/*']
-  supported_os: [Linux, Darwin]
-supported_os: [Linux, Windows, Darwin]
+  supported_os: [Darwin, Linux]
+supported_os: [Darwin, Linux, Windows]
 urls: ['https://code.visualstudio.com/']
