@@ -24,7 +24,7 @@ jobs:
           toxenv: 'py310'
         - python-version: '3.11'
           toxenv: 'py311'
-        - python-version: '3.8'
+        - python-version: '3.11'
           toxenv: 'lint'
     container:
       image: ubuntu:22.04
