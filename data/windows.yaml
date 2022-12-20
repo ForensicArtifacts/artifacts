@@ -1509,9 +1509,7 @@ sources:
   attributes:
     keys: ['HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\ComDIg32\OpenSaveMRU\*\*']
 supported_os: [Windows]
-urls:
-- 'https://forensics.wiki/opensavemru'
-- 'https://digital-forensics.sans.org/blog/2010/04/02/openrunsavemru-lastvisitedmru'
+urls: ['https://forensics.wiki/opensavemru']
 ---
 name: WindowsOpenSavePidlMRU
 doc: Information about files opened or saved in a Windows shell dialog.
@@ -1520,9 +1518,7 @@ sources:
   attributes:
     keys: ['HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\ComDlg32\OpenSavePidlMRU\*\*']
 supported_os: [Windows]
-urls:
-- 'https://digital-forensics.sans.org/blog/2010/04/02/openrunsavemru-lastvisitedmru'
-- 'https://forensics.wiki/opensavepidlmru'
+urls: ['https://forensics.wiki/opensavepidlmru']
 ---
 name: WindowsPendingFileRenames
 doc: Windows Pending file renames on reboot
