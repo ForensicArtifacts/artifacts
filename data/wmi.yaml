@@ -229,4 +229,4 @@ sources:
 - type: WMI
   attributes: {query: SELECT * FROM CCM_RecentlyUsedApps, base_object: 'winmgmts:\root\ccm\SoftwareMeteringAgent'}
 supported_os: [Windows]
-urls: ['https://forensics.wiki/windows#ccm_recentlyusedapps']
+urls: ['https://forensics.wiki/windows#ccm-recentlyusedapps']

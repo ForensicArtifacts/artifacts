@@ -76,4 +76,4 @@ sources:
     separator: '\'
   supported_os: [Windows]
 supported_os: [Windows]
-urls: ['https://forensics.wiki/one_drive#sky_drive_client']
+urls: ['https://forensics.wiki/one_drive#sky-drive-client']

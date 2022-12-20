@@ -452,8 +452,8 @@ sources:
   supported_os: [Windows]
 supported_os: [Darwin, Linux, Windows]
 urls:
+- 'https://forensics.wiki/google_chrome#chromium-based-browsers'
 - 'https://forensics.wiki/google_chrome#extensions'
-- 'https://forensics.wiki/google_chrome#chromium-based_browsers'
 ---
 name: ChromiumBasedBrowsersExtensionActivitySQLiteDatabaseFile
 aliases: [ChromeExtensionActivity, ChromiumBasedBrowsersExtensionActivity]
@@ -502,8 +502,8 @@ sources:
   supported_os: [Windows]
 supported_os: [Darwin, Linux, Windows]
 urls:
-- 'https://forensics.wiki/google_chrome#extension_activity_database'
-- 'https://forensics.wiki/google_chrome#chromium-based_browsers'
+- 'https://forensics.wiki/google_chrome#chromium-based-browsers'
+- 'https://forensics.wiki/google_chrome#extension-activity-database'
 ---
 name: ChromeExtensionRegistryKeys
 doc: Chrome extensions installed by writing windows registry keys.
@@ -682,7 +682,7 @@ sources:
 supported_os: [Darwin, Linux, Windows]
 urls:
 - 'https://forensics.wiki/google_chrome'
-- 'https://forensics.wiki/google_chrome#chromium-based_browsers'
+- 'https://forensics.wiki/google_chrome#chromium-based-browsers'
 ---
 name: ChromeIndexedDB
 doc: |
@@ -1133,7 +1133,7 @@ sources:
 - type: REGISTRY_KEY
   attributes: {keys: ['HKEY_USERS\%%users.sid%%\Software\Microsoft\Internet Explorer\TypedURLs\*']}
 supported_os: [Windows]
-urls: ['https://forensics.wiki/internet_explorer#typed_urls']
+urls: ['https://forensics.wiki/internet_explorer#typed-urls']
 ---
 name: OperaHistoryFile
 aliases: [OperaHistory]
