@@ -606,7 +606,7 @@ sources:
     - '%%users.localappdata%%\Temp\*.dmp'
     separator: '\'
 supported_os: [Windows]
-urls: ['https://forensics.wiki/windows#crash_and_minidumps']
+urls: ['https://forensics.wiki/windows#crash-and-minidumps']
 ---
 name: WindowsCredentialProviderFilters
 doc: Windows Credential Provider Filters
@@ -650,7 +650,7 @@ sources:
     - '%%users.userprofile%%\AppData\LocalLow\Microsoft\CryptnetUrlCache\MetaData\*'
     separator: '\'
 supported_os: [Windows]
-urls: ['https://forensics.wiki/windows#cryptnet_url_cache']
+urls: ['https://forensics.wiki/windows#cryptnet-url-cache']
 ---
 name: WindowsCryptnetUrlCacheContent
 doc: |
@@ -668,7 +668,7 @@ sources:
     - '%%users.userprofile%%\AppData\LocalLow\Microsoft\CryptnetUrlCache\Content\*'
     separator: '\'
 supported_os: [Windows]
-urls: ['https://forensics.wiki/windows#cryptnet_url_cache']
+urls: ['https://forensics.wiki/windows#cryptnet-url-cache']
 ---
 name: WindowsCurrentVersion
 doc: The Windows current version
@@ -1822,7 +1822,7 @@ sources:
     - '\Recycler\**'
     separator: '\'
 supported_os: [Windows]
-urls: ['https://forensics.wiki/windows#recycle_bin']
+urls: ['https://forensics.wiki/windows#recycle-bin']
 ---
 name: WindowsRecycleBinMetadata
 doc: Windows Recycle Bin (Recyler, $Recycle.Bin) metadata files only.
@@ -1834,7 +1834,7 @@ sources:
     - '\Recycler\*\INFO2'
     separator: '\'
 supported_os: [Windows]
-urls: ['https://forensics.wiki/windows#recycle_bin']
+urls: ['https://forensics.wiki/windows#recycle-bin']
 ---
 name: WindowsRegistryCurrentControlSet
 aliases: [CurrentControlSet]
@@ -1989,7 +1989,7 @@ sources:
     - '%%environ_systemroot%%\SysWow64\Tasks\**10'
     separator: '\'
 supported_os: [Windows]
-urls: ['https://forensics.wiki/windows#scheduled_tasks']
+urls: ['https://forensics.wiki/windows#scheduled-tasks']
 ---
 name: WindowsScreenSaverExecutable
 doc: ScreenSaver Executable
@@ -3027,7 +3027,7 @@ sources:
     paths: ['%%users.localappdata%%\Microsoft\Terminal Server Client\Cache\*.*']
     separator: '\'
 supported_os: [Windows]
-urls: ['https://forensics.wiki/windows#rdp_bitmap_cache']
+urls: ['https://forensics.wiki/windows#rdp-bitmap-cache']
 ---
 name: WindowsActiveSyncAutoStart
 doc: Windows ActiveSync AutoStart entries
@@ -3471,7 +3471,7 @@ sources:
     paths: ['%%environ_systemroot%%\System32\WDI\LogFiles\StartupInfo\*.xml']
     separator: '\'
 supported_os: [Windows]
-urls: ['https://forensics.wiki/windows#startup_info']
+urls: ['https://forensics.wiki/windows#startup-info']
 ---
 name: WindowsTileDataLayerDatabase
 doc: |
@@ -3484,7 +3484,7 @@ sources:
     paths: ['%%users.localappdata%%\TileDataLayer\Database\vedatamodel.edb']
     separator: '\'
 supported_os: [Windows]
-urls: ['https://forensics.wiki/extensible_storage_engine_(ese)_database_file_(edb)_format#tile_data_layer_database']
+urls: ['https://forensics.wiki/extensible_storage_engine_(ese)_database_file_(edb)_format#tile-data-layer-database']
 ---
 name: WindowsUserAccessLogging
 doc: |
@@ -3501,7 +3501,7 @@ sources:
     paths: ['%%environ_systemroot%%\System32\LogFiles\SUM\*.mdb']
     separator: '\'
 supported_os: [Windows]
-urls: ['https://forensics.wiki/windows#user_access_logging_(ual)']
+urls: ['https://forensics.wiki/windows#user-access-logging-(ual)']
 ---
 name: WindowsWordWheelQueryRegistryKey
 doc: Keywords searched in from the Windows start menu, potentially resulting in files or folders access or program executions.

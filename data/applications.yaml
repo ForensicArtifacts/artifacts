@@ -13,7 +13,7 @@ sources:
     - '%%users.appdata%%\Microsoft\Publisher\**'
     separator: '\'
 supported_os: [Windows]
-urls: ['https://forensics.wiki/windows#microsoft_office_autosave']
+urls: ['https://forensics.wiki/windows#microsoft-office-autosave']
 ---
 name: MicrosoftOfficeMRU
 doc: Microsoft Office Most Recently Used
