@@ -3501,7 +3501,7 @@ sources:
     paths: ['%%environ_systemroot%%\System32\LogFiles\SUM\*.mdb']
     separator: '\'
 supported_os: [Windows]
-urls: ['https://forensics.wiki/windows#user-access-logging-(ual)']
+urls: ['https://forensics.wiki/windows#user-access-logging-ual']
 ---
 name: WindowsWordWheelQueryRegistryKey
 doc: Keywords searched in from the Windows start menu, potentially resulting in files or folders access or program executions.
