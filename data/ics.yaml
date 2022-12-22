@@ -10,10 +10,10 @@ sources:
     - '%%environ_programfiles%%\Common Files\Siemens\ace\bin\Diagnosis\*'
     - '%%environ_programfilesx86%%\Siemens\WinCC\Diagnose\*'
     - '%%environ_programfilesx86%%\Common Files\Siemens\ace\bin\Diagnosis\*'
-    - '%%environ_programdata%%\Siemens\Automation\Logfiles\*'
-    - '%%environ_programdata%%\Siemens\Automation\Logfiles\Setup\*'
-    - '%%environ_programdata%%\Siemens\Logs\*'
     - '%%environ_windir%%\security\SecurityController\*'
+    - '%%environ_allusersappdata%%\Siemens\Automation\Logfiles\*'
+    - '%%environ_allusersappdata%%\Siemens\Automation\Logfiles\Setup\*'
+    - '%%environ_allusersappdata%%\Siemens\Logs\*'
     separator: '\'
 supported_os: [Windows]
 urls:
