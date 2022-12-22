@@ -1,0 +1,19 @@
+# Artifacts related to ICS related software
+---
+name: WindowsSiemensWinCCLogFile
+doc: Siemens WinCC software logs.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%environ_programfiles%%\Siemens\WinCC\Diagnose\*'
+    - '%%environ_programfiles%%\Common Files\Siemens\ace\bin\Diagnosis\*'
+    - '%%environ_programfilesx86%%\Siemens\WinCC\Diagnose\*'
+    - '%%environ_programfilesx86%%\Common Files\Siemens\ace\bin\Diagnosis\*'
+    - '%%environ_windir%%\security\SecurityController\*'
+    - '%%environ_allusersappdata%%\Siemens\Automation\Logfiles\*'
+    - '%%environ_allusersappdata%%\Siemens\Automation\Logfiles\Setup\*'
+    - '%%environ_allusersappdata%%\Siemens\Logs\*'
+    separator: '\'
+supported_os: [Windows]
+urls: ['https://cache.industry.siemens.com/dl/files/865/109757865/att_963121/v5/109757865_WinCC_Diagnostics_en.pdf']
