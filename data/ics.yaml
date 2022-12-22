@@ -16,5 +16,4 @@ sources:
     - '%%environ_allusersappdata%%\Siemens\Logs\*'
     separator: '\'
 supported_os: [Windows]
-urls:
-- 'https://cache.industry.siemens.com/dl/files/865/109757865/att_963121/v5/109757865_WinCC_Diagnostics_en.pdf'
+urls: ['https://cache.industry.siemens.com/dl/files/865/109757865/att_963121/v5/109757865_WinCC_Diagnostics_en.pdf']
