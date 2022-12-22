@@ -1,7 +1,7 @@
 # Artifacts related to ICS related software
 ---
 name: WindowsSiemensWinCCLogFile
-doc: Siemens WinCC software logs. 
+doc: Siemens WinCC software logs.
 sources:
 - type: FILE
   attributes:
