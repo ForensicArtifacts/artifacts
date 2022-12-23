@@ -216,7 +216,7 @@ sources:
   attributes:
     paths:
     - '/var/log/auth.log*'
-    - '/var/log/secure.log*'
+    - '/var/log/secure*'
 supported_os: [Linux]
 ---
 name: LinuxCACertificatesConfiguration
