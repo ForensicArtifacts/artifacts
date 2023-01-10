@@ -8,7 +8,7 @@ sources:
   attributes: {paths: ['/Users/*']}
 supported_os: [Darwin]
 provides: [users.username]
-urls: ['https://forensics.wiki/mac_os_x_10.9_-_artifacts_location#users']
+urls: ['https://forensics.wiki/mac_os_x_10.9_artifacts_location#users']
 ---
 name: UserDownloadsDirectory
 aliases: [MacOSUserDownloadsDirectory, UserDownloads, WindowsUserDownloadsDirectory]
@@ -24,4 +24,4 @@ sources:
     separator: '\'
   supported_os: [Windows]
 supported_os: [Darwin, Linux, Windows]
-urls: ['https://forensics.wiki/mac_os_x_10.9_-_artifacts_location#user-directories']
+urls: ['https://forensics.wiki/mac_os_x_10.9_artifacts_location#user-directories']
