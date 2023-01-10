@@ -19,7 +19,9 @@ sources:
     - '/private/var/db/.AppleSetupDone'
     - '/var/db/.AppleSetupDone'
 supported_os: [Darwin]
-urls: ['https://forensics.wiki/mac_os_x_10.9_-_artifacts_location#system-settings-and-informations']
+urls: 
+  - 'https://forensics.wiki/mac_os_x_10.9_-_artifacts_location#system-settings-and-informations'
+  - 'https://support.apple.com/guide/console/reports-cnsl664be99a/mac'
 ---
 name: MacOSAppleSystemLogFile
 aliases: [MacOSAppleSystemLogFiles]
@@ -29,7 +31,9 @@ sources:
   attributes:
     paths:
     - '/private/var/log/asl/*.asl'
+    - '/private/var/log/DiagnosticMessages/*.asl'
     - '/var/log/asl/*.asl'
+    - '/var/log/DiagnosticMessages/*.asl'
 supported_os: [Darwin]
 urls: ['https://forensics.wiki/mac_os_x_10.9_-_artifacts_location#system-logs']
 ---
