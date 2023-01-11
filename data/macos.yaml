@@ -19,9 +19,9 @@ sources:
     - '/private/var/db/.AppleSetupDone'
     - '/var/db/.AppleSetupDone'
 supported_os: [Darwin]
-urls: 
-  - 'https://forensics.wiki/mac_os_x_10.9_artifacts_location#system-settings-and-informations'
-  - 'https://support.apple.com/guide/console/reports-cnsl664be99a/mac'
+urls:
+- 'https://forensics.wiki/mac_os_x_10.9_artifacts_location#system-settings-and-informations'
+- 'https://support.apple.com/guide/console/reports-cnsl664be99a/mac'
 ---
 name: MacOSAppleSystemLogFile
 aliases: [MacOSAppleSystemLogFiles]
