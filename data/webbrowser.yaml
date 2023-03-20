@@ -68,6 +68,7 @@ sources:
     paths:
     - '%%users.localappdata%%\Google\Chrome\User Data\*\Application Cache\Cache\*'
     - '%%users.localappdata%%\Google\Chrome\User Data\*\Cache\*'
+    - '%%users.localappdata%%\Google\Chrome\User Data\*\Cache\Cache_Data\*'
     - '%%users.localappdata%%\Google\Chrome\User Data\*\Media Cache\*'
     - '%%users.localappdata%%\Google\Chrome\User Data\*\GPUCache\*'
     - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Application Cache\Cache\*'
@@ -79,6 +80,7 @@ sources:
     - '%%users.localappdata%%\Chromium\User Data\*\Media Cache\*'
     - '%%users.localappdata%%\Chromium\User Data\*\GPUCache\*'
     - '%%users.localappdata%%\Microsoft\Edge\User Data\*\Cache\*'
+    - '%%users.localappdata%%\Microsoft\Edge\User Data\*\Cache\Cache_Data\*'
     - '%%users.localappdata%%\Microsoft\Edge\User Data\*\GPUCache\*'
     separator: '\'
   supported_os: [Windows]
@@ -179,6 +181,7 @@ sources:
     - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Media Cache\*'
     - '%%users.localappdata%%\Google\Chrome\User Data\*\Application Cache\Cache\*'
     - '%%users.localappdata%%\Google\Chrome\User Data\*\Cache\*'
+    - '%%users.localappdata%%\Google\Chrome\User Data\*\Cache\Cache_Data\*'
     - '%%users.localappdata%%\Google\Chrome\User Data\*\GPUCache\*'
     - '%%users.localappdata%%\Google\Chrome\User Data\*\Media Cache\*'
     - '%%users.localappdata%%\Microsoft\Edge Beta\User Data\*\Application Cache\Cache\*'
@@ -187,6 +190,7 @@ sources:
     - '%%users.localappdata%%\Microsoft\Edge Beta\User Data\*\Media Cache\*'
     - '%%users.localappdata%%\Microsoft\Edge\User Data\*\Application Cache\Cache\*'
     - '%%users.localappdata%%\Microsoft\Edge\User Data\*\Cache\*'
+    - '%%users.localappdata%%\Microsoft\Edge\User Data\*\Cache\Cache_Data\*'
     - '%%users.localappdata%%\Microsoft\Edge\User Data\*\GPUCache\*'
     - '%%users.localappdata%%\Microsoft\Edge\User Data\*\Media Cache\*'
     - '%%users.localappdata%%\Yandex\YandexBrowser\User Data\*\Application Cache\Cache\*'
@@ -888,6 +892,10 @@ sources:
     - '%%users.localappdata%%\Mozilla\Firefox\Profiles\*.default\cache2\*'
     - '%%users.localappdata%%\Mozilla\Firefox\Profiles\*.default\cache2\doomed\*'
     - '%%users.localappdata%%\Mozilla\Firefox\Profiles\*.default\cache2\entries\*'
+    - '%%users.localappdata%%\Mozilla\Firefox\Profiles\*.default-*\Cache\*'
+    - '%%users.localappdata%%\Mozilla\Firefox\Profiles\*.default-*\cache2\*'
+    - '%%users.localappdata%%\Mozilla\Firefox\Profiles\*.default-*\cache2\doomed\*'
+    - '%%users.localappdata%%\Mozilla\Firefox\Profiles\*.default-*\cache2\entries\*'
     separator: '\'
   supported_os: [Windows]
 supported_os: [Darwin, Linux, Windows]
