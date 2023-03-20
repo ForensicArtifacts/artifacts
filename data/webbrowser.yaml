@@ -111,6 +111,7 @@ sources:
     paths:
     - '%%users.homedir%%/.cache/google-chrome/Cache/*'
     - '%%users.homedir%%/.cache/google-chrome/*/Cache/*'
+    - '%%users.homedir%%/.cache/google-chrome/*/Cache/Cache_Data/*'
     - '%%users.homedir%%/.cache/google-chrome/*/Media Cache/*'
     - '%%users.homedir%%/.cache/google-chrome/PnaclTranslationCache/*'
     - '%%users.homedir%%/.config/google-chrome/*/Application Cache/*'
@@ -284,6 +285,7 @@ sources:
     - '%%users.homedir%%/.cache/chromium/Cache/*'
     - '%%users.homedir%%/.cache/chromium/PnaclTranslationCache/*'
     - '%%users.homedir%%/.cache/google-chrome/*/Cache/*'
+    - '%%users.homedir%%/.cache/google-chrome/*/Cache/Cache_Data/*'
     - '%%users.homedir%%/.cache/google-chrome/*/Media Cache/*'
     - '%%users.homedir%%/.cache/google-chrome/Cache/*'
     - '%%users.homedir%%/.cache/google-chrome/PnaclTranslationCache/*'
@@ -884,6 +886,9 @@ sources:
     - '%%users.homedir%%/.cache/mozilla/firefox/*.default/cache2/*'
     - '%%users.homedir%%/.cache/mozilla/firefox/*.default/cache2/doomed/*'
     - '%%users.homedir%%/.cache/mozilla/firefox/*.default/cache2/entries/*'
+    - '%%users.homedir%%/.cache/mozilla/firefox/*.default-*/cache2/*'
+    - '%%users.homedir%%/.cache/mozilla/firefox/*.default-*/cache2/doomed/*'
+    - '%%users.homedir%%/.cache/mozilla/firefox/*.default-*/cache2/entries/*'
   supported_os: [Linux]
 - type: FILE
   attributes:
