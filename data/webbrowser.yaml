@@ -940,10 +940,14 @@ sources:
     - '%%users.homedir%%/.cache/mozilla/firefox/*.default-*/cache2/*'
     - '%%users.homedir%%/.cache/mozilla/firefox/*.default-*/cache2/doomed/*'
     - '%%users.homedir%%/.cache/mozilla/firefox/*.default-*/cache2/entries/*'
-    - '%%users.homedir%%/snap/firefox/common/.cache/mozilla/firefox/*/Cache/*'
-    - '%%users.homedir%%/snap/firefox/common/.cache/mozilla/firefox/*/cache2/*'
-    - '%%users.homedir%%/snap/firefox/common/.cache/mozilla/firefox/*/cache2/doomed/*'
-    - '%%users.homedir%%/snap/firefox/common/.cache/mozilla/firefox/*/cache2/entries/*'
+    - '%%users.homedir%%/snap/firefox/common/.cache/mozilla/firefox/*.default/Cache/*'
+    - '%%users.homedir%%/snap/firefox/common/.cache/mozilla/firefox/*.default/cache2/*'
+    - '%%users.homedir%%/snap/firefox/common/.cache/mozilla/firefox/*.default/cache2/doomed/*'
+    - '%%users.homedir%%/snap/firefox/common/.cache/mozilla/firefox/*.default/cache2/entries/*'
+    - '%%users.homedir%%/snap/firefox/common/.cache/mozilla/firefox/*.default-*/Cache/*'
+    - '%%users.homedir%%/snap/firefox/common/.cache/mozilla/firefox/*.default-*/cache2/*'
+    - '%%users.homedir%%/snap/firefox/common/.cache/mozilla/firefox/*.default-*/cache2/doomed/*'
+    - '%%users.homedir%%/snap/firefox/common/.cache/mozilla/firefox/*.default-*/cache2/entries/*'
   supported_os: [Linux]
 - type: FILE
   attributes:
