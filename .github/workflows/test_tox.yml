@@ -24,8 +24,6 @@ jobs:
           toxenv: 'py310'
         - python-version: '3.11'
           toxenv: 'py311'
-        - python-version: '3.11'
-          toxenv: 'lint'
     container:
       image: ubuntu:22.04
     steps:
@@ -86,10 +84,46 @@ jobs:
     - name: Install tox
       run: |
         python3 -m pip install tox
-    - name: Run tests
+    - name: Run tests with coverage
       env:
         LANG: en_US.UTF-8
       run: |
         tox -e${{ matrix.toxenv }}
     - name: Upload coverage report to Codecov
       uses: codecov/codecov-action@v3
+  lint:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+        - python-version: '3.11'
+          toxenv: 'lint'
+    container:
+      image: ubuntu:22.04
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up container
+      env:
+        DEBIAN_FRONTEND: noninteractive
+      run: |
+        apt-get update -q
+        apt-get install -y libterm-readline-gnu-perl locales software-properties-common
+        locale-gen en_US.UTF-8
+        ln -f -s /usr/share/zoneinfo/UTC /etc/localtime
+    - name: Install dependencies
+      env:
+        DEBIAN_FRONTEND: noninteractive
+      run: |
+        add-apt-repository -y universe
+        add-apt-repository -y ppa:deadsnakes/ppa
+        add-apt-repository -y ppa:gift/dev
+        apt-get update -q
+        apt-get install -y build-essential git libffi-dev python${{ matrix.python-version }} python${{ matrix.python-version }}-dev python${{ matrix.python-version }}-venv python3-distutils python3-pip python3-setuptools python3-yaml
+    - name: Install tox
+      run: |
+        python3 -m pip install tox
+    - name: Run linter
+      env:
+        LANG: en_US.UTF-8
+      run: |
+        tox -e${{ matrix.toxenv }}
