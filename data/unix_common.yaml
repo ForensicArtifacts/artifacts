@@ -59,6 +59,18 @@ sources:
   supported_os: [Darwin]
 supported_os: [Darwin, Linux]
 ---
+name: UnixShadowBackupFile
+doc: Unix shadow backup file.
+sources:
+- type: FILE
+  attributes: {paths: ['/etc/shadow-']}
+  supported_os: [Darwin, Linux]
+- type: FILE
+  attributes: {paths: ['/private/etc/shadow-']}
+  supported_os: [Darwin]
+supported_os: [Darwin, Linux]
+urls: ['https://man7.org/linux/man-pages/man5/shadow.5.html']
+---
 name: UnixSudoersConfigurationFile
 aliases: [UnixSudoersConfiguration]
 doc: Unix sudoers configuration file.
