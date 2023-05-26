@@ -965,6 +965,34 @@ sources:
 supported_os: [Darwin, Linux, Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/webbrowser/FirefoxCache.html']
 ---
+name: FirefoxCookies
+doc: Firefox browser cookies (cookies.sqlite).
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/Library/Application Support/Firefox/Profiles/*/cookies.sqlite'
+    - '%%users.homedir%%/Library/Application Support/Firefox/Profiles/*/cookies.sqlite-wal'
+  supported_os: [Darwin]
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/.mozilla/firefox/*/cookies.sqlite'
+    - '%%users.homedir%%/.mozilla/firefox/*/cookies.sqlite-shm'
+    - '%%users.homedir%%/.mozilla/firefox/*/cookies.sqlite-wal'
+  supported_os: [Linux]
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.localappdata%%\Mozilla\Firefox\Profiles\*\cookies.sqlite'
+    - '%%users.localappdata%%\Mozilla\Firefox\Profiles\*\cookies.sqlite-wal'
+    - '%%users.appdata%%\Mozilla\Firefox\Profiles\*\cookies.sqlite'
+    - '%%users.localappdata%%\Mozilla\Firefox\Profiles\*\cookies.sqlite-wal'
+    separator: '\'
+  supported_os: [Windows]
+supported_os: [Darwin, Linux, Windows]
+urls: ['https://forensics.wiki/mozilla_firefox']
+---
 name: FirefoxDownloads
 doc: Firefox browser downloads (downloads.sqlite).
 sources:
