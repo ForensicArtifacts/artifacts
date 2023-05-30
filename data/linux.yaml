@@ -563,7 +563,7 @@ name: LinuxSysLogFiles
 doc: Linux syslog log files.
 sources:
 - type: FILE
-  attributes: {paths: ['/var/log/syslog.log*']}
+  attributes: {paths: ['/var/log/syslog*']}
 supported_os: [Linux]
 ---
 name: LinuxSyslogNgConfigs
