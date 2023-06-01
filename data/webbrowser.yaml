@@ -1267,6 +1267,8 @@ sources:
     paths:
     - '%%users.homedir%%/Library/Caches/com.apple.Safari/Cache.db'
     - '%%users.homedir%%/Library/Caches/com.apple.Safari/Cache.db-wal'
+    - '%%users.homedir%%/Library/Containers/com.apple.Safari/Data/Library/Caches/com.apple.Safari/Cache.db'
+    - '%%users.homedir%%/Library/Containers/com.apple.Safari/Data/Library/Caches/com.apple.Safari/Cache.db-wal'
   supported_os: [Darwin]
 - type: FILE
   attributes:
