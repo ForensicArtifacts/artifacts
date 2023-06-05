@@ -927,6 +927,10 @@ sources:
     - '%%users.homedir%%/Library/Caches/Firefox/Profiles/*.default/cache2/*'
     - '%%users.homedir%%/Library/Caches/Firefox/Profiles/*.default/cache2/doomed/*'
     - '%%users.homedir%%/Library/Caches/Firefox/Profiles/*.default/cache2/entries/*'
+    - '%%users.homedir%%/Library/Caches/Firefox/Profiles/*.default-*/Cache/*'
+    - '%%users.homedir%%/Library/Caches/Firefox/Profiles/*.default-*/cache2/*'
+    - '%%users.homedir%%/Library/Caches/Firefox/Profiles/*.default-*/cache2/doomed/*'
+    - '%%users.homedir%%/Library/Caches/Firefox/Profiles/*.default-*/cache2/entries/*'
   supported_os: [Darwin]
 - type: FILE
   attributes:
