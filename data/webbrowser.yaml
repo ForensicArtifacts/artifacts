@@ -1344,3 +1344,14 @@ sources:
     - '%%users.homedir%%/Library/Safari/History.db-wal'
 supported_os: [Darwin]
 urls: ['https://forensics.wiki/apple_safari']
+---
+name: SafariCookies
+doc: Safari Cookies database.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/Library/Cookies/*'
+    - '%%users.homedir%%/Library/Containers/com.apple.Safari/Data/Library/Cookies/*'
+  supported_os: [Darwin]
+supported_os: [Darwin]
