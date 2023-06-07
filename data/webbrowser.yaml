@@ -1288,8 +1288,8 @@ sources:
 - type: FILE
   attributes:
     paths:
-    - '%%users.homedir%%/Library/Cookies/*'
-    - '%%users.homedir%%/Library/Containers/com.apple.Safari/Data/Library/Cookies/*'
+    - '%%users.homedir%%/Library/Cookies/Cookies.binarycookies'
+    - '%%users.homedir%%/Library/Containers/com.apple.Safari/Data/Library/Cookies/Cookies.binarycookies'
   supported_os: [Darwin]
 supported_os: [Darwin]
 ---
