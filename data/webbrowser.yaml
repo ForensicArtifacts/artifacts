@@ -1282,6 +1282,17 @@ sources:
 supported_os: [Darwin, Windows]
 urls: ['https://forensics.wiki/apple_safari']
 ---
+name: SafariCookies
+doc: Safari Cookies database.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/Library/Cookies/Cookies.binarycookies'
+    - '%%users.homedir%%/Library/Containers/com.apple.Safari/Data/Library/Cookies/Cookies.binarycookies'
+  supported_os: [Darwin]
+supported_os: [Darwin]
+---
 name: SafariDownloadsPlistFile
 aliases: [SafariDownloads]
 doc: Safari downloads history (Downloads.plist) property list (plist) file.
