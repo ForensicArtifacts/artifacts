@@ -13,11 +13,6 @@ except ImportError:
   from distutils.core import find_packages, setup
 
 try:
-  from distutils.command.bdist_msi import bdist_msi
-except ImportError:
-  bdist_msi = None
-
-try:
   from distutils.command.bdist_rpm import bdist_rpm
 except ImportError:
   bdist_rpm = None
@@ -32,22 +27,6 @@ if version_tuple < (3, 7):
 sys.path.insert(0, '.')
 
 import artifacts  # pylint: disable=wrong-import-position
-
-
-if not bdist_msi:
-  BdistMSICommand = None
-else:
-  class BdistMSICommand(bdist_msi):
-    """Custom handler for the bdist_msi command."""
-
-    # pylint: disable=invalid-name
-    def run(self):
-      """Builds an MSI."""
-      # Command bdist_msi does not support the library version, neither a date
-      # as a version but if we suffix it with .1 everything is fine.
-      self.distribution.metadata.version += '.1'
-
-      bdist_msi.run(self)
 
 
 if not bdist_rpm:
@@ -210,8 +189,6 @@ artifacts_long_description = (
     ' other tools.')
 
 command_classes = {}
-if BdistMSICommand:
-  command_classes['bdist_msi'] = BdistMSICommand
 if BdistRPMCommand:
   command_classes['bdist_rpm'] = BdistRPMCommand
 
