@@ -1262,6 +1262,17 @@ sources:
 supported_os: [Darwin, Linux, Windows]
 urls: ['https://forensics.wiki/opera']
 ---
+name: SafariAutoFillCorrectionsSQLiteDatabaseFile
+doc: Safari browser auto-fill corrections SQLite database file.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/Library/Safari/AutoFillCorrections.db'
+    - '%%users.homedir%%/Library/Safari/AutoFillCorrections.db-wal'
+supported_os: [Darwin]
+urls: ['https://forensics.wiki/apple_safari']
+---
 name: SafariCacheSQLiteDatabaseFile
 aliases: [SafariCache]
 doc: Safari browser cache (cache.db) SQLite database file.
@@ -1280,6 +1291,17 @@ sources:
     separator: '\'
   supported_os: [Windows]
 supported_os: [Darwin, Windows]
+urls: ['https://forensics.wiki/apple_safari']
+---
+name: SafariCloudAutoFillCorrectionsSQLiteDatabaseFile
+doc: Safari browser cloud auto-fill corrections SQLite database file.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/Library/Safari/CloudAutoFillCorrections.db'
+    - '%%users.homedir%%/Library/Safari/CloudAutoFillCorrections.db-wal'
+supported_os: [Darwin]
 urls: ['https://forensics.wiki/apple_safari']
 ---
 name: SafariCookies
@@ -1318,6 +1340,17 @@ sources:
 supported_os: [Darwin]
 urls: ['https://forensics.wiki/apple_safari/']
 ---
+name: SafariFaviconsCacheSQLiteDatabaseFile
+doc: Safari browser favicons cache SQLite database file.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/Library/Safari/Favicon Cache/favicons.db'
+    - '%%users.homedir%%/Library/Safari/Favicon Cache/favicons.db-wal'
+supported_os: [Darwin]
+urls: ['https://forensics.wiki/apple_safari']
+---
 name: SafariHistory
 doc: Safari browser history.
 sources:
@@ -1346,12 +1379,23 @@ supported_os: [Darwin, Windows]
 urls: ['https://forensics.wiki/apple_safari']
 ---
 name: SafariHistorySQLiteDatabaseFile
-doc: Safari browser history SQLite database files.
+doc: Safari browser history SQLite database file.
 sources:
 - type: FILE
   attributes:
     paths:
     - '%%users.homedir%%/Library/Safari/History.db'
     - '%%users.homedir%%/Library/Safari/History.db-wal'
+supported_os: [Darwin]
+urls: ['https://forensics.wiki/apple_safari']
+---
+name: SafariPerSitePreferencesSQLiteDatabaseFile
+doc: Safari browser per site preferences SQLite database file.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/Library/Safari/PerSitePreferences.db'
+    - '%%users.homedir%%/Library/Safari/PerSitePreferences.db-wal'
 supported_os: [Darwin]
 urls: ['https://forensics.wiki/apple_safari']
