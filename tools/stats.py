@@ -70,6 +70,7 @@ Number of Windows Registry key paths: | {self._reg_key_count:d}
     self._total_count = 0
 
     for artifact_definition in artifact_reader.ReadDirectory('data'):
+      # TODO: add support for artifact_definition.supported_os
       for source in artifact_definition.sources:
         self._total_count += 1
         source_type = source.type_indicator

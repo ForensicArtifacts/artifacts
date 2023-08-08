@@ -1312,8 +1312,8 @@ sources:
     paths:
     - '%%users.homedir%%/Library/Cookies/Cookies.binarycookies'
     - '%%users.homedir%%/Library/Containers/com.apple.Safari/Data/Library/Cookies/Cookies.binarycookies'
-  supported_os: [Darwin]
 supported_os: [Darwin]
+urls: ['https://forensics.wiki/apple_safari']
 ---
 name: SafariDownloadsPlistFile
 aliases: [SafariDownloads]
