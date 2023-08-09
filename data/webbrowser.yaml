@@ -1399,3 +1399,21 @@ sources:
     - '%%users.homedir%%/Library/Safari/PerSitePreferences.db-wal'
 supported_os: [Darwin]
 urls: ['https://forensics.wiki/apple_safari']
+---
+name: SafariTouchIconCacheSettingsSQLiteDatabaseFile
+doc: Safari browser touch icon cache settings SQLite database file.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/Library/Safari/Touch Icons Cache/TouchIconCacheSettings.db'
+    - '%%users.homedir%%/Library/Safari/Touch Icons Cache/TouchIconCacheSettings.db-wal'
+supported_os: [Darwin]
+urls: ['https://forensics.wiki/apple_safari']
+---
+name: WebKitPubSubSQLiteDatabaseFile
+doc: WebKit RSS feed (PubSub) SQLite database file.
+sources:
+- type: FILE
+  attributes: {paths: ['%%users.homedir%%/Library/PubSub/Database/Database.sqlite3']}
+supported_os: [Darwin]
