@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """Report statistics about the artifact collection."""
 
+import collections
 import sys
 import time
 
@@ -15,7 +16,7 @@ class ArtifactStatistics(object):
   def __init__(self):
     """Initializes artifact statistics."""
     super(ArtifactStatistics, self).__init__()
-    self._os_counts = {}
+    self._os_counts = collections.Counter()
     self._path_count = 0
     self._reg_key_count = 0
     self._source_type_counts = {}
@@ -34,7 +35,7 @@ class ArtifactStatistics(object):
     print('--- | ---')
 
     for key, value in sorted(src_dict.items()):
-      print(f'{key:s} | {value!s}')
+      print(f'{key:s} | {value:d}')
 
     print('')
 
@@ -63,14 +64,14 @@ Number of Windows Registry key paths: | {self._reg_key_count:d}
   def BuildStats(self):
     """Builds the statistics."""
     artifact_reader = reader.YamlArtifactsReader()
-    self._os_counts = {}
+    self._os_counts = collections.Counter()
     self._path_count = 0
     self._reg_key_count = 0
     self._source_type_counts = {}
     self._total_count = 0
 
     for artifact_definition in artifact_reader.ReadDirectory('data'):
-      # TODO: add support for artifact_definition.supported_os
+      sources_supported_os = set()
       for source in artifact_definition.sources:
         self._total_count += 1
         source_type = source.type_indicator
@@ -85,9 +86,15 @@ Number of Windows Registry key paths: | {self._reg_key_count:d}
                              definitions.TYPE_INDICATOR_DIRECTORY):
           self._path_count += len(source.paths)
 
-        os_list = source.supported_os
-        for os_str in os_list:
-          self._os_counts[os_str] = self._os_counts.get(os_str, 0) + 1
+        sources_supported_os.update(set(source.supported_os))
+
+      # Fallback to the supported_os defined at definition level if none
+      # of the sources specified supported operating systems.
+      if not sources_supported_os:
+        sources_supported_os = set(artifact_definition.supported_os)
+
+      for os_str in sources_supported_os:
+        self._os_counts[os_str] += 1
 
   def PrintStats(self):
     """Build stats and print in MarkDown format."""
