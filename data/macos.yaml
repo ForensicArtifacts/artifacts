@@ -17,11 +17,25 @@ sources:
   attributes: {paths: ['/Library/Application Support/ApplePushService/aps.db']}
 supported_os: [Darwin]
 ---
+name: MacOSApplicationBundleCacheSQLiteDatabaseFile
+doc: Application bundle cache SQLite database file.
+sources:
+- type: FILE
+  attributes: {paths: ['%%users.homedir%%/Library/Caches/*/Cache.db']}
+supported_os: [Darwin]
+---
 name: MacOSAssetCacheInfoSQLiteDatabaseFile
 doc: Asset cache information SQLite database file.
 sources:
 - type: FILE
   attributes: {paths: ['/Library/Caches/com.apple.AssetCache/AssetInfo.db']}
+supported_os: [Darwin]
+---
+name: MacOSCalendarCacheSQLiteDatabaseFile
+doc: Calendar cache SQLite database file.
+sources:
+- type: FILE
+  attributes: {paths: ['%%users.homedir%%/Library/Calendars/Calendar Cache']}
 supported_os: [Darwin]
 ---
 name: MacOSAirportPreferencesPlistFile
@@ -149,9 +163,19 @@ sources:
 supported_os: [Darwin]
 urls: ['https://forensics.wiki/mac_os_x_10.9_artifacts_location#preferences']
 ---
+name: MacOSDuetinteractionCSQLiteDatabaseFile
+doc: Duet interactionC database.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/private/var/db/CoreDuet/People/interactionC.db'
+    - '/var/db/CoreDuet/People/interactionC.db'
+supported_os: [Darwin]
+---
 name: MacOSDuetKnowledgeCSQLiteDatabaseFile
 aliases: [MacOSDuetKnowledgeBase]
-doc: KnowledgeC User and Application usage database.
+doc: Duet knowledgeC User and Application usage database.
 sources:
 - type: FILE
   attributes:
@@ -465,6 +489,23 @@ sources:
     cmd: /usr/bin/hdiutil
 supported_os: [Darwin]
 ---
+name: MacOSNetworkUsageSQLiteDatabaseFile
+doc: Network usage SQLite database file.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/private/var/networkd/netusage.sqlite'
+    - '/var/networkd/netusage.sqlite'
+supported_os: [Darwin]
+---
+name: MacOSNotesSQLiteDatabaseFile
+doc: Notes SQLite database file.
+sources:
+- type: FILE
+  attributes: {paths: ['%%users.homedir%%/Library/Containers/com.apple.Notes/Data/Library/Notes/NotesV*.storedata']}
+supported_os: [Darwin]
+---
 name: MacOSNotificationCenterSQLiteDatabaseFile
 aliases: [MacOSNotificationCenter]
 doc: MacOS NotificationCenter SQLite database files.
@@ -581,7 +622,14 @@ sources:
 supported_os: [Darwin]
 urls: ['https://forensics.wiki/mac_os_x_10.9_artifacts_location#preferences']
 ---
-name: MacOSSiriSuggestionsEnttitiesSQLiteDatabaseFile
+name: MacOSSiriAnalyticsSQLiteDatabaseFile
+doc: Siri analytics SQLite database file.
+sources:
+- type: FILE
+  attributes: {paths: ['%%users.homedir%%/Library/Assistant/SiriAnalytics.db']}
+supported_os: [Darwin]
+---
+name: MacOSSiriSuggestionsEntitiesSQLiteDatabaseFile
 doc: Siri suggestions entities SQLite database file.
 sources:
 - type: FILE
@@ -915,4 +963,21 @@ doc: Apple Wallet SQLite database file.
 sources:
 - type: FILE
   attributes: {paths: ['%%users.homedir%%/Library/Passes/passes23.sqlite']}
+supported_os: [Darwin]
+---
+name: MacOSWirelessDiagnosticDataPersistentSQLiteDatabaseFile
+doc: Apple Wireless Diagnostic Data (AWDD) persistent SQLite database file.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/private/var/db/awdd/persistent.db'
+    - '/var/db/awdd/persistent.db'
+supported_os: [Darwin]
+---
+name: MacOSXcodeiOSDeviceLogsSQLiteDatabaseFile
+doc: Xcode iOS Device Logs SQLite database file.
+sources:
+- type: FILE
+  attributes: {paths: ['%%users.homedir%%/Library/Developer/Xcode/iOS Device Logs/iOS Device Logs *.db']}
 supported_os: [Darwin]
