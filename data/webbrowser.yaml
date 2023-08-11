@@ -1400,6 +1400,14 @@ sources:
 supported_os: [Darwin]
 urls: ['https://forensics.wiki/apple_safari']
 ---
+name: SafariTabSnapshotsMetadataSQLiteDatabaseFile
+doc: Safari browser tab snapshots metadata SQLite database file.
+sources:
+- type: FILE
+  attributes: {paths: ['%%users.homedir%%/Library/Caches/com.apple.Safari/TabSnapshots/Metadata.db']}
+supported_os: [Darwin]
+urls: ['https://forensics.wiki/apple_safari']
+---
 name: SafariTouchIconCacheSettingsSQLiteDatabaseFile
 doc: Safari browser touch icon cache settings SQLite database file.
 sources:
