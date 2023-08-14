@@ -6,7 +6,7 @@ sources:
 - type: FILE
   attributes:
     paths:
-    - 'Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/CoreSimulator/Profiles/Runtimes/iOS.simruntime/Contents/Resources/SampleContent/Library/AddressBook/AddressBookImages.sqlitedb'
+    - '/Applications/Xcode.app/Contents/Developer/Platforms/*.platform/Developer/Library/CoreSimulator/Profiles/Runtimes/*.simruntime/Contents/Resources/SampleContent/Library/AddressBook/AddressBookImages.sqlitedb'
     - '%%users.homedir%%/Library/Developer/CoreSimulator/Devices/*/data/Library/AddressBook/AddressBookImages.sqlitedb'
 supported_os: [Darwin]
 ---
@@ -31,11 +31,31 @@ sources:
   attributes: {paths: ['/Library/Caches/com.apple.AssetCache/AssetInfo.db']}
 supported_os: [Darwin]
 ---
+name: MacOSAuthorizationRulesSQLiteDatabaseFile
+doc: |
+  Authorization rules SQLite database file.
+
+  Superscedes /etc/authorization seen Mac OS X 10.8 Mountain Lion and earlier versions.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/private/var/db/auth.db'
+    - '/var/db/auth.db'
+supported_os: [Darwin]
+---
 name: MacOSCalendarCacheSQLiteDatabaseFile
 doc: Calendar cache SQLite database file.
 sources:
 - type: FILE
   attributes: {paths: ['%%users.homedir%%/Library/Calendars/Calendar Cache']}
+supported_os: [Darwin]
+---
+name: MacOSCallHistoryCacheSQLiteDatabaseFile
+doc: Call history cache SQLite database file.
+sources:
+- type: FILE
+  attributes: {paths: ['%%users.homedir%%/Library/Application Support/CallHistoryDB/CallHistory.storedata']}
 supported_os: [Darwin]
 ---
 name: MacOSAirportPreferencesPlistFile
@@ -163,6 +183,16 @@ sources:
 supported_os: [Darwin]
 urls: ['https://forensics.wiki/mac_os_x_10.9_artifacts_location#preferences']
 ---
+name: MacOSDuetSQLiteDatabaseFile
+doc: Duet database.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/private/var/db/CoreDuet/coreduetd.db'
+    - '/var/db/CoreDuet/coreduetd.db'
+supported_os: [Darwin]
+---
 name: MacOSDuetinteractionCSQLiteDatabaseFile
 doc: Duet interactionC database.
 sources:
@@ -185,6 +215,16 @@ sources:
     - '/var/db/CoreDuet/Knowledge/knowledgeC.db'
 supported_os: [Darwin]
 urls: ['https://www.mac4n6.com/blog/2018/8/5/knowledge-is-power-using-the-knowledgecdb-database-on-macos-and-ios-to-determine-precise-user-and-application-usage']
+---
+name: MacOSDuetSystemEventsSQLiteDatabaseFile
+doc: Duet system events database.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/private/var/db/CoreDuet/coreduetd.db'
+    - '/var/db/CoreDuet/coreduetd.db'
+supported_os: [Darwin]
 ---
 name: MacOSFSEventsFile
 aliases: [MacOSFSEvents]
@@ -704,7 +744,7 @@ supported_os: [Darwin]
 urls: ['https://forensics.wiki/mac_os_x_10.9_artifacts_location#sleep.2fhibernate-and-swap-image-file']
 ---
 name: MacOSSystemConfigurationPreferencesPlistFile
-doc: System configuration preferences property list (plist) file
+doc: System configuration preferences property list (plist) file.
 sources:
 - type: FILE
   attributes: {paths: ['/Library/Preferences/SystemConfiguration/preferences.plist']}
@@ -712,7 +752,7 @@ supported_os: [Darwin]
 ---
 name: MacOSSystemLogFile
 aliases: [MacOSSystemLogFiles]
-doc: System log files
+doc: System log file.
 sources:
 - type: FILE
   attributes:
@@ -721,6 +761,16 @@ sources:
     - '/var/log/*'
 supported_os: [Darwin]
 urls: ['https://forensics.wiki/mac_os_x_10.9_artifacts_location#system-logs']
+---
+name: MacOSSystemPolicySQLiteDatabaseFile
+doc: System policy database.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/private/var/db/SystemPolicy'
+    - '/var/db/SystemPolicy'
+supported_os: [Darwin]
 ---
 name: MacOSSystemPreferencesPlistFile
 aliases: [MacOSSystemPreferencesPlistFiles]
@@ -806,6 +856,13 @@ sources:
   attributes: {paths: ['%%users.homedir%%/Desktop/*']}
 supported_os: [Darwin]
 urls: ['https://forensics.wiki/mac_os_x_10.9_artifacts_location#user-directories']
+---
+name: MacOSUserDockDesktopPictureSQLiteDatabaseFile
+doc: Dock user desktop picture SQLite database file.
+sources:
+- type: FILE
+  attributes: {paths: ['%%users.homedir%%/Library/Application Support/Dock/desktoppicture.db']}
+supported_os: [Darwin]
 ---
 name: MacOSUserDocumentsDirectory
 doc: Contents of the user Documents directories.
@@ -926,15 +983,16 @@ urls: ['https://forensics.wiki/mac_os_x_10.9_artifacts_location#user-directories
 ---
 name: MacOSUserAccountsSQLiteDatabaseFile
 aliases: [MacOSUserSocialAccounts]
-doc: User Accounts SQLite database files.
+doc: |
+  User Accounts SQLite database files.
+
+  Seen Accounts3.sqlite and Accounts4.sqlite
 sources:
 - type: FILE
   attributes:
     paths:
-    - '%%users.homedir%%/Library/Accounts/Accounts3.sqlite'
-    - '%%users.homedir%%/Library/Accounts/Accounts3.sqlite-wal'
-    - '%%users.homedir%%/Library/Accounts/Accounts4.sqlite'
-    - '%%users.homedir%%/Library/Accounts/Accounts4.sqlite-wal'
+    - '%%users.homedir%%/Library/Accounts/Accounts*.sqlite'
+    - '%%users.homedir%%/Library/Accounts/Accounts*.sqlite-wal'
 supported_os: [Darwin]
 urls: ['https://forensics.wiki/mac_os_x_10.9_artifacts_location#user.27s-accounts']
 ---
