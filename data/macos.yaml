@@ -183,14 +183,24 @@ sources:
 supported_os: [Darwin]
 urls: ['https://forensics.wiki/mac_os_x_10.9_artifacts_location#preferences']
 ---
-name: MacOSDuetSQLiteDatabaseFile
-doc: Duet database.
+name: MacOSDirectoryServicesLocalNodesSQLiteDatabaseFile
+doc: Directory services local nodes database.
 sources:
 - type: FILE
   attributes:
     paths:
-    - '/private/var/db/CoreDuet/coreduetd.db'
-    - '/var/db/CoreDuet/coreduetd.db'
+    - '/private/var/db/dslocal/nodes/Default/sqlindex'
+    - '/var/db/dslocal/nodes/Default/sqlindex'
+supported_os: [Darwin]
+---
+name: MacOSDuetActivitySchedulerSQLiteDatabaseFile
+doc: Duet activity scheduler database.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/private/var/db/DuetActivityScheduler/DuetActivitySchedulerClassC.db'
+    - '/var/db/DuetActivityScheduler/DuetActivitySchedulerClassC.db'
 supported_os: [Darwin]
 ---
 name: MacOSDuetinteractionCSQLiteDatabaseFile
@@ -216,6 +226,16 @@ sources:
 supported_os: [Darwin]
 urls: ['https://www.mac4n6.com/blog/2018/8/5/knowledge-is-power-using-the-knowledgecdb-database-on-macos-and-ios-to-determine-precise-user-and-application-usage']
 ---
+name: MacOSDuetSQLiteDatabaseFile
+doc: Duet database.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/private/var/db/CoreDuet/coreduetd.db'
+    - '/var/db/CoreDuet/coreduetd.db'
+supported_os: [Darwin]
+---
 name: MacOSDuetSystemEventsSQLiteDatabaseFile
 doc: Duet system events database.
 sources:
@@ -234,6 +254,16 @@ sources:
   attributes: {paths: ['/.fseventsd/*']}
 supported_os: [Darwin]
 urls: ['https://github.com/libyal/dtformats/blob/main/documentation/MacOS%20File%20System%20Events%20Disk%20Log%20Stream%20format.asciidoc']
+---
+name: MacOSGatekeeperOpaqueConfigurationSQLiteDatabaseFile
+doc: Gatekeeper opaque configuration database.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/private/var/db/gkopaque.bundle/Contents/Resources/gkopaque.db'
+    - '/var/db/gkopaque.bundle/Contents/Resources/gkopaque.db'
+supported_os: [Darwin]
 ---
 name: MacOSGlobalPreferencesPlistFile
 doc: |
