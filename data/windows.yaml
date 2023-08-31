@@ -3519,7 +3519,7 @@ sources:
     paths:
     - '%%environ_systemroot%%\Logs\WindowsUpdate\WindowsUpdate*.etl'
     - '%%environ_systemroot%%\Logs\CBS\CBS*.log'
-    - '%%environ_programdata%%\USOShared\Logs\System\*.etl'
+    - '%%environ_systemdrive%%\ProgramData\USOShared\Logs\System\*.etl'
     separator: '\'
 supported_os: [Windows]
 urls: ['https://learn.microsoft.com/en-us/windows/deployment/update/windows-update-logs']
