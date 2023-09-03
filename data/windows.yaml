@@ -3486,6 +3486,19 @@ sources:
 supported_os: [Windows]
 urls: ['https://forensics.wiki/extensible_storage_engine_(ese)_database_file_(edb)_format#tile-data-layer-database']
 ---
+name: WindowsUpdateLogFile
+doc: Windows Update log files.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%environ_programdata%%\USOShared\Logs\System\*.etl'
+    - '%%environ_systemroot%%\Logs\CBS\CBS*.log'
+    - '%%environ_systemroot%%\Logs\WindowsUpdate\WindowsUpdate*.etl'
+    separator: '\'
+supported_os: [Windows]
+urls: ['https://learn.microsoft.com/en-us/windows/deployment/update/windows-update-logs']
+---
 name: WindowsUserAccessLogging
 doc: |
   User Access Logging (UAL) databases.
