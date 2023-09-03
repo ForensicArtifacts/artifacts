@@ -27,6 +27,7 @@ class ArtifactDefinitionsValidator(object):
   _SUPPORTED_WINDOWS_ENVIRONMENT_VARIABLES = [
       '%%environ_allusersappdata%%',
       '%%environ_allusersprofile%%',
+      '%%environ_programdata%%',
       '%%environ_programfiles%%',
       '%%environ_programfilesx86%%',
       '%%environ_systemdrive%%',
