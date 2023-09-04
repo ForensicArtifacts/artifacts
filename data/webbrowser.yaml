@@ -856,7 +856,7 @@ sources:
 supported_os: [Darwin, Linux, Windows]
 urls: ['https://forensics.wiki/google_chrome#configuration']
 ---
-name: ChromeNotifications
+name: ChromePlatformNotifications
 doc: |
   Google Chrome Platform Notifications LevelDB.
 
