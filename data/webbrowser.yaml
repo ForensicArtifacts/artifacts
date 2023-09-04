@@ -817,6 +817,7 @@ sources:
 supported_os: [Darwin, Linux, Windows]
 ---
 name: ChromePlatformNotifications
+aliases: [ChromeNotifications, ChromePlatformNotificationsDatabase]
 doc: |
   Google Chrome Platform Notifications LevelDB.
 
