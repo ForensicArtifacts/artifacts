@@ -816,6 +816,31 @@ sources:
   supported_os: [Windows]
 supported_os: [Darwin, Linux, Windows]
 ---
+name: ChromePlatformNotifications
+doc: |
+  Google Chrome Platform Notifications LevelDB.
+
+  The Platform Notifications directory contains the files that comprise a LevelDB
+  database, which in turn holds platform notificaiton data.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Platform Notifications/*'
+  supported_os: [Darwin]
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/.config/google-chrome/*/Platform Notifications/*'
+  supported_os: [Linux]
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.localappdata%%\Google\Chrome\User Data\*\Platform Notifications\*'
+    separator: '\'
+  supported_os: [Windows]
+supported_os: [Darwin, Linux, Windows]
+---
 name: ChromePreferences
 doc: Chrome Preferences file.
 sources:
@@ -855,31 +880,6 @@ sources:
   supported_os: [Windows]
 supported_os: [Darwin, Linux, Windows]
 urls: ['https://forensics.wiki/google_chrome#configuration']
----
-name: ChromePlatformNotifications
-doc: |
-  Google Chrome Platform Notifications LevelDB.
-
-  The Platform Notifications directory contains the files that comprise a LevelDB
-  database, which in turn holds platform notificaiton data.
-sources:
-- type: FILE
-  attributes:
-    paths:
-    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Platform Notifications/*'
-    supported_os: [Darwin]
-- type: FILE
-  attributes:
-    paths:
-    - '%%users.homedir%%/.config/google-chrome/*/Platform Notifications/*'
-    supported_os: [Linux]
-- type: FILE
-  attributes:
-    paths:
-    - '%%users.localappdata%%\Google\Chrome\User Data\*\Platform Notifications\*'
-    separator: '\'
-    supported_os: [Windows]
-supported_os: [Darwin, Linux, Windows]
 ---
 name: ChromeSessionStorage
 doc: |
