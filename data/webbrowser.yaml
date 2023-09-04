@@ -872,13 +872,13 @@ sources:
   attributes:
     paths:
     - '%%users.homedir%%/.config/google-chrome/*/Platform Notifications/*'
-  supported_os: [Linux]
+    supported_os: [Linux]
 - type: FILE
   attributes:
     paths:
     - '%%users.localappdata%%\Google\Chrome\User Data\*\Platform Notifications\*'
     separator: '\'
-  supported_os: [Windows]
+    supported_os: [Windows]
 supported_os: [Darwin, Linux, Windows]
 ---
 name: ChromeSessionStorage
