@@ -822,22 +822,19 @@ doc: |
   Google Chrome Platform Notifications LevelDB.
 
   The Platform Notifications directory contains the files that comprise a LevelDB
-  database, which in turn holds platform notificaiton data.
+  database, which in turn holds platform notification data.
 sources:
 - type: FILE
   attributes:
-    paths:
-    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Platform Notifications/*'
+    paths: ['%%users.homedir%%/Library/Application Support/Google/Chrome/*/Platform Notifications/*']
   supported_os: [Darwin]
 - type: FILE
   attributes:
-    paths:
-    - '%%users.homedir%%/.config/google-chrome/*/Platform Notifications/*'
+    paths: ['%%users.homedir%%/.config/google-chrome/*/Platform Notifications/*']
   supported_os: [Linux]
 - type: FILE
   attributes:
-    paths:
-    - '%%users.localappdata%%\Google\Chrome\User Data\*\Platform Notifications\*'
+    paths: ['%%users.localappdata%%\Google\Chrome\User Data\*\Platform Notifications\*']
     separator: '\'
   supported_os: [Windows]
 supported_os: [Darwin, Linux, Windows]
