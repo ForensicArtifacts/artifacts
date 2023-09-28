@@ -795,6 +795,8 @@ sources:
   attributes:
     paths:
     - '%%users.homedir%%/.mysql_history'
+    - '/root/.mysql_history'
+    - '/.mysql_history'
 supported_os: [Linux]
 ---
 name: NanoHistoryFile
