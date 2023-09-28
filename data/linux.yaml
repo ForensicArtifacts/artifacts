@@ -282,6 +282,7 @@ sources:
     - '/etc/enterprise-release'
     - '/etc/oracle-release'
     - '/etc/redhat-release'
+    - '/etc/rocky-release'
     - '/etc/SuSE-release'
     - '/etc/system-release'
 provides: [os_release, os_major_version, os_minor_version]
