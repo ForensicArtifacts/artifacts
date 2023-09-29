@@ -795,6 +795,8 @@ sources:
 - type: FILE
   attributes:
     paths:
+    - '/.mysql_history'
+    - '/root/.mysql_history'
     - '%%users.homedir%%/.mysql_history'
 supported_os: [Linux]
 ---
@@ -844,6 +846,8 @@ sources:
 - type: FILE
   attributes:
     paths:
+    - '/.psql_history'
+    - '/root/.psql_history'
     - '/var/lib/postgresql/.psql_history'
     - '/var/lib/pgsql/.psql_history'
     - '%%users.homedir%%/.psql_history'
