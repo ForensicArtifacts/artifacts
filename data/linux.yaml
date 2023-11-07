@@ -458,6 +458,14 @@ urls:
 - 'https://linux.die.net/man/5/networkmanager.conf'
 - 'https://man.archlinux.org/man/NetworkManager.conf.5.en#FILE_FORMAT'
 ---
+name: LinuxNssCachePasswdFile
+doc: Local NSS database for remote directory services.
+sources:
+- type: FILE
+  attributes: {paths: ['/etc/passwd.cache']}
+supported_os: [Linux]
+urls: ['https://github.com/google/nsscache']
+---
 name: LinuxPamConfigs
 doc: Configuration files for PAM.
 sources:
