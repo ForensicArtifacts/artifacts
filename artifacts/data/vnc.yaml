@@ -1,0 +1,33 @@
+# VNC artifacts.
+---
+name: VNCPasswordFile
+doc: VNC password file
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '%%users.homedir%%/.vnc/passwd'
+  supported_os: [Linux]
+supported_os: [Linux]  # TODO: darwin
+---
+name: VNCPasswordRegistryValue
+doc: VNC password registry value
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+    - {key: 'HKEY_LOCAL_MACHINE\Software\RealVNC\vncserver', value: 'Password'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\TightVNC\Server', value: 'ControlPassword'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\TightVNC\Server', value: 'Password'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\ORL\WinVNC3', value: 'Password'}
+supported_os: [Windows]
+---
+name: VNCPassword
+doc: VNC Password artifacts 
+sources:
+- type: ARTIFACT_GROUP
+  attributes:
+    names:
+      - VNCPasswordFile
+      - VNCPasswordRegistryValue
+supported_os: [Linux, Windows]
