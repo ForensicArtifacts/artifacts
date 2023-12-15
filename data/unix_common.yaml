@@ -1,5 +1,23 @@
 # Artifacts common to Unix-based operating systems.
 ---
+name: CupsJobCacheFile
+aliases: [MacOSCupsJobCacheFile]
+doc: Common UNIX Printing System (CUPS) job cache file.
+sources:
+- type: FILE
+  attributes: 
+    paths:
+      - '/var/spool/cups/cache/job.cache'
+      - '/var/cache/cups/job.cache'
+  supported_os: [Darwin, Linux]
+- type: FILE
+  attributes: {paths: ['/private/var/spool/cups/cache/job.cache']}
+  supported_os: [Darwin]
+supported_os: [Darwin, Linux]
+urls: 
+- 'https://www.cups.org/doc/man-cups-files.conf.html'
+- 'https://www.cups.org/doc/spec-design.html'
+---
 name: UnixGroupsFile
 aliases: [UnixGroups]
 doc: Unix groups file.
