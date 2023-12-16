@@ -14,7 +14,7 @@ sources:
   attributes: {paths:['/var/cache/cups/job.cache']}
   supported_os: [Linux]
 supported_os: [Darwin, Linux]
-urls: 
+urls:
 - 'https://www.cups.org/doc/man-cups-files.conf.html'
 - 'https://www.cups.org/doc/spec-design.html'
 ---
