@@ -5,14 +5,14 @@ aliases: [MacOSCupsJobCacheFile]
 doc: Common UNIX Printing System (CUPS) job cache file.
 sources:
 - type: FILE
-  attributes: 
-    paths:
-      - '/var/spool/cups/cache/job.cache'
-      - '/var/cache/cups/job.cache'
-  supported_os: [Darwin, Linux]
+  attributes: {paths: ['/var/spool/cups/cache/job.cache']}
+  supported_os: [Darwin]
 - type: FILE
   attributes: {paths: ['/private/var/spool/cups/cache/job.cache']}
   supported_os: [Darwin]
+- type: FILE
+  attributes: {paths:['/var/cache/cups/job.cache']}
+  supported_os: [Linux]
 supported_os: [Darwin, Linux]
 urls: 
 - 'https://www.cups.org/doc/man-cups-files.conf.html'
