@@ -318,10 +318,8 @@ supported_os: [Windows]
     """Tests the AsDict function."""
     artifact_reader = reader.YamlArtifactsReader()
 
-    artifact_definitions = list(artifact_reader.ReadDirectory('data'))
-
     last_artifact_definition = None
-    for artifact in artifact_definitions:
+    for artifact in artifact_reader.ReadDirectory(self._DATA_PATH):
       try:
         artifact_definition = artifact.AsDict()
       except errors.FormatError:

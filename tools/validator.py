@@ -17,7 +17,7 @@ from artifacts import registry
 class ArtifactDefinitionsValidator(object):
   """Artifact definitions validator."""
 
-  LEGACY_PATH = os.path.join('data', 'legacy.yaml')
+  LEGACY_PATH = os.path.join('artifacts', 'data', 'legacy.yaml')
 
   _MACOS_PRIVATE_SUB_PATHS = ('etc', 'tftpboot', 'tmp', 'var')
 

@@ -3,6 +3,7 @@
 """Report statistics about the artifact collection."""
 
 import collections
+import os
 import sys
 import time
 
@@ -70,7 +71,8 @@ Number of Windows Registry key paths: | {self._reg_key_count:d}
     self._source_type_counts = {}
     self._total_count = 0
 
-    for artifact_definition in artifact_reader.ReadDirectory('data'):
+    data_files_path = os.path.join('artifacts', 'data')
+    for artifact_definition in artifact_reader.ReadDirectory(data_files_path):
       sources_supported_os = set()
       for source in artifact_definition.sources:
         self._total_count += 1
