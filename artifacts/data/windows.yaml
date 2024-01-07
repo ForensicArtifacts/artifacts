@@ -262,6 +262,40 @@ sources:
 supported_os: [Windows]
 urls: ['https://github.com/libyal/winreg-kb/blob/main/documentation/Time%20zone%20keys.asciidoc']
 ---
+name: WindowsActiveSyncAutoStart
+doc: Windows ActiveSync AutoStart entries
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
+    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows CE Services\AutoStartOnConnect\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows CE Services\AutoStartOnDisconnect\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows CE Services\AutoStartOnConnect\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows CE Services\AutoStartOnDisconnect\*'
+supported_os: [Windows]
+urls: ['https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2']
+---
+name: WindowsActionCenterSettings
+doc: |
+  Windows Action Center Settings
+
+  Malware can modify these keys to disable notifications that occur
+  when various security features are disabled. One malware family
+  known to modify these keys is Kovter, a well-known trojan.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Action Center\Checks\{e8433b72-5842-4d43-8645-bc2c35960837}.check.*', value: 'CheckSetting'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Action Center\Checks\{e8433b72-5842-4d43-8645-bc2c35960837}.check.*', value: 'CheckSetting'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Notifications\Settings\Windows.SystemToast.SecurityAndMaintenance', value: 'Enabled'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Notifications\Settings\Windows.SystemToast.SecurityAndMaintenance', value: 'Enabled'}
+supported_os: [Windows]
+urls:
+- 'https://winaero.com/blog/registry-tweak-to-disable-action-center-notifications-in-windows-7/'
+- 'https://blog.talosintelligence.com/2019/05/threat-roundup-0517-0524.html'
+- 'https://blogs.technet.microsoft.com/platforms_lync_cloud/2017/05/05/disabling-windows-10-action-center-notifications/'
+---
 name: WindowsBackgroundActivityModeratorKeys
 doc: Windows Background Activity Moderator (BAM) and Desktop Activity Moderator (DAM) registry keys.
 sources:
@@ -321,6 +355,17 @@ supported_os: [Windows]
 urls:
 - 'https://technet.microsoft.com/en-us/library/cc786702(WS.10).aspx'
 - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
+---
+name: WindowsBootConfigurationSettings
+doc: Windows Boot Configuration Settings
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+    - {key: 'HKEY_LOCAL_MACHINE\BCD00000000\Objects\*\Elements\16000009', value: 'Element'}
+    - {key: 'HKEY_LOCAL_MACHINE\BCD00000000\Objects\*\Elements\250000e0', value: 'Element'}
+supported_os: [Windows]
+urls: ['https://forensics.wiki/windows_boot_configuration_data']
 ---
 name: WindowsCIMRepositoryFiles
 doc: |
@@ -723,6 +768,25 @@ sources:
     - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\Tcpip\Parameters', value: 'Domain'}
 provides: [domain]
 supported_os: [Windows]
+---
+name: WindowsDisallowedSystemCertificates
+doc: |
+  Windows Disallowed System Certificates
+
+  Malware can add code-signing certificates associated with
+  antivirus programs to the disallowed list to prevent the
+  AV programs from running.
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
+    - 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\SystemCertificates\Disallowed\Certificates\*'
+    - 'HKEY_USERS\%%users.sid%%\Software\Policies\Microsoft\SystemCertificates\Disallowed\Certificates\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Policies\Microsoft\SystemCertificates\Disallowed\Certificates\*'
+    - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Policies\Microsoft\SystemCertificates\Disallowed\Certificates\*'
+supported_os: [Windows]
+urls:
+- 'https://blog.malwarebytes.com/detections/pum-optional-misplacedcertificate/'
 ---
 name: WindowsEnvironmentUserLoginScripts
 doc: User login scripts configured via Windows environment variables.
@@ -1226,6 +1290,64 @@ supported_os: [Windows]
 urls:
 - 'http://www.geoffchappell.com/studies/windows/shell/shell32/classes/printers.htm'
 ---
+name: WindowsExplorerSettings
+doc: |
+  Windows Explorer Settings
+
+  Malware can modify these keys to make it more difficult for the
+  user to detect and remove malicious software.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'Hidden'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'Hidden'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'Hidden'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'Hidden'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'HideFileExt'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'HideFileExt'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'HideFileExt'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'HideFileExt'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'ShowSuperHidden'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'ShowSuperHidden'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'ShowSuperHidden'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'ShowSuperHidden'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'HideSCAHealth'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'HideSCAHealth'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'HideSCAHealth'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'HideSCAHealth'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoControlPanel'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoControlPanel'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoControlPanel'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoControlPanel'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoFolderOptions'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoFolderOptions'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoFolderOptions'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoFolderOptions'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoRun'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoRun'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoRun'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoRun'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoViewContextMenu'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoViewContextMenu'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoViewContextMenu'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoViewContextMenu'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'ShowControlPanel'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'ShowControlPanel'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'ShowControlPanel'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'ShowControlPanel'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'TaskbarNoNotification'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'TaskbarNoNotification'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'TaskbarNoNotification'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'TaskbarNoNotification'}
+supported_os: [Windows]
+urls:
+- 'https://www.sdkhere.com/2016/02/analysis-of-malware-using-wmi-query.html'
+- 'https://www.trendmicro.com/vinfo/us/threat-encyclopedia/malware/troj_mandrom.e'
+- 'https://www.trendmicro.com/vinfo/us/threat-encyclopedia/malware/troj_deleter.ah'
+- 'https://blog.malwarebytes.com/detections/pum-optional-disabledrightclick/'
+- 'https://blog.malwarebytes.com/detections/pum-optional-disableshowcontrolpanel/'
+---
 name: WindowsFileTypeAutorunAssociations
 doc: |
   Registry value for what application class identifier (CLSID) to launch for a file extension.
@@ -1291,6 +1413,95 @@ sources:
     - '%%environ_systemroot%%\System32\GroupPolicy\Machine\Scripts\Startup\*'
     separator: '\'
 supported_os: [Windows]
+---
+name: WindowsFirewallAuthorizedApplications
+doc: |
+  Windows Firewall Authorized Applications
+
+  Malware can add paths to this list to more easily communicate
+  over the network on an infected machine. For instance, Emotet
+  modifies some these settings after gaining execution.
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
+    # Windows XP and 2003
+    - 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\WindowsFirewall\DomainProfile\AuthorizedApplications\List\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\WindowsFirewall\StandardProfile\AuthorizedApplications\List\*'
+    # Windows Vista and later
+    - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile\AuthorizedApplications\List\*'
+    - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile\AuthorizedApplications\List\*'
+    - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\AuthorizedApplications\List\*'
+supported_os: [Windows]
+urls:
+- 'https://threatvector.cylance.com/en_us/home/threat-spotlight-eyepyramid-malware.html'
+- 'https://blog.talosintelligence.com/2019/05/threat-roundup-0524-0531.html'
+---
+name: WindowsFirewallGloballyOpenPorts
+doc: |
+  Windows Firewall Globally Open Ports
+
+  Malware can add to the list of open ports to avoid
+  having to create Windows Firewall exceptions tied
+  to specific applications.
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
+    # Windows XP and 2003
+    - 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\WindowsFirewall\DomainProfile\GloballyOpenPorts\List\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\WindowsFirewall\StandardProfile\GloballyOpenPorts\List\*'
+    # Windows Vista and later
+    - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile\GloballyOpenPorts\List\*'
+    - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile\GloballyOpenPorts\List\*'
+    - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\GloballyOpenPorts\List\*'
+supported_os: [Windows]
+urls:
+- 'https://qaforce.wordpress.com/2009/10/06/windows-firewall-registry-keys/'
+- 'https://github.com/steeve85/Malwares/wiki/Registry'
+---
+name: WindowsFirewallPolicySettings
+doc: |
+  Windows Firewall Policy Settings
+
+  Malware can modify these settings to more easily communicate
+  over the network on an infected machine. For instance, Emotet
+  modifies some these settings after gaining execution.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile', value: 'EnableFirewall'}
+    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile', value: 'DisableNotifications'}
+    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile', value: 'DoNotAllowExceptions'}
+    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile', value: 'DefaultInboundAction'}
+    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile', value: 'DefaultOutboundAction'}
+    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile', value: 'EnableFirewall'}
+    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile', value: 'DisableNotifications'}
+    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile', value: 'DoNotAllowExceptions'}
+    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile', value: 'DefaultInboundAction'}
+    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile', value: 'DefaultOutboundAction'}
+    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile', value: 'EnableFirewall'}
+    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile', value: 'DisableNotifications'}
+    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile', value: 'DoNotAllowExceptions'}
+    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile', value: 'DefaultInboundAction'}
+    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile', value: 'DefaultOutboundAction'}
+supported_os: [Windows]
+urls:
+- 'https://docs.microsoft.com/en-us/windows-hardware/customize/desktop/unattend/networking-mpssvc-svc-privateprofile-enablefirewall'
+- 'https://docs.microsoft.com/en-us/windows-hardware/customize/desktop/unattend/networking-mpssvc-svc-privateprofile-disablenotifications'
+- 'https://blog.talosintelligence.com/2019/05/threat-roundup-0503-0510.html'
+---
+name: WindowsFontDrivers
+doc: Windows font drivers from the Registry.
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
+    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Font Drivers\*'
+supported_os: [Windows]
+urls:
+- 'https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2'
 ---
 name: WindowsHostsFiles
 doc: The Windows hosts and lmhosts file.
@@ -1813,6 +2024,16 @@ sources:
     separator: '\'
 supported_os: [Windows]
 ---
+name: WindowsRDPClientBitmapCache
+doc: Artifacts of RDP connection contents
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.localappdata%%\Microsoft\Terminal Server Client\Cache\*.*']
+    separator: '\'
+supported_os: [Windows]
+urls: ['https://forensics.wiki/windows#rdp-bitmap-cache']
+---
 name: WindowsRecentFileCacheBCF
 doc: The RecentFileCache.bcf file.
 sources:
@@ -2064,266 +2285,6 @@ urls:
 - 'https://docs.microsoft.com/en-us/windows/desktop/search/-search-ifilter-implementations'
 - 'https://docs.microsoft.com/en-us/windows/desktop/search/-search-ifilter-registering-filters'
 ---
-name: WindowsSecurityProviders
-doc: Security Providers DLLs
-sources:
-- type: REGISTRY_KEY
-  attributes:
-    keys: ['HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\SecurityProviders\*']
-supported_os: [Windows]
-urls:
-- 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
-- 'https://github.com/wmark/security-configuration/blob/master/Windows/disable-weak-ciphers-and-enable-TLS1.x.reg'
----
-name: WindowsServiceControlManagerExtension
-doc: Windows service control manager extension
-sources:
-- type: REGISTRY_VALUE
-  attributes:
-    key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control', value: 'ServiceControlManagerExtension'}]
-supported_os: [Windows]
-urls:
-- 'http://forum.sysinternals.com/autoruns-and-windows-7_topic19770.html'
-- 'https://support.microsoft.com/en-us/kb/102985'
-- 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
-- 'http://www.silentrunners.org/Silent%20Runners.vbs'
----
-name: WindowsServices
-doc: Windows service and driver configurations.
-sources:
-- type: REGISTRY_KEY
-  attributes:
-    keys: ['HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\*']
-supported_os: [Windows]
-urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/ServicesAndDrivers.html']
----
-name: WindowsActionCenterSettings
-doc: |
-  Windows Action Center Settings
-
-  Malware can modify these keys to disable notifications that occur
-  when various security features are disabled. One malware family
-  known to modify these keys is Kovter, a well-known trojan.
-sources:
-- type: REGISTRY_VALUE
-  attributes:
-    key_value_pairs:
-    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Action Center\Checks\{e8433b72-5842-4d43-8645-bc2c35960837}.check.*', value: 'CheckSetting'}
-    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Action Center\Checks\{e8433b72-5842-4d43-8645-bc2c35960837}.check.*', value: 'CheckSetting'}
-    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Notifications\Settings\Windows.SystemToast.SecurityAndMaintenance', value: 'Enabled'}
-    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Notifications\Settings\Windows.SystemToast.SecurityAndMaintenance', value: 'Enabled'}
-supported_os: [Windows]
-urls:
-- 'https://winaero.com/blog/registry-tweak-to-disable-action-center-notifications-in-windows-7/'
-- 'https://blog.talosintelligence.com/2019/05/threat-roundup-0517-0524.html'
-- 'https://blogs.technet.microsoft.com/platforms_lync_cloud/2017/05/05/disabling-windows-10-action-center-notifications/'
----
-name: WindowsBootConfigurationSettings
-doc: Windows Boot Configuration Settings
-sources:
-- type: REGISTRY_VALUE
-  attributes:
-    key_value_pairs:
-    - {key: 'HKEY_LOCAL_MACHINE\BCD00000000\Objects\*\Elements\16000009', value: 'Element'}
-    - {key: 'HKEY_LOCAL_MACHINE\BCD00000000\Objects\*\Elements\250000e0', value: 'Element'}
-supported_os: [Windows]
-urls: ['https://forensics.wiki/windows_boot_configuration_data']
----
-name: WindowsDisallowedSystemCertificates
-doc: |
-  Windows Disallowed System Certificates
-
-  Malware can add code-signing certificates associated with
-  antivirus programs to the disallowed list to prevent the
-  AV programs from running.
-sources:
-- type: REGISTRY_KEY
-  attributes:
-    keys:
-    - 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\SystemCertificates\Disallowed\Certificates\*'
-    - 'HKEY_USERS\%%users.sid%%\Software\Policies\Microsoft\SystemCertificates\Disallowed\Certificates\*'
-    - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Policies\Microsoft\SystemCertificates\Disallowed\Certificates\*'
-    - 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Policies\Microsoft\SystemCertificates\Disallowed\Certificates\*'
-supported_os: [Windows]
-urls:
-- 'https://blog.malwarebytes.com/detections/pum-optional-misplacedcertificate/'
----
-name: WindowsExplorerSettings
-doc: |
-  Windows Explorer Settings
-
-  Malware can modify these keys to make it more difficult for the
-  user to detect and remove malicious software.
-sources:
-- type: REGISTRY_VALUE
-  attributes:
-    key_value_pairs:
-    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'Hidden'}
-    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'Hidden'}
-    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'Hidden'}
-    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'Hidden'}
-    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'HideFileExt'}
-    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'HideFileExt'}
-    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'HideFileExt'}
-    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'HideFileExt'}
-    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'ShowSuperHidden'}
-    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'ShowSuperHidden'}
-    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'ShowSuperHidden'}
-    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'ShowSuperHidden'}
-    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'HideSCAHealth'}
-    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'HideSCAHealth'}
-    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'HideSCAHealth'}
-    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'HideSCAHealth'}
-    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoControlPanel'}
-    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoControlPanel'}
-    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoControlPanel'}
-    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoControlPanel'}
-    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoFolderOptions'}
-    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoFolderOptions'}
-    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoFolderOptions'}
-    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoFolderOptions'}
-    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoRun'}
-    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoRun'}
-    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoRun'}
-    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoRun'}
-    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoViewContextMenu'}
-    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoViewContextMenu'}
-    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoViewContextMenu'}
-    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'NoViewContextMenu'}
-    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'ShowControlPanel'}
-    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'ShowControlPanel'}
-    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'ShowControlPanel'}
-    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\Advanced', value: 'ShowControlPanel'}
-    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'TaskbarNoNotification'}
-    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'TaskbarNoNotification'}
-    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'TaskbarNoNotification'}
-    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\Explorer', value: 'TaskbarNoNotification'}
-supported_os: [Windows]
-urls:
-- 'https://www.sdkhere.com/2016/02/analysis-of-malware-using-wmi-query.html'
-- 'https://www.trendmicro.com/vinfo/us/threat-encyclopedia/malware/troj_mandrom.e'
-- 'https://www.trendmicro.com/vinfo/us/threat-encyclopedia/malware/troj_deleter.ah'
-- 'https://blog.malwarebytes.com/detections/pum-optional-disabledrightclick/'
-- 'https://blog.malwarebytes.com/detections/pum-optional-disableshowcontrolpanel/'
----
-name: WindowsSystemSettings
-doc: |
-  Windows System Settings
-
-  Malware can modify these keys to make it more difficult for the
-  user to detect and remove malicious software.
-sources:
-- type: REGISTRY_VALUE
-  attributes:
-    key_value_pairs:
-    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System', value: 'DisableCAD'}
-    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Policies\System', value: 'DisableCAD'}
-    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\System', value: 'DisableCAD'}
-    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\System', value: 'DisableCAD'}
-    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System', value: 'DisableRegistryTools'}
-    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Policies\System', value: 'DisableRegistryTools'}
-    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\System', value: 'DisableRegistryTools'}
-    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\System', value: 'DisableRegistryTools'}
-    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System', value: 'DisableTaskMgr'}
-    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Policies\System', value: 'DisableTaskMgr'}
-    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\System', value: 'DisableTaskMgr'}
-    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\System', value: 'DisableTaskMgr'}
-    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System', value: 'NoDispCPL'}
-    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Policies\System', value: 'NoDispCPL'}
-    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\System', value: 'NoDispCPL'}
-    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\System', value: 'NoDispCPL'}
-    - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\System', value: 'DisableCMD'}
-    - {key: 'HKEY_USERS\%%users.sid%%\Software\Policies\Microsoft\Windows\System', value: 'DisableCMD'}
-    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Policies\Microsoft\Windows\System', value: 'DisableCMD'}
-    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Policies\Microsoft\Windows\System', value: 'DisableCMD'}
-supported_os: [Windows]
-urls:
-- 'https://www.sdkhere.com/2016/02/analysis-of-malware-using-wmi-query.html'
-- 'https://www.thewindowsclub.com/enable-disable-command-prompt-windows'
-- 'https://blog.malwarebytes.com/detections/pum-optional-disableregistrytools/'
-- 'https://blog.malwarebytes.com/detections/pum-optional-disabletaskmgr/'
-- 'https://www.stigviewer.com/stig/windows_7/2014-04-02/finding/V-1154'
-- 'https://blog.malwarebytes.com/detections/pum-optional-nodispcpl/'
-- 'https://blog.malwarebytes.com/detections/pum-optional-disablecmdprompt/'
----
-name: WindowsFirewallAuthorizedApplications
-doc: |
-  Windows Firewall Authorized Applications
-
-  Malware can add paths to this list to more easily communicate
-  over the network on an infected machine. For instance, Emotet
-  modifies some these settings after gaining execution.
-sources:
-- type: REGISTRY_KEY
-  attributes:
-    keys:
-    # Windows XP and 2003
-    - 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\WindowsFirewall\DomainProfile\AuthorizedApplications\List\*'
-    - 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\WindowsFirewall\StandardProfile\AuthorizedApplications\List\*'
-    # Windows Vista and later
-    - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile\AuthorizedApplications\List\*'
-    - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile\AuthorizedApplications\List\*'
-    - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\AuthorizedApplications\List\*'
-supported_os: [Windows]
-urls:
-- 'https://threatvector.cylance.com/en_us/home/threat-spotlight-eyepyramid-malware.html'
-- 'https://blog.talosintelligence.com/2019/05/threat-roundup-0524-0531.html'
----
-name: WindowsFirewallGloballyOpenPorts
-doc: |
-  Windows Firewall Globally Open Ports
-
-  Malware can add to the list of open ports to avoid
-  having to create Windows Firewall exceptions tied
-  to specific applications.
-sources:
-- type: REGISTRY_KEY
-  attributes:
-    keys:
-    # Windows XP and 2003
-    - 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\WindowsFirewall\DomainProfile\GloballyOpenPorts\List\*'
-    - 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\WindowsFirewall\StandardProfile\GloballyOpenPorts\List\*'
-    # Windows Vista and later
-    - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile\GloballyOpenPorts\List\*'
-    - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile\GloballyOpenPorts\List\*'
-    - 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile\GloballyOpenPorts\List\*'
-supported_os: [Windows]
-urls:
-- 'https://qaforce.wordpress.com/2009/10/06/windows-firewall-registry-keys/'
-- 'https://github.com/steeve85/Malwares/wiki/Registry'
----
-name: WindowsFirewallPolicySettings
-doc: |
-  Windows Firewall Policy Settings
-
-  Malware can modify these settings to more easily communicate
-  over the network on an infected machine. For instance, Emotet
-  modifies some these settings after gaining execution.
-sources:
-- type: REGISTRY_VALUE
-  attributes:
-    key_value_pairs:
-    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile', value: 'EnableFirewall'}
-    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile', value: 'DisableNotifications'}
-    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile', value: 'DoNotAllowExceptions'}
-    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile', value: 'DefaultInboundAction'}
-    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\DomainProfile', value: 'DefaultOutboundAction'}
-    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile', value: 'EnableFirewall'}
-    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile', value: 'DisableNotifications'}
-    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile', value: 'DoNotAllowExceptions'}
-    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile', value: 'DefaultInboundAction'}
-    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\PublicProfile', value: 'DefaultOutboundAction'}
-    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile', value: 'EnableFirewall'}
-    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile', value: 'DisableNotifications'}
-    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile', value: 'DoNotAllowExceptions'}
-    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile', value: 'DefaultInboundAction'}
-    - {key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\StandardProfile', value: 'DefaultOutboundAction'}
-supported_os: [Windows]
-urls:
-- 'https://docs.microsoft.com/en-us/windows-hardware/customize/desktop/unattend/networking-mpssvc-svc-privateprofile-enablefirewall'
-- 'https://docs.microsoft.com/en-us/windows-hardware/customize/desktop/unattend/networking-mpssvc-svc-privateprofile-disablenotifications'
-- 'https://blog.talosintelligence.com/2019/05/threat-roundup-0503-0510.html'
----
 name: WindowsSecurityCenterSettings
 doc: |
   Windows Security Center Settings
@@ -2359,95 +2320,49 @@ urls:
 - 'https://blog.appriver.com/phorphiex/trik-botnet-campaign-leads-to-multiple-infections-ransomware-banking-trojan-cryptojacking'
 - 'https://ccm.net/faq/1446-disabling-security-alerts-under-vista'
 ---
-name: WindowsSystemRestoreSettings
-doc: |
-  Windows System Restore Settings
-
-  Some malware, especially ransomware, will disable system restore
-  to make system recovery more difficult.
-sources:
-- type: REGISTRY_VALUE
-  attributes:
-    key_value_pairs:
-    - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows NT\SystemRestore', value: 'DisableConfig'}
-    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\SystemRestore', value: 'DisableConfig'}
-    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Policies\Microsoft\Windows NT\SystemRestore', value: 'DisableConfig'}
-    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows NT\CurrentVersion\SystemRestore', value: 'DisableConfig'}
-    - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows NT\SystemRestore', value: 'DisableSR'}
-    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\SystemRestore', value: 'DisableSR'}
-    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Policies\Microsoft\Windows NT\SystemRestore', value: 'DisableSR'}
-    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows NT\CurrentVersion\SystemRestore', value: 'DisableSR'}
-    - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\Installer', value: 'LimitSystemRestoreCheckpointing'}
-    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Policies\Microsoft\Windows\Installer', value: 'LimitSystemRestoreCheckpointing'}
-supported_os: [Windows]
-urls:
-- 'https://blog.talosintelligence.com/2019/05/threat-roundup-0503-0510.html'
-- 'https://www.windows-commandline.com/enable-disable-system-restore-service/'
-- 'https://docs.microsoft.com/en-us/windows/desktop/msi/limitsystemrestorecheckpointing'
----
-name: WindowsUserAccountControlSettings
-doc: |
-  Windows User Account Control Settings
-
-  Malware sometimes disables UAC to make it easier to perform
-  actions on an infected machine.
-sources:
-- type: REGISTRY_VALUE
-  attributes:
-    key_value_pairs:
-    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System', value: 'EnableLUA'}
-    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\System', value: 'EnableLUA'}
-    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System', value: 'ConsentPromptBehaviorAdmin'}
-    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\System', value: 'ConsentPromptBehaviorAdmin'}
-supported_os: [Windows]
-urls:
-- 'https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-gpsb/958053ae-5397-4f96-977f-b7700ee461ec'
-- 'https://blog.talosintelligence.com/2019/05/threat-roundup-0503-0510.html'
-- 'https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-gpsb/341747f5-6b5d-4d30-85fc-fa1cc04038d4'
----
-name: WindowsUpgradeSettings
-doc: |
-  Windows Upgrade Settings
-
-  Malware sometimes disables a machine ability to upgrade from
-  previous versions of Windows to Windows 10. One malware family
-  known to modify these keys is Kovter, a well-known trojan.
-sources:
-- type: REGISTRY_VALUE
-  attributes:
-    key_value_pairs:
-    - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\WindowsUpdate', value: 'DisableOSUpgrade'}
-    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Policies\Microsoft\Windows\WindowsUpdate', value: 'DisableOSUpgrade'}
-    - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\WindowsUpdate\OSUpgrade', value: 'ReservationsAllowed'}
-    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Policies\Microsoft\Windows\WindowsUpdate\OSUpgrade', value: 'ReservationsAllowed'}
-supported_os: [Windows]
-urls:
-- 'https://www.ghacks.net/2016/01/08/disableosupgrade-prevents-the-upgrade-to-windows-10/'
-- 'https://blog.talosintelligence.com/2019/05/threat-roundup-0517-0524.html'
----
-name: WindowsUpdateSettings
-doc: Windows Update Settings
-sources:
-- type: REGISTRY_VALUE
-  attributes:
-    key_value_pairs:
-    - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\WindowsUpdate\AU', value: 'NoAutoUpdate'}
-    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Policies\Microsoft\Windows\WindowsUpdate\AU', value: 'NoAutoUpdate'}
-supported_os: [Windows]
-urls:
-- 'https://docs.microsoft.com/en-us/windows/deployment/update/waas-wu-settings'
-- 'https://blog.talosintelligence.com/2019/06/threat-roundup-0531-0607.html'
----
-name: WindowsFontDrivers
-doc: Windows font drivers from the Registry.
+name: WindowsSecurityProviders
+doc: Security Providers DLLs
 sources:
 - type: REGISTRY_KEY
   attributes:
-    keys:
-    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Font Drivers\*'
+    keys: ['HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\SecurityProviders\*']
 supported_os: [Windows]
 urls:
-- 'https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2'
+- 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
+- 'https://github.com/wmark/security-configuration/blob/master/Windows/disable-weak-ciphers-and-enable-TLS1.x.reg'
+---
+name: WindowsSecuritySettingsDatabases
+doc: Windows security settings databases (secedit.sdb and spsecupd.sdb)
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%environ_systemroot%%\security\Database\secedit.sdb'
+    - '%%environ_systemroot%%\security\templates\spsecupd.sdb'
+    separator: '\'
+supported_os: [Windows]
+---
+name: WindowsServiceControlManagerExtension
+doc: Windows service control manager extension
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control', value: 'ServiceControlManagerExtension'}]
+supported_os: [Windows]
+urls:
+- 'http://forum.sysinternals.com/autoruns-and-windows-7_topic19770.html'
+- 'https://support.microsoft.com/en-us/kb/102985'
+- 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
+- 'http://www.silentrunners.org/Silent%20Runners.vbs'
+---
+name: WindowsServices
+doc: Windows service and driver configurations.
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys: ['HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\*']
+supported_os: [Windows]
+urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/ServicesAndDrivers.html']
 ---
 name: WindowsSessionManagerBootExecute
 doc: Windows Session Manager BootExecute persistence.
@@ -2753,6 +2668,24 @@ urls:
 - 'https://technet.microsoft.com/en-us/library/ff404236.aspx'
 - 'https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2'
 ---
+name: WindowsStateRepositoryDeploymentDatabaseFile
+doc: The State Reposistory deployment database file (StateRepository-Deployment.srd).
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%environ_programdata%%\Microsoft\Windows\AppRepository\StateRepository-Deployment.srd']
+    separator: '\'
+supported_os: [Windows]
+---
+name: WindowsStateRepositoryMachineDatabaseFile
+doc: The State Reposistory machine database file (StateRepository-Machine.srd).
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%environ_programdata%%\Microsoft\Windows\AppRepository\StateRepository-Machine.srd']
+    separator: '\'
+supported_os: [Windows]
+---
 name: WindowsStartupFolderModification
 doc: Windows startup folder Registry values.
 sources:
@@ -2841,6 +2774,72 @@ sources:
     separator: '\'
 supported_os: [Windows]
 urls: ['https://forensics.wiki/superfetch']
+---
+name: WindowsSystemRestoreSettings
+doc: |
+  Windows System Restore Settings
+
+  Some malware, especially ransomware, will disable system restore
+  to make system recovery more difficult.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows NT\SystemRestore', value: 'DisableConfig'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\SystemRestore', value: 'DisableConfig'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Policies\Microsoft\Windows NT\SystemRestore', value: 'DisableConfig'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows NT\CurrentVersion\SystemRestore', value: 'DisableConfig'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows NT\SystemRestore', value: 'DisableSR'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\SystemRestore', value: 'DisableSR'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Policies\Microsoft\Windows NT\SystemRestore', value: 'DisableSR'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows NT\CurrentVersion\SystemRestore', value: 'DisableSR'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\Installer', value: 'LimitSystemRestoreCheckpointing'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Policies\Microsoft\Windows\Installer', value: 'LimitSystemRestoreCheckpointing'}
+supported_os: [Windows]
+urls:
+- 'https://blog.talosintelligence.com/2019/05/threat-roundup-0503-0510.html'
+- 'https://www.windows-commandline.com/enable-disable-system-restore-service/'
+- 'https://docs.microsoft.com/en-us/windows/desktop/msi/limitsystemrestorecheckpointing'
+---
+name: WindowsSystemSettings
+doc: |
+  Windows System Settings
+
+  Malware can modify these keys to make it more difficult for the
+  user to detect and remove malicious software.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System', value: 'DisableCAD'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Policies\System', value: 'DisableCAD'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\System', value: 'DisableCAD'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\System', value: 'DisableCAD'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System', value: 'DisableRegistryTools'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Policies\System', value: 'DisableRegistryTools'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\System', value: 'DisableRegistryTools'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\System', value: 'DisableRegistryTools'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System', value: 'DisableTaskMgr'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Policies\System', value: 'DisableTaskMgr'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\System', value: 'DisableTaskMgr'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\System', value: 'DisableTaskMgr'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System', value: 'NoDispCPL'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Policies\System', value: 'NoDispCPL'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\System', value: 'NoDispCPL'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\System', value: 'NoDispCPL'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\System', value: 'DisableCMD'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Policies\Microsoft\Windows\System', value: 'DisableCMD'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Policies\Microsoft\Windows\System', value: 'DisableCMD'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Policies\Microsoft\Windows\System', value: 'DisableCMD'}
+supported_os: [Windows]
+urls:
+- 'https://www.sdkhere.com/2016/02/analysis-of-malware-using-wmi-query.html'
+- 'https://www.thewindowsclub.com/enable-disable-command-prompt-windows'
+- 'https://blog.malwarebytes.com/detections/pum-optional-disableregistrytools/'
+- 'https://blog.malwarebytes.com/detections/pum-optional-disabletaskmgr/'
+- 'https://www.stigviewer.com/stig/windows_7/2014-04-02/finding/V-1154'
+- 'https://blog.malwarebytes.com/detections/pum-optional-nodispcpl/'
+- 'https://blog.malwarebytes.com/detections/pum-optional-disablecmdprompt/'
 ---
 name: WindowsSystemIniFiles
 doc: Windows system ini files
@@ -2973,6 +2972,23 @@ sources:
 supported_os: [Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/SystemResourceUsageMonitor.html']
 ---
+name: WindowsStartupInfo
+doc: |
+  StartupInfo XML files.
+
+  The files include the user account's Security Identifier (SID) in the name
+  and there could be up to 5 per user account. They contain a list of processes
+  that were executed within the first 90 seconds from the time the user logged
+  in. The info includes start time, the full command line and the parent
+  process info, among other things.
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%environ_systemroot%%\System32\WDI\LogFiles\StartupInfo\*.xml']
+    separator: '\'
+supported_os: [Windows]
+urls: ['https://forensics.wiki/windows#startup-info']
+---
 name: WindowsTempDirectories
 doc: Contents of the Windows temporary directories
 sources:
@@ -3030,29 +3046,6 @@ sources:
 supported_os: [Windows]
 urls: ['https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2']
 ---
-name: WindowsRDPClientBitmapCache
-doc: Artifacts of RDP connection contents
-sources:
-- type: FILE
-  attributes:
-    paths: ['%%users.localappdata%%\Microsoft\Terminal Server Client\Cache\*.*']
-    separator: '\'
-supported_os: [Windows]
-urls: ['https://forensics.wiki/windows#rdp-bitmap-cache']
----
-name: WindowsActiveSyncAutoStart
-doc: Windows ActiveSync AutoStart entries
-sources:
-- type: REGISTRY_KEY
-  attributes:
-    keys:
-    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows CE Services\AutoStartOnConnect\*'
-    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows CE Services\AutoStartOnDisconnect\*'
-    - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows CE Services\AutoStartOnConnect\*'
-    - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows CE Services\AutoStartOnDisconnect\*'
-supported_os: [Windows]
-urls: ['https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2']
----
 name: WindowsTimezone
 aliases: [WinTimeZone]
 doc: The time zone of the system as a Windows time zone name or in MUI form.
@@ -3081,6 +3074,19 @@ urls:
 - 'http://gladiator-antivirus.com/forum/index.php?showtopic=24610'
 - 'http://www.liutilities.com/products/registrybooster/tweaklibrary/tweaks/11118/'
 ---
+name: WindowsTileDataLayerDatabase
+doc: |
+  Windows tile data layer database (vedatamodel.edb)
+
+  The tile data layer database is used to store information about Start Tiles.
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.localappdata%%\TileDataLayer\Database\vedatamodel.edb']
+    separator: '\'
+supported_os: [Windows]
+urls: ['https://forensics.wiki/extensible_storage_engine_(ese)_database_file_(edb)_format#tile-data-layer-database']
+---
 name: WindowsUninstallKeys
 doc: Uninstall Registry keys
 sources:
@@ -3104,6 +3110,32 @@ sources:
 supported_os: [Windows]
 urls: ['https://social.technet.microsoft.com/Forums/en-US/cadee4de-24d0-403e-9f3e-75868abf8f34']
 ---
+name: WindowsUpdateLogFile
+doc: Windows Update log files.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%environ_programdata%%\USOShared\Logs\System\*.etl'
+    - '%%environ_systemroot%%\Logs\CBS\CBS*.log'
+    - '%%environ_systemroot%%\Logs\WindowsUpdate\WindowsUpdate*.etl'
+    separator: '\'
+supported_os: [Windows]
+urls: ['https://learn.microsoft.com/en-us/windows/deployment/update/windows-update-logs']
+---
+name: WindowsUpdateSettings
+doc: Windows Update Settings
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\WindowsUpdate\AU', value: 'NoAutoUpdate'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Policies\Microsoft\Windows\WindowsUpdate\AU', value: 'NoAutoUpdate'}
+supported_os: [Windows]
+urls:
+- 'https://docs.microsoft.com/en-us/windows/deployment/update/waas-wu-settings'
+- 'https://blog.talosintelligence.com/2019/06/threat-roundup-0531-0607.html'
+---
 name: WindowsUpdateStatus
 doc: Windows auto update status.
 sources:
@@ -3120,6 +3152,72 @@ supported_os: [Windows]
 urls:
 - 'https://forensics.wiki/windows_update'
 - 'http://blogs.msdn.com/b/aruns_blog/archive/2011/06/20/active-setup-registry-key-what-it-is-and-how-to-create-in-the-package-using-admin-studio-install-shield.aspx'
+---
+name: WindowsUpdateStoreDatabaseFile
+doc: The Update Service Orchestrator (USO) private update store database file.
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%environ_programdata%%\USOPrivate\UpdateStore\store.db']
+    separator: '\'
+supported_os: [Windows]
+---
+name: WindowsUpgradeSettings
+doc: |
+  Windows Upgrade Settings
+
+  Malware sometimes disables a machine ability to upgrade from
+  previous versions of Windows to Windows 10. One malware family
+  known to modify these keys is Kovter, a well-known trojan.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\WindowsUpdate', value: 'DisableOSUpgrade'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Policies\Microsoft\Windows\WindowsUpdate', value: 'DisableOSUpgrade'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\WindowsUpdate\OSUpgrade', value: 'ReservationsAllowed'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Policies\Microsoft\Windows\WindowsUpdate\OSUpgrade', value: 'ReservationsAllowed'}
+supported_os: [Windows]
+urls:
+- 'https://www.ghacks.net/2016/01/08/disableosupgrade-prevents-the-upgrade-to-windows-10/'
+- 'https://blog.talosintelligence.com/2019/05/threat-roundup-0517-0524.html'
+---
+name: WindowsUserAccessLogging
+doc: |
+  User Access Logging (UAL) databases.
+
+  UAL is a local data aggregation feature (enabled by default) on Windows
+  Servers 2012 and above, recording client usage by role and product on each
+  system providing the resource. It's typically between 2 and 4 extensible
+  storage engine (ESE) databases ("Current.mdb", "SystemIdentity.mdb, and
+  "<GUID>.mdb").
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%environ_systemroot%%\System32\LogFiles\SUM\*.mdb']
+    separator: '\'
+supported_os: [Windows]
+urls: ['https://forensics.wiki/windows#user-access-logging-ual']
+---
+name: WindowsUserAccountControlSettings
+doc: |
+  Windows User Account Control Settings
+
+  Malware sometimes disables UAC to make it easier to perform
+  actions on an infected machine.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System', value: 'EnableLUA'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\System', value: 'EnableLUA'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System', value: 'ConsentPromptBehaviorAdmin'}
+    - {key: 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Policies\System', value: 'ConsentPromptBehaviorAdmin'}
+supported_os: [Windows]
+urls:
+- 'https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-gpsb/958053ae-5397-4f96-977f-b7700ee461ec'
+- 'https://blog.talosintelligence.com/2019/05/threat-roundup-0503-0510.html'
+- 'https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-gpsb/341747f5-6b5d-4d30-85fc-fa1cc04038d4'
 ---
 name: WindowsUserAutomaticDestinationsJumpLists
 doc: Windows user AutomaticDestinations Jump Lists.
@@ -3377,6 +3475,14 @@ sources:
 supported_os: [Windows]
 urls: ['https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2']
 ---
+name: WindowsWordWheelQueryRegistryKey
+doc: Keywords searched in from the Windows start menu, potentially resulting in files or folders access or program executions.
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys: ['HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\WordWheelQuery\*']
+supported_os: [Windows]
+---
 name: WindowsXMLEventLogApplication
 doc: Application Windows XML Event Log.
 sources:
@@ -3455,82 +3561,3 @@ urls:
 - 'http://www.nirsoft.net/utils/winsock_service_providers.html'
 - 'https://msdn.microsoft.com/en-us/library/windows/desktop/ms739923(v=vs.85).aspx'
 - 'https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2'
----
-name: WindowsSecuritySettingsDatabases
-doc: Windows security settings databases (secedit.sdb and spsecupd.sdb)
-sources:
-- type: FILE
-  attributes:
-    paths:
-    - '%%environ_systemroot%%\security\Database\secedit.sdb'
-    - '%%environ_systemroot%%\security\templates\spsecupd.sdb'
-    separator: '\'
-supported_os: [Windows]
----
-name: WindowsStartupInfo
-doc: |
-  StartupInfo XML files.
-
-  The files include the user account's Security Identifier (SID) in the name
-  and there could be up to 5 per user account. They contain a list of processes
-  that were executed within the first 90 seconds from the time the user logged
-  in. The info includes start time, the full command line and the parent
-  process info, among other things.
-sources:
-- type: FILE
-  attributes:
-    paths: ['%%environ_systemroot%%\System32\WDI\LogFiles\StartupInfo\*.xml']
-    separator: '\'
-supported_os: [Windows]
-urls: ['https://forensics.wiki/windows#startup-info']
----
-name: WindowsTileDataLayerDatabase
-doc: |
-  Windows tile data layer database (vedatamodel.edb)
-
-  The tile data layer database is used to store information about Start Tiles.
-sources:
-- type: FILE
-  attributes:
-    paths: ['%%users.localappdata%%\TileDataLayer\Database\vedatamodel.edb']
-    separator: '\'
-supported_os: [Windows]
-urls: ['https://forensics.wiki/extensible_storage_engine_(ese)_database_file_(edb)_format#tile-data-layer-database']
----
-name: WindowsUpdateLogFile
-doc: Windows Update log files.
-sources:
-- type: FILE
-  attributes:
-    paths:
-    - '%%environ_programdata%%\USOShared\Logs\System\*.etl'
-    - '%%environ_systemroot%%\Logs\CBS\CBS*.log'
-    - '%%environ_systemroot%%\Logs\WindowsUpdate\WindowsUpdate*.etl'
-    separator: '\'
-supported_os: [Windows]
-urls: ['https://learn.microsoft.com/en-us/windows/deployment/update/windows-update-logs']
----
-name: WindowsUserAccessLogging
-doc: |
-  User Access Logging (UAL) databases.
-
-  UAL is a local data aggregation feature (enabled by default) on Windows
-  Servers 2012 and above, recording client usage by role and product on each
-  system providing the resource. It's typically between 2 and 4 extensible
-  storage engine (ESE) databases ("Current.mdb", "SystemIdentity.mdb, and
-  "<GUID>.mdb").
-sources:
-- type: FILE
-  attributes:
-    paths: ['%%environ_systemroot%%\System32\LogFiles\SUM\*.mdb']
-    separator: '\'
-supported_os: [Windows]
-urls: ['https://forensics.wiki/windows#user-access-logging-ual']
----
-name: WindowsWordWheelQueryRegistryKey
-doc: Keywords searched in from the Windows start menu, potentially resulting in files or folders access or program executions.
-sources:
-- type: REGISTRY_KEY
-  attributes:
-    keys: ['HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\WordWheelQuery\*']
-supported_os: [Windows]
