@@ -101,7 +101,8 @@ Number of Windows Registry key paths: | {self._reg_key_count:d}
   def PrintStats(self):
     """Build stats and print in MarkDown format."""
     data_directory_url = (
-        'https://github.com/ForensicArtifacts/artifacts/tree/main/data')
+        'https://github.com/ForensicArtifacts/artifacts/tree/main/artifacts/'
+        'data')
 
     style_guide_url = (
         'https://artifacts.readthedocs.io/en/latest/sources/'
@@ -110,8 +111,8 @@ Number of Windows Registry key paths: | {self._reg_key_count:d}
     print(f"""## Statistics
 
 The artifact definitions can be found in the
-[data directory]({data_directory_url:s}) and the format is described in detail
-in the [Style Guide]({style_guide_url:s}).
+[artifacts/data directory]({data_directory_url:s}) and the format is described
+in detail in the [Style Guide]({style_guide_url:s}).
 """)
 
     self.BuildStats()

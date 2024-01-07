@@ -18,7 +18,7 @@ sources:
 - type: ARTIFACT_GROUP
   attributes:
     names:
-    - 'ChromiumBasedBrowsersHistory'
+    - 'ChromiumBasedBrowsersHistoryDatabaseFile'
     - 'FirefoxHistory'
     - 'FirefoxDownloads'
     - 'InternetExplorerHistory'
@@ -379,8 +379,11 @@ sources:
 supported_os: [Darwin, Linux, Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/webbrowser/ChromeCache.html']
 ---
-name: ChromeCookies
-doc: Chrome Cookies database.
+name: ChromiumBasedBrowsersCookiesDatabaseFile
+aliases: [ChromeCookies]
+doc: |
+  Cookies database file for multiple Chromium-based browsers, such as Google
+  Chrome, Brave, Chromium, Yandex, Opera, Edge, EdgeBeta.
 sources:
 - type: FILE
   attributes:
@@ -566,6 +569,84 @@ sources:
 supported_os: [Windows]
 urls: ['https://developer.chrome.com/extensions/external_extensions#registry']
 ---
+name: ChromiumBasedBrowsersFaviconsDatabaseFile
+doc: |
+  Favicons database file for multiple Chromium-based browsers, such as Google
+  Chrome, Brave, Chromium, Yandex, Opera, Edge, EdgeBeta.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.localappdata%%\BraveSoftware\Brave-Browser\User Data\*\Network\Favicons'
+    - '%%users.localappdata%%\BraveSoftware\Brave-Browser\User Data\*\Network\Favicons-journal'
+    - '%%users.localappdata%%\Chromium\User Data\*\Favicons'
+    - '%%users.localappdata%%\Chromium\User Data\*\Favicons-journal'
+    - '%%users.localappdata%%\Chromium\User Data\*\Network\Favicons'
+    - '%%users.localappdata%%\Chromium\User Data\*\Network\Favicons-journal'
+    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Favicons'
+    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Favicons-journal'
+    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Network\Favicons'
+    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Network\Favicons-journal'
+    - '%%users.localappdata%%\Google\Chrome\User Data\*\Favicons'
+    - '%%users.localappdata%%\Google\Chrome\User Data\*\Favicons-journal'
+    - '%%users.localappdata%%\Google\Chrome\User Data\*\Network\Favicons'
+    - '%%users.localappdata%%\Google\Chrome\User Data\*\Network\Favicons-journal'
+    - '%%users.localappdata%%\Microsoft\Edge\User Data\*\Favicons'
+    - '%%users.localappdata%%\Microsoft\Edge\User Data\*\Favicons-journal'
+    - '%%users.localappdata%%\Microsoft\Edge\User Data\*\Network\Favicons'
+    - '%%users.localappdata%%\Microsoft\Edge\User Data\*\Network\Favicons-journal'
+    - '%%users.appdata%%\Opera Software\Opera Stable\Network\Favicons'
+    - '%%users.appdata%%\Opera Software\Opera Stable\Network\Favicons-journal'
+    separator: '\'
+  supported_os: [Windows]
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/.config/BraveSoftware/Brave-Browser/*/Favicons'
+    - '%%users.homedir%%/.config/BraveSoftware/Brave-Browser/*/Favicons-journal'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Favicons'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Favicons-journal'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Network/Favicons'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Network/Favicons-journal'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Favicons'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Favicons-journal'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Network/Favicons'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Network/Favicons-journal'
+    - '%%users.homedir%%/.config/chromium/*/Favicons'
+    - '%%users.homedir%%/.config/chromium/*/Favicons-journal'
+    - '%%users.homedir%%/.config/chromium/*/Network/Favicons'
+    - '%%users.homedir%%/.config/chromium/*/Network/Favicons-journal'
+    - '%%users.homedir%%/.config/google-chrome-beta/*/Favicons'
+    - '%%users.homedir%%/.config/google-chrome-beta/*/Favicons-journal'
+    - '%%users.homedir%%/.config/google-chrome-beta/*/Network/Favicons'
+    - '%%users.homedir%%/.config/google-chrome-beta/*/Network/Favicons-journal'
+    - '%%users.homedir%%/.config/google-chrome/*/Favicons'
+    - '%%users.homedir%%/.config/google-chrome/*/Favicons-journal'
+    - '%%users.homedir%%/.config/google-chrome/*/Network/Favicons'
+    - '%%users.homedir%%/.config/google-chrome/*/Network/Favicons-journal'
+    - '%%users.homedir%%/.config/microsoft-edge/*/Favicons'
+    - '%%users.homedir%%/.config/microsoft-edge/*/Favicons-journal'
+    - '%%users.homedir%%/.config/opera/Favicons'
+    - '%%users.homedir%%/.config/opera/Favicons-journal'
+  supported_os: [Linux]
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/Library/Application Support/Chromium/*/Favicons'
+    - '%%users.homedir%%/Library/Application Support/Chromium/*/Favicons-journal'
+    - '%%users.homedir%%/Library/Application Support/Chromium/*/Network/Favicons'
+    - '%%users.homedir%%/Library/Application Support/Chromium/*/Network/Favicons-journal'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Favicons'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Favicons-journal'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Network/Favicons'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Network/Favicons-journal'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Favicons'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Favicons-journal'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Network/Favicons'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Network/Favicons-journal'
+  supported_os: [Darwin]
+supported_os: [Darwin, Linux, Windows]
+---
 name: ChromeFileSystem
 doc: |
   Google Chrome, Canary and Chromium File System files.
@@ -606,11 +687,11 @@ urls:
 - 'https://developer.mozilla.org/en-US/docs/Web/API/FileSystem'
 - 'https://dfir.blog/deciphering-browser-hieroglyphics-leveldb-filesystem/'
 ---
-name: ChromiumBasedBrowsersHistory
-aliases: [ChromeHistory]
+name: ChromiumBasedBrowsersHistoryDatabaseFile
+aliases: [ChromeHistory, ChromiumBasedBrowsersHistory]
 doc: |
-  Browsing history for multiple Chromium-based browsers (Google Chrome,
-  Brave, Chromium, Yandex, Opera, Edge, EdgeBeta).
+  Browsing history database file for multiple Chromium-based browsers, such as
+  Google Chrome, Brave, Chromium, Yandex, Opera, Edge, EdgeBeta.
 sources:
 - type: FILE
   attributes:
@@ -816,6 +897,84 @@ sources:
   supported_os: [Windows]
 supported_os: [Darwin, Linux, Windows]
 ---
+name: ChromiumBasedBrowsersLoginDataDatabaseFile
+doc: |
+  Login Data database file for multiple Chromium-based browsers, such as Google
+  Chrome, Brave, Chromium, Yandex, Opera, Edge, EdgeBeta.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.localappdata%%\BraveSoftware\Brave-Browser\User Data\*\Network\Login Data'
+    - '%%users.localappdata%%\BraveSoftware\Brave-Browser\User Data\*\Network\Login Data-journal'
+    - '%%users.localappdata%%\Chromium\User Data\*\Login Data'
+    - '%%users.localappdata%%\Chromium\User Data\*\Login Data-journal'
+    - '%%users.localappdata%%\Chromium\User Data\*\Network\Login Data'
+    - '%%users.localappdata%%\Chromium\User Data\*\Network\Login Data-journal'
+    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Login Data'
+    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Login Data-journal'
+    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Network\Login Data'
+    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Network\Login Data-journal'
+    - '%%users.localappdata%%\Google\Chrome\User Data\*\Login Data'
+    - '%%users.localappdata%%\Google\Chrome\User Data\*\Login Data-journal'
+    - '%%users.localappdata%%\Google\Chrome\User Data\*\Network\Login Data'
+    - '%%users.localappdata%%\Google\Chrome\User Data\*\Network\Login Data-journal'
+    - '%%users.localappdata%%\Microsoft\Edge\User Data\*\Login Data'
+    - '%%users.localappdata%%\Microsoft\Edge\User Data\*\Login Data-journal'
+    - '%%users.localappdata%%\Microsoft\Edge\User Data\*\Network\Login Data'
+    - '%%users.localappdata%%\Microsoft\Edge\User Data\*\Network\Login Data-journal'
+    - '%%users.appdata%%\Opera Software\Opera Stable\Network\Login Data'
+    - '%%users.appdata%%\Opera Software\Opera Stable\Network\Login Data-journal'
+    separator: '\'
+  supported_os: [Windows]
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/.config/BraveSoftware/Brave-Browser/*/Login Data'
+    - '%%users.homedir%%/.config/BraveSoftware/Brave-Browser/*/Login Data-journal'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Login Data'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Login Data-journal'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Network/Login Data'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Network/Login Data-journal'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Login Data'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Login Data-journal'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Network/Login Data'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Network/Login Data-journal'
+    - '%%users.homedir%%/.config/chromium/*/Login Data'
+    - '%%users.homedir%%/.config/chromium/*/Login Data-journal'
+    - '%%users.homedir%%/.config/chromium/*/Network/Login Data'
+    - '%%users.homedir%%/.config/chromium/*/Network/Login Data-journal'
+    - '%%users.homedir%%/.config/google-chrome-beta/*/Login Data'
+    - '%%users.homedir%%/.config/google-chrome-beta/*/Login Data-journal'
+    - '%%users.homedir%%/.config/google-chrome-beta/*/Network/Login Data'
+    - '%%users.homedir%%/.config/google-chrome-beta/*/Network/Login Data-journal'
+    - '%%users.homedir%%/.config/google-chrome/*/Login Data'
+    - '%%users.homedir%%/.config/google-chrome/*/Login Data-journal'
+    - '%%users.homedir%%/.config/google-chrome/*/Network/Login Data'
+    - '%%users.homedir%%/.config/google-chrome/*/Network/Login Data-journal'
+    - '%%users.homedir%%/.config/microsoft-edge/*/Login Data'
+    - '%%users.homedir%%/.config/microsoft-edge/*/Login Data-journal'
+    - '%%users.homedir%%/.config/opera/Login Data'
+    - '%%users.homedir%%/.config/opera/Login Data-journal'
+  supported_os: [Linux]
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/Library/Application Support/Chromium/*/Login Data'
+    - '%%users.homedir%%/Library/Application Support/Chromium/*/Login Data-journal'
+    - '%%users.homedir%%/Library/Application Support/Chromium/*/Network/Login Data'
+    - '%%users.homedir%%/Library/Application Support/Chromium/*/Network/Login Data-journal'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Login Data'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Login Data-journal'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Network/Login Data'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Network/Login Data-journal'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Login Data'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Login Data-journal'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Network/Login Data'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Network/Login Data-journal'
+  supported_os: [Darwin]
+supported_os: [Darwin, Linux, Windows]
+---
 name: ChromePlatformNotifications
 aliases: [ChromeNotifications, ChromePlatformNotificationsDatabase]
 doc: |
@@ -938,6 +1097,84 @@ sources:
     - '%%users.localappdata%%\Microsoft\Edge\User Data\*\Sessions\Tabs_*'
     separator: '\'
   supported_os: [Windows]
+supported_os: [Darwin, Linux, Windows]
+---
+name: ChromiumBasedBrowsersWebDataDatabaseFile
+doc: |
+  Web Data database file for multiple Chromium-based browsers, such as Google
+  Chrome, Brave, Chromium, Yandex, Opera, Edge, EdgeBeta.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.localappdata%%\BraveSoftware\Brave-Browser\User Data\*\Network\Web Data'
+    - '%%users.localappdata%%\BraveSoftware\Brave-Browser\User Data\*\Network\Web Data-journal'
+    - '%%users.localappdata%%\Chromium\User Data\*\Web Data'
+    - '%%users.localappdata%%\Chromium\User Data\*\Web Data-journal'
+    - '%%users.localappdata%%\Chromium\User Data\*\Network\Web Data'
+    - '%%users.localappdata%%\Chromium\User Data\*\Network\Web Data-journal'
+    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Web Data'
+    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Web Data-journal'
+    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Network\Web Data'
+    - '%%users.localappdata%%\Google\Chrome SxS\User Data\*\Network\Web Data-journal'
+    - '%%users.localappdata%%\Google\Chrome\User Data\*\Web Data'
+    - '%%users.localappdata%%\Google\Chrome\User Data\*\Web Data-journal'
+    - '%%users.localappdata%%\Google\Chrome\User Data\*\Network\Web Data'
+    - '%%users.localappdata%%\Google\Chrome\User Data\*\Network\Web Data-journal'
+    - '%%users.localappdata%%\Microsoft\Edge\User Data\*\Web Data'
+    - '%%users.localappdata%%\Microsoft\Edge\User Data\*\Web Data-journal'
+    - '%%users.localappdata%%\Microsoft\Edge\User Data\*\Network\Web Data'
+    - '%%users.localappdata%%\Microsoft\Edge\User Data\*\Network\Web Data-journal'
+    - '%%users.appdata%%\Opera Software\Opera Stable\Network\Web Data'
+    - '%%users.appdata%%\Opera Software\Opera Stable\Network\Web Data-journal'
+    separator: '\'
+  supported_os: [Windows]
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/.config/BraveSoftware/Brave-Browser/*/Web Data'
+    - '%%users.homedir%%/.config/BraveSoftware/Brave-Browser/*/Web Data-journal'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Web Data'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Web Data-journal'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Network/Web Data'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-config/google-chrome/*/Network/Web Data-journal'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Web Data'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Web Data-journal'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Network/Web Data'
+    - '%%users.homedir%%/.config/chrome-remote-desktop/chrome-profile/*/Network/Web Data-journal'
+    - '%%users.homedir%%/.config/chromium/*/Web Data'
+    - '%%users.homedir%%/.config/chromium/*/Web Data-journal'
+    - '%%users.homedir%%/.config/chromium/*/Network/Web Data'
+    - '%%users.homedir%%/.config/chromium/*/Network/Web Data-journal'
+    - '%%users.homedir%%/.config/google-chrome-beta/*/Web Data'
+    - '%%users.homedir%%/.config/google-chrome-beta/*/Web Data-journal'
+    - '%%users.homedir%%/.config/google-chrome-beta/*/Network/Web Data'
+    - '%%users.homedir%%/.config/google-chrome-beta/*/Network/Web Data-journal'
+    - '%%users.homedir%%/.config/google-chrome/*/Web Data'
+    - '%%users.homedir%%/.config/google-chrome/*/Web Data-journal'
+    - '%%users.homedir%%/.config/google-chrome/*/Network/Web Data'
+    - '%%users.homedir%%/.config/google-chrome/*/Network/Web Data-journal'
+    - '%%users.homedir%%/.config/microsoft-edge/*/Web Data'
+    - '%%users.homedir%%/.config/microsoft-edge/*/Web Data-journal'
+    - '%%users.homedir%%/.config/opera/Web Data'
+    - '%%users.homedir%%/.config/opera/Web Data-journal'
+  supported_os: [Linux]
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/Library/Application Support/Chromium/*/Web Data'
+    - '%%users.homedir%%/Library/Application Support/Chromium/*/Web Data-journal'
+    - '%%users.homedir%%/Library/Application Support/Chromium/*/Network/Web Data'
+    - '%%users.homedir%%/Library/Application Support/Chromium/*/Network/Web Data-journal'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Web Data'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Web Data-journal'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Network/Web Data'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Network/Web Data-journal'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Web Data'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Web Data-journal'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Network/Web Data'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Network/Web Data-journal'
+  supported_os: [Darwin]
 supported_os: [Darwin, Linux, Windows]
 ---
 name: FirefoxCache
