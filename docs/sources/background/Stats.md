@@ -8,8 +8,8 @@ Status of the repository as of 2024-01-07
 
 Description | Number
 --- | ---
-Number of artifact definitions: | 818
-Number of file paths: | 2234
+Number of artifact definitions: | 821
+Number of file paths: | 2237
 Number of Windows Registry key paths: | 677
 
 ### Artifact definition source types
@@ -18,7 +18,7 @@ Identifier | Number
 --- | ---
 ARTIFACT_GROUP | 47
 COMMAND | 10
-FILE | 533
+FILE | 536
 PATH | 28
 REGISTRY_KEY | 57
 REGISTRY_VALUE | 116
@@ -31,5 +31,5 @@ Identifier | Number
 Darwin | 205
 ESXi | 16
 Linux | 249
-Windows | 372
+Windows | 375
 
