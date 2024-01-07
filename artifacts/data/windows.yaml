@@ -1802,6 +1802,17 @@ sources:
 supported_os: [Windows]
 urls: ['https://blog.malwarebytes.com/detections/pum-optional-proxyhijacker/']
 ---
+name: WindowsPushNotificationDatabaseFile
+doc: The Windows Push Notification (WPN) database file.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.localappdata%%\Microsoft\Windows\Notifications\wpndatabase.db'
+    - '%%environ_systemroot%%\System32\config\ystemprofile\AppData\Local\Microsoft\Windows\Notifications\wpndatabase.db'
+    separator: '\'
+supported_os: [Windows]
+---
 name: WindowsRecentFileCacheBCF
 doc: The RecentFileCache.bcf file.
 sources:
