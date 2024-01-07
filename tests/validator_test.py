@@ -19,7 +19,8 @@ class ArtifactDefinitionsValidatorTest(test_lib.BaseTestCase):
     """Runs the validator over all the YAML artifact definitions files."""
     validator_object = validator.ArtifactDefinitionsValidator()
 
-    for definitions_file in glob.glob(os.path.join('data', '*.yaml')):
+    data_files_glob = os.path.join(self._DATA_PATH, '*.yaml')
+    for definitions_file in glob.glob(data_files_glob):
       result = validator_object.CheckFile(definitions_file)
       self.assertTrue(
           result, msg=f'in definitions file: {definitions_file:s}')

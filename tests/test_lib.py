@@ -10,7 +10,7 @@ import unittest
 class BaseTestCase(unittest.TestCase):
   """The base test case."""
 
-  _DATA_PATH = os.path.join(os.getcwd(), 'data')
+  _DATA_PATH = os.path.join(os.getcwd(), 'artifacts', 'data')
   _TEST_DATA_PATH = os.path.join(os.getcwd(), 'test_data')
 
   # Show full diff results, part of TestCase so does not follow our naming
