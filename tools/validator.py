@@ -4,6 +4,7 @@
 
 import argparse
 import glob
+import heapq
 import logging
 import os
 import sys
@@ -443,6 +444,8 @@ class ArtifactDefinitionsValidator(object):
     result = True
     artifact_reader = reader.YamlArtifactsReader()
 
+    sorted_names = []
+
     try:
       for artifact_definition in artifact_reader.ReadFile(filename):
         try:
@@ -452,6 +455,17 @@ class ArtifactDefinitionsValidator(object):
               f'Duplicate artifact definition: {artifact_definition.name:s} in '
               f'file: {filename:s}'))
           result = False
+
+        current_name_lower = artifact_definition.name.lower()
+        heapq.heappush(sorted_names, (
+            current_name_lower, artifact_definition.name))
+
+        last_name_lower, last_name = sorted_names[-1]
+        if last_name_lower != current_name_lower:
+          logging.warning((
+              f'Artifact definition: {last_name:s} and '
+              f'{artifact_definition.name:s} in file: {filename:s} not '
+              f'in sort order'))
 
         artifact_definition_supports_macos = (
             definitions.SUPPORTED_OS_DARWIN in (

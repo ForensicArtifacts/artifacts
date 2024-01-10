@@ -1,5 +1,26 @@
 # Instant Messaging applications specific artifacts.
 ---
+name: SignalApplicationContent
+doc: Signal Application Content and Configuration
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/.var/app/org.signal.Signal/*/attachments.noindex/*'
+    - '%%users.homedir%%/.var/app/org.signal.Signal/*/Cache/*'
+    - '%%users.homedir%%/.var/app/org.signal.Signal/*/logs/*'
+    - '%%users.homedir%%/.var/app/org.signal.Signal/config.json'
+  supported_os: [Linux]
+supported_os: [Linux]
+---
+name: SignalDatabase
+doc: Signal Database file.
+sources:
+- type: FILE
+  attributes: {paths: ['%%users.homedir%%/.var/app/org.signal.Signal/db.sqlite']}
+  supported_os: [Linux]
+supported_os: [Linux]
+---
 name: SkypeChatSync
 doc: Chat Sync Directory
 sources:
@@ -48,27 +69,6 @@ sources:
   supported_os: [Darwin]
 supported_os: [Darwin]
 urls: ['https://forensics.wiki/mac_os_x_10.9_artifacts_location#skype']
----
-name: SignalApplicationContent
-doc: Signal Application Content and Configuration
-sources:
-- type: FILE
-  attributes:
-    paths:
-    - '%%users.homedir%%/.var/app/org.signal.Signal/*/attachments.noindex/*'
-    - '%%users.homedir%%/.var/app/org.signal.Signal/*/Cache/*'
-    - '%%users.homedir%%/.var/app/org.signal.Signal/*/logs/*'
-    - '%%users.homedir%%/.var/app/org.signal.Signal/config.json'
-  supported_os: [Linux]
-supported_os: [Linux]
----
-name: SignalDatabase
-doc: Signal Database file.
-sources:
-- type: FILE
-  attributes: {paths: ['%%users.homedir%%/.var/app/org.signal.Signal/db.sqlite']}
-  supported_os: [Linux]
-supported_os: [Linux]
 ---
 name: XChatLogs
 doc: XChat Log Files

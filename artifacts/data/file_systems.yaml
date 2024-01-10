@@ -1,5 +1,15 @@
 # File system artifacts.
 ---
+name: NTFSLogFile
+doc: The NTFS $LogFile file system metadata file.
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%environ_systemdrive%%\$LogFile']
+    separator: '\'
+urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/file_systems/NTFS.html']
+supported_os: [Windows]
+---
 name: NTFSMFTFiles
 doc: The NTFS $MFT and $MFTMirr file system metadata files.
 sources:
@@ -8,16 +18,6 @@ sources:
     paths:
     - '%%environ_systemdrive%%\$MFT'
     - '%%environ_systemdrive%%\$MFTMirr'
-    separator: '\'
-urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/file_systems/NTFS.html']
-supported_os: [Windows]
----
-name: NTFSLogFile
-doc: The NTFS $LogFile file system metadata file.
-sources:
-- type: FILE
-  attributes:
-    paths: ['%%environ_systemdrive%%\$LogFile']
     separator: '\'
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/file_systems/NTFS.html']
 supported_os: [Windows]

@@ -1,15 +1,5 @@
 # Operating system independent user artifact definitions.
 ---
-name: UsersDirectory
-aliases: [MacOSUsers, MacOSUsersDirectory, OSXUsers, UserHomeDirectory]
-doc: Contents of the Users directory.
-sources:
-- type: PATH
-  attributes: {paths: ['/Users/*']}
-supported_os: [Darwin]
-provides: [users.username]
-urls: ['https://forensics.wiki/mac_os_x_10.9_artifacts_location#users']
----
 name: UserDownloadsDirectory
 aliases: [MacOSUserDownloadsDirectory, UserDownloads, WindowsUserDownloadsDirectory]
 doc: Contents of user Downloads directories.
@@ -25,3 +15,13 @@ sources:
   supported_os: [Windows]
 supported_os: [Darwin, Linux, Windows]
 urls: ['https://forensics.wiki/mac_os_x_10.9_artifacts_location#user-directories']
+---
+name: UsersDirectory
+aliases: [MacOSUsers, MacOSUsersDirectory, OSXUsers, UserHomeDirectory]
+doc: Contents of the Users directory.
+sources:
+- type: PATH
+  attributes: {paths: ['/Users/*']}
+supported_os: [Darwin]
+provides: [users.username]
+urls: ['https://forensics.wiki/mac_os_x_10.9_artifacts_location#users']

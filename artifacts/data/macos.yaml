@@ -10,12 +10,49 @@ sources:
     - '%%users.homedir%%/Library/Developer/CoreSimulator/Devices/*/data/Library/AddressBook/AddressBookImages.sqlitedb'
 supported_os: [Darwin]
 ---
+name: MacOSAirportPreferencesPlistFile
+aliases: [MacOSWirelessNetworks]
+doc: Airport (wireless networking) preferences property list (plist) file.
+sources:
+- type: FILE
+  attributes: {paths: ['/Library/Preferences/SystemConfiguration/com.apple.airport.preferences.plist']}
+supported_os: [Darwin]
+urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/macos/NetworkSettings.html']
+---
 name: MacOSApplePushServiceSQLiteDatabaseFile
 doc: Apple push service SQLite database file.
 sources:
 - type: FILE
   attributes: {paths: ['/Library/Application Support/ApplePushService/aps.db']}
 supported_os: [Darwin]
+---
+name: MacOSAppleSetupDoneFile
+aliases: [MacOSSystemInstallationTime]
+doc: Mac OS .AppleSetupDone file that hints to the system installation date and time.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/private/var/db/.AppleSetupDone'
+    - '/var/db/.AppleSetupDone'
+supported_os: [Darwin]
+urls: ['https://forensics.wiki/mac_os_x_10.9_artifacts_location#system-settings-and-informations']
+---
+name: MacOSAppleSystemLogFile
+aliases: [MacOSAppleSystemLogFiles]
+doc: Apple system log (ASL) files.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/private/var/log/asl/*.asl'
+    - '/private/var/log/DiagnosticMessages/*.asl'
+    - '/var/log/asl/*.asl'
+    - '/var/log/DiagnosticMessages/*.asl'
+supported_os: [Darwin]
+urls:
+- 'https://forensics.wiki/mac_os_x_10.9_artifacts_location#system-logs'
+- 'https://support.apple.com/guide/console/reports-cnsl664be99a/mac'
 ---
 name: MacOSApplicationBundleCacheSQLiteDatabaseFile
 doc: Application bundle cache SQLite database file.
@@ -57,43 +94,6 @@ sources:
 - type: FILE
   attributes: {paths: ['%%users.homedir%%/Library/Application Support/CallHistoryDB/CallHistory.storedata']}
 supported_os: [Darwin]
----
-name: MacOSAirportPreferencesPlistFile
-aliases: [MacOSWirelessNetworks]
-doc: Airport (wireless networking) preferences property list (plist) file.
-sources:
-- type: FILE
-  attributes: {paths: ['/Library/Preferences/SystemConfiguration/com.apple.airport.preferences.plist']}
-supported_os: [Darwin]
-urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/macos/NetworkSettings.html']
----
-name: MacOSAppleSetupDoneFile
-aliases: [MacOSSystemInstallationTime]
-doc: Mac OS .AppleSetupDone file that hints to the system installation date and time.
-sources:
-- type: FILE
-  attributes:
-    paths:
-    - '/private/var/db/.AppleSetupDone'
-    - '/var/db/.AppleSetupDone'
-supported_os: [Darwin]
-urls: ['https://forensics.wiki/mac_os_x_10.9_artifacts_location#system-settings-and-informations']
----
-name: MacOSAppleSystemLogFile
-aliases: [MacOSAppleSystemLogFiles]
-doc: Apple system log (ASL) files.
-sources:
-- type: FILE
-  attributes:
-    paths:
-    - '/private/var/log/asl/*.asl'
-    - '/private/var/log/DiagnosticMessages/*.asl'
-    - '/var/log/asl/*.asl'
-    - '/var/log/DiagnosticMessages/*.asl'
-supported_os: [Darwin]
-urls:
-- 'https://forensics.wiki/mac_os_x_10.9_artifacts_location#system-logs'
-- 'https://support.apple.com/guide/console/reports-cnsl664be99a/mac'
 ---
 name: MacOSApplicationsDirectory
 aliases: [MacOSApplications]

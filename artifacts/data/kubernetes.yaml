@@ -1,12 +1,5 @@
 # Kubernetes artifacts
 ---
-name: KubernetesLogs
-doc: Log files that contain information about the Kubernetes installation of a node.
-sources:
-- type: FILE
-  attributes: {paths: ['/var/log/syslog*']}
-supported_os: [Linux]
----
 name: KubernetesCertificates
 doc: |
   Certificate files that are used for a Kubernetes cluster.
@@ -148,3 +141,10 @@ supported_os: [Linux]
 urls:
 - 'https://github.com/kubernetes/kubernetes/pull/74441'
 - 'https://kubernetes.io/docs/concepts/cluster-administration/logging/'
+---
+name: KubernetesLogs
+doc: Log files that contain information about the Kubernetes installation of a node.
+sources:
+- type: FILE
+  attributes: {paths: ['/var/log/syslog*']}
+supported_os: [Linux]
