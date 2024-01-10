@@ -27,6 +27,7 @@ class ArtifactDefinitionsValidatorTest(test_lib.BaseTestCase):
 
     undefined_artifacts = validator_object.GetUndefinedArtifacts()
     if undefined_artifacts:
+      undefined_artifacts = ', '.join(undefined_artifacts)
       raise errors.MissingDependencyError((
           f'Artifacts group referencing undefined artifacts: '
           f'{undefined_artifacts:s}'))

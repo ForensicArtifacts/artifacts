@@ -1,24 +1,5 @@
 # Webserver related artifacts.
 ---
-name: ApacheConfigurationFolder
-doc: Location where Apache keeps configuration files
-sources:
-- type: FILE
-  attributes:
-    paths:
-    - '/etc/apache2/*.conf'
-    - '/etc/httpd/*.conf'
-    - '/etc/httpd/conf.d/*.conf'
-    - '/etc/httpd/conf.modules.d/*.conf'
-supported_os: [Linux]
----
-name: ApacheDefaultSiteConfigurationFile
-doc: Location where Apache keeps the default site configuration file.
-sources:
-- type: FILE
-  attributes: {paths: ['/etc/apache2/sites-available/000-default.conf']}
-supported_os: [Linux]
----
 name: ApacheAccessLogs
 doc: Location where Apache access logs are stored
 sources:
@@ -40,6 +21,25 @@ sources:
     separator: '\'
   supported_os: [Windows]
 supported_os: [Linux, Windows]
+---
+name: ApacheConfigurationFolder
+doc: Location where Apache keeps configuration files
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/etc/apache2/*.conf'
+    - '/etc/httpd/*.conf'
+    - '/etc/httpd/conf.d/*.conf'
+    - '/etc/httpd/conf.modules.d/*.conf'
+supported_os: [Linux]
+---
+name: ApacheDefaultSiteConfigurationFile
+doc: Location where Apache keeps the default site configuration file.
+sources:
+- type: FILE
+  attributes: {paths: ['/etc/apache2/sites-available/000-default.conf']}
+supported_os: [Linux]
 ---
 name: ApacheErrorLogs
 doc: Location where Apache error logs are stored

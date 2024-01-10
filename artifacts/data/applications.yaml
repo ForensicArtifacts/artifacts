@@ -1,5 +1,16 @@
 # Application artifacts.
 ---
+name: GnomeEvolution
+doc: Gnome Evolution files.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/.cache/evolution/**'
+    - '%%users.homedir%%/.config/evolution/**'
+    - '%%users.homedir%%/.local/share/evolution/**'
+supported_os: [Linux]
+---
 name: MicrosoftOfficeAutosave
 aliases: [WindowsMsOfficeAutosave]
 doc: Automatically created Microsoft Office recovery files.
@@ -121,15 +132,4 @@ doc: Mozilla Thunderbird files.
 sources:
 - type: FILE
   attributes: {paths: ['%%users.homedir%%/.thunderbird/**']}
-supported_os: [Linux]
----
-name: GnomeEvolution
-doc: Gnome Evolution files.
-sources:
-- type: FILE
-  attributes:
-    paths:
-    - '%%users.homedir%%/.cache/evolution/**'
-    - '%%users.homedir%%/.config/evolution/**'
-    - '%%users.homedir%%/.local/share/evolution/**'
 supported_os: [Linux]

@@ -1,5 +1,26 @@
 # Windows specific artifacts.
 ---
+name: WindowsActionCenterSettings
+doc: |
+  Windows Action Center Settings
+
+  Malware can modify these keys to disable notifications that occur
+  when various security features are disabled. One malware family
+  known to modify these keys is Kovter, a well-known trojan.
+sources:
+- type: REGISTRY_VALUE
+  attributes:
+    key_value_pairs:
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Action Center\Checks\{e8433b72-5842-4d43-8645-bc2c35960837}.check.*', value: 'CheckSetting'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Action Center\Checks\{e8433b72-5842-4d43-8645-bc2c35960837}.check.*', value: 'CheckSetting'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Notifications\Settings\Windows.SystemToast.SecurityAndMaintenance', value: 'Enabled'}
+    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Notifications\Settings\Windows.SystemToast.SecurityAndMaintenance', value: 'Enabled'}
+supported_os: [Windows]
+urls:
+- 'https://winaero.com/blog/registry-tweak-to-disable-action-center-notifications-in-windows-7/'
+- 'https://blog.talosintelligence.com/2019/05/threat-roundup-0517-0524.html'
+- 'https://blogs.technet.microsoft.com/platforms_lync_cloud/2017/05/05/disabling-windows-10-action-center-notifications/'
+---
 name: WindowsActiveDesktop
 doc: Windows Active Desktop settings and components.
 sources:
@@ -20,6 +41,19 @@ sources:
     separator: '\'
 supported_os: [Windows]
 urls: ['https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2003/cc772829(v=ws.10)']
+---
+name: WindowsActiveSyncAutoStart
+doc: Windows ActiveSync AutoStart entries
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys:
+    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows CE Services\AutoStartOnConnect\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows CE Services\AutoStartOnDisconnect\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows CE Services\AutoStartOnConnect\*'
+    - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows CE Services\AutoStartOnDisconnect\*'
+supported_os: [Windows]
+urls: ['https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2']
 ---
 name: WindowsActivitiesCacheDatabase
 doc: SQLite database containing the Windows activities cache.
@@ -199,7 +233,8 @@ sources:
     - 'WindowsApplicationCompatibilityShimDatabaseMappings'
 supported_os: [Windows]
 ---
-name: WinAppXRT
+name: WindowsAppXRT
+aliases: [WinAppXRT]
 doc: WinAppXRT DLL loaded by .Net applications when the APPX_PROCESS environment variable is set.
 sources:
 - type: FILE
@@ -261,40 +296,6 @@ sources:
   attributes: {keys: ['HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\Time Zones\*']}
 supported_os: [Windows]
 urls: ['https://github.com/libyal/winreg-kb/blob/main/documentation/Time%20zone%20keys.asciidoc']
----
-name: WindowsActiveSyncAutoStart
-doc: Windows ActiveSync AutoStart entries
-sources:
-- type: REGISTRY_KEY
-  attributes:
-    keys:
-    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows CE Services\AutoStartOnConnect\*'
-    - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows CE Services\AutoStartOnDisconnect\*'
-    - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows CE Services\AutoStartOnConnect\*'
-    - 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Windows CE Services\AutoStartOnDisconnect\*'
-supported_os: [Windows]
-urls: ['https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2']
----
-name: WindowsActionCenterSettings
-doc: |
-  Windows Action Center Settings
-
-  Malware can modify these keys to disable notifications that occur
-  when various security features are disabled. One malware family
-  known to modify these keys is Kovter, a well-known trojan.
-sources:
-- type: REGISTRY_VALUE
-  attributes:
-    key_value_pairs:
-    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Action Center\Checks\{e8433b72-5842-4d43-8645-bc2c35960837}.check.*', value: 'CheckSetting'}
-    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Action Center\Checks\{e8433b72-5842-4d43-8645-bc2c35960837}.check.*', value: 'CheckSetting'}
-    - {key: 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Notifications\Settings\Windows.SystemToast.SecurityAndMaintenance', value: 'Enabled'}
-    - {key: 'HKEY_USERS\%%users.sid%%\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Notifications\Settings\Windows.SystemToast.SecurityAndMaintenance', value: 'Enabled'}
-supported_os: [Windows]
-urls:
-- 'https://winaero.com/blog/registry-tweak-to-disable-action-center-notifications-in-windows-7/'
-- 'https://blog.talosintelligence.com/2019/05/threat-roundup-0517-0524.html'
-- 'https://blogs.technet.microsoft.com/platforms_lync_cloud/2017/05/05/disabling-windows-10-action-center-notifications/'
 ---
 name: WindowsBackgroundActivityModeratorKeys
 doc: Windows Background Activity Moderator (BAM) and Desktop Activity Moderator (DAM) registry keys.

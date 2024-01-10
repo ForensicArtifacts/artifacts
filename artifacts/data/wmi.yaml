@@ -27,6 +27,14 @@ sources:
   attributes: {query: SELECT * FROM AntivirusProduct, base_object: 'winmgmts:\root\SecurityCenter2'}
 supported_os: [Windows]
 ---
+name: WMICCMRUA
+doc: Enumerate instances of CCM_RecentlyUsedApps.
+sources:
+- type: WMI
+  attributes: {query: SELECT * FROM CCM_RecentlyUsedApps, base_object: 'winmgmts:\root\ccm\SoftwareMeteringAgent'}
+supported_os: [Windows]
+urls: ['https://forensics.wiki/windows#ccm-recentlyusedapps']
+---
 name: WMIComputerSystemProduct
 doc: Computer System Product including Identifiying number queried from WMI.
 sources:
@@ -222,11 +230,3 @@ sources:
 - type: WMI
   attributes: {query: SELECT * FROM Win32_ShadowCopy}
 supported_os: [Windows]
----
-name: WMICCMRUA
-doc: Enumerate instances of CCM_RecentlyUsedApps.
-sources:
-- type: WMI
-  attributes: {query: SELECT * FROM CCM_RecentlyUsedApps, base_object: 'winmgmts:\root\ccm\SoftwareMeteringAgent'}
-supported_os: [Windows]
-urls: ['https://forensics.wiki/windows#ccm-recentlyusedapps']
