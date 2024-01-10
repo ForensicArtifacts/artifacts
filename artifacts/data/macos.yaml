@@ -956,9 +956,17 @@ aliases: [MacOSUserLoginItems]
 doc: User login items property list (plist) file.
 sources:
 - type: FILE
-  attributes: {paths: ['%%users.homedir%%/Library/Preferences/com.apple.loginitems.plist']}
+  attributes:
+    paths:
+    - '%%users.homedir%%/Library/Preferences/com.apple.loginitems.plist'
+    - '%%users.homedir%%/Library/Application Support/com.apple.backgroundtaskmanagementagent/backgrounditems.btm'
+    - '/private/var/db/com.apple.backgroundtaskmanagement/BackgroundItems-v*.btm'
+    - '/var/db/com.apple.backgroundtaskmanagement/BackgroundItems-v*.btm'
+
 supported_os: [Darwin]
-urls: ['https://forensics.wiki/mac_os_x_10.9_artifacts_location#autorun-locations-2']
+urls:
+- 'https://forensics.wiki/mac_os_x_10.9_artifacts_location#autorun-locations-2'
+- 'https://objective-see.org/blog/blog_0x31.html'
 ---
 name: MacOSUserMoviesDirectory
 doc: Contents of the user Movies directories.
