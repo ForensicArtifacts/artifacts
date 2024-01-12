@@ -2639,6 +2639,15 @@ sources:
 supported_os: [Windows]
 urls: ['http://www.microsoft.com/security/portal/threat/encyclopedia/Entry.aspx?Name=TrojanClicker:Win32/Zirit.X#tab=2']
 ---
+name: WindowsSmsRouterInterceptStoreDatabaseFile
+doc: Windows SmsRouter intercept store database file (SmsInterceptStore.db)
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%environ_programdata%%\Microsoft\SmsRouter\MessageStore\SmsInterceptStore.db']
+    separator: '\'
+supported_os: [Windows]
+---
 name: WindowsSetupApiLogs
 doc: Windows setup API logs.
 sources:
@@ -3111,6 +3120,25 @@ sources:
 supported_os: [Windows]
 urls: ['https://social.technet.microsoft.com/Forums/en-US/cadee4de-24d0-403e-9f3e-75868abf8f34']
 ---
+name: WindowsUpdateCatalogDatabaseFile
+doc: Windows Update catalog package signatures database file (catdb).
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%environ_systemroot%%\System32\catroot2\{*-*-*-*-*}\catdb']
+    separator: '\'
+supported_os: [Windows]
+urls: ['https://learn.microsoft.com/en-us/windows-hardware/drivers/install/catalog-files']
+---
+name: WindowsUpdateDataStoreDatabaseFile
+doc: Windows Update data store database file (DataStore.edb).
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%environ_windir%%\SoftwareDistribution\DataStore\DataStore.edb']
+    separator: '\'
+supported_os: [Windows]
+---
 name: WindowsUpdateLogFile
 doc: Windows Update log files.
 sources:
@@ -3325,6 +3353,15 @@ provides:
 - users.recent
 - users.userprofile
 - users.temp
+supported_os: [Windows]
+---
+name: WindowsWebCacheStorageQuotaDatabaseFile
+doc: Windows WebCache storage quota database file (CacheStorage.edb)
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.localappdata%%\Packages\*\AppData\CacheStorage\CacheStorage.edb']
+    separator: '\'
 supported_os: [Windows]
 ---
 name: WindowsWinlogonGinaDLL
