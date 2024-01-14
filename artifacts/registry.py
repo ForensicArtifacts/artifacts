@@ -128,10 +128,10 @@ class ArtifactDefinitionsRegistry(object):
   def GetDefinitions(self):
     """Retrieves the artifact definitions.
 
-    Returns:
-      list[ArtifactDefinition]: artifact definitions.
+    Yields:
+      ArtifactDefinition: artifact definition.
     """
-    return self._artifact_definitions_by_name.values()
+    yield from self._artifact_definitions_by_name.values()
 
   def GetUndefinedArtifacts(self):
     """Retrieves the names of undefined artifacts used by artifact groups.
