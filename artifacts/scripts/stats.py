@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-"""Report statistics about the artifact collection."""
+"""Console script to collect statistics about definitions."""
 
 import collections
 import os
@@ -122,18 +122,15 @@ in detail in the [Style Guide]({style_guide_url:s}).
 
 
 def Main():
-  """The main program function.
+  """Entry point of console script to collect statistics about definitions.
 
   Returns:
-    bool: True if successful or False if not.
+    int: exit code that is provided to sys.exit().
   """
   statsbuilder = ArtifactStatistics()
   statsbuilder.PrintStats()
-  return True
+  return 0
 
 
 if __name__ == '__main__':
-  if not Main():
-    sys.exit(1)
-  else:
-    sys.exit(0)
+  sys.exit(Main())

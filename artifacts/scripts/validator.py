@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-"""Tool to validate artifact definitions."""
+"""Console script to validate artifact definitions."""
 
 import argparse
 import glob
@@ -556,10 +556,10 @@ class ArtifactDefinitionsValidator(object):
 
 
 def Main():
-  """The main program function.
+  """Entry point of console script to collect statistics about definitions.
 
   Returns:
-    bool: True if successful or False if not.
+    int: exit code that is provided to sys.exit().
   """
   args_parser = argparse.ArgumentParser(
       description='Validates an artifact definitions file.')
@@ -576,12 +576,12 @@ def Main():
     print('')
     args_parser.print_help()
     print('')
-    return False
+    return 1
 
   if not os.path.exists(options.definitions):
     print(f'No such file or directory: {options.definitions:s}')
     print('')
-    return False
+    return 1
 
   validator = ArtifactDefinitionsValidator()
 
@@ -595,14 +595,11 @@ def Main():
 
   if not result:
     print('FAILURE')
-    return False
+    return 1
 
   print('SUCCESS')
-  return True
+  return 0
 
 
 if __name__ == '__main__':
-  if not Main():
-    sys.exit(1)
-  else:
-    sys.exit(0)
+  sys.exit(Main())
