@@ -7,7 +7,7 @@ import os
 import unittest
 
 from artifacts import errors
-from tools import validator
+from artifacts.scripts import validator
 
 from tests import test_lib
 

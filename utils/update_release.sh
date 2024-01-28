@@ -23,7 +23,7 @@ artifacts (${VERSION}-1) unstable; urgency=low
 EOT
 
 # Regenerate the statistics documentation.
-PYTHONPATH=. ./tools/stats.py > docs/sources/background/Stats.md
+PYTHONPATH=. ./artifacts/scripts/stats.py > docs/sources/background/Stats.md
 
 # Regenerate the API documentation.
 tox -edocs
