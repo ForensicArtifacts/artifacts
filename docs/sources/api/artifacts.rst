@@ -1,6 +1,14 @@
 artifacts package
 =================
 
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   artifacts.scripts
+
 Submodules
 ----------
 
