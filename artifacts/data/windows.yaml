@@ -2051,8 +2051,8 @@ sources:
 - type: FILE
   attributes:
     paths:
-    - '\$Recycle.Bin\**'
-    - '\Recycler\**'
+    - '%%environ_systemdrive%%\$Recycle.Bin\**'
+    - '%%environ_systemdrive%%\Recycler\**'
     separator: '\'
 supported_os: [Windows]
 urls: ['https://forensics.wiki/windows#recycle-bin']
@@ -2063,8 +2063,8 @@ sources:
 - type: FILE
   attributes:
     paths:
-    - '\$Recycle.Bin\*\$I*'
-    - '\Recycler\*\INFO2'
+    - '%%environ_systemdrive%%\$Recycle.Bin\*\$I*'
+    - '%%environ_systemdrive%%\Recycler\*\INFO2'
     separator: '\'
 supported_os: [Windows]
 urls: ['https://forensics.wiki/windows#recycle-bin']
