@@ -221,8 +221,6 @@ class ArtifactsReader(BaseArtifactsReader):
       raise errors.FormatError(
           f'Invalid artifact definition: {name:s} urls is not a list.')
 
-    artifact_definition.provides = artifact_definition_values.get(
-        'provides', [])
     self._ReadSupportedOS(artifact_definition_values, artifact_definition, name)
     artifact_definition.urls = urls
     self._ReadSources(artifact_definition_values, artifact_definition, name)

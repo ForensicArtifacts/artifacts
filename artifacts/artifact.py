@@ -12,8 +12,6 @@ class ArtifactDefinition(object):
     aliases (list[str]): aliases that identify the artifact definition.
     description (str): description.
     name (str): name that uniquely identifiers the artifact definition.
-    provides (list[str]): hints to what information the artifact definition
-        provides.
     sources (list[str]): sources.
     supported_os (list[str]): supported operating systems.
     urls (list[str]): URLs with more information about the artifact definition.
@@ -31,7 +29,6 @@ class ArtifactDefinition(object):
     self.aliases = aliases or []
     self.description = description
     self.name = name
-    self.provides = []
     self.sources = []
     self.supported_os = []
     self.urls = []
@@ -94,8 +91,6 @@ class ArtifactDefinition(object):
       artifact_definition['aliases'] = self.aliases
     if self.supported_os:
       artifact_definition['supported_os'] = self.supported_os
-    if self.provides:
-      artifact_definition['provides'] = self.provides
     if self.urls:
       artifact_definition['urls'] = self.urls
     return artifact_definition

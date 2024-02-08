@@ -29,6 +29,7 @@ TOP_LEVEL_KEYS = frozenset([
     # labels have been deprecated as of version 20220311.
     'labels',
     'name',
+    # `provides` have been deprecated.
     'provides',
     'sources',
     'supported_os',

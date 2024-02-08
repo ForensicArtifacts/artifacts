@@ -178,9 +178,6 @@ supported_os: [Windows]
     artifact_definition = artifact_definitions[3]
     self.assertEqual(artifact_definition.name, 'WMIProfileUsersHomeDir')
 
-    expected_provides = sorted(['users.homedir'])
-    self.assertEqual(sorted(artifact_definition.provides), expected_provides)
-
     self.assertEqual(len(artifact_definition.sources), 1)
     source_type = artifact_definition.sources[0]
     self.assertIsNotNone(source_type)
