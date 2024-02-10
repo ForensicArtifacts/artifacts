@@ -21,7 +21,6 @@ Value | Description
 aliases | Optional list of alternate names to identify the artifact definition. Also see: See section: [Name](#name).
 doc | The description (or documentation). A human readable string that describes the artifact definition. See section: [Description](#description).
 name | The name. An unique string that identifies the artifact definition. See section: [Name](#name).
-provides | Optional list of *TODO*
 sources | A list of source definitions. See section: [Sources](#sources).
 supported_os | Optional list that indicates which operating systems the artifact definition applies to. See section: [Supported operating system](#supported-operating-system).
 urls | Optional list of URLs with more contextual information. Ideally the artifact definition links to an article that discusses the artifact in more depth for example on [Digital Forensics Artifact Knowledge Base](https://github.com/ForensicArtifacts/artifacts-kb).
@@ -32,6 +31,7 @@ Value | Description
 --- | ---
 conditions | Optional list of conditions that describe when the artifact definition should apply. Note that conditions have been deprecated as of version 20220710.
 labels | Optional list of predefined labels. Note that labels have been deprecated as of version 20220311.
+provides | Optional list of placeholder values that the artifact provides.
 
 ## Name
 
