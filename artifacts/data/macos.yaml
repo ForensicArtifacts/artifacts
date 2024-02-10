@@ -971,7 +971,6 @@ sources:
     - '%%users.homedir%%/Library/Application Support/com.apple.backgroundtaskmanagementagent/backgrounditems.btm'
     - '/private/var/db/com.apple.backgroundtaskmanagement/BackgroundItems-v*.btm'
     - '/var/db/com.apple.backgroundtaskmanagement/BackgroundItems-v*.btm'
-
 supported_os: [Darwin]
 urls:
 - 'https://forensics.wiki/mac_os_x_10.9_artifacts_location#autorun-locations-2'
