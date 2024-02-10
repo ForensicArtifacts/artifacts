@@ -22,6 +22,5 @@ doc: Contents of the Users directory.
 sources:
 - type: PATH
   attributes: {paths: ['/Users/*']}
-supported_os: [Darwin]
-provides: [users.username]
+supported_os: [Darwin, Windows]
 urls: ['https://forensics.wiki/mac_os_x_10.9_artifacts_location#users']

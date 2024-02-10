@@ -87,7 +87,6 @@ doc: Debian version information.
 sources:
 - type: FILE
   attributes: {paths: ['/etc/debian_version']}
-provides: [os_release, os_major_version, os_minor_version]
 supported_os: [Linux]
 ---
 name: DNSResolvConfFile
@@ -285,7 +284,6 @@ sources:
     - '/etc/rocky-release'
     - '/etc/SuSE-release'
     - '/etc/system-release'
-provides: [os_release, os_major_version, os_minor_version]
 supported_os: [Linux]
 ---
 name: LinuxDSDTTable
@@ -410,7 +408,6 @@ doc: Linux Standard Base (LSB) release information
 sources:
 - type: FILE
   attributes: {paths: ['/etc/lsb-release']}
-provides: [os_release, os_major_version, os_minor_version]
 supported_os: [Linux]
 urls: ['https://linux.die.net/man/1/lsb_release']
 ---
@@ -499,7 +496,6 @@ sources:
     - LinuxDistributionRelease
     - LinuxLSBRelease
     - LinuxSystemdOSRelease
-provides: [os_release, os_major_version, os_minor_version]
 supported_os: [Linux]
 ---
 name: LinuxRsyslogConfigs
@@ -613,7 +609,6 @@ sources:
     paths:
     - '/etc/os-release'
     - '/usr/lib/os-release'
-provides: [os_release, os_major_version, os_minor_version]
 supported_os: [Linux]
 urls: ['https://www.freedesktop.org/software/systemd/man/os-release.html']
 ---
@@ -736,7 +731,6 @@ doc: Linux wtmp login record file
 sources:
 - type: FILE
   attributes: {paths: ['/var/log/wtmp']}
-provides: [users.username, users.last_logon]
 supported_os: [Linux]
 urls: ['https://github.com/libyal/dtformats/blob/main/documentation/Utmp%20login%20records%20format.asciidoc']
 ---
@@ -821,7 +815,6 @@ doc: Linux netgroup configuration.
 sources:
 - type: FILE
   attributes: {paths: ['/etc/netgroup']}
-provides: [users.username]
 supported_os: [Linux]
 ---
 name: NtpConfFile

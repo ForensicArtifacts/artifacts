@@ -9,7 +9,6 @@ doc: The %ProgramData% environment variable.
 sources:
 - type: REGISTRY_VALUE
   attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\ProfileList', value: 'ProgramData'}]}
-provides: [environ_allusersappdata]
 supported_os: [Windows]
 urls: ['http://environmentvariables.org/ProgramData']
 ---
@@ -21,7 +20,6 @@ sources:
     keys:
     - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\ProfileList\ProfilesDirectory'
     - 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\ProfileList\AllUsersProfile'
-provides: [environ_allusersprofile]
 supported_os: [Windows]
 urls: ['http://support.microsoft.com/kb//214653']
 ---
@@ -40,7 +38,6 @@ sources:
     - '/etc/oracle-release'
     - '/etc/redhat-release'
     - '/etc/system-release'
-provides: [os_release, os_major_version, os_minor_version]
 supported_os: [Linux]
 ---
 name: SystemDriveEnvironmentVariable
@@ -52,7 +49,6 @@ doc: |
 sources:
 - type: REGISTRY_VALUE
   attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion', value: 'SystemRoot'}]}
-provides: [environ_systemdrive]
 supported_os: [Windows]
 urls:
 - 'http://environmentvariables.org/SystemDrive'
@@ -63,7 +59,6 @@ doc: The Windows domain the system is connected to.
 sources:
 - type: REGISTRY_VALUE
   attributes: {key_value_pairs: [{key: 'HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\Tcpip\Parameters', value: 'Domain'}]}
-provides: [domain]
 supported_os: [Windows]
 ---
 name: WindowsEnvironmentVariableAllUsersAppData
@@ -73,6 +68,5 @@ sources:
   attributes:
     key_value_pairs:
     - {key: 'HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion\ProfileList', value: 'ProgramData'}
-provides: [environ_allusersappdata]
 supported_os: [Windows]
 urls: ['http://environmentvariables.org/ProgramData']
