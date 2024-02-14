@@ -41,7 +41,7 @@ urls: ['https://developer.chrome.com/extensions/external_extensions#registry']
 ---
 name: ChromeFileSystem
 doc: |
-  Google Chrome, Canary and Chromium File System files.
+  Google Chrome, Beta, Canary and Chromium File System files.
 
   The File System directory backs Chrome's fileSystem API. Inside this
   directory are a mixture of the data files saved using the fileSystem
@@ -70,6 +70,7 @@ sources:
   attributes:
     paths:
     - '%%users.homedir%%/Library/Application Support/Chromium/*/File System/**5'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Beta/*/File System/**5'
     - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/File System/**5'
     - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/File System/**5'
   supported_os: [Darwin]
@@ -81,7 +82,7 @@ urls:
 ---
 name: ChromeIndexedDB
 doc: |
-  Google Chrome, Canary and Chromium IndexedDB files.
+  Google Chrome, Beta, Canary and Chromium IndexedDB files.
 
   The IndexedDB directory contains one directory per origin that uses
   IndexedDB, named like https_www.example.com_0.indexeddb.leveldb,
@@ -113,6 +114,7 @@ sources:
   attributes:
     paths:
     - '%%users.homedir%%/Library/Application Support/Chromium/*/IndexedDB/**5'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Beta/*/IndexedDB/**5'
     - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/IndexedDB/**5'
     - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/IndexedDB/**5'
   supported_os: [Darwin]
@@ -121,7 +123,7 @@ urls: ['https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API']
 ---
 name: ChromeLocalStorage
 doc: |
-  Google Chrome, Canary and Chromium Local Storage files.
+  Google Chrome, Beta, Canary and Chromium Local Storage files.
 
   Chrome 60 and earlier versions used individual .sqlite files per origin for Local Storage, stored in the Local Storage directory root.
   In Chrome 61, a leveldb directory was added inside the root Local Storage directory, and new origins saved Local Storage data in a single LevelDB there.
@@ -132,6 +134,7 @@ sources:
   attributes:
     paths:
     - '%%users.homedir%%/Library/Application Support/Chromium/*/Local Storage/**'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Beta/*/Local Storage/**'
     - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Local Storage/**'
     - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Local Storage/**'
   supported_os: [Darwin]
@@ -208,6 +211,8 @@ sources:
     paths:
     - '%%users.homedir%%/Library/Application Support/Chromium/*/Preferences'
     - '%%users.homedir%%/Library/Application Support/Chromium/*/Secure Preferences'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Beta/*/Preferences'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Beta/*/Secure Preferences'
     - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Preferences'
     - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Secure Preferences'
     - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Preferences'
@@ -242,7 +247,7 @@ urls: ['https://forensics.wiki/google_chrome#configuration']
 ---
 name: ChromeSessionStorage
 doc: |
-  Google Chrome, Canary and Chromium Sessions and Session Storage files.
+  Google Chrome, Beta, Canary and Chromium Sessions and Session Storage files.
 
   The Sessions directory contains information for restoring tabs and windows
   from a browsing session.
@@ -254,12 +259,15 @@ sources:
   attributes:
     paths:
     - '%%users.homedir%%/Library/Application Support/Chromium/*/Session Storage/*'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Beta/*/Session Storage/*'
     - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Session Storage/*'
     - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Session Storage/*'
     - '%%users.homedir%%/Library/Application Support/Chromium/*/Sessions/Session_*'
     - '%%users.homedir%%/Library/Application Support/Chromium/*/Sessions/Tabs_*'
     - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Sessions/Session_*'
     - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Sessions/Tabs_*'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Beta/*/Sessions/Session_*'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Beta/*/Sessions/Tabs_*'
     - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Sessions/Session_*'
     - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Sessions/Tabs_*'
   supported_os: [Darwin]
@@ -376,6 +384,7 @@ sources:
     paths:
     - '%%users.homedir%%/Caches/Chromium/*/Cache/*'
     - '%%users.homedir%%/Caches/Google/Chrome/*/Cache/*'
+    - '%%users.homedir%%/Caches/Google/Chrome Beta/*/Cache/*'
     - '%%users.homedir%%/Caches/Google/Chrome Canary/*/Cache/*'
     - '%%users.homedir%%/Library/Application Support/BraveSoftware/Brave-Browser/*/Application Cache/*'
     - '%%users.homedir%%/Library/Application Support/BraveSoftware/Brave-Browser/*/Cache/*'
@@ -400,6 +409,13 @@ sources:
     - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Application Cache/Cache/*'
     - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Cache/*'
     - '%%users.homedir%%/Library/Application Support/Google/Chrome/Cache/*'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Beta/*/Application Cache/*'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Beta/*/Application Cache/Cache/*'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Beta/*/Cache/*'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Beta/Cache/*'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Beta/*/GPUCache/*'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Beta/*/Media Cache/*'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Beta/PnaclTranslationCache/*'
     - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Application Cache/*'
     - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Application Cache/Cache/*'
     - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Cache/*'
@@ -436,6 +452,10 @@ sources:
     - '%%users.homedir%%/Library/Caches/Chromium/PnaclTranslationCache/*'
     - '%%users.homedir%%/Library/Caches/Google/Chrome/*/Cache/*'
     - '%%users.homedir%%/Library/Caches/Google/Chrome/Cache/*'
+    - '%%users.homedir%%/Library/Caches/Google/Chrome Beta/*/Cache/*'
+    - '%%users.homedir%%/Library/Caches/Google/Chrome Beta/Cache/*'
+    - '%%users.homedir%%/Library/Caches/Google/Chrome Beta/*/Media Cache/*'
+    - '%%users.homedir%%/Library/Caches/Google/Chrome Beta/PnaclTranslationCache/*'
     - '%%users.homedir%%/Library/Caches/Google/Chrome Canary/*/Cache/*'
     - '%%users.homedir%%/Library/Caches/Google/Chrome Canary/Cache/*'
     - '%%users.homedir%%/Library/Caches/Google/Chrome Canary/*/Media Cache/*'
@@ -602,6 +622,10 @@ sources:
     - '%%users.homedir%%/Library/Application Support/Chromium/*/Cookies-journal'
     - '%%users.homedir%%/Library/Application Support/Chromium/*/Network/Cookies'
     - '%%users.homedir%%/Library/Application Support/Chromium/*/Network/Cookies-journal'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Beta/*/Cookies'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Beta/*/Cookies-journal'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Beta/*/Network/Cookies'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Beta/*/Network/Cookies-journal'
     - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Cookies'
     - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Cookies-journal'
     - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Network/Cookies'
@@ -624,6 +648,7 @@ sources:
     paths:
     - '%%users.homedir%%/Library/Application Support/BraveSoftware/Brave-Browser/*/Extensions/**10'
     - '%%users.homedir%%/Library/Application Support/Chromium/*/Extensions/**10'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Beta/*/Extensions/**10'
     - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Extensions/**10'
     - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Extensions/**10'
     - '%%users.homedir%%/Library/Application Support/Microsoft Edge Beta/*/Extensions/**10'
@@ -674,6 +699,7 @@ sources:
     paths:
     - '%%users.homedir%%/Library/Application Support/BraveSoftware/Brave-Browser/*/Extension Activity'
     - '%%users.homedir%%/Library/Application Support/Chromium/*/Extension Activity'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Beta/*/Extension Activity'
     - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Extension Activity'
     - '%%users.homedir%%/Library/Application Support/Google/Chrome/*/Extension Activity'
     - '%%users.homedir%%/Library/Application Support/Microsoft Edge Beta/*/Extension Activity'
@@ -780,6 +806,10 @@ sources:
     - '%%users.homedir%%/Library/Application Support/Chromium/*/Favicons-journal'
     - '%%users.homedir%%/Library/Application Support/Chromium/*/Network/Favicons'
     - '%%users.homedir%%/Library/Application Support/Chromium/*/Network/Favicons-journal'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Beta/*/Favicons'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Beta/*/Favicons-journal'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Beta/*/Network/Favicons'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Beta/*/Network/Favicons-journal'
     - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Favicons'
     - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Favicons-journal'
     - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Network/Favicons'
@@ -808,6 +838,10 @@ sources:
     - '%%users.homedir%%/Library/Application Support/Chromium/*/Archived History-journal'
     - '%%users.homedir%%/Library/Application Support/Chromium/*/History'
     - '%%users.homedir%%/Library/Application Support/Chromium/*/History-journal'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Beta/*/Archived History'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Beta/*/Archived History-journal'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Beta/*/History'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Beta/*/History-journal'
     - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Archived History'
     - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Archived History-journal'
     - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/History'
@@ -992,6 +1026,10 @@ sources:
     - '%%users.homedir%%/Library/Application Support/Chromium/*/Login Data-journal'
     - '%%users.homedir%%/Library/Application Support/Chromium/*/Network/Login Data'
     - '%%users.homedir%%/Library/Application Support/Chromium/*/Network/Login Data-journal'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Beta/*/Login Data'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Beta/*/Login Data-journal'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Beta/*/Network/Login Data'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Beta/*/Network/Login Data-journal'
     - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Login Data'
     - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Login Data-journal'
     - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Network/Login Data'
@@ -1070,6 +1108,10 @@ sources:
     - '%%users.homedir%%/Library/Application Support/Chromium/*/Web Data-journal'
     - '%%users.homedir%%/Library/Application Support/Chromium/*/Network/Web Data'
     - '%%users.homedir%%/Library/Application Support/Chromium/*/Network/Web Data-journal'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Beta/*/Web Data'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Beta/*/Web Data-journal'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Beta/*/Network/Web Data'
+    - '%%users.homedir%%/Library/Application Support/Google/Chrome Beta/*/Network/Web Data-journal'
     - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Web Data'
     - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Web Data-journal'
     - '%%users.homedir%%/Library/Application Support/Google/Chrome Canary/*/Network/Web Data'
