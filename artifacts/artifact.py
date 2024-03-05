@@ -12,7 +12,7 @@ class ArtifactDefinition(object):
     aliases (list[str]): aliases that identify the artifact definition.
     description (str): description.
     name (str): name that uniquely identifiers the artifact definition.
-    sources (list[str]): sources.
+    sources (list[SourceType]): sources.
     supported_os (list[str]): supported operating systems.
     urls (list[str]): URLs with more information about the artifact definition.
   """
