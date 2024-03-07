@@ -3499,6 +3499,20 @@ sources:
 supported_os: [Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/EventLog.html']
 ---
+name: WindowsXMLEventLogPowerShell
+doc: PowerShell Windows XML Event Logs.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%environ_systemroot%%\System32\winevt\Logs\Microsoft-Windows-PowerShell%4Admin.evtx'
+    - '%%environ_systemroot%%\System32\winevt\Logs\Microsoft-Windows-PowerShell%4Operational.evtx'
+    - '%%environ_systemroot%%\System32\winevt\Logs\PowerShellCore Operational.evtx'
+    - '%%environ_systemroot%%\System32\winevt\Logs\Windows PowerShell.evtx'
+    separator: '\'
+supported_os: [Windows]
+urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/EventLog.html']
+---
 name: WindowsXMLEventLogSecurity
 doc: Security Windows XML Event Log.
 sources:
@@ -3535,20 +3549,6 @@ sources:
 - type: FILE
   attributes:
     paths: ['%%environ_systemroot%%\System32\winevt\Logs\Microsoft-Windows-TerminalServices-LocalSessionManager%4Operational.evtx']
-    separator: '\'
-supported_os: [Windows]
-urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/EventLog.html']
----
-name: WindowsPowerShellLogs
-doc: Windows PowerShell Logs
-sources:
-- type: FILE
-  attributes:
-    paths:
-    - '%%environ_systemroot%%\System32\winevt\Logs\Microsoft-Windows-PowerShell%4Admin.evtx'
-    - '%%environ_systemroot%%\System32\winevt\Logs\Microsoft-Windows-PowerShell%4Operational.evtx'
-    - '%%environ_systemroot%%\System32\winevt\Logs\PowerShellCore Operational.evtx'
-    - '%%environ_systemroot%%\System32\winevt\Logs\Windows PowerShell.evtx'
     separator: '\'
 supported_os: [Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/EventLog.html']
