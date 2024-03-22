@@ -101,7 +101,7 @@ sources:
   attributes:
     paths:
     - '%%environ_systemroot%%\System32\LogFiles\W3SVC*\*.log'
-    - '%%environ_systemdrive%%\inetpub\logs\LogFiles\*.log'
+    - '%%environ_systemdrive%%\inetpub\logs\LogFiles\W3SVC*\*.log'
     - '%%environ_systemdrive%%\Resources\Directory\*\LogFiles\Web\W3SVC*\*.log'
     separator: '\'
 supported_os: [Windows]
