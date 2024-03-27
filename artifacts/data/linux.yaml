@@ -214,7 +214,7 @@ sources:
 - type: FILE
   attributes:
     paths:
-    - '/var/log/auth.log*'
+    - '/var/log/auth*'
     - '/var/log/secure*'
 supported_os: [Linux]
 ---
@@ -259,7 +259,7 @@ name: LinuxDaemonLogFiles
 doc: Linux daemon log files.
 sources:
 - type: FILE
-  attributes: {paths: ['/var/log/daemon.log*']}
+  attributes: {paths: ['/var/log/daemon*']}
 supported_os: [Linux]
 ---
 name: LinuxDHCPConfigurationFile
@@ -366,7 +366,7 @@ name: LinuxKernelLogFiles
 doc: Linux kernel log files.
 sources:
 - type: FILE
-  attributes: {paths: ['/var/log/kern.log*']}
+  attributes: {paths: ['/var/log/kern*']}
 supported_os: [Linux]
 ---
 name: LinuxLastlogFile
@@ -720,9 +720,9 @@ sources:
 - type: FILE
   attributes:
     paths:
-    - '/var/log/btmp'
-    - '/var/log/wtmp'
-    - '/var/run/utmp'
+    - '/var/log/btmp*'
+    - '/var/log/wtmp*'
+    - '/var/run/utmp*'
 supported_os: [Linux]
 urls: ['https://github.com/libyal/dtformats/blob/main/documentation/Utmp%20login%20records%20format.asciidoc']
 ---
@@ -730,7 +730,7 @@ name: LinuxWtmp
 doc: Linux wtmp login record file
 sources:
 - type: FILE
-  attributes: {paths: ['/var/log/wtmp']}
+  attributes: {paths: ['/var/log/wtmp*']}
 supported_os: [Linux]
 urls: ['https://github.com/libyal/dtformats/blob/main/documentation/Utmp%20login%20records%20format.asciidoc']
 ---
