@@ -32,12 +32,17 @@ sources:
 supported_os: [Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/ActiveDesktop.html']
 ---
-name: WindowsActiveDirectoryDatabase
-doc: Windows Active Directory data store file.
+name: WindowsActiveDirectoryDatabaseFile
+aliases: [WindowsActiveDirectoryDatabase]
+doc: Windows Active Directory database file (ntds.dit).
 sources:
 - type: FILE
   attributes:
-    paths: ['%%environ_systemroot%%\ntds\ntds.dit']
+    paths:
+    - '%%environ_systemroot%%\ntds\ntds.dit'
+    - '%%environ_systemroot%%\ServicePackFiles\*\ntds.dit*'
+    - '%%environ_systemroot%%\SoftwareDistribution\Download\*\*\ntds.dit*'
+    - '%%environ_systemroot%%\System32\ntds.dit'
     separator: '\'
 supported_os: [Windows]
 urls: ['https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2003/cc772829(v=ws.10)']
@@ -1488,6 +1493,15 @@ supported_os: [Windows]
 urls:
 - 'https://www.microsoftpressstore.com/articles/article.aspx?p=2762082&seqNum=2'
 ---
+name: WindowsHelpCenterDatabaseFile
+doc: Windows Help Center database file (HCdata.edb).
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%environ_systemroot%%\PCHEALTH\HELPCTR\Database\HCdata.edb']
+    separator: '\'
+supported_os: [Windows]
+---
 name: WindowsHostsFiles
 doc: The Windows hosts and lmhosts file.
 sources:
@@ -2220,7 +2234,8 @@ urls:
 - 'https://technet.microsoft.com/en-us/library/cc737855(v=ws.10).aspx'
 - 'https://technet.microsoft.com/en-us/library/cc957840.aspx'
 ---
-name: WindowsSearchDatabase
+name: WindowsSearchDatabaseFile
+aliases: [WindowsSearchDatabase]
 doc: Windows Search database (Windows.edb).
 sources:
 - type: FILE
