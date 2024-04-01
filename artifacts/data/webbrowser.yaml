@@ -1344,6 +1344,27 @@ doc: |
   * MSIE 4 - 9 Cache files (index.dat);
   * MSIE 10 WebCacheV*.dat files.
 sources:
+- type: ARTIFACT_GROUP
+  attributes:
+    names:
+    - 'InternetExplorerHistoryDatabaseFile'
+    - 'InternetExplorerIndexDatFiles'
+supported_os: [Windows]
+urls: ['https://forensics.wiki/internet_explorer']
+---
+name: InternetExplorerHistoryDatabaseFile
+doc: Microsoft Internet Explorer (MSIE) 10 browser history database file (WebCacheV*.dat).
+sources:
+- type: FILE
+  attributes:
+    paths: ['%%users.localappdata%%\Microsoft\Windows\WebCache\WebCacheV*.dat']
+    separator: '\'
+supported_os: [Windows]
+urls: ['https://forensics.wiki/internet_explorer']
+---
+name: InternetExplorerIndexDatFiles
+doc: Microsoft Internet Explorer (MSIE) 4 - 9 cache and history files (index.dat).
+sources:
 - type: FILE
   attributes:
     paths:
@@ -1355,7 +1376,6 @@ sources:
     - '%%users.localappdata%%\Microsoft\Windows\History\Low\History.IE5\index.dat'
     - '%%users.localappdata%%\Microsoft\Windows\Temporary Internet Files\Content.IE5\index.dat'
     - '%%users.localappdata%%\Microsoft\Windows\Temporary Internet Files\Low\Content.IE5\index.dat'
-    - '%%users.localappdata%%\Microsoft\Windows\WebCache\WebCacheV*.dat'
     - '%%users.userprofile%%\Local Settings\History\History.IE5\index.dat'
     separator: '\'
 supported_os: [Windows]

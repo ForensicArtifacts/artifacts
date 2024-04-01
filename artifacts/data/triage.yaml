@@ -145,7 +145,7 @@ sources:
     - WindowsActivitiesCacheDatabase
     - WindowsRDPClientBitmapCache
     - WindowsRecycleBinMetadata
-    - WindowsSearchDatabase
+    - WindowsSearchDatabaseFile
     - WindowsUserAutomaticDestinationsJumpLists
     - WindowsUserCustomDestinationsJumpLists
     - WindowsUserRecentFiles
