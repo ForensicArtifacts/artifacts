@@ -49,7 +49,9 @@ Commonly used prefixes:
 
 Prefix | Description
 --- | ---
+Android | Android operating system specific artifact definition.
 Darwin | Mac OS (or Darwin) operating system specific artifact definition.
+iOS | iOS operating system specific artifact definition.
 Linux | Linux operating system specific artifact definition.
 Shell | Shell user-interface specific artifact definition.
 User | User specific artifact definition.
@@ -286,18 +288,20 @@ Since operating system (OS) are a very common constraint, this has been provided
 as a separate option "supported_os" to simplify syntax. For supported_os no
 quotes are required. The currently supported operating systems are:
 
+* Android
 * Darwin (also used for Mac OS X)
+* iOS
 * Linux
 * Windows
 
 ```yaml
-supported_os: [Darwin, Linux, Windows]
+supported_os: [Android, Darwin, iOS, Linux, Windows]
 ```
 
 This can be translated to objectfilter as:
 
 ```yaml
-["os =='Darwin'" OR "os=='Linux'" OR "os == 'Windows'"]
+["os =='Android'" OR "os =='Darwin'" OR "os =='iOS'" "os=='Linux'" OR "os == 'Windows'"]
 ```
 
 ## Parameter expansion and globs
