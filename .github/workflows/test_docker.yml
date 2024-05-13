@@ -11,7 +11,7 @@ jobs:
     container:
       image: registry.fedoraproject.org/fedora:${{ matrix.version }}
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Set up container
       run: |
         dnf install -y dnf-plugins-core langpacks-en
@@ -41,7 +41,7 @@ jobs:
     container:
       image: ubuntu:${{ matrix.version }}
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Set up container
       env:
         DEBIAN_FRONTEND: noninteractive
@@ -54,7 +54,7 @@ jobs:
       run: |
         add-apt-repository -y ppa:gift/dev
         apt-get update -q
-        apt-get install -y build-essential python3 python3-build python3-dev python3-distutils python3-pip python3-setuptools python3-wheel python3-yaml
+        apt-get install -y build-essential python3 python3-build python3-dev python3-pip python3-setuptools python3-wheel python3-yaml
     - name: Run tests
       env:
         LANG: en_US.UTF-8
