@@ -442,13 +442,6 @@ paths: ['%%environ_temp%%\*.exe']
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/EventLog.html']
 ```
 
-Double quotes should be used where escaping causes problems, such as
-regular expressions:
-
-```yaml
-content_regex_list: ["^%%users.username%%:[^:]*\n"]
-```
-
 ### Minimize the number of definitions by using multiple sources
 
 To minimize the number of artifacts in the list, combine them using the
