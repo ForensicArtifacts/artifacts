@@ -2019,7 +2019,7 @@ sources:
   attributes:
     paths:
     - '%%users.localappdata%%\Microsoft\Windows\Notifications\wpndatabase.db'
-    - '%%environ_systemroot%%\System32\config\ystemprofile\AppData\Local\Microsoft\Windows\Notifications\wpndatabase.db'
+    - '%%environ_systemroot%%\System32\config\systemprofile\AppData\Local\Microsoft\Windows\Notifications\wpndatabase.db'
     separator: '\'
 supported_os: [Windows]
 ---
