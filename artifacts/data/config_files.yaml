@@ -4,8 +4,20 @@ name: JupyterConfigFile
 doc: Jupyter notebook configuration file
 sources:
 - type: FILE
-  attributes: {paths: ['%%users.homedir%%/.jupyter/jupyter_notebook_config.py']}
-supported_os: [Linux]
+  attributes:
+    paths:
+    - '%%users.homedir%%/.jupyter/jupyter_notebook_config.py'
+    - '/etc/jupyter/jupyter_notebook_config.py'
+    - '/private/etc/jupyter/jupyter_notebook_config.py'
+    - '/user/local/etc/jupyter/jupyter_notebook_config.py'
+  supported_os: [Darwin, Linux]
+- type: FILE
+  attributes:
+    paths: ['%%environ_programdata%%\jupyter\jupyter_notebook_config.py']
+    separator: '\'
+  supported_os: [Windows]
+labels: [Configuration Files]
+supported_os: [Darwin, Linux, Windows]
 ---
 name: NfsExportsFile
 doc: NFS Exports configuration
