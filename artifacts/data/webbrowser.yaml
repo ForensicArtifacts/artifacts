@@ -653,7 +653,7 @@ sources:
   supported_os: [Darwin]
 supported_os: [Darwin, Linux, Windows]
 ---
-name: ChromiumBasedBrowsersExtensionsInclUnstable
+name: ChromiumBasedBrowsersExtensions
 aliases: [ChromeExtensions]
 doc: |
   Browser extension files for multiple Chromium-based browsers, such as Google
@@ -843,7 +843,7 @@ sources:
   supported_os: [Darwin]
 supported_os: [Darwin, Linux, Windows]
 ---
-name: ChromiumBasedBrowsersHistoryDatabaseFileInclUnstable
+name: ChromiumBasedBrowsersHistoryDatabaseFile
 aliases: [ChromeHistory, ChromiumBasedBrowsersHistory]
 doc: |
   Browsing history database file for multiple Chromium-based browsers, such as
