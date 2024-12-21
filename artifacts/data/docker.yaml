@@ -1,6 +1,13 @@
 # Docker artifacts
 
 ---
+name: DockerRootDirectory
+doc: Docker default root directory.
+sources:
+- type: PATH
+  attributes:
+    paths: ['/var/lib/docker/*']
+---
 name: DockerContainerConfig
 doc: Docker container configuration files
 sources:

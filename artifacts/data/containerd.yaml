@@ -1,5 +1,12 @@
 # containerd artifacts
-
+---
+name: ContainerdRootDirectory
+doc: containerd default root directory.
+sources:
+- type: PATH
+  attributes:
+    paths: ['/var/lib/containerd/*']
+supported_os: [Linux]
 ---
 name: ContainerdConfig
 doc: containerd configuration files
