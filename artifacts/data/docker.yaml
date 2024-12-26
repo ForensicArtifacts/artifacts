@@ -1,5 +1,4 @@
 # Docker artifacts
-
 ---
 name: DockerContainerConfig
 doc: Docker container configuration files
@@ -10,6 +9,13 @@ sources:
     - '/var/lib/docker/containers/*/config.v2.json'
     - '/var/lib/docker/containers/*/config.json'
 supported_os: [Linux]
+---
+name: DockerRootDirectory
+doc: Docker default root directory.
+sources:
+- type: PATH
+  attributes:
+    paths: ['/var/lib/docker/*']
 ---
 name: GKEDockerContainerLogs
 doc: Location where stdout and stderr from containers is logged in a Google Kubernetes Engine (GKE) environment.

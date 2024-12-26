@@ -1,5 +1,4 @@
 # containerd artifacts
-
 ---
 name: ContainerdConfig
 doc: containerd configuration files
@@ -25,4 +24,12 @@ sources:
     - '/var/log/daemon.log.*.gz'
     - '/var/log/syslog*'
     - '/var/log/message*'
+supported_os: [Linux]
+---
+name: ContainerdRootDirectory
+doc: containerd default root directory.
+sources:
+- type: PATH
+  attributes:
+    paths: ['/var/lib/containerd/*']
 supported_os: [Linux]
