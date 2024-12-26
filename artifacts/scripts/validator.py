@@ -585,6 +585,8 @@ def Main():
 
   validator = ArtifactDefinitionsValidator()
 
+  result = False
+
   if os.path.isdir(options.definitions):
     print(f'Validating definitions in: {options.definitions:s}/*.yaml')
     result = validator.CheckDirectory(options.definitions)

@@ -237,8 +237,7 @@ class ArtifactsReader(BaseArtifactsReader):
       glob_spec = os.path.join(path, '*')
 
     for artifact_file in glob.glob(glob_spec):
-      for artifact_definition in self.ReadFile(artifact_file):
-        yield artifact_definition
+      yield from self.ReadFile(artifact_file)
 
   def ReadFile(self, filename):
     """Reads artifact definitions from a file.
@@ -250,8 +249,7 @@ class ArtifactsReader(BaseArtifactsReader):
       ArtifactDefinition: an artifact definition.
     """
     with io.open(filename, 'r', encoding='utf-8') as file_object:
-      for artifact_definition in self.ReadFileObject(file_object):
-        yield artifact_definition
+      yield from self.ReadFileObject(file_object)
 
   @abc.abstractmethod
   def ReadFileObject(self, file_object):
