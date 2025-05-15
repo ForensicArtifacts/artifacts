@@ -78,7 +78,7 @@ class ArtifactDefinition(object):
           'type': source.type_indicator,
           'attributes': source.AsDict()
       }
-      if source.supported_os:
+      if getattr(source, "supported_os", None):
         source_definition['supported_os'] = source.supported_os
       sources.append(source_definition)
 
