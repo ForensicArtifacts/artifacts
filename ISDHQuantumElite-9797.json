@@ -2,7 +2,134 @@
   "contractName": "ISDHQuantumElite",
   "chainId": 9797,
   "address": "0xYOUR_DEPLOYED_ADDRESS",
-  "abi": [/* paste ABI here after compilation */],
+  "abi": [
+    {
+      "type": "constructor",
+      "inputs": [
+        {
+          "name": "initialSupply",
+          "type": "uint256"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "grantAccess",
+      "inputs": [
+        { "name": "_user", "type": "address" },
+        { "name": "_encryptedKey", "type": "bytes32" }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "retrieveEncryptedKey",
+      "inputs": [{ "name": "_user", "type": "address" }],
+      "outputs": [{ "name": "", "type": "bytes32" }],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "allocateLiquidityReserve",
+      "inputs": [
+        { "name": "_user", "type": "address" },
+        { "name": "_amount", "type": "uint256" }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "getLiquidityReserve",
+      "inputs": [{ "name": "_user", "type": "address" }],
+      "outputs": [{ "name": "", "type": "uint256" }],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "activateQuantumIdentityShielding",
+      "inputs": [{ "name": "_user", "type": "address" }],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "getQuantumIdentity",
+      "inputs": [{ "name": "_user", "type": "address" }],
+      "outputs": [{ "name": "", "type": "string" }],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "activateQuantumMessaging",
+      "inputs": [{ "name": "_user", "type": "address" }],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "getQuantumMessaging",
+      "inputs": [{ "name": "_user", "type": "address" }],
+      "outputs": [{ "name": "", "type": "string" }],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "activateQuantumEntropyStabilization",
+      "inputs": [{ "name": "_user", "type": "address" }],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "getQuantumEntropyBalance",
+      "inputs": [{ "name": "_user", "type": "address" }],
+      "outputs": [{ "name": "", "type": "uint256" }],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "applyRelativisticImmortality",
+      "inputs": [
+        { "name": "_user", "type": "address" },
+        { "name": "velocity", "type": "uint256" }
+      ],
+      "outputs": [],
+      "stateMutability": "nonpayable"
+    },
+    {
+      "type": "function",
+      "name": "getImmortalTimeScaling",
+      "inputs": [{ "name": "_user", "type": "address" }],
+      "outputs": [{ "name": "", "type": "uint256" }],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "name",
+      "outputs": [{ "name": "", "type": "string" }],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "symbol",
+      "outputs": [{ "name": "", "type": "string" }],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "decimals",
+      "outputs": [{ "name": "", "type": "uint8" }],
+      "stateMutability": "view"
+    },
+    {
+      "type": "function",
+      "name": "totalSupply",
+      "outputs": [{ "name": "", "type": "uint256" }],
+      "stateMutability": "view"
+    }
+  ],
   "compiler": {
     "version": "0.8.20",
     "optimizer": {
@@ -14,7 +141,7 @@
     "name": "ISDH Quantum Elite",
     "symbol": "ISDH-QE",
     "decimals": 11,
-    "initialSupply": "999000000000000000000000000000000"  // Match your constructor logic
+    "initialSupply": "999000000000000000000000000000000"
   },
   "features": [
     "QuantumIdentity",
@@ -23,5 +150,32 @@
     "RelativisticImmortality",
     "QuantumEncryption",
     "QuantumRegistry"
-  ]
+  ],
+  "extDescription": {
+    "title": "ISDH Quantum Elite Token — VaultNet Chain 9797",
+    "overview": "ISDH-QE is a quantum-fortified, privacy-first smart token built for VaultNet. It integrates stealth messaging, quantum entropy stabilization, and relativistic identity shielding. This artifact contains all essential parameters for Web3 integrations, token registries, and sovereignty verification flows.",
+    "capabilities": [
+      "Quantum Identity Shielding and Time Dilation Ledger Functions",
+      "Stealth Messaging via Zero-Knowledge Address Layer",
+      "Encrypted Liquidity Allocation and Governance Reserve Metrics",
+      "Entropy-Stabilized Consensus Participation with PQ Signatures",
+      "ISDH-Glyph Metadata Synchronization for .well-known directory"
+    ],
+    "usageNotes": "This artifact supports direct import into VaultSpawn OS wallets, third-party registries, and smart contract audit tools. Compatible with ChainList-like registry formats, RPC-linked wallet injections, and glyphproof verification UI overlays. It can also be linked to the VaultNet explorer and universal sigil UI using chainId 9797.",
+    "vaultnetRegistry": {
+      "chainId": 9797,
+      "rpcUrl": "https://rpc.qisdnhm.io-blockchain.net",
+      "explorer": "https://explorer.qisdnhm.io",
+      "glyphproofUrl": "/.well-known/glyphproof.json",
+      "symbol": "ISDH-QE",
+      "decimals": 11,
+      "features": [
+        "QuantumConsensus",
+        "StealthTransfer",
+        "EntropyBeacon",
+        "ZKShielding",
+        "ImmortalitySync"
+      ]
+    }
+  }
 }
