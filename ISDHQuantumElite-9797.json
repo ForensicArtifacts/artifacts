@@ -1,0 +1,27 @@
+{
+  "contractName": "ISDHQuantumElite",
+  "chainId": 9797,
+  "address": "0xYOUR_DEPLOYED_ADDRESS",
+  "abi": [/* paste ABI here after compilation */],
+  "compiler": {
+    "version": "0.8.20",
+    "optimizer": {
+      "enabled": true,
+      "runs": 200
+    }
+  },
+  "token": {
+    "name": "ISDH Quantum Elite",
+    "symbol": "ISDH-QE",
+    "decimals": 11,
+    "initialSupply": "999000000000000000000000000000000"  // Match your constructor logic
+  },
+  "features": [
+    "QuantumIdentity",
+    "StealthMessaging",
+    "EntropyStabilization",
+    "RelativisticImmortality",
+    "QuantumEncryption",
+    "QuantumRegistry"
+  ]
+}
