@@ -238,6 +238,10 @@ sources:
     - '/etc/crontab'
     - '/private/etc/crontab'
     - '/usr/lib/cron/tabs/*'
+    - '/private/var/at/tabs/*'
+    - '/var/at/tabs/*'
+    - '/private/var/cron/tabs/*'
+    - '/var/cron/tabs/*'
 supported_os: [Darwin]
 urls: ['https://forensics.wiki/mac_os_x_10.9_artifacts_location#system-info-misc']
 ---
