@@ -9,21 +9,21 @@ artifacts.scripts.stats module
 
 .. automodule:: artifacts.scripts.stats
    :members:
-   :undoc-members:
    :show-inheritance:
+   :undoc-members:
 
 artifacts.scripts.validator module
 ----------------------------------
 
 .. automodule:: artifacts.scripts.validator
    :members:
-   :undoc-members:
    :show-inheritance:
+   :undoc-members:
 
 Module contents
 ---------------
 
 .. automodule:: artifacts.scripts
    :members:
-   :undoc-members:
    :show-inheritance:
+   :undoc-members:
