@@ -319,6 +319,9 @@ class YamlArtifactsReader(ArtifactsReader):
     """
     # TODO: add try, except?
     yaml_generator = yaml.safe_load_all(file_object)
+    if not isinstance(yaml_generator, dict):
+      raise errors.FormatError(
+        f'YAML markup did not produce a dictionary: {repr(yaml_generator):s}')
 
     last_artifact_definition = None
     for yaml_definition in yaml_generator:
