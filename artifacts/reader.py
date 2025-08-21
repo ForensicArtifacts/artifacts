@@ -324,7 +324,8 @@ class YamlArtifactsReader(ArtifactsReader):
     for yaml_definition in yaml_generator:
       if not isinstance(yaml_definition, dict):
         raise errors.FormatError(
-          f'YAML markup did not produce a dictionary: {repr(yaml_generator):s}')
+            f'YAML markup did not produce a dictionary: {yaml_definition!r}')
+
       try:
         artifact_definition = self.ReadArtifactDefinitionValues(yaml_definition)
       except errors.FormatError as exception:
