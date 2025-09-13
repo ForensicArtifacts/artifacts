@@ -4,7 +4,7 @@ The artifact definitions can be found in the
 [artifacts/data directory](https://github.com/ForensicArtifacts/artifacts/tree/main/artifacts/data) and the format is described
 in detail in the [Style Guide](https://artifacts.readthedocs.io/en/latest/sources/Format-specification.html).
 
-Status of the repository as of 2025-07-25
+Status of the repository as of 2025-09-13
 
 Description | Number
 --- | ---
@@ -28,7 +28,7 @@ WMI | 27
 
 Identifier | Number
 --- | ---
-Darwin | 214
+Darwin | 215
 ESXi | 16
 Linux | 249
 Windows | 385
