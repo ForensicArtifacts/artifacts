@@ -1293,7 +1293,7 @@ sources:
     - '%%users.localappdata%%\Mozilla\Firefox\Profiles\*\places.sqlite'
     - '%%users.localappdata%%\Mozilla\Firefox\Profiles\*\places.sqlite-wal'
     - '%%users.appdata%%\Mozilla\Firefox\Profiles\*\places.sqlite'
-    - '%%users.localappdata%%\Mozilla\Firefox\Profiles\*\places.sqlite-wal'
+    - '%%users.appdata%%\Mozilla\Firefox\Profiles\*\places.sqlite-wal'
     separator: '\'
   supported_os: [Windows]
 supported_os: [Darwin, Linux, Windows]
