@@ -19,7 +19,7 @@ IOC-like logic, or describing how the data should be collected since this
 various between tools.
 
 For some background on the artifacts system and how we expect it to be used see
-`this Blackhat presentation <https://www.blackhat.com/docs/us-14/materials/us-14-Castle-GRR-Find-All-The-Badness-Collect-All-The-Things.pdf>`__
+`this Blackhat presentation <https://blackhat.com/docs/us-14/materials/us-14-Castle-GRR-Find-All-The-Badness-Collect-All-The-Things.pdf>`__
 and `YouTube video <https://www.youtube.com/watch?v=ren6QSvwFvg>`__ from the GRR team.
 
 .. toctree::
