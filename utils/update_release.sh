@@ -12,11 +12,11 @@ sed "s/__version__ = '[0-9]*'/__version__ = '${VERSION}'/" -i artifacts/__init__
 # Update the version in the setuptools configuration.
 sed "s/version = [0-9]*/version = ${VERSION}/" -i setup.cfg
 
-# Update the version in the dpkg configuration files.
-DPKG_DATE=$(date -R)
-
 # Ensure shebangs of Python scripts are consistent.
 find . -name \*.py -exec sed '1s?^#!.*$?#!/usr/bin/env python3?' -i {} \;
+
+# Update the version in the dpkg configuration files.
+DPKG_DATE=$(date -R)
 
 cat > config/dpkg/changelog << EOT
 artifacts (${VERSION}-1) unstable; urgency=low
