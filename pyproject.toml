@@ -1,3 +1,41 @@
 [build-system]
 requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "artifacts"
+version = "20251127"
+description = "ForensicArtifacts.com Artifact Repository"
+maintainers = [
+    { name = "Forensic artifacts", email = "forensicartifacts@googlegroups.com" },
+]
+license = "Apache-2.0"
+license-files = ["ACKNOWLEDGEMENTS", "AUTHORS", "LICENSE"]
+readme = "README.md"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Programming Language :: Python",
+]
+requires-python = ">=3.10"
+dependencies = [
+    "PyYAML >= 3.10",
+]
+
+[project.scripts]
+stats = "artifacts.scripts.stats:Main"
+validator = "artifacts.scripts.validator:Main"
+
+[project.urls]
+Documentation = "https://artifacts.readthedocs.io/en/latest"
+Homepage = "https://github.com/ForensicArtifacts/artifacts"
+Repository = "https://github.com/ForensicArtifacts/artifacts"
+
+[tool.setuptools.package-data]
+artifacts = [
+    "data/*.yaml",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["artifacts"]
+exclude = ["docs", "tests", "tests.*", "utils"]
