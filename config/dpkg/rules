@@ -6,11 +6,3 @@
 .PHONY: override_dh_auto_test
 override_dh_auto_test:
 
-.PHONY: override_dh_auto_install
-override_dh_auto_install:
-	dh_auto_install
-	mkdir -p debian/tmp/usr/share/artifacts/
-	mv debian/tmp/usr/lib/python*/dist-packages/artifacts/data/* debian/tmp/usr/share/artifacts/
-	rmdir debian/tmp/usr/lib/python*/dist-packages/artifacts/data
-	find debian/tmp/usr/bin/ -type f -exec {} {}.py \;
-
