@@ -2358,7 +2358,7 @@ doc: Windows service and driver configurations.
 sources:
 - type: REGISTRY_KEY
   attributes:
-    keys: ['HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\*']
+    keys: ['HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\**']
 supported_os: [Windows]
 urls: ['https://artifacts-kb.readthedocs.io/en/latest/sources/windows/ServicesAndDrivers.html']
 ---
