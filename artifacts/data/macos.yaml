@@ -325,7 +325,10 @@ aliases: [MacOSFSEvents]
 doc: File system events disk log stream (fsevents) files.
 sources:
 - type: FILE
-  attributes: {paths: ['/.fseventsd/*']}
+  attributes:
+    paths:
+    - '/.fseventsd/*'
+    - '/System/Volumes/Data/.fseventsd'
 supported_os: [Darwin]
 urls: ['https://github.com/libyal/dtformats/blob/main/documentation/MacOS%20File%20System%20Events%20Disk%20Log%20Stream%20format.asciidoc']
 ---
