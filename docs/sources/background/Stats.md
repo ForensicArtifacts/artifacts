@@ -4,12 +4,12 @@ The artifact definitions can be found in the
 [artifacts/data directory](https://github.com/ForensicArtifacts/artifacts/tree/main/artifacts/data) and the format is described
 in detail in the [Style Guide](https://artifacts.readthedocs.io/en/latest/sources/Format-specification.html).
 
-Status of the repository as of 2026-01-27
+Status of the repository as of 2026-02-07
 
 Description | Number
 --- | ---
 Number of artifact definitions: | 839
-Number of file paths: | 2338
+Number of file paths: | 2339
 Number of Windows Registry key paths: | 677
 
 ### Artifact definition source types
