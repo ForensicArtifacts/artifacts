@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "artifacts"
-version = "20260127"
+version = "20260207"
 description = "ForensicArtifacts.com Artifact Repository"
 maintainers = [
     { name = "Forensic artifacts", email = "forensicartifacts@googlegroups.com" },
