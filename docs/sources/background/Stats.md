@@ -4,11 +4,11 @@ The artifact definitions can be found in the
 [artifacts/data directory](https://github.com/ForensicArtifacts/artifacts/tree/main/artifacts/data) and the format is described
 in detail in the [Style Guide](https://artifacts.readthedocs.io/en/latest/sources/Format-specification.html).
 
-Status of the repository as of 2026-04-11
+Status of the repository as of 2026-04-21
 
 Description | Number
 --- | ---
-Number of artifact definitions: | 839
+Number of artifact definitions: | 837
 Number of file paths: | 2339
 Number of Windows Registry key paths: | 677
 
@@ -19,7 +19,7 @@ Identifier | Number
 ARTIFACT_GROUP | 48
 COMMAND | 10
 FILE | 551
-PATH | 30
+PATH | 28
 REGISTRY_KEY | 57
 REGISTRY_VALUE | 116
 WMI | 27
