@@ -230,21 +230,22 @@ separator | Optional path segment separator e.g. '\' for Windows systems. When n
 ### Windows Registry key source
 
 The Windows Registry key source is a source that consists of the contents of
-Windows Registry keys e.g.
+Windows Registry keys (where _contents_ is its subkeys, values and class name)
+e.g.
 
 ```yaml
 sources:
 - type: REGISTRY_KEY
   attributes:
     keys:
-    - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Internet Explorer\TypedURLs\*'
+    - 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\*'
 ```
 
 Where `attributes` can contain the following values:
 
 Value | Description
 --- | ---
-keys | A list of Windows Registry key paths that can potentially be collected. The paths can use parameter expansion e.g. `%%users.sid%%`. See section: [Parameter expansion and globs](parameter-expansion-and-globs).
+keys | A list of Windows Registry key paths that can potentially be collected. The paths can use parameter expansion e.g. `%%users.sid%%` and globs. See section: [Parameter expansion and globs](parameter-expansion-and-globs).
 
 ### Windows Registry value source
 
