@@ -3327,8 +3327,9 @@ sources:
 - type: REGISTRY_KEY
   attributes:
     keys:
-    - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders\*'
-    - 'HKEY_USERS\%%users.sid%%\Environment\*'
+    - 'HKEY_USERS\%%users.sid%%\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders'
+    - 'HKEY_USERS\%%users.sid%%\Environment'
+    - 'HKEY_USERS\%%users.sid%%\Volatile Environment'
     - 'HKEY_USERS\%%users.sid%%\Volatile Environment\*'
 supported_os: [Windows]
 ---
