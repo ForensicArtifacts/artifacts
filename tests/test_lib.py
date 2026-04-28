@@ -6,6 +6,38 @@ import shutil
 import tempfile
 import unittest
 
+from artifacts import errors
+from artifacts import source_type
+
+
+class TestSourceType(source_type.SourceType):
+  """Class that implements a test source type."""
+
+  TYPE_INDICATOR = 'test'
+
+  def __init__(self, test=None):
+    """Initializes the source type object.
+
+    Args:
+      test (Optional[str]): test string.
+
+    Raises:
+      FormatError: when test is not set.
+    """
+    if not test:
+      raise errors.FormatError('Missing test value.')
+
+    super(TestSourceType, self).__init__()
+    self.test = test
+
+  def AsDict(self):
+    """Represents a source type as a dictionary.
+
+    Returns:
+      dict[str, str]: source type attributes.
+    """
+    return {'test': self.test}
+
 
 class BaseTestCase(unittest.TestCase):
   """The base test case."""

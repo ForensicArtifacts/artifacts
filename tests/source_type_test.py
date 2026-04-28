@@ -9,35 +9,6 @@ from artifacts import source_type
 from tests import test_lib
 
 
-class TestSourceType(source_type.SourceType):
-  """Class that implements a test source type."""
-
-  TYPE_INDICATOR = 'test'
-
-  def __init__(self, test=None):
-    """Initializes the source type object.
-
-    Args:
-      test (Optional[str]): test string.
-
-    Raises:
-      FormatError: when test is not set.
-    """
-    if not test:
-      raise errors.FormatError('Missing test value.')
-
-    super(TestSourceType, self).__init__()
-    self.test = test
-
-  def AsDict(self):
-    """Represents a source type as a dictionary.
-
-    Returns:
-      dict[str, str]: source type attributes.
-    """
-    return {'test': self.test}
-
-
 class SourceTypeTest(test_lib.BaseTestCase):
   """Class to test the artifact source type."""
 
@@ -121,10 +92,11 @@ class SourceTypeFactoryTest(test_lib.BaseTestCase):
 
   def testCreateSourceType(self):
     """Tests the source type creation."""
-    source_type.SourceTypeFactory.RegisterSourceTypes([TestSourceType])
+    source_type.SourceTypeFactory.RegisterSourceTypes([test_lib.TestSourceType])
 
     with self.assertRaises(KeyError):
-      source_type.SourceTypeFactory.RegisterSourceTypes([TestSourceType])
+      source_type.SourceTypeFactory.RegisterSourceTypes([
+          test_lib.TestSourceType])
 
     source_object = source_type.SourceTypeFactory.CreateSourceType(
         'test', {'test': 'test123'})
@@ -140,32 +112,32 @@ class SourceTypeFactoryTest(test_lib.BaseTestCase):
       source_object = source_type.SourceTypeFactory.CreateSourceType(
           'bogus', {})
 
-    source_type.SourceTypeFactory.DeregisterSourceType(TestSourceType)
+    source_type.SourceTypeFactory.DeregisterSourceType(test_lib.TestSourceType)
 
   def testRegisterSourceType(self):
     """Tests the source type registration functions."""
     expected_number_of_source_types = len(
         source_type.SourceTypeFactory.GetSourceTypes())
 
-    source_type.SourceTypeFactory.RegisterSourceType(TestSourceType)
+    source_type.SourceTypeFactory.RegisterSourceType(test_lib.TestSourceType)
 
     number_of_source_types = len(source_type.SourceTypeFactory.GetSourceTypes())
     self.assertEqual(
         number_of_source_types, expected_number_of_source_types + 1)
 
-    source_type.SourceTypeFactory.DeregisterSourceType(TestSourceType)
+    source_type.SourceTypeFactory.DeregisterSourceType(test_lib.TestSourceType)
 
     number_of_source_types = len(source_type.SourceTypeFactory.GetSourceTypes())
     self.assertEqual(number_of_source_types, expected_number_of_source_types)
 
   def testRegisterSourceTypeRaisesWhenAlreadyRegistered(self):
     """Tests the source type registration functions when already registered."""
-    source_type.SourceTypeFactory.RegisterSourceType(TestSourceType)
+    source_type.SourceTypeFactory.RegisterSourceType(test_lib.TestSourceType)
 
     with self.assertRaises(KeyError):
-      source_type.SourceTypeFactory.RegisterSourceType(TestSourceType)
+      source_type.SourceTypeFactory.RegisterSourceType(test_lib.TestSourceType)
 
-    source_type.SourceTypeFactory.DeregisterSourceType(TestSourceType)
+    source_type.SourceTypeFactory.DeregisterSourceType(test_lib.TestSourceType)
 
 
 if __name__ == '__main__':
