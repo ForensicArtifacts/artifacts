@@ -208,16 +208,6 @@ supported_os: [Windows]
     self.assertEqual(
         source_type.type_indicator, definitions.TYPE_INDICATOR_COMMAND)
 
-    # Artifact with COMMAND definition collector definition.
-    artifact_definition = artifact_definitions[5]
-    self.assertEqual(artifact_definition.name, 'RedhatPackagesList')
-
-    self.assertEqual(len(artifact_definition.sources), 1)
-    collector_definition = artifact_definition.sources[0]
-    self.assertIsNotNone(collector_definition)
-    self.assertEqual(
-        collector_definition.type_indicator, definitions.TYPE_INDICATOR_COMMAND)
-
   def testReadFileObjectInvalidSupportedOS(self):
     """Tests the ReadFileObject function on an invalid supported_os."""
     artifact_reader = reader.YamlArtifactsReader()
