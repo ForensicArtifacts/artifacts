@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 """The artifact definition."""
 
 from artifacts import errors
 from artifacts import registry
 
 
-class ArtifactDefinition(object):
+class ArtifactDefinition:
   """Artifact definition interface.
 
   Attributes:
@@ -25,7 +24,7 @@ class ArtifactDefinition(object):
       aliases (Optional[str]): aliases that identify the artifact definition.
       description (Optional[str]): description of the artifact definition.
     """
-    super(ArtifactDefinition, self).__init__()
+    super().__init__()
     self.aliases = aliases or []
     self.description = description
     self.name = name
