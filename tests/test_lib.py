@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Shared functions and classes for testing."""
 
 import os
@@ -27,7 +26,7 @@ class TestSourceType(source_type.SourceType):
     if not test:
       raise errors.FormatError('Missing test value.')
 
-    super(TestSourceType, self).__init__()
+    super().__init__()
     self.test = test
 
   def AsDict(self):
@@ -76,12 +75,12 @@ class BaseTestCase(unittest.TestCase):
       raise unittest.SkipTest(f'missing test file: {filename:s}')
 
 
-class TempDirectory(object):
+class TempDirectory:
   """Class that implements a temporary directory."""
 
   def __init__(self):
     """Initializes a temporary directory."""
-    super(TempDirectory, self).__init__()
+    super().__init__()
     self.name = ''
 
   def __enter__(self):

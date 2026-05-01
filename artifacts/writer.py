@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """The artifact writer objects."""
 
 import abc
@@ -6,7 +5,7 @@ import json
 import yaml
 
 
-class BaseArtifactsWriter(object):
+class BaseArtifactsWriter:
   """Artifacts writer interface."""
 
   @abc.abstractmethod

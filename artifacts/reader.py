@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """The artifact reader objects."""
 
 import abc
@@ -13,7 +12,7 @@ from artifacts import definitions
 from artifacts import errors
 
 
-class BaseArtifactsReader(object):
+class BaseArtifactsReader:
   """Artifacts reader interface.
 
   Attributes:
@@ -22,7 +21,7 @@ class BaseArtifactsReader(object):
 
   def __init__(self):
     """Initializes an artifacts reader."""
-    super(BaseArtifactsReader, self).__init__()
+    super().__init__()
     self.supported_os = set()
 
   @abc.abstractmethod
@@ -87,7 +86,7 @@ class ArtifactsReader(BaseArtifactsReader):
 
   def __init__(self):
     """Initializes an artifacts reader."""
-    super(ArtifactsReader, self).__init__()
+    super().__init__()
     self.supported_os = set(definitions.SUPPORTED_OS)
 
   # Pylint fails on detecting the type of definition_object based on

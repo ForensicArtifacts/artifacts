@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """The artifact definitions registry."""
 
 from artifacts import definitions
@@ -6,7 +5,7 @@ from artifacts import errors
 from artifacts import source_type
 
 
-class ArtifactDefinitionsRegistry(object):
+class ArtifactDefinitionsRegistry:
   """Artifact definitions registry."""
 
   _source_type_classes = {
@@ -24,7 +23,7 @@ class ArtifactDefinitionsRegistry(object):
 
   def __init__(self):
     """Initializes an artifact definitions registry."""
-    super(ArtifactDefinitionsRegistry, self).__init__()
+    super().__init__()
     self._artifact_definitions_by_alias = {}
     self._artifact_definitions_by_name = {}
     self._artifact_name_references = set()

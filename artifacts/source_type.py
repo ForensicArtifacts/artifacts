@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """The source type objects.
 
 The source type objects define the source of the artifact data. In earlier
@@ -25,7 +24,7 @@ from artifacts import definitions
 from artifacts import errors
 
 
-class SourceType(object):
+class SourceType:
   """Artifact definition source type interface."""
 
   TYPE_INDICATOR = None
@@ -36,7 +35,7 @@ class SourceType(object):
     Raises:
       FormatError: if the indicator is not defined.
     """
-    super(SourceType, self).__init__()
+    super().__init__()
 
     if not self.TYPE_INDICATOR:
       raise errors.FormatError('Missing type indicator.')
@@ -72,7 +71,7 @@ class ArtifactGroupSourceType(SourceType):
     if not names:
       raise errors.FormatError('Missing names value.')
 
-    super(ArtifactGroupSourceType, self).__init__()
+    super().__init__()
     self.names = names
 
   def AsDict(self):
@@ -102,7 +101,7 @@ class CommandSourceType(SourceType):
     if args is None or cmd is None:
       raise errors.FormatError('Missing args or cmd value.')
 
-    super(CommandSourceType, self).__init__()
+    super().__init__()
     self.args = args
     self.cmd = cmd
 
@@ -136,7 +135,7 @@ class DirectorySourceType(SourceType):
     if not isinstance(paths, list):
       raise errors.FormatError('Invalid paths value, not a list.')
 
-    super(DirectorySourceType, self).__init__()
+    super().__init__()
     self.paths = paths
     self.separator = separator
 
@@ -174,7 +173,7 @@ class FileSourceType(SourceType):
     if not isinstance(paths, list):
       raise errors.FormatError('Invalid paths value, not a list.')
 
-    super(FileSourceType, self).__init__()
+    super().__init__()
     self.paths = paths
     self.separator = separator
 
@@ -212,7 +211,7 @@ class PathSourceType(SourceType):
     if not isinstance(paths, list):
       raise errors.FormatError('Invalid paths value, not a list.')
 
-    super(PathSourceType, self).__init__()
+    super().__init__()
     self.paths = paths
     self.separator = separator
 
@@ -260,7 +259,7 @@ class WindowsRegistryKeySourceType(SourceType):
     for key in keys:
       self.ValidateKey(key)
 
-    super(WindowsRegistryKeySourceType, self).__init__()
+    super().__init__()
     self.keys = keys
 
   def AsDict(self):
@@ -329,7 +328,7 @@ class WindowsRegistryValueSourceType(SourceType):
 
       WindowsRegistryKeySourceType.ValidateKey(pair['key'])
 
-    super(WindowsRegistryValueSourceType, self).__init__()
+    super().__init__()
     self.key_value_pairs = key_value_pairs
 
   def AsDict(self):
@@ -364,7 +363,7 @@ class WMIQuerySourceType(SourceType):
     if not query:
       raise errors.FormatError('Missing query value.')
 
-    super(WMIQuerySourceType, self).__init__()
+    super().__init__()
     self.base_object = base_object
     self.query = query
 
@@ -381,7 +380,7 @@ class WMIQuerySourceType(SourceType):
     return source_type_attributes
 
 
-class SourceTypeFactory(object):
+class SourceTypeFactory:
   """Source type factory."""
 
   _source_type_classes = {

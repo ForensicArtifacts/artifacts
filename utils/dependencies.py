@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Helper to check for availability and version of dependencies."""
 
 import configparser
@@ -6,7 +5,7 @@ import os
 import re
 
 
-class DependencyDefinition(object):
+class DependencyDefinition:
   """Dependency definition.
 
   Attributes:
@@ -36,7 +35,7 @@ class DependencyDefinition(object):
     Args:
       name (str): name of the dependency.
     """
-    super(DependencyDefinition, self).__init__()
+    super().__init__()
     self.dpkg_name = None
     self.is_optional = False
     self.l2tbinaries_name = None
@@ -52,7 +51,7 @@ class DependencyDefinition(object):
     self.version_property = None
 
 
-class DependencyDefinitionReader(object):
+class DependencyDefinitionReader:
   """Dependency definition reader."""
 
   _VALUE_NAMES = frozenset([
@@ -106,7 +105,7 @@ class DependencyDefinitionReader(object):
       yield dependency_definition
 
 
-class DependencyHelper(object):
+class DependencyHelper:
   """Dependency helper.
 
   Attributes:
@@ -127,7 +126,7 @@ class DependencyHelper(object):
       test_dependencies_file (Optional[str]): path to the test dependencies
           configuration file.
     """
-    super(DependencyHelper, self).__init__()
+    super().__init__()
     self._test_dependencies = {}
     self.dependencies = {}
 
