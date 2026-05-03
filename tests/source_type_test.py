@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Tests for the source type objects."""
 
 import unittest

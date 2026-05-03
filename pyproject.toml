@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "artifacts"
-version = "20260421"
+version = "20260501"
 description = "ForensicArtifacts.com Artifact Repository"
 maintainers = [
     { name = "Forensic artifacts", email = "forensicartifacts@googlegroups.com" },
@@ -30,12 +30,10 @@ Documentation = "https://artifacts.readthedocs.io/en/latest"
 Homepage = "https://github.com/ForensicArtifacts/artifacts"
 Repository = "https://github.com/ForensicArtifacts/artifacts"
 
+[tool.setuptools]
+package-dir = {"artifacts" = "artifacts"}
+
 [tool.setuptools.package-data]
 artifacts = [
     "data/*.yaml",
 ]
-
-[tool.setuptools.packages.find]
-where = ["."]
-include = ["artifacts"]
-exclude = ["docs", "tests", "tests.*", "utils"]

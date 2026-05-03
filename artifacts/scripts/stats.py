@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """Console script to collect statistics about definitions."""
 
 import collections
@@ -11,12 +10,12 @@ from artifacts import definitions
 from artifacts import reader
 
 
-class ArtifactStatistics(object):
+class ArtifactStatistics:
   """Generate and print statistics about artifact definitions."""
 
   def __init__(self):
     """Initializes artifact statistics."""
-    super(ArtifactStatistics, self).__init__()
+    super().__init__()
     self._os_counts = collections.Counter()
     self._path_count = 0
     self._reg_key_count = 0

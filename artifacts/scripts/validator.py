@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """Console script to validate artifact definitions."""
 
 import argparse
@@ -15,7 +14,7 @@ from artifacts import reader
 from artifacts import registry
 
 
-class ArtifactDefinitionsValidator(object):
+class ArtifactDefinitionsValidator:
   """Artifact definitions validator."""
 
   LEGACY_PATH = os.path.join('artifacts', 'data', 'legacy.yaml')
@@ -45,7 +44,7 @@ class ArtifactDefinitionsValidator(object):
 
   def __init__(self):
     """Initializes an artifact definitions validator."""
-    super(ArtifactDefinitionsValidator, self).__init__()
+    super().__init__()
     self._artifact_registry = registry.ArtifactDefinitionsRegistry()
     self._artifact_registry_key_paths = set()
 

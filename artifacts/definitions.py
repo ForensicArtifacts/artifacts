@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Constants and definitions."""
 
 TYPE_INDICATOR_ARTIFACT_GROUP = 'ARTIFACT_GROUP'
