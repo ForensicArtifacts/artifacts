@@ -37,15 +37,14 @@ jobs:
     - name: Run tests
       env:
         LANG: en_US.UTF-8
+        TOXENV: ${{ matrix.python-version }}
       run: |
-        tox -e${{ matrix.toxenv }}
+        tox -e ${TOXENV//.},wheel
   coverage:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        include:
-        - python-version: '3.12'
-          toxenv: 'coverage'
+        python-version: ['3.12']
     steps:
     - uses: actions/checkout@v5
     - name: Set up Python ${{ matrix.python-version }}
@@ -60,7 +59,7 @@ jobs:
       env:
         LANG: en_US.UTF-8
       run: |
-        tox -e${{ matrix.toxenv }}
+        tox -e coverage
     - name: Upload coverage report to Codecov
       uses: codecov/codecov-action@v5
       with:
@@ -69,9 +68,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        include:
-        - python-version: '3.12'
-          toxenv: 'lint'
+        python-version: ['3.12']
     steps:
     - uses: actions/checkout@v5
     - name: Set up Python ${{ matrix.python-version }}
@@ -86,4 +83,4 @@ jobs:
       env:
         LANG: en_US.UTF-8
       run: |
-        tox -e${{ matrix.toxenv }}
+        tox -e lint
