@@ -10,14 +10,15 @@ jobs:
         include:
         - os: macos-26
           python-version: '3.14'
-          toxenv: 'py314'
     steps:
-    - uses: actions/checkout@v5
+    - uses: actions/checkout@v6
     - name: Install dependencies
       run: |
         brew update -q
         brew install -q gettext gnu-sed python@${{ matrix.python-version }} tox || true
         brew link --force gettext
     - name: Run tests
+      env:
+        TOXENV: py${{ matrix.python-version }}
       run: |
-        tox -e ${{ matrix.toxenv }}
+        tox -e ${TOXENV//.},wheel
