@@ -1,4 +1,4 @@
-# Run tox tests on Ubuntu Docker images using GIFT PPA
+# Run tests using tox
 name: test_tox
 on:
   pull_request:
@@ -13,17 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        include:
-        - python-version: '3.10'
-          toxenv: 'py310,wheel'
-        - python-version: '3.11'
-          toxenv: 'py311,wheel'
-        - python-version: '3.12'
-          toxenv: 'py312,wheel'
-        - python-version: '3.13'
-          toxenv: 'py313,wheel'
-        - python-version: '3.14'
-          toxenv: 'py314,wheel'
+        python-version: ['3.10', '3.11', '3.12', '3.13', '3.14']
     steps:
     - uses: actions/checkout@v5
     - name: Set up Python ${{ matrix.python-version }}
@@ -34,7 +24,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip setuptools
         python -m pip install tox
-    - name: Run tests
+    - name: Run tests and build wheel
       env:
         LANG: en_US.UTF-8
         TOXENV: ${{ matrix.python-version }}
