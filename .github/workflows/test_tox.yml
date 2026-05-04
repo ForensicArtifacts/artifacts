@@ -27,14 +27,14 @@ jobs:
     - name: Run tests and build wheel
       env:
         LANG: en_US.UTF-8
-        TOXENV: ${{ matrix.python-version }}
+        TOXENV: py${{ matrix.python-version }}
       run: |
         tox -e ${TOXENV//.},wheel
   coverage:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ['3.12']
+        python-version: ['3.14']
     steps:
     - uses: actions/checkout@v5
     - name: Set up Python ${{ matrix.python-version }}
@@ -58,7 +58,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ['3.12']
+        python-version: ['3.14']
     steps:
     - uses: actions/checkout@v5
     - name: Set up Python ${{ matrix.python-version }}
