@@ -11,7 +11,7 @@ sources:
   attributes: {paths: ['/private/var/spool/cups/cache/job.cache']}
   supported_os: [Darwin]
 - type: FILE
-  attributes: {paths:['/var/cache/cups/job.cache']}
+  attributes: {paths: ['/var/cache/cups/job.cache']}
   supported_os: [Linux]
 supported_os: [Darwin, Linux]
 urls:
