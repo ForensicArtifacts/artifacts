@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "artifacts"
-version = "20260510"
+version = "20260516"
 description = "ForensicArtifacts.com Artifact Repository"
 maintainers = [
     { name = "Forensic artifacts", email = "forensicartifacts@googlegroups.com" },
@@ -29,6 +29,16 @@ validator = "artifacts.scripts.validator:Main"
 Documentation = "https://artifacts.readthedocs.io/en/latest"
 Homepage = "https://github.com/ForensicArtifacts/artifacts"
 Repository = "https://github.com/ForensicArtifacts/artifacts"
+
+[tool.black]
+line-length = 88
+target-version = ["py310"]
+include = "\\.pyi?$"
+
+[tool.docformatter]
+black = true
+non-cap = []
+non-strict = true
 
 [tool.setuptools]
 package-dir = {"artifacts" = "artifacts"}

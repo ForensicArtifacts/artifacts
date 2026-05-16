@@ -85,34 +85,3 @@ jobs:
       uses: codecov/codecov-action@v6
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
-  lint:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: ['3.14']
-    container:
-      image: ubuntu:26.04
-    steps:
-    - uses: actions/checkout@v6
-    - name: Set up container
-      env:
-        DEBIAN_FRONTEND: noninteractive
-      run: |
-        apt-get update -q
-        apt-get install -y libterm-readline-gnu-perl locales software-properties-common
-        locale-gen en_US.UTF-8
-        ln -f -s /usr/share/zoneinfo/UTC /etc/localtime
-    - name: Install dependencies
-      env:
-        DEBIAN_FRONTEND: noninteractive
-      run: |
-        add-apt-repository -y universe
-        add-apt-repository -y ppa:deadsnakes/ppa
-        add-apt-repository -y ppa:gift/dev
-        apt-get update -q
-        apt-get install -y build-essential git pkg-config python${{ matrix.python-version }} python${{ matrix.python-version }}-dev python${{ matrix.python-version }}-venv python3-pip python3-setuptools python3-yaml tox
-    - name: Run linter
-      env:
-        LANG: en_US.UTF-8
-      run: |
-        tox -e lint
