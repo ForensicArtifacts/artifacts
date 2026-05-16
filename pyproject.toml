@@ -37,7 +37,7 @@ include = "\\.pyi?$"
 
 [tool.docformatter]
 black = true
-non-cap = []
+non-cap = ["str:"]
 non-strict = true
 
 [tool.setuptools]
