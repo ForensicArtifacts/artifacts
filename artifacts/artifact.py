@@ -5,91 +5,95 @@ from artifacts import registry
 
 
 class ArtifactDefinition:
-  """Artifact definition interface.
+    """Artifact definition interface.
 
-  Attributes:
-    aliases (list[str]): aliases that identify the artifact definition.
-    description (str): description.
-    name (str): name that uniquely identifiers the artifact definition.
-    sources (list[SourceType]): sources.
-    supported_os (list[str]): supported operating systems.
-    urls (list[str]): URLs with more information about the artifact definition.
-  """
-
-  def __init__(self, name, aliases=None, description=None):
-    """Initializes an artifact definition.
-
-    Args:
+    Attributes:
+      aliases (list[str]): aliases that identify the artifact definition.
+      description (str): description.
       name (str): name that uniquely identifiers the artifact definition.
-      aliases (Optional[str]): aliases that identify the artifact definition.
-      description (Optional[str]): description of the artifact definition.
+      sources (list[SourceType]): sources.
+      supported_os (list[str]): supported operating systems.
+      urls (list[str]): URLs with more information about the artifact definition.
     """
-    super().__init__()
-    self.aliases = aliases or []
-    self.description = description
-    self.name = name
-    self.sources = []
-    self.supported_os = []
-    self.urls = []
 
-  def AppendSource(self, type_indicator, attributes):
-    """Appends a source.
+    def __init__(self, name, aliases=None, description=None):
+        """Initializes an artifact definition.
 
-    If you want to implement your own source type you should create a subclass
-    in source_type.py and change the AppendSource method to handle the new
-    subclass. This function raises FormatError if an unsupported source type
-    indicator is encountered.
+        Args:
+          name (str): name that uniquely identifiers the artifact definition.
+          aliases (Optional[str]): aliases that identify the artifact definition.
+          description (Optional[str]): description of the artifact definition.
+        """
+        super().__init__()
+        self.aliases = aliases or []
+        self.description = description
+        self.name = name
+        self.sources = []
+        self.supported_os = []
+        self.urls = []
 
-    Args:
-      type_indicator (str): source type indicator.
-      attributes (dict[str, object]): source attributes.
+    def AppendSource(self, type_indicator, attributes):
+        """Appends a source.
 
-    Returns:
-      SourceType: a source type.
+        If you want to implement your own source type you should create a subclass
+        in source_type.py and change the AppendSource method to handle the new
+        subclass. This function raises FormatError if an unsupported source type
+        indicator is encountered.
 
-    Raises:
-      FormatError: if the type indicator is not set or unsupported,
-          or if required attributes are missing.
-    """
-    if not type_indicator:
-      raise errors.FormatError('Missing type indicator.')
+        Args:
+          type_indicator (str): source type indicator.
+          attributes (dict[str, object]): source attributes.
 
-    try:
-      source_object = registry.ArtifactDefinitionsRegistry.CreateSourceType(
-          type_indicator, attributes)
-    except (AttributeError, TypeError) as exception:
-      raise errors.FormatError((
-          f'Unable to create source type: {type_indicator:s} for artifact '
-          f'definition: {self.name:s} with error: {exception!s}'))
+        Returns:
+          SourceType: a source type.
 
-    self.sources.append(source_object)
-    return source_object
+        Raises:
+          FormatError: if the type indicator is not set or unsupported,
+              or if required attributes are missing.
+        """
+        if not type_indicator:
+            raise errors.FormatError("Missing type indicator.")
 
-  def AsDict(self):
-    """Represents an artifact as a dictionary.
+        try:
+            source_object = registry.ArtifactDefinitionsRegistry.CreateSourceType(
+                type_indicator, attributes
+            )
+        except (AttributeError, TypeError) as exception:
+            raise errors.FormatError(
+                (
+                    f"Unable to create source type: {type_indicator:s} for artifact "
+                    f"definition: {self.name:s} with error: {exception!s}"
+                )
+            )
 
-    Returns:
-      dict[str, object]: artifact attributes.
-    """
-    sources = []
-    for source in self.sources:
-      source_definition = {
-          'type': source.type_indicator,
-          'attributes': source.AsDict()
-      }
-      if source.supported_os:
-        source_definition['supported_os'] = source.supported_os
-      sources.append(source_definition)
+        self.sources.append(source_object)
+        return source_object
 
-    artifact_definition = {
-        'name': self.name,
-        'doc': self.description,
-        'sources': sources,
-    }
-    if self.aliases:
-      artifact_definition['aliases'] = self.aliases
-    if self.supported_os:
-      artifact_definition['supported_os'] = self.supported_os
-    if self.urls:
-      artifact_definition['urls'] = self.urls
-    return artifact_definition
+    def AsDict(self):
+        """Represents an artifact as a dictionary.
+
+        Returns:
+          dict[str, object]: artifact attributes.
+        """
+        sources = []
+        for source in self.sources:
+            source_definition = {
+                "type": source.type_indicator,
+                "attributes": source.AsDict(),
+            }
+            if source.supported_os:
+                source_definition["supported_os"] = source.supported_os
+            sources.append(source_definition)
+
+        artifact_definition = {
+            "name": self.name,
+            "doc": self.description,
+            "sources": sources,
+        }
+        if self.aliases:
+            artifact_definition["aliases"] = self.aliases
+        if self.supported_os:
+            artifact_definition["supported_os"] = self.supported_os
+        if self.urls:
+            artifact_definition["urls"] = self.urls
+        return artifact_definition

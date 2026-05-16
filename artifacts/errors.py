@@ -2,16 +2,16 @@
 
 
 class Error(Exception):
-  """The error interface."""
+    """The error interface."""
 
 
 class CodeStyleError(Error):
-  """Error that is raised when code formatting fails style checks."""
+    """Error that is raised when code formatting fails style checks."""
 
 
 class FormatError(Error):
-  """Error that is raised when the format is incorrect."""
+    """Error that is raised when the format is incorrect."""
 
 
 class MissingDependencyError(Error):
-  """Artifact references artifact that is undefined."""
+    """Artifact references artifact that is undefined."""

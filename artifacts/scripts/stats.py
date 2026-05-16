@@ -11,48 +11,49 @@ from artifacts import reader
 
 
 class ArtifactStatistics:
-  """Generate and print statistics about artifact definitions."""
+    """Generate and print statistics about artifact definitions."""
 
-  def __init__(self):
-    """Initializes artifact statistics."""
-    super().__init__()
-    self._os_counts = collections.Counter()
-    self._path_count = 0
-    self._reg_key_count = 0
-    self._source_type_counts = {}
-    self._total_count = 0
+    def __init__(self):
+        """Initializes artifact statistics."""
+        super().__init__()
+        self._os_counts = collections.Counter()
+        self._path_count = 0
+        self._reg_key_count = 0
+        self._source_type_counts = {}
+        self._total_count = 0
 
-  def _PrintDictAsTable(self, title, src_dict):
-    """Prints a table of artifact definitions.
+    def _PrintDictAsTable(self, title, src_dict):
+        """Prints a table of artifact definitions.
 
-    Args:
-      title (str): title of the table.
-      src_dict (dict[str, ArtifactDefinition]): artifact definitions by name.
-    """
-    print(f'### {title:s}')
-    print('')
-    print('Identifier | Number')
-    print('--- | ---')
+        Args:
+          title (str): title of the table.
+          src_dict (dict[str, ArtifactDefinition]): artifact definitions by name.
+        """
+        print(f"### {title:s}")
+        print("")
+        print("Identifier | Number")
+        print("--- | ---")
 
-    for key, value in sorted(src_dict.items()):
-      print(f'{key:s} | {value:d}')
+        for key, value in sorted(src_dict.items()):
+            print(f"{key:s} | {value:d}")
 
-    print('')
+        print("")
 
-  def PrintOSTable(self):
-    """Prints a table of artifact definitions by operating system."""
-    self._PrintDictAsTable('Operating systems', self._os_counts)
+    def PrintOSTable(self):
+        """Prints a table of artifact definitions by operating system."""
+        self._PrintDictAsTable("Operating systems", self._os_counts)
 
-  def PrintSourceTypeTable(self):
-    """Prints a table of artifact definitions by source type."""
-    self._PrintDictAsTable(
-        'Artifact definition source types', self._source_type_counts)
+    def PrintSourceTypeTable(self):
+        """Prints a table of artifact definitions by source type."""
+        self._PrintDictAsTable(
+            "Artifact definition source types", self._source_type_counts
+        )
 
-  def PrintSummaryTable(self):
-    """Prints a summary table."""
-    date_time_string = time.strftime('%Y-%m-%d')
+    def PrintSummaryTable(self):
+        """Prints a summary table."""
+        date_time_string = time.strftime("%Y-%m-%d")
 
-    print(f"""Status of the repository as of {date_time_string:s}
+        print(f"""Status of the repository as of {date_time_string:s}
 
 Description | Number
 --- | ---
@@ -61,75 +62,76 @@ Number of file paths: | {self._path_count:d}
 Number of Windows Registry key paths: | {self._reg_key_count:d}
 """)
 
-  def BuildStats(self):
-    """Builds the statistics."""
-    artifact_reader = reader.YamlArtifactsReader()
-    self._os_counts = collections.Counter()
-    self._path_count = 0
-    self._reg_key_count = 0
-    self._source_type_counts = {}
-    self._total_count = 0
+    def BuildStats(self):
+        """Builds the statistics."""
+        artifact_reader = reader.YamlArtifactsReader()
+        self._os_counts = collections.Counter()
+        self._path_count = 0
+        self._reg_key_count = 0
+        self._source_type_counts = {}
+        self._total_count = 0
 
-    data_files_path = os.path.join('artifacts', 'data')
-    for artifact_definition in artifact_reader.ReadDirectory(data_files_path):
-      sources_supported_os = set()
-      for source in artifact_definition.sources:
-        self._total_count += 1
-        source_type = source.type_indicator
-        self._source_type_counts[source_type] = self._source_type_counts.get(
-            source_type, 0) + 1
+        data_files_path = os.path.join("artifacts", "data")
+        for artifact_definition in artifact_reader.ReadDirectory(data_files_path):
+            sources_supported_os = set()
+            for source in artifact_definition.sources:
+                self._total_count += 1
+                source_type = source.type_indicator
+                self._source_type_counts[source_type] = (
+                    self._source_type_counts.get(source_type, 0) + 1
+                )
+                if source_type == definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_KEY:
+                    self._reg_key_count += len(source.keys)
+                elif source_type == definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_VALUE:
+                    self._reg_key_count += len(source.key_value_pairs)
+                elif source_type in (
+                    definitions.TYPE_INDICATOR_FILE,
+                    definitions.TYPE_INDICATOR_DIRECTORY,
+                ):
+                    self._path_count += len(source.paths)
 
-        if source_type == definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_KEY:
-          self._reg_key_count += len(source.keys)
-        elif source_type == definitions.TYPE_INDICATOR_WINDOWS_REGISTRY_VALUE:
-          self._reg_key_count += len(source.key_value_pairs)
-        elif source_type in (definitions.TYPE_INDICATOR_FILE,
-                             definitions.TYPE_INDICATOR_DIRECTORY):
-          self._path_count += len(source.paths)
+                sources_supported_os.update(set(source.supported_os))
 
-        sources_supported_os.update(set(source.supported_os))
+            # Fallback to the supported_os defined at definition level if none
+            # of the sources specified supported operating systems.
+            if not sources_supported_os:
+                sources_supported_os = set(artifact_definition.supported_os)
 
-      # Fallback to the supported_os defined at definition level if none
-      # of the sources specified supported operating systems.
-      if not sources_supported_os:
-        sources_supported_os = set(artifact_definition.supported_os)
+            for os_str in sources_supported_os:
+                self._os_counts[os_str] += 1
 
-      for os_str in sources_supported_os:
-        self._os_counts[os_str] += 1
-
-  def PrintStats(self):
-    """Build stats and print in MarkDown format."""
-    data_directory_url = (
-        'https://github.com/ForensicArtifacts/artifacts/tree/main/artifacts/'
-        'data')
-
-    style_guide_url = (
-        'https://artifacts.readthedocs.io/en/latest/sources/'
-        'Format-specification.html')
-
-    print(f"""## Statistics
+    def PrintStats(self):
+        """Build stats and print in MarkDown format."""
+        data_directory_url = (
+            "https://github.com/ForensicArtifacts/artifacts/tree/main/artifacts/data"
+        )
+        style_guide_url = (
+            "https://artifacts.readthedocs.io/en/latest/sources/"
+            "Format-specification.html"
+        )
+        print(f"""## Statistics
 
 The artifact definitions can be found in the
 [artifacts/data directory]({data_directory_url:s}) and the format is described
 in detail in the [Style Guide]({style_guide_url:s}).
 """)
 
-    self.BuildStats()
-    self.PrintSummaryTable()
-    self.PrintSourceTypeTable()
-    self.PrintOSTable()
+        self.BuildStats()
+        self.PrintSummaryTable()
+        self.PrintSourceTypeTable()
+        self.PrintOSTable()
 
 
 def Main():
-  """Entry point of console script to collect statistics about definitions.
+    """Entry point of console script to collect statistics about definitions.
 
-  Returns:
-    int: exit code that is provided to sys.exit().
-  """
-  statsbuilder = ArtifactStatistics()
-  statsbuilder.PrintStats()
-  return 0
+    Returns:
+      int: exit code that is provided to sys.exit().
+    """
+    statsbuilder = ArtifactStatistics()
+    statsbuilder.PrintStats()
+    return 0
 
 
-if __name__ == '__main__':
-  sys.exit(Main())
+if __name__ == "__main__":
+    sys.exit(Main())
