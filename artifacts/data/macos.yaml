@@ -1203,10 +1203,10 @@ doc: |
 
   Text file with a line per volume, where a line is in the format:
   "volume UUID: flags"
- 
+
   where flags
-    "00000000" file ownership should be ignored;
-    "00000001" file ownership should NOT be ignored.
+  * "00000000" file ownership should be ignored;
+  * "00000001" file ownership should NOT be ignored.
 
   A volume appears to be added when "Ignore ownership on this volume" is changed
   from within Finder (or presumably updated with vsdbutili). It does not appear
