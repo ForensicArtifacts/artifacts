@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "artifacts"
-version = "20260516"
+version = "20260729"
 description = "ForensicArtifacts.com Artifact Repository"
 maintainers = [
     { name = "Forensic artifacts", email = "forensicartifacts@googlegroups.com" },
@@ -39,6 +39,15 @@ include = "\\.pyi?$"
 black = true
 non-cap = ["str:"]
 non-strict = true
+
+[tool.l2tdevtools]
+name = "Digital Forensics Artifacts Repository"
+status = "alpha"
+description = """
+A free, community-sourced, machine-readable knowledge base of forensic \
+artifacts that the world can use both as an information source and within \
+other tools. \
+"""
 
 [tool.setuptools]
 package-dir = {"artifacts" = "artifacts"}

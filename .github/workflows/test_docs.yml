@@ -22,8 +22,8 @@ jobs:
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
-        apt-get update -q
-        apt-get install -y libterm-readline-gnu-perl locales software-properties-common
+        apt update -q
+        apt install -y libterm-readline-gnu-perl locales software-properties-common
         locale-gen en_US.UTF-8
         ln -f -s /usr/share/zoneinfo/UTC /etc/localtime
     - name: Install dependencies
@@ -33,8 +33,8 @@ jobs:
         add-apt-repository -y universe
         add-apt-repository -y ppa:deadsnakes/ppa
         add-apt-repository -y ppa:gift/dev
-        apt-get update -q
-        apt-get install -y build-essential git pkg-config python${{ matrix.python-version }} python${{ matrix.python-version }}-dev python${{ matrix.python-version }}-venv python3-pip python3-setuptools python3-yaml tox
+        apt update -q
+        apt install -y build-essential git pkg-config python${{ matrix.python-version }} python${{ matrix.python-version }}-dev python${{ matrix.python-version }}-venv python3-pip python3-setuptools python3-yaml tox
     - name: Run tests
       env:
         LANG: en_US.UTF-8
