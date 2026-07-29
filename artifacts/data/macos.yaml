@@ -1197,6 +1197,28 @@ sources:
 supported_os: [Darwin]
 urls: ['https://github.com/libyal/dtformats/blob/main/documentation/Utmp%20login%20records%20format.asciidoc']
 ---
+name: MacOSVolumeInformationDatabaseFile
+doc: |
+  Information of file ownership of (previously) attached volumes.
+
+  Text file with a line per volume, where a line is in the format:
+  "volume UUID: flags"
+
+  where flags
+  * "00000000" file ownership should be ignored;
+  * "00000001" file ownership should NOT be ignored.
+
+  A volume appears to be added when "Ignore ownership on this volume" is changed
+  from within Finder (or presumably updated with vsdbutili). It does not appear
+  to be a comprehensive list of previously attached volumes.
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '/private/var/db/volinfo.database'
+    - '/var/db/volinfo.database'
+supported_os: [Darwin]
+---
 name: MacOSWalletSQLiteDatabaseFile
 doc: Apple Wallet SQLite database file.
 sources:
