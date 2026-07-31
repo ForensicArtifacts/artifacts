@@ -1182,6 +1182,7 @@ sources:
   attributes:
     paths:
     - '%%users.homedir%%/.mozilla/firefox/*.default/Cache/*'
+    - '%%users.homedir%%/.config/mozilla/firefox/*.default/Cache/*'
     - '%%users.homedir%%/.cache/mozilla/firefox/*.default/Cache/*'
     - '%%users.homedir%%/.cache/mozilla/firefox/*.default/cache2/*'
     - '%%users.homedir%%/.cache/mozilla/firefox/*.default/cache2/doomed/*'
@@ -1228,8 +1229,11 @@ sources:
   attributes:
     paths:
     - '%%users.homedir%%/.mozilla/firefox/*/cookies.sqlite'
+    - '%%users.homedir%%/.config/mozilla/firefox/*/cookies.sqlite'
     - '%%users.homedir%%/.mozilla/firefox/*/cookies.sqlite-shm'
+    - '%%users.homedir%%/.config/mozilla/firefox/*/cookies.sqlite-shm'
     - '%%users.homedir%%/.mozilla/firefox/*/cookies.sqlite-wal'
+    - '%%users.homedir%%/.config/mozilla/firefox/*/cookies.sqlite-wal'
   supported_os: [Linux]
 - type: FILE
   attributes:
@@ -1256,7 +1260,9 @@ sources:
   attributes:
     paths:
     - '%%users.homedir%%/.mozilla/firefox/*/downloads.sqlite'
+    - '%%users.homedir%%/.config/mozilla/firefox/*/downloads.sqlite'
     - '%%users.homedir%%/.mozilla/firefox/*/downloads.sqlite-wal'
+    - '%%users.homedir%%/.config/mozilla/firefox/*/downloads.sqlite-wal'
   supported_os: [Linux]
 - type: FILE
   attributes:
@@ -1283,9 +1289,13 @@ sources:
   attributes:
     paths:
     - '%%users.homedir%%/.mozilla/firefox/*/places.sqlite'
+    - '%%users.homedir%%/.config/mozilla/firefox/*/places.sqlite'
     - '%%users.homedir%%/.mozilla/firefox/*/places.sqlite-wal'
+    - '%%users.homedir%%/.config/mozilla/firefox/*/places.sqlite-wal'
     - '%%users.homedir%%/snap/firefox/common/.mozilla/firefox/*/places.sqlite'
+    - '%%users.homedir%%/snap/firefox/common/.config/mozilla/firefox/*/places.sqlite'
     - '%%users.homedir%%/snap/firefox/common/.mozilla/firefox/*/places.sqlite-wal'
+    - '%%users.homedir%%/snap/firefox/common/.config/mozilla/firefox/*/places.sqlite-wal'
   supported_os: [Linux]
 - type: FILE
   attributes:
@@ -1313,8 +1323,11 @@ sources:
   attributes:
     paths:
     - '%%users.homedir%%/.mozilla/firefox/*/addons.json'
+    - '%%users.homedir%%/.config/mozilla/firefox/*/addons.json'
     - '%%users.homedir%%/.mozilla/firefox/*/extensions.json'
+    - '%%users.homedir%%/.config/mozilla/firefox/*/extensions.json'
     - '%%users.homedir%%/.mozilla/firefox/*/webapps/webapps.json'
+    - '%%users.homedir%%/.config/mozilla/firefox/*/webapps/webapps.json'
   supported_os: [Linux]
 - type: FILE
   attributes:
