@@ -50,7 +50,7 @@ supported_os: [Linux]
 urls: ['https://wiki.debian.org/SecureApt']
 ---
 name: CronAtAllowDenyFiles
-doc: Files containing users authorised to run cron or at jobs.
+doc: Files containing users authorized to run cron or at jobs.
 sources:
 - type: FILE
   attributes:

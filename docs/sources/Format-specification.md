@@ -311,7 +311,7 @@ Artifact definitions can use different types of parameters that need to be
 expanded at runtime, such as:
 
 * POSIX users variables, for example %%users.homedir%%
-* Windows evironment variables, for example %%environ_systemroot%%
+* Windows environment variables, for example %%environ_systemroot%%
 * Windows users variables, for example %%users.temp%%
 
 ### POSIX users variables
@@ -332,9 +332,9 @@ common usage scenarios.
 * '/Users/*' for Mac OS
 * '/home/*' and '/root' for Linux
 
-### Windows evironment variables
+### Windows environment variables
 
-Supported Windows evironment variables are:
+Supported Windows environment variables are:
 
 Variable | Description
 --- | ---

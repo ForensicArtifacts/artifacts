@@ -1,9 +1,6 @@
 #!/bin/bash
 # Script to update the version information.
 
-EXIT_FAILURE=1;
-EXIT_SUCCESS=0;
-
 VERSION=$(date -u +"%Y%m%d")
 
 # Update the Python module version.
@@ -31,5 +28,3 @@ PYTHONPATH=. ./artifacts/scripts/stats.py > docs/sources/background/Stats.md
 
 # Regenerate the API documentation.
 tox -edocs
-
-exit ${EXIT_SUCCESS};

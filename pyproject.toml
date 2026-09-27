@@ -1,10 +1,10 @@
 [build-system]
-requires = ["setuptools", "wheel"]
+requires = ["setuptools>=77", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "artifacts"
-version = "20260729"
+version = "20260927"
 description = "ForensicArtifacts.com Artifact Repository"
 maintainers = [
     { name = "Forensic artifacts", email = "forensicartifacts@googlegroups.com" },

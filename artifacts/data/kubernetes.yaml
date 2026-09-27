@@ -21,12 +21,12 @@ doc: |
   Kubernetes cluster (etcd) database.
 
   The cluster database is hosted within a Pod and can be configured to be
-  deployed as distributed environment or single intance. The database is
+  deployed as distributed environment or single instance. The database is
   mounted from the local file system into the corresponding containers
   scheduled by a pod.
 
   The database contains information about the clusters state, deployed
-  resourcees and also deleted components.
+  resources and also deleted components.
 sources:
 - type: FILE
   attributes: {paths: ['/var/lib/etcd/member/snap/db']}

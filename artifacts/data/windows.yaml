@@ -729,7 +729,7 @@ supported_os: [Windows]
 urls: ['https://github.com/libyal/winreg-kb/blob/main/documentation/System%20keys.asciidoc']
 ---
 name: WindowsDebugger
-doc: Windows Debugger peristence or AV disable.
+doc: Windows Debugger persistence or AV disable.
 sources:
 - type: REGISTRY_VALUE
   attributes:
@@ -2735,7 +2735,7 @@ doc: |
   Windows StubPath persistence.
 
   Each time a user logs in, the Active Setup Installed Components in HKLM
-  are compared ot the ones in HKCU, and if any are missing, or if the
+  are compared to the ones in HKCU, and if any are missing, or if the
   associated version is less, the program is executed.
 sources:
 - type: REGISTRY_VALUE
@@ -3377,7 +3377,7 @@ supported_os: [Windows]
 urls: ['https://msdn.microsoft.com/en-us/library/ms838576%28v=winembedded.5%29.aspx']
 ---
 name: WindowsWinlogonSystem
-doc: Applications launched by Winlogon in the system context during the system initialisation.
+doc: Applications launched by Winlogon in the system context during the system initialization.
 sources:
 - type: REGISTRY_VALUE
   attributes:
