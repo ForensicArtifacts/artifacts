@@ -1,0 +1,24 @@
+[files]
+extend-exclude = [
+    "test_data/"
+]
+
+[default]
+binary = false
+check-filename = true
+check-file = true
+unicode = true
+locale = "en-us"
+extend-ignore-re = [
+    # Ignore a line that is preceded with `// typos:ignore`
+    "(#|//)\\s*typos:ignore\\n.*",
+
+    # Ignore code blocks between `// typos:disable` and `// typos:enable`
+    "(?s)(#|//)\\s*typos:disable.*?\\n\\s*(#|//)\\s*typos:enable",
+
+    # Ignore text between <!-- typos:disable --> and <!-- typos:enable -->
+    "(?s)<!--\\s*typos:disable\\s*-->.*?<!--\\s*typos:enable\\s*-->",
+]
+extend-words = {
+    "hve" = "hve",
+}

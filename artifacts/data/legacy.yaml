@@ -28,7 +28,7 @@ doc: |
   Linux specific distribution information.
 
   See: lsb_release(1) man page, or the LSB Specification under the 'Command
-  Behaviour' section.
+  Behavior' section.
 sources:
 - type: FILE
   attributes:

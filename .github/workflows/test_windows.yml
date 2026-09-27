@@ -1,6 +1,6 @@
 # Run tests on Windows.
 name: test_windows
-on: [push, pull_request]
+on: [pull_request, push]
 permissions: read-all
 jobs:
   test_windows:
@@ -20,17 +20,13 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
         cache: 'pip'
-    - name: Install dependencies
-      shell: cmd
-      run: |
-        git clone https://github.com/log2timeline/l2tdevtools.git ..\l2tdevtools
-        set PYTHONPATH=..\l2tdevtools
-        mkdir downloads
-        python ..\l2tdevtools\tools\update.py --download-directory downloads --machine-type amd64 --track dev PyYAML
+        cache-dependency-path: 'tox.ini'
     - name: Install tox
       run: |
         python -m pip install --upgrade pip
         python -m pip install tox tox-gh-actions
     - name: Run tests
+      env:
+        PIP_CACHE_DIR: ~\AppData\Local\pip\Cache
       run: |
         tox -e ${{ matrix.toxenv }}
