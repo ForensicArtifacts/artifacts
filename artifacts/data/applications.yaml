@@ -1,5 +1,61 @@
 # Application artifacts.
 ---
+name: AnyDeskConfigurationFile
+doc: AnyDesk configuration files (user.conf, system.conf and service.conf).
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.appdata%%\AnyDesk\*.conf'
+    - '%%environ_programdata%%\AnyDesk\*.conf'
+    separator: '\'
+supported_os: [Windows]
+urls:
+- 'https://support.anydesk.com/knowledge/trace-files'
+- 'https://www.inversecos.com/2021/02/forensic-analysis-of-anydesk-logs.html'
+---
+name: AnyDeskLogFile
+doc: AnyDesk trace files (ad.trace, ad_svc.trace, connection_trace.txt and file_transfer_trace.txt).
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.appdata%%\AnyDesk\*.trace'
+    - '%%users.appdata%%\AnyDesk\ad_*\*.trace'
+    - '%%users.appdata%%\AnyDesk\connection_trace.txt'
+    - '%%users.appdata%%\AnyDesk\file_transfer_trace.txt'
+    - '%%environ_programdata%%\AnyDesk\*.trace'
+    - '%%environ_programdata%%\AnyDesk\ad_*\*.trace'
+    - '%%environ_programdata%%\AnyDesk\connection_trace.txt'
+    - '%%environ_programdata%%\AnyDesk\file_transfer_trace.txt'
+    - '%%environ_systemroot%%\SysWOW64\config\systemprofile\AppData\Roaming\AnyDesk\*'
+    separator: '\'
+  supported_os: [Windows]
+- type: FILE
+  attributes:
+    paths:
+    - '%%users.homedir%%/.anydesk/anydesk.trace'
+    - '%%users.homedir%%/.anydesk_ad_*/anydesk_ad_*.trace'
+  supported_os: [Darwin, Linux]
+- type: FILE
+  attributes:
+    paths:
+    - '/private/var/log/anydesk.trace'
+    - '/private/var/log/anydesk_ad_*.trace'
+    - '/var/log/anydesk.trace'
+    - '/var/log/anydesk_ad_*.trace'
+  supported_os: [Darwin]
+- type: FILE
+  attributes:
+    paths:
+    - '/var/log/anydesk.trace'
+    - '/var/log/anydesk_ad_*.trace'
+  supported_os: [Linux]
+supported_os: [Darwin, Linux, Windows]
+urls:
+- 'https://support.anydesk.com/knowledge/trace-files'
+- 'https://www.inversecos.com/2021/02/forensic-analysis-of-anydesk-logs.html'
+---
 name: GnomeEvolution
 doc: Gnome Evolution files.
 sources:
@@ -133,3 +189,31 @@ sources:
 - type: FILE
   attributes: {paths: ['%%users.homedir%%/.thunderbird/**']}
 supported_os: [Linux]
+---
+name: TeamViewerConnectionLogFile
+doc: TeamViewer connection log files (Connections.txt and Connections_incoming.txt).
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%environ_programfiles%%\TeamViewer\Connections*.txt'
+    - '%%environ_programfilesx86%%\TeamViewer\Connections*.txt'
+    - '%%users.appdata%%\TeamViewer\Connections*.txt'
+    separator: '\'
+supported_os: [Windows]
+urls:
+- 'https://community.teamviewer.com/English/discussion/40819/c-program-files-x86-teamviewer-connections-incoming-txt-is-missing'
+---
+name: TeamViewerLogFile
+doc: TeamViewer application log files (TeamViewer<version>_Logfile.log).
+sources:
+- type: FILE
+  attributes:
+    paths:
+    - '%%environ_programfiles%%\TeamViewer\TeamViewer*_Logfile*.log'
+    - '%%environ_programfilesx86%%\TeamViewer\TeamViewer*_Logfile*.log'
+    - '%%users.appdata%%\TeamViewer\TeamViewer*_Logfile*.log'
+    separator: '\'
+supported_os: [Windows]
+urls:
+- 'https://www.teamviewer.com/en/global/support/knowledge-base/teamviewer-remote/contact-support/find-your-log-files/'
