@@ -43,6 +43,7 @@ jobs:
         apt install -y build-essential git pkg-config python${{ matrix.python-version }} python${{ matrix.python-version }}-dev python${{ matrix.python-version }}-venv python3-pip python3-setuptools python3-yaml tox
     - name: Run tests
       env:
+        CPATH: /usr/include/python${{ matrix.python-version }}
         LANG: en_US.UTF-8
       run: |
         tox -e ${{ matrix.toxenv }},wheel
@@ -74,6 +75,7 @@ jobs:
         apt install -y build-essential curl git pkg-config python${{ matrix.python-version }} python${{ matrix.python-version }}-dev python${{ matrix.python-version }}-venv python3-pip python3-setuptools python3-yaml tox
     - name: Run tests with coverage
       env:
+        CPATH: /usr/include/python${{ matrix.python-version }}
         LANG: en_US.UTF-8
       run: |
         tox -e coverage
