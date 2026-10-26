@@ -40,6 +40,14 @@ sources:
     - '/etc/system-release'
 supported_os: [Linux]
 ---
+name: LinuxWtmp
+doc: Linux wtmp login record file
+sources:
+- type: FILE
+  attributes: {paths: ['/var/log/wtmp*']}
+supported_os: [Linux]
+urls: ['https://github.com/libyal/dtformats/blob/main/documentation/Utmp%20login%20records%20format.asciidoc']
+---
 name: SystemDriveEnvironmentVariable
 doc: |
   The %SystemDrive% environment variable, usually "C:".
