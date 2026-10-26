@@ -1,4 +1,4 @@
-# VNC artifacts.
+# VNC (Virtual Network Computing) artifacts.
 ---
 name: VNCPasswordFile
 doc: VNC password file
@@ -6,9 +6,9 @@ sources:
 - type: FILE
   attributes:
     paths:
-      - '%%users.homedir%%/.vnc/passwd'
+    - '%%users.homedir%%/.vnc/passwd'
   supported_os: [Linux]
-supported_os: [Linux]  # TODO: darwin
+supported_os: [Linux]
 ---
 name: VNCPasswordRegistryValue
 doc: VNC password registry value
@@ -23,11 +23,11 @@ sources:
 supported_os: [Windows]
 ---
 name: VNCPassword
-doc: VNC Password artifacts 
+doc: VNC Password artifacts
 sources:
 - type: ARTIFACT_GROUP
   attributes:
     names:
-      - VNCPasswordFile
-      - VNCPasswordRegistryValue
+    - VNCPasswordFile
+    - VNCPasswordRegistryValue
 supported_os: [Linux, Windows]
