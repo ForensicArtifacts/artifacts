@@ -190,6 +190,24 @@ sources:
   attributes: {paths: ['%%users.homedir%%/.thunderbird/**']}
 supported_os: [Linux]
 ---
+name: PuTTYHostKeysRegistryKey
+doc: PuTTY SSH host keys cache Registry key.
+sources:
+- type: REGISTRY_KEY
+  attributes: {keys: ['HKEY_USERS\%%users.sid%%\Software\SimonTatham\PuTTY\SshHostKeys']}
+supported_os: [Windows]
+urls: ['https://ftp.cvut.cz/putty/0.85/htmldoc/AppendixA.html']
+---
+name: PuTTYSessionsRegistryKey
+doc: PuTTY saved sessions Registry key.
+sources:
+- type: REGISTRY_KEY
+  attributes: {keys: ['HKEY_USERS\%%users.sid%%\Software\SimonTatham\PuTTY\Sessions']}
+supported_os: [Windows]
+urls:
+- 'https://ftp.cvut.cz/putty/0.85/htmldoc/AppendixA.html'
+- 'https://ftp.cvut.cz/putty/0.85/htmldoc/Chapter4.html'
+---
 name: TeamViewerConnectionLogFile
 doc: TeamViewer connection log files (Connections.txt and Connections_incoming.txt).
 sources:
