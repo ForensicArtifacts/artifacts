@@ -322,7 +322,7 @@ class WindowsRegistryValueSourceType(SourceType):
 
             if set(pair.keys()) != set(["key", "value"]):
                 key_value_pairs = ", ".join(
-                    [f"{key:s}: {value:s}" for key, value in key_value_pairs]
+                    [f"{key!s}: {value!s}" for key, value in pair.items()]
                 )
                 raise errors.FormatError(
                     f'key_value_pair missing "key" and "value" keys, got: '
