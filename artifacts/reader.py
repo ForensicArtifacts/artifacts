@@ -208,6 +208,17 @@ class ArtifactsReader(BaseArtifactsReader):
 
         aliases = artifact_definition_values.get("aliases", None)
 
+        if aliases is not None and not isinstance(aliases, list):
+            raise errors.FormatError(
+                f"Invalid artifact definition: {name:s} aliases is not a list."
+            )
+
+        if aliases and any(not isinstance(alias, str) for alias in aliases):
+            raise errors.FormatError(
+                f"Invalid artifact definition: {name:s} aliases is not a list "
+                f"of strings."
+            )
+
         artifact_definition = artifact.ArtifactDefinition(
             name, aliases=aliases, description=description
         )

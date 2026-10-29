@@ -36,6 +36,28 @@ sources:
   supported_os: [Windows]
 """
 
+    _DEFINITION_INVALID_ALIASES = """\
+name: BadAliases
+doc: Aliases should be an array of strings.
+aliases: SafariHistory
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '/etc/hosts'
+"""
+
+    _DEFINITION_INVALID_ALIASES_ELEMENT = """\
+name: BadAliasesElement
+doc: Aliases should be an array of strings.
+aliases: [1234]
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '/etc/hosts'
+"""
+
     _DEFINITION_INVALID_URLS = """\
 name: BadUrls
 doc: badurls.
@@ -223,6 +245,20 @@ supported_os: [Windows]
         artifact_reader = reader.YamlArtifactsReader()
 
         file_object = io.StringIO(initial_value=self._DEFINITION_INVALID_URLS)
+        with self.assertRaises(errors.FormatError):
+            _ = list(artifact_reader.ReadFileObject(file_object))
+
+    def testReadFileObjectInvalidAliases(self):
+        """Tests the ReadFileObject function on an invalid aliases."""
+        artifact_reader = reader.YamlArtifactsReader()
+
+        file_object = io.StringIO(initial_value=self._DEFINITION_INVALID_ALIASES)
+        with self.assertRaises(errors.FormatError):
+            _ = list(artifact_reader.ReadFileObject(file_object))
+
+        file_object = io.StringIO(
+            initial_value=self._DEFINITION_INVALID_ALIASES_ELEMENT
+        )
         with self.assertRaises(errors.FormatError):
             _ = list(artifact_reader.ReadFileObject(file_object))
 
