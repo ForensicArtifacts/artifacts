@@ -87,6 +87,10 @@ class WindowsRegistryValueSourceTypeTest(test_lib.BaseTestCase):
         with self.assertRaises(errors.FormatError):
             source_type.WindowsRegistryValueSourceType(key_value_pairs=[key_value_pair])
 
+        key_value_pair = {1: "bad"}
+        with self.assertRaises(errors.FormatError):
+            source_type.WindowsRegistryValueSourceType(key_value_pairs=[key_value_pair])
+
         with self.assertRaises(errors.FormatError):
             source_type.WindowsRegistryValueSourceType(key_value_pairs=key_value_pair)
 
