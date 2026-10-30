@@ -321,8 +321,13 @@ class WindowsRegistryValueSourceType(SourceType):
                 raise errors.FormatError("key_value_pair must be a dict")
 
             if set(pair.keys()) != set(["key", "value"]):
+                for key, value in pair.items():
+                    if not isinstance(key, str) or not isinstance(value, str):
+                        raise errors.FormatError(
+                            "Unsupported key value pair key or value type"
+                        )
                 key_value_pairs = ", ".join(
-                    [f"{key:s}: {value:s}" for key, value in key_value_pairs]
+                    [f"{key:s}: {value:s}" for key, value in pair.items()]
                 )
                 raise errors.FormatError(
                     f'key_value_pair missing "key" and "value" keys, got: '

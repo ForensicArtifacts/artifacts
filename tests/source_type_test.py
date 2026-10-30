@@ -73,6 +73,24 @@ class WindowsRegistryValueSourceTypeTest(test_lib.BaseTestCase):
         with self.assertRaises(errors.FormatError):
             source_type.WindowsRegistryValueSourceType(key_value_pairs=[key_value_pair])
 
+        # an error must be raised (not a ValueError from broken error
+        # formatting) when the pair has more or fewer than two keys
+        key_value_pair = {"key": "HKEY_LOCAL_MACHINE\\test", "value": "test", "bad": "test"}
+        with self.assertRaises(errors.FormatError):
+            source_type.WindowsRegistryValueSourceType(key_value_pairs=[key_value_pair])
+
+        key_value_pair = {"key": "HKEY_LOCAL_MACHINE\\test"}
+        with self.assertRaises(errors.FormatError):
+            source_type.WindowsRegistryValueSourceType(key_value_pairs=[key_value_pair])
+
+        key_value_pair = {"bad": 1, "other": 2}
+        with self.assertRaises(errors.FormatError):
+            source_type.WindowsRegistryValueSourceType(key_value_pairs=[key_value_pair])
+
+        key_value_pair = {1: "bad"}
+        with self.assertRaises(errors.FormatError):
+            source_type.WindowsRegistryValueSourceType(key_value_pairs=[key_value_pair])
+
         with self.assertRaises(errors.FormatError):
             source_type.WindowsRegistryValueSourceType(key_value_pairs=key_value_pair)
 
